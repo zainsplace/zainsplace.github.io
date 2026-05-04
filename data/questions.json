@@ -1,0 +1,598 @@
+{
+  "questions": [
+    {
+      "id": "q1",
+      "section": "C",
+      "code": "C1.1",
+      "marks": 2,
+      "commandWord": "State",
+      "question": "State TWO types of cloud computing service model.",
+      "modelAnswer": "Any two of: Software as a Service (SaaS); Platform as a Service (PaaS); Infrastructure as a Service (IaaS).",
+      "markPoints": ["1 mark per correct service model named (max 2)"]
+    },
+    {
+      "id": "q2",
+      "section": "C",
+      "code": "C1.1",
+      "marks": 4,
+      "commandWord": "Explain",
+      "question": "Explain the difference between a public cloud and a private cloud.",
+      "modelAnswer": "A public cloud is cloud infrastructure that is shared across multiple organisations and managed by a third-party provider such as AWS or Microsoft Azure. It is cost-effective because organisations pay only for what they use, but they have less control over where their data is stored.\n\nA private cloud is operated solely for one organisation and provides more control over data security and compliance. However, it is more expensive to set up and maintain than a public cloud.",
+      "markPoints": [
+        "Public cloud: shared infrastructure / managed by third party (1 mark)",
+        "Public cloud: lower cost / accessible over internet (1 mark)",
+        "Private cloud: used by single organisation (1 mark)",
+        "Private cloud: more secure/more control / higher cost (1 mark)"
+      ]
+    },
+    {
+      "id": "q3",
+      "section": "C",
+      "code": "C1.2",
+      "marks": 6,
+      "commandWord": "Discuss",
+      "question": "A school is considering moving its student data and teaching resources to a cloud-based system. Discuss the benefits and drawbacks of this decision for the school.",
+      "modelAnswer": "Moving to cloud computing would offer the school several benefits. The school would not need to invest in expensive on-site servers or maintain hardware, reducing capital expenditure — important for a school operating on a limited budget. Cloud storage also allows staff and students to access resources from any device with an internet connection, supporting remote learning.\n\nHowever, there are significant drawbacks. Student data is particularly sensitive; storing it on cloud servers raises data protection concerns, as the school must ensure the provider is GDPR-compliant. If the internet connection fails, neither staff nor students would be able to access teaching resources or student records, causing significant disruption to learning. There is also the risk of vendor lock-in — if the school becomes dependent on one provider, switching later could be expensive and disruptive.",
+      "markPoints": [
+        "L1 (1-2): Simple benefit or drawback identified with little/no development",
+        "L2 (3-4): At least one benefit AND one drawback explained with some reference to the scenario",
+        "L3 (5-6): Multiple benefits and drawbacks explained and linked to the school context; balanced discussion"
+      ]
+    },
+    {
+      "id": "q4",
+      "section": "C",
+      "code": "C1.3.1",
+      "marks": 4,
+      "commandWord": "Explain",
+      "question": "Explain how a VPN allows employees to work securely from home.",
+      "modelAnswer": "A VPN (Virtual Private Network) creates an encrypted tunnel between the employee's device at home and the organisation's network. This means all data transmitted between the employee and the company is encrypted and cannot be read if intercepted. The employee can access internal resources — such as shared files and databases — as if they were physically in the office, even though they are connecting over the public internet.",
+      "markPoints": [
+        "Creates encrypted tunnel / encrypts data in transit (1 mark)",
+        "Connects over the public internet (1 mark)",
+        "Allows access to internal network resources remotely (1 mark)",
+        "Data cannot be intercepted / read by third parties (1 mark)"
+      ]
+    },
+    {
+      "id": "q5",
+      "section": "C",
+      "code": "C2.1",
+      "marks": 2,
+      "commandWord": "State",
+      "question": "State TWO ways an organisation can interact with online communities.",
+      "modelAnswer": "Any two of: social media; blogs/vlogs; wikis; chatrooms; instant messaging; podcasts; forums.",
+      "markPoints": ["1 mark per correct method (max 2)"]
+    },
+    {
+      "id": "q6",
+      "section": "C",
+      "code": "C2.2",
+      "marks": 4,
+      "commandWord": "Describe",
+      "question": "Describe TWO considerations for an organisation when using an online community platform.",
+      "modelAnswer": "Security: the organisation must ensure user accounts and data are protected from unauthorised access. This includes implementing strong passwords and encryption to prevent data breaches that could damage the organisation's reputation.\n\nPrivacy: the organisation must ensure the platform complies with GDPR. Users must consent to data collection, and the organisation must have a clear privacy policy explaining what data is collected and how it is used.",
+      "markPoints": [
+        "Security identified (1 mark) + development/explanation (1 mark)",
+        "Privacy/any other valid consideration identified (1 mark) + development (1 mark)"
+      ]
+    },
+    {
+      "id": "q7",
+      "section": "D",
+      "code": "D1.1",
+      "marks": 2,
+      "commandWord": "State",
+      "question": "State TWO types of external threat to an organisation's data.",
+      "modelAnswer": "Any two of: viruses/malware; unauthorised access (hackers); social engineering (e.g. phishing); accidental damage; natural disasters.",
+      "markPoints": ["1 mark per correct threat (max 2)"]
+    },
+    {
+      "id": "q8",
+      "section": "D",
+      "code": "D1.1.4",
+      "marks": 4,
+      "commandWord": "Explain",
+      "question": "Explain what is meant by social engineering and describe ONE technique used by attackers.",
+      "modelAnswer": "Social engineering is the manipulation of people into revealing confidential information or performing actions that compromise security, rather than exploiting technical vulnerabilities in systems.\n\nPhishing is a common technique where attackers send fake emails that appear to come from a legitimate source such as a bank or employer. The email tricks the recipient into clicking a malicious link or entering their login credentials on a fake website, giving the attacker access to the victim's account.",
+      "markPoints": [
+        "Social engineering defined: manipulating people (not systems) (1 mark)",
+        "To reveal confidential information / take security-compromising action (1 mark)",
+        "Named technique (e.g. phishing) (1 mark)",
+        "Explanation of how the technique works (1 mark)"
+      ]
+    },
+    {
+      "id": "q9",
+      "section": "D",
+      "code": "D1.3",
+      "marks": 6,
+      "commandWord": "Explain",
+      "question": "Explain the impacts of a data breach on an organisation.",
+      "modelAnswer": "A data breach can have serious financial consequences. Under GDPR, the Information Commissioner's Office (ICO) can impose fines of up to £17.5 million or 4% of global annual turnover for serious breaches. The organisation may also face civil lawsuits from individuals whose data was compromised.\n\nThe organisation's reputation would be severely damaged. Customers who learn their personal data has been exposed are likely to lose trust in the organisation and take their business elsewhere. Negative media coverage can amplify this reputational damage, potentially resulting in long-term loss of revenue.\n\nOperationally, the organisation may need to take systems offline to investigate the breach and prevent further loss, causing disruption to normal business operations. The cost of hiring cybersecurity experts and notifying affected customers (required within 72 hours under GDPR) adds further expense.",
+      "markPoints": [
+        "L1 (1-2): One impact identified with limited development",
+        "L2 (3-4): Two or more impacts explained (e.g. financial and reputational)",
+        "L3 (5-6): Three or more impacts well-explained with clear links between them; e.g. financial (fines + lost revenue), reputational (lost customer trust), operational (downtime)"
+      ]
+    },
+    {
+      "id": "q10",
+      "section": "D",
+      "code": "D2.4",
+      "marks": 4,
+      "commandWord": "Explain",
+      "question": "Explain how encryption is used to protect data on websites that use HTTPS.",
+      "modelAnswer": "HTTPS uses SSL/TLS encryption to protect data transmitted between a user's browser and a web server. When a user connects to an HTTPS site, the server sends a digital certificate to verify its identity. A symmetric encryption key is then agreed between the browser and server, and all subsequent data — including login credentials and payment details — is encrypted using this key. Even if the data is intercepted in transit, it cannot be read without the decryption key.",
+      "markPoints": [
+        "HTTPS uses SSL/TLS / encryption protocol named (1 mark)",
+        "Data encrypted in transit / between browser and server (1 mark)",
+        "Digital certificate verifies server identity (1 mark)",
+        "Intercepted data cannot be read without key (1 mark)"
+      ]
+    },
+    {
+      "id": "q11",
+      "section": "D",
+      "code": "D2.1",
+      "marks": 4,
+      "commandWord": "Describe",
+      "question": "Describe TWO techniques an organisation can use to protect its data from unauthorised access.",
+      "modelAnswer": "Multi-factor authentication (MFA) requires users to verify their identity using two or more factors — typically a password plus a code sent to their phone. This means that even if a password is stolen, an attacker cannot access the account without the second factor.\n\nFile permissions allow the organisation to control who can read, write, or execute specific files. This ensures employees can only access data relevant to their role, reducing the risk of accidental or deliberate data leaks from within the organisation.",
+      "markPoints": [
+        "MFA / passwords / biometrics identified (1 mark) + development (1 mark)",
+        "File permissions / access levels identified (1 mark) + development (1 mark)"
+      ]
+    },
+    {
+      "id": "q12",
+      "section": "B",
+      "code": "B1.1",
+      "marks": 4,
+      "commandWord": "Compare",
+      "question": "Compare Wi-Fi and Ethernet as methods of network connection.",
+      "modelAnswer": "Wi-Fi uses radio waves to connect devices wirelessly, meaning users can move around freely without being tethered to a cable. However, Wi-Fi signals can be weakened by walls and interference from other devices, making the connection less reliable. Wi-Fi is also less secure than Ethernet as the signal can be intercepted more easily.\n\nEthernet uses physical cables (copper or fibre optic) to connect devices. This provides a faster, more reliable connection with lower latency, making it better for tasks requiring consistent bandwidth such as video conferencing. However, it limits the physical movement of devices.",
+      "markPoints": [
+        "Wi-Fi wireless / no cables / portable (1 mark)",
+        "Wi-Fi disadvantage: interference / less secure / slower (1 mark)",
+        "Ethernet: wired / faster / more reliable (1 mark)",
+        "Ethernet disadvantage: limits movement / cable required (1 mark)"
+      ]
+    },
+    {
+      "id": "q13",
+      "section": "B",
+      "code": "B2.1",
+      "marks": 4,
+      "commandWord": "Describe",
+      "question": "Describe ONE advantage and ONE disadvantage of a star network topology.",
+      "modelAnswer": "Advantage: in a star topology, if one device or cable fails, only that device loses its connection — all other devices continue to function normally. This makes the network more fault-tolerant and easier to troubleshoot.\n\nDisadvantage: if the central switch or hub fails, all devices connected to it lose their network connection simultaneously, making the entire network dependent on that single point of failure.",
+      "markPoints": [
+        "Advantage identified (e.g. fault isolation) (1 mark) + development (1 mark)",
+        "Disadvantage identified (e.g. single point of failure at switch) (1 mark) + development (1 mark)"
+      ]
+    },
+    {
+      "id": "q14",
+      "section": "B",
+      "code": "B3.1.3",
+      "marks": 2,
+      "commandWord": "State",
+      "question": "State the difference between HTTP and HTTPS.",
+      "modelAnswer": "HTTP transfers data without encryption (unsecured). HTTPS uses SSL/TLS encryption to secure data in transit, protecting it from interception.",
+      "markPoints": ["HTTP: no encryption / unsecured (1 mark)", "HTTPS: uses SSL/TLS / encrypts data in transit (1 mark)"]
+    },
+    {
+      "id": "q15",
+      "section": "B",
+      "code": "B3.5",
+      "marks": 4,
+      "commandWord": "Explain",
+      "question": "Explain the difference between lossy and lossless compression. Give an example of when each would be used.",
+      "modelAnswer": "Lossy compression permanently removes some data from a file to achieve a smaller file size, resulting in reduced quality that cannot be restored. It is typically used for images (JPEG), audio (MP3), and video (MP4) where some quality loss is acceptable but file size is important for streaming or storage.\n\nLossless compression reduces file size without losing any data — the original file can be perfectly reconstructed from the compressed version. It is used where accuracy is critical, such as compressing text documents (ZIP), software files, or medical images where data integrity must be maintained.",
+      "markPoints": [
+        "Lossy: permanently removes data / reduced quality (1 mark)",
+        "Lossy example: JPEG / MP3 / MP4 / streaming (1 mark)",
+        "Lossless: no data lost / can be fully restored (1 mark)",
+        "Lossless example: ZIP / text / PNG / software files (1 mark)"
+      ]
+    },
+    {
+      "id": "q16",
+      "section": "B",
+      "code": "B3.3",
+      "marks": 4,
+      "commandWord": "Explain",
+      "question": "Explain the factors that affect the performance of a network.",
+      "modelAnswer": "Bandwidth determines how much data can be transmitted per second — a higher bandwidth network can transfer more data simultaneously, improving performance for multiple users. Latency is the delay between data being sent and received; high latency causes slow response times, particularly noticeable in real-time applications such as video calls.\n\nThe number of users connected also affects performance — as more devices share the network, available bandwidth per device decreases. The quality of hardware (switches, cables, routers) also impacts performance; older or lower-quality equipment may create bottlenecks.",
+      "markPoints": [
+        "Bandwidth explained with effect on performance (1 mark)",
+        "Latency explained with effect (1 mark)",
+        "Number of users / congestion (1 mark)",
+        "Hardware quality / cables / switches (1 mark)"
+      ]
+    },
+    {
+      "id": "q17",
+      "section": "E",
+      "code": "E1.1",
+      "marks": 4,
+      "commandWord": "Describe",
+      "question": "Describe TWO benefits of online retail for a business.",
+      "modelAnswer": "Online retail allows a business to reach a global customer base rather than being limited to customers in a local area. The business can operate 24 hours a day, 7 days a week, enabling sales to continue even when physical stores are closed.\n\nOnline retail typically reduces overheads compared to physical stores — the business does not need to pay rent for retail premises or employ as many shop floor staff, increasing profit margins.",
+      "markPoints": [
+        "Wider customer reach / global audience (1 mark) + development (1 mark)",
+        "Reduced overheads / lower costs / 24/7 operation (1 mark) + development (1 mark)"
+      ]
+    },
+    {
+      "id": "q18",
+      "section": "E",
+      "code": "E1.2.2",
+      "marks": 4,
+      "commandWord": "Explain",
+      "question": "Explain how an organisation uses transactional data for targeted marketing.",
+      "modelAnswer": "Transactional data records details of each customer purchase — what was bought, when, at what price, and by whom. Organisations analyse this data to identify patterns in individual customer behaviour, such as frequently purchased products or preferred brands.\n\nThis analysis allows the organisation to send personalised marketing — for example, recommending similar products or offering discounts on items a customer regularly buys. This increases the likelihood of a sale, improves the customer experience, and is more cost-effective than blanket advertising to all customers.",
+      "markPoints": [
+        "Transactional data records purchases / customer behaviour (1 mark)",
+        "Data analysed to identify patterns / preferences (1 mark)",
+        "Used to send personalised recommendations / adverts (1 mark)",
+        "Increases conversion / more effective than generic marketing (1 mark)"
+      ]
+    },
+    {
+      "id": "q19",
+      "section": "E",
+      "code": "E2.5",
+      "marks": 4,
+      "commandWord": "Explain",
+      "question": "Explain the difference between verification and validation in data entry systems.",
+      "modelAnswer": "Verification checks that data has been entered correctly by comparing the input to the original source. A common method is double entry, where a user enters data twice and the system checks both entries match. This catches typing errors but does not check whether the data itself is valid.\n\nValidation is an automated process that checks whether entered data is reasonable, complete, and in the correct format. For example, a range check ensures a numeric value falls within acceptable limits (e.g. age must be between 0 and 120). Validation cannot check if data is true — only that it is in the correct format.",
+      "markPoints": [
+        "Verification: checking data entered correctly / matches original (1 mark)",
+        "Example of verification (e.g. double entry, proofreading) (1 mark)",
+        "Validation: automated check data is reasonable/correct format (1 mark)",
+        "Example of validation (range/presence/format/length check) (1 mark)"
+      ]
+    },
+    {
+      "id": "q20",
+      "section": "A",
+      "code": "A3.2",
+      "marks": 4,
+      "commandWord": "Explain",
+      "question": "Explain TWO functions of an operating system.",
+      "modelAnswer": "Memory management: the operating system allocates RAM to running programs, ensuring each process has sufficient memory and preventing processes from interfering with each other. When RAM is full, it uses virtual memory (swapping data to the hard disk) to avoid crashes.\n\nSecurity management: the OS controls user authentication, manages access levels, and implements encryption to protect data. It also manages the system firewall to prevent unauthorised network access.",
+      "markPoints": [
+        "Memory management identified (1 mark) + explanation (allocates RAM, virtual memory, swapping) (1 mark)",
+        "Security / user accounts / any valid OS function identified (1 mark) + explanation (1 mark)"
+      ]
+    },
+    {
+      "id": "q21",
+      "section": "A",
+      "code": "A3.5",
+      "marks": 4,
+      "commandWord": "Describe",
+      "question": "Describe TWO types of user interface.",
+      "modelAnswer": "A Graphical User Interface (GUI) uses icons, windows, menus, and a pointer (usually a mouse) to allow users to interact with the computer visually. It is intuitive and requires minimal technical knowledge, making it suitable for general users.\n\nA Command Line Interface (CLI) requires the user to type text commands. It provides more direct control over the system and is faster for experienced users performing repetitive tasks, but it requires knowledge of specific commands and is not suitable for inexperienced users.",
+      "markPoints": [
+        "GUI identified (1 mark) + description (icons/windows/mouse/intuitive) (1 mark)",
+        "CLI identified (1 mark) + description (text commands/requires expertise/faster for experts) (1 mark)"
+      ]
+    },
+    {
+      "id": "q22",
+      "section": "A",
+      "code": "A3.6",
+      "marks": 4,
+      "commandWord": "Explain",
+      "question": "Explain ONE benefit and ONE drawback of open source software compared to proprietary software.",
+      "modelAnswer": "A benefit of open source software is that it is usually free to download and use, significantly reducing software licensing costs for organisations. The source code is also publicly available, allowing developers to customise it to meet specific needs.\n\nA drawback is that open source software may offer less dedicated technical support than proprietary software. Users typically rely on community forums rather than a dedicated helpdesk. This can be a problem for organisations that require guaranteed support response times.",
+      "markPoints": [
+        "Benefit: free/no licence cost / customisable source code (1 mark) + development (1 mark)",
+        "Drawback: limited formal support / security risks / compatibility issues (1 mark) + development (1 mark)"
+      ]
+    },
+    {
+      "id": "q23",
+      "section": "F",
+      "code": "F2.1.5",
+      "marks": 4,
+      "commandWord": "Explain",
+      "question": "Explain how the Data Protection Act 2018 / GDPR protects individuals.",
+      "modelAnswer": "The Data Protection Act 2018 (incorporating GDPR) requires organisations to handle personal data responsibly. Data must be collected for a specific, lawful purpose and not used for anything else without the individual's consent. Organisations must not hold more data than necessary and must keep it accurate and up to date.\n\nIndividuals are given rights under the Act, including the right to access the data held about them, the right to have inaccurate data corrected, and the right to request deletion of their data (the 'right to be forgotten'). Organisations that fail to comply face significant fines from the ICO.",
+      "markPoints": [
+        "Data collected lawfully / for specified purpose / with consent (1 mark)",
+        "Data must be accurate / not excessive / secure (1 mark)",
+        "Individual rights: access / correct / delete data (1 mark)",
+        "ICO can impose fines for non-compliance (1 mark)"
+      ]
+    },
+    {
+      "id": "q24",
+      "section": "F",
+      "code": "F2.1.1",
+      "marks": 4,
+      "commandWord": "Describe",
+      "question": "Describe the THREE offences under the Computer Misuse Act 1990.",
+      "modelAnswer": "The first offence is unauthorised access to a computer system — this covers hacking into a system without permission and carries a maximum sentence of two years in prison.\n\nThe second offence is unauthorised access with intent to commit a further offence — for example, hacking a company's system to steal financial data with intent to commit fraud. This carries a more severe penalty.\n\nThe third offence is unauthorised modification of computer material — this includes installing malware, deleting files, or making changes to a system without permission. This carries a maximum sentence of ten years in prison.",
+      "markPoints": [
+        "Offence 1: unauthorised access / hacking (1 mark)",
+        "Offence 2: unauthorised access with intent to commit further crime (1 mark)",
+        "Offence 3: unauthorised modification / installing malware / deleting files (1 mark)",
+        "Penalties or additional detail for any offence (1 mark)"
+      ]
+    },
+    {
+      "id": "q25",
+      "section": "A",
+      "code": "A1.1",
+      "marks": 2,
+      "commandWord": "Give",
+      "question": "Give TWO examples of embedded systems.",
+      "modelAnswer": "Any two of: smart thermostat; washing machine control system; ABS brakes in a car; traffic light controller; pacemaker; IoT sensors.",
+      "markPoints": ["1 mark per valid embedded system example (max 2)"]
+    },
+    {
+      "id": "q26",
+      "section": "B",
+      "code": "B2.2",
+      "marks": 4,
+      "commandWord": "Explain",
+      "question": "Explain the difference between a LAN and a WAN.",
+      "modelAnswer": "A LAN (Local Area Network) covers a small geographic area, typically a single building or site such as a school or office. The organisation usually owns all the networking hardware (cables, switches). LANs offer high speed and low latency because all devices are physically close.\n\nA WAN (Wide Area Network) covers a large geographic area — such as connecting offices in different cities or countries — using third-party telecommunications infrastructure (e.g. fibre optic cables, leased lines). WANs are typically slower and more expensive to maintain than LANs due to the distances and infrastructure involved.",
+      "markPoints": [
+        "LAN: small geographic area / single building or site (1 mark)",
+        "LAN: organisation owns hardware / high speed / low cost (1 mark)",
+        "WAN: large geographic area / multiple sites / countries (1 mark)",
+        "WAN: uses third-party infrastructure / slower / higher cost (1 mark)"
+      ]
+    },
+    {
+      "id": "q27",
+      "section": "D",
+      "code": "D1.2",
+      "marks": 4,
+      "commandWord": "Describe",
+      "question": "Describe TWO internal threats to an organisation's data.",
+      "modelAnswer": "Accidental disclosure of data occurs when an employee unintentionally shares confidential information — for example, sending an email containing personal customer data to the wrong recipient. This can violate GDPR and cause reputational damage even though it was not malicious.\n\nStealing or leaking information is a deliberate internal threat where a disgruntled employee copies and shares sensitive data with competitors or externally. This type of insider threat is particularly dangerous because the employee already has legitimate access to the data.",
+      "markPoints": [
+        "Accidental disclosure identified (1 mark) + development (1 mark)",
+        "Stealing/leaking information / inappropriate website access / portable devices identified (1 mark) + development (1 mark)"
+      ]
+    },
+    {
+      "id": "q28",
+      "section": "C",
+      "code": "C1.4",
+      "marks": 4,
+      "commandWord": "Explain",
+      "question": "Explain why scalability is an important factor for an organisation when selecting a cloud computing service.",
+      "modelAnswer": "Scalability is the ability to increase or decrease computing resources on demand. For an organisation, this means that during periods of high demand — for example, a retailer during the Christmas period — additional server capacity can be provisioned almost instantly without purchasing new hardware.\n\nWhen demand falls, the organisation can reduce its resource usage and only pay for what it uses, avoiding the cost of maintaining idle hardware. This makes cloud computing more cost-efficient than on-premise infrastructure, which must be sized for peak demand but sits underused most of the time.",
+      "markPoints": [
+        "Scalability: ability to increase/decrease resources on demand (1 mark)",
+        "Useful during peak demand periods / can scale up quickly (1 mark)",
+        "Can scale down and reduce costs (1 mark)",
+        "On-premise cannot scale as easily / must buy hardware in advance (1 mark)"
+      ]
+    },
+    {
+      "id": "q29",
+      "section": "E",
+      "code": "E1.1.2",
+      "marks": 4,
+      "commandWord": "Describe",
+      "question": "Describe TWO benefits of online financial services (e.g. online banking) for customers.",
+      "modelAnswer": "Online banking allows customers to access their accounts, transfer money, and pay bills at any time of day, from any location with internet access. This is significantly more convenient than visiting a branch during opening hours.\n\nOnline financial services also offer faster transactions. Bank transfers that once took three working days can now be completed almost instantly using Faster Payments. This benefits customers who need to make time-sensitive payments.",
+      "markPoints": [
+        "24/7 access / accessible anywhere (1 mark) + development (1 mark)",
+        "Faster transactions / real-time balance checking / convenience (1 mark) + development (1 mark)"
+      ]
+    },
+    {
+      "id": "q30",
+      "section": "A",
+      "code": "A4.1",
+      "marks": 4,
+      "commandWord": "Explain",
+      "question": "Explain TWO factors an organisation should consider when choosing a new IT system.",
+      "modelAnswer": "Cost is an important factor — the organisation must consider both the initial purchase cost and the ongoing costs of maintenance, training, and licensing. For a small organisation, the total cost of ownership must be within budget.\n\nCompatibility is also crucial — the new system must work with existing hardware, software, and data formats already used by the organisation. If the new system is incompatible, additional costs for conversion or replacement of other systems will be incurred.",
+      "markPoints": [
+        "Cost identified (1 mark) + development (initial/ongoing/total cost of ownership) (1 mark)",
+        "Compatibility / security / user needs / performance / implementation identified (1 mark) + development (1 mark)"
+      ]
+    },
+    {
+      "id": "q31",
+      "section": "F",
+      "code": "F1.1",
+      "marks": 6,
+      "commandWord": "Discuss",
+      "question": "Discuss the ethical issues associated with organisations collecting and using personal data for targeted marketing.",
+      "modelAnswer": "The primary ethical issue is privacy — individuals may be unaware of the extent to which their data (browsing history, location, purchase patterns) is being collected and used. Even when consent is given through lengthy terms and conditions, it is questionable whether this constitutes truly informed consent.\n\nTargeted marketing can also create a 'filter bubble' effect where individuals are only shown content aligned with their existing interests, limiting their exposure to different perspectives. This can be seen as a form of manipulation.\n\nHowever, there are arguments that targeted marketing benefits consumers by showing them relevant products rather than generic adverts, potentially saving them time. Organisations argue that data collection enables a better user experience.\n\nOverall, the ethical concern centres on the power imbalance — organisations have far more knowledge about individuals than individuals have about how their data is used. Stronger regulation and genuine transparency would help address this.",
+      "markPoints": [
+        "L1 (1-2): One ethical issue identified with limited explanation",
+        "L2 (3-4): Two ethical issues explained (e.g. privacy, consent, manipulation)",
+        "L3 (5-6): Multiple issues explained with counterarguments considered; balanced evaluation reaching a reasoned conclusion"
+      ]
+    },
+    {
+      "id": "q32",
+      "section": "D",
+      "code": "D2.2",
+      "marks": 4,
+      "commandWord": "Describe",
+      "question": "Describe how antivirus software protects a computer system.",
+      "modelAnswer": "Antivirus software constantly monitors the files and processes on a computer, comparing them against a database of known malware signatures. When a match is found, the software alerts the user and quarantines or deletes the malicious file to prevent damage.\n\nModern antivirus software also uses heuristic analysis to detect previously unknown threats by identifying suspicious behaviour patterns — for example, a program attempting to modify system files without authorisation. Regular updates to the virus definition database are essential to protect against new malware.",
+      "markPoints": [
+        "Scans files / compares to malware signature database (1 mark)",
+        "Quarantines or deletes detected malware (1 mark)",
+        "Heuristic analysis / detects unknown threats by behaviour (1 mark)",
+        "Regular updates needed to remain effective (1 mark)"
+      ]
+    },
+    {
+      "id": "q33",
+      "section": "B",
+      "code": "B3.1.1",
+      "marks": 4,
+      "commandWord": "Explain",
+      "question": "Explain the difference between IMAP and POP3 for receiving email.",
+      "modelAnswer": "IMAP (Internet Message Access Protocol) stores emails on the mail server and synchronises them across multiple devices. This means a user can access the same emails from a phone, laptop, and desktop, and any changes (such as deleting or moving an email) are reflected on all devices.\n\nPOP3 (Post Office Protocol 3) downloads emails from the server to a single device and typically deletes them from the server. This means emails are only accessible from the device they were downloaded to, which can be a limitation for users who access email on multiple devices.",
+      "markPoints": [
+        "IMAP: stores emails on server / syncs across devices (1 mark)",
+        "IMAP: changes reflected on all devices (1 mark)",
+        "POP3: downloads to one device / typically deletes from server (1 mark)",
+        "POP3: emails only on one device (1 mark)"
+      ]
+    },
+    {
+      "id": "q34",
+      "section": "A",
+      "code": "A3.1",
+      "marks": 2,
+      "commandWord": "State",
+      "question": "State TWO types of operating system.",
+      "modelAnswer": "Any two of: batch; distributed; multitasking; network OS; real-time OS; mobile OS; single use; multi-user.",
+      "markPoints": ["1 mark per valid OS type (max 2)"]
+    },
+    {
+      "id": "q35",
+      "section": "E",
+      "code": "E2.1",
+      "marks": 4,
+      "commandWord": "Explain",
+      "question": "Explain the difference between primary and secondary sources of data.",
+      "modelAnswer": "Primary data is original data collected directly for a specific purpose or research project. Methods include surveys, questionnaires, interviews, and focus groups. Primary data is up to date and specific to the researcher's needs, but it can be expensive and time-consuming to collect.\n\nSecondary data is data that already exists and was collected by someone else for a different purpose — for example, government statistics, published reports, or existing research. It is quicker and cheaper to access, but may not be perfectly suited to the researcher's current needs and could be outdated.",
+      "markPoints": [
+        "Primary: collected for specific purpose / first-hand data (1 mark)",
+        "Primary: examples (survey, interview) / up to date / expensive to collect (1 mark)",
+        "Secondary: already exists / collected by others (1 mark)",
+        "Secondary: examples (reports, statistics) / cheaper but may be outdated/less relevant (1 mark)"
+      ]
+    },
+    {
+      "id": "q36",
+      "section": "C",
+      "code": "C1.1",
+      "marks": 8,
+      "commandWord": "Discuss",
+      "question": "A national charity is considering moving from on-premise servers to cloud computing. The charity processes large volumes of donor personal data and relies on its systems being available 24/7. Discuss whether cloud computing is suitable for the charity. [8 marks]",
+      "modelAnswer": "Cloud computing offers several advantages that could make it suitable for the charity. Moving to a cloud service would eliminate the need to maintain on-premise servers, reducing capital expenditure — important for a charity operating on limited funds. Cloud platforms are also scalable, allowing the charity to increase storage capacity as its donor database grows without purchasing additional hardware. Using SaaS applications would give staff access to systems from anywhere, which could improve flexibility.\n\nHowever, there are significant concerns specific to this scenario. The charity processes large volumes of personal data from donors, which means any cloud provider must be fully GDPR-compliant. Data stored on cloud servers may be located in different countries, raising questions about data sovereignty and compliance with UK data protection law. A breach of donor data could not only result in ICO fines but would severely damage the charity's reputation and reduce donor trust.\n\nThe charity's requirement for 24/7 availability is also a risk factor. Cloud services, despite generally having high uptime, are dependent on the charity maintaining a reliable internet connection. Any internet outage would prevent access to all systems, causing complete operational disruption.\n\nOverall, cloud computing could be suitable for the charity, particularly a private or hybrid cloud model that gives greater control over sensitive donor data while retaining the cost and scalability benefits. The charity would need to conduct thorough due diligence on the provider's security credentials and GDPR compliance before proceeding.",
+      "markPoints": [
+        "L1 (1-3): One or two points identified, limited development, may not link to the scenario",
+        "L2 (4-6): Benefits and drawbacks explained with some links to the charity scenario (donor data, 24/7 need)",
+        "L3 (7-8): Comprehensive discussion covering multiple benefits AND specific risks linked to scenario; evaluative conclusion about suitability"
+      ]
+    },
+    {
+      "id": "q37",
+      "section": "A",
+      "code": "A2.2",
+      "marks": 2,
+      "commandWord": "State",
+      "question": "State TWO examples of assistive technology.",
+      "modelAnswer": "Any two of: screen reader; braille display; screen magnifier; adaptive keyboard; eye-tracking software; text-to-speech software; sip-and-puff switch; head pointer.",
+      "markPoints": ["1 mark per valid assistive technology (max 2)"]
+    },
+    {
+      "id": "q38",
+      "section": "D",
+      "code": "D2.1",
+      "marks": 2,
+      "commandWord": "State",
+      "question": "State TWO methods of physical access control used to protect IT systems.",
+      "modelAnswer": "Any two of: biometric scanners (fingerprint/retinal); key card/swipe card access; CCTV cameras; security guards; locked server rooms.",
+      "markPoints": ["1 mark per valid physical access control method (max 2)"]
+    },
+    {
+      "id": "q39",
+      "section": "F",
+      "code": "F2.1.2",
+      "marks": 4,
+      "commandWord": "Explain",
+      "question": "Explain how the Copyright, Designs and Patents Act 1988 protects software developers.",
+      "modelAnswer": "The Copyright, Designs and Patents Act 1988 automatically protects original software created by a developer — they do not need to register it. The Act gives the developer exclusive rights to copy, distribute, and modify their software.\n\nAnyone who copies, distributes, or adapts the software without the developer's permission is committing copyright infringement, which is a criminal offence. This protects the developer's ability to monetise their work and prevents others from profiting from their code without permission.",
+      "markPoints": [
+        "Automatically protects original software / no registration needed (1 mark)",
+        "Gives exclusive rights to copy/distribute/modify (1 mark)",
+        "Copying without permission = copyright infringement / criminal offence (1 mark)",
+        "Protects developer's ability to profit from work (1 mark)"
+      ]
+    },
+    {
+      "id": "q40",
+      "section": "B",
+      "code": "B2.3",
+      "marks": 4,
+      "commandWord": "Explain",
+      "question": "Explain TWO factors that affect the choice of network for an organisation.",
+      "modelAnswer": "Security is an important factor — the organisation must choose a network that provides sufficient protection for the data being transmitted. A business handling sensitive financial data, for example, would require a more secure network solution such as a VPN or private WAN rather than relying solely on a public internet connection.\n\nCost is also a key consideration. Setting up a WAN to connect multiple office sites involves significant infrastructure costs, including leased lines and networking equipment. The organisation must balance connection quality and security against available budget.",
+      "markPoints": [
+        "Security identified (1 mark) + development linked to data sensitivity / business type (1 mark)",
+        "Cost / user needs / scalability / implementation / compatibility identified (1 mark) + development (1 mark)"
+      ]
+    },
+    {
+      "id": "q41",
+      "section": "E",
+      "code": "E1.2.4",
+      "marks": 4,
+      "commandWord": "Describe",
+      "question": "Describe TWO benefits of remote working enabled by IT systems.",
+      "modelAnswer": "Remote working allows employees to work from any location, removing the need to commute to an office. This can improve work-life balance and reduce travel costs for employees, potentially increasing job satisfaction and staff retention.\n\nFor the organisation, remote working can reduce costs associated with maintaining a large office — less desk space is needed if employees work from home on a rota. IT systems such as VPNs, cloud software, and video conferencing tools make it possible for teams to collaborate effectively regardless of location.",
+      "markPoints": [
+        "Flexibility / no commute / improved work-life balance (1 mark) + development (1 mark)",
+        "Reduced office costs / wider recruitment pool / business continuity (1 mark) + development (1 mark)"
+      ]
+    },
+    {
+      "id": "q42",
+      "section": "A",
+      "code": "A5",
+      "marks": 4,
+      "commandWord": "Explain",
+      "question": "Explain TWO ways in which artificial intelligence (AI) is affecting the use of IT systems in organisations.",
+      "modelAnswer": "AI enables automation of repetitive tasks that previously required human input — for example, AI chatbots can handle routine customer queries 24/7, reducing the need for large customer service teams and lowering staffing costs.\n\nAI also enhances data analysis capabilities. Organisations can use machine learning to identify patterns in large datasets that humans could not process manually — for example, detecting fraudulent transactions in real time by identifying unusual spending patterns. This improves security and business decision-making.",
+      "markPoints": [
+        "Automation of tasks / chatbots / reducing staffing needs (1 mark) + development (1 mark)",
+        "Enhanced data analysis / pattern recognition / fraud detection / decision support (1 mark) + development (1 mark)"
+      ]
+    },
+    {
+      "id": "q43",
+      "section": "F",
+      "code": "F2.1.1",
+      "marks": 6,
+      "commandWord": "Discuss",
+      "question": "A company employee has accessed confidential customer records without authorisation to pass information to a competitor. Discuss which section(s) of the Computer Misuse Act 1990 apply and the potential consequences for the employee. [6 marks]",
+      "modelAnswer": "Section 1 of the Computer Misuse Act 1990 applies because the employee accessed computer material (customer records) without authorisation. Even though the employee had legitimate access to the company's systems as part of their job, accessing files beyond the scope of their role constitutes unauthorised access under Section 1.\n\nSection 2 also applies because the unauthorised access was carried out with the intent to commit a further offence — passing the data to a competitor could constitute fraud or breach of confidence. Section 2 requires both unauthorised access and intent to commit or facilitate a further crime.\n\nThe consequences for the employee are serious. Under Section 1, the maximum penalty is 2 years' imprisonment and an unlimited fine. Under Section 2, the maximum penalty increases to 5 years' imprisonment. Additionally, the employee could face civil action from the company for breach of contract and a claim for damages. Their employer could also report the breach to the ICO under GDPR, which could result in the company itself being fined if adequate access controls were not in place.",
+      "markPoints": [
+        "Section 1 identified: unauthorised access to computer material (1 mark)",
+        "Section 1 explained with reference to scenario — accessing beyond role scope (1 mark)",
+        "Section 2 identified: unauthorised access with intent to commit further offence (1 mark)",
+        "Section 2 linked to scenario — intent to pass data to competitor = further crime (1 mark)",
+        "Consequence: criminal penalties (imprisonment/fine for S1 or S2) (1 mark)",
+        "Additional consequence: civil action / GDPR implications / dismissal (1 mark)"
+      ]
+    },
+    {
+      "id": "q44",
+      "section": "F",
+      "code": "F1.1",
+      "marks": 6,
+      "commandWord": "Discuss",
+      "question": "A school is introducing a new IT acceptable use policy (AUP) for students. Discuss what the AUP should include and why it is important for the school to have one. [6 marks]",
+      "modelAnswer": "An acceptable use policy should clearly define what students are and are not permitted to do on school IT systems. It should specify permitted activities (e.g. educational research, using school-approved software), prohibited activities (e.g. accessing social media, downloading games, visiting inappropriate websites), and the consequences of breaching the policy (e.g. loss of IT access, disciplinary action).\n\nThe AUP should also include a clause informing students that their activity on school systems may be monitored. This is both a legal requirement under GDPR — students must be informed that their data (in this case, their browsing activity) is being processed — and a deterrent against misuse.\n\nIt is important for the school to have an AUP because it protects the school legally: if a student breaches the policy and causes harm (e.g. cyberbullying another student using school equipment), the school can demonstrate it had clear rules in place. It also helps manage security risks by preventing students from installing malware or accessing harmful content on school networks. Finally, it sets clear expectations for acceptable digital behaviour, which supports students' wider digital literacy and netiquette skills.",
+      "markPoints": [
+        "AUP contents: permitted and prohibited activities identified (1 mark)",
+        "AUP includes consequences of breach (1 mark)",
+        "Monitoring clause included with GDPR justification (1 mark)",
+        "Importance: legal protection for the school (1 mark)",
+        "Importance: security risk management (preventing malware/inappropriate content) (1 mark)",
+        "Importance: setting expectations / supporting digital literacy / netiquette (1 mark)"
+      ]
+    }
+  ]
+}

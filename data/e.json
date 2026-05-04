@@ -1,0 +1,522 @@
+{
+  "section": "E",
+  "title": "Impact of Using IT Systems",
+  "tier": 1,
+  "colour": "#dd6b20",
+  "topics": [
+    {
+      "code": "E1",
+      "title": "Online Services",
+      "subtopics": [
+        {
+          "code": "E1.1",
+          "title": "Features and Implications of Online Services",
+          "items": [
+            {
+              "code": "E1.1.1",
+              "term": "Online Retail",
+              "definition": "The buying and selling of goods and services over the internet. Customers browse, order, and pay online; sellers manage stock, fulfilment, and customer service through digital systems.",
+              "examples": "Amazon, ASOS, Tesco online grocery delivery, eBay marketplace.",
+              "examTip": "Cover both sides — benefits for customers (24/7, convenience, choice) AND impacts on traditional retailers (high street decline, reduced footfall). Also cover risks: data breaches, returns fraud, delivery failures.",
+              "keyFacts": [
+                "Benefits for customers: 24/7 access, global product choice, price comparison tools, delivery to door",
+                "Benefits for retailers: lower overheads than physical stores, global customer reach, data-driven personalisation",
+                "Risks for customers: payment fraud, data breaches, counterfeit goods, inability to inspect items",
+                "Risks for retailers: cybersecurity threats, high return rates, reliance on delivery infrastructure",
+                "Impact on society: decline of high street retailers, job losses in physical retail, rise of warehouse/logistics jobs",
+                "Click and collect: hybrid model combining online convenience with physical pickup"
+              ]
+            },
+            {
+              "code": "E1.1.2",
+              "term": "Online Financial Services",
+              "definition": "Banking, insurance, investment, and payment services delivered digitally — allowing customers to manage money, apply for products, and make transactions without visiting a branch.",
+              "examples": "Barclays online banking app; PayPal; Monzo digital bank; Compare the Market insurance comparison; Revolut.",
+              "examTip": "Key benefits: 24/7 access, instant transfers, real-time notifications. Key risks: fraud, phishing attacks targeting banking customers, exclusion of elderly/less digitally literate users.",
+              "keyFacts": [
+                "Online banking: view balances, transfer money, pay bills, apply for loans — 24/7",
+                "Faster Payments: near-instant bank transfers (previously took 3 working days)",
+                "Open banking: regulated sharing of financial data with third-party apps (with consent)",
+                "Digital-only banks (Monzo, Starling): no physical branches — lower costs passed to customers",
+                "Risk: phishing and vishing attacks specifically targeting banking customers are very common",
+                "Financial exclusion: not all customers can use online services — elderly, those without internet access",
+                "Regulatory protection: FCA (Financial Conduct Authority) regulates UK financial services"
+              ]
+            },
+            {
+              "code": "E1.1.3",
+              "term": "Online Education and Training",
+              "definition": "Educational content, courses, and qualifications delivered via the internet — ranging from school learning management systems to professional training platforms and university degrees.",
+              "examples": "Google Classroom; Microsoft Teams for Education; Moodle VLE; Coursera and Udemy online courses; Khan Academy; BBC Bitesize.",
+              "examTip": "Benefits: access from anywhere, self-paced, lower cost than in-person. Challenges: requires reliable internet, lack of face-to-face interaction, self-motivation needed, digital divide disadvantages some learners.",
+              "keyFacts": [
+                "Virtual Learning Environments (VLEs): e.g. Google Classroom, Moodle — centralise resources, assignments, communication",
+                "MOOCs (Massive Open Online Courses): free/low-cost university-level courses to anyone worldwide",
+                "Benefits: accessible from home, self-paced, cost-effective, can reach rural/remote learners",
+                "Challenges: requires reliable internet and device; less social interaction; harder to maintain discipline",
+                "Digital divide: learners without internet/devices at home are disadvantaged",
+                "Accelerated by COVID-19 pandemic — rapid shift forced adoption of online learning tools",
+                "Hybrid learning: combination of in-person and online increasingly common"
+              ]
+            },
+            {
+              "code": "E1.1.4",
+              "term": "Online News and Information",
+              "definition": "The delivery of news, reference material, and information via websites, apps, and social media — replacing or supplementing traditional print and broadcast media.",
+              "examples": "BBC News website; Guardian online; Wikipedia; Reddit as a news aggregator; Twitter/X for breaking news.",
+              "examTip": "Key issues: fake news (misinformation), filter bubbles (algorithms showing only agreeable content), speed vs accuracy trade-off, copyright concerns when sharing news content.",
+              "keyFacts": [
+                "Immediate delivery: news published online within minutes of events occurring",
+                "User-generated content: individuals can publish and share news via social media — democratises information",
+                "Misinformation/fake news: unverified stories spread rapidly — difficult to distinguish from credible sources",
+                "Filter bubble: algorithms show users news matching their existing views — reduces exposure to different perspectives",
+                "Revenue model shift: print advertising revenue collapsed; paywalls and subscriptions replacing it",
+                "Copyright: re-sharing news articles may infringe copyright of the original publisher",
+                "Aggregators (e.g. Google News) compile articles — raise questions about fair use and revenue sharing"
+              ]
+            },
+            {
+              "code": "E1.1.5",
+              "term": "Online Entertainment and Leisure",
+              "definition": "Entertainment content — music, films, TV, games, and social interaction — delivered digitally on demand via the internet.",
+              "examples": "Netflix (streaming video); Spotify (streaming audio); Steam (gaming platform); YouTube; TikTok; online multiplayer gaming.",
+              "examTip": "Subscription streaming has disrupted traditional media (DVD rental, TV broadcast, music purchases). Key ethical/legal issues: content piracy, age verification, addiction concerns, data privacy.",
+              "keyFacts": [
+                "Streaming vs downloading: streaming = real-time playback (requires internet); downloading = local copy (offline access)",
+                "Subscription model: monthly fee for unlimited access (Netflix, Spotify) replaced purchase model",
+                "Impact on traditional media: Blockbuster/DVD rental collapse; CD sales decline; linear TV viewing falling",
+                "Requires significant bandwidth — 4K Netflix needs ~25 Mbps; audio streaming ~320 kbps",
+                "Piracy: illegal distribution of copyrighted content — violates Copyright Act; harms creators",
+                "Age verification: concern around minors accessing inappropriate content online",
+                "Addiction and wellbeing: infinite scroll and autoplay features designed to maximise engagement time"
+              ]
+            },
+            {
+              "code": "E1.1.6",
+              "term": "Online Booking Systems",
+              "definition": "Systems that allow customers to search availability, make reservations, and pay online in real time — replacing phone or in-person booking for travel, healthcare, hospitality, and events.",
+              "examples": "Booking.com hotel reservations; Trainline train ticket booking; NHS online GP appointment booking; Ticketmaster event tickets; OpenTable restaurant reservations.",
+              "examTip": "Benefits: 24/7 availability, instant confirmation, reduces admin workload for staff. Key risks: double booking if systems poorly integrated, payment fraud, customer data security.",
+              "keyFacts": [
+                "Real-time availability: customers see live availability and confirm instantly — no waiting for staff",
+                "24/7 operation: bookings can be made outside business hours",
+                "Reduces staff workload: automation handles routine booking admin",
+                "Integration challenges: must sync with internal calendar/stock/availability systems",
+                "Overbooking risk: system errors or poor integration can allow double-booking",
+                "Customer data: booking systems collect significant personal and payment data — GDPR implications",
+                "Cancellation and refund policies must be clearly communicated online"
+              ],
+              "comparisonTable": {
+                "title": "Online Services: Benefits and Risks by Sector",
+                "headers": ["Sector", "Key benefits", "Key risks/implications", "Example"],
+                "rows": [
+                  ["Retail (E1.1.1)", "24/7 global access, lower overheads, personalisation", "Data breaches, returns fraud, high street decline", "Amazon, ASOS"],
+                  ["Financial services (E1.1.2)", "24/7 access, instant transfers, lower costs", "Phishing fraud, financial exclusion of elderly", "Barclays app, Monzo"],
+                  ["Education (E1.1.3)", "Accessible anywhere, self-paced, lower cost", "Digital divide, lack of interaction, self-discipline needed", "Google Classroom, Coursera"],
+                  ["News & information (E1.1.4)", "Instant, global, democratised publishing", "Misinformation, filter bubbles, copyright issues", "BBC News, Wikipedia"],
+                  ["Entertainment (E1.1.5)", "On-demand, affordable, vast catalogue", "Piracy, addiction design, age verification gaps", "Netflix, Spotify"],
+                  ["Booking systems (E1.1.6)", "24/7, instant confirmation, reduces admin", "Double-booking risk, data security, integration issues", "Booking.com, NHS app"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "code": "E1.2",
+          "title": "Uses, Impact and Implications of IT for Individuals and Organisations",
+          "items": [
+            {
+              "code": "E1.2.1",
+              "term": "Transactional Data",
+              "definition": "Data generated when a customer interacts with an organisation — recording what was purchased, when, for how much, using what payment method, and from which device or location.",
+              "examples": "A supermarket's record of every item scanned at checkout; a bank's log of every card transaction; a website's record of every page visit and click; an Amazon order history.",
+              "examTip": "Transactional data is raw interaction data — it becomes valuable when analysed. Link to targeted marketing (E1.2.2), stock control (A4.2.1), and data accuracy (E2.4).",
+              "keyFacts": [
+                "Captures: what was bought, when, how much, payment method, location, device",
+                "Used for: demand forecasting, stock replenishment, identifying popular products",
+                "Enables personalised recommendations and targeted marketing",
+                "Very large volume — big data analytics tools required to process it",
+                "Must be stored securely and processed under GDPR",
+                "Loyalty card schemes (e.g. Tesco Clubcard) link transactional data to named individuals"
+              ]
+            },
+            {
+              "code": "E1.2.2",
+              "term": "Targeted Marketing",
+              "definition": "Using data analysis to identify individual preferences and behaviours, then delivering personalised advertising or recommendations designed to be relevant to that specific person.",
+              "examples": "Amazon recommending products based on browsing and purchase history; Facebook showing adverts based on liked pages and demographic data; Spotify suggesting songs based on listening patterns; retargeting adverts that follow users across websites.",
+              "examTip": "Targeted marketing uses transactional data + browsing data + demographic data. Benefits: relevant ads save users time, higher conversion rates for businesses. Ethical concerns: privacy invasion, manipulation, data sold without clear consent.",
+              "keyFacts": [
+                "Uses cookies: small files stored by websites tracking browsing behaviour across the internet",
+                "Data sources: purchase history, browsing history, location data, social media activity, demographic data",
+                "Benefit for businesses: higher conversion rates than blanket advertising — cost-effective",
+                "Benefit for users: relevant suggestions can save time and highlight products of genuine interest",
+                "Ethical concerns: often collected without truly informed consent; can feel intrusive",
+                "GDPR: cookie consent required; users must be able to opt out of tracking",
+                "Social media algorithms: platforms use engagement data to determine what content/adverts to show"
+              ]
+            },
+            {
+              "code": "E1.2.3",
+              "term": "Collaborative Working",
+              "definition": "IT systems that allow multiple people to work together on shared documents, projects, or tasks simultaneously — regardless of physical location.",
+              "examples": "Google Docs allowing multiple authors to edit a document simultaneously; Microsoft SharePoint for shared file storage; Slack for team communication; Trello for project management; GitHub for collaborative code development.",
+              "examTip": "Collaborative working tools change how organisations operate — link to productivity, remote working, and the implications of always-connected work culture (work-life balance).",
+              "keyFacts": [
+                "Real-time co-authoring: multiple users edit same document simultaneously — changes visible instantly",
+                "Version control: document history prevents accidental data loss; track who changed what",
+                "Cloud storage: files accessible to all team members from any location",
+                "Communication integration: chat, video, and file sharing in one platform (e.g. Microsoft Teams)",
+                "Benefits: faster project completion, reduced email chains, visible progress tracking",
+                "Risks: reliance on internet connectivity; security if access controls poorly managed",
+                "Implications: expectation of constant availability can blur work/personal boundaries"
+              ]
+            },
+            {
+              "code": "E1.2.4",
+              "term": "Remote Working",
+              "definition": "Working from a location other than the traditional office — enabled by IT systems including VPN, cloud applications, video conferencing, and collaboration tools.",
+              "examples": "An employee working from home using VPN to access company files; a consultant working from a client site; a freelancer working from different locations using cloud-based tools.",
+              "examTip": "Remote working depends on: VPN (C1.3.1), cloud systems (C1.1), collaboration tools (E1.2.3), and reliable internet (B3.3). Always link technology enablers to business and human impacts.",
+              "keyFacts": [
+                "Enablers: VPN for secure network access, SaaS applications (Microsoft 365), video conferencing (Teams/Zoom)",
+                "Benefits for organisations: reduced office space costs, access to wider talent pool, business continuity",
+                "Benefits for employees: no commute, flexible hours, improved work-life balance",
+                "Risks for organisations: harder to monitor staff, cybersecurity risks on home networks, team cohesion challenges",
+                "Risks for employees: isolation, difficulty separating work from home life, unreliable home internet",
+                "Accelerated massively by COVID-19 pandemic — proved feasibility at scale",
+                "Hybrid working: most common post-pandemic model — some office, some home"
+              ],
+              "comparisonTable": {
+                "title": "Transactional Data vs Targeted Marketing",
+                "headers": ["Feature", "Transactional Data (E1.2.1)", "Targeted Marketing (E1.2.2)"],
+                "rows": [
+                  ["What it is", "Raw records of customer interactions (purchases, clicks, payments)", "Using customer data to personalise advertising and recommendations"],
+                  ["Who generates it", "Automatically generated when customer interacts with a system", "Created by data analysts/algorithms using collected data"],
+                  ["Primary purpose", "Operational record-keeping, stock management, demand forecasting", "Increase sales conversions, improve customer experience"],
+                  ["Data sources used", "POS systems, website analytics, payment records", "Transactional data + browsing history + demographics + social media"],
+                  ["Benefit to business", "Informs stock ordering, identifies best-sellers, detects fraud", "Higher conversion rate; more cost-effective than mass advertising"],
+                  ["Benefit to customer", "Enables faster checkout, loyalty rewards, personalised receipts", "Relevant product suggestions; less irrelevant advertising"],
+                  ["Privacy concern", "Individual purchases linked to named persons — GDPR applies", "Tracking across websites; consent often unclear; feels intrusive"],
+                  ["GDPR requirement", "Store securely, use only for stated purpose, retain no longer than necessary", "Explicit cookie consent; right to opt out of tracking"]
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "E2",
+      "title": "Using and Manipulating Data",
+      "subtopics": [
+        {
+          "code": "E2.1",
+          "title": "Sources of Data",
+          "items": [
+            {
+              "code": "E2.1.1",
+              "term": "Primary Data",
+              "definition": "Original data collected directly by the researcher or organisation for a specific, current purpose. It is first-hand data that did not exist before the researcher collected it.",
+              "examples": "A business conducting a customer satisfaction survey; a researcher running focus groups with users; a company collecting product usage telemetry directly from its app.",
+              "examTip": "Primary = collected by YOU, for YOUR purpose, RIGHT NOW. More relevant and up to date than secondary, but expensive and time-consuming to collect.",
+              "keyFacts": [
+                "Collected directly — first-hand, new data",
+                "Specific to the researcher's exact needs",
+                "Always up to date when collected",
+                "Collection methods: surveys, questionnaires, interviews, focus groups, observation, experiments",
+                "Disadvantage: expensive, time-consuming, requires participant cooperation",
+                "Small sample sizes are a common limitation — may not represent the full population"
+              ]
+            },
+            {
+              "code": "E2.1.2",
+              "term": "Secondary Data",
+              "definition": "Data that already exists, having been collected by someone else for a different original purpose. The researcher uses it second-hand for their own analysis.",
+              "examples": "A business using government census data to understand its market; a student using published academic research; an organisation analysing industry reports from market research firms.",
+              "examTip": "Secondary = collected by SOMEONE ELSE, for a DIFFERENT purpose, PREVIOUSLY. Cheaper and quicker to access, but may be outdated or not quite fit the current purpose.",
+              "keyFacts": [
+                "Already exists — no collection needed by the current researcher",
+                "Sources: government statistics, published research, industry reports, news articles, existing databases",
+                "Advantages: cheaper, quicker to access, larger datasets often available",
+                "Disadvantages: may be outdated; collected for a different purpose so may not perfectly fit needs",
+                "Reliability varies widely — must evaluate source credibility",
+                "Cannot control the quality or method of original data collection"
+              ],
+              "comparisonTable": {
+                "title": "Primary vs Secondary Data",
+                "headers": ["Feature", "Primary Data", "Secondary Data"],
+                "rows": [
+                  ["Who collected it", "The researcher/organisation themselves", "Someone else, for a different original purpose"],
+                  ["When collected", "Now — specifically for this project", "Previously — already exists"],
+                  ["Relevance", "Highly specific to exact research needs", "May not perfectly fit current needs"],
+                  ["Currency", "Always up to date when collected", "May be outdated"],
+                  ["Cost", "High — resources needed to collect", "Low — often free or low cost to access"],
+                  ["Time required", "Significant — design, collect, analyse", "Quick — locate and access existing sources"],
+                  ["Sample size", "Often small — limited by resources", "Often very large — national/global datasets"],
+                  ["Control over quality", "Full control over how data is collected", "No control — must trust original methodology"],
+                  ["Examples", "Survey, interview, focus group, experiment", "Census data, industry reports, published research"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "code": "E2.2",
+          "title": "Methods of Ensuring Reliability of Information",
+          "items": [
+            {
+              "code": "E2.2",
+              "term": "Methods of Ensuring Reliability of Information",
+              "definition": "Reliability means the information consistently produces the same results and can be trusted to be accurate over time. Various methods are used to verify that information sources are credible and data is dependable.",
+              "examples": "Cross-referencing news stories across multiple reputable sources before publishing; triangulation — comparing findings from three different data sources; using peer-reviewed academic journals rather than personal blogs.",
+              "examTip": "Reliability is about consistency and trustworthiness of a source. Distinguish from validity (does the data measure what it claims to?). Exams may ask how an organisation ensures information is reliable before using it to make decisions.",
+              "keyFacts": [
+                "Triangulation: comparing data from multiple independent sources — if they agree, reliability is higher",
+                "Cross-referencing: verifying facts against multiple credible sources before accepting them",
+                "Source evaluation: consider author credentials, publication date, peer review, publisher reputation",
+                "Pilot testing: running a small-scale test of data collection instruments before full deployment",
+                "Sampling method: a representative, random sample increases reliability of survey results",
+                "Consistency checks: comparing new data against historical data to spot anomalies",
+                "Peer review: academic and scientific findings reviewed by independent experts before publication"
+              ]
+            }
+          ]
+        },
+        {
+          "code": "E2.3",
+          "title": "Methods of Collecting Data and Opinions",
+          "items": [
+            {
+              "code": "E2.3.1",
+              "term": "Survey",
+              "definition": "A data collection method that gathers responses from a large number of people using a structured set of questions — typically administered online, by post, or in person.",
+              "examples": "An online customer satisfaction survey sent by email after a purchase; a government national survey about employment; a Net Promoter Score (NPS) survey asking how likely users are to recommend a product.",
+              "examTip": "Surveys are quantitative — best for gathering measurable data from large samples. Key limitations: self-selection bias (only motivated people respond), social desirability bias (respondents give 'acceptable' answers).",
+              "keyFacts": [
+                "Best for: collecting measurable, quantitative data from large groups quickly",
+                "Online surveys: cheap, fast, wide reach — tools like SurveyMonkey, Google Forms",
+                "Response rate: often low (under 30%) — may introduce bias if non-respondents differ from respondents",
+                "Closed questions: fixed choice answers — easy to analyse quantitatively",
+                "Open questions: free-text answers — richer data but harder to analyse",
+                "Bias: leading questions can skew results; self-selection affects who responds"
+              ]
+            },
+            {
+              "code": "E2.3.2",
+              "term": "Questionnaire",
+              "definition": "A set of written questions used to collect specific information from respondents. Similar to a survey but typically more structured and focused; can be paper-based or digital.",
+              "examples": "A paper questionnaire given to shoppers exiting a store; an online product feedback form; a health questionnaire completed before a GP appointment.",
+              "examTip": "Questionnaires and surveys are similar — the distinction the spec makes is that questionnaires are typically a specific instrument (the document of questions) whereas a survey is the wider process. Treat them as closely related.",
+              "keyFacts": [
+                "Can use Likert scales (1–5 agreement scales) for measuring attitudes and opinions",
+                "Cheaper than interviews — can be distributed to many people simultaneously",
+                "No interviewer bias — respondents answer in their own time without pressure",
+                "Low response rates common — especially for unsolicited paper questionnaires",
+                "Cannot probe or follow up interesting responses — answers are as given"
+              ]
+            },
+            {
+              "code": "E2.3.3",
+              "term": "Focus Groups",
+              "definition": "A small group of people (typically 6–10) brought together to discuss a topic in depth, guided by a facilitator. Used to gather qualitative opinions, attitudes, and reactions.",
+              "examples": "A tech company showing a prototype app to potential users and recording their reactions; a political party testing campaign messages with swing voters; a food brand testing new flavours with target consumers.",
+              "examTip": "Focus groups = qualitative, in-depth, small group. They reveal WHY people think/feel something — unlike surveys which tell you HOW MANY. Key limitation: group dynamics can suppress individual opinions (conformity pressure).",
+              "keyFacts": [
+                "Small group (6–10 participants) — representative of target population",
+                "Guided discussion: facilitator probes and follows up on interesting responses",
+                "Qualitative data: rich insights into motivations, attitudes, and reactions",
+                "Expensive: requires facilitator, venue, participant incentives, and transcript analysis",
+                "Group dynamics: dominant personalities may influence others; conformity can suppress minority views",
+                "Not statistically representative — small samples cannot be generalised to entire populations"
+              ]
+            },
+            {
+              "code": "E2.3.4",
+              "term": "Interview",
+              "definition": "A one-to-one (or small group) conversation between a researcher and a participant, used to gather detailed qualitative information about experiences, opinions, or knowledge.",
+              "examples": "A researcher interviewing customers about their experience with a new product; a journalist interviewing an expert; an HR team conducting structured interviews to evaluate candidates.",
+              "examTip": "Structured interview = fixed questions (like a questionnaire spoken aloud). Unstructured = conversational, flexible. Semi-structured = planned questions but allows follow-up. Exams may ask you to compare interview types.",
+              "keyFacts": [
+                "Structured: predetermined questions — consistent, comparable, easy to analyse",
+                "Unstructured: open-ended conversation — flexible, deeper insights, hard to compare across participants",
+                "Semi-structured: planned questions with room for follow-up — balance of consistency and depth",
+                "Rich qualitative data — interviewer can probe, clarify, and follow interesting threads",
+                "Time-consuming and expensive — limits sample size",
+                "Interviewer bias: interviewer's manner or phrasing can influence responses"
+              ],
+              "comparisonTable": {
+                "title": "Data Collection Methods Compared",
+                "headers": ["Method", "Type of data", "Sample size", "Cost/time", "Key strength", "Key limitation"],
+                "rows": [
+                  ["Survey", "Quantitative (numerical)", "Large (hundreds/thousands)", "Low cost, fast", "Statistically representative if well-designed", "Low response rates; no depth; bias possible"],
+                  ["Questionnaire", "Quantitative + some qualitative", "Medium to large", "Low cost", "Standardised — easy to compare responses", "No follow-up; low response rates"],
+                  ["Focus group", "Qualitative (opinions, attitudes)", "Small (6–10 per group)", "High cost, time-intensive", "Rich discussion; reveals WHY; unexpected insights", "Not representative; group dynamics; small sample"],
+                  ["Interview", "Qualitative (in-depth)", "Small (one-to-one)", "Highest cost, very time-intensive", "Deepest insight; interviewer can probe", "Expensive; interviewer bias; small sample; hard to generalise"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "code": "E2.4",
+          "title": "Reasons for Ensuring Data Accuracy",
+          "items": [
+            {
+              "code": "E2.4",
+              "term": "Reasons for Ensuring Data Accuracy",
+              "definition": "Accurate data is data that is correct, complete, and free from errors. Organisations must ensure their data is accurate because decisions based on inaccurate data lead to poor outcomes, legal liability, and operational failures.",
+              "examples": "A hospital using inaccurate patient data prescribing the wrong medication; an organisation sending marketing emails to wrong addresses due to data entry errors; a bank applying incorrect interest rates due to calculation errors in the database.",
+              "examTip": "Link data accuracy to: (1) better decision-making, (2) legal compliance (GDPR requires accurate data), (3) customer trust, (4) operational efficiency. In the exam, give a specific consequence of inaccurate data in the scenario provided.",
+              "keyFacts": [
+                "GDPR: organisations legally required to keep personal data accurate and up to date",
+                "Decision-making: managers rely on accurate data — inaccurate data leads to wrong business decisions",
+                "Customer trust: sending wrong products, billing errors, or incorrect communications damages reputation",
+                "Safety implications: inaccurate data in medical, engineering, or transport contexts can be life-threatening",
+                "Financial implications: errors in financial records lead to accounting mistakes, fraud vulnerability",
+                "Operational efficiency: inaccurate stock data leads to over-ordering, under-ordering, or lost sales",
+                "Audit trail: accurate records needed to demonstrate compliance and resolve disputes"
+              ]
+            }
+          ]
+        },
+        {
+          "code": "E2.5",
+          "title": "Methods of Ensuring Data Accuracy",
+          "items": [
+            {
+              "code": "E2.5.1",
+              "term": "Verification",
+              "definition": "The process of checking that data has been entered correctly by comparing it to the original source document or by having it entered twice. Verification catches transcription errors but does NOT check whether the data itself is valid or sensible.",
+              "examples": "Double entry: a data entry clerk types a customer's email address twice — the system checks both entries match; proofreading a typed letter against a handwritten original; a 'confirm password' field requiring the user to type their password twice.",
+              "examTip": "Verification = was it copied correctly? It does NOT check if the data is correct — just that it was entered the same way twice. Double-entry and proofreading are the two key methods.",
+              "keyFacts": [
+                "Double entry: data entered twice independently; system alerts if entries don't match",
+                "Proofreading: human comparison of entered data against source document",
+                "Confirms data was transcribed without error — does NOT confirm the data is actually correct",
+                "Example of limitation: verifying that '01/01/2090' was entered correctly — but that date might be wrong even though it was typed consistently",
+                "Used at data input stage — first line of defence against transcription errors"
+              ]
+            },
+            {
+              "code": "E2.5.2",
+              "term": "Validation",
+              "definition": "Automated checks performed by a system to ensure data entered is reasonable, complete, and in the correct format — before it is accepted and stored. Validation cannot check if the data is true, only that it conforms to rules.",
+              "examples": "A range check rejecting an age entry of 200; a presence check preventing a form from submitting without an email address; a format check rejecting 'ABC12' as a postcode when the format should be 'AA1 1AA'.",
+              "examTip": "Validation = does the data make sense and fit the rules? It is automated. Know ALL six types: range, presence, format, length, type, lookup/list check. Each check catches different types of errors.",
+              "keyFacts": [
+                "Range check: value must be within acceptable limits (e.g. age 0–120, exam mark 0–100)",
+                "Presence check: field cannot be left empty — mandatory fields must be completed",
+                "Format check: data must match a specific pattern (e.g. postcode: AA9 9AA; date: DD/MM/YYYY)",
+                "Length check: data must be a specific number of characters (e.g. NI number is always 9 characters)",
+                "Type check: data must be the correct data type (e.g. date field must contain a date, not text)",
+                "Lookup/list check: data must match an entry in a predefined list (e.g. country must be from dropdown)",
+                "Limitation: valid data is not necessarily correct — a date of 01/01/1900 passes all checks but is probably wrong"
+              ],
+              "comparisonTable": {
+                "title": "Verification vs Validation",
+                "headers": ["Feature", "Verification", "Validation"],
+                "rows": [
+                  ["What it checks", "Whether data was entered the same as the source", "Whether data is reasonable, complete, correct format"],
+                  ["When it occurs", "During data entry/transcription", "When data is submitted to the system"],
+                  ["How it works", "Human or double-entry comparison", "Automated rule-checking by the software"],
+                  ["What it catches", "Transcription/copying errors", "Out-of-range values, missing fields, wrong format/type"],
+                  ["What it cannot catch", "Whether the original data itself is correct", "Whether the data is actually true (just whether it's plausible)"],
+                  ["Example pass/fail", "Password typed same way twice — PASS. Different — FAIL.", "Age entered as 250 — FAIL range check. Age 25 — PASS."],
+                  ["Methods", "Double entry, proofreading", "Range, presence, format, length, type, lookup checks"],
+                  ["Automated?", "Can be (double entry), or manual (proofreading)", "Always automated — built into the system"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "code": "E2.6",
+          "title": "User Interface Characteristics for Data Collection Systems",
+          "items": [
+            {
+              "code": "E2.6.1",
+              "term": "Ease of Use",
+              "definition": "How intuitive and straightforward the interface is for users to navigate and complete data entry tasks without needing specialist training.",
+              "examTip": "Ease of use reduces errors, speeds up data entry, and improves user satisfaction. Poor ease of use leads to workarounds that bypass validation checks.",
+              "keyFacts": [
+                "Logical flow: form fields in natural order (name → address → contact → payment)",
+                "Clear labels: every field has an unambiguous label explaining what to enter",
+                "Helpful defaults: pre-populate known fields to reduce typing",
+                "Autocomplete and dropdown menus reduce typing errors",
+                "Progress indicators show users where they are in a multi-step form"
+              ]
+            },
+            {
+              "code": "E2.6.2",
+              "term": "Accessibility",
+              "definition": "Designing interfaces so that people with disabilities or impairments can use them effectively — including users with visual, auditory, motor, or cognitive impairments.",
+              "examTip": "Accessibility is both an ethical obligation and a legal one (Equality Act 2010). Link to assistive technologies (A2.2): screen readers need proper alt text; keyboard users need tab navigation.",
+              "keyFacts": [
+                "Screen reader compatibility: all form elements must have text labels that screen readers can read",
+                "Colour contrast: text must have sufficient contrast against background for visually impaired users",
+                "Keyboard navigation: all functions accessible without a mouse (using Tab key)",
+                "Alt text on images: describes image content for users who cannot see it",
+                "Font size and zoom: interface should work at larger text sizes without breaking layout",
+                "WCAG (Web Content Accessibility Guidelines): international standard for web accessibility"
+              ]
+            },
+            {
+              "code": "E2.6.3",
+              "term": "Error Reduction",
+              "definition": "Design features that minimise the likelihood of users entering incorrect data — through clear instructions, immediate feedback, and appropriate input controls.",
+              "examTip": "Error reduction combines good UX design with validation. Preventing errors is better than catching them after — inline validation (showing errors as the user types) is more effective than showing all errors after submission.",
+              "keyFacts": [
+                "Inline validation: error messages appear immediately as the user fills in fields, not just at submission",
+                "Input constraints: date pickers prevent invalid date formats; dropdowns prevent free-text errors",
+                "Clear error messages: explain what is wrong AND how to fix it (not just 'invalid input')",
+                "Confirmation dialogs: 'Are you sure?' prompts before irreversible actions",
+                "Undo functionality: allows correction of mistakes without re-entering all data",
+                "Field masking: phone number fields automatically format as user types (e.g. 07XXX XXX XXX)"
+              ]
+            },
+            {
+              "code": "E2.6.4",
+              "term": "Functionality",
+              "definition": "Whether the interface provides all the features and capabilities that users need to complete their data entry and processing tasks effectively.",
+              "examTip": "Functionality = does it do everything users need? Too few features and users can't complete tasks; too many features creates complexity and confusion.",
+              "keyFacts": [
+                "Must cover all required data fields without forcing workarounds",
+                "Search and filter: allows users to find existing records quickly before entering duplicate data",
+                "Bulk import: for organisations entering large datasets, import from CSV/Excel speeds up data entry",
+                "Reporting functionality: allows users to generate outputs from collected data",
+                "Integration: connects with other systems (e.g. CRM, payment gateway) to avoid re-entering data"
+              ]
+            },
+            {
+              "code": "E2.6.5",
+              "term": "Performance",
+              "definition": "How quickly and responsively the interface responds to user input — including page load times, processing speed, and behaviour under peak load.",
+              "examTip": "Slow interfaces increase errors — users lose patience and rush, skip fields, or abandon the form. Performance is especially critical for high-volume data entry (e.g. call centres processing hundreds of records per day).",
+              "keyFacts": [
+                "Page load time: slow loading frustrates users and increases abandonment rate",
+                "Response time to user actions: interface should respond within 200 ms to feel instantaneous",
+                "Scalability: performance must hold up under peak concurrent usage",
+                "Timeout handling: long-running operations should show a progress indicator",
+                "Local vs server-side processing: some validation can run client-side (faster) before server submission"
+              ]
+            },
+            {
+              "code": "E2.6.6",
+              "term": "Compatibility",
+              "definition": "Whether the interface works correctly across different devices, operating systems, browsers, and screen sizes — ensuring all users can access it regardless of their technical environment.",
+              "examTip": "Compatibility = works everywhere. Covers cross-browser (Chrome, Firefox, Safari), cross-OS (Windows, macOS, Android, iOS), and responsive design (mobile vs desktop screen sizes).",
+              "keyFacts": [
+                "Cross-browser compatibility: must work on Chrome, Firefox, Edge, Safari",
+                "Cross-platform: must work on Windows, macOS, Android, iOS",
+                "Responsive design: adapts layout to different screen sizes (mobile, tablet, desktop)",
+                "Legacy system support: some organisations still use older browsers/OS — must be considered",
+                "Assistive technology compatibility: must work with screen readers and other AT (links to E2.6.2)"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

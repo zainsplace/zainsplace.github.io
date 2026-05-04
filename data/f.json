@@ -1,0 +1,246 @@
+{
+  "section": "F",
+  "title": "Legal and Ethical Issues",
+  "topics": [
+    {
+      "code": "F1",
+      "title": "Moral and Ethical Issues",
+      "subtopics": [
+        {
+          "code": "F1.1",
+          "title": "Moral and Ethical Factors and Implications of the Use of IT",
+          "comparisonTable": {
+            "title": "Key Ethical Issues in IT — Overview",
+            "headers": ["Issue", "What It Means", "Example", "Stakeholders Affected"],
+            "rows": [
+              ["Privacy", "Right to control personal data; risk of surveillance/data misuse", "Social media tracking browsing history for ads", "All individuals using digital systems"],
+              ["Environmental Impact", "IT causes e-waste, energy consumption, carbon emissions", "Data centres consuming ~1% of global electricity", "Society, environment, future generations"],
+              ["Unequal Access", "Digital divide — not everyone can afford/access technology", "Rural areas with no broadband; low-income households without devices", "Disadvantaged communities, developing nations"],
+              ["Assistive Tech Access", "Disabled users need assistive technologies but access is unequal", "Screen readers cost hundreds; not all employers provide them", "Disabled users, employers, schools"],
+              ["Online Behaviour", "Netiquette and responsible digital communication", "Cyberbullying, trolling, spreading misinformation online", "All users, especially young people"],
+              ["Acceptable Use Policies", "Organisational rules governing IT use by staff/students", "School AUP banning social media on school devices", "Employees, students, organisations"]
+            ]
+          },
+          "items": [
+            {
+              "code": "F1.1.1",
+              "term": "Privacy",
+              "definition": "The right of individuals to control their personal information and how it is collected, stored, used, and shared by organisations and IT systems.",
+              "examples": "Social media platforms tracking location and browsing behaviour to serve targeted advertising; employers monitoring employee emails and keystrokes; CCTV and facial recognition in public spaces.",
+              "examTip": "For 'discuss privacy' questions: cover the tension between individual rights and organisational/commercial interests. Reference data protection law (GDPR/DPA 2018) as the legal framework. Bring in at least two distinct contexts (personal use, workplace, government surveillance).",
+              "keyFacts": [
+                "Data minimisation: organisations should only collect data they genuinely need",
+                "Consent: individuals must agree to data collection under GDPR",
+                "Right to erasure ('right to be forgotten'): individuals can request deletion of their data",
+                "Cookies and tracking: websites must obtain consent before placing non-essential cookies",
+                "Surveillance capitalism: business model of collecting and monetising personal data (Google, Meta)"
+              ]
+            },
+            {
+              "code": "F1.1.2",
+              "term": "Environmental Impact",
+              "definition": "The effects of IT on the natural environment, including energy consumption of data centres, e-waste from discarded devices, carbon emissions from manufacturing, and the environmental cost of the internet.",
+              "examples": "Data centres consuming approximately 1–2% of global electricity; smartphones containing rare earth metals mined under environmentally damaging conditions; millions of tonnes of e-waste discarded annually with toxic components (lead, mercury).",
+              "examTip": "Balance negative impacts (energy, e-waste, rare minerals) against positives (remote working reducing travel, paperless offices, smart energy grids reducing waste). Examiners award marks for nuanced two-sided analysis.",
+              "keyFacts": [
+                "E-waste: discarded electronics are the fastest-growing waste stream globally",
+                "Rare earth metals: lithium, cobalt, coltan — mined with significant environmental and human cost",
+                "Data centre PUE (Power Usage Effectiveness): ratio of total energy to IT equipment energy; lower = more efficient",
+                "Cloud computing consolidates servers, potentially more energy-efficient than individual on-premise servers",
+                "Remote working enabled by IT can reduce commuting carbon emissions"
+              ]
+            },
+            {
+              "code": "F1.1.3",
+              "term": "Unequal Access to Information Technology",
+              "definition": "The digital divide — the gap between those who have reliable access to modern IT (devices, internet, digital skills) and those who do not, often correlating with income, geography, age, and education level.",
+              "examples": "Rural communities in the UK lacking access to superfast broadband; elderly people excluded from online government services; low-income households unable to afford devices for home learning; developing nations with limited infrastructure.",
+              "examTip": "Distinguish three dimensions of the digital divide: access gap (no device/internet), skills gap (cannot use technology effectively), and usage gap (uses technology in limited ways). Government and organisational interventions are relevant here.",
+              "keyFacts": [
+                "UK Government broadband targets: Universal Service Obligation guarantees minimum 10 Mbps to all UK premises",
+                "Device poverty: 1 in 5 school children in UK lacked suitable device for home learning during COVID-19",
+                "Digital skills gap: millions of UK adults lack basic digital literacy (ONS data)",
+                "Ofcom: regulator monitoring UK communications access and equality",
+                "Assistive technology costs compound access inequality for disabled users"
+              ]
+            },
+            {
+              "code": "F1.1.4",
+              "term": "Access to Assistive Technology",
+              "definition": "The ethical issue of whether disabled individuals have fair and adequate access to assistive technologies (hardware and software that enables them to use IT systems) in workplaces, education, and public services.",
+              "examples": "Employer failing to provide screen reader for visually impaired employee; school lacking braille display for blind pupil; public websites not meeting WCAG accessibility standards, excluding screen reader users.",
+              "examTip": "Link to the Equality Act 2010 — organisations have a legal duty to make 'reasonable adjustments' for disabled employees/service users. Assistive tech access is therefore both an ethical AND a legal issue.",
+              "keyFacts": [
+                "Equality Act 2010: employers must make reasonable adjustments for disabled employees, which may include providing assistive technology",
+                "WCAG (Web Content Accessibility Guidelines): international standard for making websites accessible to disabled users",
+                "Cost barrier: specialist assistive tech can cost hundreds to thousands of pounds — not equally accessible",
+                "Examples: screen readers (JAWS, NVDA), braille displays, eye-tracking software, adaptive keyboards",
+                "Public sector equality duty: public bodies must actively consider accessibility in IT procurement"
+              ]
+            },
+            {
+              "code": "F1.1.5",
+              "term": "Online Behaviour and Netiquette",
+              "definition": "The standards of acceptable conduct in digital communications — including respecting others online, avoiding harmful behaviour (cyberbullying, trolling, hate speech), and taking responsibility for one's digital actions.",
+              "examples": "Cyberbullying via social media causing psychological harm; trolling and harassment on discussion forums; spreading misinformation about a business or individual; sharing personal images without consent ('revenge porn').",
+              "examTip": "Netiquette is the informal code of conduct; Acceptable Use Policies are the formal equivalent (next code). Exam questions often ask you to 'discuss the ethical implications of online behaviour' — cover responsibility, anonymity enabling bad behaviour, legal boundaries (Malicious Communications Act), and impact on victims.",
+              "keyFacts": [
+                "Netiquette: unwritten rules of polite online communication (e.g., no ALL CAPS = shouting, cite sources, be constructive)",
+                "Cyberbullying: repeated harmful behaviour targeting an individual online — criminal under Malicious Communications Act 1988",
+                "Trolling: deliberately provocative posts intended to cause emotional distress",
+                "Online anonymity: reduces social accountability, enabling behaviour people wouldn't display in person",
+                "Digital footprint: all online behaviour leaves a traceable record — affects future employment/reputation"
+              ]
+            },
+            {
+              "code": "F1.1.6",
+              "term": "Acceptable Use Policies (AUPs)",
+              "definition": "A formal written agreement between an organisation and its users (employees, students) setting out the rules and restrictions on how IT systems, networks, and data may be used — what is permitted, what is prohibited, and the consequences of violations.",
+              "examples": "School AUP prohibiting social media and gaming on school devices; employer AUP forbidding personal email on work systems; university AUP requiring students not to share login credentials; ISP AUP prohibiting illegal downloading.",
+              "examTip": "AUPs reduce legal liability for the organisation, manage security risks, and set clear expectations. Exam questions often ask what an AUP should include — typical contents: permitted uses, prohibited activities, monitoring clause, consequences of breach, data protection responsibilities.",
+              "keyFacts": [
+                "AUPs are a legal protective document — if users breach the AUP they cannot claim ignorance",
+                "Typical AUP content: permitted software, prohibited activities, personal use rules, monitoring policy, data handling rules, breach consequences",
+                "Must be signed/acknowledged by users to be enforceable",
+                "Regular review: AUPs should be updated as technology and threats evolve",
+                "Monitoring: AUP should inform users that their activity may be monitored — links to privacy/GDPR compliance"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "F2",
+      "title": "Legal Issues",
+      "subtopics": [
+        {
+          "code": "F2.1",
+          "title": "Role and Impact of Current Legislation in Protecting IT Systems, Users and Their Data",
+          "comparisonTable": {
+            "title": "UK IT Legislation — Summary Comparison",
+            "headers": ["Legislation", "Year", "What It Covers", "Key Offences / Requirements", "Maximum Penalty"],
+            "rows": [
+              ["Computer Misuse Act", "1990 (amended)", "Unauthorised access to computer systems and data", "S1: Unauthorised access; S2: Unauthorised access with intent; S3: Unauthorised modification", "S1: 2 yrs; S2: 5 yrs; S3: 10 yrs imprisonment"],
+              ["Copyright, Designs and Patents Act", "1988", "Intellectual property rights for creative works and software", "Reproducing/distributing copyrighted work without permission", "Civil damages + up to 10 years imprisonment for criminal infringement"],
+              ["Copyright (Computer Programs) Regulations", "1992", "Specific IP protection for software and programs", "Copying, reverse engineering, or distributing software illegally", "Same as CDPA 1988"],
+              ["Health & Safety / DSE Regulations", "1992/1999", "Workplace safety for IT/screen users", "Employers must provide DSE assessments, breaks, training, proper equipment", "Civil claims / HSE enforcement"],
+              ["Data Protection Act / UK GDPR", "2018/2018", "Protection of personal data; rights of data subjects", "Unlawful processing, failure to report breaches, inadequate security", "ICO fines up to £17.5m or 4% global turnover"]
+            ]
+          },
+          "items": [
+            {
+              "code": "F2.1.1",
+              "term": "Computer Misuse Legislation (Computer Misuse Act 1990)",
+              "definition": "The Computer Misuse Act 1990 (amended by the Police and Justice Act 2006 and Serious Crime Act 2015) makes it illegal to access computer systems without authorisation or to misuse computer systems to commit or facilitate further crime.",
+              "examples": "Hacker gaining unauthorised access to a company's database (S1); hacker accessing a bank system intending to commit fraud (S2); malware author deploying ransomware that corrupts files (S3); DDoS attack making a service unavailable (S3 as amended).",
+              "examTip": "Know all three sections by number and what each covers. Examiners frequently ask you to 'state the section of the Computer Misuse Act that applies' to a scenario. S1 = access only; S2 = access + intent for further crime; S3 = damaging/modifying/impairing systems.",
+              "comparisonTable": {
+                "title": "Computer Misuse Act 1990 — Three Offences",
+                "headers": ["Section", "Offence", "Example", "Max Sentence"],
+                "rows": [
+                  ["Section 1", "Unauthorised access to computer material", "Using someone else's password to log into their account out of curiosity", "2 years imprisonment + unlimited fine"],
+                  ["Section 2", "Unauthorised access with intent to commit or facilitate further offences", "Hacking into a bank's system intending to transfer funds fraudulently", "5 years imprisonment + unlimited fine"],
+                  ["Section 3", "Unauthorised acts with intent to impair operation of a computer", "Deploying ransomware; launching a DDoS attack; installing a keylogger", "10 years imprisonment + unlimited fine"]
+                ]
+              },
+              "keyFacts": [
+                "CMA 1990: landmark law — first UK legislation specifically targeting cybercrime",
+                "Amended by Police & Justice Act 2006: added S3A (making/supplying hacking tools); DDoS attacks explicitly included",
+                "Amended by Serious Crime Act 2015: increased S3 maximum from 5 to 10 years; added S3ZA for critical national infrastructure attacks (life in prison)",
+                "Applies to any computer system — not just traditional PCs (applies to phones, tablets, servers)",
+                "Prosecution requires proving intent and lack of authorisation"
+              ]
+            },
+            {
+              "code": "F2.1.2",
+              "term": "Copyright, Designs and Patents Legislation (CDPA 1988)",
+              "definition": "The Copyright, Designs and Patents Act 1988 protects the intellectual property rights of creators — including software developers, authors, musicians, and filmmakers. It makes it illegal to copy, distribute, or publicly perform copyrighted works without authorisation.",
+              "examples": "Copying commercial software without a licence; sharing a pirated movie via torrent; using a royalty-free stock image in a commercial product without purchasing the correct licence; taking and using copyrighted music in a YouTube video without permission.",
+              "examTip": "For IT contexts: CDPA 1988 protects software code as a literary work. Key provisions for IT: software piracy is a criminal offence; end-user licence agreements (EULAs) govern permitted use; companies can be liable if employees pirate software on work machines.",
+              "keyFacts": [
+                "Copyright arises automatically — no registration needed in the UK",
+                "Duration: life of creator + 70 years for most works; 25 years from publication for computer-generated works",
+                "Software is protected as a 'literary work' under CDPA",
+                "Fair dealing: limited exceptions — criticism, review, news reporting, private study (not commercial use)",
+                "EULAs (End User Licence Agreements): contracts specifying how software may be used",
+                "Business Software Alliance (BSA): industry body that investigates software piracy"
+              ]
+            },
+            {
+              "code": "F2.1.3",
+              "term": "Copyright Regulations (Computer Programs) 1992",
+              "definition": "The Copyright (Computer Programs) Regulations 1992 implemented the EU Software Directive into UK law, specifically extending and clarifying copyright protection for computer programs — treating software code as a literary work with full copyright protection.",
+              "examples": "A developer cannot copy the source code of a commercial application and release it as their own product; decompiling software to extract algorithms for commercial use is prohibited (with narrow exceptions for interoperability).",
+              "examTip": "This is a narrower regulation supplementing CDPA 1988 specifically for software. Know that: (1) programs are literary works; (2) there is a limited right to decompile for interoperability only; (3) making a backup copy of legitimately owned software is generally permitted.",
+              "keyFacts": [
+                "Implements EU Software Directive (91/250/EEC) into UK law",
+                "Computer programs explicitly protected as literary works",
+                "Limited decompilation right: permitted only to achieve interoperability with other programs, not to copy functionality",
+                "Backup copying: legitimate owners may make one backup copy for personal use",
+                "Post-Brexit: UK retained these regulations as part of domestic law via the European Union (Withdrawal) Act 2018"
+              ]
+            },
+            {
+              "code": "F2.1.4",
+              "term": "Health and Safety and Display Screen Equipment (DSE) Regulations",
+              "definition": "The Health and Safety at Work Act 1974 and the Health and Safety (Display Screen Equipment) Regulations 1992 (updated 2002) impose legal duties on employers to protect workers who regularly use computers and screens from physical and psychological harm.",
+              "examples": "Employer required to provide ergonomic chair and adjustable desk for office worker using a PC all day; company providing regular eye tests and contributing to corrective glasses for DSE users; manager scheduling regular screen breaks for call centre staff.",
+              "examTip": "Know the employer's four main obligations under DSE Regulations: (1) conduct DSE risk assessments; (2) ensure adequate breaks from screen work; (3) provide free eye tests on request; (4) provide training on correct workstation setup. Also know the health risks DSE is designed to prevent.",
+              "comparisonTable": {
+                "title": "DSE Regulations — Employer Obligations vs Health Risks Addressed",
+                "headers": ["Employer Obligation", "Health Risk It Addresses"],
+                "rows": [
+                  ["Workstation risk assessment (screen, keyboard, chair, lighting, space)", "Musculoskeletal disorders — RSI, back/neck pain from poor posture"],
+                  ["Regular breaks from DSE work (at least 5-10 mins per hour)", "Eye strain, headaches, fatigue from prolonged screen use"],
+                  ["Free eye tests for DSE workers (annually or as needed)", "Visual fatigue, uncorrected vision problems worsened by screen work"],
+                  ["Provide corrective glasses if required specifically for DSE work", "Vision deterioration linked directly to screen use"],
+                  ["Training on safe workstation setup and correct posture", "Repetitive Strain Injury (RSI), carpal tunnel syndrome from poor technique"],
+                  ["Report DSE-related illness under RIDDOR if absence > 7 days", "Work-related upper limb disorder (WRULD) — employer accountability"]
+                ]
+              },
+              "keyFacts": [
+                "DSE Regulations 1992: apply to 'habitual users' of display screen equipment — typically those who use screens for 1+ hour continuously as a normal part of work",
+                "Risk assessment required for every workstation where DSE is used",
+                "Eye tests: employer must fund if employee requests one as a DSE user",
+                "Breaks: law requires adequate breaks — guidance suggests 5–10 minutes every hour",
+                "Health risks: RSI, carpal tunnel syndrome, back pain, eye strain, headaches, stress",
+                "Remote workers are covered — employer must ensure home workstation is assessed if DSE is used regularly"
+              ]
+            },
+            {
+              "code": "F2.1.5",
+              "term": "Data Protection Legislation (Data Protection Act 2018 / UK GDPR)",
+              "definition": "The Data Protection Act 2018 incorporates and supplements the UK General Data Protection Regulation (UK GDPR) — together forming the main legal framework for how personal data must be collected, processed, stored, and deleted by organisations in the UK.",
+              "examples": "GP surgery holding patient records must ensure data is accurate, secured, and not retained longer than necessary; e-commerce company must obtain explicit consent before sending marketing emails; data breach affecting 10,000 customers must be reported to ICO within 72 hours.",
+              "examTip": "Know the six lawful bases for processing and the seven UK GDPR principles (ADISS LA). Most exam questions focus on: what constitutes personal data, the rights of data subjects, the role of the ICO, and breach notification requirements. Penalties are a favourite mark-grabber — ICO can fine up to £17.5m or 4% of global annual turnover.",
+              "comparisonTable": {
+                "title": "UK GDPR — Seven Data Protection Principles",
+                "headers": ["Principle", "Meaning", "Example Violation"],
+                "rows": [
+                  ["1. Lawfulness, Fairness & Transparency", "Data processed legally, fairly, and openly", "Collecting location data without informing users"],
+                  ["2. Purpose Limitation", "Data only used for the specific purpose it was collected for", "Using customer purchase data to build psychological profiles for resale"],
+                  ["3. Data Minimisation", "Only collect data that is necessary", "Asking for date of birth when only age range is needed"],
+                  ["4. Accuracy", "Data must be accurate and kept up to date", "Storing outdated address causing important letters to be sent elsewhere"],
+                  ["5. Storage Limitation", "Data not kept longer than necessary", "Retaining old employee records indefinitely after departure"],
+                  ["6. Integrity & Confidentiality", "Data secured against unauthorised access, loss, or destruction", "Storing customer passwords in plaintext; inadequate firewall"],
+                  ["7. Accountability", "Organisation must demonstrate compliance", "No documented data protection policies; no DPO appointed where required"]
+                ]
+              },
+              "keyFacts": [
+                "ICO (Information Commissioner's Office): UK data protection regulator — investigates complaints, issues fines",
+                "Personal data: any information that can identify a living individual (name, email, IP address, biometrics)",
+                "Special category data: racial origin, health, religion, sexual orientation, political opinions — higher protection required",
+                "Data subject rights: access (SAR), rectification, erasure, restriction, portability, object, no automated decision-making",
+                "Lawful bases for processing: consent, contract, legal obligation, vital interests, public task, legitimate interests (CLVLPL)",
+                "Breach notification: if high risk to individuals — report to ICO within 72 hours; notify affected individuals without undue delay",
+                "Data Protection Officer (DPO): required for public authorities and organisations processing special category data at scale",
+                "GDPR fines: Tier 1 up to €10m/2% turnover; Tier 2 up to €20m/4% turnover (UK equivalents: £8.7m/£17.5m)"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
