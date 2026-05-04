@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit 1 IT Revision</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">Unit 1 IT</div>
+    <button class="nav-btn" data-page="home">Home</button>
+    <button class="nav-btn" data-page="sections">Sections</button>
+    <button class="nav-btn" data-page="flashcards">Flashcards</button>
+    <button class="nav-btn" data-page="questions">Questions</button>
+    <button class="nav-btn" data-page="extended">Extended</button>
+    <button class="nav-btn" data-page="search">Search</button>
+    <button class="nav-btn" data-page="plan">Plan</button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HOME -->
+  <div class="page" id="page-home">
+    <div class="countdown-box">
+      <h2>Days until exam</h2>
+      <div class="countdown-days" id="home-countdown-days">--</div>
+      <div class="countdown-label">days remaining</div>
+      <div class="countdown-date">Unit 1 IT Systems — 15 May 2026</div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="num" style="color:var(--green)" id="home-stat-green">0</div>
+        <div class="lbl">Confident</div>
+      </div>
+      <div class="stat-box">
+        <div class="num" style="color:var(--amber)" id="home-stat-amber">0</div>
+        <div class="lbl">Getting there</div>
+      </div>
+      <div class="stat-box">
+        <div class="num" style="color:var(--red)" id="home-stat-red">0</div>
+        <div class="lbl">Need work</div>
+      </div>
+      <div class="stat-box">
+        <div class="num" style="color:var(--accent2)" id="home-stat-streak">0</div>
+        <div class="lbl">Day streak</div>
+      </div>
+      <div class="stat-box">
+        <div class="num" style="color:var(--amber)" id="home-flash-due">0</div>
+        <div class="lbl">Cards due</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:20px">
+      <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text2);margin-bottom:6px">
+        <span>Overall confidence</span>
+        <span id="home-overall-pct">0%</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar" id="home-overall-progress" style="width:0%"></div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="navigate('sections', {section:'C'})">🔥 Start Section C</button>
+      <button class="btn btn-secondary" onclick="navigate('flashcards')">📚 Flashcards</button>
+      <button class="btn btn-secondary" onclick="navigate('questions')">✍️ Practice Questions</button>
+      <button class="btn btn-secondary" onclick="navigate('plan')">📅 Today's Plan</button>
+    </div>
+
+    <h3 style="margin-bottom:12px;font-size:14px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">Sections</h3>
+    <div class="grid2" id="section-tiles"></div>
+  </div>
+
+  <!-- SECTIONS -->
+  <div class="page" id="page-sections">
+    <div id="sections-content"></div>
+  </div>
+
+  <!-- FLASHCARDS -->
+  <div class="page" id="page-flashcards">
+    <div id="flashcards-content"></div>
+  </div>
+
+  <!-- QUESTIONS -->
+  <div class="page" id="page-questions">
+    <div id="questions-content"></div>
+  </div>
+
+  <!-- EXTENDED RESPONSE -->
+  <div class="page" id="page-extended">
+    <div id="extended-content"></div>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="page" id="page-search">
+    <div id="search-content"></div>
+  </div>
+
+  <!-- PLAN -->
+  <div class="page" id="page-plan">
+    <div id="plan-content"></div>
+  </div>
+
+</main>
+
+<div id="toast"></div>
+
+<script src="data_inline.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
