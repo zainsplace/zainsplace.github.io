@@ -397,12 +397,26 @@ function renderFlashcards() {
 function buildFlashQueue() {
   if (!flashData) return;
   const todayStr = today();
-  flashQueue = flashData.cards.filter(card => {
+  const filtered = flashData.cards.filter(card => {
     if (flashFilter !== 'all' && card.section !== flashFilter) return false;
     if (flashPracticeMode) return true;
     const due = state.flashcards.nextDue[card.id];
     if (!due || due <= todayStr) return true;
     return false;
+  });
+  const groups = {};
+  filtered.forEach(card => {
+    if (!groups[card.section]) groups[card.section] = [];
+    groups[card.section].push(card);
+  });
+  const sectionOrder = ['A', 'B', 'C', 'D', 'E', 'F'];
+  flashQueue = sectionOrder.flatMap(s => {
+    const g = groups[s] || [];
+    for (let i = g.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [g[i], g[j]] = [g[j], g[i]];
+    }
+    return g;
   });
   flashIdx = 0;
   flashFlipped = false;
