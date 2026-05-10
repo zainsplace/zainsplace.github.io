@@ -253,6 +253,9 @@ main {
 .flashcard-face .term { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
 .flashcard-face .hint { font-size: 12px; color: var(--text2); }
 .flashcard-face .def { font-size: 14px; line-height: 1.5; }
+.flash-keyhint { text-align: center; font-size: 12px; color: var(--text2); margin-top: 8px; }
+.flash-keyhint.hidden { display: none; }
+kbd { display: inline-block; padding: 1px 6px; border: 1px solid var(--border); border-radius: 4px; font-family: inherit; font-size: 11px; background: var(--card); color: var(--text1); }
 
 /* QUESTION */
 .question-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; margin-bottom: 12px; }

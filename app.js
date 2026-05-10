@@ -482,7 +482,7 @@ function renderCurrentFlashcard() {
         <div class="flashcard-face front">
           <span class="badge" style="margin-bottom:12px">${card.code}</span>
           <div class="term">${card.front}</div>
-          <div class="hint">Tap to reveal</div>
+          <div class="hint">Tap or press <kbd>Space</kbd> to reveal</div>
         </div>
         <div class="flashcard-face back">
           <span class="badge" style="margin-bottom:12px">${card.section}</span>
@@ -494,6 +494,9 @@ function renderCurrentFlashcard() {
       <button class="rag-btn active-red" onclick="answerFlash(false)">✗ Didn't know</button>
       <button class="rag-btn active-green" onclick="answerFlash(true)">✓ Got it!</button>
     </div>
+    <div class="flash-keyhint${flashFlipped ? '' : ' hidden'}" id="flash-keyhint">
+      <kbd>←</kbd> Didn't know &nbsp;·&nbsp; <kbd>→</kbd> Got it
+    </div>
     <div class="progress-bar-wrap" style="margin-top:12px"><div class="progress-bar" id="flash-progress-bar" style="width:${pct}%"></div></div>`;
 }
 
@@ -503,6 +506,8 @@ function flipFlashcard() {
   if (inner) inner.classList.toggle('flipped', flashFlipped);
   const btns = el('flash-answer-btns');
   if (btns) btns.classList.toggle('hidden', !flashFlipped);
+  const hint = el('flash-keyhint');
+  if (hint) hint.classList.toggle('hidden', !flashFlipped);
 }
 
 function answerFlash(correct) {
@@ -521,6 +526,22 @@ function answerFlash(correct) {
   flashFlipped = false;
   renderFlashUI();
 }
+
+document.addEventListener('keydown', function(e) {
+  if (currentPage !== 'flashcards') return;
+  if (flashIdx >= flashQueue.length) return;
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.code === 'Space') {
+    e.preventDefault();
+    flipFlashcard();
+  } else if (e.code === 'ArrowLeft' && flashFlipped) {
+    e.preventDefault();
+    answerFlash(false);
+  } else if (e.code === 'ArrowRight' && flashFlipped) {
+    e.preventDefault();
+    answerFlash(true);
+  }
+});
 
 function setFlashFilter(val) {
   flashFilter = val;
@@ -562,7 +583,15 @@ function renderQuestions() {
 
 function renderBrowseMode(container) {
   const sections = ['all', 'A', 'B', 'C', 'D', 'E', 'F'];
-  const filtered = qFilter === 'all' ? qData.questions : qData.questions.filter(q => q.section === qFilter);
+  const base = qFilter === 'all' ? qData.questions : qData.questions.filter(q => q.section === qFilter);
+  const groups = {};
+  base.forEach(q => { if (!groups[q.section]) groups[q.section] = []; groups[q.section].push(q); });
+  const sectionOrder = ['A', 'B', 'C', 'D', 'E', 'F'];
+  const filtered = sectionOrder.flatMap(s => {
+    const g = groups[s] ? [...groups[s]] : [];
+    for (let i = g.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [g[i], g[j]] = [g[j], g[i]]; }
+    return g;
+  });
 
   container.innerHTML = `
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:16px">
