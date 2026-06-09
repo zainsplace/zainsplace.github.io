@@ -1,188 +1,156 @@
 [
   {
-    "id": "cloud-9",
-    "title": "Cloud Computing Suitability (9 marks)",
+    "id": "backup-9",
+    "title": "Evaluate a Backup Strategy (9 marks)",
     "marks": 9,
-    "time": 1080,
-    "section": "C",
-    "command": "Discuss",
-    "question": "A small business currently stores all its customer data on local servers. The business owner is considering moving to cloud computing. Discuss the suitability of moving to cloud computing for this business. [9 marks]",
-    "structure": [
-      "Para 1 — Identify: Name the relevant cloud model(s) (e.g. public cloud, SaaS/IaaS) and briefly state what cloud computing is in context.",
-      "Para 2 — Benefits: Give 2–3 specific benefits linked to the scenario (small business = limited budget, needs scalability, staff may work remotely).",
-      "Para 3 — Drawbacks: Give 2–3 specific drawbacks/risks linked to the scenario (GDPR compliance, internet dependency, vendor lock-in).",
-      "Para 4 — Evaluate: Make a clear judgement — is it suitable? On balance, why? Qualify with conditions (e.g. 'provided the business chooses a GDPR-compliant provider').",
-      "Target: ~300–400 words. Level 3 = benefits AND drawbacks clearly linked to the scenario with a supported conclusion."
-    ],
-    "tips": [
-      "Identify the cloud model (SaaS/IaaS/PaaS or public/private/hybrid) — examiners reward specific terminology",
-      "Benefits must be linked to THIS scenario: small business = cost savings, no IT staff needed, scalability",
-      "Drawbacks must be linked too: GDPR concerns with data stored offshore, internet outage = no access",
-      "Level 3 (7–9 marks): your conclusion must be supported — don't just say 'it is suitable', say WHY on balance",
-      "Key phrase: 'the suitability depends on...' signals an evaluative conclusion"
-    ],
-    "markScheme": [
-      "**[1–3 marks — Level 1]** Basic identification of cloud features or general benefits/drawbacks with limited or no link to the scenario. e.g. 'Cloud computing is cheaper' without development.",
-      "**[4–6 marks — Level 2]** Benefits AND drawbacks identified with some explanation. At least one point clearly linked to the small business scenario. Response is mostly descriptive with emerging analysis.",
-      "**[7–9 marks — Level 3]** Benefits and drawbacks both clearly explained and consistently linked to the small business scenario. Supported evaluative conclusion present — judgement on overall suitability with justification.",
-      "**Mark points (indicative):** Cost reduction / no capital expenditure on servers **(1)**; pay-as-you-go / subscription model suitable for small budget **(1)**; scalability — easy to increase storage as business grows **(1)**; remote access for staff **(1)**; GDPR compliance concern — data stored in third-party/overseas servers **(1)**; internet dependency — outage means no access to customer data **(1)**; vendor lock-in risk **(1)**; security risk — shared infrastructure, data breach by provider **(1)**; evaluative conclusion with justification **(1)**"
-    ],
-    "modelAnswer": "Cloud computing could be highly suitable for this small business, though the decision requires careful consideration of both benefits and risks.\n\nThe most significant benefit is cost reduction. Currently the business pays for local server hardware, maintenance, and potentially IT support staff. Moving to a public cloud model — for example, using a SaaS solution for customer data management — eliminates these capital costs and replaces them with a predictable monthly subscription. For a small business with limited capital, this is a major advantage. Scalability is another benefit: if the business grows and needs more storage, cloud capacity can be increased almost instantly without purchasing new hardware.\n\nCloud computing also enables remote access to customer data, which supports flexible working and means the business owner can access records from any device with an internet connection.\n\nHowever, there are important risks. Cloud providers store data on remote servers, potentially located outside the UK. Under GDPR and the Data Protection Act 2018, the business remains responsible for ensuring its customers' personal data is processed lawfully, even if a third party stores it. If the provider suffers a data breach, the business could face ICO fines and reputational damage. Additionally, the business becomes entirely dependent on a reliable internet connection — any outage would prevent access to customer records, disrupting operations. Vendor lock-in is a further concern: migrating data away from one cloud provider to another can be costly and technically complex.\n\nOverall, cloud computing is suitable for this small business given the significant cost savings and scalability benefits, which directly address the challenges a small business faces. However, suitability is conditional: the business must select a GDPR-compliant UK or EEA-based provider, ensure adequate internet redundancy, and include clear data processing agreements in its contract with the provider."
-  },
-  {
-    "id": "cyber-security-8",
-    "title": "Cyber Security Threats and Impacts (8 marks)",
-    "marks": 8,
-    "time": 1080,
-    "section": "D",
-    "command": "Discuss",
-    "question": "A retail organisation has experienced a cyber attack in which customer payment data was stolen. Discuss the impacts of this cyber attack on the organisation. [8 marks]",
-    "structure": [
-      "Para 1 — Financial impact: fines (GDPR/ICO), legal action from affected customers, incident response costs.",
-      "Para 2 — Reputational impact: loss of customer trust, media coverage, reduction in sales — link to retail scenario (customers avoid giving card details).",
-      "Para 3 — Operational impact: downtime, systems taken offline, investigation disrupting trading.",
-      "Para 4 — Evaluate: Which impact is most severe and hardest to recover from? Support your judgement.",
-      "Target: ~300–350 words. Level 3 = multiple distinct impacts explained with scenario linkage + evaluative conclusion."
-    ],
-    "tips": [
-      "Use D1.3 spec codes: loss of data, financial loss due to legal action, loss of customers due to public image",
-      "GDPR breach notification: within 72 hours to ICO — failure to notify is itself a violation",
-      "ICO fine: up to £17.5m or 4% of global annual turnover — mention the figure for marks",
-      "Retail scenario: customers specifically will fear card fraud — link every point to THIS context",
-      "Level 3 conclusion: state which impact is MOST severe and WHY (reputational is often hardest to undo)"
-    ],
-    "markScheme": [
-      "**[1–3 marks — Level 1]** Basic identification of one or two impacts with limited development. Generic statements not linked to the scenario.",
-      "**[4–6 marks — Level 2]** At least two distinct impact types identified and explained. Some connection to the retail/payment data scenario. Mostly descriptive with limited evaluation.",
-      "**[7–8 marks — Level 3]** Multiple distinct impacts (financial, reputational, operational) explained and consistently linked to the retail scenario. Evaluative conclusion present — judgement on relative severity with justification.",
-      "**Mark points (indicative):** GDPR fine / ICO penalty (up to £17.5m or 4% turnover) **(1)**; legal action / compensation claims from affected customers **(1)**; incident response costs (forensics, notification, system rebuild) **(1)**; reputational damage / loss of customer trust **(1)**; loss of customers / reduced revenue in retail context **(1)**; operational disruption / systems taken offline / downtime **(1)**; long-term security improvement costs **(1)**; evaluative conclusion on most severe impact with justification **(1)**"
-    ],
-    "modelAnswer": "The cyber attack would have severe and wide-ranging impacts on the retail organisation.\n\nThe most immediate impact is financial. Under GDPR, the organisation is required to report the breach to the ICO within 72 hours. If the ICO determines that the organisation failed to adequately protect customer payment data, it can impose fines of up to £17.5 million or 4% of global annual turnover — whichever is higher. Beyond regulatory fines, affected customers may pursue civil compensation claims, adding further financial exposure. The organisation will also face significant incident response costs: forensic investigation, customer notification, and rebuilding compromised systems.\n\nReputational damage is equally serious. News of a breach involving payment card data is particularly damaging for a retailer because customers' primary concern will be that their financial details have been stolen and could be used fraudulently. This will undermine trust in the organisation, leading customers to shop elsewhere. Negative media coverage and social media criticism will amplify this effect, accelerating the loss of customers and revenue.\n\nOperationally, the organisation may need to take affected systems offline during the investigation to prevent further data loss. This downtime prevents normal trading and adds to financial losses.\n\nIn the long term, the business will need to invest significantly in strengthening its security infrastructure — implementing stronger encryption, multi-factor authentication, and regular penetration testing — representing ongoing additional costs.\n\nOverall, whilst all impacts are significant, the reputational damage is likely the most severe in the long term. Financial penalties can be absorbed or insured against, and systems can be rebuilt, but lost customer trust in a competitive retail market is extremely difficult to restore. Customers have many alternatives, and once they associate the brand with a payment data breach, rebuilding confidence takes years."
-  },
-  {
-    "id": "networks-6",
-    "title": "Network Factors for a Multi-Site Organisation (6 marks)",
-    "marks": 6,
     "time": 720,
-    "section": "B",
-    "command": "Describe",
-    "question": "A company has offices in three different cities across the UK. Describe the factors the company should consider when choosing a network to connect its offices. [6 marks]",
-    "structure": [
-      "Point 1 — Security: data travelling between cities = interception risk. WAN + VPN solution.",
-      "Point 2 — Cost: leased lines vs broadband, recurring vs capital costs for a multi-city WAN.",
-      "Point 3 — Performance/Efficiency: bandwidth and latency requirements for video conferencing, file sharing.",
-      "Point 4 — Implementation: timescales, testing, downtime during setup.",
-      "Target: ~200–250 words. 6-mark levels question: aim for at least 3 factors, each with explanation linked to the scenario."
-    ],
-    "tips": [
-      "Use B2.3 spec codes: user needs, cost, security, efficiency, implementation, compatibility",
-      "Link every factor to the scenario — three offices, UK-wide, data transmitted between cities",
-      "Level 3 (5–6 marks): each factor explained in context, not just listed",
-      "WAN + VPN is the expected network type for multi-city — naming it gains marks",
-      "Don't just name factors — explain WHY each matters for THIS company"
-    ],
-    "markScheme": [
-      "**[1–2 marks — Level 1]** One or two factors named with minimal or no explanation. Generic response not clearly linked to the scenario.",
-      "**[3–4 marks — Level 2]** Two or three factors identified with some explanation. Some linkage to the multi-site scenario.",
-      "**[5–6 marks — Level 3]** Three or more factors clearly explained and linked to the multi-city organisation scenario. Each factor has a clear 'why it matters here' element.",
-      "**Mark points (indicative):** Security — data transmitted between cities at risk of interception, VPN encryption needed **(1)**; Cost — WAN infrastructure / leased lines expensive, must balance cost vs reliability **(1)**; Bandwidth/performance — sufficient for video conferencing and file transfer between offices **(1)**; Implementation — timescales and downtime during setup **(1)**; Reliability/efficiency — consistent uptime essential for business operations across sites **(1)**; Compatibility — must work with existing hardware/software at each office **(1)**"
-    ],
-    "modelAnswer": "The company should consider security as a primary factor. Because data will travel over public infrastructure between three cities, there is a risk of interception. The company should use a WAN with VPN technology to encrypt all data in transit between offices, protecting confidential business information.\n\nCost is another key consideration. A WAN connecting three UK cities involves significant recurring costs — leased lines or managed broadband connections at each site, plus ongoing maintenance and support. The company must assess whether the budget supports the level of connectivity required.\n\nPerformance and bandwidth must be considered carefully. If staff regularly use video conferencing between offices or transfer large files, the network must provide sufficient bandwidth and low enough latency to support this without disruption. A slow or unreliable connection would reduce productivity across all three locations.\n\nFinally, implementation timescale matters. Setting up a multi-site WAN requires planning, testing, and a migration period during which connectivity may be disrupted. The company must schedule this to minimise downtime and ensure all three offices can continue operating during the transition."
-  },
-  {
-    "id": "it-impact-organisations-10",
-    "title": "Impact of IT Systems on Organisations (10 marks)",
-    "marks": 10,
-    "time": 1080,
     "section": "A",
     "command": "Evaluate",
-    "question": "A large supermarket chain is replacing its manual stock-taking process with an automated IT system that tracks stock levels in real time using barcode scanners and a central database. Evaluate the impact of this new IT system on the organisation. [10 marks]",
+    "question": "A company's backup strategy is: RAID 1 (mirrored drives) on the servers; a daily copy of working files to one of five reused USB sticks (Mon–Fri); a weekly copy of all company data to a portable hard drive; and disk images of all servers, PCs and laptops. Evaluate the effectiveness of this backup strategy. [9 marks]",
     "structure": [
-      "Para 1 — Productivity/efficiency: automation replaces manual counting, real-time data improves ordering decisions. Link to supermarket context.",
-      "Para 2 — Cost implications: upfront implementation costs (hardware, software, training) vs long-term savings (reduced labour, fewer stockouts).",
-      "Para 3 — Workforce impact: job displacement / changed roles / training needs. Balance against new roles created.",
-      "Para 4 — Security and data concerns: central database = single point of failure, data breach risk if customer/stock data exposed.",
-      "Para 5 — Evaluate: On balance, is the impact positive? Consider short-term disruption vs long-term gain. Qualify your conclusion.",
-      "Target: ~400–500 words. Level 3 = multiple impact areas with scenario linkage + supported evaluative conclusion."
+      "Introduce what a good backup strategy needs to achieve (recover all data after loss/attack).",
+      "Strengths: disk images allow full restore; weekly full copy; daily incremental-style USB copies; RAID gives uptime.",
+      "Weaknesses: RAID is NOT a backup; all media kept on-site (fire/theft/ransomware risk); USBs reused/overwritten; no encryption; no off-site/cloud copy; no mention of testing.",
+      "Conclusion: judge overall effectiveness and recommend the single most important improvement (off-site/cloud + encryption + testing)."
     ],
     "tips": [
-      "Use A4.3 spec codes: user experience, cost, implementation, productivity, working practices, staff training, security",
-      "Supermarket scenario: stock control (A4.2.1) is the specific IT use — anchor every point to this",
-      "Implementation (A4.3.4): timescales, testing, migration, downtime — the transition period has real costs",
-      "Working practices (A4.3.7): staff who did manual stock counts now use handheld scanners — role changes, not necessarily job losses",
-      "Level 3 conclusion: weigh short-term disruption against long-term benefit — which outweighs the other and why?"
+      "RAID 1 mirrors data for availability but is NOT a backup — if a file is deleted/encrypted by ransomware, it's lost on both mirrored drives.",
+      "All copies being on-site means a fire, flood or theft could destroy the originals AND the backups together.",
+      "Reusing 5 USB sticks gives only 5 days of history — older versions are overwritten.",
+      "No encryption on the USB/portable drive is a data protection (GDPR) risk if lost or stolen.",
+      "Strong answers reach a supported JUDGEMENT and recommend off-site/cloud backup + encryption + regular restore testing."
     ],
     "markScheme": [
-      "**[1–3 marks — Level 1]** Basic identification of one or two impacts with limited development. Generic response not clearly linked to the supermarket/stock control scenario.",
-      "**[4–6 marks — Level 2]** Two or more distinct impact areas identified and explained. Some linkage to the scenario. Mostly descriptive; limited evaluation present.",
-      "**[7–9 marks — Level 3]** Multiple distinct impacts clearly explained and consistently linked to the supermarket scenario. Evaluative conclusion present — judgement on overall balance of impact with justification.",
-      "**[10 marks — Level 3 top]** As Level 3 with a fully supported, nuanced conclusion that acknowledges complexity (e.g. positive long-term impact conditional on successful implementation and staff training).",
-      "**Mark points (indicative):** Improved stock accuracy / reduced stockouts / better ordering decisions **(1)**; real-time data enables faster response to demand changes **(1)**; implementation costs — hardware (scanners, servers), software, installation **(1)**; disruption during implementation / staff learning curve **(1)**; long-term cost savings — reduced labour for manual counting, less waste **(1)**; staff training needs (initial + ongoing) **(1)**; changed working practices — staff roles altered, not necessarily eliminated **(1)**; security risk — central database is a target; breach could expose supplier/pricing data **(1)**; dependency on system — if system fails, stock management disrupted **(1)**; evaluative conclusion with justified judgement on overall impact **(1)**"
+      "**Level 3 (7–9):** comprehensive, balanced evaluation of both strengths and weaknesses, consistently linked to the scenario, with a well-supported conclusion.",
+      "**Level 2 (4–6):** good evaluation considering both sides, partially supported conclusion.",
+      "**Level 1 (1–3):** basic/one-sided points, superficial or unsupported conclusion.",
+      "Credit: disk images enable full/bare-metal restore; weekly full + daily copies give layered recovery.",
+      "Credit: RAID is not a backup; all media on-site is a single point of failure; reused USBs limit history; no encryption; no testing; no off-site/cloud copy."
     ],
-    "modelAnswer": "The introduction of a real-time automated stock control system would have significant impacts on this supermarket chain across productivity, cost, workforce, and security.\n\nThe most immediate positive impact is on productivity and operational efficiency. Real-time barcode scanning means stock levels are updated instantly as items are received and sold. This eliminates the delays and errors associated with manual stock counts — which might only occur weekly — and enables the supermarket to automate reorder triggers when stock falls below a threshold. This reduces the risk of stockouts, which directly affects customer satisfaction and sales revenue.\n\nHowever, the implementation phase carries real costs. The supermarket must invest in barcode scanners, a central database, network infrastructure across all store locations, and software licences. Migrating from a manual system requires a testing period during which both systems may run in parallel, increasing workload. Downtime during the transition could disrupt stock management temporarily.\n\nThe impact on the workforce is nuanced. Staff who previously spent time manually counting stock will have their roles changed — they will use handheld scanners rather than clipboards. This requires initial training and potentially ongoing technical support. Some roles may be reduced if automation handles tasks previously done by more staff, but new roles in IT support and database management will likely be created. There is therefore a risk of short-term job insecurity, which could affect morale.\n\nFrom a security perspective, centralising all stock data in a single database creates a concentrated risk. If the database is breached, sensitive supplier pricing or customer purchasing data could be exposed, creating GDPR compliance issues and reputational damage.\n\nOverall, the long-term impact on the organisation is strongly positive. The efficiency gains, cost savings from reduced labour and waste, and improved decision-making capability significantly outweigh the upfront investment and transitional disruption. The key condition for success is adequate staff training and a well-planned implementation that minimises downtime. Provided these are managed carefully, the new system represents a clear improvement for the organisation."
+    "modelAnswer": "An effective backup strategy must allow the company to recover all of its data quickly after loss, corruption or a cyber attack such as ransomware, ideally with copies kept securely off-site.\n\nThe current strategy has several strengths. Taking disk images of all servers, PCs and laptops is effective because it allows a full (bare-metal) restore of an entire machine, not just its files, which speeds up recovery after a serious failure. The weekly copy of all company data to a portable drive acts as a full backup, while the daily copies of working files to USB sticks act like incremental backups, giving more recent recovery points between the weekly copies. RAID 1 mirrors data across drives so that if one server drive fails, the system keeps running with no downtime.\n\nHowever, there are significant weaknesses. RAID 1 is not actually a backup — it only protects against hardware failure. If a file is accidentally deleted or encrypted by ransomware, the change is mirrored instantly onto both drives, so the data is still lost. A more serious problem is that all of the backup media appear to be kept on-site. A single event such as a fire, flood or theft could destroy the servers and the USB/portable backups together, leaving no way to recover. Reusing only five USB sticks means the company has at most five days of file history, so older versions are overwritten and cannot be retrieved. There is also no mention of encryption, so a lost or stolen USB stick or portable drive would expose company data, breaching GDPR. Finally, there is no evidence that the backups are ever tested by restoring them, so they may not actually work when needed.\n\nOverall, the strategy is only partially effective: it provides good recovery points and full machine images, but the lack of an off-site or cloud copy is a critical flaw that could result in total data loss. The most important improvement would be to add an encrypted off-site or cloud backup and to test restores regularly, ensuring the company can always recover even after a site-wide disaster."
   },
   {
-    "id": "legal-ethical-10",
-    "title": "Effectiveness of IT Legislation (10 marks)",
-    "marks": 10,
-    "time": 1080,
-    "section": "F",
+    "id": "macfilter-9",
+    "title": "Evaluate MAC Address Filtering (9 marks)",
+    "marks": 9,
+    "time": 720,
+    "section": "A",
     "command": "Evaluate",
-    "question": "Evaluate the extent to which current UK legislation effectively protects individuals using IT systems. [10 marks]",
+    "question": "A company is considering using MAC address filtering to protect both its Staff Wi-Fi and its Guest Wi-Fi. Evaluate the use of MAC address filtering on the company's Wi-Fi. [9 marks]",
     "structure": [
-      "Para 1 — DPA 2018 / UK GDPR: what it protects, how (rights + ICO enforcement), limitation (overseas enforcement, consent fatigue).",
-      "Para 2 — Computer Misuse Act 1990: deters hacking/malware, limitation (anonymous attackers, cross-border, outdated for modern threats).",
-      "Para 3 — CDPA 1988 / Copyright Regs: protects IP/software, limitation (peer-to-peer piracy, overseas sites, enforcement cost).",
-      "Para 4 — Evaluate: On balance, does legislation provide effective protection? Identify the biggest gap. Conclude with a qualified judgement.",
-      "Target: ~400–500 words. Level 3 = each law evaluated (strengths + limits) + a supported overall conclusion."
+      "Explain what MAC address filtering does (allow/deny list of device hardware addresses).",
+      "Staff Wi-Fi: set up once, only modified for new devices, helps block unlisted devices.",
+      "Guest Wi-Fi: new entry needed per guest/device, time-consuming, limited list size, inconvenient, and extra security often not needed for internet-only guest access.",
+      "General: MAC addresses can be spoofed, so only medium security; weigh cost/benefit differently for staff vs guests.",
+      "Conclusion: suitable for staff, impractical for guests."
     ],
     "tips": [
-      "Name all three Acts with correct years: DPA 2018, CMA 1990, CDPA 1988",
-      "ICO powers are a strength: fines up to £17.5m / 4% global turnover — use the figure",
-      "The biggest weakness across all laws: global/anonymous nature of the internet makes enforcement extremely difficult",
-      "Balance: legislation creates a framework and deters domestic offenders — but international reach is the critical gap",
-      "Level 3 conclusion: qualified — 'effective within domestic borders but significantly limited by...' scores higher than a simple yes/no"
+      "On the STAFF network the device list is fairly stable, so filtering is set up once and only updated for new devices — practical.",
+      "On the GUEST network you'd have to add every new guest device, which is time-consuming and impractical; WAPs also have limited MAC list sizes.",
+      "Key limitation: MAC addresses can be SPOOFED, so this is only medium security and shouldn't be the only measure.",
+      "Note guest Wi-Fi usually only needs internet access, so heavy security adds little benefit there.",
+      "Reach a clear judgement that distinguishes staff (worthwhile) from guests (not worthwhile)."
     ],
     "markScheme": [
-      "**[1–3 marks — Level 1]** Names one piece of legislation with limited description. No evaluation. Generic or largely irrelevant content.",
-      "**[4–6 marks — Level 2]** Two or more Acts identified with explanation of what they protect. Some attempt to consider limitations. Mostly descriptive; limited balance.",
-      "**[7–9 marks — Level 3]** All three main Acts discussed with both strengths and limitations evaluated. Supported conclusion present.",
-      "**[10 marks — Level 3 top]** As Level 3 with a nuanced, fully supported conclusion that acknowledges complexity — e.g. effective domestically but fundamentally limited globally; legislation is necessary but insufficient alone.",
-      "**Mark points (indicative):** DPA/GDPR: individual rights (access, erasure, portability) **(1)**; ICO enforcement powers / fine levels **(1)**; DPA limitation: overseas enforcement difficulty **(1)**; CMA 1990: criminalises unauthorised access / three-tier offences **(1)**; CMA limitation: anonymous/overseas attackers, outdated for AI-era threats **(1)**; CDPA 1988: protects software as literary work **(1)**; CDPA limitation: online piracy enforcement impractical **(1)**; overall evaluation: effective framework domestically but limited globally **(1)**; conclusion: legislation necessary but insufficient — technical measures also required **(1)**; highest-quality conclusion with nuanced qualification **(1)**"
+      "**Level 3 (7–9):** balanced evaluation covering staff and guest contexts and the spoofing limitation, with a well-supported conclusion.",
+      "**Level 2 (4–6):** good evaluation of both sides, partially supported conclusion.",
+      "**Level 1 (1–3):** basic, one-sided points and a superficial conclusion.",
+      "Credit (staff): set up once, only modify for new devices, blocks unlisted devices.",
+      "Credit (guest): new entry per guest, time/resource cost, limited list size, inconvenient, extra security not needed.",
+      "Credit (general): MAC spoofing means only medium security; different cost-benefit for each network."
     ],
-    "modelAnswer": "Current UK legislation provides a meaningful framework for protecting individuals using IT systems, but its effectiveness is significantly constrained by the global and often anonymous nature of the internet.\n\nThe Data Protection Act 2018 and UK GDPR give individuals substantial rights over their personal data — including the right to access, rectify, and erase their data, and to object to automated decision-making. The Information Commissioner's Office (ICO) has real enforcement powers, including fines of up to £17.5 million or 4% of global annual turnover for serious breaches. This creates genuine accountability for UK organisations. However, a critical limitation is that many data-handling organisations, particularly large tech platforms, are based outside the UK. The ICO's jurisdiction does not extend effectively to overseas companies, meaning individuals' data processed by foreign entities may receive weaker protection in practice.\n\nThe Computer Misuse Act 1990 criminalises unauthorised access to computer systems and the deployment of malicious software across three tiers of offences. This deters domestic cybercriminals and provides a legal basis for prosecution. However, the Act was written in 1990, before the modern threat landscape existed — state-sponsored attacks, ransomware groups operating from jurisdictions with no extradition treaties, and AI-assisted hacking are difficult to prosecute under the Act. Offenders are frequently anonymous and based overseas, making enforcement practically difficult regardless of the legal framework.\n\nThe Copyright, Designs and Patents Act 1988 protects software as a literary work, preventing piracy and unauthorised copying. However, the proliferation of peer-to-peer file sharing and overseas piracy sites makes enforcement costly and largely impractical for individuals seeking to enforce their rights.\n\nIn conclusion, UK legislation is effective at protecting individuals from domestic threats and at holding UK-based organisations accountable. The DPA/GDPR framework in particular is among the strongest in the world. However, legislation alone is insufficient: the global, anonymous nature of the internet means enforcement against overseas actors is largely theoretical. Individuals remain significantly exposed to threats from outside UK jurisdiction. Legislation therefore provides a necessary but incomplete level of protection — it must be supplemented by technical measures such as encryption, security software, and individual digital literacy."
+    "modelAnswer": "MAC address filtering lets an administrator create an allow list of the hardware (MAC) addresses of devices that are permitted to join a Wi-Fi network; any device not on the list is blocked.\n\nFor the Staff Wi-Fi, MAC filtering could be reasonably effective. The set of staff devices is fairly stable, so the list only needs to be set up once and updated occasionally when a new device is issued. This helps prevent intrusion by unrecognised devices, adding a layer of access control on top of the Wi-Fi password.\n\nFor the Guest Wi-Fi, however, MAC filtering is impractical. Guests arrive frequently with their own devices, so the administrator would have to find and add each new device's MAC address before it could connect, which is time-consuming and would create a poor experience for visitors. Many wireless access points also support only a limited number of MAC entries, which could be exceeded if there are many guests. Crucially, the guest network usually only needs to provide internet access and is kept separate from internal systems, so the extra security that filtering provides is largely unnecessary here.\n\nThere is also a general limitation that applies to both networks: MAC addresses can be spoofed. An attacker can use a network sniffer to capture an allowed MAC address and then change their own device's MAC to match it, bypassing the filter entirely. This means MAC filtering only provides medium-level security and should never be relied on as the only protection.\n\nOverall, MAC address filtering is a worthwhile additional control on the Staff Wi-Fi, where the device list is stable, but it is impractical and offers little benefit on the Guest Wi-Fi. In both cases it should be combined with stronger measures such as WPA3 encryption rather than used on its own."
   },
   {
-    "id": "online-services-impact-12",
-    "title": "Impact of Online Services on Organisations (12 marks)",
-    "marks": 12,
-    "time": 1260,
-    "section": "E",
+    "id": "wpa-9",
+    "title": "Evaluate WPA2 vs WPA3 (9 marks)",
+    "marks": 9,
+    "time": 720,
+    "section": "A",
     "command": "Evaluate",
-    "question": "A traditional high-street bank is considering expanding its services to offer a full online and mobile banking platform. Evaluate the impact of this change on the bank as an organisation. [12 marks]",
+    "question": "A company's wireless access points can be configured to use either Wi-Fi Protected Access 2 (WPA2) or WPA3. Evaluate the use of WPA2 and WPA3 on the company's WAPs. [9 marks]",
     "structure": [
-      "Para 1 — Customer experience and reach: 24/7 access, broader customer base, accessibility. Link to banking scenario.",
-      "Para 2 — Operational costs: reduced need for physical branches / staff, but high IT infrastructure investment required.",
-      "Para 3 — Security risks: online banking = target for cybercrime (phishing, account takeover), GDPR and financial regulation obligations.",
-      "Para 4 — Working practices and staff impact: branch staff roles change, some redundancies, retraining required.",
-      "Para 5 — Data and analytics: transactional data enables targeted marketing, personalisation — competitive advantage.",
-      "Para 6 — Evaluate: On balance, is this transition beneficial? What are the biggest risks? What conditions make it successful?",
-      "Target: ~500–600 words. Level 3/4 = multiple perspectives, scenario-specific, nuanced conclusion with conditions."
+      "Explain that both are wireless encryption standards protecting Wi-Fi traffic.",
+      "WPA3 strengths: stronger encryption, better protection against password-guessing/brute-force, individualised encryption on open networks.",
+      "WPA2 considerations: widely supported, but older and vulnerable to known attacks (e.g. KRACK); still better than nothing.",
+      "Compatibility: older devices may not support WPA3 — a real issue for guest devices.",
+      "Conclusion: prefer WPA3 where supported, with WPA2 as fallback for legacy devices."
     ],
     "tips": [
-      "E1.1.2 (financial services) and E1.2.1 (transactional data) are the core spec codes here",
-      "A4.3 impact codes: user experience, cost, working practices, security, productivity — use all of them",
-      "Digital divide: not all customers can access online banking — older or less digitally literate customers excluded",
-      "GDPR: financial data is highly sensitive — breach consequences are severe for a bank",
-      "12-mark question: aim for 5+ distinct impact areas, each with scenario linkage. Your conclusion must weigh these up explicitly."
+      "Both WPA2 and WPA3 encrypt wireless traffic so it can't be read if intercepted.",
+      "WPA3 is newer and more secure — better protection against brute-force/password-guessing attacks.",
+      "WPA2 is older and has known vulnerabilities, but is supported by virtually all devices.",
+      "Compatibility matters: some older guest/staff devices may not connect to WPA3 — a practical drawback.",
+      "Conclude with a judgement: use WPA3 where devices support it, fall back to WPA2 only where necessary."
     ],
     "markScheme": [
-      "**[1–3 marks — Level 1]** Identifies one or two basic impacts with limited development. Generic response not linked to the banking scenario.",
-      "**[4–6 marks — Level 2]** Three or more impacts identified with explanation. Some scenario linkage. Descriptive with limited evaluation.",
-      "**[7–9 marks — Level 3]** Multiple impact areas clearly explained and linked to the bank scenario. Evaluative conclusion present with some justification.",
-      "**[10–12 marks — Level 3/4 top]** As Level 3 with comprehensive coverage of diverse impacts, consistent scenario linkage throughout, and a fully supported, nuanced evaluative conclusion that considers conditions and trade-offs.",
-      "**Mark points (indicative):** Improved customer accessibility / 24/7 service availability **(1)**; broader customer reach — customers without local branch access **(1)**; long-term cost reduction — fewer branches / reduced staffing costs **(1)**; high upfront IT investment — platform development, security infrastructure **(1)**; cybersecurity risks — phishing, account takeover, man-in-the-middle attacks **(1)**; GDPR obligations — financial data is highly sensitive, breach = significant fine **(1)**; staff working practices changed — branch cashier roles reduced **(1)**; retraining / redundancy costs in transition **(1)**; digital divide — older/less digitally literate customers excluded or disadvantaged **(1)**; transactional data enables targeted marketing / personalised product offers **(1)**; competitive advantage — banks without online platform lose customers to fintech competitors **(1)**; evaluative conclusion with conditions for success **(1)**"
+      "**Level 3 (7–9):** balanced evaluation of security and compatibility for both standards, well-supported conclusion.",
+      "**Level 2 (4–6):** good evaluation of both sides, partially supported conclusion.",
+      "**Level 1 (1–3):** basic one-sided points, superficial conclusion.",
+      "Credit: WPA3 stronger encryption / resistance to brute force / better on open networks.",
+      "Credit: WPA2 widely compatible but older and has known weaknesses; compatibility trade-off for legacy devices."
     ],
-    "modelAnswer": "Moving to a full online and mobile banking platform would have wide-ranging impacts on the bank across customer experience, operations, security, workforce, and competitive positioning.\n\nFrom a customer experience perspective, online banking delivers significant benefits. Customers gain 24/7 access to their accounts, removing the constraint of branch opening hours. The bank can also reach customers in areas without a local branch, potentially expanding its customer base. Features such as instant transfers, real-time balance notifications, and mobile cheque deposits improve convenience substantially.\n\nHowever, not all customers will benefit equally. Older customers or those with limited digital literacy may struggle to use the platform, effectively excluding them from services they currently access in-branch. The bank has a responsibility under the Equality Act and its own service obligations to ensure these customers are not disadvantaged — which may require maintaining some physical branches or telephone services, reducing the anticipated cost savings.\n\nIn terms of operational costs, the long-term savings could be substantial: fewer physical branches means reduced property costs, and reduced footfall in branches means lower staffing requirements. However, the upfront investment is significant — developing a secure, scalable platform, integrating it with existing systems, and testing it thoroughly requires considerable capital expenditure and a lengthy implementation period during which normal operations must continue.\n\nSecurity is one of the most critical impacts. Online banking is a high-value target for cybercriminals: phishing attacks attempting to steal login credentials, man-in-the-middle attacks intercepting transactions, and account takeover fraud are all significant threats. The bank must invest heavily in security measures — multi-factor authentication, real-time fraud detection, end-to-end encryption — and will face strict obligations under GDPR and Financial Conduct Authority (FCA) regulations. A data breach involving financial data could result in severe ICO fines, legal action from affected customers, and catastrophic reputational damage.\n\nThe impact on the workforce is significant. Branch cashiers and counter staff will see their roles reduced as more customers manage accounts online. This creates potential redundancies and requires investment in retraining staff for digital support roles. Managing this transition sensitively is important for staff morale and the bank's public image.\n\nA strategic benefit of online banking is the volume of transactional data generated. The bank can analyse spending patterns to offer personalised financial products — such as targeted loan or savings account offers — creating a competitive advantage and additional revenue streams.\n\nOverall, the transition to online banking represents a strongly positive long-term impact for the bank, provided it is executed carefully. The cost savings, expanded reach, and data-driven competitive advantages are substantial. The critical risks — cybersecurity, customer exclusion, and workforce disruption — are manageable but require significant investment. The bank's success depends on maintaining service quality for all customer segments during and after the transition, and on building a security infrastructure robust enough to protect highly sensitive financial data."
+    "modelAnswer": "WPA2 and WPA3 are both wireless security standards that encrypt the traffic between devices and a wireless access point, so that data cannot be read if it is intercepted.\n\nWPA3 is the more secure of the two. It uses stronger encryption and a more secure handshake that provides much better protection against offline password-guessing and brute-force attacks, so even a relatively weak Wi-Fi password is harder to crack. WPA3 also offers individualised encryption on open networks, which would benefit the company's guest Wi-Fi by protecting each guest's traffic from other users on the same network. Using WPA3 on the staff WAP would therefore give the strongest protection for sensitive internal traffic.\n\nWPA2, by contrast, is older and has known vulnerabilities, such as the KRACK attack, which can allow an attacker to intercept traffic in certain conditions. However, WPA2 still provides solid encryption and is far better than an unsecured network. Its main advantage is compatibility: virtually every wireless device supports WPA2, whereas some older laptops, phones and IoT devices may not support WPA3 at all. If the company forced WPA3 only, those older devices — particularly guest devices it does not control — might be unable to connect.\n\nThere is therefore a trade-off between security and compatibility. The strongest approach is to use WPA3 on the WAPs wherever the connecting devices support it, as this gives the best protection for both staff and guests. Where legacy devices must be supported, a mixed WPA2/WPA3 ('transition') mode can be used as a fallback, accepting slightly weaker security in exchange for compatibility. Overall, WPA3 should be the default choice for the company, with WPA2 retained only where it is genuinely needed for older equipment."
+  },
+  {
+    "id": "physical-9",
+    "title": "Evaluate Office Physical Security (9 marks)",
+    "marks": 9,
+    "time": 720,
+    "section": "A",
+    "command": "Evaluate",
+    "question": "A company occupies one floor of a shared office building. The lifts, stairwells and toilets are open to the public, and the working area is a single open-plan space that can be partitioned. Evaluate the management of physical security threats to the company's offices. [9 marks]",
+    "structure": [
+      "Identify the physical threats from a shared, partly-public building (tailgating, theft of unattended devices, shoulder surfing, access to the server room).",
+      "Evaluate controls: controlled doors/card entry, CCTV, security staff, locked server room, clear-desk policy, screen locks.",
+      "Weigh strengths and weaknesses of each in this open-plan, shared-building context.",
+      "Conclusion: prioritise securing the server room and controlling entry, plus staff behaviour."
+    ],
+    "tips": [
+      "Because public areas (lifts/toilets) are shared, tailgating through controlled doors is a major risk — link card entry + staff awareness.",
+      "An open-plan space makes shoulder surfing and theft of unattended devices easier — clear-desk policy and screen auto-lock help.",
+      "The server room and internet access point are the most critical assets — they need the strongest physical protection (locked, restricted, CCTV).",
+      "Consider both technical controls (locks, CCTV) and human controls (training, vetting visitors).",
+      "Reach a judgement on which threats are most serious and which controls give the best value."
+    ],
+    "markScheme": [
+      "**Level 3 (7–9):** comprehensive, balanced evaluation linked to the shared/open-plan scenario, well-supported conclusion.",
+      "**Level 2 (4–6):** good evaluation of both sides, partially supported conclusion.",
+      "**Level 1 (1–3):** basic, one-sided points, superficial conclusion.",
+      "Credit identifying scenario-specific threats: tailgating, theft of unattended devices, shoulder surfing, unauthorised server-room access.",
+      "Credit evaluating controls: card entry, CCTV, security staff, locked server room, clear-desk/screen-lock policy, visitor vetting/training."
+    ],
+    "modelAnswer": "Because the company shares a building where the lifts, stairwells and toilets are open to the public, and its own floor is a single open-plan space, it faces several physical security threats that must be managed carefully.\n\nThe most likely threat is tailgating: an intruder could follow a member of staff through a controlled door from the public area without using a card. Electronic card-entry on the controlled doors helps, but on its own it does not stop tailgating, so it must be supported by staff training to challenge unknown people and by CCTV to deter and record intruders. Because the working area is open-plan, theft of unattended devices and shoulder surfing of passwords or confidential information are also real risks, as visitors or other building users could see screens or pick up an unattended laptop. These are best managed by a clear-desk policy, automatic screen locks after a short period, and physically securing or removing devices when not in use.\n\nThe most critical asset is the server room and internet access point, as compromising it would affect the whole organisation. This should have the strongest protection: a separate locked room with restricted card access for IT staff only, ideally with its own CCTV and alarm, so that even someone who reaches the office floor cannot reach the servers.\n\nEach control has limitations. CCTV records incidents but does not prevent them; card entry can be defeated by tailgating or a stolen card; and an open-plan layout limits how much physical separation is possible. The strongest results therefore come from combining technical controls (card entry, CCTV, locked server room, screen locks) with human controls (visitor vetting and staff awareness).\n\nOverall, the company can manage these threats reasonably well, but the priority should be securing the server room and tightening entry control against tailgating, as these address the most serious risks in a shared, partly-public building. Relying on any single control would leave clear gaps."
+  },
+  {
+    "id": "policy-9",
+    "title": "Evaluate Security Policies & Training (9 marks)",
+    "marks": 9,
+    "time": 720,
+    "section": "C",
+    "command": "Evaluate",
+    "question": "A company relies mainly on technical security measures such as firewalls and antivirus, and has only a brief, one-off staff security training session when employees join. Evaluate the company's approach to managing cyber security through policies and training. [9 marks]",
+    "structure": [
+      "Explain that technical measures alone are not enough — many breaches come from people (social engineering, errors).",
+      "Strengths of technical measures: firewalls/antivirus block many automated/external threats.",
+      "Weaknesses of one-off training: staff forget; new threats emerge; no reporting culture; no audits.",
+      "What good practice looks like: ongoing training, clear policies (acceptable use, password, incident response), audits, PDCA cycle.",
+      "Conclusion: technical + human + policy layers are all needed; recommend improvements."
+    ],
+    "tips": [
+      "A strong point: the 'human' is often the weakest link — phishing and social engineering bypass firewalls entirely.",
+      "One-off training fails because staff forget and new threats appear — training must be ongoing and refreshed.",
+      "Good security needs documented policies (acceptable use, password, incident response) and regular security audits.",
+      "Link to Plan-Do-Check-Act: security must be continually reviewed and improved.",
+      "Conclude that the company is over-reliant on technology and needs ongoing training + policies + audits."
+    ],
+    "markScheme": [
+      "**Level 3 (7–9):** comprehensive, balanced evaluation of technical vs human/policy measures, well-supported conclusion.",
+      "**Level 2 (4–6):** good evaluation of both sides, partially supported conclusion.",
+      "**Level 1 (1–3):** basic, one-sided points, superficial conclusion.",
+      "Credit: technical measures stop many external/automated threats but not social engineering/human error.",
+      "Credit: need for ongoing training, documented policies, audits, incident response, and a Plan-Do-Check-Act cycle."
+    ],
+    "modelAnswer": "The company's approach relies mainly on technical measures with only minimal staff training, which leaves a significant gap in its cyber security.\n\nTechnical measures such as firewalls and antivirus are valuable and do provide real protection. A firewall filters network traffic and blocks unauthorised inbound connections, while antivirus detects and removes known malware. Together these stop many automated and external threats before they can reach the company's systems, so they are a sensible foundation.\n\nHowever, technology alone cannot manage cyber security, because many incidents are caused by people rather than by systems. Social-engineering attacks such as phishing are specifically designed to trick staff into revealing credentials or clicking malicious links, and these bypass firewalls and antivirus entirely. A brief, one-off training session when employees join is not enough: staff forget what they were taught, new threats constantly emerge, and new starters in between sessions may never be trained at all. Without ongoing training there is also unlikely to be a strong reporting culture, so suspicious activity may go unreported.\n\nGood practice would involve building security into the organisation through documented policies — such as an acceptable use policy, a password policy and a cyber security incident response policy — supported by regular security audits to check these are being followed. Training should be ongoing and refreshed for new threats, using varied resources and incentives rather than punishment so staff engage with it. This reflects the Plan-Do-Check-Act cycle, where security is continually reviewed and improved rather than treated as a one-off task.\n\nOverall, the company is over-reliant on technical measures and has neglected the human and procedural side of security, which is often the weakest link. While its firewalls and antivirus are worthwhile, the most important improvement would be to introduce clear security policies, regular audits and continuous staff training, so that people, processes and technology work together to manage cyber security effectively."
   }
 ]

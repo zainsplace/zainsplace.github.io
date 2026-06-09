@@ -1,271 +1,286 @@
 {
   "section": "A",
-  "title": "IT Systems and Devices",
-  "tier": 2,
-  "colour": "#3182ce",
+  "title": "Cyber Security Threats and Protection",
+  "tier": 1,
+  "colour": "#e53e3e",
   "topics": [
     {
       "code": "A1",
-      "title": "Functions and Use of Digital Devices, and Notation",
+      "title": "Cyber Security Threats",
       "subtopics": [
         {
           "code": "A1.1",
-          "title": "Features of Digital Devices",
+          "title": "Internal Threats",
           "items": [
             {
               "code": "A1.1.1",
-              "term": "Personal Computers (PCs)",
-              "definition": "General-purpose computing devices designed for individual use. Includes desktop PCs (tower units with separate monitor) and laptops (portable, integrated screen and battery).",
-              "examples": "A desktop workstation used by a graphic designer; a laptop used by a student; an all-in-one PC used in a school office.",
-              "examTip": "PCs = general purpose, upgradeable, wide software compatibility. Desktop: more powerful, upgradeable, not portable. Laptop: portable, battery-powered, less upgradeable, slightly less powerful per £.",
+              "term": "Employee Sabotage (deliberate & accidental)",
+              "definition": "Damage or disruption caused by people inside an organisation — either on purpose (a disgruntled worker) or by mistake. Includes theft or loss of physical equipment, data or software/licences, and the use of unauthorised software.",
+              "examples": "An employee copying the customer database to a USB stick before resigning; a worker installing pirated software that brings malware onto the network.",
+              "examTip": "Internal threats come from people with legitimate access, so they are harder to detect than external ones. Always say WHO and WHAT they did.",
               "keyFacts": [
-                "CPU, RAM, storage, GPU are key performance components",
-                "Desktop: more powerful for the price, easily upgraded, not portable",
-                "Laptop: portable, battery powered, generally less upgradeable",
-                "Running full desktop OS (Windows, macOS, Linux) — broad software compatibility",
-                "Used for: office work, development, gaming, content creation, education"
+                "Can be deliberate (revenge, theft) or accidental (carelessness)",
+                "Theft/loss can be of equipment, data, or software/licences",
+                "Unauthorised software causes licence/legal liability and compatibility issues",
+                "Unauthorised software may be used for spying, harassment or to avoid monitoring"
               ]
             },
             {
               "code": "A1.1.2",
-              "term": "Multifunctional Devices (MFDs)",
-              "definition": "Devices that combine multiple functions into one unit — typically combining a printer, scanner, copier, and sometimes fax into a single device.",
-              "examples": "An office printer/scanner/copier; a home all-in-one inkjet printer; a photocopier with email/scan-to-folder functions.",
-              "examTip": "MFD = multiple functions in one device. Benefits: saves space, reduces cost of owning separate machines. Limitation: if it breaks, all functions are lost simultaneously.",
+              "term": "Accidental or Deliberate Damage",
+              "definition": "Physical events that damage IT systems and the data they hold. These can be natural, accidental or deliberate.",
+              "examples": "A burst pipe flooding a server room; an arson attack; a power cut corrupting unsaved data.",
+              "examTip": "These threats justify off-site/cloud backups and disaster recovery plans (link to A4 and C1).",
               "keyFacts": [
-                "Combines printer + scanner + copier (+ fax) in one device",
-                "Space saving and cost effective compared to separate devices",
-                "Single point of failure: breakdown affects all functions",
-                "Common in offices to reduce per-function hardware costs",
-                "Modern MFDs often network-connected — send scan to email directly"
+                "Includes fire, flood, power loss, terrorism and other disasters",
+                "Causes loss of both hardware and the data stored on it",
+                "Mitigated by off-site backups, UPS, fire suppression and DR plans"
               ]
             },
             {
               "code": "A1.1.3",
-              "term": "Mobile Devices",
-              "definition": "Portable, battery-powered computing devices designed for use on the move — including smartphones, tablets, and smartwatches. Run mobile operating systems and use touchscreen interfaces.",
-              "examples": "iPhone (smartphone); iPad (tablet); Apple Watch (smartwatch); Amazon Kindle (e-reader).",
-              "examTip": "Mobile devices = touchscreen, battery, mobile OS, always connected (Wi-Fi/cellular). Key limitations: smaller screen, less processing power than desktop, battery life, security risks from app stores and public Wi-Fi.",
+              "term": "Weak Security Measures & Unsafe Practices",
+              "definition": "Poor habits and weak controls that make an organisation easier to attack, such as not securing equipment, not vetting visitors, or browsing untrustworthy websites.",
+              "examples": "Leaving a server room unlocked; letting a visitor wander unescorted; staff visiting dodgy download sites on work PCs.",
+              "examTip": "Unsafe practices are a 'human' vulnerability — the fix is usually training and policy, not just technology.",
               "keyFacts": [
-                "Always-connected: Wi-Fi and cellular (4G/5G) connectivity",
-                "Touch interface: touchscreen graphical user interface",
-                "Mobile OS: iOS or Android — different ecosystem to desktop OS",
-                "Battery-powered: limited by charge — needs regular recharging",
-                "Sensors: GPS, accelerometer, camera, NFC, biometric authentication",
-                "App ecosystem: software distributed through controlled app stores (App Store, Google Play)"
+                "Poor physical security of equipment and storage devices",
+                "No security vetting of visitors",
+                "Visiting untrustworthy websites that host malware"
               ]
             },
             {
               "code": "A1.1.4",
-              "term": "Servers (File, Application, Web)",
-              "definition": "Powerful computers that provide services, data, or resources to other computers (clients) on a network. Designed for continuous operation, high reliability, and handling multiple simultaneous requests.",
-              "examples": "A file server storing shared documents for an organisation; a web server hosting a company website; an application server running a database-backed ERP system.",
-              "examTip": "Know the three server types: file server (stores/shares files), application server (runs software applications for clients), web server (hosts websites and delivers web pages via HTTP/HTTPS).",
+              "term": "Accidental Loss/Disclosure of Data or Credentials",
+              "definition": "Sensitive data or login details being exposed through human factors rather than a deliberate attack.",
+              "examples": "Emailing a spreadsheet of customer details to the wrong address; writing a password on a sticky note; losing an unencrypted laptop.",
+              "examTip": "Root causes are negligence, poor training and not following procedures — caused by a weak security culture.",
               "keyFacts": [
-                "File server: central storage for shared files — manages access permissions",
-                "Application server: hosts and runs software applications — clients connect remotely",
-                "Web server: stores website files, processes HTTP/HTTPS requests, delivers pages to browsers",
-                "24/7 operation: servers must be highly reliable — RAID storage, redundant power supplies",
-                "Rack-mounted: typically installed in temperature-controlled server rooms/data centres",
-                "Virtualisation: one physical server can run multiple virtual servers simultaneously"
-              ],
-              "comparisonTable": {
-                "title": "Server Types Compared",
-                "headers": ["Type", "Primary function", "Who connects", "Example use"],
-                "rows": [
-                  ["File server", "Stores and manages access to shared files/folders", "Internal network users", "Company shared drive (H: drive in Windows domain)"],
-                  ["Application server", "Hosts and runs software applications for network clients", "Internal clients running client-side of the application", "ERP system, database server, email server (Exchange)"],
-                  ["Web server", "Hosts website files, handles HTTP/HTTPS requests from browsers", "Anyone on the internet (or intranet)", "Apache/Nginx hosting company website; IIS hosting intranet"]
-                ]
-              }
-            },
-            {
-              "code": "A1.1.5",
-              "term": "Entertainment Systems",
-              "definition": "Consumer electronics designed primarily for leisure and entertainment — including games consoles, smart TVs, set-top boxes, and streaming devices.",
-              "examples": "PlayStation 5 (games console); Samsung Smart TV; Amazon Fire TV Stick; Sky Q box (set-top box).",
-              "examTip": "Entertainment systems are increasingly internet-connected and run embedded OSes. They overlap with IoT and streaming — link to E1.1.5 (online entertainment) in exam scenarios.",
-              "keyFacts": [
-                "Games consoles: powerful GPUs, dedicated gaming OS, online multiplayer via PSN/Xbox Live",
-                "Smart TVs: run apps (Netflix, YouTube), browser, connected to internet",
-                "Set-top boxes: receive digital broadcast, decode signal, may have recording capability",
-                "Streaming sticks (Chromecast, Fire Stick): add smart TV functionality to any screen",
-                "All increasingly internet-connected — security and privacy concerns apply"
-              ]
-            },
-            {
-              "code": "A1.1.6",
-              "term": "Digital Cameras (Still and Video)",
-              "definition": "Devices that capture still images or video in digital format. Range from dedicated professional cameras to integrated smartphone cameras.",
-              "examples": "DSLR camera for professional photography; GoPro action camera; CCTV cameras; drone camera; built-in smartphone camera.",
-              "examTip": "Digital cameras produce large raw files. Relevant to file formats (A3.7.1 images, A3.7.3 videos), storage capacity (A2.3.1), and bandwidth when transmitting high-resolution images/video.",
-              "keyFacts": [
-                "DSLR/mirrorless: interchangeable lenses, large sensors, professional quality — large RAW files",
-                "Compact/bridge: fixed lens, lighter, more accessible",
-                "Action cameras: rugged, waterproof, wide-angle — GoPro for sports/adventure",
-                "Video cameras: dedicated video capture — 4K/8K recording requires significant storage",
-                "Sensor resolution (megapixels) affects image quality and file size",
-                "CCTV cameras: security surveillance — generate continuous video data requiring large storage"
-              ]
-            },
-            {
-              "code": "A1.1.7",
-              "term": "Navigation Systems",
-              "definition": "Devices or software that determine a user's location and provide route guidance using GPS (Global Positioning System) signals from satellites.",
-              "examples": "Dedicated sat-nav (TomTom, Garmin); Google Maps on a smartphone; in-car navigation systems; GPS trackers in delivery vehicles.",
-              "examTip": "Navigation systems = GPS + mapping software + real-time data. Modern navigation integrates live traffic data, requiring internet connectivity. GPS itself is a receive-only signal — no mobile data needed for basic position.",
-              "keyFacts": [
-                "GPS: receives signals from multiple satellites to calculate position (latitude/longitude)",
-                "Dedicated sat-nav: standalone device, pre-loaded maps, no mobile data needed",
-                "Smartphone navigation: uses GPS + internet for live maps and traffic — more up to date",
-                "Fleet management: organisations track delivery vehicles in real time for efficiency",
-                "Privacy concern: GPS data reveals user movements — location data is personal data under GDPR"
-              ]
-            },
-            {
-              "code": "A1.1.8",
-              "term": "Communication Devices and Systems",
-              "definition": "Hardware and systems designed primarily for transmitting and receiving information between people or machines — including phones, radios, modems, and network infrastructure.",
-              "examples": "Mobile phones (voice + data); VoIP phones; routers and modems; walkie-talkies/two-way radios; satellite communication systems.",
-              "examTip": "Communication devices are the hardware layer of networks (B section). Routers and modems appear here as devices — link them to network protocols and topologies when discussing how data is transmitted.",
-              "keyFacts": [
-                "Modems: convert digital data to/from analogue signals for transmission over phone lines/cable",
-                "Routers: direct data packets between networks — connect LAN to internet",
-                "VoIP phones: voice calls over internet protocol — cheaper than traditional landlines",
-                "4G/5G base stations: provide cellular mobile network coverage",
-                "Communication devices are the physical layer enabling the networks covered in Section B"
-              ]
-            },
-            {
-              "code": "A1.1.9",
-              "term": "Embedded Systems (Sensors and Internet of Things)",
-              "definition": "Computing systems built into a larger device to perform a specific dedicated function — typically with no user-facing interface. IoT devices are embedded systems connected to the internet to send/receive data.",
-              "examples": "Washing machine control system; ABS brakes controller; smart thermostat (Nest); smart meter; industrial sensor monitoring temperature in a factory; traffic light controller.",
-              "examTip": "Embedded systems = built-in, dedicated function, minimal user interface. IoT = embedded + internet connected + data transmission. Exam may ask about security risks of IoT — many IoT devices have poor security and become targets for botnets.",
-              "keyFacts": [
-                "Single-purpose: designed to perform one specific task — not general purpose",
-                "Minimal or no user interface — operates autonomously",
-                "IoT: internet-connected embedded systems that collect and transmit data to servers/cloud",
-                "Examples of IoT: smart meters, connected CCTV, smart home devices, industrial sensors",
-                "Security concern: IoT devices often have weak default passwords, infrequent firmware updates",
-                "Data generated by IoT sensors is often processed via data logging systems (A4.2.2)"
+                "Human factors: negligence, poor training, not following procedures",
+                "Made worse by inadequate monitoring and reporting",
+                "Underlying cause is often a weak security culture"
               ]
             }
           ]
         },
         {
           "code": "A1.2",
-          "title": "Function and Use of Digital Devices by Context",
+          "title": "External Threats",
           "items": [
             {
-              "code": "A1.2.1",
-              "term": "Personal Use of Digital Devices",
-              "definition": "Using digital devices for individual everyday tasks including communication, entertainment, online shopping, banking, and personal organisation.",
-              "examTip": "Personal use covers the widest range of devices — smartphone, laptop, smart TV, games console. Consider privacy implications when discussing personal device use.",
-              "keyFacts": ["Smartphones for communication, social media, navigation, entertainment", "Laptops/tablets for browsing, email, personal finance, shopping", "Smart home devices (IoT): smart speakers, thermostats, security cameras"]
+              "code": "A1.2.1a",
+              "term": "Viruses",
+              "definition": "Malicious code that attaches to a host file or program and replicates when that file is run, spreading to other files and systems.",
+              "examples": "A macro virus hidden in a Word document; a boot sector virus that loads before the OS.",
+              "examTip": "Know the named types: boot sector, web script, macro, worm, rootkit, trojan, browser hijack, polymorphic.",
+              "keyFacts": [
+                "Boot sector — infects the start-up area of a disk",
+                "Macro — hidden in document macros (e.g. Office files)",
+                "Worm — self-replicates across networks without a host file",
+                "Rootkit — hides deep in the OS to avoid detection",
+                "Trojan — disguised as legitimate software",
+                "Polymorphic — changes its code to evade signature scanning"
+              ]
+            },
+            {
+              "code": "A1.2.1b",
+              "term": "Spyware",
+              "definition": "Software that secretly gathers information about a user and sends it to a third party without consent.",
+              "examples": "A keylogger recording passwords as they are typed; stalkerware tracking a phone's location; tracking cookies following browsing habits.",
+              "examTip": "Keylogger = records keystrokes to steal credentials. This is a favourite exam term.",
+              "keyFacts": [
+                "Keylogger/data thief — records keystrokes to steal credentials",
+                "System monitor — captures all activity on a device",
+                "Mobile tracker/stalkerware — secretly tracks location/usage",
+                "Web beacons and tracking cookies — monitor online behaviour"
+              ]
+            },
+            {
+              "code": "A1.2.1c",
+              "term": "Adware",
+              "definition": "Software that automatically displays or downloads advertising. Ranges from legitimate ad-supported software to abusive/deceptive adware.",
+              "examples": "A free app showing pop-up ads; a 'potentially unwanted program' (PUP) bundled with a download.",
+              "examTip": "Not all adware is illegal — distinguish legitimate adware from abusive/deceptive (and sometimes illegal) adware.",
+              "keyFacts": [
+                "Potentially Unwanted Program (PUP) — installed alongside other software",
+                "Legitimate adware funds free software with consent",
+                "Abusive/deceptive adware tricks users and can be illegal"
+              ]
+            },
+            {
+              "code": "A1.2.1d",
+              "term": "Ransomware",
+              "definition": "Malware that blocks access to data or systems — usually by encrypting files — and demands payment (a ransom) to restore access.",
+              "examples": "An 'encryptor' scrambling all company files; a 'locker' freezing the whole screen; 'leakware' threatening to publish stolen data.",
+              "examTip": "Best defence is reliable, tested OFFLINE backups so you can restore without paying. Link to A4.1.2 / C1.1.3.",
+              "keyFacts": [
+                "Encryptors — encrypt files so they cannot be opened",
+                "Lockers — lock the device/screen entirely",
+                "Scareware — fake warnings pressuring the user to pay",
+                "Leakware/doxware — threatens to publish stolen data",
+                "Defence: tested offline backups, patching, staff awareness"
+              ]
+            },
+            {
+              "code": "A1.2.1e",
+              "term": "Bots",
+              "definition": "Compromised computers controlled remotely by an attacker. A network of bots (a botnet) can be used to launch large-scale attacks such as DDoS.",
+              "examples": "Thousands of infected IoT devices used together to flood a website with traffic.",
+              "examTip": "Bots/botnets connect malware (A1.2.1) to DDoS attacks (A1.2.2) — a common exam link.",
+              "keyFacts": [
+                "An infected device under remote attacker control",
+                "Many bots together form a botnet",
+                "Used to send spam or launch DDoS attacks"
+              ]
             },
             {
               "code": "A1.2.2",
-              "term": "Education and Training Use of Digital Devices",
-              "definition": "Using digital devices to support learning, teaching, assessment, and professional development.",
-              "examTip": "Link to E1.1.3 (online education). VLEs, interactive whiteboards, tablets, and e-readers are all relevant. Consider the digital divide — unequal access creates disadvantage.",
-              "keyFacts": ["Interactive whiteboards in classrooms", "Tablets and laptops for student research and assignments", "VLEs (Google Classroom, Moodle) for remote/hybrid learning", "Simulation software for training (flight simulators, medical training)"]
+              "term": "Hacking",
+              "definition": "Gaining unauthorised access to systems or data, targeting commercial organisations, governments or individuals.",
+              "examples": "A DDoS attack taking a website offline; defacing a public web page (front-end tampering); altering records in a database (back-end tampering).",
+              "examTip": "DoS = one source; DDoS = many sources (a botnet). Distinguish front-end vs back-end data tampering.",
+              "keyFacts": [
+                "DoS — one machine floods a target to make it unavailable",
+                "DDoS — many machines (botnet) flood the target",
+                "Data theft — stealing confidential information",
+                "Data tampering — altering back-end databases or front-end web pages",
+                "Cyberwarfare — state-sponsored attacks on infrastructure"
+              ]
             },
             {
               "code": "A1.2.3",
-              "term": "Social Use of Digital Devices",
-              "definition": "Using devices to communicate, build relationships, and interact with communities online.",
-              "examTip": "Social use links to Section C (online communities), F1 (ethical issues, privacy, netiquette). Consider both benefits (connection, support communities) and risks (cyberbullying, addiction, privacy loss).",
-              "keyFacts": ["Social media platforms: Instagram, X, TikTok, Facebook", "Messaging apps: WhatsApp, iMessage, Snapchat", "Online gaming communities: multiplayer games, Discord", "Ethical concerns: cyberbullying, data privacy, digital addiction, netiquette"]
+              "term": "Sabotage",
+              "definition": "Deliberately damaging, destroying or corrupting data, systems or infrastructure — by commercial rivals, governments, individuals or terrorists.",
+              "examples": "Poisoning the data used to train an AI; creating AI-generated deepfake video; hijacking internet-connected industrial machinery.",
+              "examTip": "'Fakes' now explicitly includes AI-generated images/video/audio — a modern exam topic.",
+              "keyFacts": [
+                "Data poisoning, tampering and destruction",
+                "Fakes — images/video/audio/documents made manually or with AI",
+                "Damage to/hijacking of machinery, vehicles, IoT devices",
+                "Targets can include critical national infrastructure"
+              ]
             },
             {
               "code": "A1.2.4",
-              "term": "Retail Use of Digital Devices",
-              "definition": "Using digital devices and systems to support buying and selling — from point-of-sale systems to online retail and stock management.",
-              "examTip": "Retail uses span many device types: EPOS terminals, barcode scanners, self-checkout kiosks, mobile payment readers. Link to E1.1.1 (online retail) and A4.2.1 (stock control).",
-              "keyFacts": ["EPOS (Electronic Point of Sale) systems: process transactions, update stock automatically", "Barcode scanners and RFID: track inventory", "Self-checkout kiosks: reduce staff costs", "Mobile payment readers: contactless payment via tablet/phone"]
+              "term": "Social Engineering",
+              "definition": "Manipulating or deceiving people into giving away secure information, rather than attacking technology directly.",
+              "examples": "A phishing email pretending to be from the bank; a vishing phone call impersonating IT support; spear phishing aimed at one named employee.",
+              "examTip": "Know the variants: phishing (email), vishing (voice), smishing (SMS), whaling (senior targets), spear phishing (specific target).",
+              "keyFacts": [
+                "Phishing (email), vishing (phone), smishing (SMS)",
+                "Whaling — targets senior executives; spear phishing — targets a specific person",
+                "DNS spoofing — redirects users to fake sites",
+                "Pretexting/impersonation — inventing a scenario to gain trust",
+                "Best defence is staff training and awareness"
+              ]
             },
             {
               "code": "A1.2.5",
-              "term": "Manufacturing Use of Digital Devices",
-              "definition": "Using digital devices, robotics, and computer-controlled systems to automate and optimise manufacturing processes.",
-              "examTip": "Manufacturing links to A4.2.7 (manufacturing IT systems) and A1.2.8 (automation/robotics). Key themes: CNC machines, industrial robots, IoT sensors for quality control.",
-              "keyFacts": ["CNC (Computer Numerical Control) machines: precision manufacture controlled by computer programs", "Industrial robots: automated assembly, welding, painting", "IoT sensors: monitor temperature, pressure, machine performance in real time", "CAD/CAM software: design and manufacture integration"]
-            },
-            {
-              "code": "A1.2.6",
-              "term": "Healthcare Use of Digital Devices",
-              "definition": "Using digital devices to support diagnosis, treatment, monitoring, and administration in healthcare settings.",
-              "examTip": "Healthcare devices must be highly reliable — failures can be life-threatening. Data accuracy is critical (E2.4). Privacy of patient data is particularly sensitive under GDPR.",
-              "keyFacts": ["MRI/CT scanners: medical imaging — produce very large data files", "Patient monitoring systems: real-time vital signs tracking (IoT embedded systems)", "Electronic Patient Records (EPR): digitised health records accessible to authorised clinicians", "Robotic surgery systems: precision-controlled surgical tools", "Telemedicine: video consultations with GPs — links to E1.1.3 and remote working"]
-            },
-            {
-              "code": "A1.2.7",
-              "term": "Creative Use of Digital Devices",
-              "definition": "Using digital devices for artistic and creative work — including graphic design, music production, video editing, animation, and photography.",
-              "examTip": "Creative tasks require high-performance hardware: powerful CPU/GPU, large RAM, high-resolution display, fast storage. Large file sizes created — link to storage (A2.3) and file formats (A3.7).",
-              "keyFacts": ["High-spec workstations or creative laptops (MacBook Pro, Dell XPS)", "Graphics tablets: precise pen input for illustration and design", "Digital audio workstations (DAW): music production software (Logic Pro, Ableton)", "Video editing software: Final Cut Pro, Adobe Premiere — demands high RAM and GPU", "Large file formats (RAW images, 4K video) require large, fast storage"]
-            },
-            {
-              "code": "A1.2.8",
-              "term": "Automation and Robotics",
-              "definition": "Using programmed machines and AI systems to perform repetitive or complex tasks with minimal human intervention — across manufacturing, logistics, agriculture, and service industries.",
-              "examples": "Amazon warehouse robots sorting parcels; automated car assembly line robots; self-checkout systems; chatbots handling customer queries.",
-              "examTip": "Link to A5 (AI/emerging tech) and F1.1 (ethical implications — job displacement). Automation increases efficiency but raises concerns about unemployment and the need for re-training.",
+              "term": "Physical Security Threats",
+              "definition": "Threats that rely on physically reaching a secure area or device rather than attacking over a network.",
+              "examples": "Tailgating through a controlled door behind a staff member; shoulder surfing a password; stealing an unattended laptop.",
+              "examTip": "Tailgating (following someone through a secure door) appeared in the sample paper — learn the one-line definition.",
               "keyFacts": [
-                "Industrial robots: perform repetitive manufacturing tasks with high precision",
-                "Automated guided vehicles (AGVs): self-driving warehouse vehicles",
-                "Benefits: 24/7 operation, consistent quality, reduced labour cost, dangerous task automation",
-                "Concerns: job displacement — workers replaced by machines; digital skills gap",
-                "AI-powered automation: systems learn from data and improve over time"
+                "Unauthorised area access: tailgating, forced entry, impersonation, coercion",
+                "Unauthorised device access: unattended devices, shoulder surfing, theft, lost devices",
+                "Devices in public areas are especially exposed"
               ]
             }
           ]
         },
         {
           "code": "A1.3",
-          "title": "Forms of Notation for IT System Design",
+          "title": "Impact of a Credible Threat",
           "items": [
             {
               "code": "A1.3.1",
-              "term": "System Diagrams",
-              "definition": "Visual representations showing the components of an IT system and how they are connected — including hardware, software, networks, data flows, and users.",
-              "examples": "A network diagram showing servers, switches, workstations and their connections; a diagram showing how a web application connects to a database and CDN.",
-              "examTip": "System diagrams appear in Q3 of the exam (6 marks) — you will likely be asked to draw or annotate one. Practice drawing: user device → router → internet → server. Use correct shapes: rectangle (device), cloud (internet), cylinder (database), diamond (decision).",
+              "term": "Operational Loss",
+              "definition": "The impact on an organisation's ability to function and deliver its products or services.",
+              "examples": "A factory production line halting after a ransomware attack; a website being unavailable so customers cannot order.",
+              "examTip": "Operational = the business can't operate. Cover output, service availability and data availability.",
               "keyFacts": [
-                "Shows hardware components, connections, and data flow",
-                "Standard shapes: rectangle/box (device/process), cylinder (database/storage), cloud shape (internet/cloud), arrow (data flow direction)",
-                "Must show direction of data flow with arrows",
-                "Labels all components and connections",
-                "Can show physical layout OR logical architecture",
-                "Often includes: client devices, router, firewall, server, internet cloud, database"
+                "Loss of manufacturing output",
+                "Loss of service availability",
+                "Loss of data availability"
               ]
             },
             {
               "code": "A1.3.2",
-              "term": "Flowcharts",
-              "definition": "Diagrams that represent a process or algorithm as a sequence of steps using standardised symbols — showing decisions, actions, and the flow of control.",
-              "examples": "A flowchart for a login process showing password validation; a flowchart for an order fulfilment system; a flowchart for a thermostat control algorithm.",
-              "examTip": "Standard flowchart symbols must be memorised: oval/rounded rectangle = Start/End; rectangle = Process; diamond = Decision (Yes/No); parallelogram = Input/Output. Q3 may ask you to complete or draw a flowchart.",
+              "term": "Financial Loss",
+              "definition": "The monetary cost of an incident to the organisation, including lost income, compensation and legal liability.",
+              "examples": "GDPR fines after a breach; refunds and identity-protection costs for affected customers; legal fees.",
+              "examTip": "Break financial loss into organisational costs, compensation and legal liability for full marks.",
               "keyFacts": [
-                "Oval/terminal: Start and End points",
-                "Rectangle/process box: an action or process step",
-                "Diamond/decision: a Yes/No question — always has two exit paths",
-                "Parallelogram/input-output: data entering or leaving the process",
-                "Arrow: shows direction of flow",
-                "Loops: decision diamond looping back to an earlier step"
-              ],
-              "comparisonTable": {
-                "title": "System Diagram vs Flowchart",
-                "headers": ["Feature", "System Diagram", "Flowchart"],
-                "rows": [
-                  ["Shows", "Components of an IT system and their connections", "Steps in a process or algorithm and their sequence"],
-                  ["Main focus", "Hardware, devices, networks, architecture", "Logic, decisions, data flow through a process"],
-                  ["Key symbols", "Boxes (devices), cylinders (databases), clouds (internet), arrows (connections)", "Ovals (start/end), rectangles (process), diamonds (decision), parallelograms (I/O)"],
-                  ["When used", "Designing or documenting IT infrastructure", "Designing or documenting processes, algorithms, programs"],
-                  ["Exam context", "Draw a network/system showing how components connect", "Complete or draw a process showing steps and decisions"]
-                ]
-              }
+                "Organisational: cash flow problems, loss of profits, higher insurance",
+                "Compensation: refunds, payments for compromised data, remedial costs",
+                "Legal liability: fines, penalty payments, legal fees"
+              ]
+            },
+            {
+              "code": "A1.3.3",
+              "term": "Reputational Loss",
+              "definition": "Damage to how customers and the public view an organisation following an incident.",
+              "examples": "Customers leaving negative reviews on social media; a drop in trust scores after a publicised breach.",
+              "examTip": "Reputational damage is often the longest-lasting impact — lost trust is hard to rebuild. Great point for 9-markers.",
+              "keyFacts": [
+                "Loss of customer trust",
+                "Poor reviews on social media, review sites and own website",
+                "Reduced scores on reputation metrics"
+              ]
+            },
+            {
+              "code": "A1.3.4",
+              "term": "Intellectual Property Loss",
+              "definition": "The theft or exposure of an organisation's valuable confidential ideas and information.",
+              "examples": "A competitor stealing a new product design or trade secret; leaked testing and development data.",
+              "examTip": "IP loss can destroy competitive advantage even if no personal data is involved.",
+              "keyFacts": [
+                "New product designs",
+                "Testing and development data",
+                "Organisational strategy and trade secrets"
+              ]
+            }
+          ]
+        },
+        {
+          "code": "A1.4",
+          "title": "Current Threat Landscape Sources",
+          "items": [
+            {
+              "code": "A1.4.1",
+              "term": "NCSC (UK)",
+              "definition": "The National Cyber Security Centre — the UK's authority on cyber security, providing threat reports, malware analysis, advisories and guidance.",
+              "examples": "Checking the NCSC website for the latest ransomware advisory.",
+              "examTip": "NCSC = UK. Provides up-to-date threat reports because threats change over time.",
+              "keyFacts": [
+                "UK government body for cyber security",
+                "Publishes latest threat reports and malware analysis",
+                "Issues news, advisories and guidance on recent activity"
+              ]
+            },
+            {
+              "code": "A1.4.2",
+              "term": "NIST (USA)",
+              "definition": "The National Institute of Standards and Technology — a US body that issues cyber security news, standards and advisories.",
+              "examples": "Referencing NIST guidance on password policy.",
+              "examTip": "NIST = USA equivalent of NCSC. Sets widely-used security standards.",
+              "keyFacts": [
+                "US standards organisation",
+                "Publishes news and advisories on recent activity",
+                "Produces widely-adopted security frameworks"
+              ]
+            },
+            {
+              "code": "A1.4.3",
+              "term": "OWASP & the OWASP Top 10",
+              "definition": "The Open Web Application Security Project — a non-profit producing the OWASP Top 10, a regularly updated list of the most critical web application security risks.",
+              "examples": "Using the OWASP Top 10 to check a website for SQL injection risks.",
+              "examTip": "OWASP Top 10 is referenced in penetration testing (A2.6). Link the two.",
+              "keyFacts": [
+                "Focuses on web application security",
+                "Publishes the OWASP Top 10 critical risks",
+                "Used as a checklist during penetration testing"
+              ]
             }
           ]
         }
@@ -273,259 +288,195 @@
     },
     {
       "code": "A2",
-      "title": "Peripheral Devices and Media",
+      "title": "System Vulnerabilities",
       "subtopics": [
         {
           "code": "A2.1",
-          "title": "Features and Uses of Peripheral Devices",
+          "title": "Vulnerabilities by System Type",
           "items": [
             {
               "code": "A2.1.1",
-              "term": "Input Devices",
-              "definition": "Hardware that allows users or systems to enter data into a computer. Input devices convert real-world actions or data into digital signals the computer can process.",
-              "examples": "Keyboard (text input); mouse (pointer control); microphone (audio input); webcam (video input); barcode scanner (data input); touchscreen (touch input); graphics tablet (precision drawing).",
-              "examTip": "Input = data going INTO the system. Categorise inputs: manual (keyboard, mouse), automatic (barcode scanner, sensor). Link to data processing (A2.4).",
+              "term": "Network Vulnerabilities",
+              "definition": "Weaknesses in network configuration that attackers can exploit, especially around firewall ports and external storage devices.",
+              "examples": "An open port 80 left exposed; a USB flash drive carrying malware onto the network.",
+              "examTip": "Know the three port categories: well-known (e.g. 80 for HTTP), registered, and dynamic/private. Open ports = a vulnerability.",
               "keyFacts": [
-                "Manual input: keyboard, mouse, trackpad, touchscreen, graphics tablet, joystick",
-                "Optical input: scanner, barcode reader, QR code reader, camera",
-                "Audio input: microphone (voice recognition, recording)",
-                "Automatic input: sensors, RFID readers, biometric scanners, barcode scanners",
-                "Choice of input device depends on type of data being entered and context"
+                "Firewall ports: well-known (e.g. 80/HTTP), registered, dynamic/private",
+                "Port vulnerabilities: open ports, spoofing, DoS",
+                "External storage (USB, SD, external HDD, SSD, optical/tape) can introduce malware"
               ]
             },
             {
               "code": "A2.1.2",
-              "term": "Output Devices",
-              "definition": "Hardware that presents processed data from a computer to users or the environment in a human-perceivable or machine-readable form.",
-              "examples": "Monitor (visual output); printer (printed documents); speakers/headphones (audio output); projector (display); actuators in control systems (physical output); braille display (tactile output).",
-              "examTip": "Output = data coming OUT of the system. Visual (monitor, printer, projector), audio (speakers), tactile (braille display, vibration motor). Printers produce hard copy; monitors soft copy.",
+              "term": "Organisational Vulnerabilities",
+              "definition": "Weaknesses in how an organisation manages permissions, passwords and accounts.",
+              "examples": "Giving every user administrator rights; allowing weak, reused passwords; not disabling a leaver's account.",
+              "examTip": "Password policy elements (min/max length, character rules, reuse frequency, minimum age) are common 'state two' marks.",
               "keyFacts": [
-                "Visual: monitor (soft copy — temporary), printer (hard copy — permanent), projector",
-                "Audio: speakers, headphones — output of processed audio",
-                "Tactile: braille display (assistive technology), vibration feedback on phones",
-                "Hard copy: physical output (printed document) — permanent",
-                "Soft copy: digital/screen output — temporary unless saved",
-                "Plotters: specialist output for large-format technical drawings (architects, engineers)"
+                "Permissions: read/write/execute/modify for user/admin/system/group",
+                "Password policy: length, character rules, reuse frequency, minimum age",
+                "Password management: password managers, lockout of inactive accounts, leaver process",
+                "Auto-fill by browser or dedicated software can be a risk"
               ]
             },
             {
               "code": "A2.1.3",
-              "term": "Storage Devices",
-              "definition": "Hardware that permanently or semi-permanently stores digital data so it can be retrieved later. Includes primary storage (RAM — temporary) and secondary storage (hard drives, SSDs, optical discs — persistent).",
-              "examples": "SSD internal drive in a laptop; external HDD for backup; USB flash drive for data transport; Blu-ray disc for media distribution.",
-              "examTip": "Storage devices are a common exam topic — compare HDD vs SSD by speed, cost, reliability. Link to A2.3 (storage media characteristics: capacity, cost, speed, compatibility).",
+              "term": "Software Vulnerabilities",
+              "definition": "Weaknesses introduced by untrustworthy, outdated or poorly designed software.",
+              "examples": "Installing pirated software with a backdoor; an unpatched web app vulnerable to SQL injection; a zero-day exploit.",
+              "examTip": "Zero-day = a brand new flaw with no patch yet, leaving a window of exploitation. SQL injection appears in the sample paper.",
               "keyFacts": [
-                "Internal secondary storage: HDD (spinning disk, mechanical) or SSD (flash memory, no moving parts)",
-                "External storage: portable HDDs, USB flash drives, external SSDs for backup and transfer",
-                "Optical: CD/DVD/Blu-ray — read/write discs for media distribution and archiving",
-                "Cloud storage: remote server storage accessed via internet (not a physical peripheral but increasingly dominant)",
-                "Network Attached Storage (NAS): shared storage device accessible over a network"
+                "Untrustworthy sources / malicious installers",
+                "Safe downloads need: trusted source, HTTPS, pre-install malware scan, hash check",
+                "Illegal copies lack updates and may contain backdoors/malware",
+                "Zero-day exploits — new threats before a patch exists",
+                "SQL injection and missing patches/updates"
+              ]
+            },
+            {
+              "code": "A2.1.4",
+              "term": "OS / GUI / CLI Vulnerabilities",
+              "definition": "Weaknesses in the operating system and its interfaces, usually from being out of date or misconfigured.",
+              "examples": "Running an unsupported version of Windows; missing security patches; insecure default settings.",
+              "examTip": "Unsupported/out-of-support software is a key vulnerability because it no longer receives security patches.",
+              "keyFacts": [
+                "Unsupported/out-of-support versions",
+                "Missing patches/updates",
+                "Missing or incorrect security settings"
+              ]
+            },
+            {
+              "code": "A2.1.5",
+              "term": "Mobile Device Vulnerabilities",
+              "definition": "Mobile devices rely on Original Equipment Manufacturers (OEMs) to release system software updates, so they can be left unpatched.",
+              "examples": "An old Android phone no longer receiving security updates from its manufacturer.",
+              "examTip": "The key point: reliance on OEMs means updates may be slow or stop, leaving known flaws unpatched.",
+              "keyFacts": [
+                "Updates depend on the device manufacturer (OEM)",
+                "Older devices may stop receiving updates",
+                "Leaves known vulnerabilities unpatched"
+              ]
+            },
+            {
+              "code": "A2.1.6",
+              "term": "Physical Vulnerabilities",
+              "definition": "Weaknesses that allow theft of, or physical access to, equipment holding sensitive data.",
+              "examples": "Stealing a mobile device or data storage device; weak security on a restricted area.",
+              "examTip": "Physical vulnerabilities are mitigated by physical security measures (A4.1.1) — link them.",
+              "keyFacts": [
+                "Theft of equipment/devices holding sensitive data",
+                "Vulnerable mobile devices and data storage devices",
+                "Poor or missing security for restricted areas"
+              ]
+            },
+            {
+              "code": "A2.1.7",
+              "term": "People-Process Vulnerabilities",
+              "definition": "Weaknesses arising from how people actually use the system day to day.",
+              "examples": "An employee sharing their login; a flawed process that lets data leave the organisation unchecked.",
+              "examTip": "These are 'human' vulnerabilities — fixed by training, policy and good processes.",
+              "keyFacts": [
+                "Leaks, both intentional and accidental",
+                "Sharing security details",
+                "Flawed security processes"
+              ]
+            },
+            {
+              "code": "A2.1.8",
+              "term": "Cloud & IoT Security Implications",
+              "definition": "Security risks specific to cloud computing and Internet of Things devices.",
+              "examples": "A misconfigured cloud bucket exposing data; an IoT camera with a default password being hijacked.",
+              "examTip": "IoT risks (default passwords, no encryption, no patches, always-listening) are a modern hot topic — learn several.",
+              "keyFacts": [
+                "Cloud: default/incorrect settings, third-party access, reliance on provider, data leaving the network",
+                "IoT: weak/no encryption, default passwords, lack of patches",
+                "IoT: deployment by non-IT staff, insecure interfaces, eavesdropping (always listening)"
               ]
             }
           ]
         },
         {
-          "code": "A2.2",
-          "title": "Assistive Technologies",
+          "code": "A2.2-2.3",
+          "title": "Vulnerability Sources & Attack Vectors",
           "items": [
             {
-              "code": "A2.2.1",
-              "term": "Adaptive Keyboards",
-              "definition": "Specialised keyboards designed for users with physical or cognitive disabilities — including larger keys, different layouts, key guards, or on-screen keyboards controlled by alternative input methods.",
-              "examples": "A keyboard with large keys and high-contrast labels for users with low vision; a one-handed keyboard layout; a soft silicone keyboard for users with limited dexterity.",
-              "examTip": "Adaptive keyboards help users who cannot use a standard keyboard due to motor impairment, visual impairment, or cognitive difficulties. Link to F1.1.4 (access to assistive technology as an ethical issue).",
-              "keyFacts": ["Large key keyboards: for users with visual impairment or motor difficulties", "Key guards: physical overlay preventing accidental key presses", "One-handed keyboards: split or angled layout for users with one functional hand", "On-screen keyboards: controlled via mouse, eye tracking, or switch input"]
-            },
-            {
-              "code": "A2.2.2",
-              "term": "Screen Readers",
-              "definition": "Software that reads aloud the text displayed on a screen, allowing users who are blind or have severe visual impairment to navigate and use a computer by listening.",
-              "examples": "JAWS (Job Access With Speech); NVDA (NonVisual Desktop Access); VoiceOver built into macOS and iOS; TalkBack on Android.",
-              "examTip": "Screen readers are essential for blind users. They depend on websites and applications being coded with accessibility in mind — alt text on images, proper heading structure, labelled form fields.",
-              "keyFacts": ["Converts on-screen text to synthesised speech output", "Reads menus, buttons, form fields, and document content aloud", "User navigates by keyboard or braille display rather than mouse", "Requires websites/apps to follow accessibility standards (WCAG)"]
-            },
-            {
-              "code": "A2.2.3",
-              "term": "Braille Displays",
-              "definition": "A hardware device that converts digital text into braille by raising and lowering pins to form braille characters — allowing blind users to read screen content tactilely.",
-              "examples": "A refreshable braille display connected via USB to a computer; a combined braille display and screen reader setup for a blind office worker.",
-              "examTip": "Braille display = tactile output device for blind users. 'Refreshable' means the braille characters update dynamically as screen content changes — unlike printed braille.",
-              "keyFacts": ["Refreshable braille: pins rise/lower to form braille characters in real time", "Usually works alongside screen reader software", "Allows silent reading — useful in quiet environments", "Expensive compared to audio-based assistive tech"]
-            },
-            {
-              "code": "A2.2.4",
-              "term": "Screen Magnifiers",
-              "definition": "Software (or hardware) that enlarges a portion or all of the screen display, allowing users with low vision to see content more clearly.",
-              "examples": "Windows Magnifier; ZoomText; macOS built-in zoom feature; hardware magnification devices placed over screens.",
-              "examTip": "Screen magnifiers help users who have some vision but cannot read standard-size text. Different from screen readers — magnifiers enlarge visually rather than converting to audio.",
-              "keyFacts": ["Software magnifiers: built into most modern OS (Windows, macOS, iOS, Android)", "Magnification levels: typically 2× to 16×", "Different modes: full-screen, lens (magnified area follows cursor), docked (split screen)", "High DPI/retina displays improve effectiveness of magnification"]
-            },
-            {
-              "code": "A2.2.5",
-              "term": "Head Pointers",
-              "definition": "A device worn on the head (typically a mounted stick or pointer) that allows users with limited or no hand/arm mobility to interact with a keyboard or touchscreen using head movements.",
-              "examples": "A mouth stick or head stick used by a user with quadriplegia to press keyboard keys; an infrared head pointer that moves the cursor using head movement.",
-              "examTip": "Head pointers enable computer use for users with severe upper limb impairment. They are physical devices — distinct from head-tracking software (which uses a camera).",
-              "keyFacts": ["Physical stick worn on head — presses keys or screen directly", "Used by users with limited/no hand function (e.g. spinal cord injury)", "Head tracking cameras: electronic equivalent — tracks head movement to control cursor without physical contact"]
-            },
-            {
-              "code": "A2.2.6",
-              "term": "Single Switch Entry Devices",
-              "definition": "Input devices reduced to a single button/switch, allowing users with very limited motor control to access computers using only one movement — through scanning interfaces or Morse code.",
-              "examples": "A large button switch connected to a PC for a user with cerebral palsy; a cheek switch activated by facial muscle movement.",
-              "examTip": "Single switch = minimal physical movement required. The computer cycles through options (scanning) and the user activates the switch to select. Very slow but enables computer use for users with minimal mobility.",
-              "keyFacts": ["Scanning: computer highlights each option in sequence; user activates switch to select", "Any reliable voluntary movement can activate a switch: hand, foot, cheek, eyebrow", "Used for on-screen keyboards, AAC (Augmentative and Alternative Communication) devices"]
-            },
-            {
-              "code": "A2.2.7",
-              "term": "Foot Switches",
-              "definition": "Input devices operated by foot movement — typically a pedal that can be pressed to trigger an action, freeing the user's hands for other tasks.",
-              "examples": "A transcriptionist using a foot pedal to pause/play audio while typing; a user with upper limb impairment using foot pedals to control cursor movement; a hands-free page-turner for a musician.",
-              "examTip": "Foot switches are useful both as assistive technology (for users who cannot use hands) and as productivity tools (e.g. transcriptionists, radiographers reviewing scans).",
-              "keyFacts": ["Can be single action (press/release) or multi-pedal (different actions)", "Useful for users with upper limb impairment", "Also used as productivity tools by able-bodied users to reduce hand strain"]
-            },
-            {
-              "code": "A2.2.8",
-              "term": "Sip-and-Puff Switches",
-              "definition": "Input devices that detect breath — a 'sip' (inhale) or 'puff' (exhale) into a tube triggers a switch input, enabling computer control for users with very limited or no limb mobility.",
-              "examples": "A user with quadriplegia controlling a power wheelchair and computer using a sip-and-puff device; a user navigating an on-screen keyboard by breath patterns.",
-              "examTip": "Sip-and-puff = breath-controlled input. This is one of the most minimal physical requirements for input — suitable for users who can only reliably control their breathing.",
-              "keyFacts": ["Detects pressure difference between sip (inhale) and puff (exhale)", "Can be mapped to different inputs: sip = left click, puff = right click, etc.", "Often combined with head tracking or scanning for full computer access"]
-            },
-            {
-              "code": "A2.2.9",
-              "term": "Eye-Tracking Software",
-              "definition": "Technology that uses a camera and infrared light to track the movement of a user's eyes, allowing them to control a cursor or select items by looking at them — enabling hands-free computer control.",
-              "examples": "Tobii eye tracker for users with ALS (motor neurone disease); gaze-based AAC devices; eye-tracking for UX research; gaze-controlled gaming.",
-              "examTip": "Eye tracking = camera watches where eyes look → moves cursor there. Dwell time (looking at a target for a fixed period) acts as a click. Increasingly accurate and affordable — one of the most capable assistive input technologies.",
-              "keyFacts": ["Infrared camera tracks eye movement in real time", "Cursor follows gaze — dwell click (holding gaze) triggers selection", "High accuracy required — sensitive to ambient light and glasses", "Used in assistive tech AND in UX research to understand how users scan pages"]
-            },
-            {
-              "code": "A2.2.10",
-              "term": "Text-to-Speech Software",
-              "definition": "Software that converts written text into synthesised spoken audio output — either reading on-screen text aloud (like a screen reader) or reading typed text aloud for communication.",
-              "examples": "Speak selection feature on iOS reading a web article aloud; an AAC (Augmentative and Alternative Communication) app speaking for a non-verbal user; Natural Reader; read-aloud features in Microsoft Word.",
-              "examTip": "Text-to-speech is both an assistive technology (for users who cannot read or cannot speak) and a productivity tool. Distinct from screen reader (A2.2.2) — TTS focuses on audio output of text; screen readers provide full navigation assistance.",
+              "code": "A2.2",
+              "term": "Sources of Vulnerability Information",
+              "definition": "Where to find up-to-date information about known hardware and software vulnerabilities.",
+              "examples": "Checking a manufacturer's website for a firmware fix; reading a security forum for IT professionals.",
+              "examTip": "Three named sources: manufacturer's website, professional forums/help sites, specialist third-party sites.",
               "keyFacts": [
-                "Converts text to synthesised or natural-sounding speech",
-                "Helps users with dyslexia, visual impairments, or reading difficulties",
-                "AAC devices: allow non-verbal users to communicate by typing/selecting text that is then spoken",
-                "Modern TTS uses AI voice synthesis — increasingly natural sounding",
-                "Available built-in on all major OS and mobile platforms"
+                "Manufacturer's website",
+                "Forums/technical help sites for IT and security professionals",
+                "Third-party sites specialising in specific hardware/software"
+              ]
+            },
+            {
+              "code": "A2.3",
+              "term": "Attack Vectors",
+              "definition": "The routes or pathways an attacker uses to reach a system — wireless links, internet connections and internal network devices.",
+              "examples": "Attacking over Wi-Fi or Bluetooth; intercepting a connection at the router; exploiting a switch or access point.",
+              "examTip": "An attack vector is the 'way in'. Wireless vectors include Wi-Fi, Bluetooth, cellular, satellite, IR, NFC and RFID.",
+              "keyFacts": [
+                "Wireless: Wi-Fi (802.11), Bluetooth, cellular, satellite, IR, NFC, RFID",
+                "Internet connection: copper, optical fibre, Wi-Fi, cellular/5G + their devices",
+                "Internal access devices: router, switch, wireless access point"
               ]
             }
           ]
         },
         {
-          "code": "A2.3",
-          "title": "Characteristics and Implications of Storage Media",
+          "code": "A2.4-2.7",
+          "title": "Assessing & Managing Risk",
           "items": [
             {
-              "code": "A2.3.1",
-              "term": "Capacity",
-              "definition": "The maximum amount of data a storage medium can hold, measured in gigabytes (GB) or terabytes (TB).",
-              "examTip": "Capacity requirements depend on use case. Video editors need TB-scale storage; USB drives for document transport only need GB. Cloud storage is essentially unlimited (but subscription costs scale with usage).",
-              "keyFacts": ["USB flash drives: 8 GB – 256 GB typical", "HDD: 500 GB – 20 TB for consumer drives", "SSD: 256 GB – 8 TB (consumer); smaller capacities at lower prices", "Optical (Blu-ray): up to 100 GB per disc — fixed capacity", "Capacity vs cost: HDDs cheapest per GB; SSDs more expensive but falling in price"]
-            },
-            {
-              "code": "A2.3.2",
-              "term": "Cost",
-              "definition": "The price of the storage medium, both the unit cost and the cost per gigabyte of storage — which affects which type of storage is appropriate for an organisation or individual.",
-              "examTip": "Cost comparison: HDD = cheapest per GB (bulk storage). SSD = more expensive per GB but prices falling. Optical disc = low per-disc cost but slow and limited capacity. Cloud = subscription ongoing cost.",
+              "code": "A2.4",
+              "term": "Vulnerability Assessment Tools",
+              "definition": "Software tools used to find weaknesses in computer systems before attackers do.",
+              "examples": "A port scanner checking which ports are open; a website vulnerability scanner testing a web app.",
+              "examTip": "Know the named tools: port scanner, network mapper, registry checker, website vulnerability scanner.",
               "keyFacts": [
-                "HDD: ~£15–£30 per TB — most cost-effective for large bulk storage",
-                "SSD: ~£60–£100 per TB consumer — falling rapidly; worth premium for OS drive",
-                "USB flash drive: moderate cost per GB — convenience premium over HDD",
-                "Cloud: subscription per month/year — cost scales with storage used",
-                "Total cost of ownership: consider lifespan and replacement costs, not just purchase price"
-              ],
-              "comparisonTable": {
-                "title": "Storage Media Compared: HDD vs SSD vs USB vs Optical",
-                "headers": ["Feature", "HDD", "SSD", "USB Flash Drive", "Optical (BD/DVD)"],
-                "rows": [
-                  ["Technology", "Spinning magnetic platters + read/write heads", "NAND flash memory (no moving parts)", "NAND flash memory", "Laser reads/writes to reflective disc"],
-                  ["Typical capacity", "500 GB – 20 TB", "256 GB – 8 TB", "8 GB – 256 GB", "4.7 GB (DVD) / 25–100 GB (Blu-ray)"],
-                  ["Speed (read)", "80–200 MB/s (typical)", "500 MB/s – 7,000 MB/s (NVMe SSD)", "50–200 MB/s", "1–72 MB/s"],
-                  ["Cost per GB", "Lowest (~£0.02/GB)", "Higher (~£0.05–0.10/GB)", "Moderate", "Very low per disc; slow"],
-                  ["Durability", "Fragile — moving parts, vulnerable to drops", "Very durable — no moving parts", "Durable — no moving parts", "Fragile — scratches destroy data"],
-                  ["Portability", "Moderate (external HDDs)", "High (external SSDs)", "Very high — pocket-sized", "Moderate — bulky cases"],
-                  ["Noise", "Audible (spinning and head movement)", "Silent", "Silent", "Audible (drive motor)"],
-                  ["Best use", "Mass storage, backup, archiving", "OS drive, fast access, laptops", "Data transport, small portability", "Software distribution, archiving, media"]
-                ]
-              }
-            },
-            {
-              "code": "A2.3.3",
-              "term": "Speed",
-              "definition": "How quickly data can be read from or written to the storage medium — measured in MB/s or GB/s. Affects how fast the system starts up, how quickly files open, and overall system responsiveness.",
-              "examTip": "SSD >> HDD for speed. This is the single biggest performance upgrade for most computers. NVMe SSDs (PCIe interface) are significantly faster than SATA SSDs.",
-              "keyFacts": [
-                "HDD: 80–200 MB/s sequential read — limited by spinning speed (5400 or 7200 RPM)",
-                "SATA SSD: 500–600 MB/s — limited by SATA interface",
-                "NVMe SSD: 3,000–7,000 MB/s — uses PCIe lanes, dramatically faster",
-                "USB 3.1 flash drives: up to 400 MB/s for fast models",
-                "Optical: very slow (1–72 MB/s) — irrelevant for system use; mainly for one-time reads",
-                "Random access speed: HDDs very slow (milliseconds of seek time); SSDs near-instant"
+                "Port scanner and network mapper/system discovery",
+                "Registry checker and website vulnerability scanner",
+                "Vulnerability detection/management software",
+                "Assessing user vulnerabilities (e.g. phishing simulations)"
               ]
             },
             {
-              "code": "A2.3.4",
-              "term": "Compatibility",
-              "definition": "Whether the storage medium works with the available interfaces, operating systems, and hardware of the target device.",
-              "examTip": "Compatibility issues arise when connecting older storage to newer systems (or vice versa). Check: physical interface (USB-A vs USB-C, SATA vs NVMe), file system (NTFS vs exFAT vs FAT32), and OS support.",
+              "code": "A2.5",
+              "term": "Independent Third-Party Review",
+              "definition": "Having an external expert review system and network designs before they are implemented.",
+              "examples": "Hiring a consultancy to review a new network design and certify it.",
+              "examTip": "Purpose: establishes due diligence and provides independent third-party certification.",
               "keyFacts": [
-                "Interface compatibility: USB-A vs USB-C, SATA vs NVMe/PCIe, Thunderbolt",
-                "File system compatibility: NTFS (Windows); HFS+/APFS (macOS); exFAT (cross-platform); FAT32 (universal but 4 GB file limit)",
-                "Optical compatibility: newer drives may not read older disc formats",
-                "Legacy hardware: some older devices only support smaller capacity drives or older interfaces"
-              ]
-            }
-          ]
-        },
-        {
-          "code": "A2.4",
-          "title": "Data Processing",
-          "items": [
-            {
-              "code": "A2.4.1",
-              "term": "Manual Data Processing",
-              "definition": "Data is entered, processed, or managed by humans without automated computer assistance — relying on human judgement and action at each step.",
-              "examples": "A receptionist writing appointment times in a paper diary; manually entering customer order details from a phone call into a spreadsheet; counting stock items by hand.",
-              "examTip": "Manual processing = humans do the work. Slower, more error-prone, but sometimes necessary where automated processing isn't practical or where judgement is needed. Compare with A2.4.2.",
-              "keyFacts": [
-                "Human input at every stage — higher error rate than automated",
-                "Slower than automated processing",
-                "Flexible — humans can handle unexpected situations",
-                "Still used where automated systems are unavailable or uneconomical",
-                "GDPR: humans handling personal data manually must still comply with data protection obligations"
+                "Done before implementation",
+                "Establishes due diligence",
+                "Provides third-party certification"
               ]
             },
             {
-              "code": "A2.4.2",
-              "term": "Automatic Data Processing",
-              "definition": "Data is collected, processed, and managed by computer systems with minimal or no human intervention — using sensors, barcode readers, or batch processing systems.",
-              "examples": "A supermarket EPOS system automatically updating stock levels when items are sold; a bank automatically processing overnight transactions in batch; a weather station automatically logging sensor readings every minute.",
-              "examTip": "Automatic processing = faster, more consistent, less prone to human error. Links to A3.1.1 (batch OS) and data logging (A4.2.2). Consider: what happens when the automated system fails?",
+              "code": "A2.6",
+              "term": "Penetration Testing",
+              "definition": "Authorised simulated attacks on a system to find weak spots, checking against known vulnerabilities such as the OWASP Top 10.",
+              "examples": "A 'pen tester' attempting to break into a network and producing a report of weaknesses found.",
+              "examTip": "Pen testing uses real attack techniques but with permission, then produces a report. Links to OWASP (A1.4.3).",
               "keyFacts": [
-                "Faster and more consistent than manual processing",
-                "Batch processing: large volumes of transactions processed together at scheduled intervals",
-                "Real-time processing: transactions processed immediately as they occur (e.g. bank card payment authorisation)",
-                "Data logging: automatic recording of sensor/system data over time",
-                "Reduced human error — but errors in the system/algorithm can affect all records identically"
-              ],
-              "comparisonTable": {
-                "title": "Manual vs Automatic Data Processing",
-                "headers": ["Feature", "Manual Processing", "Automatic Processing"],
-                "rows": [
-                  ["Who does the work", "Humans at each stage", "Computer systems with minimal human input"],
-                  ["Speed", "Slow — limited by human working speed", "Fast — computer processing speed"],
-                  ["Accuracy", "Prone to human error (transcription, calculation)", "Consistent — but systematic errors if algorithm is wrong"],
-                  ["Cost", "High ongoing staffing cost", "High initial setup; lower ongoing cost"],
-                  ["Flexibility", "High — humans handle unexpected situations", "Lower — may struggle with exceptions to normal rules"],
-                  ["Volume capacity", "Limited by workforce size", "Can scale to process millions of transactions"],
-                  ["Example", "Receptionist writing appointments in paper diary", "EPOS system auto-updating stock when items are scanned"]
-                ]
-              }
+                "Uses a range of techniques to find weak spots",
+                "Checks against lists of known vulnerabilities (OWASP Top 10)",
+                "Produces reports in appropriate formats"
+              ]
+            },
+            {
+              "code": "A2.7",
+              "term": "Passive Risk Management",
+              "definition": "Ways of managing risk that do not involve adding active security controls: transferring, avoiding or accepting the risk.",
+              "examples": "Buying cyber insurance (transfer); stopping a risky activity (avoidance); accepting a small, low-impact risk.",
+              "examTip": "Three passive options: transfer (e.g. insurance/3rd party), avoid (stop the activity), accept (live with it).",
+              "keyFacts": [
+                "Risk transfer — pass it to a third party (e.g. insurer/provider)",
+                "Risk avoidance — stop the risky activity",
+                "Risk acceptance — acknowledge and tolerate the risk"
+              ]
             }
           ]
         }
@@ -533,381 +484,79 @@
     },
     {
       "code": "A3",
-      "title": "Computer Software in an IT System",
+      "title": "Legal Responsibilities",
       "subtopics": [
         {
-          "code": "A3.1",
-          "title": "Types of Operating Systems",
+          "code": "A3.1-3.2",
+          "title": "Legislation & Where It Applies",
           "items": [
             {
               "code": "A3.1.1",
-              "term": "Batch Operating System",
-              "definition": "An OS that groups similar jobs together and processes them automatically in sequence without user interaction — typically used for large-volume repetitive processing tasks run at scheduled times.",
-              "examples": "A bank processing all overnight standing orders and direct debits in a nightly batch run; a payroll system processing all employee pay calculations at month end.",
-              "examTip": "Batch OS = no user interaction, jobs queued and processed in groups, often overnight. Key advantage: efficient use of computer time. Key limitation: delayed results — cannot get immediate output.",
-              "keyFacts": ["Jobs queued and processed sequentially without user interaction", "Efficient for large volumes of identical transactions", "Results not available until batch completes — no real-time output", "Still widely used in banking (overnight settlement), payroll, utility billing"]
+              "term": "General Data Protection Regulation (GDPR)",
+              "definition": "Legislation setting out requirements for protecting personal data and the privacy rights of individuals.",
+              "examples": "An organisation must get consent before collecting data and must report a breach within 72 hours.",
+              "examTip": "GDPR = personal data + privacy rights. Computer Misuse Act = unauthorised access. Don't mix them up.",
+              "keyFacts": [
+                "Protects personal data and privacy rights",
+                "Applies to data in storage and when transferred",
+                "Covers personally identifying information (PII)"
+              ]
             },
             {
               "code": "A3.1.2",
-              "term": "Distributed Operating System",
-              "definition": "An OS that manages a collection of independent computers, making them appear as a single unified system to users — distributing processing tasks across multiple machines.",
-              "examples": "Google's search infrastructure processing queries across thousands of servers; a scientific computing cluster running simulations across hundreds of nodes.",
-              "examTip": "Distributed OS = many computers acting as one. Benefits: fault tolerance (if one node fails, others continue), scalability (add more nodes to increase capacity).",
-              "keyFacts": ["Coordinates multiple computers to work as a single system", "Load balancing: distributes tasks across available nodes for efficiency", "Fault tolerant: individual node failure does not bring down the whole system", "Examples: cloud computing infrastructure, scientific computing grids, CDNs"]
-            },
-            {
-              "code": "A3.1.3",
-              "term": "Multitasking Operating System",
-              "definition": "An OS that allows multiple programs to run concurrently by rapidly switching CPU time between them — giving the appearance that all programs run simultaneously.",
-              "examples": "Windows 11 running a browser, music player, and word processor simultaneously; macOS allowing background downloads while the user edits a document.",
-              "examTip": "Most modern desktop and mobile OSes are multitasking. The CPU doesn't actually run all programs at once — it switches between them so fast (thousands of times per second) it feels simultaneous.",
-              "keyFacts": ["CPU switches rapidly between processes — context switching", "Pre-emptive multitasking: OS controls how long each process runs (modern OSes)", "Cooperative multitasking: programs voluntarily yield CPU (older, less reliable)", "RAM must be sufficient to hold all running programs' data simultaneously"]
-            },
-            {
-              "code": "A3.1.4",
-              "term": "Network Operating System",
-              "definition": "An OS designed to manage network resources and services — providing file sharing, printer sharing, user authentication, and network administration for connected client devices.",
-              "examples": "Windows Server; Linux server distributions (Ubuntu Server, CentOS); Novell NetWare (legacy).",
-              "examTip": "Network OS runs on servers and manages centralised resources for the network. Clients connect to it to access shared files, printers, and authentication services.",
-              "keyFacts": ["Manages centralised file storage, printer queues, and user accounts", "Provides authentication: users log in to the domain, not just the local machine", "Active Directory (Windows Server): centralised management of users, permissions, and devices", "Handles concurrent connections from multiple client devices"]
-            },
-            {
-              "code": "A3.1.5",
-              "term": "Real-Time Operating System (RTOS)",
-              "definition": "An OS designed to process data and respond to inputs within a guaranteed, very short time frame — critical where delayed responses could cause failure or harm.",
-              "examples": "Antilock braking system (ABS) controller; aircraft flight control system; industrial robot control; pacemaker software; missile guidance system.",
-              "examTip": "RTOS = guaranteed response within a set time. Not about being fast — about being predictable and reliable. Used where delay is dangerous (medical, transport, industrial control).",
-              "keyFacts": ["Hard real-time: response MUST occur within deadline — failure is catastrophic (aircraft, pacemaker)", "Soft real-time: response should occur within deadline — failure degrades but doesn't catastrophically fail (video streaming)", "Deterministic: same input always produces same output in same time", "Minimal OS — prioritises reliability over features"]
-            },
-            {
-              "code": "A3.1.6",
-              "term": "Mobile Operating System",
-              "definition": "An OS designed specifically for smartphones, tablets, and wearables — optimised for touch input, battery efficiency, sensor integration, and app-store software distribution.",
-              "examples": "iOS (Apple); Android (Google); watchOS (Apple Watch); Wear OS (Android wearables).",
-              "examTip": "Mobile OS is optimised for touch, battery, and connectivity. Key differences from desktop OS: app sandboxing for security, app store distribution model, power management.",
-              "keyFacts": ["Touch-first interface — no mouse/keyboard assumed", "Battery optimisation: aggressive background process management", "Sensor integration: GPS, accelerometer, camera, NFC all managed by OS", "App sandboxing: each app runs in isolated environment for security", "App store model: centralised distribution with security vetting"]
-            },
-            {
-              "code": "A3.1.7",
-              "term": "Single-Use Operating System",
-              "definition": "An OS designed to perform one specific function, with all unnecessary components removed. The system does exactly one thing, consistently and reliably.",
-              "examples": "ATM software running a dedicated banking transaction OS; a digital signage system; a point-of-sale terminal; a games console.",
-              "examTip": "Single-use OS = purpose-built, stripped down. Benefits: reliability, security (smaller attack surface), speed. Not flexible — cannot run other software.",
-              "keyFacts": ["Dedicated to one function — all other capabilities removed", "More secure: smaller codebase = fewer vulnerabilities", "More reliable: cannot be disrupted by other software", "Cannot be repurposed without replacement", "Examples: kiosk systems, ATMs, smart appliance firmware"]
-            },
-            {
-              "code": "A3.1.8",
-              "term": "Multi-User Operating System",
-              "definition": "An OS that allows multiple users to access and use the same computer or system simultaneously — each with their own profile, permissions, and isolated environment.",
-              "examples": "Linux server supporting dozens of simultaneous SSH (remote terminal) users; Windows Server with Remote Desktop Services; mainframe computers in banking.",
-              "examTip": "Multi-user OS must manage access control carefully — users must not be able to access each other's files or disrupt each other's sessions. Links to A3.2.6 (user accounts).",
+              "term": "Computer Misuse Act 1990",
+              "definition": "Legislation that protects personal data held by organisations from unauthorised access and modification.",
+              "examples": "Hacking into a system you have no permission to access is an offence under this Act.",
+              "examTip": "Computer Misuse Act = unauthorised access to/modification of computers and data.",
               "keyFacts": [
-                "Each user has isolated session — cannot access other users' data",
-                "User authentication required to log in and access their profile",
-                "OS manages resource allocation between users",
-                "Linux is inherently multi-user — designed for server use with multiple concurrent logins",
-                "Links to network OS: many users connecting to a server"
-              ],
-              "comparisonTable": {
-                "title": "Operating System Types Compared",
-                "headers": ["OS Type", "Key characteristic", "Best for", "Example"],
-                "rows": [
-                  ["Batch", "Processes jobs in groups without user interaction", "High-volume routine processing", "Bank overnight payment runs"],
-                  ["Distributed", "Multiple computers act as one", "Cloud computing, large-scale processing", "Google Search infrastructure"],
-                  ["Multitasking", "Multiple programs appear to run simultaneously", "General-purpose desktop and laptop use", "Windows 11, macOS"],
-                  ["Network OS", "Manages shared network resources", "Office server managing files and users", "Windows Server, Linux Server"],
-                  ["Real-time (RTOS)", "Guaranteed response within fixed time", "Safety-critical embedded systems", "ABS controller, pacemaker"],
-                  ["Mobile OS", "Touch-optimised, battery-efficient", "Smartphones and tablets", "iOS, Android"],
-                  ["Single-use", "One dedicated function only", "Kiosks, ATMs, appliances", "ATM software, POS terminal"],
-                  ["Multi-user", "Multiple simultaneous users with isolated sessions", "Servers accessed by many users", "Linux server, mainframe"]
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "code": "A3.2",
-          "title": "Role of the Operating System in Managing",
-          "items": [
-            {
-              "code": "A3.2.1",
-              "term": "Networking",
-              "definition": "The OS manages network connectivity — implementing protocols, establishing and maintaining connections, transmitting and receiving data, and monitoring and allocating network resources.",
-              "examTip": "OS networking functions: protocols (TCP/IP), connections (establishing/dropping), data transmission (sending/receiving packets), resource monitoring (checking bandwidth usage). All four parts of the spec definition are examinable.",
-              "keyFacts": ["Implements network protocols (TCP/IP, DNS, DHCP)", "Manages NIC (Network Interface Card) — establishes and tears down connections", "Transmits data by packaging it into packets; receives and reassembles incoming packets", "Monitors network resource usage — bandwidth allocation between applications", "Configures IP addresses, subnet masks, and gateway settings"]
-            },
-            {
-              "code": "A3.2.2",
-              "term": "Security",
-              "definition": "The OS enforces security by controlling who can access the system and its resources — through access control, malware protection, encryption, and firewall management.",
-              "examTip": "OS security covers four areas the spec names: access control, malware protection, encryption, firewall. Know what each does and why it's the OS's responsibility.",
-              "keyFacts": ["Access control: user authentication (login) and authorisation (what each user can do)", "Malware protection: OS may include built-in antivirus (Windows Defender); manages AV software", "Encryption: OS can encrypt the hard drive (BitLocker on Windows) and manage certificates", "Firewall: OS-level firewall controls inbound/outbound network traffic"]
-            },
-            {
-              "code": "A3.2.3",
-              "term": "Memory Management",
-              "definition": "The OS allocates RAM to running processes, ensures processes don't interfere with each other's memory, and uses virtual memory when physical RAM is exhausted.",
-              "examTip": "The spec explicitly names: allocation/deallocation, memory protection, virtual memory, swapping and paging. Virtual memory uses hard disk space as overflow RAM — much slower, but prevents crashes.",
-              "keyFacts": [
-                "Allocation: assigns RAM blocks to processes when they start",
-                "Deallocation: frees RAM when processes end",
-                "Memory protection: processes cannot read/write each other's memory — prevents crashes and security breaches",
-                "Virtual memory: uses part of hard disk/SSD as if it were RAM when physical RAM is full",
-                "Swapping: moves entire process from RAM to disk (swap space) when RAM is needed",
-                "Paging: divides memory into fixed-size pages; swaps individual pages (more efficient than full process swapping)"
-              ]
-            },
-            {
-              "code": "A3.2.4",
-              "term": "Multi-Tasking",
-              "definition": "The OS manages the execution of multiple processes simultaneously by scheduling CPU time, managing processor time fairly, and switching context between processes.",
-              "examTip": "The spec names: process scheduling, CPU time management, context switching. Process scheduling algorithms (Round Robin, Priority) determine which process runs next.",
-              "keyFacts": [
-                "Process scheduling: decides which process gets CPU time and for how long",
-                "Round robin scheduling: each process gets a fixed time slice in turn",
-                "Priority scheduling: higher-priority processes (e.g. OS itself, real-time tasks) run before lower-priority ones",
-                "Context switching: saves the state of one process and loads the state of another — enables switching",
-                "CPU time management: ensures no single process monopolises the CPU",
-                "More processes/threads than CPU cores = more context switching = more overhead"
-              ]
-            },
-            {
-              "code": "A3.2.5",
-              "term": "Device Drivers",
-              "definition": "Software that enables the OS to communicate with hardware devices — acting as a translator between the standardised OS commands and the specific hardware's interface.",
-              "examTip": "Device drivers = translator between OS and hardware. Without the correct driver, the OS cannot use a device. The spec names: installation/loading, communication, management/updates, error handling, resource allocation.",
-              "keyFacts": [
-                "Installation: driver installed when new hardware is connected; OS may find it automatically",
-                "Loading: OS loads driver into memory when device is detected",
-                "Communication: driver translates OS requests into device-specific commands",
-                "Error handling: driver detects and reports device errors to the OS",
-                "Resource allocation: driver manages IRQs, memory addresses, and I/O ports for the device",
-                "Updates: outdated drivers can cause instability or security vulnerabilities — must be kept updated"
-              ]
-            },
-            {
-              "code": "A3.2.6",
-              "term": "User Accounts",
-              "definition": "The OS manages user identities — verifying who users are (authentication), storing their preferences and settings (profiles), and providing tools to create, modify, and delete accounts.",
-              "examTip": "The spec names: user authentication, user profiles, account management tools. Authentication verifies identity; authorisation (covered in A3.2.2 and D2.1.2) controls what authenticated users can do.",
-              "keyFacts": [
-                "User authentication: verifies identity via password, PIN, biometric, or MFA",
-                "User profiles: each user has personalised settings, desktop, files, and permissions stored separately",
-                "Account types: administrator (full access), standard user (limited access), guest (minimal access)",
-                "Account management tools: add/remove users, reset passwords, set expiry dates, assign groups",
-                "Single Sign-On (SSO): one login grants access to multiple connected systems"
+                "Covers unauthorised access to computers/devices",
+                "Covers unauthorised access to and modification of data",
+                "Makes hacking and creating malware criminal offences"
               ]
             }
           ]
         },
         {
           "code": "A3.3",
-          "title": "Types, Uses and Features of Software",
+          "title": "Detailed Responsibilities",
           "items": [
             {
-              "code": "A3.3.1",
-              "term": "Utility Software",
-              "definition": "Programs designed to help manage, maintain, and optimise a computer system's hardware and software — performing housekeeping and maintenance tasks.",
-              "examples": "Disk defragmenter; antivirus software; backup software; file compression tools (WinZip); disk cleanup; system monitoring tools; screen capture utilities.",
-              "examTip": "Utility software = system maintenance and management. It doesn't create user content — it looks after the system. Contrast with application software (which is used to create content or perform productive work).",
+              "code": "A3.3.1a",
+              "term": "GDPR Principles",
+              "definition": "The core rules organisations must follow when processing personal data.",
+              "examples": "Only collecting the minimum data needed, keeping it accurate, and deleting it when no longer required.",
+              "examTip": "Remember key principles: lawful/fair/transparent, purpose limited, accurate, minimal, kept minimum time, confidential.",
               "keyFacts": [
-                "Antivirus: scans for and removes malware",
-                "Disk defragmenter: reorganises fragmented files on HDDs for faster access",
-                "Backup software: automates creation of data backups",
-                "File compression: reduces file sizes for storage or transmission (ZIP, RAR)",
-                "System monitor: shows CPU, RAM, disk usage in real time",
-                "Task manager: views and ends running processes"
+                "Lawfulness, fairness and transparency",
+                "Limited to a stated purpose; accuracy",
+                "Keep the minimum amount of data for the minimum time",
+                "Maintain confidentiality and integrity"
               ]
             },
             {
-              "code": "A3.3.2",
-              "term": "Application Software",
-              "definition": "Programs designed to help users perform specific productive tasks — creating content, processing data, communicating, or accessing information.",
-              "examples": "Microsoft Word (word processing); Excel (spreadsheet); Adobe Photoshop (image editing); Chrome (web browser); Slack (communication); Xero (accounting).",
-              "examTip": "Application software = software users run to DO things and CREATE output. Contrast with utility software (which maintains the system) and the OS (which manages hardware/software).",
+              "code": "A3.3.1b",
+              "term": "GDPR Lawful Reasons for Processing",
+              "definition": "An organisation must have a valid legal basis to process personal data.",
+              "examples": "Processing payroll data under 'contractual obligation'; using medical data under 'vital interest'.",
+              "examTip": "Six lawful bases: consent, contract, legitimate interest, vital interest, legal requirement, public interest.",
               "keyFacts": [
-                "Word processors: create/edit text documents",
-                "Spreadsheets: numerical data, calculations, charts",
-                "Database software: store and query structured data",
-                "Web browsers: access and display web content",
-                "Email clients: send and receive email",
-                "Graphics software: image/video editing",
-                "Can be general purpose (Office) or specialist (CAD for architects)"
+                "Consent and contractual obligation",
+                "Legitimate interest and vital interest",
+                "Legal requirement and public interest"
               ]
-            }
-          ]
-        },
-        {
-          "code": "A3.4",
-          "title": "Factors Impacting Choice of OS and Application Software",
-          "items": [
-            {
-              "code": "A3.4.1",
-              "term": "Cost",
-              "definition": "The financial outlay for purchasing, licensing, and maintaining software — including one-off purchase cost, subscription fees, and support costs.",
-              "examTip": "Compare: open source (free/low cost, community support) vs proprietary (licence cost, vendor support). Also consider total cost of ownership — training, migration, and ongoing subscriptions.",
-              "keyFacts": ["One-off licence vs subscription model (SaaS)", "Open source alternatives often free (LibreOffice vs Microsoft Office)", "Enterprise licences: bulk pricing for organisations", "Hidden costs: training, support, migration from current system"]
             },
             {
-              "code": "A3.4.2",
-              "term": "Security",
-              "definition": "How well the software protects data and systems — including frequency of security updates, known vulnerabilities, and built-in security features.",
-              "examTip": "Security is a critical factor — especially for OS choice. Less popular OSes may have fewer targeted attacks; proprietary vendors may respond faster to vulnerabilities than open-source communities.",
-              "keyFacts": ["Regular security patches required — must be applied promptly", "Market share effect: Windows is the most targeted OS because it has the most users", "Some proprietary vendors have dedicated security response teams", "Open source: code is visible — both security researchers AND attackers can examine it"]
-            },
-            {
-              "code": "A3.4.3",
-              "term": "Hardware and Software Compatibility",
-              "definition": "Whether the software works with the existing hardware and other software already in use by the organisation.",
-              "examTip": "Compatibility failures make software unusable regardless of other advantages. Check: minimum hardware specs, driver availability for peripherals, file format compatibility with existing data.",
-              "keyFacts": ["Minimum hardware requirements: RAM, CPU, storage must meet thresholds", "Peripheral drivers: does new OS have drivers for all existing printers, scanners, etc.?", "File format compatibility: can new software open/edit existing files?", "API compatibility: does new software integrate with existing systems?"]
-            },
-            {
-              "code": "A3.4.4",
-              "term": "Features",
-              "definition": "Whether the software offers all the functionality required by the organisation or user — including specialist tools, customisation options, and supported workflows.",
-              "examTip": "Features must match the specific use case. A powerful feature set the user doesn't need adds cost and complexity without benefit.",
-              "keyFacts": ["Must meet specific user/business requirements", "Excess features: increase complexity, cost, and learning curve", "Specialist features may only exist in proprietary software (e.g. specific CAD tools)", "Customisability: can it be adapted to specific workflows?"]
-            },
-            {
-              "code": "A3.4.5",
-              "term": "Business and/or User Needs",
-              "definition": "Whether the software aligns with the specific operational requirements of the organisation and the practical needs of the people who will use it.",
-              "examTip": "Always start with user and business needs when justifying software choices in exam scenarios. What tasks must it perform? Who will use it? What is their technical skill level?",
-              "keyFacts": ["Must perform all required business functions without excessive workarounds", "User skill level affects which interface is appropriate (CLI vs GUI)", "Industry-standard software may be required for compatibility with clients/suppliers", "Scalability: will it still meet needs as the organisation grows?"]
-            },
-            {
-              "code": "A3.4.6",
-              "term": "Performance",
-              "definition": "How efficiently the software runs on available hardware — including speed, reliability, and resource consumption (CPU, RAM, disk).",
-              "examTip": "Performance links to hardware requirements (A3.4.3). Heavy software on underpowered hardware = poor performance = reduced productivity. Always consider whether current hardware can run new software adequately.",
-              "keyFacts": ["Response time: how quickly does the software react to user input?", "Resource usage: does it consume excessive RAM/CPU that slows down other processes?", "Stability: does it crash or become unresponsive under load?", "Scalability: does performance degrade as data volume or users increase?"]
-            }
-          ]
-        },
-        {
-          "code": "A3.5",
-          "title": "Types of User Interface",
-          "items": [
-            {
-              "code": "A3.5.1",
-              "term": "Command Line Interface (CLI)",
-              "definition": "A text-based interface where the user types commands directly to interact with the operating system or software. No graphics — purely text input and output.",
-              "examples": "Windows Command Prompt; Linux/macOS Terminal; PowerShell; FTP command-line client.",
-              "examTip": "CLI = fast for experts, powerful, scriptable. But steep learning curve — must memorise commands. Used by IT professionals, developers, and system administrators.",
-              "keyFacts": ["User types commands as text — no mouse needed", "Fast and powerful for experienced users", "Scriptable: sequences of commands saved as scripts for automation", "Minimal resources: runs on very low-spec hardware", "No help or guidance — user must know the correct syntax"]
-            },
-            {
-              "code": "A3.5.2",
-              "term": "Menu-Driven Interface",
-              "definition": "An interface where users select from a list of predefined options — navigating through menus to reach the desired function. No need to remember commands.",
-              "examples": "ATM machine menus; DVD/Blu-ray player menus; phone IVR systems ('press 1 for sales, press 2 for support'); early text-adventure game interfaces.",
-              "examTip": "Menu-driven = limited options, user guided through choices. Cannot do anything not listed in the menus. Good for non-technical users and kiosk/dedicated systems.",
-              "keyFacts": ["User selects from limited set of options — cannot go 'off-script'", "No prior knowledge required — self-explanatory", "Slow for expert users — must navigate menus each time", "Used in kiosks, ATMs, medical equipment, set-top boxes"]
-            },
-            {
-              "code": "A3.5.3",
-              "term": "Graphical User Interface (GUI)",
-              "definition": "An interface using visual elements — windows, icons, menus, and a pointer (WIMP) controlled by a mouse or keyboard — allowing intuitive interaction with software and files.",
-              "examples": "Windows 11 desktop; macOS Finder; web browser with visual tabs; Microsoft Word with ribbon toolbar.",
-              "examTip": "GUI = WIMP (Windows, Icons, Menus, Pointer). Most accessible to non-technical users. Requires more hardware resources than CLI. Drag-and-drop, right-click menus, and toolbar buttons are all GUI features.",
-              "keyFacts": ["WIMP: Windows, Icons, Menus, Pointer", "Intuitive — visual metaphors (trash can = delete)", "Requires mouse or pointing device (or keyboard shortcuts)", "More hardware resources than CLI", "Less efficient for expert users than CLI for repetitive tasks", "Standard for desktop and laptop computers"]
-            },
-            {
-              "code": "A3.5.4",
-              "term": "Touchscreen Graphical User Interface",
-              "definition": "A GUI adapted for direct finger or stylus interaction on a touchscreen — replacing the mouse pointer with touch gestures (tap, swipe, pinch-to-zoom).",
-              "examples": "iOS on iPhone; Android on a smartphone; iPad interface; self-service supermarket checkout; interactive museum display.",
-              "examTip": "Touchscreen GUI = GUI adapted for touch. Same visual elements as GUI but designed for larger touch targets, no hover states, and gesture-based navigation. Ideal for mobile and kiosk devices.",
-              "keyFacts": ["No mouse required — direct finger/stylus interaction", "Gestures: tap (click), double-tap (double-click), swipe (scroll/navigate), pinch (zoom)", "Touch targets must be larger than mouse click targets — affects design", "Suitable for mobile devices, kiosks, point-of-sale terminals", "Can be combined with keyboard/mouse (e.g. Microsoft Surface, hybrid laptops)"]
-            }
-          ]
-        },
-        {
-          "code": "A3.6",
-          "title": "Principles and Implications of Open Source and Proprietary Software",
-          "items": [
-            {
-              "code": "A3.6.1",
-              "term": "Open Source vs Proprietary Operating Systems",
-              "definition": "Open source OS: source code is publicly available, can be modified and redistributed (e.g. Linux). Proprietary OS: source code is closed, owned by a company, cannot be modified (e.g. Windows, macOS).",
-              "examples": "Linux (open source) vs Windows 11 (proprietary); Android (open source, modified by manufacturers) vs iOS (proprietary, Apple-controlled).",
-              "examTip": "Both sides of the open source vs proprietary debate appear in exam questions. For max marks: give balanced advantages AND disadvantages of each, not just one side.",
+              "code": "A3.3.1c",
+              "term": "GDPR Personal Rights",
+              "definition": "The rights individuals have over their own personal data under GDPR.",
+              "examples": "A customer requesting a copy of all data held on them (access), or asking for it to be deleted.",
+              "examTip": "Key rights: access, be informed, correct/remove/restrict, object, portability, no solely-automated decisions.",
               "keyFacts": [
-                "Open source OS examples: Linux (Ubuntu, Fedora, Debian), Android",
-                "Proprietary OS examples: Windows (Microsoft), macOS/iOS (Apple)",
-                "Open source: free to use, modify, distribute; community-developed and maintained",
-                "Open source risk: support relies on community; less polished UI; driver compatibility can be patchy",
-                "Proprietary: vendor-controlled, consistent experience, dedicated support",
-                "Proprietary risk: licence cost; vendor dependency (vendor lock-in); closed code = users must trust vendor"
-              ],
-              "comparisonTable": {
-                "title": "Open Source vs Proprietary Software",
-                "headers": ["Feature", "Open Source", "Proprietary"],
-                "rows": [
-                  ["Source code", "Publicly available — can be viewed, modified, redistributed", "Closed — only vendor can access and modify"],
-                  ["Cost", "Usually free (or very low cost)", "Licence fee required (one-off or subscription)"],
-                  ["Support", "Community forums, documentation, optional paid support", "Vendor provides dedicated support (often included or paid)"],
-                  ["Security", "Many eyes on the code — bugs found quickly; also visible to attackers", "Vendor controls patches; smaller attack surface visibility; faster coordinated response"],
-                  ["Customisation", "Highly customisable — modify code for specific needs", "Limited customisation — only features vendor provides"],
-                  ["Compatibility", "May have driver/compatibility issues with some hardware or proprietary formats", "Designed to work with mainstream hardware; vendor-controlled ecosystem"],
-                  ["Updates", "Community-driven — frequency varies", "Vendor-controlled — regular scheduled updates"],
-                  ["Vendor lock-in", "Low — can switch, fork, or modify freely", "High — difficult/expensive to migrate away"],
-                  ["OS examples", "Linux (Ubuntu, Fedora), Android", "Windows, macOS, iOS"],
-                  ["Software examples", "LibreOffice, Firefox, VLC, WordPress", "Microsoft Office, Adobe Photoshop, Windows"]
-                ]
-              }
-            },
-            {
-              "code": "A3.6.2",
-              "term": "Open Source vs Proprietary Application Software",
-              "definition": "The same open source vs proprietary distinction applied to application software — covering productivity tools, media players, development tools, and specialist applications.",
-              "examples": "LibreOffice (open source) vs Microsoft Office 365 (proprietary); GIMP (open source) vs Adobe Photoshop (proprietary); Firefox (open source) vs Safari (proprietary).",
-              "examTip": "Same principles as A3.6.1 but applied to applications. Key addition: file format compatibility — proprietary apps often use proprietary formats that may not open correctly in open source alternatives.",
-              "keyFacts": [
-                "File format compatibility: Microsoft Word .docx files may have minor formatting issues in LibreOffice Writer",
-                "Feature parity: open source alternatives may lack some advanced features of premium proprietary software",
-                "Professional tooling: some industries require specific proprietary tools (e.g. Adobe Creative Suite in media)",
-                "TCO (Total Cost of Ownership): open source saves licence fees but may cost more in support and integration"
+                "Right to access their own data and be informed how it is used",
+                "Right to have data corrected, removed or restricted",
+                "Right to object, and to data portability (machine-readable format)",
+                "Right not to be subject to a solely automated decision"
               ]
-            }
-          ]
-        },
-        {
-          "code": "A3.7",
-          "title": "Features of Common File Types and Formats",
-          "items": [
-            {
-              "code": "A3.7.1",
-              "term": "Image File Formats",
-              "definition": "Digital image formats vary in how they compress and store pixel data — affecting file size, quality, and compatibility with different applications and devices.",
-              "examples": "JPEG for web photos; PNG for logos; GIF for simple animations; SVG for scalable icons; RAW for professional photography.",
-              "examTip": "This overlaps with B3.4.1 — same content. Exam tip: JPEG = lossy (photos); PNG = lossless (transparency); SVG = vector (infinitely scalable); RAW = unprocessed (largest, highest quality).",
-              "keyFacts": ["JPEG: lossy, 24-bit colour, small files — web photos, digital cameras", "PNG: lossless, transparency support — logos, web graphics", "GIF: lossless, 256 colours max, animation support", "SVG: vector format, XML-based — scalable without quality loss", "RAW: uncompressed camera sensor data — editing master file"]
-            },
-            {
-              "code": "A3.7.2",
-              "term": "Audio File Formats",
-              "definition": "Digital audio formats use different compression schemes, affecting file size and audio quality.",
-              "examples": "MP3 for music streaming; WAV for professional studio recording; AAC for Apple devices; FLAC for lossless music archiving.",
-              "examTip": "Same as B3.4.2. MP3/AAC = lossy streaming. WAV/FLAC = lossless production/archiving. Bit rate determines quality — higher bit rate = better sound but larger file.",
-              "keyFacts": ["MP3: lossy — small file, widely compatible", "AAC: lossy — better quality than MP3 at same bit rate; used by Apple", "WAV: uncompressed — professional quality, large files", "FLAC: lossless — smaller than WAV but identical quality; for audiophiles"]
-            },
-            {
-              "code": "A3.7.3",
-              "term": "Video File Formats",
-              "definition": "Digital video formats combine a container format (which holds the file) and a codec (which compresses the video and audio streams).",
-              "examples": "MP4 (H.264) for online video; MKV for high-quality with multiple subtitle tracks; MOV for Apple editing; AVI as a legacy format.",
-              "examTip": "Same as B3.4.3. Container (MP4, MKV) + codec (H.264, H.265) = video file. H.265 = half the file size of H.264 at same quality — critical for 4K.",
-              "keyFacts": ["MP4 + H.264: most compatible — web, social media, streaming", "MP4 + H.265: 50% smaller — 4K streaming, modern devices", "MKV: flexible container, multiple audio/subtitle tracks", "Bitrate controls quality — higher bitrate needs more storage and bandwidth"]
-            },
-            {
-              "code": "A3.7.4",
-              "term": "Application Software File Formats",
-              "definition": "Executable and installer formats specific to each operating system, used for distributing and installing software applications.",
-              "examples": "EXE/MSI for Windows; DMG/PKG for macOS; APK for Android; DEB/RPM for Linux distributions.",
-              "examTip": "Same as B3.4.4. Each OS uses different formats for software distribution. Security note: only download software from trusted sources and verify digital signatures to avoid malware.",
-              "keyFacts": ["EXE (Windows executable): runs programs directly", "MSI (Windows Installer): managed installation with uninstall support", "APK (Android): Android app package — used for sideloading", "DMG (macOS): disk image containing application", "ZIP/RAR: common wrapper for distributing multiple files — must be extracted first"]
             }
           ]
         }
@@ -915,278 +564,175 @@
     },
     {
       "code": "A4",
-      "title": "Choosing IT Systems",
+      "title": "Software & Hardware Security Measures",
       "subtopics": [
         {
           "code": "A4.1",
-          "title": "Factors Affecting the Choice of IT Systems",
+          "title": "Security Measures",
           "items": [
             {
               "code": "A4.1.1",
-              "term": "User Needs",
-              "definition": "The specific requirements of the people who will use the IT system — what tasks they need to perform, their technical skill level, their mobility needs, and their accessibility requirements.",
-              "examTip": "User needs always come first in system selection. Identify the primary users: are they technical staff, shop floor workers, office workers, customers? Each has very different needs.",
-              "keyFacts": ["Primary users must be identified before system selection begins", "Skill level affects interface choice (GUI vs CLI, complexity)", "Accessibility needs may mandate specific assistive technology compatibility", "Mobile vs fixed: do users need to move around or stay at one desk?"]
-            },
-            {
-              "code": "A4.1.2",
-              "term": "Specifications",
-              "definition": "The technical requirements the IT system must meet — minimum hardware performance, software capabilities, storage capacity, and connectivity requirements.",
-              "keyFacts": ["Defines minimum acceptable performance thresholds", "Must be based on actual user/business needs — not assumed", "Includes: CPU speed, RAM, storage capacity, screen resolution, connectivity ports", "Used to shortlist and evaluate candidate systems objectively"]
-            },
-            {
-              "code": "A4.1.3",
-              "term": "Compatibility",
-              "definition": "Whether the new IT system works with existing systems, software, file formats, and hardware already in use.",
-              "keyFacts": ["Must work with existing peripherals, software, and data formats", "Operating system compatibility: does existing software run on the new OS?", "Network compatibility: does it support the organisation's network protocols and infrastructure?", "Migration: can existing data be imported without loss or corruption?"]
-            },
-            {
-              "code": "A4.1.4",
-              "term": "Connectivity",
-              "definition": "The types of network and peripheral connections the IT system supports — ensuring it can connect to the internet, the organisation's network, and all required devices.",
-              "keyFacts": ["Network connectivity: Ethernet, Wi-Fi, Bluetooth — which are present and at what speed?", "Peripheral ports: USB-A, USB-C, Thunderbolt, HDMI — must match required peripherals", "Mobile connectivity: 4G/5G for systems used outside of fixed network coverage", "Remote access capability: VPN support, remote desktop"]
-            },
-            {
-              "code": "A4.1.5",
-              "term": "Cost",
-              "definition": "The total financial cost of procuring, deploying, and running the IT system — including purchase/lease, setup, training, maintenance, and eventual replacement.",
-              "examTip": "Always consider total cost of ownership (TCO), not just purchase price. Hidden costs: training, maintenance, support contracts, software licences, power consumption.",
-              "keyFacts": ["Capital cost: upfront purchase or leasing cost", "Operational cost: maintenance, support, power, licences, upgrades", "Training cost: staff time and materials to reach competency", "Disposal cost: responsible hardware disposal at end of life", "ROI: does the system generate sufficient value to justify the cost?"]
-            },
-            {
-              "code": "A4.1.6",
-              "term": "Efficiency",
-              "definition": "How well the IT system uses resources (time, money, hardware) to deliver its required functions — balancing performance output against resource consumption.",
-              "keyFacts": ["Energy efficiency: lower power consumption reduces running costs and environmental impact", "Processing efficiency: faster processing completes tasks in less time", "Storage efficiency: compression and deduplication reduce storage costs", "Workflow efficiency: reduces manual steps and automates repetitive processes"]
-            },
-            {
-              "code": "A4.1.7",
-              "term": "Implementation (Timescales, Testing, Migration, Downtime)",
-              "definition": "The practical considerations of deploying the new IT system — including how long it will take, how it will be tested, how existing data will be migrated, and how much disruption will occur.",
-              "examTip": "The spec explicitly names four sub-considerations: timescales, testing, migration, downtime. Include all four in extended responses about system implementation.",
+              "term": "Physical Security Measures",
+              "definition": "Measures that physically protect equipment, sites and restricted areas from unauthorised access.",
+              "examples": "RFID card entry; fingerprint scanners; CCTV; security staff; alarms; locked server cabinets.",
+              "examTip": "Group these into: locks, card entry, biometrics, surveillance (CCTV/staff/alarms), and staff training.",
               "keyFacts": [
-                "Timescales: realistic project planning — deployment often takes weeks or months",
-                "Testing: acceptance testing, user acceptance testing (UAT), performance testing before go-live",
-                "Migration: moving existing data to new system — risk of data corruption or loss",
-                "Downtime: old system taken offline while new system comes online — disrupts business operations",
-                "Phased rollout: gradual deployment to reduce risk of full system failure",
-                "Parallel running: old and new systems run simultaneously to validate new system before switching over"
+                "Site locks: mechanical, electronic, network-connected",
+                "Card entry: NFC, RFID, barcode/QR, magnetic stripe, chip",
+                "Biometrics: fingerprint, iris/retina, facial, voice, signature",
+                "CCTV, security staff, alarms, protected cabling, staff training"
               ]
             },
             {
-              "code": "A4.1.8",
-              "term": "Productivity",
-              "definition": "The impact of the new IT system on the efficiency and output of employees — whether it enables them to work faster, more accurately, or with less effort.",
-              "keyFacts": ["New system should improve on existing performance once fully adopted", "Short-term productivity dip during transition as users learn new system", "Automation: new system may automate tasks currently done manually", "Collaboration: improved collaboration tools can increase team productivity"]
+              "code": "A4.1.2",
+              "term": "Backup & Recovery Procedures",
+              "definition": "Strategies for copying data so it can be restored after loss, corruption or attack.",
+              "examples": "A full weekly backup plus daily incremental backups stored off-site and in the cloud.",
+              "examTip": "Know the 3 backup types: FULL (everything), INCREMENTAL (changes since last backup), DIFFERENTIAL (changes since last full). RAID is NOT a backup.",
+              "keyFacts": [
+                "Types: full, differential, incremental",
+                "Strategies: onsite/offsite/cloud, automated/manual, hot/warm site",
+                "RAID and archiving are NOT the same as backup",
+                "Recovery: file restore, image restore, full/bare-metal restore"
+              ]
             },
             {
-              "code": "A4.1.9",
-              "term": "Security",
-              "definition": "The security features of the new IT system — including built-in protections, update frequency, compliance with security standards, and compatibility with existing security infrastructure.",
-              "keyFacts": ["Does the system receive regular security updates from the vendor?", "Is it compatible with existing security tools (antivirus, firewall, SIEM)?", "Does it support required authentication methods (MFA, SSO, biometrics)?", "Compliance: does it meet industry security standards (ISO 27001, PCI DSS, GDPR requirements)?"]
+              "code": "A4.1.3",
+              "term": "Antivirus & Detection Techniques",
+              "definition": "Software that detects, blocks and removes malware using signatures, heuristics and integrity checks.",
+              "examples": "Quarantining a suspicious file; matching a file against known virus signatures.",
+              "examTip": "Signature scanning catches known malware; heuristics catch new/suspicious behaviour. Know both.",
+              "keyFacts": [
+                "Virus signatures and scanning (known threats)",
+                "Heuristics — flag suspicious behaviour/new threats",
+                "File integrity check / checksum",
+                "Responses: warning, logging, prevent execution, quarantine, deletion"
+              ]
+            },
+            {
+              "code": "A4.1.4",
+              "term": "Firewalls & Filtering Techniques",
+              "definition": "Hardware or software that filters network traffic using rules to block unauthorised access.",
+              "examples": "A firewall blocking inbound traffic on all ports except those needed; application-layer filtering.",
+              "examTip": "Firewalls use inbound and outbound rules and can do packet filtering and application-layer awareness.",
+              "keyFacts": [
+                "Packet filtering and inspection",
+                "Application-layer awareness",
+                "Inbound and outbound rules",
+                "Filtering by network address"
+              ]
+            },
+            {
+              "code": "A4.1.5",
+              "term": "User Authentication & MFA",
+              "definition": "Verifying that a user is who they claim to be, often using multiple factors (MFA).",
+              "examples": "Password + USB security key; fingerprint + PIN; an authenticator app code.",
+              "examTip": "MFA factors: knowledge (something you know), possession (have), inherence (are), plus location/behaviour. USB security key = possession factor (sample paper).",
+              "keyFacts": [
+                "Single-factor vs multi-factor authentication (MFA)",
+                "Factors: knowledge, possession, inherence, location, behaviour",
+                "Security tokens: connected (USB key), contactless, disconnected (code generator)",
+                "Kerberos, key exchange, and certificate-based authentication (TLS/SSL, PKI, CA)"
+              ]
+            },
+            {
+              "code": "A4.1.6",
+              "term": "Access Controls",
+              "definition": "Methods that restrict which users can access which resources.",
+              "examples": "Role-Based Access Control giving the finance team access to accounts but not HR files.",
+              "examTip": "DAC = users control their own files; Role-Based = by job role; Rule-Based = rules per individual user.",
+              "keyFacts": [
+                "Discretionary Access Control (DAC) — users control their own resources",
+                "Role-Based Access Control — access set by role in the organisation",
+                "Rule-Based Access Control — rules set for individual users",
+                "Applies to apps, folders, files, datasets, physical devices"
+              ]
+            },
+            {
+              "code": "A4.1.7",
+              "term": "Trusted Computing",
+              "definition": "Hardware-based security (e.g. a trusted platform) that increases security but can reduce user control.",
+              "examples": "A TPM chip checking the system is in a trusted state before allowing access.",
+              "examTip": "Trusted computing appeared in the sample paper — benefit: increased security; drawback: loss of user control/privacy.",
+              "keyFacts": [
+                "Benefit: increased security / another layer of protection",
+                "Drawback: loss of user control, privacy and anonymity"
+              ]
+            },
+            {
+              "code": "A4.1.8-9",
+              "term": "Device Security & Finding Lost Devices",
+              "definition": "Measures that protect devices and allow lost or stolen ones to be located, locked or wiped.",
+              "examples": "Using GPS 'find my device'; remotely wiping a stolen phone; auto-locking the screen after failed logins.",
+              "examTip": "Remote lock/wipe and timed lockout are strong answers for protecting a lost/stolen device.",
+              "keyFacts": [
+                "Location tech: GPS, phone-home, tracking software",
+                "Timed lockout of screen; lock after failed login attempts",
+                "Memory wipe/factory reset after failed attempts",
+                "Remote lock/wipe/reset of lost or stolen devices"
+              ]
             }
           ]
         },
         {
           "code": "A4.2",
-          "title": "IT System Uses in Organisations",
+          "title": "Encryption",
           "items": [
             {
               "code": "A4.2.1",
-              "term": "Stock Control",
-              "definition": "IT systems that track inventory levels in real time, automatically reorder stock when it falls below threshold levels, and provide reports on stock movement and value.",
-              "examples": "A supermarket's EPOS system decrementing stock counts when items are scanned at checkout; an Amazon warehouse management system tracking millions of SKUs; a pharmacy system flagging low medicine stock for reorder.",
-              "examTip": "Stock control systems link to EPOS (input), databases (storage), and automated purchasing (output). Benefits: prevents stockouts, reduces overstock, improves cash flow. Risk: if system fails, stock visibility is lost.",
-              "keyFacts": ["Barcode/RFID scanning updates stock levels automatically at point of sale", "Minimum stock level triggers automatic reorder to supplier", "Reduces manual stock counting — saves time and labour cost", "Real-time visibility: managers see current stock levels from any location", "Links to just-in-time (JIT) supply chain management"]
+              "term": "Storage Encryption",
+              "definition": "Encrypting data at rest so it is unreadable if the device or media is stolen.",
+              "examples": "Full-disk encryption on a laptop; encrypting an individual confidential file or folder.",
+              "examTip": "Storage encryption protects data 'at rest' — vital for lost/stolen devices. Link to A4.1.9.",
+              "keyFacts": [
+                "Safe password storage",
+                "Digital Rights Management (DRM)",
+                "File, folder, disc and device encryption"
+              ]
             },
             {
               "code": "A4.2.2",
-              "term": "Data Logging",
-              "definition": "Automated, continuous recording of sensor readings or system events over time — creating a time-stamped log for analysis, monitoring, or compliance purposes.",
-              "examples": "A weather station recording temperature, humidity, and wind speed every minute; factory sensors logging machine temperature and pressure; a server logging all access attempts with timestamps.",
-              "examTip": "Data logging = automated, continuous, time-stamped. Key exam use cases: environmental monitoring, security audit trails, scientific experiments, industrial process control. Link to IoT sensors (A1.1.9).",
-              "keyFacts": ["Continuous or interval-based automatic recording — no human intervention needed", "Timestamp on each record: essential for analysis of trends over time", "Used in: weather monitoring, factory process control, security systems, scientific research", "Large volumes of data generated — requires appropriate storage and database", "Analysed after collection to identify trends, anomalies, or compliance evidence"]
-            },
-            {
-              "code": "A4.2.3",
-              "term": "Data Analysis",
-              "definition": "Using IT systems to process and interpret large datasets to identify patterns, trends, and insights that inform business decisions.",
-              "examples": "A retailer analysing sales data to identify which products to promote; a healthcare organisation analysing patient outcomes to improve treatment protocols; a bank detecting fraud patterns in transaction data.",
-              "examTip": "Data analysis converts raw data into actionable insights. Link to big data, business intelligence (BI) tools, and AI-driven analytics (A5).",
-              "keyFacts": ["BI (Business Intelligence) tools: dashboards and reports from databases (e.g. Tableau, Power BI)", "Predictive analytics: uses historical data to forecast future trends", "Big data: analysis of extremely large datasets that traditional databases cannot handle", "Supports evidence-based decision making — replaces gut instinct with data"]
-            },
-            {
-              "code": "A4.2.4",
-              "term": "General Office Tasks",
-              "definition": "IT systems used for everyday administrative and business functions — word processing, spreadsheets, email, scheduling, and document management.",
-              "examples": "Microsoft 365 for documents, email, and calendar; SharePoint for document management; Teams for communication; Zoom for video meetings.",
-              "keyFacts": ["Productivity suites: Word, Excel, PowerPoint, Outlook — standard in most organisations", "Cloud-based versions (Microsoft 365, Google Workspace) enable collaboration from anywhere", "Email and calendar management critical for coordination", "Document management systems (DMS) ensure version control and access management"]
-            },
-            {
-              "code": "A4.2.5",
-              "term": "Creative Tasks",
-              "definition": "IT systems used for design, media production, animation, and other creative outputs.",
-              "examples": "Adobe Creative Cloud (Photoshop, Premiere, After Effects) for media production; AutoCAD for architectural drawings; Blender for 3D animation.",
-              "keyFacts": ["Requires high-specification hardware: powerful GPU, large RAM, colour-accurate display", "Software subscription models now common (Adobe Creative Cloud)", "Large file sizes: video and high-resolution images require fast storage and significant capacity", "Collaboration tools for creative teams: version control for assets, shared project files"]
-            },
-            {
-              "code": "A4.2.6",
-              "term": "Advertising",
-              "definition": "IT systems used to create, target, deliver, and measure the effectiveness of advertising campaigns.",
-              "examples": "Google Ads targeting users based on search terms; Facebook Ads Manager for demographic targeting; digital signage in retail stores; programmatic advertising platforms.",
-              "keyFacts": ["Digital advertising: precisely targeted using demographic and behavioural data", "Analytics: real-time measurement of ad performance (click-through rates, conversions)", "Links to targeted marketing (E1.2.2) and data ethics (F1.1)", "Programmatic advertising: automated buying and placement of adverts using algorithms"]
-            },
-            {
-              "code": "A4.2.7",
-              "term": "Manufacturing",
-              "definition": "IT systems that control, monitor, and optimise manufacturing processes — from design (CAD/CAM) through production (CNC, robotics) to quality control.",
-              "examples": "CAD software designing components; CAM converting CAD designs to machine instructions; CNC machines cutting parts to precise specifications; quality control sensors detecting defects.",
-              "keyFacts": ["CAD (Computer-Aided Design): digital design of products", "CAM (Computer-Aided Manufacturing): converts design into machine instructions", "CNC (Computer Numerical Control): machines executing precise manufacturing programs", "SCADA systems: supervisory control monitoring large industrial processes", "IoT sensors on production line: real-time quality monitoring"]
-            },
-            {
-              "code": "A4.2.8",
-              "term": "Security",
-              "definition": "IT systems used for physical and logical security — including CCTV, access control systems, intrusion detection, and cybersecurity monitoring.",
-              "examples": "IP CCTV system monitoring a warehouse; biometric access control on a server room; SIEM (Security Information and Event Management) system monitoring network traffic for threats.",
-              "keyFacts": ["IP CCTV: networked cameras with remote viewing, motion detection, cloud recording", "Access control systems: swipe cards, biometrics controlling physical entry", "SIEM: aggregates security logs from across the network to detect threats", "Generates large amounts of data (video, logs) requiring significant storage"]
-            },
-            {
-              "code": "A4.2.9",
-              "term": "Automation",
-              "definition": "Using IT systems to perform tasks with minimal or no human intervention — through programmed rules, robotic process automation (RPA), or AI-driven decision making.",
-              "examples": "Automated payroll processing; robotic arms assembling products; chatbots handling customer service; automated invoice processing using OCR.",
-              "keyFacts": ["RPA (Robotic Process Automation): software bots mimic human actions in digital systems", "Reduces labour cost for repetitive rule-based tasks", "Consistency: automation produces identical output every time — no human variation", "Ethical consideration: job displacement — automation replaces human workers"]
+              "term": "Communications Encryption",
+              "definition": "Encrypting data in transit so it cannot be read if intercepted.",
+              "examples": "HTTPS securing a website; a VPN encrypting remote-worker traffic; end-to-end encrypted messaging.",
+              "examTip": "Symmetric = one shared secret key (AES, fast); asymmetric = public+private key pair (RSA). Know the difference.",
+              "keyFacts": [
+                "Symmetric: one secret key, e.g. AES (fast)",
+                "Asymmetric: public + private keys, e.g. RSA, Diffie-Hellman",
+                "Used in TOR, VPNs, HTTPS, digital certificates",
+                "End-to-End Encryption (E2EE) in secure messaging apps"
+              ]
             }
           ]
         },
         {
-          "code": "A4.3",
-          "title": "Impact and Implications of IT Systems on Organisations",
+          "code": "A4.3-4.4",
+          "title": "WLAN Protection & Secure Design",
           "items": [
             {
-              "code": "A4.3.1",
-              "term": "User Experience (Ease of Use, Performance, Availability, Accessibility)",
-              "definition": "The overall quality of the experience employees and customers have when using an IT system — encompassing how intuitive it is, how quickly it responds, how reliably it is available, and whether all users can access it.",
-              "examTip": "UX has four spec-named dimensions: ease of use, performance, availability, accessibility. Cover all four in extended responses about IT system impact.",
-              "keyFacts": ["Ease of use: intuitive design reduces errors and training time", "Performance: slow systems reduce productivity and frustrate users", "Availability: downtime directly costs the business (lost sales, idle workers)", "Accessibility: systems must be usable by employees/customers with disabilities"]
-            },
-            {
-              "code": "A4.3.2",
-              "term": "Employee and Customer Needs",
-              "definition": "Whether the IT system genuinely meets the requirements of both the people who operate it (employees) and the people who interact with it or its outputs (customers).",
-              "keyFacts": ["Employees: must have the features they need, be intuitive, and not create extra work", "Customers: must be reliable, fast, and easy to use — negative customer experience costs the business", "Conflicting needs: what works for back-office staff may not work for customer-facing systems", "Feedback loops: ongoing collection of user feedback should drive system improvements"]
-            },
-            {
-              "code": "A4.3.3",
-              "term": "Cost",
-              "definition": "The financial impact of implementing and running an IT system on the organisation — covering initial investment, ongoing operational costs, and expected return on investment.",
-              "keyFacts": ["Capital expenditure: hardware, software licences, installation, infrastructure", "Ongoing costs: support, maintenance, licences, training refreshers, power", "ROI: measured in productivity gains, cost savings, revenue increase", "Hidden costs often underestimated: data migration, integration, change management"]
-            },
-            {
-              "code": "A4.3.4",
-              "term": "Implementation (Timescales, Testing, Migration, Downtime)",
-              "definition": "The practical challenges of deploying a new IT system — including realistic project timelines, thorough testing, moving existing data safely, and managing disruption.",
-              "examTip": "Same four sub-points as A4.1.7. Exam context here is about IMPACT on the organisation during and after implementation — not just planning considerations.",
-              "keyFacts": ["Realistic timescales prevent rushed deployment that causes problems", "Testing must include user acceptance testing (UAT) with real users", "Data migration risk: data lost or corrupted in transition", "Downtime: business cannot operate normally — plan for off-peak or phased rollout"]
-            },
-            {
-              "code": "A4.3.5",
-              "term": "Replacement or Integration with Current Systems",
-              "definition": "Whether the new IT system completely replaces existing systems or integrates alongside them — each approach has different risks, costs, and implications.",
-              "examTip": "Full replacement: clean break, no legacy compatibility issues, but high risk and cost. Integration: lower risk, leverages existing investment, but creates complexity and potential data inconsistency.",
-              "keyFacts": ["Full replacement: clean break — higher risk, higher cost, significant downtime", "Integration: new system works alongside existing — lower risk but added complexity", "Legacy system support: may need to maintain old system for years during transition", "API integration: new system connects to existing via APIs — enables data sharing without full replacement"]
-            },
-            {
-              "code": "A4.3.6",
-              "term": "Productivity",
-              "definition": "The effect of the new IT system on the output and efficiency of the organisation's workforce — both during the transition period and once fully adopted.",
-              "keyFacts": ["Initial productivity dip: users learning new system are slower", "Long-term gain: well-chosen system should outperform what it replaced", "Automation: removing manual steps frees staff for higher-value tasks", "Poorly implemented systems can permanently reduce productivity"]
-            },
-            {
-              "code": "A4.3.7",
-              "term": "Working Practices",
-              "definition": "How the new IT system changes the way employees perform their jobs — including shifts to remote working, new workflows, changed roles, and altered communication patterns.",
-              "keyFacts": ["Cloud systems enable remote and flexible working", "Collaborative tools change communication from email to real-time messaging", "Some job roles may become obsolete; new roles emerge", "Employees may resist change — change management is essential"]
-            },
-            {
-              "code": "A4.3.8",
-              "term": "Staff Training Needs (Initial and Ongoing)",
-              "definition": "The training required to ensure employees can use the new IT system effectively — both when it is first introduced and as updates and new features are added.",
-              "examTip": "Training has both a cost (time and money) and a duration — initial training gets users started, but ongoing training is needed as systems evolve. Insufficient training → errors, poor adoption, wasted investment.",
-              "keyFacts": ["Initial training: must cover all staff before go-live — time and cost", "Ongoing training: as system updates, staff need refresher training", "Different training needs: power users vs occasional users vs administrators", "Training formats: in-person, e-learning, documentation, video tutorials"]
-            },
-            {
-              "code": "A4.3.9",
-              "term": "User Support",
-              "definition": "The ongoing help and assistance provided to employees using the IT system — through internal helpdesks, vendor support contracts, online documentation, and self-service resources.",
-              "keyFacts": ["Internal IT helpdesk: first line of support for most organisations", "Vendor support contracts: defined response times for critical issues", "Self-service: knowledge base, FAQs, video tutorials reduce helpdesk load", "Support costs should be budgeted as part of total cost of ownership"]
-            },
-            {
-              "code": "A4.3.10",
-              "term": "Security",
-              "definition": "The security implications of deploying a new IT system — including new vulnerabilities introduced, security configuration required, and how the system interacts with existing security controls.",
+              "code": "A4.3",
+              "term": "Protecting a WLAN",
+              "definition": "Precautions that protect a wireless LAN from unauthorised access.",
+              "examples": "Using WPA3 encryption; hiding the SSID; MAC address filtering; changing default passwords.",
+              "examTip": "MAC filtering and WPA2/WPA3 appear in the sample paper. Remember MAC addresses can be spoofed (so 'medium' security).",
               "keyFacts": [
-                "New attack surface: any new system introduces potential new vulnerabilities",
-                "Configuration: default settings are often insecure — must be hardened at deployment",
-                "Patch management: ongoing security updates must be applied promptly",
-                "Integration security: APIs connecting systems create additional security considerations",
-                "User access: new system requires careful permissions configuration from day one"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "code": "A5",
-      "title": "Emerging Technologies",
-      "subtopics": [
-        {
-          "title": "Emerging Technologies and AI",
-          "items": [
-            {
-              "code": "A5.1",
-              "term": "How Emerging Technologies and AI Affect IT System Performance",
-              "definition": "Advances in artificial intelligence, quantum computing, edge computing, and 5G are changing what IT systems can do and how fast they can do it — enabling tasks that were previously impossible or impractically slow.",
-              "examples": "AI-accelerated processors (Apple M-series, NVIDIA GPUs) dramatically speeding up machine learning tasks; edge computing reducing latency by processing data near its source; 5G enabling real-time communication for autonomous vehicles.",
-              "examTip": "AI improves performance through: faster pattern recognition than rule-based systems, predictive optimisation (e.g. caching likely-needed data), hardware acceleration (dedicated AI chips). Emerging tech can also strain infrastructure — 5G requires new antenna networks; AI needs significant compute.",
-              "keyFacts": [
-                "AI chips (NPUs, TPUs, GPUs): process AI/ML workloads far faster than general-purpose CPUs",
-                "Edge computing: processing data at/near the source reduces latency and bandwidth — critical for IoT and autonomous systems",
-                "5G: up to 10 Gbps, sub-1ms latency — enables new real-time applications (autonomous vehicles, remote surgery)",
-                "Quantum computing: theoretically solves certain problems exponentially faster than classical computers — currently limited to research",
-                "AI optimisation: machine learning improves system performance over time by learning from usage patterns"
+                "MAC address filtering and hiding the SSID",
+                "Wireless encryption: WPA2/WPA3, Wi-Fi Protected Setup",
+                "Known attacks: unsecured AP, piggybacking, Evil Twin, sniffing",
+                "Mitigation: change defaults, allow/block lists, VPNs, WPA2/3, firewalls"
               ]
             },
             {
-              "code": "A5.2",
-              "term": "Implications of Emerging Technologies and AI on Personal Use of IT Systems",
-              "definition": "How AI and emerging technologies are changing everyday personal use of devices and digital services — from smart assistants to personalised recommendations to AI-generated content.",
-              "examples": "Siri/Alexa/Google Assistant using natural language processing to answer questions; Netflix/Spotify AI recommendation engines; deepfake tools generating convincing fake videos; AI writing assistants (ChatGPT).",
-              "examTip": "Exam questions on personal AI implications often focus on benefits (convenience, accessibility) vs ethical concerns (privacy, job displacement, misinformation via deepfakes, dependency). Cover both sides.",
+              "code": "A4.4",
+              "term": "Secure Network & System Design",
+              "definition": "Principles that build security into a system from the start, rather than adding it later.",
+              "examples": "Designing with 'least privilege' and assuming attackers will try to get in.",
+              "examTip": "Key principles: expect attacks, least privilege, don't rely on secrecy, comply with standards (ISO 27000).",
               "keyFacts": [
-                "Smart assistants: NLP allows voice-based interaction with devices — improves accessibility",
-                "Personalisation: AI tailors content, product recommendations, and search results to individual behaviour",
-                "Deepfakes: AI-generated fake images/videos that appear real — major misinformation risk",
-                "Privacy: AI systems require large amounts of personal data to function — raises GDPR concerns",
-                "Dependency: increasing reliance on AI for decisions reduces critical thinking and autonomy",
-                "AI in healthcare: diagnostic tools analysing medical images can detect conditions with high accuracy"
-              ]
-            },
-            {
-              "code": "A5.3",
-              "term": "Implications of Emerging Technologies and AI on Organisations",
-              "definition": "How AI and emerging technologies are reshaping how businesses operate — affecting processes, employment, competitive advantage, decision-making, and ethical responsibilities.",
-              "examples": "Amazon using machine learning for demand forecasting and automated warehouses; banks using AI for fraud detection and credit scoring; HR departments using AI to screen CVs.",
-              "examTip": "For organisation-level AI questions: cover efficiency gains, cost reduction, better decisions — AND job displacement, bias in AI systems, ethical concerns, and cybersecurity risks (AI also used by attackers). Both sides needed for Level 3.",
-              "keyFacts": [
-                "Automation of cognitive tasks: AI can now perform tasks previously requiring human intelligence (writing, image recognition, legal review)",
-                "Improved decision making: data-driven AI insights replace slower, biased human intuition",
-                "Competitive advantage: organisations using AI effectively can outpace competitors",
-                "Job displacement: AI threatens white-collar as well as blue-collar roles — accountants, lawyers, radiologists",
-                "Bias in AI: if training data reflects historical biases, AI perpetuates them (e.g. biased CV screening)",
-                "Cybersecurity: AI used by attackers for sophisticated phishing, automated vulnerability scanning",
-                "AI governance: organisations must ensure AI decisions are explainable and auditable"
+                "Expect attacks and plan for them",
+                "Run on fewest privileges (least privilege)",
+                "Assume the design will be known — avoid relying on secrecy/obscurity",
+                "Comply with standards such as ISO 27000"
               ]
             }
           ]

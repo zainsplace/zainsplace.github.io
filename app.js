@@ -1,7 +1,7 @@
-/* ===== UNIT 1 REVISION APP ===== */
+/* ===== UNIT 2 REVISION APP ===== */
 
 /* ---- STATE ---- */
-const STATE_KEY = 'u1rev_state';
+const STATE_KEY = 'u2rev_state';
 let state = loadState();
 
 function defaultState() {
@@ -20,6 +20,10 @@ function defaultState() {
       last: null,
       count: 0
     },
+    xp: 0,
+    activity: {},     // 'YYYY-MM-DD' -> action count (feeds the heatmap)
+    battles: { played: 0, won: 0 },
+    profile: { emoji: '⭐', col: '#DB2777' },
     extended: {
       history: []      // {type, wordCount, date, timeTaken}
     }
@@ -68,7 +72,7 @@ function loadJSON(path) {
 }
 
 /* ---- NAVIGATION ---- */
-const PAGES = ['home', 'sections', 'flashcards', 'questions', 'extended', 'search', 'plan'];
+const PAGES = ['home', 'sections', 'flashcards', 'questions', 'games', 'leaderboard', 'extended', 'examkit', 'search', 'plan', 'profile'];
 let currentPage = 'home';
 let currentSection = null;
 
@@ -89,9 +93,13 @@ function renderPage(page, opts) {
     case 'sections': renderSections(opts.section); break;
     case 'flashcards': renderFlashcards(); break;
     case 'questions': renderQuestions(); break;
+    case 'games': renderGames(); break;
+    case 'leaderboard': renderLeaderboardPage(); break;
     case 'extended': renderExtended(); break;
+    case 'examkit': renderExamKit(); break;
     case 'search': renderSearch(); break;
     case 'plan': renderPlan(); break;
+    case 'profile': renderProfile(); break;
   }
 }
 
@@ -105,12 +113,33 @@ function toast(msg, ms = 2000) {
   setTimeout(() => t.classList.remove('show'), ms);
 }
 
+/* ---- EXAM DATE (editable — click the countdown box to change) ---- */
+const DEFAULT_EXAM_DATE = '2026-05-15';
+
+function getExamDate() {
+  return state.examDate || DEFAULT_EXAM_DATE;
+}
+
 function daysUntilExam() {
-  const exam = new Date('2026-05-15');
+  const exam = new Date(getExamDate());
   const now = new Date();
   now.setHours(0, 0, 0, 0);
   exam.setHours(0, 0, 0, 0);
   return Math.max(0, Math.round((exam - now) / 86400000));
+}
+
+function setExamDate() {
+  const current = getExamDate();
+  const input = prompt('Enter your exam date (YYYY-MM-DD):', current);
+  if (!input) return;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(input.trim()) || isNaN(new Date(input.trim()).getTime())) {
+    toast('Invalid date — use YYYY-MM-DD format');
+    return;
+  }
+  state.examDate = input.trim();
+  saveState();
+  toast('Exam date updated!');
+  renderHome();
 }
 
 function ragClass(code) {
@@ -122,16 +151,16 @@ function ragClass(code) {
 }
 
 function sectionTierClass(letter) {
-  const t1 = ['C', 'D', 'B', 'E'];
-  const t2 = ['A', 'F'];
+  const t1 = ['A', 'B', 'D'];
+  const t2 = ['C'];
   if (t1.includes(letter)) return 'tier1';
   if (t2.includes(letter)) return 'tier2';
   return 'tier3';
 }
 
 function sectionColour(letter) {
-  const map = { A: '#3182ce', B: '#d69e2e', C: '#e53e3e', D: '#e53e3e', E: '#dd6b20', F: '#9f7aea' };
-  return map[letter] || '#6c63ff';
+  const map = { A: '#7C3AED', B: '#DB2777', C: '#10B981', D: '#8B5CF6' };
+  return map[letter] || '#7C3AED';
 }
 
 function sectionProgress(letter) {
@@ -147,7 +176,7 @@ function getSectionCodes(letter) {
   const codes = [];
   function walk(obj) {
     if (!obj || typeof obj !== 'object') return;
-    if (obj.code && /^[A-F][0-9]+\.[0-9]+/.test(obj.code)) codes.push(obj.code);
+    if (obj.code && /^[A-D][0-9]+\.[0-9]+/.test(obj.code)) codes.push(obj.code);
     Object.values(obj).forEach(v => { if (typeof v === 'object') walk(v); });
   }
   walk(d);
@@ -155,7 +184,7 @@ function getSectionCodes(letter) {
 }
 
 function overallProgress() {
-  const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
+  const letters = ['A', 'B', 'C', 'D'];
   const built = letters.filter(l => DATA[l.toLowerCase()]);
   if (!built.length) return 0;
   let total = 0, done = 0;
@@ -180,9 +209,69 @@ function today() {
   return new Date().toISOString().split('T')[0];
 }
 
+function pAv() { return (state.profile && state.profile.emoji) || '⭐'; }
+function pCol() { return (state.profile && state.profile.col) || '#DB2777'; }
+function pImg() { return (state.profile && state.profile.img) || null; }
+
+/* inner content for any "me" avatar: photo if set, else emoji */
+function meAvInner() {
+  return pImg() ? `<img src="${pImg()}" class="av-img" alt="">` : pAv();
+}
+
+function updateNavAvatar() {
+  const btn = el('nav-avatar');
+  if (btn) { btn.innerHTML = meAvInner(); btn.style.background = pCol(); }
+}
+
+function uploadAvatar() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.onchange = e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const img = new Image();
+      img.onload = () => {
+        // centre-crop to a square and downscale so it fits comfortably in localStorage
+        const size = 128;
+        const canvas = document.createElement('canvas');
+        canvas.width = size; canvas.height = size;
+        const ctx = canvas.getContext('2d');
+        const s = Math.min(img.width, img.height);
+        ctx.drawImage(img, (img.width - s) / 2, (img.height - s) / 2, s, s, 0, 0, size, size);
+        state.profile.img = canvas.toDataURL('image/jpeg', 0.85);
+        saveState();
+        updateNavAvatar();
+        renderProfile();
+        toast('Profile picture updated!');
+      };
+      img.onerror = () => toast('Couldn\'t read that image');
+      img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  };
+  input.click();
+}
+
+function removeAvatarImg() {
+  if (state.profile) delete state.profile.img;
+  saveState();
+  updateNavAvatar();
+  renderProfile();
+}
+
+function bumpActivity(n = 1) {
+  if (!state.activity) state.activity = {};
+  const d = today();
+  state.activity[d] = (state.activity[d] || 0) + n;
+  saveState();
+}
+
 /* ---- HOME ---- */
 function renderHome() {
-  loadData(['c', 'd', 'b', 'e', 'a', 'f']);
+  loadData(['a', 'b', 'd', 'c']);
   updateStreak();
 
   const days = daysUntilExam();
@@ -191,6 +280,9 @@ function renderHome() {
   const flashDue = getFlashcardsDueCount();
 
   el('home-countdown-days').textContent = days;
+  const examPassed = new Date(getExamDate()) < new Date(new Date().toDateString());
+  el('home-countdown-label').textContent = examPassed ? 'exam date has passed — click to set a new one' : 'days remaining';
+  el('home-countdown-date').textContent = `Exam: ${getExamDate()} • Unit 2: Cyber Security & Incident Management`;
   el('home-overall-progress').style.width = prog + '%';
   el('home-overall-pct').textContent = prog + '%';
   el('home-stat-green').textContent = rc.green;
@@ -198,19 +290,69 @@ function renderHome() {
   el('home-stat-red').textContent = rc.red;
   el('home-stat-streak').textContent = state.streak.count;
   el('home-flash-due').textContent = flashDue;
+  const myRank = rankFor(state.xp || 0);
+  el('home-stat-level').textContent = myRank.icon;
+  el('home-stat-level').style.color = myRank.col;
+  el('home-stat-xp').textContent = `${myRank.name} · ${state.xp || 0} XP`;
 
   renderSectionTiles();
+  renderPriorityTopics();
+}
+
+/* ---- PRIORITY TOPICS (weakest first: red, then amber) ---- */
+function findItemByCode(code) {
+  for (const key of ['a', 'b', 'c', 'd']) {
+    const d = DATA[key];
+    if (!d) continue;
+    let found = null;
+    (function walk(obj) {
+      if (found || !obj || typeof obj !== 'object') return;
+      if (obj.code === code && obj.term) { found = { term: obj.term, section: d.section }; return; }
+      Object.values(obj).forEach(v => { if (typeof v === 'object') walk(v); });
+    })(d);
+    if (found) return found;
+  }
+  return null;
+}
+
+function renderPriorityTopics() {
+  const container = el('priority-topics');
+  if (!container) return;
+  const reds = Object.entries(state.rag).filter(([, v]) => v === 'red').map(([k]) => k);
+  const ambers = Object.entries(state.rag).filter(([, v]) => v === 'amber').map(([k]) => k);
+  const picks = [...reds, ...ambers].slice(0, 6);
+
+  if (!picks.length) {
+    container.innerHTML = '';
+    return;
+  }
+
+  const rows = picks.map(code => {
+    const item = findItemByCode(code);
+    if (!item) return '';
+    const isRed = state.rag[code] === 'red';
+    return `
+      <div class="search-result" onclick="goToResult('${item.section}', '${code}')">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span class="badge" style="${isRed ? 'background:#FDECEC;color:#C53030;border-color:#F7C5C5' : 'background:#FEF4E0;color:#B7791F;border-color:#F8D5B3'}">${isRed ? '🔴' : '🟡'} ${code}</span>
+          <h4 style="flex:1">${item.term}</h4>
+          <span class="chevron">→</span>
+        </div>
+      </div>`;
+  }).join('');
+
+  container.innerHTML = `
+    <h3 style="margin-bottom:12px;font-size:14px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">🎯 Priority topics — revise these first</h3>
+    <div class="search-results" style="margin-bottom:20px">${rows}</div>`;
 }
 
 function renderSectionTiles() {
   const container = el('section-tiles');
   const sections = [
-    { letter: 'C', name: 'Operating Online', topics: 'Cloud, VPN, Online Communities' },
-    { letter: 'D', name: 'Protecting Data', topics: 'Threats, Encryption, Firewalls' },
-    { letter: 'B', name: 'Transmitting Data', topics: 'Networks, Protocols, Compression' },
-    { letter: 'E', name: 'Impact of IT', topics: 'Online Services, Data, E-commerce' },
-    { letter: 'A', name: 'IT Systems & Devices', topics: 'Devices, OS, Software, Interfaces' },
-    { letter: 'F', name: 'Legal & Ethical', topics: 'GDPR, Computer Misuse, Copyright' }
+    { letter: 'A', name: 'Cyber Security Threats & Protection', topics: 'Threats, Vulnerabilities, Encryption, GDPR' },
+    { letter: 'B', name: 'Networking Architectures & Security', topics: 'Networks, VPN, DHCP, Firewalls' },
+    { letter: 'D', name: 'Forensic Procedures', topics: 'Evidence, Imaging, Chain of Custody' },
+    { letter: 'C', name: 'Cyber Security Documentation', topics: 'Policies, Audits, Incident Response' }
   ];
 
   container.innerHTML = sections.map(s => {
@@ -255,12 +397,10 @@ function renderSections(letter) {
 
 function renderSectionList(container) {
   const sections = [
-    { letter: 'C', name: 'Operating Online', tier: 'tier1', col: '#e53e3e' },
-    { letter: 'D', name: 'Protecting Data', tier: 'tier1', col: '#e53e3e' },
-    { letter: 'B', name: 'Transmitting Data', tier: 'tier1', col: '#d69e2e' },
-    { letter: 'E', name: 'Impact of IT Systems', tier: 'tier1', col: '#dd6b20' },
-    { letter: 'A', name: 'IT Systems & Devices', tier: 'tier2', col: '#3182ce' },
-    { letter: 'F', name: 'Legal & Ethical Issues', tier: 'tier2', col: '#9f7aea' }
+    { letter: 'A', name: 'Cyber Security Threats & Protection', tier: 'tier1', col: '#7C3AED' },
+    { letter: 'B', name: 'Networking Architectures & Security', tier: 'tier1', col: '#DB2777' },
+    { letter: 'D', name: 'Forensic Procedures', tier: 'tier1', col: '#8B5CF6' },
+    { letter: 'C', name: 'Cyber Security Documentation', tier: 'tier2', col: '#10B981' }
   ];
   container.innerHTML = `
     <h2 style="margin-bottom:16px">Sections</h2>
@@ -354,6 +494,7 @@ function toggleCard(code) {
 
 function setRAG(code, val, letter) {
   state.rag[code] = val;
+  bumpActivity();
   saveState();
   const card = el('item-' + code);
   if (card) {
@@ -397,26 +538,12 @@ function renderFlashcards() {
 function buildFlashQueue() {
   if (!flashData) return;
   const todayStr = today();
-  const filtered = flashData.cards.filter(card => {
+  flashQueue = flashData.cards.filter(card => {
     if (flashFilter !== 'all' && card.section !== flashFilter) return false;
     if (flashPracticeMode) return true;
     const due = state.flashcards.nextDue[card.id];
     if (!due || due <= todayStr) return true;
     return false;
-  });
-  const groups = {};
-  filtered.forEach(card => {
-    if (!groups[card.section]) groups[card.section] = [];
-    groups[card.section].push(card);
-  });
-  const sectionOrder = ['A', 'B', 'C', 'D', 'E', 'F'];
-  flashQueue = sectionOrder.flatMap(s => {
-    const g = groups[s] || [];
-    for (let i = g.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [g[i], g[j]] = [g[j], g[i]];
-    }
-    return g;
   });
   flashIdx = 0;
   flashFlipped = false;
@@ -437,7 +564,7 @@ function renderFlashUI() {
 
   const boxNames     = ['New / Learning', 'Familiar', 'Confident', 'Strong', 'Mastered'];
   const boxIntervals = ['every 1 day', 'every 2 days', 'every 4 days', 'every 8 days', 'every 16 days'];
-  const boxColors    = ['#e53e3e', '#dd6b20', '#d69e2e', '#38a169', '#6c63ff'];
+  const boxColors    = ['#DC2626', '#DB2777', '#F59E0B', '#10B981', '#7C3AED'];
 
   container.innerHTML = `
     <h2 style="margin-bottom:12px">Flashcards</h2>
@@ -451,14 +578,14 @@ function renderFlashUI() {
         </div>`).join('')}
     </div>
     <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center">
-      <select id="flash-filter" onchange="setFlashFilter(this.value)" style="background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:8px;border-radius:6px;font-size:14px">
+      <select id="flash-filter" onchange="setFlashFilter(this.value)" style="background:var(--bg2);border:2px solid var(--border);color:var(--text);padding:9px 12px;border-radius:var(--radius-sm);font-size:14px;font-family:'Nunito',sans-serif;font-weight:600;box-shadow:var(--shadow-sm);cursor:pointer">
         <option value="all" ${flashFilter === 'all' ? 'selected' : ''}>All sections</option>
-        ${['A','B','C','D','E','F'].map(l => `<option value="${l}" ${flashFilter === l ? 'selected' : ''}>${l}</option>`).join('')}
+        ${['A','B','C','D'].map(l => `<option value="${l}" ${flashFilter === l ? 'selected' : ''}>${l}</option>`).join('')}
       </select>
       <span style="font-size:14px;color:var(--text2)">${due} due today / ${total} total</span>
       <button class="btn btn-secondary btn-sm" onclick="flashPracticeMode=false;buildFlashQueue();renderFlashUI()">Refresh queue</button>
     </div>
-    ${flashPracticeMode ? `<div style="background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.3);border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:13px;color:var(--accent2)"><strong>Practice mode</strong> — reviewing all ${flashQueue.length} cards. Leitner progress is not being saved. <button class="btn btn-secondary btn-sm" style="margin-left:8px" onclick="flashPracticeMode=false;buildFlashQueue();renderFlashUI()">Exit practice mode</button></div>` : ''}
+    ${flashPracticeMode ? `<div style="background:rgba(124,58,237,0.08);border:2px solid rgba(124,58,237,0.25);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:12px;font-size:13px;color:var(--accent2)"><strong>Practice mode</strong> — reviewing all ${flashQueue.length} cards. Leitner progress is not being saved. <button class="btn btn-secondary btn-sm" style="margin-left:8px" onclick="flashPracticeMode=false;buildFlashQueue();renderFlashUI()">Exit practice mode</button></div>` : ''}
     ${due === 0 && !flashPracticeMode ? `
       <div class="empty-state">
         <div class="icon">🎉</div>
@@ -482,7 +609,7 @@ function renderCurrentFlashcard() {
         <div class="flashcard-face front">
           <span class="badge" style="margin-bottom:12px">${card.code}</span>
           <div class="term">${card.front}</div>
-          <div class="hint">Tap or press <kbd>Space</kbd> to reveal</div>
+          <div class="hint">Tap to reveal</div>
         </div>
         <div class="flashcard-face back">
           <span class="badge" style="margin-bottom:12px">${card.section}</span>
@@ -494,9 +621,6 @@ function renderCurrentFlashcard() {
       <button class="rag-btn active-red" onclick="answerFlash(false)">✗ Didn't know</button>
       <button class="rag-btn active-green" onclick="answerFlash(true)">✓ Got it!</button>
     </div>
-    <div class="flash-keyhint${flashFlipped ? '' : ' hidden'}" id="flash-keyhint">
-      <kbd>←</kbd> Didn't know &nbsp;·&nbsp; <kbd>→</kbd> Got it
-    </div>
     <div class="progress-bar-wrap" style="margin-top:12px"><div class="progress-bar" id="flash-progress-bar" style="width:${pct}%"></div></div>`;
 }
 
@@ -506,8 +630,6 @@ function flipFlashcard() {
   if (inner) inner.classList.toggle('flipped', flashFlipped);
   const btns = el('flash-answer-btns');
   if (btns) btns.classList.toggle('hidden', !flashFlipped);
-  const hint = el('flash-keyhint');
-  if (hint) hint.classList.toggle('hidden', !flashFlipped);
 }
 
 function answerFlash(correct) {
@@ -520,28 +642,14 @@ function answerFlash(correct) {
     const due = new Date();
     due.setDate(due.getDate() + interval);
     state.flashcards.nextDue[card.id] = due.toISOString().split('T')[0];
+    state.xp = (state.xp || 0) + (correct ? 5 : 2);
+    bumpActivity();
     saveState();
   }
   flashIdx++;
   flashFlipped = false;
   renderFlashUI();
 }
-
-document.addEventListener('keydown', function(e) {
-  if (currentPage !== 'flashcards') return;
-  if (flashIdx >= flashQueue.length) return;
-  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-  if (e.code === 'Space') {
-    e.preventDefault();
-    flipFlashcard();
-  } else if (e.code === 'ArrowLeft' && flashFlipped) {
-    e.preventDefault();
-    answerFlash(false);
-  } else if (e.code === 'ArrowRight' && flashFlipped) {
-    e.preventDefault();
-    answerFlash(true);
-  }
-});
 
 function setFlashFilter(val) {
   flashFilter = val;
@@ -582,16 +690,8 @@ function renderQuestions() {
 }
 
 function renderBrowseMode(container) {
-  const sections = ['all', 'A', 'B', 'C', 'D', 'E', 'F'];
-  const base = qFilter === 'all' ? qData.questions : qData.questions.filter(q => q.section === qFilter);
-  const groups = {};
-  base.forEach(q => { if (!groups[q.section]) groups[q.section] = []; groups[q.section].push(q); });
-  const sectionOrder = ['A', 'B', 'C', 'D', 'E', 'F'];
-  const filtered = sectionOrder.flatMap(s => {
-    const g = groups[s] ? [...groups[s]] : [];
-    for (let i = g.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [g[i], g[j]] = [g[j], g[i]]; }
-    return g;
-  });
+  const sections = ['all', 'A', 'B', 'C', 'D'];
+  const filtered = qFilter === 'all' ? qData.questions : qData.questions.filter(q => q.section === qFilter);
 
   container.innerHTML = `
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:16px">
@@ -652,6 +752,7 @@ function selfMark(qId, marks) {
 function recordScore(qId, score, maxMarks) {
   const pct = Math.round((score / maxMarks) * 100);
   state.questions.history.push({ qId, marks: maxMarks, date: today(), selfScore: pct });
+  bumpActivity();
   saveState();
   toast(`Recorded: ${score}/${maxMarks} (${pct}%)`);
   const sm = el('selfmark-' + qId);
@@ -663,10 +764,14 @@ function setQFilter(f) {
   renderQuestions();
 }
 
+let quizScore = 0, quizMax = 0;
+
 function startQuiz() {
   qMode = 'quiz';
   quizQueue = [...(qData ? qData.questions : [])].sort(() => Math.random() - 0.5).slice(0, 10);
   quizIdx = 0;
+  quizScore = 0;
+  quizMax = 0;
   renderQuestions();
 }
 
@@ -675,8 +780,8 @@ function renderQuizMode(container) {
     container.innerHTML = `
       <div class="empty-state">
         <div class="icon">🏆</div>
-        <h2 style="margin-bottom:8px">Quiz Complete!</h2>
-        <p>${quizQueue.length} questions answered.</p>
+        <h2 style="margin-bottom:8px">Quiz Complete — ${quizScore}/${quizMax} marks${quizMax ? ` (${Math.round((quizScore / quizMax) * 100)}%)` : ''}</h2>
+        <p>${quizQueue.length} questions answered · +${quizScore * 2} XP earned.</p>
         <button class="btn btn-primary" style="margin-top:16px" onclick="qMode='browse';renderQuestions()">Back to browse</button>
       </div>`;
     return;
@@ -720,6 +825,10 @@ function showQuizAnswer() {
 function recordQuizScore(qId, score, maxMarks) {
   const pct = Math.round((score / maxMarks) * 100);
   state.questions.history.push({ qId, marks: maxMarks, date: today(), selfScore: pct });
+  quizScore += score;
+  quizMax += maxMarks;
+  state.xp = (state.xp || 0) + score * 2;
+  bumpActivity();
   saveState();
   quizIdx++;
   renderQuestions();
@@ -900,6 +1009,896 @@ function toggleMarkScheme(id) {
   if (m) m.classList.toggle('show');
 }
 
+/* ---- XP & LEVELS ---- */
+const XP_PER_LEVEL = 250;
+
+function awardXP(n, quiet) {
+  state.xp = (state.xp || 0) + n;
+  bumpActivity();
+  saveState();
+  if (!quiet) toast(`+${n} XP`);
+}
+
+function xpLevel() { return Math.floor((state.xp || 0) / XP_PER_LEVEL) + 1; }
+function xpIntoLevel() { return (state.xp || 0) % XP_PER_LEVEL; }
+
+/* ---- RANKS ---- */
+const RANKS = [
+  { name: 'Bronze',       icon: '🥉', col: '#B45309', min: 0 },
+  { name: 'Silver',       icon: '🥈', col: '#64748B', min: 300 },
+  { name: 'Gold',         icon: '🥇', col: '#D97706', min: 750 },
+  { name: 'Platinum',     icon: '💠', col: '#0EA5E9', min: 1500 },
+  { name: 'Diamond',      icon: '💎', col: '#7C3AED', min: 2500 },
+  { name: 'Master',       icon: '🔮', col: '#DB2777', min: 4000 },
+  { name: 'Cyber Legend', icon: '👑', col: '#312A3D', min: 6000 }
+];
+
+function rankFor(xp) {
+  let r = RANKS[0];
+  for (const t of RANKS) { if (xp >= t.min) r = t; else break; }
+  const idx = RANKS.indexOf(r);
+  const next = RANKS[idx + 1] || null;
+  return { ...r, idx, next };
+}
+
+function rankChip(xp) {
+  const r = rankFor(xp);
+  return `<span class="rank-chip" style="color:${r.col};border-color:${r.col}40;background:${r.col}14">${r.icon} ${r.name}</span>`;
+}
+
+/* ---- GAMES (MCQ quick-fire + match) ---- */
+let gamesMode = 'menu';
+let mcq = null;
+let matchGame = null;
+let matchInterval = null;
+
+function renderGames() {
+  const container = el('games-content');
+  if (gamesMode === 'mcq') { renderMCQ(container); return; }
+  if (gamesMode === 'match') { renderMatch(container); return; }
+  if (gamesMode === 'battle' && battle) { renderBattleUI(container); return; }
+
+  const best = localStorage.getItem('u2_match_best');
+  container.innerHTML = `
+    <h2 style="margin-bottom:6px">Games</h2>
+    <p style="color:var(--text2);font-size:14px;margin-bottom:18px">Active recall, but fun. Earn XP for every game — you're Level ${xpLevel()} with ${state.xp || 0} XP.</p>
+    <div class="grid2">
+      <div class="section-tile" onclick="startMCQ()">
+        <div class="tile-accent" style="background:var(--accent)"></div>
+        <div class="tile-code">⚡</div>
+        <h3>Quick-fire MCQ</h3>
+        <p>10 multiple-choice questions generated from your flashcards. +10 XP per correct answer.</p>
+      </div>
+      <div class="section-tile" onclick="startMatch()">
+        <div class="tile-accent" style="background:var(--pink)"></div>
+        <div class="tile-code">🧩</div>
+        <h3>Match</h3>
+        <p>Pair terms with definitions against the clock. +30 XP per clear.${best ? ` Best time: <strong>${best}s</strong>` : ''}</p>
+      </div>
+    </div>
+    <h3 style="margin:24px 0 12px;font-size:14px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">⚔️ Battle arena — vs the leaderboard</h3>
+    <div class="grid2">
+      ${Object.entries(BATTLE_MODES).map(([key, m]) => `
+        <div class="section-tile" onclick="startBattle('${key}')">
+          <div class="tile-accent" style="background:${key === 'duel' ? 'var(--pink)' : 'var(--accent)'}"></div>
+          <div class="tile-code">${m.icon}</div>
+          <h3>${m.name}</h3>
+          <p>${m.desc}</p>
+        </div>`).join('')}
+    </div>
+    ${renderLeaderboardHTML()}`;
+}
+
+/* -- Leaderboard (fake rivals — their XP grows daily so the race feels live) -- */
+const LB_EPOCH = new Date('2026-06-01').getTime();
+
+const LB_BOTS = [
+  /* — your bracket (Bronze/Silver) — */
+  { name: 'itzKayden08',        tag: 'Revision machine',  base: 120, rate: 38, col: '#7C3AED' },
+  { name: 'maddie.exe',         tag: 'Forensics nerd',    base: 90,  rate: 31, col: '#DB2777' },
+  { name: 'TTV_R3eceplays',     tag: 'Flashcard grinder (live)', base: 60, rate: 26, col: '#10B981' },
+  { name: 'xX_Sn1per_Lukas_Xx', tag: 'Revises at 11pm the night before', base: 10, rate: 9, col: '#F59E0B' },
+  { name: 'notlivvy',           tag: '9-mark specialist', base: 80,  rate: 22, col: '#8B5CF6' },
+  { name: 'ZayanFN_09',         tag: 'Match game demon',  base: 40,  rate: 17, col: '#DC2626' },
+  { name: 'sleepyell1e',        tag: 'Quietly cooking',   base: 30,  rate: 13, col: '#0EA5E9' },
+  /* — Silver/Gold — */
+  { name: 'big_curtis_W',       tag: 'Streak protector',  base: 320, rate: 12, col: '#64748B' },
+  { name: 'aliyah.studies',     tag: 'Notion aesthetic queen', base: 380, rate: 15, col: '#DB2777' },
+  { name: 'lowkeyjordan',       tag: 'Says he doesn\'t revise. Lies.', base: 700, rate: 14, col: '#10B981' },
+  { name: 'p1xelpatel',         tag: 'MCQ speedrunner',   base: 820, rate: 16, col: '#7C3AED' },
+  { name: 'erinhasnoexams',     tag: 'Ironic username',   base: 900, rate: 11, col: '#F59E0B' },
+  /* — Silver/Gold (more) — */
+  { name: 'jxck_billings',      tag: 'Group chat admin',  base: 420, rate: 14, col: '#10B981' },
+  { name: 'freyah2009',         tag: 'Colour-coded notes', base: 540, rate: 13, col: '#8B5CF6' },
+  { name: 'OllieW_main',        tag: '"It\'s my second account"', base: 610, rate: 12, col: '#0EA5E9' },
+  { name: 'ria.revises',        tag: 'Username says it all', base: 1050, rate: 14, col: '#DB2777' },
+  { name: 'capybara_ben',       tag: 'Here for the games', base: 1150, rate: 10, col: '#F59E0B' },
+  { name: 'WhoIsTyler_',        tag: 'Mysterious grinder', base: 1300, rate: 13, col: '#312A3D' },
+  /* — Platinum — */
+  { name: 'DefNotArchie',       tag: 'Plat and proud',    base: 1550, rate: 13, col: '#0EA5E9' },
+  { name: 'emsy_x',             tag: 'Past paper warlord', base: 1700, rate: 15, col: '#8B5CF6' },
+  { name: 'voidwxlker',         tag: 'Revises in dark mode only', base: 1950, rate: 12, col: '#312A3D' },
+  { name: 'sadiq.studies',      tag: 'Library resident',  base: 1820, rate: 14, col: '#10B981' },
+  { name: 'gracie_mxy',         tag: 'Flashcards at the bus stop', base: 2100, rate: 11, col: '#DB2777' },
+  { name: 'L0gan_idk',          tag: 'Accidentally good at this', base: 2250, rate: 12, col: '#F59E0B' },
+  /* — Diamond — */
+  { name: 'hazza.dnf',          tag: 'Diamond gatekeeper', base: 2600, rate: 11, col: '#7C3AED' },
+  { name: 'k1ngmarcus',         tag: 'Self-proclaimed GOAT', base: 3100, rate: 13, col: '#DC2626' },
+  { name: 'evieplays_x',        tag: 'Duels anyone who asks', base: 2800, rate: 12, col: '#DB2777' },
+  { name: 'thearchitect_jay',   tag: 'Mind palace user (allegedly)', base: 3300, rate: 11, col: '#0EA5E9' },
+  { name: 'n0tmichelle',        tag: 'Diamond and climbing', base: 3600, rate: 13, col: '#8B5CF6' },
+  /* — Master — */
+  { name: 'taraxo_07',          tag: 'Carried the group project', base: 4200, rate: 10, col: '#DB2777' },
+  { name: 'GlazedDonut_Finn',   tag: 'Nobody knows his real name', base: 4800, rate: 12, col: '#F59E0B' },
+  { name: 'silentcarter_',      tag: 'Never speaks. Always wins.', base: 4500, rate: 11, col: '#312A3D' },
+  { name: 'amara.aces',         tag: 'Mock exam merchant', base: 5200, rate: 10, col: '#7C3AED' },
+  /* — Cyber Legend — */
+  { name: 'cleanest_ahmxd',     tag: 'Finished the spec in March', base: 6300, rate: 8, col: '#312A3D' },
+  { name: 'prodigy_wren',       tag: 'Teachers ask HER for help', base: 6800, rate: 9, col: '#DB2777' },
+  { name: 'xue_2008',           tag: 'The final boss',    base: 7400, rate: 7, col: '#7C3AED' }
+];
+
+function botXP(bot) {
+  const days = Math.max(0, Math.floor((Date.now() - LB_EPOCH) / 86400000));
+  // deterministic daily jitter so bots don't grow in a perfectly straight line
+  let h = 0;
+  for (const ch of bot.name) h = (h * 31 + ch.charCodeAt(0)) % 997;
+  const jitter = ((days * h) % 17) - 8;
+  return Math.max(0, bot.base + bot.rate * days + jitter);
+}
+
+function getLBRows() {
+  const rows = LB_BOTS.map(b => ({ name: b.name, tag: b.tag, col: b.col, xp: botXP(b), me: false }));
+  rows.push({ name: 'You', tag: `Level ${xpLevel()}`, col: pCol(), xp: state.xp || 0, me: true });
+  rows.sort((a, b) => b.xp - a.xp);
+  rows.forEach((r, i) => { r.pos = i + 1; });
+  return rows;
+}
+
+const LB_MEDALS = { 1: '🥇', 2: '🥈', 3: '🥉' };
+
+function lbRowHTML(r) {
+  return `
+    <div class="lb-row${r.me ? ' me' : ''}">
+      <span class="lb-rank">${LB_MEDALS[r.pos] || '#' + r.pos}</span>
+      <span class="lb-av" style="background:${r.col}">${r.me ? pAv() : r.name.charAt(0)}</span>
+      <span class="lb-name">${r.name}${r.me ? ' <span class="lb-you">(you)</span>' : ''}<span class="lb-tag">${r.tag}</span></span>
+      ${rankChip(r.xp)}
+      <span class="lb-xp">${r.xp.toLocaleString()} XP</span>
+    </div>`;
+}
+
+function lbMotivator(rows) {
+  const me = rows.find(r => r.me);
+  const ahead = me.pos > 1 ? rows[me.pos - 2] : null;
+  const gap = ahead ? ahead.xp - me.xp : 0;
+  return me.pos === 1
+    ? 'You\'re top of the table — defend it! 👑'
+    : `You're <strong>#${me.pos} of ${rows.length}</strong>. ${ahead.name} is ${gap.toLocaleString()} XP ahead — about ${Math.max(1, Math.ceil(gap / 10))} correct MCQs to catch them.`;
+}
+
+/* compact view: the 7 players around you (used on the Games page) */
+function renderLeaderboardHTML() {
+  const rows = getLBRows();
+  const i = rows.findIndex(r => r.me);
+  const start = Math.max(0, Math.min(i - 3, rows.length - 7));
+  const view = rows.slice(start, start + 7);
+
+  return `
+    <h3 style="margin:24px 0 4px;font-size:14px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">🏁 Players near you</h3>
+    <p style="color:var(--text2);font-size:13px;margin-bottom:12px">${lbMotivator(rows)}</p>
+    <div class="lb-board">${view.map(lbRowHTML).join('')}</div>
+    <button class="btn btn-secondary btn-sm" style="margin-top:10px" onclick="navigate('leaderboard')">View full leaderboard →</button>`;
+}
+
+/* full view: every player, grouped by rank tier (used on the Leaderboard page) */
+function renderLeaderboardByTier() {
+  const rows = getLBRows();
+  const tiers = [...RANKS].reverse();
+
+  return `
+    <p style="color:var(--text2);font-size:13px;margin-bottom:12px">${lbMotivator(rows)}</p>
+    ${tiers.map(t => {
+      const members = rows.filter(r => rankFor(r.xp).name === t.name);
+      if (!members.length) return '';
+      const mine = members.some(r => r.me);
+      return `
+        <div class="lb-tier${mine ? ' mine' : ''}">
+          <div class="lb-tier-head" style="color:${t.col}">
+            <span>${t.icon} ${t.name}</span>
+            <span class="lb-tier-count">${t.min.toLocaleString()}+ XP · ${members.length} player${members.length !== 1 ? 's' : ''}${mine ? ' · your division' : ''}</span>
+          </div>
+          <div class="lb-board">${members.map(lbRowHTML).join('')}</div>
+        </div>`;
+    }).join('')}`;
+}
+
+function renderRankLadder() {
+  const xp = state.xp || 0;
+  const me = rankFor(xp);
+  const toNext = me.next ? me.next.min - xp : 0;
+  const span = me.next ? me.next.min - me.min : 1;
+  const pct = me.next ? Math.min(100, Math.round(((xp - me.min) / span) * 100)) : 100;
+
+  return `
+    <div class="card" style="margin-bottom:18px">
+      <h3 style="margin-bottom:4px">${me.icon} Your rank: <span style="color:${me.col}">${me.name}</span></h3>
+      <p style="font-size:13px;color:var(--text2);margin-bottom:10px">${
+        me.next
+          ? `${toNext.toLocaleString()} XP to ${me.next.icon} ${me.next.name} — roughly ${Math.max(1, Math.ceil(toNext / 10))} correct MCQs or ${Math.max(1, Math.ceil(toNext / 30))} match clears.`
+          : 'Maximum rank achieved. You ARE the syllabus. 👑'
+      }</p>
+      <div class="progress-bar-wrap"><div class="progress-bar" style="width:${pct}%"></div></div>
+      <div class="rank-ladder">
+        ${RANKS.map(r => `
+          <div class="rank-step${r.name === me.name ? ' current' : ''}${xp >= r.min ? ' unlocked' : ''}">
+            <span class="rank-step-icon">${r.icon}</span>
+            <span class="rank-step-name">${r.name}</span>
+            <span class="rank-step-xp">${r.min.toLocaleString()}+</span>
+          </div>`).join('')}
+      </div>
+    </div>`;
+}
+
+function renderLeaderboardPage() {
+  el('leaderboard-content').innerHTML = `
+    <h2 style="margin-bottom:6px">Leaderboard</h2>
+    <p style="color:var(--text2);font-size:14px;margin-bottom:14px">Earn XP from flashcards, games and quizzes to climb the table. Rivals revise daily — fall behind and they'll pass you.</p>
+    ${renderRankLadder()}
+    ${renderLeaderboardByTier()}
+    <div style="margin-top:18px;display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="navigate('games')">⚡ Earn XP in Games</button>
+      <button class="btn btn-secondary" onclick="navigate('flashcards')">📚 Review flashcards</button>
+    </div>`;
+}
+
+/* -- Quick-fire MCQ -- */
+function startMCQ() {
+  const cards = INLINE_FLASHCARDS.cards;
+  const qs = [...cards].sort(() => Math.random() - 0.5).slice(0, 10).map(c => {
+    let pool = cards.filter(x => x.id !== c.id && x.section === c.section);
+    if (pool.length < 3) pool = cards.filter(x => x.id !== c.id);
+    const opts = [...pool].sort(() => Math.random() - 0.5).slice(0, 3).map(d => ({ text: d.back, correct: false }));
+    opts.push({ text: c.back, correct: true });
+    opts.sort(() => Math.random() - 0.5);
+    return { front: c.front, code: c.code, opts };
+  });
+  mcq = { qs, idx: 0, score: 0, answered: false };
+  gamesMode = 'mcq';
+  renderGames();
+}
+
+function renderMCQ(container) {
+  if (mcq.idx >= mcq.qs.length) {
+    const pct = Math.round((mcq.score / mcq.qs.length) * 100);
+    container.innerHTML = `
+      <div class="empty-state">
+        <div class="icon">${pct >= 80 ? '🏆' : pct >= 50 ? '💪' : '📚'}</div>
+        <h2 style="margin-bottom:8px">${mcq.score}/${mcq.qs.length} correct (${pct}%)</h2>
+        <p>${pct >= 80 ? 'Outstanding — that knowledge is locked in.' : pct >= 50 ? 'Solid — review the ones you missed and go again.' : 'Good effort — hit the flashcards on these topics and retry.'}</p>
+        <div style="display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap">
+          <button class="btn btn-primary" onclick="startMCQ()">Play again</button>
+          <button class="btn btn-secondary" onclick="gamesMode='menu';renderGames()">Back to games</button>
+        </div>
+      </div>`;
+    return;
+  }
+  const q = mcq.qs[mcq.idx];
+  container.innerHTML = `
+    <div class="quiz-wrap">
+      <div class="quiz-progress">
+        <span>${mcq.idx + 1}/${mcq.qs.length} · Score ${mcq.score}</span>
+        <div class="bar"><div class="bar-fill" style="width:${Math.round((mcq.idx / mcq.qs.length) * 100)}%"></div></div>
+        <button class="btn btn-secondary btn-sm" onclick="gamesMode='menu';renderGames()">Exit</button>
+      </div>
+      <div class="card">
+        <span class="badge" style="margin-bottom:10px;display:inline-block">${q.code}</span>
+        <p class="quiz-q">${q.front}</p>
+        <div class="mcq-opts">
+          ${q.opts.map((o, i) => `<button class="mcq-opt" id="mcq-opt-${i}" onclick="answerMCQ(${i})">${o.text}</button>`).join('')}
+        </div>
+        <button class="btn btn-primary btn-full hidden" id="mcq-next" onclick="mcq.idx++;mcq.answered=false;renderGames()">Next →</button>
+      </div>
+    </div>`;
+}
+
+function answerMCQ(i) {
+  if (mcq.answered) return;
+  mcq.answered = true;
+  const q = mcq.qs[mcq.idx];
+  q.opts.forEach((o, j) => {
+    const btn = el('mcq-opt-' + j);
+    if (o.correct) btn.classList.add('right');
+    else if (j === i) btn.classList.add('wrong');
+    btn.disabled = true;
+  });
+  if (q.opts[i].correct) {
+    mcq.score++;
+    awardXP(10, true);
+  }
+  el('mcq-next').classList.remove('hidden');
+}
+
+/* -- Match game -- */
+function startMatch() {
+  if (!searchBuilt) { loadData(['a', 'b', 'c', 'd']); buildSearchIndex(); }
+  const pool = allSearchContent.filter(x => x.definition && x.definition.length > 20);
+  const pairs = [...pool].sort(() => Math.random() - 0.5).slice(0, 6);
+  const tiles = [];
+  pairs.forEach((p, i) => {
+    tiles.push({ pair: i, kind: 'term', text: p.term });
+    tiles.push({ pair: i, kind: 'def', text: p.definition.length > 90 ? p.definition.substring(0, 90) + '…' : p.definition });
+  });
+  tiles.sort(() => Math.random() - 0.5);
+  matchGame = { tiles, sel: null, done: new Set(), start: Date.now() };
+  gamesMode = 'match';
+  renderGames();
+  if (matchInterval) clearInterval(matchInterval);
+  matchInterval = setInterval(() => {
+    const t = el('match-clock');
+    if (t && matchGame) t.textContent = Math.floor((Date.now() - matchGame.start) / 1000) + 's';
+  }, 500);
+}
+
+function renderMatch(container) {
+  container.innerHTML = `
+    <div class="quiz-wrap" style="max-width:760px">
+      <div class="quiz-progress">
+        <span>🧩 Match — <span id="match-clock">0s</span></span>
+        <div class="bar"><div class="bar-fill" style="width:${Math.round((matchGame.done.size / 6) * 100)}%"></div></div>
+        <button class="btn btn-secondary btn-sm" onclick="clearInterval(matchInterval);gamesMode='menu';renderGames()">Exit</button>
+      </div>
+      <div class="match-grid">
+        ${matchGame.tiles.map((t, i) => `
+          <button class="match-tile ${t.kind} ${matchGame.done.has(t.pair) ? 'matched' : ''}" id="mt-${i}" onclick="pickTile(${i})">${t.text}</button>`).join('')}
+      </div>
+    </div>`;
+}
+
+function pickTile(i) {
+  const t = matchGame.tiles[i];
+  if (matchGame.done.has(t.pair)) return;
+  const btn = el('mt-' + i);
+
+  if (matchGame.sel === null) {
+    matchGame.sel = i;
+    btn.classList.add('sel');
+    return;
+  }
+  if (matchGame.sel === i) {
+    btn.classList.remove('sel');
+    matchGame.sel = null;
+    return;
+  }
+
+  const prev = matchGame.tiles[matchGame.sel];
+  const prevBtn = el('mt-' + matchGame.sel);
+
+  if (prev.pair === t.pair && prev.kind !== t.kind) {
+    matchGame.done.add(t.pair);
+    btn.classList.add('matched');
+    prevBtn.classList.remove('sel');
+    prevBtn.classList.add('matched');
+    matchGame.sel = null;
+    if (matchGame.done.size === 6) finishMatch();
+  } else {
+    btn.classList.add('wrong');
+    prevBtn.classList.add('wrong');
+    const a = i, b = matchGame.sel;
+    matchGame.sel = null;
+    setTimeout(() => {
+      const ba = el('mt-' + a), bb = el('mt-' + b);
+      if (ba) ba.classList.remove('wrong');
+      if (bb) { bb.classList.remove('wrong'); bb.classList.remove('sel'); }
+    }, 450);
+  }
+}
+
+function finishMatch() {
+  clearInterval(matchInterval);
+  const secs = Math.floor((Date.now() - matchGame.start) / 1000);
+  const best = parseInt(localStorage.getItem('u2_match_best') || '0', 10);
+  const isBest = !best || secs < best;
+  if (isBest) localStorage.setItem('u2_match_best', String(secs));
+  awardXP(30, true);
+  setTimeout(() => {
+    el('games-content').innerHTML = `
+      <div class="empty-state">
+        <div class="icon">${isBest ? '🥇' : '🎉'}</div>
+        <h2 style="margin-bottom:8px">Cleared in ${secs}s${isBest ? ' — new best time!' : ''}</h2>
+        <p>+30 XP earned. ${best && !isBest ? `Your best is ${best}s — can you beat it?` : ''}</p>
+        <div style="display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap">
+          <button class="btn btn-primary" onclick="startMatch()">Play again</button>
+          <button class="btn btn-secondary" onclick="gamesMode='menu';renderGames()">Back to games</button>
+        </div>
+      </div>`;
+  }, 500);
+}
+
+/* -- QUIZ BATTLE — live competition vs leaderboard rivals -- */
+let battle = null;
+let battleTick = null;
+const BATTLE_Q_SECS = 12;
+
+const BATTLE_MODES = {
+  elim:  { name: 'Elimination', icon: '💀', desc: '8 players. Answer wrong — or be the slowest correct — and you\'re out. Last one standing wins.' },
+  race:  { name: 'Race to 10',  icon: '🏁', desc: 'You vs 3 rivals. First to 10 correct answers takes it. Pure consistency.' },
+  duel:  { name: 'Duel',        icon: '🤺', desc: 'Best-of-7 vs the rival directly above you on the leaderboard. Faster correct answer wins the point.' },
+  blitz: { name: 'Blitz 60',    icon: '⚡', desc: '60 seconds, unlimited questions. Outscore your rivals before the clock dies.' }
+};
+
+function battleQuestionPool(n) {
+  if (!searchBuilt) { loadData(['a', 'b', 'c', 'd']); buildSearchIndex(); }
+  const pool = allSearchContent.filter(x => x.definition && x.definition.length > 20);
+  return [...pool].sort(() => Math.random() - 0.5).slice(0, n).map(p => {
+    const wrong = pool.filter(x => x.term !== p.term).sort(() => Math.random() - 0.5).slice(0, 3).map(x => x.term);
+    const opts = [...wrong, p.term].sort(() => Math.random() - 0.5);
+    return { prompt: p.definition.length > 130 ? p.definition.substring(0, 130) + '…' : p.definition, answer: p.term, opts, code: p.code };
+  });
+}
+
+function pickOpponents(k, directlyAbove) {
+  const rows = getLBRows();
+  const me = rows.find(r => r.me);
+  const others = rows.filter(r => !r.me);
+  others.forEach(o => { o.skill = 1 - (o.pos - 1) / rows.length; });
+  if (directlyAbove) {
+    const above = others.filter(o => o.xp >= me.xp).sort((a, b) => a.xp - b.xp);
+    return [above[0] || others.sort((a, b) => b.xp - a.xp)[0]];
+  }
+  return others.sort((a, b) => Math.abs(a.xp - me.xp) - Math.abs(b.xp - me.xp)).slice(0, k);
+}
+
+function botAnswer(skill) {
+  return {
+    ok: Math.random() < 0.48 + 0.42 * skill,
+    time: +(1.4 + (1 - skill) * 5 + Math.random() * 2.8).toFixed(1)
+  };
+}
+
+function stopBattleTick() { if (battleTick) { clearInterval(battleTick); battleTick = null; } }
+
+function startBattle(mode) {
+  stopBattleTick();
+  const oppCount = mode === 'elim' ? 7 : mode === 'duel' ? 1 : 3;
+  const opps = pickOpponents(oppCount, mode === 'duel');
+  battle = {
+    mode,
+    idx: 0,
+    over: false,
+    answered: false,
+    qs: battleQuestionPool(mode === 'blitz' ? 40 : 30),
+    players: [
+      { name: 'You', col: pCol(), me: true, alive: true, score: 0, totalTime: 0, out: 0 },
+      ...opps.map(o => ({ name: o.name, col: o.col, me: false, skill: o.skill, alive: true, score: 0, totalTime: 0, out: 0 }))
+    ],
+    log: [],
+    blitzEnd: 0
+  };
+  if (mode === 'blitz') {
+    battle.blitzEnd = Date.now() + 60000;
+    battle.players.forEach(p => {
+      if (!p.me) p.blitzFinal = Math.max(2, Math.round(6 + p.skill * 14 + (Math.random() * 6 - 3)));
+    });
+    battleTick = setInterval(() => {
+      if (currentPage !== 'games' || !battle || battle.mode !== 'blitz') { stopBattleTick(); return; }
+      const left = Math.max(0, battle.blitzEnd - Date.now());
+      const elapsed = (60000 - left) / 60000;
+      battle.players.forEach(p => { if (!p.me) p.score = Math.min(p.blitzFinal, Math.floor(p.blitzFinal * elapsed)); });
+      const bar = el('battle-bar');
+      if (bar) bar.style.width = (left / 600) + '%';
+      const clock = el('blitz-clock');
+      if (clock) clock.textContent = Math.ceil(left / 1000) + 's';
+      const strip = el('battle-strip');
+      if (strip) strip.innerHTML = battleStripHTML();
+      if (left <= 0) { finishBattle(); renderGames(); }
+    }, 250);
+  }
+  gamesMode = 'battle';
+  renderGames();
+  if (mode !== 'blitz') startBattleQuestion();
+}
+
+function startBattleQuestion() {
+  battle.answered = false;
+  battle.qStart = Date.now();
+  stopBattleTick();
+  battleTick = setInterval(() => {
+    if (currentPage !== 'games' || !battle || battle.answered) { stopBattleTick(); return; }
+    const left = Math.max(0, BATTLE_Q_SECS * 1000 - (Date.now() - battle.qStart));
+    const bar = el('battle-bar');
+    if (bar) bar.style.width = (left / (BATTLE_Q_SECS * 10)) + '%';
+    if (left <= 0) answerBattle(-1);
+  }, 100);
+}
+
+function battleStripHTML() {
+  return battle.players.map(p => `
+    <span class="battle-chip${p.alive ? '' : ' dead'}${p.me ? ' me' : ''}">
+      <span class="lb-av" style="background:${p.col};width:24px;height:24px;font-size:11px;border-radius:8px">${p.me ? pAv() : p.name.charAt(0)}</span>
+      ${p.me ? 'You' : p.name}${battle.mode === 'elim' ? (p.alive ? '' : ' 💀') : ` · ${p.score}`}
+    </span>`).join('');
+}
+
+function renderBattleUI(container) {
+  if (battle.over) { renderBattleEnd(container); return; }
+  const q = battle.qs[battle.idx];
+  if (!q) { finishBattle(); renderBattleEnd(container); return; }
+  const target = battle.mode === 'race' ? ' · first to 10' : battle.mode === 'duel' ? ' · first to 4 points' : '';
+
+  container.innerHTML = `
+    <div class="quiz-wrap" style="max-width:680px">
+      <div class="quiz-progress">
+        <span>${BATTLE_MODES[battle.mode].icon} ${BATTLE_MODES[battle.mode].name}${target}${battle.mode === 'blitz' ? ' · <strong id="blitz-clock">60s</strong>' : ''}</span>
+        <div class="bar"><div class="bar-fill" id="battle-bar" style="width:100%"></div></div>
+        <button class="btn btn-secondary btn-sm" onclick="quitBattle()">Quit</button>
+      </div>
+      <div class="battle-strip" id="battle-strip">${battleStripHTML()}</div>
+      <div class="card">
+        <span class="badge" style="margin-bottom:10px;display:inline-block">${q.code}</span>
+        <p class="quiz-q" style="font-size:15px">${q.prompt}</p>
+        <div class="mcq-opts">
+          ${q.opts.map((o, i) => `<button class="mcq-opt" id="bopt-${i}" onclick="answerBattle(${i})">${o}</button>`).join('')}
+        </div>
+        <div id="battle-result"></div>
+      </div>
+    </div>`;
+}
+
+function quitBattle() {
+  stopBattleTick();
+  battle = null;
+  gamesMode = 'menu';
+  renderGames();
+}
+
+function answerBattle(i) {
+  if (!battle || battle.answered) return;
+  battle.answered = true;
+  stopBattleTick();
+  const q = battle.qs[battle.idx];
+  const me = battle.players[0];
+  const myTime = i < 0 ? BATTLE_Q_SECS : +(((Date.now() - battle.qStart) / 1000)).toFixed(1);
+  const myOk = i >= 0 && q.opts[i] === q.answer;
+
+  q.opts.forEach((o, j) => {
+    const btn = el('bopt-' + j);
+    if (!btn) return;
+    btn.disabled = true;
+    if (o === q.answer) btn.classList.add('right');
+    else if (j === i) btn.classList.add('wrong');
+  });
+
+  if (battle.mode === 'blitz') {
+    if (myOk) me.score++;
+    setTimeout(() => {
+      if (!battle || battle.over) return;
+      battle.idx++;
+      if (battle.idx >= battle.qs.length) battle.qs.push(...battleQuestionPool(20));
+      renderGames();
+      battle.answered = false;
+      battle.qStart = Date.now();
+    }, 400);
+    return;
+  }
+
+  // simulate this round for every living bot
+  const results = battle.players.filter(p => p.alive).map(p => {
+    if (p.me) return { p, ok: myOk, time: myTime };
+    const a = botAnswer(p.skill);
+    return { p, ok: a.ok, time: a.time };
+  });
+  results.forEach(r => { r.p.totalTime += r.time; if (r.ok) r.p.score++; });
+
+  let note = '';
+  if (battle.mode === 'elim') {
+    const wrong = results.filter(r => !r.ok);
+    if (wrong.length && wrong.length < results.length) {
+      wrong.forEach(r => { r.p.alive = false; r.p.out = battle.players.filter(x => x.alive).length + wrong.length; });
+      note = `${wrong.map(r => r.p.me ? 'You' : r.p.name).join(', ')} eliminated!`;
+    } else if (!wrong.length) {
+      const slowest = results.reduce((a, b) => (b.time > a.time ? b : a));
+      slowest.p.alive = false;
+      slowest.p.out = battle.players.filter(x => x.alive).length + 1;
+      note = `Everyone was right — ${slowest.p.me ? 'you were' : slowest.p.name + ' was'} slowest. Eliminated!`;
+    } else {
+      note = 'Everyone got it wrong — nobody eliminated. 😬';
+    }
+    const alive = battle.players.filter(p => p.alive);
+    if (!me.alive || alive.length <= 1) battle.over = true;
+  } else if (battle.mode === 'race') {
+    const leaders = battle.players.filter(p => p.score >= 10);
+    if (leaders.length) battle.over = true;
+  } else if (battle.mode === 'duel') {
+    const r0 = results.find(r => r.p.me), r1 = results.find(r => !r.p.me);
+    let pointTo = null;
+    if (r0.ok && !r1.ok) pointTo = r0.p;
+    else if (r1.ok && !r0.ok) pointTo = r1.p;
+    else if (r0.ok && r1.ok) pointTo = r0.time <= r1.time ? r0.p : r1.p;
+    // duel scoring = points won, not raw corrects
+    results.forEach(r => { if (r.ok) r.p.score--; });
+    if (pointTo) { pointTo.score++; note = `${pointTo.me ? 'You take' : pointTo.name + ' takes'} the point${r0.ok && r1.ok ? ' on speed!' : '!'}`; }
+    else note = 'Both wrong — no point.';
+    if (battle.players.some(p => p.score >= 4)) battle.over = true;
+  }
+
+  el('battle-strip').innerHTML = battleStripHTML();
+  el('battle-result').innerHTML = `
+    <div class="battle-log">
+      ${results.map(r => `
+        <div class="battle-log-row">
+          <span>${r.p.me ? '⭐ You' : r.p.name}</span>
+          <span style="color:${r.ok ? 'var(--green-text)' : 'var(--red)'};font-weight:800">${r.ok ? '✓' : '✗'} ${r.time}s${!r.p.alive && battle.mode === 'elim' ? ' 💀' : ''}</span>
+        </div>`).join('')}
+      ${note ? `<div style="font-size:13px;font-weight:700;color:var(--accent2);padding:6px 2px 0">${note}</div>` : ''}
+    </div>
+    <button class="btn btn-primary btn-full" style="margin-top:10px" onclick="${battle.over ? 'finishBattle();renderGames()' : 'battle.idx++;renderGames();startBattleQuestion()'}">${battle.over ? 'See results →' : 'Next question →'}</button>`;
+}
+
+function finishBattle() {
+  stopBattleTick();
+  if (!battle) return;
+  battle.over = true;
+  const me = battle.players[0];
+  let standings, xp, headline;
+
+  if (battle.mode === 'elim') {
+    standings = [...battle.players].sort((a, b) => (b.alive - a.alive) || (b.out - a.out));
+    const place = standings.indexOf(me) + 1;
+    xp = (me.alive && standings[0] === me ? 40 : 0) + me.score * 4;
+    headline = me.alive && standings[0] === me ? '👑 VICTORY ROYALE — last one standing!' : `💀 Eliminated — you placed #${place} of ${battle.players.length}`;
+  } else {
+    standings = [...battle.players].sort((a, b) => (b.score - a.score) || (a.totalTime - b.totalTime));
+    const place = standings.indexOf(me) + 1;
+    const won = place === 1;
+    if (battle.mode === 'race') xp = me.score * 2 + (won ? 30 : 0);
+    else if (battle.mode === 'duel') xp = me.score * 5 + (won ? 35 : 0);
+    else xp = me.score * 3 + (won ? 25 : 0);
+    headline = won ? `🏆 You won the ${BATTLE_MODES[battle.mode].name}!` : `You placed #${place} of ${battle.players.length} — ${standings[0].name} took it.`;
+  }
+  battle.standings = standings;
+  battle.xpEarned = xp;
+  battle.headline = headline;
+  if (!state.battles) state.battles = { played: 0, won: 0 };
+  state.battles.played++;
+  if (standings[0] === me) state.battles.won++;
+  if (xp > 0) awardXP(xp, true);
+  else saveState();
+}
+
+function renderBattleEnd(container) {
+  const medals = ['🥇', '🥈', '🥉'];
+  container.innerHTML = `
+    <div class="quiz-wrap" style="max-width:680px">
+      <div style="text-align:center;padding:18px 0 6px">
+        <div style="font-size:44px;margin-bottom:8px">${battle.standings[0].me ? '🏆' : BATTLE_MODES[battle.mode].icon}</div>
+        <h2 style="margin-bottom:4px">${battle.headline}</h2>
+        <p style="color:var(--text2);font-size:14px;margin-bottom:14px">+${battle.xpEarned} XP earned</p>
+      </div>
+      <div class="lb-board" style="max-width:100%">
+        ${battle.standings.map((p, i) => `
+          <div class="lb-row${p.me ? ' me' : ''}">
+            <span class="lb-rank">${medals[i] || '#' + (i + 1)}</span>
+            <span class="lb-av" style="background:${p.col}">${p.me ? pAv() : p.name.charAt(0)}</span>
+            <span class="lb-name">${p.me ? 'You' : p.name}</span>
+            <span class="lb-xp">${battle.mode === 'elim' ? (p.alive ? 'Survived' : 'Eliminated') : p.score + ' pts'}</span>
+          </div>`).join('')}
+      </div>
+      <div style="display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="startBattle('${battle.mode}')">Rematch</button>
+        <button class="btn btn-secondary" onclick="quitBattle()">Back to games</button>
+      </div>
+    </div>`;
+}
+
+/* ---- PROFILE ---- */
+function heatmapHTML(weeks = 18) {
+  const act = state.activity || {};
+  const end = new Date();
+  const start = new Date();
+  start.setDate(start.getDate() - weeks * 7 + 1);
+  while (start.getDay() !== 1) start.setDate(start.getDate() - 1); // align to Monday
+
+  const cells = [];
+  const cursor = new Date(start);
+  while (cursor <= end) {
+    const key = cursor.toISOString().split('T')[0];
+    const n = act[key] || 0;
+    const lvl = n === 0 ? 0 : n < 3 ? 1 : n < 6 ? 2 : n < 12 ? 3 : 4;
+    cells.push(`<span class="hm-cell hm-${lvl}" title="${n} action${n !== 1 ? 's' : ''} on ${key}"></span>`);
+    cursor.setDate(cursor.getDate() + 1);
+  }
+
+  return `
+    <div class="heatmap-wrap">
+      <div class="hm-days"><span>Mon</span><span>Wed</span><span>Fri</span></div>
+      <div class="heatmap">${cells.join('')}</div>
+    </div>
+    <div class="hm-legend">Less <span class="hm-cell hm-0"></span><span class="hm-cell hm-1"></span><span class="hm-cell hm-2"></span><span class="hm-cell hm-3"></span><span class="hm-cell hm-4"></span> More</div>`;
+}
+
+function getAchievements() {
+  const act = state.activity || {};
+  const totalActs = Object.values(act).reduce((a, b) => a + b, 0);
+  const rc = ragCounts();
+  const mastered = Object.values(state.flashcards.boxes || {}).filter(b => b === 5).length;
+  const best = parseInt(localStorage.getItem('u2_match_best') || '0', 10);
+  const battles = state.battles || { played: 0, won: 0 };
+
+  return [
+    { icon: '👣', name: 'First Steps',     desc: 'Do 10 revision actions',        done: totalActs >= 10 },
+    { icon: '🔥', name: 'On Fire',         desc: 'Hit a 7-day streak',            done: state.streak.count >= 7 },
+    { icon: '🟢', name: 'Greenkeeper',     desc: 'Rate 25 topics Confident',      done: rc.green >= 25 },
+    { icon: '🧠', name: 'Memory Master',   desc: 'Get 10 flashcards to Box 5',    done: mastered >= 10 },
+    { icon: '⚔️', name: 'First Blood',     desc: 'Win any battle',                done: battles.won >= 1 },
+    { icon: '🏹', name: 'Warlord',         desc: 'Win 10 battles',                done: battles.won >= 10 },
+    { icon: '⏱️', name: 'Speed Demon',     desc: 'Clear Match in under 30s',      done: best > 0 && best < 30 },
+    { icon: '🥈', name: 'Silver Surfer',   desc: 'Reach Silver rank',             done: (state.xp || 0) >= 300 },
+    { icon: '💎', name: 'Shine Bright',    desc: 'Reach Diamond rank',            done: (state.xp || 0) >= 2500 },
+    { icon: '✍️', name: 'Examiner\'s Pet', desc: 'Self-mark 20 questions',        done: state.questions.history.length >= 20 }
+  ];
+}
+
+function renderProfile() {
+  loadData(['a', 'b', 'c', 'd']);
+  const xp = state.xp || 0;
+  const r = rankFor(xp);
+  const rows = getLBRows();
+  const me = rows.find(x => x.me);
+  const rc = ragCounts();
+  const act = state.activity || {};
+  const totalActs = Object.values(act).reduce((a, b) => a + b, 0);
+
+  let last7 = 0;
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(); d.setDate(d.getDate() - i);
+    last7 += act[d.toISOString().split('T')[0]] || 0;
+  }
+
+  const qHist = state.questions.history;
+  const recent = qHist.slice(-10);
+  const avgScore = recent.length ? Math.round(recent.reduce((a, h) => a + h.selfScore, 0) / recent.length) : null;
+  const mastered = Object.values(state.flashcards.boxes || {}).filter(b => b === 5).length;
+  const best = localStorage.getItem('u2_match_best');
+  const battles = state.battles || { played: 0, won: 0 };
+  const ach = getAchievements();
+  const unlocked = ach.filter(a => a.done).length;
+
+  const AV_EMOJIS = ['⭐', '🔥', '🧠', '👾', '💀', '🦊', '🐸', '🐱', '🐼', '🦈', '🚀', '🎯', '👑', '💎', '🌙', '⚡'];
+  const AV_COLS = ['#DB2777', '#7C3AED', '#10B981', '#F59E0B', '#0EA5E9', '#DC2626', '#312A3D', '#8B5CF6'];
+
+  el('profile-content').innerHTML = `
+    <div class="card profile-head">
+      <button class="lb-av profile-av" style="background:${pCol()}" onclick="toggleAvatarPicker()" title="Customise your avatar">${pAv()}</button>
+      <div style="flex:1">
+        <h2 style="margin-bottom:2px">You</h2>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+          ${rankChip(xp)}
+          <span class="badge">Level ${xpLevel()}</span>
+          <span class="badge">#${me.pos} of ${rows.length}</span>
+          <span class="badge">🔥 ${state.streak.count}-day streak</span>
+        </div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-family:'Fredoka',sans-serif;font-size:28px;font-weight:700;color:var(--accent2)">${xp.toLocaleString()}</div>
+        <div style="font-size:11px;color:var(--text2);font-weight:700">TOTAL XP</div>
+      </div>
+    </div>
+
+    <div class="card hidden" id="avatar-picker">
+      <h3 style="margin-bottom:10px">🎨 Customise your avatar</h3>
+      <p style="font-size:12px;color:var(--text2);margin-bottom:8px;font-weight:700">ICON</p>
+      <div class="av-options">
+        ${AV_EMOJIS.map(e => `<button class="av-opt${e === pAv() ? ' picked' : ''}" onclick="setProfileAv('${e}', null)">${e}</button>`).join('')}
+      </div>
+      <p style="font-size:12px;color:var(--text2);margin:12px 0 8px;font-weight:700">COLOUR</p>
+      <div class="av-options">
+        ${AV_COLS.map(c => `<button class="av-opt swatch${c === pCol() ? ' picked' : ''}" style="background:${c}" onclick="setProfileAv(null, '${c}')" title="${c}"></button>`).join('')}
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom:4px">📅 Activity</h3>
+      <p style="font-size:13px;color:var(--text2);margin-bottom:12px">${totalActs.toLocaleString()} revision actions all-time · ${last7} in the last 7 days</p>
+      ${heatmapHTML()}
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-box"><div class="num" style="color:var(--green-text)">${rc.green}</div><div class="lbl">Confident topics</div></div>
+      <div class="stat-box"><div class="num" style="color:var(--accent2)">${mastered}</div><div class="lbl">Cards mastered</div></div>
+      <div class="stat-box"><div class="num" style="color:var(--pink)">${qHist.length}</div><div class="lbl">Qs self-marked</div></div>
+      <div class="stat-box"><div class="num" style="color:var(--reward-text)">${avgScore !== null ? avgScore + '%' : '—'}</div><div class="lbl">Avg score (last 10)</div></div>
+      <div class="stat-box"><div class="num" style="color:var(--accent)">${battles.won}/${battles.played}</div><div class="lbl">Battles won</div></div>
+      <div class="stat-box"><div class="num" style="color:var(--text)">${best ? best + 's' : '—'}</div><div class="lbl">Best match time</div></div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom:10px">🏅 Achievements <span style="font-size:13px;color:var(--text2);font-weight:600">${unlocked}/${ach.length} unlocked</span></h3>
+      <div class="ach-grid">
+        ${ach.map(a => `
+          <div class="ach${a.done ? ' done' : ''}" title="${a.desc}">
+            <span class="ach-icon">${a.done ? a.icon : '🔒'}</span>
+            <span class="ach-name">${a.name}</span>
+            <span class="ach-desc">${a.desc}</span>
+          </div>`).join('')}
+      </div>
+    </div>`;
+}
+
+let avatarPickerOpen = false;
+
+function toggleAvatarPicker() {
+  avatarPickerOpen = !avatarPickerOpen;
+  const p = el('avatar-picker');
+  if (p) p.classList.toggle('hidden', !avatarPickerOpen);
+}
+
+function setProfileAv(emoji, col) {
+  if (!state.profile) state.profile = { emoji: '⭐', col: '#DB2777' };
+  if (emoji) state.profile.emoji = emoji;
+  if (col) state.profile.col = col;
+  saveState();
+  updateNavAvatar();
+  renderProfile();
+  const p = el('avatar-picker');
+  if (p) p.classList.remove('hidden');
+}
+
+/* ---- EXAM KIT ---- */
+function renderExamKit() {
+  const container = el('examkit-content');
+
+  const commandWords = [
+    ['State / Give / Name', '1', 'One-word or one-phrase answer. No explanation needed — don\'t waste time.'],
+    ['Identify', '1', 'Pick out the relevant fact from the scenario. Short and direct.'],
+    ['Describe', '2–4', 'Give linked statements that paint a picture. No reasons required.'],
+    ['Explain', '2–4', 'Point + linked expansion. One mark for each. Always include the "because…".'],
+    ['Analyse', '4–6', 'Break it down — how the parts relate, causes and effects, step-by-step logic.'],
+    ['Discuss', '6–9', 'Explore BOTH sides (benefits AND drawbacks), applied to the scenario.'],
+    ['Assess', '6–9', 'Weigh up importance/impact of factors, with a supported judgement.'],
+    ['Evaluate', '9–12', 'Both sides + a justified conclusion. The conclusion is what unlocks Level 3.']
+  ];
+
+  const keywordBanks = [
+    { title: '🔍 Section D — Forensics (fast marks)', col: '#8B5CF6', words: ['Faraday bag', 'Write-blocker', 'Forensic image (bit-for-bit copy)', 'Hash value (MD5/SHA) before & after', 'Chain of custody', 'Contemporaneous notes', 'Evidence bag + tamper-proof seal', 'Photograph the scene first'] },
+    { title: '🛡️ Section A — Protection', col: '#7C3AED', words: ['Encryption (at rest / in transit)', 'Multi-factor authentication', 'Anti-malware + updates', 'Firewall rules', 'Penetration testing', 'Staff training', 'Acceptable Use Policy', 'GDPR — 72-hour breach reporting'] },
+    { title: '🌐 Section B — Networks', col: '#DB2777', words: ['VPN — encrypted tunnel', 'DMZ for public-facing servers', 'Network segmentation / VLAN', 'DHCP — automatic IP assignment', 'DNS — name resolution', 'WPA3 over WEP', 'MAC filtering (spoofable!)', 'RAID is NOT a backup'] },
+    { title: '📋 Section C — Documentation', col: '#10B981', words: ['Security policy + review date', 'Risk assessment matrix', 'Incident response plan', 'Disaster recovery plan', 'Backup policy (3-2-1 rule)', 'Audit trail / logs', 'Business continuity', 'Roles & responsibilities'] }
+  ];
+
+  container.innerHTML = `
+    <h2 style="margin-bottom:6px">Exam Kit</h2>
+    <p style="color:var(--text2);font-size:14px;margin-bottom:18px">Command words, mark-scheme patterns and rapid-recall keywords — the exam technique layer that turns knowledge into marks.</p>
+
+    <div class="card">
+      <h3 style="margin-bottom:10px">⚡ Command words decoder</h3>
+      <div class="comparison-table-wrap"><table class="comparison-table">
+        <thead><tr><th>Command word</th><th>Typical marks</th><th>What the examiner wants</th></tr></thead>
+        <tbody>${commandWords.map(r => `<tr><td><strong>${r[0]}</strong></td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</tbody>
+      </table></div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom:10px">🏆 The 9-mark formula (levels-based)</h3>
+      <ul class="key-facts">
+        <li><strong>Open</strong> — one sentence directly answering the question in scenario terms</li>
+        <li><strong>Side 1</strong> — two developed benefits, each linked to the scenario business</li>
+        <li><strong>Side 2</strong> — two developed drawbacks/risks, each linked to the scenario</li>
+        <li><strong>Conclusion</strong> — a justified judgement ("Overall… because…"). No conclusion = capped at Level 2</li>
+      </ul>
+      <div class="exam-tip">Generic answers cap your marks. Name the business, its size, its data, its budget — every paragraph.</div>
+    </div>
+
+    <h3 style="margin:22px 0 12px;font-size:14px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">Rapid-recall keyword banks</h3>
+    <div class="grid2">
+      ${keywordBanks.map(b => `
+        <div class="card" style="margin-bottom:0">
+          <h3 style="color:${b.col};margin-bottom:10px">${b.title}</h3>
+          <ul class="key-facts">${b.words.map(w => `<li>${w}</li>`).join('')}</ul>
+        </div>`).join('')}
+    </div>`;
+}
+
 /* ---- SEARCH ---- */
 let allSearchContent = [];
 let searchBuilt = false;
@@ -965,7 +1964,7 @@ function doSearch(query) {
     <div class="search-result" onclick="goToResult('${r.section}', '${r.code}')">
       <div style="display:flex;gap:8px;margin-bottom:4px">
         <span class="badge">${r.code}</span>
-        <span class="badge" style="background:rgba(108,99,255,0.1);color:var(--accent2)">${r.section} — ${r.sectionTitle}</span>
+        <span class="badge" style="background:rgba(124,58,237,0.08);color:var(--accent2);border-color:rgba(124,58,237,0.25)">${r.section} — ${r.sectionTitle}</span>
       </div>
       <h4>${highlight(r.term, query)}</h4>
       <p>${highlight(r.definition.substring(0, 120), query)}${r.definition.length > 120 ? '...' : ''}</p>
@@ -1005,7 +2004,7 @@ function renderPlan() {
       <h2>Today's Study Plan</h2>
       <div class="streak-badge">🔥 ${state.streak.count} day streak</div>
     </div>
-    <p style="color:var(--text2);font-size:14px;margin-bottom:16px">${daysUntilExam()} days until your exam on 15 May 2026. ${getMotivation()}</p>
+    <p style="color:var(--text2);font-size:14px;margin-bottom:16px">${daysUntilExam()} days until your Unit 2 exam. ${getMotivation()}</p>
     ${plan.map(block => `
       <div class="plan-day">
         <h3>${block.title}</h3>
@@ -1054,8 +2053,8 @@ function buildDailyPlan() {
       id: 'content',
       title: '📖 Content Review',
       items: [
-        'Work through Section C (Cloud Computing) — highest exam probability',
-        'Work through Section D (Cyber Security threats and protection)',
+        'Work through Section A (Threats, Vulnerabilities & Protection) — the largest, most-examined aim',
+        'Work through Section B (Networking & Security) — expect a network diagram and VPN/DHCP/firewall questions',
         weakCodes.length ? `Revisit these red codes: ${weakCodes.join(', ')}` : 'Mark any uncertain codes as Amber or Red for tracking'
       ]
     });
@@ -1065,7 +2064,7 @@ function buildDailyPlan() {
       title: '📖 Focused Review',
       items: [
         'Complete any remaining Amber/Red codes',
-        'Focus on Tier 1 topics: C1 (Cloud), D1-D2 (Security), B2-B3 (Networks)',
+        'Focus on Tier 1 topics: A1-A4 (Threats & Protection), B (Networks), D (Forensics)',
         weakCodes.length ? `Priority: ${weakCodes.join(', ')}` : 'Try to clear all Red codes this week'
       ]
     });
@@ -1074,9 +2073,9 @@ function buildDailyPlan() {
       id: 'final',
       title: '🚨 Final Week — Exam Mode',
       items: [
-        'Practise 1 extended response question under timed conditions',
-        'Review command words: Discuss vs Describe vs Explain vs Evaluate',
-        'Check all mark scheme patterns: 2-mark recall, 4-mark explain (ID + expand), 6-8 mark levels',
+        'Practise 1 nine-mark Evaluate question under timed conditions',
+        'Review command words: State vs Explain vs Describe vs Evaluate',
+        'Check mark scheme patterns: 1-mark state, 2-mark explain (point + linked expansion), 9-mark levels-based evaluate',
         'Flashcard rapid fire: all sections'
       ]
     });
@@ -1118,7 +2117,7 @@ function getMotivation() {
 }
 
 function renderRAGSummary() {
-  const sections = ['A', 'B', 'C', 'D', 'E', 'F'];
+  const sections = ['A', 'B', 'C', 'D'];
   return `<div class="stats-row" style="flex-wrap:wrap">
     ${sections.map(l => {
       const codes = getSectionCodes(l);
@@ -1136,7 +2135,7 @@ function renderRAGSummary() {
   </div>`;
 }
 
-const planChecks = JSON.parse(localStorage.getItem('u1_plan_checks') || '{}');
+const planChecks = JSON.parse(localStorage.getItem('u2_plan_checks') || '{}');
 
 function getPlanCheck(key) {
   const todayStr = today();
@@ -1147,7 +2146,7 @@ function savePlanCheck(key, val) {
   const todayStr = today();
   if (!planChecks[todayStr]) planChecks[todayStr] = {};
   planChecks[todayStr][key] = val;
-  localStorage.setItem('u1_plan_checks', JSON.stringify(planChecks));
+  localStorage.setItem('u2_plan_checks', JSON.stringify(planChecks));
 }
 
 /* ---- STREAK ---- */
@@ -1173,7 +2172,7 @@ function exportData() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `unit1-revision-${today()}.json`;
+  a.download = `unit2-revision-${today()}.json`;
   a.click();
   URL.revokeObjectURL(url);
   toast('Progress exported!');
@@ -1212,9 +2211,10 @@ function confirmReset() {
 
 /* ---- INIT ---- */
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.nav-btn').forEach(btn => {
+  document.querySelectorAll('.nav-btn, .nav-avatar').forEach(btn => {
     btn.addEventListener('click', () => navigate(btn.dataset.page));
   });
-  loadData(['c', 'd', 'b', 'e', 'a', 'f']);
+  loadData(['a', 'b', 'c', 'd']);
+  updateNavAvatar();
   navigate('home');
 });

@@ -3,21 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unit 1 IT Revision</title>
+  <title>Unit 2 Cyber Security Revision</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <nav>
   <div class="nav-inner">
-    <div class="nav-logo">Unit 1 IT</div>
+    <div class="nav-logo">Unit 2 Cyber</div>
     <button class="nav-btn" data-page="home">Home</button>
     <button class="nav-btn" data-page="sections">Sections</button>
     <button class="nav-btn" data-page="flashcards">Flashcards</button>
     <button class="nav-btn" data-page="questions">Questions</button>
+    <button class="nav-btn" data-page="games">Games</button>
+    <button class="nav-btn" data-page="leaderboard">Leaderboard</button>
     <button class="nav-btn" data-page="extended">Extended</button>
+    <button class="nav-btn" data-page="examkit">Exam Kit</button>
     <button class="nav-btn" data-page="search">Search</button>
     <button class="nav-btn" data-page="plan">Plan</button>
+    <button class="nav-avatar" id="nav-avatar" data-page="profile" title="Your profile">⭐</button>
   </div>
 </nav>
 
@@ -25,11 +29,19 @@
 
   <!-- HOME -->
   <div class="page" id="page-home">
-    <div class="countdown-box">
+    <section class="home-hero">
+      <span class="blob b1"></span>
+      <span class="blob b2"></span>
+      <span class="pill">★ BTEC National • Cyber Security &amp; Incident Management</span>
+      <h1>Master <span class="grad">Unit 2</span> one flashcard at a time.</h1>
+      <p>Your complete revision hub — 78 flashcards, 25 exam-style questions and full 9-mark model answers across all four learning aims.</p>
+    </section>
+
+    <div class="countdown-box" onclick="setExamDate()" style="cursor:pointer" title="Click to set your exam date">
       <h2>Days until exam</h2>
       <div class="countdown-days" id="home-countdown-days">--</div>
-      <div class="countdown-label">days remaining</div>
-      <div class="countdown-date">Unit 1 IT Systems — 15 May 2026</div>
+      <div class="countdown-label" id="home-countdown-label">days remaining</div>
+      <div class="countdown-date" id="home-countdown-date">Unit 2: Cyber Security &amp; Incident Management</div>
     </div>
 
     <div class="stats-row">
@@ -53,6 +65,10 @@
         <div class="num" style="color:var(--amber)" id="home-flash-due">0</div>
         <div class="lbl">Cards due</div>
       </div>
+      <div class="stat-box">
+        <div class="num" style="color:var(--pink)" id="home-stat-level">L1</div>
+        <div class="lbl" id="home-stat-xp">0/250 XP</div>
+      </div>
     </div>
 
     <div style="margin-bottom:20px">
@@ -65,12 +81,16 @@
       </div>
     </div>
 
-    <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap">
-      <button class="btn btn-primary" onclick="navigate('sections', {section:'C'})">🔥 Start Section C</button>
-      <button class="btn btn-secondary" onclick="navigate('flashcards')">📚 Flashcards</button>
-      <button class="btn btn-secondary" onclick="navigate('questions')">✍️ Practice Questions</button>
-      <button class="btn btn-secondary" onclick="navigate('plan')">📅 Today's Plan</button>
+    <div class="home-actions">
+      <button class="btn btn-primary btn-full home-cta" onclick="navigate('sections', {section:'A'})">🔥 Start Section A</button>
+      <div class="home-actions-grid">
+        <button class="btn btn-secondary btn-full" onclick="navigate('flashcards')">📚 Flashcards</button>
+        <button class="btn btn-secondary btn-full" onclick="navigate('questions')">✍️ Practice Questions</button>
+        <button class="btn btn-secondary btn-full" onclick="navigate('plan')">📅 Today's Plan</button>
+      </div>
     </div>
+
+    <div id="priority-topics"></div>
 
     <h3 style="margin-bottom:12px;font-size:14px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">Sections</h3>
     <div class="grid2" id="section-tiles"></div>
@@ -91,9 +111,24 @@
     <div id="questions-content"></div>
   </div>
 
+  <!-- GAMES -->
+  <div class="page" id="page-games">
+    <div id="games-content"></div>
+  </div>
+
+  <!-- LEADERBOARD -->
+  <div class="page" id="page-leaderboard">
+    <div id="leaderboard-content"></div>
+  </div>
+
   <!-- EXTENDED RESPONSE -->
   <div class="page" id="page-extended">
     <div id="extended-content"></div>
+  </div>
+
+  <!-- EXAM KIT -->
+  <div class="page" id="page-examkit">
+    <div id="examkit-content"></div>
   </div>
 
   <!-- SEARCH -->
@@ -104,6 +139,11 @@
   <!-- PLAN -->
   <div class="page" id="page-plan">
     <div id="plan-content"></div>
+  </div>
+
+  <!-- PROFILE -->
+  <div class="page" id="page-profile">
+    <div id="profile-content"></div>
   </div>
 
 </main>

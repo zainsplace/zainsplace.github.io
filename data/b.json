@@ -1,155 +1,165 @@
 {
   "section": "B",
-  "title": "Transmitting Data",
+  "title": "Networking Architectures and Security",
   "tier": 1,
   "colour": "#d69e2e",
   "topics": [
     {
       "code": "B1",
-      "title": "Connectivity",
+      "title": "Network Types",
       "subtopics": [
         {
           "code": "B1.1",
-          "title": "Wireless and Wired Connection Methods",
+          "title": "Applications & Features of Networks",
           "items": [
             {
               "code": "B1.1.1",
-              "term": "Bluetooth",
-              "definition": "A short-range wireless communication standard using radio waves in the 2.4 GHz band. Designed for low-power, device-to-device connections over short distances (typically up to 10 metres, up to 100 m for Bluetooth 5.x).",
-              "examples": "Connecting wireless headphones to a phone; pairing a keyboard or mouse to a laptop; transferring files between phones; connecting a smartwatch to a mobile device.",
-              "examTip": "Bluetooth = short-range, low-power, device pairing. Key limitation: short range and lower speed than Wi-Fi. Security risk: bluejacking (sending unsolicited messages) and bluesnarfing (unauthorised data access).",
+              "term": "Network Types (LAN, WAN, etc.)",
+              "definition": "The main categories of network defined by their geographic size and purpose.",
+              "examples": "A LAN in one office; a WAN linking offices across the country; a PAN connecting a phone to earbuds.",
+              "examTip": "LAN = one site; WAN = wide area (e.g. the internet); SAN = storage; PAN = personal (Bluetooth range).",
               "keyFacts": [
-                "Range: typically 10 m (Class 2); up to 100 m (Class 1 / Bluetooth 5.x)",
-                "Speed: up to ~50 Mbps (Bluetooth 5.x); much lower in practice for most uses",
-                "Low power consumption — suitable for wearables, IoT sensors, peripherals",
-                "Point-to-point or small piconet (up to 7 active devices)",
-                "Security risks: bluejacking (unsolicited messages), bluesnarfing (unauthorised data access)",
-                "Pairing process required before data can be exchanged"
+                "LAN — Local Area Network (one site)",
+                "WLAN — Wireless LAN",
+                "WAN — Wide Area Network (large/geographic)",
+                "SAN — Storage Area Network; PAN — Personal Area Network",
+                "The internet — the global WAN"
               ]
             },
             {
               "code": "B1.1.2",
-              "term": "USB (Universal Serial Bus)",
-              "definition": "A wired connection standard for transferring data and power between devices. Connects peripherals (keyboards, mice, storage devices, cameras) to computers via a physical cable.",
-              "examples": "Connecting a USB flash drive to a laptop; charging a phone via USB-C; connecting a printer or external hard drive; transferring photos from a camera.",
-              "examTip": "USB = wired, direct device-to-device, high speed, no network required. USB 3.x is significantly faster than USB 2.0. USB-C is the current universal standard.",
+              "term": "Private Network Types",
+              "definition": "Networks restricted to particular users rather than the open internet.",
+              "examples": "A company intranet for staff; an extranet giving suppliers limited access; a private cloud network.",
+              "examTip": "Intranet = internal only; Extranet = extends to selected outsiders (e.g. partners/suppliers).",
               "keyFacts": [
-                "USB 2.0: up to 480 Mbps (High Speed)",
-                "USB 3.0/3.1: up to 5–10 Gbps (SuperSpeed)",
-                "USB 4 / Thunderbolt 4: up to 40 Gbps",
-                "Also transfers power — charges devices while connecting",
-                "No configuration required — plug and play",
-                "Security risk: infected USB drives can introduce malware (see D1.2.4)"
+                "Intranet — private network for an organisation's staff",
+                "Extranet — controlled access for selected external partners",
+                "Cloud network — private networking over cloud infrastructure"
               ]
             },
             {
               "code": "B1.1.3",
-              "term": "Wi-Fi",
-              "definition": "A wireless networking standard (IEEE 802.11) that uses radio waves to provide network and internet access. Devices connect to a wireless access point (WAP) or router, which manages network traffic.",
-              "examples": "Connecting a laptop to a home or office network; a school providing Wi-Fi across campus; a coffee shop offering public guest Wi-Fi.",
-              "examTip": "Wi-Fi = wireless network access, not device-to-device like Bluetooth. Key trade-offs vs Ethernet: mobility vs reliability/speed/security. Public Wi-Fi is a major security risk — data can be intercepted.",
+              "term": "Wired & Wireless Integration",
+              "definition": "Combining wired and wireless technologies in one network, and the issues this raises.",
+              "examples": "Wi-Fi access points connected to a wired Ethernet backbone; managing channels to avoid interference.",
+              "examTip": "Issues fall into compatibility, admin (channels/IP) and technical (signal strength/interference).",
               "keyFacts": [
-                "Wi-Fi 5 (802.11ac): up to ~3.5 Gbps theoretical; Wi-Fi 6 (802.11ax): up to ~9.6 Gbps",
-                "Range: typically 30–50 m indoors (reduced by walls, interference)",
-                "2.4 GHz band: longer range, more congested, slower; 5 GHz: shorter range, faster, less congested",
-                "Signal strength decreases with distance and physical obstacles",
-                "Security: WPA3 is current standard; WEP is obsolete and insecure",
-                "Public Wi-Fi risk: unencrypted hotspots allow man-in-the-middle attacks",
-                "Supports multiple simultaneous devices — suitable for LANs"
+                "Ethernet standards for wired and wireless (802 family)",
+                "Compatibility/interoperability issues (protocols, access points)",
+                "Admin issues (channels, IP addresses)",
+                "Technical issues (signal strength, interference)"
               ]
             },
             {
               "code": "B1.1.4",
-              "term": "Ethernet",
-              "definition": "A wired networking standard (IEEE 802.3) that connects devices using physical cables — typically Cat5e/Cat6 twisted pair copper cables or fibre optic. Used in LANs and as the backbone of larger networks.",
-              "examples": "Connecting a desktop PC to an office network via a RJ-45 cable; fibre optic Ethernet between buildings in a campus network; a gaming PC using Ethernet for low-latency online play.",
-              "examTip": "Ethernet = reliable, fast, secure wired connection. Always faster and more reliable than Wi-Fi for a fixed device. Fibre optic Ethernet offers vastly higher speeds over longer distances than copper.",
+              "term": "Schematic Diagrams",
+              "definition": "Logical and physical diagrams that show how a network is laid out, sometimes including port numbers or addresses.",
+              "examples": "Completing a network diagram by adding a firewall between the router and the switch (sample paper Q1).",
+              "examTip": "You may be asked to interpret OR amend a network diagram — practise adding devices like firewalls and labelling connections.",
               "keyFacts": [
-                "Speeds: 100 Mbps (Fast Ethernet) → 1 Gbps (Gigabit) → 10 Gbps+ (10GbE)",
-                "Copper (Cat6): up to 10 Gbps over 55 m; fibre optic: up to 100 Gbps over many km",
-                "Lower latency than Wi-Fi — important for VoIP, video conferencing, gaming",
-                "More secure than Wi-Fi — physically harder to intercept; no broadcast signal",
-                "Not susceptible to radio interference",
-                "Requires physical cable infrastructure — less flexible than wireless"
-              ],
-              "comparisonTable": {
-                "title": "Connection Methods Compared: Bluetooth vs USB vs Wi-Fi vs Ethernet",
-                "headers": ["Feature", "Bluetooth", "USB", "Wi-Fi", "Ethernet"],
-                "rows": [
-                  ["Type", "Wireless", "Wired", "Wireless", "Wired"],
-                  ["Typical speed", "Up to 50 Mbps", "Up to 10 Gbps (USB 3.1)", "Up to 9.6 Gbps (Wi-Fi 6)", "Up to 10 Gbps+ (10GbE)"],
-                  ["Range", "~10 m (up to 100 m)", "Length of cable only", "30–50 m indoors", "Up to 100 m (copper); km (fibre)"],
-                  ["Mobility", "High — no cables", "None — physically tethered", "High — within coverage area", "None — physically tethered"],
-                  ["Reliability", "Good; affected by interference", "Excellent — direct connection", "Good; affected by interference/walls", "Excellent — consistent"],
-                  ["Security", "Moderate — pairing required; bluejacking risk", "High — physical access needed", "Lower — signal can be intercepted; WPA3 helps", "High — physically hard to intercept"],
-                  ["Power supplied", "No (separate charging needed)", "Yes — powers/charges devices", "No", "Yes (PoE — Power over Ethernet)"],
-                  ["Best use case", "Peripherals, wearables, short-range device pairing", "Direct device connection, storage, charging", "Mobile devices, multi-device networks", "Fixed workstations, servers, high-reliability needs"],
-                  ["Setup required", "Pairing", "Plug and play", "Network config / password", "Physical cable + network config"]
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "code": "B1.2",
-          "title": "How Connection Types Meet User/Organisation Needs",
-          "items": [
+                "Logical diagrams show data flow; physical diagrams show real devices/cabling",
+                "May show specific port numbers or network addresses",
+                "Exam may ask you to complete/amend a diagram"
+              ]
+            },
             {
-              "code": "B1.2",
-              "term": "Matching Connection Types to User and Organisation Needs",
-              "definition": "Different connection types suit different use cases. The right choice depends on what the user or organisation needs in terms of speed, mobility, range, cost, security, and the number of devices involved.",
-              "examples": "A hospital choosing Ethernet for medical equipment needing reliable connections; a café offering Wi-Fi for customers; a warehouse using Bluetooth for handheld scanners; a data centre using fibre optic Ethernet between servers.",
-              "examTip": "Exam scenarios often give you a situation and ask you to justify a connection choice. Always link technical features (speed, range, security) to the specific need in the scenario.",
+              "code": "B1.1.5",
+              "term": "Network Features/Requirements",
+              "definition": "The qualities organisations need from a network, several of which relate to security.",
+              "examples": "Designing for scalability and fault tolerance so the network copes with growth and failures.",
+              "examTip": "Security-related requirements include security settings, reliability, fault tolerance and backup management.",
               "keyFacts": [
-                "Mobile workers / hotdesking → Wi-Fi (flexibility over speed)",
-                "Fixed workstations needing high reliability → Ethernet",
-                "Short-range peripherals (headset, mouse) → Bluetooth",
-                "Direct file transfer or device charging → USB",
-                "Public-facing access points → Wi-Fi with WPA3 security",
-                "Server-to-server or backbone infrastructure → Fibre optic Ethernet",
-                "IoT sensors in a small area → Bluetooth Low Energy (BLE)"
+                "Scalability, performance/response time, reliability",
+                "Software/hardware and file sharing/compatibility",
+                "Backup management, security settings, fault tolerance, communications"
               ]
             }
           ]
         },
         {
-          "code": "B1.3",
-          "title": "Implications of Selecting Different Connection Types",
+          "code": "B1.2-1.3",
+          "title": "Topologies & Architecture",
           "items": [
             {
-              "code": "B1.3",
-              "term": "Implications of Selecting and Using Different Connection Types",
-              "definition": "Choosing a connection type has consequences beyond just speed — affecting security exposure, infrastructure cost, user behaviour, maintenance requirements, and operational flexibility.",
-              "examples": "A business using only Wi-Fi saving on cable installation cost but increasing security risk; a school blocking USB ports to prevent data theft but making printer connections harder.",
-              "examTip": "This code is about consequences of the choice. Use for 4–6 mark 'explain the implications of using X' questions — cover security, cost, performance, and user impact.",
+              "code": "B1.2",
+              "term": "Network Topologies",
+              "definition": "The physical and logical arrangement of devices on a network.",
+              "examples": "A star topology where every device connects to a central switch; a wireless mesh for resilient coverage.",
+              "examTip": "Physical topology = the layout of cables/devices; logical topology = how data actually flows (bus/ring).",
               "keyFacts": [
-                "Wi-Fi implication: easier to deploy but introduces security risks (rogue access points, eavesdropping)",
-                "Ethernet implication: requires significant cabling infrastructure investment but provides reliability",
-                "Bluetooth implication: convenient for peripherals but limited range restricts use cases",
-                "USB implication: straightforward but organisations may need to restrict ports to prevent malware introduction or data theft",
-                "Wireless generally: dependent on signal quality — physical obstacles, interference reduce performance",
-                "Wired generally: infrastructure cost upfront but lower ongoing maintenance and better security"
+                "Physical: star, extended star, hierarchical, wireless mesh, ad-hoc (BYOD)",
+                "Logical: logical bus, logical ring",
+                "Star is common — failure of one cable doesn't down the whole network"
+              ]
+            },
+            {
+              "code": "B1.3",
+              "term": "Network Architecture",
+              "definition": "The model used to organise how devices share resources and responsibilities.",
+              "examples": "A client/server network with central control; a peer-to-peer network sharing files directly.",
+              "examTip": "Client/server = central control & security; peer-to-peer = no central server; thin client = processing on the server.",
+              "keyFacts": [
+                "Peer-to-peer — devices share resources directly, no central server",
+                "Client/server — central server controls resources and security",
+                "Thin client — minimal local device, processing done on the server"
               ]
             }
           ]
         },
         {
           "code": "B1.4",
-          "title": "Impact of Connection Types on IT System Performance",
+          "title": "Modern Trends & Their Security Issues",
           "items": [
             {
-              "code": "B1.4",
-              "term": "How Connection Types Affect IT System Performance",
-              "definition": "The type of connection used directly affects the speed, latency, reliability, and capacity of an IT system — determining how effectively users can work and how responsive applications feel.",
-              "examples": "A video editing team switching from Wi-Fi to Gigabit Ethernet reducing file transfer time from 10 minutes to 30 seconds; a VoIP system experiencing dropped calls due to high Wi-Fi latency.",
-              "examTip": "Link specific performance metrics to the connection type: Ethernet = low latency, high throughput; Wi-Fi = variable latency, affected by congestion; Bluetooth = low bandwidth, not suitable for high-data applications.",
+              "code": "B1.4.1",
+              "term": "Virtualisation",
+              "definition": "Running multiple virtual machines/environments on one physical host, improving security through isolation.",
+              "examples": "Sandboxing a suspicious program in an isolated virtual machine; segmenting workloads.",
+              "examTip": "Security benefit: isolation/sandboxing reduces the attack surface and contains threats.",
               "keyFacts": [
-                "Latency: wired connections have lower latency than wireless — critical for real-time applications",
-                "Bandwidth: Ethernet (10 Gbps) >> Wi-Fi 6 (9.6 Gbps theoretical, lower in practice) >> Bluetooth (50 Mbps)",
-                "Reliability: wired > wireless — interference, distance, obstacles don't affect wired",
-                "Simultaneous users: Wi-Fi bandwidth shared among all connected devices — performance degrades with more users",
-                "Jitter: variability in latency — worse on Wi-Fi, problematic for VoIP and video streaming",
-                "USB performance limited by cable version — USB 2.0 bottlenecks high-speed storage devices"
+                "Segmentation of systems",
+                "Isolation/sandboxing/containerisation",
+                "Reduced attack surface"
+              ]
+            },
+            {
+              "code": "B1.4.2",
+              "term": "Cloud Computing (security issues)",
+              "definition": "Security risks that come with relying on cloud services.",
+              "examples": "A default-open access setting exposing storage; account hijacking; an insecure API to a cloud service.",
+              "examTip": "Cloud risks: misconfiguration/default settings, provider reliance, API vulnerabilities, account hijacking.",
+              "keyFacts": [
+                "Configuration issues / default access settings",
+                "Reliance on the service provider; data leaks/loss/theft",
+                "API vulnerabilities in the interface to cloud services",
+                "Account hijacking"
+              ]
+            },
+            {
+              "code": "B1.4.3a",
+              "term": "BYOD (Bring Your Own Device)",
+              "definition": "Allowing staff to use their own devices for work, which creates data-security and management issues.",
+              "examples": "An employee's personal phone holding company emails; wiping company data when they leave.",
+              "examTip": "BYOD blurs personal/organisational data — issues include password policy, privacy, wiping data, and patching.",
+              "keyFacts": [
+                "Organisational data on a private device",
+                "Issues: password policy, privacy, data security on/off device",
+                "Patches/updates/compatibility; separating org vs personal apps",
+                "Wiping data when no longer required; auditing data movement"
+              ]
+            },
+            {
+              "code": "B1.4.3b",
+              "term": "SDN, SAN, IoT & Remote Working",
+              "definition": "Further modern trends: software-defined networking, storage area networks, IoT, and remote working — each with security implications.",
+              "examples": "SDN centrally managing segmentation; a home worker needing a VPN on an insecure home Wi-Fi.",
+              "examTip": "Remote working risks: shared home devices, insecure home Wi-Fi, reliance on third-party tools — needs VPN/encryption.",
+              "keyFacts": [
+                "SDN — segmentation, remote management, automation, scalability",
+                "SAN — redundancy, scalability, access controls, encryption",
+                "IoT — API issues, default passwords, no patches, botnets, eavesdropping",
+                "Remote working — shared devices, home Wi-Fi security, need for VPN"
               ]
             }
           ]
@@ -158,298 +168,77 @@
     },
     {
       "code": "B2",
-      "title": "Networks",
+      "title": "Network Components",
       "subtopics": [
         {
           "code": "B2.1",
-          "title": "Network Topologies",
+          "title": "Hardware Components",
           "items": [
             {
               "code": "B2.1.1",
-              "term": "Star Topology",
-              "definition": "All devices connect individually to a central switch or hub using separate cables. The central device manages all communication between connected nodes.",
-              "examples": "A typical office network where every PC, printer, and server connects back to a central network switch; a school computer lab with all machines cabled to one switch in the server room.",
-              "examTip": "Star is the most common real-world topology. Key exam point: if ONE cable fails, only that device is affected — the rest keep working. If the CENTRAL SWITCH fails, ALL devices lose connection.",
+              "term": "End-User Devices",
+              "definition": "Devices used directly by people, with connectivity and processing, plus fixed networked devices.",
+              "examples": "Smartphones, laptops, tablets, smartwatches; servers, workstations, NAS, networked printers.",
+              "examTip": "Split into mobile devices and fixed networked devices (server, PC, printer, scanner, NAS).",
               "keyFacts": [
-                "Most common topology in modern networks",
-                "Single cable failure only affects one device — fault tolerant for individual nodes",
-                "Central switch failure brings down the entire network — single point of failure",
-                "Easy to add or remove devices without disrupting others",
-                "Easy to identify faults — cable tester on individual connections",
-                "Higher cabling cost than bus — each device needs its own cable to the centre",
-                "Performance does not degrade as more devices are added (unlike bus)"
+                "Mobile: phone, laptop, tablet, console, smartwatch, camera, VR/AR",
+                "Fixed: server, PC/workstation, printer, scanner, NAS",
+                "Multi-functional devices combine several of these"
               ]
             },
             {
               "code": "B2.1.2",
-              "term": "Ring Topology",
-              "definition": "All devices connect in a closed loop, with each device connected to exactly two others. Data travels in one direction (or both in dual-ring) around the ring until it reaches the destination.",
-              "examples": "Early metropolitan area networks (MANs); some legacy FDDI (Fibre Distributed Data Interface) networks; token ring networks (largely obsolete today).",
-              "examTip": "Ring topology = data travels in a loop. Key weakness: if ONE device or cable fails, the entire ring goes down (unless dual-ring). Largely obsolete in modern networks — but still on the spec.",
+              "term": "Connectivity Devices",
+              "definition": "Hardware that connects devices and networks together and directs traffic.",
+              "examples": "A managed switch segmenting traffic; a router joining networks; a gateway translating between protocols.",
+              "examTip": "Switch (connects devices in a LAN), router (joins networks), gateway (translates protocols), bridge, repeater, AP, modem.",
               "keyFacts": [
-                "Each device connects to two neighbours forming a closed loop",
-                "Data travels in one direction (unidirectional) — or both in dual-ring",
-                "Token passing: only the device holding the 'token' can transmit — prevents collisions",
-                "Single point of failure: one broken cable or failed device can break the entire ring",
-                "Dual-ring: provides redundancy — traffic reroutes if one ring fails",
-                "Difficult to add/remove devices — requires temporary shutdown of the ring",
-                "Largely replaced by star topology in modern networks"
+                "Switch (managed/unmanaged), router (wired/wireless), gateway",
+                "Bridge, repeater, access point, USB hub (active/passive)",
+                "Modem: DSL/copper, optical fibre, wireless"
               ]
             },
             {
               "code": "B2.1.3",
-              "term": "Bus Topology",
-              "definition": "All devices connect to a single shared backbone cable (the bus). Data sent by any device travels along the entire bus in both directions and is received by all devices, but only the intended recipient processes it.",
-              "examples": "Early Ethernet networks (10BASE2 using coaxial cable); simple temporary networks for small setups.",
-              "examTip": "Bus topology = single shared cable. Key weakness: collision domain — only one device can transmit at a time; cable failure takes down the entire network. Largely obsolete in modern networks.",
+              "term": "Connection Media",
+              "definition": "The cabled and wireless media that carry network data.",
+              "examples": "Ethernet (CAT6) cable; optical fibre; Wi-Fi; Bluetooth; Li-Fi.",
+              "examTip": "Optical fibre = fast, secure, hard to tap. Wireless media (Wi-Fi/Bluetooth/NFC) are easier to intercept.",
               "keyFacts": [
-                "Single shared cable (backbone) — all devices connected to it",
-                "Only one device can transmit at a time — collision risk increases with more devices",
-                "CSMA/CD (Carrier Sense Multiple Access with Collision Detection) manages collisions",
-                "Cable failure or break disconnects all devices from the network",
-                "Terminators required at each end of the bus to prevent signal reflection",
-                "Low cost to set up — minimal cabling needed",
-                "Performance degrades significantly as number of devices increases"
-              ],
-              "comparisonTable": {
-                "title": "Network Topologies Compared",
-                "headers": ["Feature", "Star", "Ring", "Bus"],
-                "rows": [
-                  ["Structure", "All devices connect to central switch", "Devices in a closed loop", "All devices on one shared backbone cable"],
-                  ["Single device failure impact", "Only that device affected", "Can break entire ring (unless dual-ring)", "Only that device affected"],
-                  ["Cable/switch failure impact", "Central switch failure = all down", "One cable break = all down", "Backbone cable failure = all down"],
-                  ["Performance under load", "Good — switch manages traffic", "Moderate — token passing limits throughput", "Degrades — collisions increase with more devices"],
-                  ["Ease of fault finding", "Easy — isolate individual cables", "Hard — must check entire ring", "Moderate — check backbone and termination"],
-                  ["Cost", "Higher cabling cost (individual cables to centre)", "Moderate", "Low — minimal cabling"],
-                  ["Scalability", "Easy — add devices to switch", "Hard — disrupts network", "Limited — performance degrades"],
-                  ["Modern usage", "Very common (standard office/school network)", "Largely obsolete", "Largely obsolete"],
-                  ["Diagram shape", "Hub-and-spoke (like a wheel)", "Circle", "Straight line with branches"]
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "code": "B2.2",
-          "title": "Types of Networks",
-          "items": [
-            {
-              "code": "B2.2.1",
-              "term": "Personal Area Network (PAN)",
-              "definition": "A very small network centred on an individual person, typically connecting personal devices over short distances (up to ~10 metres). Usually uses Bluetooth or USB.",
-              "examples": "A phone connected to wireless earbuds and a smartwatch via Bluetooth; a laptop connected to a mouse and keyboard wirelessly; syncing a fitness tracker to a phone.",
-              "examTip": "PAN = personal, short range, usually Bluetooth. It's the smallest network type — just your own devices communicating with each other.",
-              "keyFacts": [
-                "Range: typically up to 10 metres",
-                "Technology: primarily Bluetooth, also USB, Zigbee (IoT)",
-                "No infrastructure needed — direct device-to-device",
-                "Low data transfer requirements for most PAN uses",
-                "Only connects the individual's personal devices"
-              ]
-            },
-            {
-              "code": "B2.2.2",
-              "term": "Local Area Network (LAN)",
-              "definition": "A network covering a small geographic area — typically a single building, floor, or campus. The organisation owns and manages its own networking hardware (switches, cables, access points).",
-              "examples": "A school network connecting all classrooms; an office network linking all employee PCs; a home network connecting computers, phones, and a smart TV.",
-              "examTip": "LAN = organisation-owned, one site, high speed, low cost per connection. The organisation is responsible for all hardware and maintenance.",
-              "keyFacts": [
-                "Coverage: single building, floor, or small campus",
-                "Organisation owns all hardware — switches, cables, WAPs",
-                "High speed: typically 1 Gbps on wired Ethernet",
-                "Low latency — devices are physically close",
-                "Can use wired (Ethernet) and/or wireless (Wi-Fi) connections",
-                "No per-megabyte data cost — internal traffic is free",
-                "Connected to WAN/internet via a router at the network boundary"
-              ]
-            },
-            {
-              "code": "B2.2.3",
-              "term": "Wide Area Network (WAN)",
-              "definition": "A network spanning a large geographic area — across cities, countries, or continents. Uses third-party telecommunications infrastructure (leased lines, fibre optic cables, satellite) to link multiple LANs.",
-              "examples": "A multinational company's network connecting offices in London, New York, and Tokyo; the internet itself is the largest WAN; a bank's network linking all branches nationwide.",
-              "examTip": "WAN = connects multiple LANs over large distances using third-party infrastructure. Key distinction from LAN: organisation does NOT own the physical infrastructure — they lease it or pay a provider.",
-              "keyFacts": [
-                "Coverage: cities, countries, continents",
-                "Organisation leases or buys access to third-party infrastructure",
-                "Typically slower and higher latency than LAN due to distances",
-                "Higher cost — ongoing payments to telecommunications providers",
-                "Uses technologies: MPLS leased lines, broadband, fibre, satellite, 4G/5G",
-                "Managed by ISPs and telecommunications companies",
-                "The internet is technically the world's largest public WAN"
-              ]
-            },
-            {
-              "code": "B2.2.4",
-              "term": "Virtual Private Network (VPN)",
-              "definition": "A technology that creates an encrypted, private tunnel through a public network (usually the internet), allowing users to connect to a private network securely as if they were physically present on it.",
-              "examples": "Remote employees connecting to the company intranet securely; a multinational connecting overseas offices over the internet instead of expensive leased lines; a user protecting their privacy on public Wi-Fi.",
-              "examTip": "VPN is not a physical network — it's a technology layered on top of an existing network (usually the internet). Key benefit over dedicated WAN: much cheaper because it uses the existing public internet infrastructure.",
-              "keyFacts": [
-                "Tunnelling protocol: encapsulates data packets within an encrypted outer packet",
-                "Encryption: all data within the tunnel is encrypted — cannot be read if intercepted",
-                "Authentication: users must authenticate before connecting to the VPN",
-                "IP masking: traffic appears to come from the VPN server, not the user's real IP",
-                "Cost advantage: uses existing internet infrastructure — far cheaper than dedicated leased WAN lines",
-                "Performance: encryption overhead adds some latency; speed depends on internet connection quality",
-                "Protocols: OpenVPN, IPSec, WireGuard, L2TP"
-              ],
-              "comparisonTable": {
-                "title": "Network Types Compared: PAN vs LAN vs WAN vs VPN",
-                "headers": ["Feature", "PAN", "LAN", "WAN", "VPN"],
-                "rows": [
-                  ["Coverage area", "Personal (up to 10 m)", "Single building/campus", "Cities/countries/continents", "Anywhere with internet"],
-                  ["Who owns infrastructure", "Individual user", "The organisation", "Third-party provider (leased)", "Runs over existing internet"],
-                  ["Typical speed", "Low–medium (Bluetooth)", "High (1–10 Gbps Ethernet)", "Lower, variable", "Depends on internet connection"],
-                  ["Cost", "Very low", "Moderate (one-off hardware cost)", "High (ongoing leasing fees)", "Low (subscription/software only)"],
-                  ["Security", "Moderate (Bluetooth pairing)", "High (physical premises)", "Moderate (encrypted links)", "High (encrypted tunnel)"],
-                  ["Primary use", "Connecting personal devices", "Connecting office/school devices", "Connecting multiple sites globally", "Secure remote access / site-to-site over internet"],
-                  ["Example", "Phone + earbuds via Bluetooth", "School computer lab", "Bank's global network", "Employee accessing office from home"]
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "code": "B2.3",
-          "title": "Factors Affecting Choice of Network",
-          "items": [
-            {
-              "code": "B2.3.1",
-              "term": "User Needs",
-              "definition": "The specific requirements of the people who will use the network — including mobility, the applications they run, the number of simultaneous users, and the devices they use.",
-              "examTip": "Always the starting point for any network selection question. Ask: what do users actually need to do? A call centre needs reliable VoIP; a warehouse team needs mobile wireless access.",
-              "keyFacts": [
-                "Number of users determines required bandwidth capacity",
-                "Mobile/roaming users → wireless network required",
-                "Fixed workstations → wired Ethernet appropriate",
-                "Real-time applications (VoIP, video) → low latency required",
-                "Remote access needs → VPN capability required"
-              ]
-            },
-            {
-              "code": "B2.3.2",
-              "term": "Specifications",
-              "definition": "The technical requirements the network must meet — including minimum speed, maximum latency, uptime guarantees, and support for specific protocols or hardware.",
-              "examTip": "Specifications translate user needs into technical requirements. A 'discuss network choice' question should include technical specs like required bandwidth and latency.",
-              "keyFacts": [
-                "Bandwidth: minimum Mbps required to support all simultaneous users and applications",
-                "Latency requirements: real-time apps need <20 ms; file sharing tolerates higher",
-                "Uptime/availability: some businesses need 99.99% uptime (four nines)",
-                "Protocol support: does the network need to support specific legacy systems?",
-                "Scalability specification: how many devices need to connect now vs in 3–5 years?"
-              ]
-            },
-            {
-              "code": "B2.3.3",
-              "term": "Connectivity",
-              "definition": "Whether the network provides the right type and quality of connection — including internet access, inter-site connectivity, and support for all device types the organisation uses.",
-              "examTip": "Connectivity = can every device/site that needs to connect, connect? Consider both wired and wireless requirements, and internet vs internal connectivity.",
-              "keyFacts": [
-                "Must support all device types (PCs, phones, IoT sensors, printers)",
-                "Inter-site connectivity: WAN or VPN needed for multiple locations",
-                "Internet access provision: bandwidth and redundancy of the internet uplink",
-                "Mobile coverage: 4G/5G as backup if fixed internet goes down"
-              ]
-            },
-            {
-              "code": "B2.3.4",
-              "term": "Cost",
-              "definition": "The total financial outlay for designing, implementing, and running the network — including hardware, cabling, licensing, support, and ongoing connectivity fees.",
-              "examTip": "Split cost into capital expenditure (CapEx: one-off hardware/installation) and operational expenditure (OpEx: ongoing fees, maintenance, support). Exams often test this distinction.",
-              "keyFacts": [
-                "Capital costs: switches, routers, cabling, WAPs, servers",
-                "Ongoing costs: ISP fees, leased line rental, support contracts, licensing",
-                "WAN leased lines: expensive but reliable; VPN over internet: cheaper alternative",
-                "Wireless reduces cabling cost but may require more access points",
-                "Training staff and ongoing maintenance adds to total cost of ownership"
-              ]
-            },
-            {
-              "code": "B2.3.5",
-              "term": "Efficiency",
-              "definition": "How effectively the network uses available bandwidth and resources to deliver fast, reliable communication with minimal waste or congestion.",
-              "examTip": "Efficiency links to B2.4 (network performance). QoS (Quality of Service) is a key mechanism — it prioritises critical traffic (e.g. VoIP) over less important traffic.",
-              "keyFacts": [
-                "Quality of Service (QoS): prioritises critical traffic types (VoIP, video) over bulk downloads",
-                "Network segmentation (VLANs): divides network into logical zones to reduce congestion",
-                "Efficient routing protocols minimise unnecessary hops",
-                "Utilisation monitoring: identify bottlenecks before they cause problems"
-              ]
-            },
-            {
-              "code": "B2.3.6",
-              "term": "Compatibility",
-              "definition": "Whether the new network works with existing hardware, software, operating systems, and protocols already used by the organisation.",
-              "examTip": "Compatibility failures can make a 'better' network completely unusable. A legacy manufacturing system may only work with specific protocols — the network must support them.",
-              "keyFacts": [
-                "Legacy system support: older systems may use outdated protocols incompatible with new hardware",
-                "Hardware compatibility: new switches must support existing NIC standards",
-                "Protocol compatibility: ensure new network supports all protocols in use (IPv4/IPv6, specific VLANs)",
-                "Operating system compatibility: network management tools must work with all OS versions in use"
-              ]
-            },
-            {
-              "code": "B2.3.7",
-              "term": "Implementation (Timescales, Testing, Downtime)",
-              "definition": "The practical considerations of deploying the network — how long it takes, how it is tested before going live, and how much disruption occurs to existing operations during the transition.",
-              "examTip": "Implementation has three sub-considerations the spec names explicitly: timescales (how long?), testing (how do you know it works?), downtime (how much disruption?). Use all three in extended answers.",
-              "keyFacts": [
-                "Timescales: large network installations take weeks/months — must fit around business operations",
-                "Testing: thorough testing before cutover — performance testing, security testing, failover testing",
-                "Downtime: plan for minimising disruption — phased rollout, weekend/out-of-hours work",
-                "Migration: moving from old to new network without losing data or access",
-                "Contingency plan: fallback if new network fails during implementation",
-                "Staff training: users and IT team need training before switchover"
-              ]
-            },
-            {
-              "code": "B2.3.8",
-              "term": "Productivity",
-              "definition": "The impact of the network on employees' ability to work effectively — including how much faster or more reliably they can access systems, share data, and communicate.",
-              "examTip": "Productivity is the business case for investing in network improvements. Link slow/unreliable networks to tangible business costs: missed deadlines, customer complaints, lost revenue.",
-              "keyFacts": [
-                "Fast, reliable network directly improves employee output",
-                "Downtime and slow connections cost organisations money in lost working time",
-                "Collaborative tools (Teams, SharePoint) require reliable network to work effectively",
-                "Remote working productivity depends entirely on VPN and internet connection quality"
-              ]
-            },
-            {
-              "code": "B2.3.9",
-              "term": "Security",
-              "definition": "Ensuring the network is protected against unauthorised access, data interception, and attacks — through encryption, access controls, firewalls, and monitoring.",
-              "examTip": "Security must be considered at every layer of the network. Wireless networks are inherently more vulnerable than wired. Key requirements: WPA3 for Wi-Fi, firewall at network perimeter, VPN for remote access.",
-              "keyFacts": [
-                "Wi-Fi encryption: WPA3 (current standard); WPA2 (acceptable); WEP (obsolete — never use)",
-                "Network segmentation: separate guest Wi-Fi from internal corporate network",
-                "Firewall: controls traffic entering and leaving the network",
-                "VPN: encrypts remote access connections",
-                "Network access control (NAC): ensures only authorised/compliant devices connect",
-                "Intrusion detection system (IDS): monitors for suspicious traffic patterns"
+                "Cable: Ethernet, USB (current + legacy)",
+                "Wireless: Wi-Fi (802.11), NFC, Bluetooth, cellular/5G",
+                "Optical fibre and Li-Fi"
               ]
             }
           ]
         },
         {
-          "code": "B2.4",
-          "title": "How Network Features Affect Performance",
+          "code": "B2.2-2.3",
+          "title": "External Media & Software Components",
           "items": [
             {
-              "code": "B2.4",
-              "term": "How Features of a Network and Component Parts Affect Performance",
-              "definition": "Network performance — measured in speed (throughput), latency, reliability, and the number of simultaneous users it can support — is shaped by the choice of hardware, topology, connection type, and how the network is configured.",
-              "examples": "Replacing a 100 Mbps switch with a 1 Gbps switch dramatically increasing file transfer speeds across the network; adding more wireless access points reducing Wi-Fi congestion in a large office.",
-              "examTip": "For 'how does X affect network performance' questions, always cover: speed/bandwidth, latency, reliability, and the effect of the number of connected devices. Hardware quality and topology both affect performance.",
+              "code": "B2.2",
+              "term": "Security Issues of External Media",
+              "definition": "The security risks of removable storage and external media.",
+              "examples": "A lost USB stick exposing data; an external drive used to spread malware; data corruption over time.",
+              "examTip": "External media risks: loss/theft, interception/copying, malware vector, lifespan/failure — mitigated by encryption and secure disposal.",
               "keyFacts": [
-                "Switch speed: faster switches (1 Gbps vs 100 Mbps) directly increase throughput",
-                "Cable type: Cat6 supports higher speeds and longer runs than Cat5e; fibre optic far exceeds copper",
-                "Topology: star avoids collision; bus degrades with more devices",
-                "Number of users: bandwidth shared — more users = less per user on shared media",
-                "Wireless access point placement: affects Wi-Fi signal strength and coverage",
-                "Router processing speed: bottleneck at network boundary if underpowered",
-                "Bandwidth of internet uplink: limits external communication for all users",
-                "QoS configuration: ensures critical applications get priority bandwidth"
+                "Encryption and secure disposal of media",
+                "Loss/theft and interception/copying",
+                "Data loss/corruption and media lifespan/failure",
+                "Acts as a malware vector"
+              ]
+            },
+            {
+              "code": "B2.3",
+              "term": "Software Components",
+              "definition": "The operating systems, monitoring tools and applications that run on a network.",
+              "examples": "A packet sniffer analysing traffic; an events/logs viewer; remote-access admin tools.",
+              "examTip": "Monitoring tools (performance monitor, logs viewer, vulnerability scanner, packet sniffer) are key for spotting incidents — link to D2.",
+              "keyFacts": [
+                "Network/device OS: GUI, CLI, web interface for configuration",
+                "Monitoring tools: performance monitor, logs viewer, vulnerability scanner, packet sniffer",
+                "Applications: remote working tools, database, document management, mapping tools"
               ]
             }
           ]
@@ -458,298 +247,165 @@
     },
     {
       "code": "B3",
-      "title": "Issues Relating to Transmission of Data",
+      "title": "Infrastructure Services & Resources",
       "subtopics": [
         {
           "code": "B3.1",
-          "title": "Protocols for Common Tasks",
+          "title": "Protocols, Ports, Packets & Addressing",
           "items": [
             {
               "code": "B3.1.1",
-              "term": "Email Protocols (SMTP, POP3, IMAP)",
-              "definition": "Email communication uses three protocols: SMTP sends messages; POP3 and IMAP are used to retrieve messages from a mail server. Each serves a different function in the email delivery chain.",
-              "examples": "Outlook using SMTP to send an email; a phone using IMAP to sync inbox across all devices; a basic email client using POP3 to download emails to one computer.",
-              "examTip": "Know exactly what each protocol does and when to use each. IMAP vs POP3 is a common comparison question — the key difference is IMAP keeps mail on server (multi-device sync), POP3 downloads and typically deletes from server.",
+              "term": "TCP/IP",
+              "definition": "The core suite of protocols used to transmit data across networks and the internet, organised as a four-layer model.",
+              "examples": "TCP breaking a file into packets, IP addressing them, and TLS securing the connection.",
+              "examTip": "TCP/IP uses a four-layer model; TLS adds security; packets have headers; error correction ensures delivery.",
               "keyFacts": [
-                "SMTP (Simple Mail Transfer Protocol): sends email from client to server and between mail servers",
-                "POP3 (Post Office Protocol 3): downloads email to one device, typically deletes from server",
-                "IMAP (Internet Message Access Protocol): keeps email on server, syncs across all devices",
-                "SMTP port: 587 (submission) / 465 (SMTPS); POP3: 110 / 995 (SSL); IMAP: 143 / 993 (SSL)",
-                "Modern email clients almost always use IMAP — better for multi-device users"
-              ],
-              "comparisonTable": {
-                "title": "Email Protocols Compared: SMTP vs POP3 vs IMAP",
-                "headers": ["Feature", "SMTP", "POP3", "IMAP"],
-                "rows": [
-                  ["Purpose", "Sending email", "Receiving/downloading email", "Receiving/syncing email"],
-                  ["Direction", "Outgoing only", "Incoming only", "Incoming only"],
-                  ["Where mail is stored", "N/A — just transfers it", "Downloaded to local device; deleted from server (by default)", "Kept on mail server; synced to devices"],
-                  ["Multi-device support", "Yes (sending from any device)", "No — email on one device only", "Yes — same inbox on all devices"],
-                  ["Offline access", "N/A", "Yes — downloaded locally", "Limited — must sync first"],
-                  ["Server storage used", "N/A", "Minimal — mail removed", "Yes — all mail stays on server"],
-                  ["Best for", "Sending from any email client", "Single-device users with limited server storage", "Multi-device users wanting consistent inbox everywhere"],
-                  ["Example use", "Sending from Outlook to Gmail server", "Old-style single-PC email client", "Modern phone/laptop/tablet email sync"]
-                ]
-              }
-            },
-            {
-              "code": "B3.1.2",
-              "term": "Voice and Video Calls over the Internet (VoIP)",
-              "definition": "Voice over Internet Protocol (VoIP) converts analogue audio (and video) into digital data packets and transmits them over the internet or a network, enabling voice and video calls without the traditional telephone network.",
-              "examples": "Microsoft Teams calls; Zoom video conferencing; WhatsApp calls; Skype; Google Meet.",
-              "examTip": "VoIP requires sufficient bandwidth AND low latency — high latency causes noticeable delays; packet loss causes dropped audio. It requires QoS settings to prioritise voice packets over other traffic.",
-              "keyFacts": [
-                "Converts voice/video to digital data packets — uses IP network instead of phone network",
-                "Protocols: SIP (Session Initiation Protocol) sets up/tears down calls; RTP (Real-time Transport Protocol) carries actual audio/video data",
-                "Requires low latency (ideally <150 ms) — otherwise noticeable delay in conversation",
-                "Requires sufficient bandwidth — typically 100 kbps per VoIP call (audio); much more for HD video",
-                "Packet loss causes crackling/dropouts — voice quality highly sensitive to network quality",
-                "Much cheaper than traditional PSTN calls — especially international",
-                "QoS settings needed to prioritise voice packets over bulk data traffic"
+                "Four-layer model",
+                "Transport Layer Security (TLS) for secure connections",
+                "Data sent as packets with headers",
+                "Error correction"
               ]
             },
             {
-              "code": "B3.1.3",
-              "term": "Web Page Protocols (HTTP and HTTPS)",
-              "definition": "HTTP (HyperText Transfer Protocol) is the foundation of data communication on the web, defining how browsers request and receive web pages. HTTPS is the secure version, adding TLS/SSL encryption.",
-              "examples": "A browser loading a news article via HTTP (no login needed, no sensitive data); a user logging into online banking over HTTPS; a web form submitting payment details via HTTPS.",
-              "examTip": "Know the three things HTTPS adds over HTTP: encryption (data cannot be read), integrity (data not tampered with), authentication (server identity verified). Browsers mark HTTP as 'Not Secure' — HTTPS is now the standard for all sites.",
+              "code": "B3.1.2-3",
+              "term": "Ports & Packets",
+              "definition": "Ports identify services/connections; packets are the units data is broken into for transmission.",
+              "examples": "Port 443 for HTTPS; a TCP packet with header, payload and trailer.",
+              "examTip": "Packet structure: header (addresses), payload (data), trailer/footer (error check). Know TCP vs UDP.",
               "keyFacts": [
-                "HTTP: stateless request-response protocol — browser sends GET/POST request; server responds",
-                "HTTP port 80; HTTPS port 443",
-                "HTTPS adds TLS/SSL: encrypts entire session between browser and server",
-                "Digital certificate required for HTTPS — verifies server identity (prevents impersonation)",
-                "HTTP Strict Transport Security (HSTS): forces browsers to only use HTTPS for a domain",
-                "HTTP/2 and HTTP/3: newer versions with improved performance (multiplexing, compression)"
-              ],
-              "comparisonTable": {
-                "title": "HTTP vs HTTPS",
-                "headers": ["Feature", "HTTP", "HTTPS"],
-                "rows": [
-                  ["Full name", "HyperText Transfer Protocol", "HyperText Transfer Protocol Secure"],
-                  ["Encryption", "None — data sent in plaintext", "TLS/SSL encrypts all data in transit"],
-                  ["Data integrity", "No — data can be modified in transit", "Yes — TLS detects any tampering"],
-                  ["Server authentication", "No — cannot verify website identity", "Yes — digital certificate verifies server"],
-                  ["Port", "80", "443"],
-                  ["Browser indicator", "'Not Secure' warning", "Padlock icon"],
-                  ["Risk", "Credentials and data visible to anyone intercepting traffic", "Significantly harder to intercept/read/modify"],
-                  ["Use cases", "Public content with no login (increasingly replaced by HTTPS)", "Any page with login, personal data, or payment"],
-                  ["Required for", "Nothing — being phased out", "E-commerce, banking, login pages, all modern sites"]
-                ]
-              }
+                "Hardware ports (switch) vs software/virtual IP ports",
+                "Packet parts: header, payload/body, trailer/footer",
+                "Packet types: TCP (reliable), IP, UDP (fast, no guarantee)"
+              ]
             },
             {
               "code": "B3.1.4",
-              "term": "Secure Payment Systems",
-              "definition": "Technologies and standards that protect financial transactions made online — including encryption, tokenisation, and authentication protocols that prevent payment card data from being stolen.",
-              "examples": "A customer using a credit card on an HTTPS e-commerce site; Apple Pay using tokenisation so the actual card number is never shared with the merchant; 3D Secure (e.g. Verified by Visa) adding MFA to card payments.",
-              "examTip": "Secure payments combine multiple layers: HTTPS encryption (protects data in transit), tokenisation (replaces real card number with a token), MFA (3D Secure), and PCI DSS compliance (industry standard for card data security).",
+              "term": "NAT & IP Addressing",
+              "definition": "Network Address Translation maps private internal addresses to public ones; addressing uses IPv4/IPv6 and reserved private ranges.",
+              "examples": "A home router using NAT so many devices share one public IP; 192.168.x.x private addresses.",
+              "examTip": "Know the private ranges (10.x, 172.16-31.x, 192.168.x), APIPA (169.254.x) and loopback 127.0.0.1.",
               "keyFacts": [
-                "HTTPS: encrypts all data including payment card details during transmission",
-                "Tokenisation: replaces real card number with a unique token — merchant never sees actual card number",
-                "PCI DSS (Payment Card Industry Data Security Standard): rules organisations must follow when handling card data",
-                "3D Secure: additional authentication step (OTP to phone) before transaction is authorised",
-                "SSL/TLS certificate required on checkout pages — browser padlock must be visible",
-                "CVV code: not stored by merchants — provides additional verification",
-                "Fraudulent transactions: chargeback mechanism protects consumers"
+                "NAT types: static, dynamic, Port Address Translation (PAT)",
+                "IPv4 and IPv6 address formats",
+                "RFC 1918 private ranges: 10.x, 172.16-31.x, 192.168.x",
+                "APIPA 169.254.x (DHCP failure); 127.0.0.1 loopback"
               ]
             }
           ]
         },
         {
-          "code": "B3.2",
-          "title": "Security Issues When Transmitting Data",
+          "code": "B3.2-3.3",
+          "title": "Segmentation & Network Devices",
           "items": [
             {
               "code": "B3.2",
-              "term": "Security Issues When Transmitting Data",
-              "definition": "Data travelling across networks — whether wired or wireless — can be intercepted, altered, or blocked. The risks vary by connection type and whether encryption is used.",
-              "examples": "An attacker using a packet sniffer on an unencrypted public Wi-Fi network to capture login credentials; a man-in-the-middle (MitM) attack intercepting and altering data between two parties.",
-              "examTip": "Key attack types by connection: Wi-Fi → eavesdropping / MitM on unencrypted hotspots; Wired → harder but possible via rogue hardware; Internet → packet sniffing, MitM. Solution for each: encryption (TLS/VPN/HTTPS).",
+              "term": "Domains, Sub-domains & Segmentation",
+              "definition": "Dividing a network into segments to control access and limit how far an attacker can spread.",
+              "examples": "Putting guest Wi-Fi on a separate segment from staff systems (sample paper Q2).",
+              "examTip": "Segmentation security benefits: limits access, restricts lateral movement, smaller attack surface, simpler damage control.",
               "keyFacts": [
-                "Packet sniffing: capturing data packets in transit to read unencrypted content",
-                "Man-in-the-middle (MitM): attacker secretly intercepts and relays communication between two parties",
-                "Wi-Fi eavesdropping: unencrypted Wi-Fi allows anyone nearby to capture traffic",
-                "Rogue access point (evil twin): fake Wi-Fi hotspot mimicking a legitimate one",
-                "Session hijacking: stealing a session cookie to take over an authenticated session",
-                "Mitigations: HTTPS/TLS, VPN on public Wi-Fi, certificate validation, encrypted DNS (DoH)"
+                "Uses hierarchy, trust relationships and access control",
+                "Limits access to devices, data and applications",
+                "Restricts lateral movement of an attacker/malware",
+                "Smaller attack surface and simpler damage control"
               ]
-            }
-          ]
-        },
-        {
-          "code": "B3.3",
-          "title": "Bandwidth and Latency",
-          "items": [
+            },
             {
               "code": "B3.3",
-              "term": "Factors Affecting and Implications of Bandwidth and Latency",
-              "definition": "Bandwidth is the maximum data transfer rate (measured in Mbps/Gbps). Latency is the time delay between sending and receiving data (measured in milliseconds). Both critically affect how fast and responsive a network feels.",
-              "examples": "A home with 1 Gbps broadband but high latency (200 ms) feeling slow for gaming despite fast downloads; a school's Wi-Fi becoming sluggish at lunch when 500 students simultaneously stream video.",
-              "examTip": "Bandwidth and latency are different things — bandwidth is how much data can flow; latency is how quickly it starts flowing. High bandwidth alone does not guarantee a good experience if latency is also high. Always explain the effect on users.",
+              "term": "Network Configuration Devices",
+              "definition": "The devices used to build and configure networks securely.",
+              "examples": "A firewall filtering traffic; a router directing packets; a WAP providing wireless access.",
+              "examTip": "For 'secure internet access' the expected device is a FIREWALL (sample paper Q1ai).",
               "keyFacts": [
-                "Bandwidth: maximum data per second — shared between all simultaneous users/applications",
-                "Latency: delay in transmission — caused by distance, router hops, network congestion, processing time",
-                "High bandwidth but high latency: downloads fast but feels sluggish for interactive tasks",
-                "Low latency critical for: VoIP, video calls, online gaming, real-time control systems",
-                "Throughput: actual bandwidth achieved in practice — always lower than theoretical maximum",
-                "Jitter: variation in latency — particularly harmful for VoIP/video streaming",
-                "Congestion: too many devices using bandwidth simultaneously — increases latency and reduces throughput",
-                "Factors affecting bandwidth: cable type, switch/router speed, ISP tier, number of users",
-                "Factors affecting latency: geographic distance, number of hops, network congestion, processing time"
+                "Server, router, switch",
+                "Wireless Access Point (WAP)",
+                "Firewall, bridge, gateway"
               ]
             }
           ]
         },
         {
           "code": "B3.4",
-          "title": "File Types and Formats for Transmission",
+          "title": "Infrastructure Services",
           "items": [
             {
               "code": "B3.4.1",
-              "term": "Image File Formats",
-              "definition": "Digital images can be stored in various formats, each with different characteristics affecting file size, quality, and suitability for transmission.",
-              "examples": "JPEG photos on a website; PNG logos with transparent backgrounds; GIF animations; RAW files from professional cameras; SVG vector graphics for logos.",
-              "examTip": "Exams often ask you to choose an appropriate format for a scenario. JPEG = photos/web (lossy, small). PNG = graphics with transparency (lossless, larger). GIF = simple animations. SVG = scalable vector, resolution-independent.",
+              "term": "Domain Name System (DNS)",
+              "definition": "The service that resolves human-readable domain names into IP addresses.",
+              "examples": "Typing www.example.com and DNS returning its IP address so the browser can connect.",
+              "examTip": "DNS resolution = name → IP. DNS can be attacked (spoofing/poisoning) — link to A1.2.4.",
               "keyFacts": [
-                "JPEG: lossy compression — good for photographs, small file size, reduced quality at high compression",
-                "PNG: lossless compression — supports transparency, larger than JPEG, used for logos and graphics",
-                "GIF: lossless, limited to 256 colours, supports simple animations — used for short animated images",
-                "SVG: vector format — infinitely scalable without quality loss, used for logos and icons",
-                "RAW: unprocessed camera sensor data — very large file, maximum quality, used by professionals",
-                "BMP: uncompressed — very large files, rarely used for transmission"
+                "DNS resolution process (name to IP)",
+                "Reverse DNS resolution (IP to name)",
+                "DNS cache and IPv6 DNS"
               ]
             },
             {
-              "code": "B3.4.2",
-              "term": "Audio File Formats",
-              "definition": "Digital audio is stored in formats that vary in quality and file size depending on whether lossy or lossless compression is used.",
-              "examples": "MP3 music files streamed on Spotify; WAV audio for professional studio recording; AAC audio in iTunes/Apple Music; FLAC for audiophile lossless audio.",
-              "examTip": "MP3 = lossy, small, widely compatible — good for streaming. WAV/FLAC = lossless, large — for professional production. The smaller the file, the less bandwidth needed for streaming.",
+              "code": "B3.4.2-3",
+              "term": "Directory & Authentication Services",
+              "definition": "Services that manage identities and verify users across a network.",
+              "examples": "Active Directory managing user accounts; MFA at login; single sign-on across apps.",
+              "examTip": "Authentication types: single-factor, two-factor (TFA), multi-factor (MFA), single sign-on (SSO). Protocols: PAP, CHAP, EAP.",
               "keyFacts": [
-                "MP3: lossy compression — removes audio frequencies humans barely perceive; small file size; widely supported",
-                "AAC: lossy, better quality than MP3 at same bit rate — used by Apple, YouTube",
-                "WAV: uncompressed — large files, lossless quality, used in professional audio production",
-                "FLAC: lossless compression — smaller than WAV but full quality; used by audiophiles",
-                "OGG Vorbis: open-source lossy format — used in some games and web audio",
-                "Bit rate: higher bit rate = better quality but larger file (e.g. 128 kbps vs 320 kbps MP3)"
-              ]
-            },
-            {
-              "code": "B3.4.3",
-              "term": "Video File Formats",
-              "definition": "Digital video files combine compressed video and audio streams in a container format. The compression method (codec) determines quality, file size, and compatibility.",
-              "examples": "MP4 video on YouTube; MKV files for high-definition video with multiple subtitle tracks; MOV files from iPhones; AVI legacy format for older video players.",
-              "examTip": "Video files = container format + codec. Container (MP4, MKV) holds the streams; codec (H.264, H.265, AV1) compresses them. H.265 produces half the file size of H.264 at the same quality — important for streaming and storage.",
-              "keyFacts": [
-                "MP4 (H.264): most widely compatible container/codec — used for web video, YouTube, social media",
-                "MP4 (H.265/HEVC): 50% smaller than H.264 at same quality — used for 4K streaming",
-                "MKV: flexible container — supports multiple audio/subtitle tracks, used for HD video",
-                "MOV: Apple's format — high quality, large files",
-                "AVI: older Microsoft format — widely compatible but large and inefficient",
-                "Bitrate: determines quality vs file size — higher bitrate = better quality, more bandwidth needed for streaming"
+                "Directory services: Active Directory, Open Directory, OpenLDAP",
+                "Authentication types: single-factor, TFA, MFA, SSO",
+                "Authentication protocols: PAP, CHAP, EAP"
               ]
             },
             {
               "code": "B3.4.4",
-              "term": "Application Software File Formats",
-              "definition": "Software applications are distributed as executable or installer files in formats specific to the operating system — containing the program code, resources, and metadata needed to install and run the application.",
-              "examples": "A .exe installer for Windows software downloaded from a website; an .apk file sideloaded onto an Android phone; a .dmg disk image for macOS application installation; a .deb package for Debian Linux.",
-              "examTip": "Software files are much larger than documents — can be hundreds of megabytes or gigabytes. Reliable, high-bandwidth connection important for distribution. Security risk: malware often disguised as legitimate software downloads.",
+              "term": "DHCP",
+              "definition": "Dynamic Host Configuration Protocol automatically assigns IP addresses and settings to devices on a network.",
+              "examples": "A laptop joining Wi-Fi and being given an IP address, gateway and lease automatically.",
+              "examTip": "DHCP config includes IP range, lease length, gateway, reservations. DHCP has no built-in security (sample paper Q3) — open to spoofing.",
               "keyFacts": [
-                "EXE / MSI: Windows executable and installer formats",
-                "APK: Android application package — for installing apps outside the Play Store",
-                "DMG / PKG: macOS disk image and installer formats",
-                "DEB / RPM: Linux distribution-specific package formats",
-                "ZIP / RAR: software often distributed in compressed archives to reduce download size",
-                "Digital signatures: verify software has not been tampered with after the developer signed it",
-                "Security: always verify source and digital signature before running downloaded software"
-              ],
-              "comparisonTable": {
-                "title": "File Formats Summary by Media Type",
-                "headers": ["Type", "Lossy formats", "Lossless/uncompressed formats", "Key consideration for transmission"],
-                "rows": [
-                  ["Images", "JPEG (photos, web)", "PNG (transparency), RAW (pro), SVG (vector)", "JPEG smallest for web photos; PNG needed for logos/transparency"],
-                  ["Audio", "MP3, AAC, OGG", "WAV, FLAC", "MP3 for streaming; WAV/FLAC for production — much larger"],
-                  ["Video", "MP4 (H.264/H.265), MKV", "None commonly — all video is compressed", "H.265 half the size of H.264; bitrate controls quality vs bandwidth"],
-                  ["Software", "N/A — cannot lose code", "EXE, APK, DMG, DEB (+ ZIP wrappers)", "Large files need reliable connection; verify digital signature"]
-                ]
-              }
+                "DHCP servers assign IPs to clients automatically",
+                "Config: address range, lease info, reservations, server address",
+                "Inherently insecure — no built-in security measures",
+                "Vulnerable to DHCP spoofing/rogue server attacks"
+              ]
+            },
+            {
+              "code": "B3.4.5-6",
+              "term": "Routing & Remote Access",
+              "definition": "How data is routed between networks, and how remote users connect securely.",
+              "examples": "A VPN giving a home worker secure access to office systems; BGP routing traffic across the internet.",
+              "examTip": "A VPN creates an encrypted 'tunnel' over the internet so remote data can't be read if intercepted (sample paper Q2c).",
+              "keyFacts": [
+                "Routing: static, dynamic/adaptive, routing tables",
+                "IGPs (within a network), EGPs/BGP (between networks/internet)",
+                "Remote access by dial-up or VPN over the internet",
+                "VPN encrypts the connection (a secure tunnel)"
+              ]
             }
           ]
         },
         {
           "code": "B3.5",
-          "title": "Compression Types",
+          "title": "Network Services & Resources",
           "items": [
             {
               "code": "B3.5.1",
-              "term": "Lossy Compression",
-              "definition": "A compression method that permanently removes some data from a file to achieve a smaller file size. The removed data cannot be recovered — the decompressed file is an approximation of the original, not an exact copy.",
-              "examples": "JPEG image compression removing imperceptible colour detail from a photograph; MP3 removing audio frequencies humans barely hear; MP4 video reducing detail in static background areas.",
-              "examTip": "Lossy = smaller file, worse quality, irreversible. Suitable when minor quality loss is acceptable — streaming, web media. NOT suitable where data integrity matters — medical imaging, legal documents.",
+              "term": "File & Print Services",
+              "definition": "Services that provide shared file storage and shared printing across a network.",
+              "examples": "A file server holding shared documents; a print server queuing and prioritising print jobs.",
+              "examTip": "File server = central storage; print server = manages shared printers, queues and drivers.",
               "keyFacts": [
-                "Data is permanently discarded — original cannot be reconstructed",
-                "Achieves much higher compression ratios than lossless",
-                "Quality degrades each time a lossy file is edited and re-saved",
-                "Compression level is a trade-off: more compression = smaller file but worse quality",
-                "Uses: web images, music streaming, video streaming, social media uploads",
-                "NOT suitable for: text files, executables, medical/legal images requiring exact data"
+                "File server — networked file storage, tracking, sharing",
+                "Print server — sharing, queueing, prioritising",
+                "Printer configuration and driver management"
               ]
             },
             {
               "code": "B3.5.2",
-              "term": "Lossless Compression",
-              "definition": "A compression method that reduces file size without losing any data. The original file can be perfectly reconstructed from the compressed version — every bit of the original is recoverable.",
-              "examples": "ZIP archiving of text documents; PNG image compression; FLAC audio; RAR archive of software files.",
-              "examTip": "Lossless = no quality loss, original perfectly restored, but smaller compression ratio than lossy. Required wherever data accuracy is critical: text, code, spreadsheets, executables, medical images.",
+              "term": "Web, Mail & Communication Services",
+              "definition": "Services delivering web, email and real-time communication, several of which lack built-in encryption.",
+              "examples": "A web server using HTTPS; email sent via SMTP; a VoIP call.",
+              "examTip": "Mail protocols (SMTP, POP, MIME) lack built-in encryption — a security weakness. Web services use HTTP/HTTPS and XML.",
               "keyFacts": [
-                "No data lost — original can be perfectly reconstructed",
-                "Lower compression ratio than lossy — file sizes still smaller but not as dramatically",
-                "Uses algorithms like Huffman coding, LZ77, DEFLATE to find and encode patterns",
-                "Uses: ZIP/RAR archives, PNG images, FLAC audio, software distribution",
-                "Required for: text, databases, executables, medical/scientific data, legal files",
-                "Can be applied to any file type without degrading content"
-              ],
-              "comparisonTable": {
-                "title": "Lossy vs Lossless Compression",
-                "headers": ["Feature", "Lossy Compression", "Lossless Compression"],
-                "rows": [
-                  ["Data loss", "Yes — some data permanently removed", "No — all data preserved exactly"],
-                  ["Compression ratio", "Very high — files much smaller", "Moderate — smaller but not as dramatically"],
-                  ["Reversibility", "Irreversible — cannot restore original", "Fully reversible — exact original restored"],
-                  ["Quality impact", "Reduced — degradation increases with compression level", "None — identical to original after decompression"],
-                  ["Re-save impact", "Quality degrades each time (generation loss)", "No quality degradation on re-saving"],
-                  ["Best for", "Images (web/social), audio (streaming), video (streaming)", "Text, code, executables, archives, where accuracy matters"],
-                  ["NOT suitable for", "Medical images, legal documents, scientific data, text", "Cases where file size is critical and quality loss acceptable"],
-                  ["Example formats", "JPEG, MP3, MP4 (H.264), AAC", "PNG, FLAC, WAV, ZIP, RAR, GIF (images)"],
-                  ["File size example", "3 MB photo → ~300 KB JPEG", "3 MB photo → ~2.5 MB PNG"]
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "code": "B3.6",
-          "title": "Codecs",
-          "items": [
-            {
-              "code": "B3.6",
-              "term": "Codecs (Coder-Decoder)",
-              "definition": "A codec is software (or hardware) that encodes (compresses) audio or video data for storage/transmission and decodes (decompresses) it for playback. The codec determines the compression algorithm, quality, and compatibility of audio/video files.",
-              "examples": "H.264 codec encoding a YouTube video for upload and decoding it in the viewer's browser; MP3 codec encoding a song at 320 kbps for streaming; Opus codec used in Discord and Google Meet voice calls.",
-              "examTip": "Codec = coder + decoder. It is what actually does the compression/decompression — the container format (MP4, MKV) just holds the compressed stream. Incompatible codec = file won't play. Key codecs to know: H.264, H.265 (video); MP3, AAC (audio).",
-              "keyFacts": [
-                "Encoder: compresses raw audio/video into smaller format for storage or transmission",
-                "Decoder: decompresses the data for playback — must match the encoder codec",
-                "If playback device doesn't have the codec installed, file won't play",
-                "Trade-off: more compression = smaller file but more CPU power needed to decode",
-                "Streaming services use codecs to balance quality vs bandwidth (e.g. Netflix uses H.265/HEVC and AV1)",
-                "Transcoding: converting from one codec to another — used when uploading to platforms",
-                "H.264 (AVC): most widely compatible video codec — used by YouTube, Blu-ray, streaming",
-                "H.265 (HEVC): 50% smaller than H.264 — used for 4K content; requires more powerful hardware to decode",
-                "AV1: open-source, royalty-free codec — better compression than H.265; increasingly used by YouTube/Netflix",
-                "MP3: most widely compatible audio codec; AAC: better quality at same bit rate"
+                "Web services: HTTP/HTTPS, XML, OS/language independent",
+                "Mail services: SMTP, POP, MIME — lack built-in encryption",
+                "Comms: email, VoIP, SMS, video conferencing, CaaS"
               ]
             }
           ]
