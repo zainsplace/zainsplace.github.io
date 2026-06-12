@@ -18,48 +18,47 @@
 
 | Role | Hex | CSS Variable |
 |------|-----|--------------|
-| Primary | `#7C3AED` | `--accent` |
-| Primary (text on light) | `#6D28D9` | `--accent2` |
+| Primary | `#4338CA` | `--accent` |
+| Primary (text on light) | `#3730A3` | `--accent2` |
 | On Primary | `#FFFFFF` | — |
-| Secondary / Reward | `#DB2777` | `--pink` / `--reward` |
-| Secondary (text on light) | `#BE185D` | `--reward-text` |
-| Accent/CTA gradient | `#8B5CF6 → #7C3AED` | `--accent-grad` |
-| Background | `#F4F1FA` | `--bg` |
+| Secondary / Reward | `#A8326E` | `--pink` / `--reward` |
+| Secondary (text on light) | `#93265D` | `--reward-text` |
+| Background | `#F7F6F3` | `--bg` |
 | Surface/Card | `#FFFFFF` | `--bg2` |
-| Foreground | `#312A3D` | `--text` |
-| Muted Foreground | `#635C72` | `--text2` |
-| Muted | `#ECE7F6` | `--bg3` |
-| Border | `#DDD3F0` | `--border` |
-| Success | `#10B981` | `--green` |
-| Destructive | `#DC2626` | `--red` |
-| Status — RAG amber | `#F59E0B` | `--amber` |
+| Foreground | `#1C1B19` | `--text` |
+| Muted Foreground | `#6E6A61` | `--text2` |
+| Muted | `#EFEDE7` | `--bg3` |
+| Border | `#E5E2DA` | `--border` |
+| Success | `#0E9F6E` | `--green` |
+| Destructive | `#C81E1E` | `--red` |
+| Status — RAG amber | `#D97706` | `--amber` |
 
-**Color Notes:** Vibrant EdTech — violet `#7C3AED` primary + pink `#DB2777` reward/secondary, on a soft lavender-white `#F4F1FA` base (never pure white). Dark near-black text `#312A3D` on white cards keeps body contrast ≥ 4.5:1. Saturated colours are for accents, CTAs, borders and icons only — never as a text background. Amber `#F59E0B` is reserved for RAG status ("Getting there"), not branding.
+**Color Notes:** Refined editorial — warm paper `#F7F6F3` base, ink text `#1C1B19`, ONE deep-indigo accent `#4338CA` with rose `#A8326E` as restrained secondary. Saturation is rationed: accents appear on CTAs, links, focus rings and small chips only. Status colours (green/amber/red) are reserved for RAG state, never decoration.
 
-### Claymorphism Effect Tokens
+### Shape & Depth Tokens
 
 | Token | Value | CSS Variable |
 |-------|-------|--------------|
-| Radius — outer/hero | `40px` | `--radius-lg` |
-| Radius — card | `32px` | `--radius` |
-| Radius — button | `18px` | `--radius-sm` |
-| Border width | `3px` | `--clay-border` |
-| Shadow — card (outer drop + inner highlight) | `inset -4px -4px 8px rgba(255,255,255,0.6), 4px 4px 12px rgba(0,0,0,0.08)` | `--shadow` |
-| Shadow — small | `inset -2px -2px 5px rgba(255,255,255,0.55), 2px 3px 8px rgba(0,0,0,0.06)` | `--shadow-sm` |
-| Press feedback | `scale(0.96)`, 150ms ease-out | `--press` |
+| Radius — outer/hero | `24px` | `--radius-lg` |
+| Radius — card | `16px` | `--radius` |
+| Radius — button | `10px` | `--radius-sm` |
+| Border width | `1px` (hairline) | `--clay-border` |
+| Shadow — card | `0 1px 2px rgba(28,27,25,0.05), 0 8px 24px rgba(28,27,25,0.06)` | `--shadow` |
+| Shadow — small | `0 1px 2px rgba(28,27,25,0.05), 0 2px 8px rgba(28,27,25,0.05)` | `--shadow-sm` |
+| Press feedback | `scale(0.98)`, 150ms ease-out | `--press` |
 
 > ⚠️ **Anti-patterns (reviewed):** (1) No light text on saturated/pastel fills — illegible. Body text stays `#332F3A` on white cards. (2) No muddy/stacked dark shadows — use exactly ONE soft outer + ONE inner highlight, low opacity, no hard edges.
 
 ### Typography
 
-- **Heading Font:** Fredoka
-- **Body Font:** Nunito
-- **Mood:** playful, friendly, fun, creative, warm, approachable
-- **Google Fonts:** [Fredoka + Nunito](https://fonts.google.com/share?selection.family=Fredoka:wght@400;500;600;700|Nunito:wght@300;400;500;600;700)
+- **Heading Font:** Fraunces (serif display, weight 600, letter-spacing −0.01em)
+- **Body Font:** Inter
+- **Mood:** sophisticated, calm, editorial, precise, premium
+- **Accent device:** italic serif in the accent colour for emphasised words in headlines
 
 **CSS Import:**
 ```css
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap');
 ```
 
 ### Spacing Variables
@@ -177,13 +176,13 @@
 
 ## Style Guidelines
 
-**Style:** Claymorphism
+**Style:** Refined Editorial
 
-**Keywords:** Soft 3D, chunky, playful, toy-like, bubbly, thick borders (3-4px), double shadows, rounded (16-24px)
+**Keywords:** Warm paper, ink text, hairline borders (1px), layered soft shadows, serif display headings, single restrained accent, generous whitespace
 
-**Best For:** Educational apps, children's apps, SaaS platforms, creative tools, fun-focused, onboarding, casual games
+**Best For:** Premium learning tools, content-dense apps, long study sessions (low visual fatigue)
 
-**Key Effects:** Inner+outer shadows (subtle, no hard lines), soft press (200ms ease-out), fluffy elements, smooth transitions
+**Key Effects:** Quiet depth (two-layer drop shadows, no insets), subtle hover lifts (−2px), gentle press (scale 0.98), blurred sticky nav
 
 ### Page Pattern
 

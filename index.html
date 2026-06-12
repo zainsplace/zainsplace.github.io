@@ -81,12 +81,26 @@
       </div>
     </div>
 
-    <div class="home-actions">
-      <button class="btn btn-primary btn-full home-cta" onclick="navigate('sections', {section:'A'})">🔥 Start Section A</button>
-      <div class="home-actions-grid">
-        <button class="btn btn-secondary btn-full" onclick="navigate('flashcards')">📚 Flashcards</button>
-        <button class="btn btn-secondary btn-full" onclick="navigate('questions')">✍️ Practice Questions</button>
-        <button class="btn btn-secondary btn-full" onclick="navigate('plan')">📅 Today's Plan</button>
+    <div class="action-deck">
+      <button class="action-hero" onclick="navigate('sections', {section:'A'})">
+        <span class="action-hero-kicker">Continue revising</span>
+        <span class="action-hero-title">Start Section A</span>
+        <span class="action-hero-sub">Threats, vulnerabilities &amp; protection</span>
+        <span class="action-hero-arrow">→</span>
+      </button>
+      <div class="action-index">
+        <button class="action-row" onclick="navigate('flashcards')">
+          <span class="action-num">01</span><span class="action-label">Flashcards</span><span class="action-arrow">→</span>
+        </button>
+        <button class="action-row" onclick="navigate('questions')">
+          <span class="action-num">02</span><span class="action-label">Practice questions</span><span class="action-arrow">→</span>
+        </button>
+        <button class="action-row" onclick="navigate('games')">
+          <span class="action-num">03</span><span class="action-label">Games &amp; battles</span><span class="action-arrow">→</span>
+        </button>
+        <button class="action-row" onclick="navigate('plan')">
+          <span class="action-num">04</span><span class="action-label">Today's plan</span><span class="action-arrow">→</span>
+        </button>
       </div>
     </div>
 

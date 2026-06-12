@@ -23,7 +23,7 @@ function defaultState() {
     xp: 0,
     activity: {},     // 'YYYY-MM-DD' -> action count (feeds the heatmap)
     battles: { played: 0, won: 0 },
-    profile: { emoji: '⭐', col: '#DB2777' },
+    profile: { emoji: '⭐', col: '#A8326E' },
     extended: {
       history: []      // {type, wordCount, date, timeTaken}
     }
@@ -159,8 +159,8 @@ function sectionTierClass(letter) {
 }
 
 function sectionColour(letter) {
-  const map = { A: '#7C3AED', B: '#DB2777', C: '#10B981', D: '#8B5CF6' };
-  return map[letter] || '#7C3AED';
+  const map = { A: '#4338CA', B: '#A8326E', C: '#0E9F6E', D: '#6D5BD6' };
+  return map[letter] || '#4338CA';
 }
 
 function sectionProgress(letter) {
@@ -210,7 +210,7 @@ function today() {
 }
 
 function pAv() { return (state.profile && state.profile.emoji) || '⭐'; }
-function pCol() { return (state.profile && state.profile.col) || '#DB2777'; }
+function pCol() { return (state.profile && state.profile.col) || '#A8326E'; }
 function pImg() { return (state.profile && state.profile.img) || null; }
 
 /* inner content for any "me" avatar: photo if set, else emoji */
@@ -397,10 +397,10 @@ function renderSections(letter) {
 
 function renderSectionList(container) {
   const sections = [
-    { letter: 'A', name: 'Cyber Security Threats & Protection', tier: 'tier1', col: '#7C3AED' },
-    { letter: 'B', name: 'Networking Architectures & Security', tier: 'tier1', col: '#DB2777' },
-    { letter: 'D', name: 'Forensic Procedures', tier: 'tier1', col: '#8B5CF6' },
-    { letter: 'C', name: 'Cyber Security Documentation', tier: 'tier2', col: '#10B981' }
+    { letter: 'A', name: 'Cyber Security Threats & Protection', tier: 'tier1', col: '#4338CA' },
+    { letter: 'B', name: 'Networking Architectures & Security', tier: 'tier1', col: '#A8326E' },
+    { letter: 'D', name: 'Forensic Procedures', tier: 'tier1', col: '#6D5BD6' },
+    { letter: 'C', name: 'Cyber Security Documentation', tier: 'tier2', col: '#0E9F6E' }
   ];
   container.innerHTML = `
     <h2 style="margin-bottom:16px">Sections</h2>
@@ -564,7 +564,7 @@ function renderFlashUI() {
 
   const boxNames     = ['New / Learning', 'Familiar', 'Confident', 'Strong', 'Mastered'];
   const boxIntervals = ['every 1 day', 'every 2 days', 'every 4 days', 'every 8 days', 'every 16 days'];
-  const boxColors    = ['#DC2626', '#DB2777', '#F59E0B', '#10B981', '#7C3AED'];
+  const boxColors    = ['#C81E1E', '#A8326E', '#D97706', '#0E9F6E', '#4338CA'];
 
   container.innerHTML = `
     <h2 style="margin-bottom:12px">Flashcards</h2>
@@ -578,14 +578,14 @@ function renderFlashUI() {
         </div>`).join('')}
     </div>
     <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center">
-      <select id="flash-filter" onchange="setFlashFilter(this.value)" style="background:var(--bg2);border:2px solid var(--border);color:var(--text);padding:9px 12px;border-radius:var(--radius-sm);font-size:14px;font-family:'Nunito',sans-serif;font-weight:600;box-shadow:var(--shadow-sm);cursor:pointer">
+      <select id="flash-filter" onchange="setFlashFilter(this.value)" style="background:var(--bg2);border:1px solid var(--border);color:var(--text);padding:9px 12px;border-radius:var(--radius-sm);font-size:14px;font-family:'Inter',sans-serif;font-weight:600;box-shadow:var(--shadow-sm);cursor:pointer">
         <option value="all" ${flashFilter === 'all' ? 'selected' : ''}>All sections</option>
         ${['A','B','C','D'].map(l => `<option value="${l}" ${flashFilter === l ? 'selected' : ''}>${l}</option>`).join('')}
       </select>
       <span style="font-size:14px;color:var(--text2)">${due} due today / ${total} total</span>
       <button class="btn btn-secondary btn-sm" onclick="flashPracticeMode=false;buildFlashQueue();renderFlashUI()">Refresh queue</button>
     </div>
-    ${flashPracticeMode ? `<div style="background:rgba(124,58,237,0.08);border:2px solid rgba(124,58,237,0.25);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:12px;font-size:13px;color:var(--accent2)"><strong>Practice mode</strong> — reviewing all ${flashQueue.length} cards. Leitner progress is not being saved. <button class="btn btn-secondary btn-sm" style="margin-left:8px" onclick="flashPracticeMode=false;buildFlashQueue();renderFlashUI()">Exit practice mode</button></div>` : ''}
+    ${flashPracticeMode ? `<div style="background:rgba(67,56,202,0.08);border:2px solid rgba(67,56,202,0.25);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:12px;font-size:13px;color:var(--accent2)"><strong>Practice mode</strong> — reviewing all ${flashQueue.length} cards. Leitner progress is not being saved. <button class="btn btn-secondary btn-sm" style="margin-left:8px" onclick="flashPracticeMode=false;buildFlashQueue();renderFlashUI()">Exit practice mode</button></div>` : ''}
     ${due === 0 && !flashPracticeMode ? `
       <div class="empty-state">
         <div class="icon">🎉</div>
@@ -1027,10 +1027,10 @@ const RANKS = [
   { name: 'Bronze',       icon: '🥉', col: '#B45309', min: 0 },
   { name: 'Silver',       icon: '🥈', col: '#64748B', min: 300 },
   { name: 'Gold',         icon: '🥇', col: '#D97706', min: 750 },
-  { name: 'Platinum',     icon: '💠', col: '#0EA5E9', min: 1500 },
-  { name: 'Diamond',      icon: '💎', col: '#7C3AED', min: 2500 },
-  { name: 'Master',       icon: '🔮', col: '#DB2777', min: 4000 },
-  { name: 'Cyber Legend', icon: '👑', col: '#312A3D', min: 6000 }
+  { name: 'Platinum',     icon: '💠', col: '#0E7490', min: 1500 },
+  { name: 'Diamond',      icon: '💎', col: '#4338CA', min: 2500 },
+  { name: 'Master',       icon: '🔮', col: '#A8326E', min: 4000 },
+  { name: 'Cyber Legend', icon: '👑', col: '#44403C', min: 6000 }
 ];
 
 function rankFor(xp) {
@@ -1094,48 +1094,48 @@ const LB_EPOCH = new Date('2026-06-01').getTime();
 
 const LB_BOTS = [
   /* — your bracket (Bronze/Silver) — */
-  { name: 'itzKayden08',        tag: 'Revision machine',  base: 120, rate: 38, col: '#7C3AED' },
-  { name: 'maddie.exe',         tag: 'Forensics nerd',    base: 90,  rate: 31, col: '#DB2777' },
-  { name: 'TTV_R3eceplays',     tag: 'Flashcard grinder (live)', base: 60, rate: 26, col: '#10B981' },
-  { name: 'xX_Sn1per_Lukas_Xx', tag: 'Revises at 11pm the night before', base: 10, rate: 9, col: '#F59E0B' },
-  { name: 'notlivvy',           tag: '9-mark specialist', base: 80,  rate: 22, col: '#8B5CF6' },
-  { name: 'ZayanFN_09',         tag: 'Match game demon',  base: 40,  rate: 17, col: '#DC2626' },
-  { name: 'sleepyell1e',        tag: 'Quietly cooking',   base: 30,  rate: 13, col: '#0EA5E9' },
+  { name: 'itzKayden08',        tag: 'Revision machine',  base: 120, rate: 38, col: '#4338CA' },
+  { name: 'maddie.exe',         tag: 'Forensics nerd',    base: 90,  rate: 31, col: '#A8326E' },
+  { name: 'TTV_R3eceplays',     tag: 'Flashcard grinder (live)', base: 60, rate: 26, col: '#0E9F6E' },
+  { name: 'xX_Sn1per_Lukas_Xx', tag: 'Revises at 11pm the night before', base: 10, rate: 9, col: '#D97706' },
+  { name: 'notlivvy',           tag: '9-mark specialist', base: 80,  rate: 22, col: '#6D5BD6' },
+  { name: 'ZayanFN_09',         tag: 'Match game demon',  base: 40,  rate: 17, col: '#C81E1E' },
+  { name: 'sleepyell1e',        tag: 'Quietly cooking',   base: 30,  rate: 13, col: '#0E7490' },
   /* — Silver/Gold — */
   { name: 'big_curtis_W',       tag: 'Streak protector',  base: 320, rate: 12, col: '#64748B' },
-  { name: 'aliyah.studies',     tag: 'Notion aesthetic queen', base: 380, rate: 15, col: '#DB2777' },
-  { name: 'lowkeyjordan',       tag: 'Says he doesn\'t revise. Lies.', base: 700, rate: 14, col: '#10B981' },
-  { name: 'p1xelpatel',         tag: 'MCQ speedrunner',   base: 820, rate: 16, col: '#7C3AED' },
-  { name: 'erinhasnoexams',     tag: 'Ironic username',   base: 900, rate: 11, col: '#F59E0B' },
+  { name: 'aliyah.studies',     tag: 'Notion aesthetic queen', base: 380, rate: 15, col: '#A8326E' },
+  { name: 'lowkeyjordan',       tag: 'Says he doesn\'t revise. Lies.', base: 700, rate: 14, col: '#0E9F6E' },
+  { name: 'p1xelpatel',         tag: 'MCQ speedrunner',   base: 820, rate: 16, col: '#4338CA' },
+  { name: 'erinhasnoexams',     tag: 'Ironic username',   base: 900, rate: 11, col: '#D97706' },
   /* — Silver/Gold (more) — */
-  { name: 'jxck_billings',      tag: 'Group chat admin',  base: 420, rate: 14, col: '#10B981' },
-  { name: 'freyah2009',         tag: 'Colour-coded notes', base: 540, rate: 13, col: '#8B5CF6' },
-  { name: 'OllieW_main',        tag: '"It\'s my second account"', base: 610, rate: 12, col: '#0EA5E9' },
-  { name: 'ria.revises',        tag: 'Username says it all', base: 1050, rate: 14, col: '#DB2777' },
-  { name: 'capybara_ben',       tag: 'Here for the games', base: 1150, rate: 10, col: '#F59E0B' },
-  { name: 'WhoIsTyler_',        tag: 'Mysterious grinder', base: 1300, rate: 13, col: '#312A3D' },
+  { name: 'jxck_billings',      tag: 'Group chat admin',  base: 420, rate: 14, col: '#0E9F6E' },
+  { name: 'freyah2009',         tag: 'Colour-coded notes', base: 540, rate: 13, col: '#6D5BD6' },
+  { name: 'OllieW_main',        tag: '"It\'s my second account"', base: 610, rate: 12, col: '#0E7490' },
+  { name: 'ria.revises',        tag: 'Username says it all', base: 1050, rate: 14, col: '#A8326E' },
+  { name: 'capybara_ben',       tag: 'Here for the games', base: 1150, rate: 10, col: '#D97706' },
+  { name: 'WhoIsTyler_',        tag: 'Mysterious grinder', base: 1300, rate: 13, col: '#44403C' },
   /* — Platinum — */
-  { name: 'DefNotArchie',       tag: 'Plat and proud',    base: 1550, rate: 13, col: '#0EA5E9' },
-  { name: 'emsy_x',             tag: 'Past paper warlord', base: 1700, rate: 15, col: '#8B5CF6' },
-  { name: 'voidwxlker',         tag: 'Revises in dark mode only', base: 1950, rate: 12, col: '#312A3D' },
-  { name: 'sadiq.studies',      tag: 'Library resident',  base: 1820, rate: 14, col: '#10B981' },
-  { name: 'gracie_mxy',         tag: 'Flashcards at the bus stop', base: 2100, rate: 11, col: '#DB2777' },
-  { name: 'L0gan_idk',          tag: 'Accidentally good at this', base: 2250, rate: 12, col: '#F59E0B' },
+  { name: 'DefNotArchie',       tag: 'Plat and proud',    base: 1550, rate: 13, col: '#0E7490' },
+  { name: 'emsy_x',             tag: 'Past paper warlord', base: 1700, rate: 15, col: '#6D5BD6' },
+  { name: 'voidwxlker',         tag: 'Revises in dark mode only', base: 1950, rate: 12, col: '#44403C' },
+  { name: 'sadiq.studies',      tag: 'Library resident',  base: 1820, rate: 14, col: '#0E9F6E' },
+  { name: 'gracie_mxy',         tag: 'Flashcards at the bus stop', base: 2100, rate: 11, col: '#A8326E' },
+  { name: 'L0gan_idk',          tag: 'Accidentally good at this', base: 2250, rate: 12, col: '#D97706' },
   /* — Diamond — */
-  { name: 'hazza.dnf',          tag: 'Diamond gatekeeper', base: 2600, rate: 11, col: '#7C3AED' },
-  { name: 'k1ngmarcus',         tag: 'Self-proclaimed GOAT', base: 3100, rate: 13, col: '#DC2626' },
-  { name: 'evieplays_x',        tag: 'Duels anyone who asks', base: 2800, rate: 12, col: '#DB2777' },
-  { name: 'thearchitect_jay',   tag: 'Mind palace user (allegedly)', base: 3300, rate: 11, col: '#0EA5E9' },
-  { name: 'n0tmichelle',        tag: 'Diamond and climbing', base: 3600, rate: 13, col: '#8B5CF6' },
+  { name: 'hazza.dnf',          tag: 'Diamond gatekeeper', base: 2600, rate: 11, col: '#4338CA' },
+  { name: 'k1ngmarcus',         tag: 'Self-proclaimed GOAT', base: 3100, rate: 13, col: '#C81E1E' },
+  { name: 'evieplays_x',        tag: 'Duels anyone who asks', base: 2800, rate: 12, col: '#A8326E' },
+  { name: 'thearchitect_jay',   tag: 'Mind palace user (allegedly)', base: 3300, rate: 11, col: '#0E7490' },
+  { name: 'n0tmichelle',        tag: 'Diamond and climbing', base: 3600, rate: 13, col: '#6D5BD6' },
   /* — Master — */
-  { name: 'taraxo_07',          tag: 'Carried the group project', base: 4200, rate: 10, col: '#DB2777' },
-  { name: 'GlazedDonut_Finn',   tag: 'Nobody knows his real name', base: 4800, rate: 12, col: '#F59E0B' },
-  { name: 'silentcarter_',      tag: 'Never speaks. Always wins.', base: 4500, rate: 11, col: '#312A3D' },
-  { name: 'amara.aces',         tag: 'Mock exam merchant', base: 5200, rate: 10, col: '#7C3AED' },
+  { name: 'taraxo_07',          tag: 'Carried the group project', base: 4200, rate: 10, col: '#A8326E' },
+  { name: 'GlazedDonut_Finn',   tag: 'Nobody knows his real name', base: 4800, rate: 12, col: '#D97706' },
+  { name: 'silentcarter_',      tag: 'Never speaks. Always wins.', base: 4500, rate: 11, col: '#44403C' },
+  { name: 'amara.aces',         tag: 'Mock exam merchant', base: 5200, rate: 10, col: '#4338CA' },
   /* — Cyber Legend — */
-  { name: 'cleanest_ahmxd',     tag: 'Finished the spec in March', base: 6300, rate: 8, col: '#312A3D' },
-  { name: 'prodigy_wren',       tag: 'Teachers ask HER for help', base: 6800, rate: 9, col: '#DB2777' },
-  { name: 'xue_2008',           tag: 'The final boss',    base: 7400, rate: 7, col: '#7C3AED' }
+  { name: 'cleanest_ahmxd',     tag: 'Finished the spec in March', base: 6300, rate: 8, col: '#44403C' },
+  { name: 'prodigy_wren',       tag: 'Teachers ask HER for help', base: 6800, rate: 9, col: '#A8326E' },
+  { name: 'xue_2008',           tag: 'The final boss',    base: 7400, rate: 7, col: '#4338CA' }
 ];
 
 function botXP(bot) {
@@ -1161,7 +1161,7 @@ function lbRowHTML(r) {
   return `
     <div class="lb-row${r.me ? ' me' : ''}">
       <span class="lb-rank">${LB_MEDALS[r.pos] || '#' + r.pos}</span>
-      <span class="lb-av" style="background:${r.col}">${r.me ? pAv() : r.name.charAt(0)}</span>
+      <span class="lb-av" style="background:${r.col}">${r.me ? meAvInner() : r.name.charAt(0)}</span>
       <span class="lb-name">${r.name}${r.me ? ' <span class="lb-you">(you)</span>' : ''}<span class="lb-tag">${r.tag}</span></span>
       ${rankChip(r.xp)}
       <span class="lb-xp">${r.xp.toLocaleString()} XP</span>
@@ -1515,7 +1515,7 @@ function startBattleQuestion() {
 function battleStripHTML() {
   return battle.players.map(p => `
     <span class="battle-chip${p.alive ? '' : ' dead'}${p.me ? ' me' : ''}">
-      <span class="lb-av" style="background:${p.col};width:24px;height:24px;font-size:11px;border-radius:8px">${p.me ? pAv() : p.name.charAt(0)}</span>
+      <span class="lb-av" style="background:${p.col};width:24px;height:24px;font-size:11px">${p.me ? meAvInner() : p.name.charAt(0)}</span>
       ${p.me ? 'You' : p.name}${battle.mode === 'elim' ? (p.alive ? '' : ' 💀') : ` · ${p.score}`}
     </span>`).join('');
 }
@@ -1679,7 +1679,7 @@ function renderBattleEnd(container) {
         ${battle.standings.map((p, i) => `
           <div class="lb-row${p.me ? ' me' : ''}">
             <span class="lb-rank">${medals[i] || '#' + (i + 1)}</span>
-            <span class="lb-av" style="background:${p.col}">${p.me ? pAv() : p.name.charAt(0)}</span>
+            <span class="lb-av" style="background:${p.col}">${p.me ? meAvInner() : p.name.charAt(0)}</span>
             <span class="lb-name">${p.me ? 'You' : p.name}</span>
             <span class="lb-xp">${battle.mode === 'elim' ? (p.alive ? 'Survived' : 'Eliminated') : p.score + ' pts'}</span>
           </div>`).join('')}
@@ -1765,11 +1765,11 @@ function renderProfile() {
   const unlocked = ach.filter(a => a.done).length;
 
   const AV_EMOJIS = ['⭐', '🔥', '🧠', '👾', '💀', '🦊', '🐸', '🐱', '🐼', '🦈', '🚀', '🎯', '👑', '💎', '🌙', '⚡'];
-  const AV_COLS = ['#DB2777', '#7C3AED', '#10B981', '#F59E0B', '#0EA5E9', '#DC2626', '#312A3D', '#8B5CF6'];
+  const AV_COLS = ['#A8326E', '#4338CA', '#0E9F6E', '#D97706', '#0E7490', '#C81E1E', '#44403C', '#6D5BD6'];
 
   el('profile-content').innerHTML = `
     <div class="card profile-head">
-      <button class="lb-av profile-av" style="background:${pCol()}" onclick="toggleAvatarPicker()" title="Customise your avatar">${pAv()}</button>
+      <button class="lb-av profile-av" style="background:${pCol()}" onclick="toggleAvatarPicker()" title="Customise your avatar">${meAvInner()}</button>
       <div style="flex:1">
         <h2 style="margin-bottom:2px">You</h2>
         <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
@@ -1780,14 +1780,19 @@ function renderProfile() {
         </div>
       </div>
       <div style="text-align:right">
-        <div style="font-family:'Fredoka',sans-serif;font-size:28px;font-weight:700;color:var(--accent2)">${xp.toLocaleString()}</div>
+        <div style="font-family:'Fraunces',Georgia,serif;font-size:28px;font-weight:600;color:var(--accent2)">${xp.toLocaleString()}</div>
         <div style="font-size:11px;color:var(--text2);font-weight:700">TOTAL XP</div>
       </div>
     </div>
 
-    <div class="card hidden" id="avatar-picker">
+    <div class="card${avatarPickerOpen ? '' : ' hidden'}" id="avatar-picker">
       <h3 style="margin-bottom:10px">🎨 Customise your avatar</h3>
-      <p style="font-size:12px;color:var(--text2);margin-bottom:8px;font-weight:700">ICON</p>
+      <p style="font-size:12px;color:var(--text2);margin-bottom:8px;font-weight:700">YOUR PHOTO</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px">
+        <button class="btn btn-primary btn-sm" onclick="uploadAvatar()">📷 Upload a picture</button>
+        ${pImg() ? '<button class="btn btn-secondary btn-sm" onclick="removeAvatarImg()">Remove photo</button>' : ''}
+      </div>
+      <p style="font-size:12px;color:var(--text2);margin:12px 0 8px;font-weight:700">OR PICK AN ICON</p>
       <div class="av-options">
         ${AV_EMOJIS.map(e => `<button class="av-opt${e === pAv() ? ' picked' : ''}" onclick="setProfileAv('${e}', null)">${e}</button>`).join('')}
       </div>
@@ -1834,8 +1839,8 @@ function toggleAvatarPicker() {
 }
 
 function setProfileAv(emoji, col) {
-  if (!state.profile) state.profile = { emoji: '⭐', col: '#DB2777' };
-  if (emoji) state.profile.emoji = emoji;
+  if (!state.profile) state.profile = { emoji: '⭐', col: '#A8326E' };
+  if (emoji) { state.profile.emoji = emoji; delete state.profile.img; } // picking an emoji switches off the photo
   if (col) state.profile.col = col;
   saveState();
   updateNavAvatar();
@@ -1860,10 +1865,10 @@ function renderExamKit() {
   ];
 
   const keywordBanks = [
-    { title: '🔍 Section D — Forensics (fast marks)', col: '#8B5CF6', words: ['Faraday bag', 'Write-blocker', 'Forensic image (bit-for-bit copy)', 'Hash value (MD5/SHA) before & after', 'Chain of custody', 'Contemporaneous notes', 'Evidence bag + tamper-proof seal', 'Photograph the scene first'] },
-    { title: '🛡️ Section A — Protection', col: '#7C3AED', words: ['Encryption (at rest / in transit)', 'Multi-factor authentication', 'Anti-malware + updates', 'Firewall rules', 'Penetration testing', 'Staff training', 'Acceptable Use Policy', 'GDPR — 72-hour breach reporting'] },
-    { title: '🌐 Section B — Networks', col: '#DB2777', words: ['VPN — encrypted tunnel', 'DMZ for public-facing servers', 'Network segmentation / VLAN', 'DHCP — automatic IP assignment', 'DNS — name resolution', 'WPA3 over WEP', 'MAC filtering (spoofable!)', 'RAID is NOT a backup'] },
-    { title: '📋 Section C — Documentation', col: '#10B981', words: ['Security policy + review date', 'Risk assessment matrix', 'Incident response plan', 'Disaster recovery plan', 'Backup policy (3-2-1 rule)', 'Audit trail / logs', 'Business continuity', 'Roles & responsibilities'] }
+    { title: '🔍 Section D — Forensics (fast marks)', col: '#6D5BD6', words: ['Faraday bag', 'Write-blocker', 'Forensic image (bit-for-bit copy)', 'Hash value (MD5/SHA) before & after', 'Chain of custody', 'Contemporaneous notes', 'Evidence bag + tamper-proof seal', 'Photograph the scene first'] },
+    { title: '🛡️ Section A — Protection', col: '#4338CA', words: ['Encryption (at rest / in transit)', 'Multi-factor authentication', 'Anti-malware + updates', 'Firewall rules', 'Penetration testing', 'Staff training', 'Acceptable Use Policy', 'GDPR — 72-hour breach reporting'] },
+    { title: '🌐 Section B — Networks', col: '#A8326E', words: ['VPN — encrypted tunnel', 'DMZ for public-facing servers', 'Network segmentation / VLAN', 'DHCP — automatic IP assignment', 'DNS — name resolution', 'WPA3 over WEP', 'MAC filtering (spoofable!)', 'RAID is NOT a backup'] },
+    { title: '📋 Section C — Documentation', col: '#0E9F6E', words: ['Security policy + review date', 'Risk assessment matrix', 'Incident response plan', 'Disaster recovery plan', 'Backup policy (3-2-1 rule)', 'Audit trail / logs', 'Business continuity', 'Roles & responsibilities'] }
   ];
 
   container.innerHTML = `
@@ -1964,7 +1969,7 @@ function doSearch(query) {
     <div class="search-result" onclick="goToResult('${r.section}', '${r.code}')">
       <div style="display:flex;gap:8px;margin-bottom:4px">
         <span class="badge">${r.code}</span>
-        <span class="badge" style="background:rgba(124,58,237,0.08);color:var(--accent2);border-color:rgba(124,58,237,0.25)">${r.section} — ${r.sectionTitle}</span>
+        <span class="badge" style="background:rgba(67,56,202,0.08);color:var(--accent2);border-color:rgba(67,56,202,0.25)">${r.section} — ${r.sectionTitle}</span>
       </div>
       <h4>${highlight(r.term, query)}</h4>
       <p>${highlight(r.definition.substring(0, 120), query)}${r.definition.length > 120 ? '...' : ''}</p>
