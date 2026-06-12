@@ -22,7 +22,7 @@ function defaultState() {
     },
     xp: 0,
     activity: {},     // 'YYYY-MM-DD' -> action count (feeds the heatmap)
-    battles: { played: 0, won: 0 },
+    battles: { played: 0, won: 0, modes: {} },  // modes: { elim: {played, won}, blitz: {played, won, best}, ... }
     profile: { emoji: '⭐', col: '#A8326E' },
     extended: {
       history: []      // {type, wordCount, date, timeTaken}
@@ -1138,33 +1138,97 @@ const LB_BOTS = [
   { name: 'xue_2008',           tag: 'The final boss',    base: 7400, rate: 7, col: '#4338CA' }
 ];
 
-function botXP(bot) {
-  const days = Math.max(0, Math.floor((Date.now() - LB_EPOCH) / 86400000));
-  // deterministic daily jitter so bots don't grow in a perfectly straight line
+function botXP(bot, daysAgo = 0) {
+  const days = Math.max(0, Math.floor((Date.now() - LB_EPOCH) / 86400000) - daysAgo);
+  // deterministic daily jitter so bots don't grow in a perfectly straight line —
+  // and so they genuinely overtake each other from one day to the next
   let h = 0;
   for (const ch of bot.name) h = (h * 31 + ch.charCodeAt(0)) % 997;
   const jitter = ((days * h) % 17) - 8;
   return Math.max(0, bot.base + bot.rate * days + jitter);
 }
 
-function getLBRows() {
-  const rows = LB_BOTS.map(b => ({ name: b.name, tag: b.tag, col: b.col, xp: botXP(b), me: false }));
+function nameHash(name, mod = 9973) {
+  let h = 0;
+  for (const ch of name) h = (h * 31 + ch.charCodeAt(0)) % mod;
+  return h;
+}
+
+function getLBRows(daysAgo = 0) {
+  const rows = LB_BOTS.map(b => ({ name: b.name, tag: b.tag, col: b.col, xp: botXP(b, daysAgo), me: false }));
   rows.push({ name: 'You', tag: `Level ${xpLevel()}`, col: pCol(), xp: state.xp || 0, me: true });
   rows.sort((a, b) => b.xp - a.xp);
   rows.forEach((r, i) => { r.pos = i + 1; });
   return rows;
 }
 
+/* position change vs yesterday: positive = climbed */
+function lbMovementMap() {
+  const yesterday = {};
+  getLBRows(1).forEach(r => { yesterday[r.name] = r.pos; });
+  const m = {};
+  getLBRows().forEach(r => { m[r.name] = (yesterday[r.name] || r.pos) - r.pos; });
+  return m;
+}
+
+function lbMoveHTML(delta) {
+  if (delta > 0) return `<span class="lb-move up">▲${delta}</span>`;
+  if (delta < 0) return `<span class="lb-move down">▼${-delta}</span>`;
+  return `<span class="lb-move flat">·</span>`;
+}
+
 const LB_MEDALS = { 1: '🥇', 2: '🥈', 3: '🥉' };
 
-function lbRowHTML(r) {
+function lbRowHTML(r, moveMap) {
+  const delta = moveMap ? (moveMap[r.name] || 0) : 0;
   return `
-    <div class="lb-row${r.me ? ' me' : ''}">
+    <div class="lb-row${r.me ? ' me' : ''} clickable" onclick="${r.me ? "navigate('profile')" : `showPlayerCard('${r.name}')`}" title="${r.me ? 'View your profile' : 'View player'}">
       <span class="lb-rank">${LB_MEDALS[r.pos] || '#' + r.pos}</span>
+      ${lbMoveHTML(delta)}
       <span class="lb-av" style="background:${r.col}">${r.me ? meAvInner() : r.name.charAt(0)}</span>
       <span class="lb-name">${r.name}${r.me ? ' <span class="lb-you">(you)</span>' : ''}<span class="lb-tag">${r.tag}</span></span>
       ${rankChip(r.xp)}
       <span class="lb-xp">${r.xp.toLocaleString()} XP</span>
+    </div>`;
+}
+
+/* "Today on the ladder" — real overtakes + rank-ups, padded with flavour */
+function ladderFeedHTML() {
+  const move = lbMovementMap();
+  const events = [];
+
+  LB_BOTS.forEach(b => {
+    const rNow = rankFor(botXP(b)), rPrev = rankFor(botXP(b, 1));
+    if (rNow.name !== rPrev.name && rNow.min > rPrev.min) {
+      events.push(`${rNow.icon} <strong>${b.name}</strong> reached ${rNow.name}`);
+    }
+  });
+
+  const movers = Object.entries(move)
+    .filter(([n, d]) => n !== 'You' && d !== 0)
+    .sort((a, b) => Math.abs(b[1]) - Math.abs(a[1]))
+    .slice(0, 3);
+  movers.forEach(([n, d]) => {
+    events.push(d > 0
+      ? `▲ <strong>${n}</strong> climbed ${d} place${d !== 1 ? 's' : ''} overnight`
+      : `▼ <strong>${n}</strong> dropped ${-d} place${d !== -1 ? 's' : ''}`);
+  });
+
+  const myMove = move['You'] || 0;
+  if (myMove > 0) events.unshift(`⭐ <strong>You</strong> climbed ${myMove} place${myMove !== 1 ? 's' : ''} — keep going`);
+  if (myMove < 0) events.unshift(`⚠️ <strong>You</strong> slipped ${-myMove} place${myMove !== -1 ? 's' : ''} — the ladder doesn't wait`);
+
+  // deterministic daily flavour
+  const day = Math.floor(Date.now() / 86400000);
+  const f1 = LB_BOTS[(day * 7) % LB_BOTS.length];
+  const f2 = LB_BOTS[(day * 13 + 5) % LB_BOTS.length];
+  events.push(`🧩 <strong>${f1.name}</strong> cleared Match in ${17 + ((day + nameHash(f1.name)) % 21)}s`);
+  events.push(`⚡ <strong>${f2.name}</strong> scored ${10 + ((day + nameHash(f2.name)) % 12)} in a Blitz 60`);
+
+  return `
+    <div class="ladder-feed">
+      <div class="ladder-feed-title">TODAY ON THE LADDER</div>
+      ${events.slice(0, 5).map(e => `<div class="ladder-feed-row">${e}</div>`).join('')}
     </div>`;
 }
 
@@ -1180,6 +1244,7 @@ function lbMotivator(rows) {
 /* compact view: the 7 players around you (used on the Games page) */
 function renderLeaderboardHTML() {
   const rows = getLBRows();
+  const move = lbMovementMap();
   const i = rows.findIndex(r => r.me);
   const start = Math.max(0, Math.min(i - 3, rows.length - 7));
   const view = rows.slice(start, start + 7);
@@ -1187,17 +1252,17 @@ function renderLeaderboardHTML() {
   return `
     <h3 style="margin:24px 0 4px;font-size:14px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">🏁 Players near you</h3>
     <p style="color:var(--text2);font-size:13px;margin-bottom:12px">${lbMotivator(rows)}</p>
-    <div class="lb-board">${view.map(lbRowHTML).join('')}</div>
+    <div class="lb-board">${view.map(r => lbRowHTML(r, move)).join('')}</div>
     <button class="btn btn-secondary btn-sm" style="margin-top:10px" onclick="navigate('leaderboard')">View full leaderboard →</button>`;
 }
 
 /* full view: every player, grouped by rank tier (used on the Leaderboard page) */
 function renderLeaderboardByTier() {
   const rows = getLBRows();
+  const move = lbMovementMap();
   const tiers = [...RANKS].reverse();
 
   return `
-    <p style="color:var(--text2);font-size:13px;margin-bottom:12px">${lbMotivator(rows)}</p>
     ${tiers.map(t => {
       const members = rows.filter(r => rankFor(r.xp).name === t.name);
       if (!members.length) return '';
@@ -1208,9 +1273,73 @@ function renderLeaderboardByTier() {
             <span>${t.icon} ${t.name}</span>
             <span class="lb-tier-count">${t.min.toLocaleString()}+ XP · ${members.length} player${members.length !== 1 ? 's' : ''}${mine ? ' · your division' : ''}</span>
           </div>
-          <div class="lb-board">${members.map(lbRowHTML).join('')}</div>
+          <div class="lb-board">${members.map(r => lbRowHTML(r, move)).join('')}</div>
         </div>`;
     }).join('')}`;
+}
+
+/* -- MODE LEADERBOARDS — who's the best at each gamemode -- */
+let lbView = 'overall';
+
+const MODE_BOARD_META = {
+  elim:  { label: 'Victories',  salt: 'E' },
+  race:  { label: 'Wins',       salt: 'R' },
+  duel:  { label: 'Wins',       salt: 'D' },
+  blitz: { label: 'Best score', salt: 'B' }
+};
+
+function modeBoardRows(mode) {
+  const rows = getLBRows();
+  const days = Math.max(1, Math.floor((Date.now() - LB_EPOCH) / 86400000));
+  const meta = MODE_BOARD_META[mode];
+
+  const board = rows.filter(r => !r.me).map(r => {
+    const skill = 1 - (r.pos - 1) / rows.length;
+    const h = nameHash(r.name + meta.salt, 997);
+    // per-mode flair: the salt reshuffles who excels where, so each board has its own champion
+    const flair = (h % 100) / 100;
+    let score;
+    if (mode === 'blitz') score = Math.round(5 + skill * 9 + flair * 8);
+    else score = Math.floor((1 + skill * 2 + flair * 1.6) * days / 3) + (h % 5);
+    return { name: r.name, col: r.col, me: false, xp: r.xp, score };
+  });
+
+  const bm = (state.battles && state.battles.modes && state.battles.modes[mode]) || {};
+  board.push({
+    name: 'You', col: pCol(), me: true, xp: state.xp || 0,
+    score: mode === 'blitz' ? (bm.best || 0) : (bm.won || 0)
+  });
+  board.sort((a, b) => b.score - a.score || b.xp - a.xp);
+  board.forEach((r, i) => { r.pos = i + 1; });
+  return board;
+}
+
+function setLbView(v) {
+  lbView = v;
+  renderLeaderboardPage();
+}
+
+function modeBoardHTML(mode) {
+  const board = modeBoardRows(mode);
+  const meta = MODE_BOARD_META[mode];
+  const meRow = board.find(r => r.me);
+  const top = board.slice(0, 10);
+  const showMeBelow = meRow.pos > 10;
+
+  const row = r => `
+    <div class="lb-row${r.me ? ' me' : ''}${r.me ? '' : ' clickable'}" ${r.me ? '' : `onclick="showPlayerCard('${r.name}')"`}>
+      <span class="lb-rank">${r.pos === 1 ? '👑' : LB_MEDALS[r.pos] || '#' + r.pos}</span>
+      <span class="lb-av" style="background:${r.col}">${r.me ? meAvInner() : r.name.charAt(0)}</span>
+      <span class="lb-name">${r.name}${r.me ? ' <span class="lb-you">(you)</span>' : ''}</span>
+      <span class="lb-xp">${r.score} ${meta.label.toLowerCase()}</span>
+    </div>`;
+
+  return `
+    <p style="color:var(--text2);font-size:13px;margin-bottom:12px">${BATTLE_MODES[mode].icon} <strong>${BATTLE_MODES[mode].name}</strong> — ranked by ${meta.label.toLowerCase()}. ${meRow.pos === 1 ? 'You hold the crown. 👑' : `You're #${meRow.pos} of ${board.length}.`}</p>
+    <div class="lb-board">
+      ${top.map(row).join('')}
+      ${showMeBelow ? `<div class="lb-gap">···</div>${row(meRow)}` : ''}
+    </div>`;
 }
 
 function renderRankLadder() {
@@ -1241,11 +1370,22 @@ function renderRankLadder() {
 }
 
 function renderLeaderboardPage() {
+  const isOverall = lbView === 'overall';
+
   el('leaderboard-content').innerHTML = `
     <h2 style="margin-bottom:6px">Leaderboard</h2>
-    <p style="color:var(--text2);font-size:14px;margin-bottom:14px">Earn XP from flashcards, games and quizzes to climb the table. Rivals revise daily — fall behind and they'll pass you.</p>
-    ${renderRankLadder()}
-    ${renderLeaderboardByTier()}
+    <p style="color:var(--text2);font-size:14px;margin-bottom:14px">Earn XP from flashcards, games and quizzes to climb. Rivals revise daily — fall behind and they'll pass you.</p>
+    <div class="tabs" style="max-width:680px">
+      <button class="tab-btn ${isOverall ? 'active' : ''}" onclick="setLbView('overall')">🏁 Overall</button>
+      ${Object.keys(MODE_BOARD_META).map(m => `
+        <button class="tab-btn ${lbView === m ? 'active' : ''}" onclick="setLbView('${m}')">${BATTLE_MODES[m].icon} ${BATTLE_MODES[m].name}</button>`).join('')}
+    </div>
+    ${isOverall ? `
+      <p style="color:var(--text2);font-size:13px;margin-bottom:12px">${lbMotivator(getLBRows())}</p>
+      ${ladderFeedHTML()}
+      ${renderRankLadder()}
+      ${renderLeaderboardByTier()}
+    ` : modeBoardHTML(lbView)}
     <div style="margin-top:18px;display:flex;gap:8px;flex-wrap:wrap">
       <button class="btn btn-primary" onclick="navigate('games')">⚡ Earn XP in Games</button>
       <button class="btn btn-secondary" onclick="navigate('flashcards')">📚 Review flashcards</button>
@@ -1415,6 +1555,60 @@ function finishMatch() {
   }, 500);
 }
 
+/* -- PLAYER CARD — click any rival on the ladder -- */
+function showPlayerCard(name) {
+  const rows = getLBRows();
+  const r = rows.find(x => x.name === name);
+  const bot = LB_BOTS.find(b => b.name === name);
+  if (!r || !bot) return;
+
+  const move = lbMovementMap()[name] || 0;
+  const h = nameHash(name);
+  const winRate = 38 + (h % 48);
+  const played = 14 + (h % 88);
+  const favMode = ['Elimination', 'Race to 10', 'Duel', 'Blitz 60'][h % 4];
+  const daysIn = Math.max(1, Math.floor((Date.now() - LB_EPOCH) / 86400000));
+  const meXp = state.xp || 0;
+  const gap = r.xp - meXp;
+
+  el('player-modal').innerHTML = `
+    <button class="modal-close" onclick="closePlayerCard()">✕</button>
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+      <span class="lb-av" style="background:${r.col};width:56px;height:56px;font-size:24px">${name.charAt(0)}</span>
+      <div>
+        <h2 style="margin-bottom:2px;font-size:20px">${name}</h2>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+          ${rankChip(r.xp)}
+          <span class="badge">#${r.pos} of ${rows.length}</span>
+          ${lbMoveHTML(move)}
+        </div>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:14px;font-style:italic">"${r.tag}"</p>
+    <div class="stats-row" style="margin-bottom:16px">
+      <div class="stat-box"><div class="num" style="font-size:22px">${r.xp.toLocaleString()}</div><div class="lbl">XP</div></div>
+      <div class="stat-box"><div class="num" style="font-size:22px">${winRate}%</div><div class="lbl">Win rate</div></div>
+      <div class="stat-box"><div class="num" style="font-size:22px">${played}</div><div class="lbl">Battles</div></div>
+    </div>
+    <p style="font-size:12.5px;color:var(--text2);margin-bottom:16px">Favourite mode: <strong>${favMode}</strong> · On the ladder ${daysIn} days · ${
+      gap > 0 ? `<strong>${gap.toLocaleString()} XP ahead of you</strong>` : gap < 0 ? `<strong>${(-gap).toLocaleString()} XP behind you</strong>` : 'dead level with you'
+    }</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="closePlayerCard();challengePlayer('${name}')">🤺 Challenge to Duel</button>
+      <button class="btn btn-secondary" onclick="closePlayerCard()">Close</button>
+    </div>`;
+  el('player-modal-overlay').classList.add('show');
+}
+
+function closePlayerCard() {
+  el('player-modal-overlay').classList.remove('show');
+}
+
+function challengePlayer(name) {
+  navigate('games');
+  startBattle('duel', name);
+}
+
 /* -- QUIZ BATTLE — live competition vs leaderboard rivals -- */
 let battle = null;
 let battleTick = null;
@@ -1437,16 +1631,40 @@ function battleQuestionPool(n) {
   });
 }
 
-function pickOpponents(k, directlyAbove) {
+function pickOpponents(k, directlyAbove, targetName) {
   const rows = getLBRows();
   const me = rows.find(r => r.me);
   const others = rows.filter(r => !r.me);
   others.forEach(o => { o.skill = 1 - (o.pos - 1) / rows.length; });
+
+  // targeted challenge (from a player card)
+  if (targetName) {
+    const target = others.find(o => o.name === targetName);
+    if (target) return [target];
+  }
   if (directlyAbove) {
     const above = others.filter(o => o.xp >= me.xp).sort((a, b) => a.xp - b.xp);
     return [above[0] || others.sort((a, b) => b.xp - a.xp)[0]];
   }
-  return others.sort((a, b) => Math.abs(a.xp - me.xp) - Math.abs(b.xp - me.xp)).slice(0, k);
+
+  // matchmaking: weighted draw — your own tier pulls hardest, adjacent tiers are
+  // common, and a small floor keeps every rank possible (rare cross-rank lobbies)
+  const myTier = rankFor(me.xp).idx;
+  const pool = others.map(o => ({
+    o,
+    w: 1 / (1 + Math.pow(Math.abs(rankFor(o.xp).idx - myTier), 2) * 3) + 0.04
+  }));
+
+  const picks = [];
+  while (picks.length < k && pool.length) {
+    const total = pool.reduce((s, p) => s + p.w, 0);
+    let r = Math.random() * total;
+    let i = 0;
+    while (i < pool.length - 1 && (r -= pool[i].w) > 0) i++;
+    picks.push(pool[i].o);
+    pool.splice(i, 1);
+  }
+  return picks;
 }
 
 function botAnswer(skill) {
@@ -1458,10 +1676,10 @@ function botAnswer(skill) {
 
 function stopBattleTick() { if (battleTick) { clearInterval(battleTick); battleTick = null; } }
 
-function startBattle(mode) {
+function startBattle(mode, targetName) {
   stopBattleTick();
   const oppCount = mode === 'elim' ? 7 : mode === 'duel' ? 1 : 3;
-  const opps = pickOpponents(oppCount, mode === 'duel');
+  const opps = pickOpponents(oppCount, mode === 'duel' && !targetName, targetName);
   battle = {
     mode,
     idx: 0,
@@ -1659,9 +1877,13 @@ function finishBattle() {
   battle.standings = standings;
   battle.xpEarned = xp;
   battle.headline = headline;
-  if (!state.battles) state.battles = { played: 0, won: 0 };
+  if (!state.battles) state.battles = { played: 0, won: 0, modes: {} };
+  if (!state.battles.modes) state.battles.modes = {};
+  const bm = state.battles.modes[battle.mode] || (state.battles.modes[battle.mode] = { played: 0, won: 0, best: 0 });
   state.battles.played++;
-  if (standings[0] === me) state.battles.won++;
+  bm.played++;
+  if (standings[0] === me) { state.battles.won++; bm.won++; }
+  if (battle.mode === 'blitz') bm.best = Math.max(bm.best || 0, me.score);
   if (xp > 0) awardXP(xp, true);
   else saveState();
 }
