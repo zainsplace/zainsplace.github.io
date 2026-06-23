@@ -11,43 +11,71 @@
   <meta property="og:type" content="website">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%234338CA'/%3E%3Ctext x='50' y='72' font-size='62' text-anchor='middle'%3E%F0%9F%9B%A1%EF%B8%8F%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
 </head>
 <body>
 
-<nav>
-  <div class="nav-inner">
-    <div class="nav-logo">Unit 2 Cyber</div>
-    <button class="nav-btn" data-page="home">Home</button>
-    <button class="nav-btn" data-page="sections">Sections</button>
-    <button class="nav-btn" data-page="flashcards">Flashcards</button>
-    <button class="nav-btn" data-page="questions">Questions</button>
-    <button class="nav-btn" data-page="games">Games</button>
-    <button class="nav-btn" data-page="leaderboard">Leaderboard</button>
-    <button class="nav-btn" data-page="extended">Extended</button>
-    <button class="nav-btn" data-page="examkit">Exam Kit</button>
-    <button class="nav-btn" data-page="search">Search</button>
-    <button class="nav-btn" data-page="plan">Plan</button>
-    <button class="nav-avatar" id="nav-avatar" data-page="profile" title="Your profile">⭐</button>
+<!-- Sidebar backdrop (mobile only) -->
+<div class="sidebar-backdrop" id="sidebar-backdrop" onclick="closeSidebar()"></div>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-top">
+    <div class="sidebar-wordmark">
+      <span class="sidebar-icon-mark">U2</span>
+      <span class="sidebar-logo-text">Unit 2 Cyber</span>
+    </div>
   </div>
-</nav>
+  <nav class="sidebar-nav">
+    <button class="sidebar-btn" data-page="home"       onclick="sidebarNav('home')"><i data-lucide="home"></i><span>Home</span></button>
+    <button class="sidebar-btn" data-page="sections"   onclick="sidebarNav('sections')"><i data-lucide="book-open"></i><span>Sections</span></button>
+    <button class="sidebar-btn" data-page="flashcards" onclick="sidebarNav('flashcards')"><i data-lucide="layers"></i><span>Flashcards</span></button>
+    <button class="sidebar-btn" data-page="questions"  onclick="sidebarNav('questions')"><i data-lucide="help-circle"></i><span>Questions</span></button>
+    <button class="sidebar-btn" data-page="games"      onclick="sidebarNav('games')"><i data-lucide="zap"></i><span>Games</span></button>
+    <button class="sidebar-btn" data-page="leaderboard" onclick="sidebarNav('leaderboard')"><i data-lucide="trophy"></i><span>Leaderboard</span></button>
+    <button class="sidebar-btn" data-page="extended"   onclick="sidebarNav('extended')"><i data-lucide="pencil"></i><span>Extended</span></button>
+    <button class="sidebar-btn" data-page="examkit"    onclick="sidebarNav('examkit')"><i data-lucide="clipboard-list"></i><span>Exam Kit</span></button>
+    <button class="sidebar-btn" data-page="search"     onclick="sidebarNav('search')"><i data-lucide="search"></i><span>Search</span></button>
+    <button class="sidebar-btn" data-page="plan"       onclick="sidebarNav('plan')"><i data-lucide="calendar"></i><span>Plan</span></button>
+    <button class="sidebar-btn" data-page="profile"    onclick="sidebarNav('profile')"><i data-lucide="user"></i><span>Profile</span></button>
+  </nav>
+  <div class="sidebar-bottom">
+    <button class="sidebar-av-btn" id="sidebar-avatar" onclick="sidebarNav('profile')" title="Your profile">
+      <span class="sidebar-av-circle" id="sidebar-av-circle">Z</span>
+      <span class="sidebar-av-label">Profile</span>
+    </button>
+  </div>
+</aside>
+
+<!-- App shell wraps top-bar + main -->
+<div class="app-shell">
+
+<header class="top-bar">
+  <button class="top-bar-menu" id="hamburger" onclick="toggleSidebar()" aria-label="Toggle menu">
+    <i data-lucide="menu"></i>
+  </button>
+  <span class="top-bar-title" id="top-bar-title">Home</span>
+  <div class="top-bar-right">
+    <button class="theme-toggle top-bar-theme-btn" id="top-bar-theme" onclick="toggleTheme()" title="Switch to dark mode">🌙</button>
+    <button class="top-bar-avatar" id="nav-avatar" onclick="sidebarNav('profile')" title="Your profile">Z</button>
+  </div>
+</header>
 
 <main>
 
   <!-- HOME -->
   <div class="page" id="page-home">
-    <section class="home-hero">
-      <span class="blob b1"></span>
-      <span class="blob b2"></span>
-      <span class="pill">★ BTEC National • Cyber Security &amp; Incident Management</span>
-      <h1>Master <span class="grad">Unit 2</span> one flashcard at a time.</h1>
-      <p>Your complete revision hub — 78 flashcards, 25 exam-style questions and full 9-mark model answers across all four learning aims.</p>
-    </section>
-
-    <div class="countdown-box" onclick="setExamDate()" style="cursor:pointer" title="Click to set your exam date">
-      <h2>Days until exam</h2>
-      <div class="countdown-days" id="home-countdown-days">--</div>
-      <div class="countdown-label" id="home-countdown-label">days remaining</div>
-      <div class="countdown-date" id="home-countdown-date">Unit 2: Cyber Security &amp; Incident Management</div>
+    <div class="dash-header">
+      <div class="dash-header-info">
+        <p class="dash-greeting" id="home-greeting">Good morning</p>
+        <h2 class="dash-title">Unit 2 Cyber Security</h2>
+        <p class="dash-sub">BTEC National · Cyber Security &amp; Incident Management</p>
+      </div>
+      <button class="countdown-pill" onclick="setExamDate()" title="Click to set your exam date">
+        <span class="countdown-days" id="home-countdown-days">--</span>
+        <span class="countdown-label" id="home-countdown-label">days to exam</span>
+        <span class="countdown-date" id="home-countdown-date"></span>
+      </button>
     </div>
 
     <div class="stats-row">
@@ -110,7 +138,11 @@
       </div>
     </div>
 
+    <div id="revise-next"></div>
+
     <div id="priority-topics"></div>
+
+    <div id="activity-heatmap" style="margin-bottom:24px"></div>
 
     <h3 style="margin-bottom:12px;font-size:14px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">Sections</h3>
     <div class="grid2" id="section-tiles"></div>
@@ -168,11 +200,17 @@
 
 </main>
 
+</div><!-- /.app-shell -->
+
 <div class="modal-overlay" id="player-modal-overlay" onclick="if(event.target===this)closePlayerCard()">
   <div class="modal" id="player-modal"></div>
 </div>
 
-<div id="toast"></div>
+<div id="toast" role="status" aria-live="polite">
+  <span id="toast-icon"></span>
+  <span id="toast-msg"></span>
+  <div id="toast-bar"></div>
+</div>
 
 <script src="data_inline.js"></script>
 <script src="app.js"></script>

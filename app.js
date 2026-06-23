@@ -3,6 +3,7 @@
 /* ---- STATE ---- */
 const STATE_KEY = 'u2rev_state';
 let state = loadState();
+document.body.setAttribute('data-theme', state.theme || 'light');
 
 function defaultState() {
   return {
@@ -26,7 +27,8 @@ function defaultState() {
     profile: { emoji: '⭐', col: '#A8326E' },
     extended: {
       history: []      // {type, wordCount, date, timeTaken}
-    }
+    },
+    theme: 'light'
   };
 }
 
@@ -76,6 +78,13 @@ const PAGES = ['home', 'sections', 'flashcards', 'questions', 'games', 'leaderbo
 let currentPage = 'home';
 let currentSection = null;
 
+const PAGE_TITLES = {
+  home: 'Home', sections: 'Sections', flashcards: 'Flashcards',
+  questions: 'Questions', games: 'Games', leaderboard: 'Leaderboard',
+  extended: 'Extended Writing', examkit: 'Exam Kit', search: 'Search',
+  plan: "Today's Plan", profile: 'Profile'
+};
+
 function navigate(page, opts = {}) {
   currentPage = page;
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -84,6 +93,14 @@ function navigate(page, opts = {}) {
   if (pageEl) pageEl.classList.add('active');
   const navEl = document.querySelector(`.nav-btn[data-page="${page}"]`);
   if (navEl) navEl.classList.add('active');
+  document.querySelectorAll('.sidebar-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.page === page);
+  });
+  const titleEl = el('top-bar-title');
+  if (titleEl) titleEl.textContent = PAGE_TITLES[page] || page;
+  // scroll content to top on navigation
+  const mainEl = document.querySelector('main');
+  if (mainEl) mainEl.scrollTop = 0;
   renderPage(page, opts);
 }
 
@@ -103,14 +120,84 @@ function renderPage(page, opts) {
   }
 }
 
+/* ---- SIDEBAR ---- */
+let sidebarOpen = null; // null = not yet initialised
+
+function initSidebar() {
+  const saved = localStorage.getItem('u2_sidebar');
+  sidebarOpen = saved !== null ? saved === 'true' : false;
+  applySidebarState();
+}
+
+function applySidebarState() {
+  const sidebar = el('sidebar');
+  const backdrop = el('sidebar-backdrop');
+  const isDesktop = window.innerWidth >= 900;
+  if (sidebarOpen) {
+    sidebar.classList.add('open');
+    if (!isDesktop) backdrop.classList.add('visible');
+  } else {
+    sidebar.classList.remove('open');
+    backdrop.classList.remove('visible');
+  }
+}
+
+function toggleSidebar() {
+  sidebarOpen = !sidebarOpen;
+  localStorage.setItem('u2_sidebar', String(sidebarOpen));
+  applySidebarState();
+}
+
+function closeSidebar() {
+  sidebarOpen = false;
+  localStorage.setItem('u2_sidebar', 'false');
+  applySidebarState();
+}
+
+function sidebarNav(page) {
+  navigate(page);
+  // On mobile, close sidebar after navigation
+  if (window.innerWidth < 900) closeSidebar();
+}
+
 /* ---- HELPERS ---- */
 function el(id) { return document.getElementById(id); }
 
-function toast(msg, ms = 2000) {
+function toast(msg, ms = 2500, type = 'info') {
   const t = el('toast');
-  t.textContent = msg;
+  const iconEl = el('toast-icon');
+  const msgEl = el('toast-msg');
+  const bar = el('toast-bar');
+
+  const icon = type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️';
+  if (iconEl) iconEl.textContent = icon;
+  if (msgEl) msgEl.textContent = msg;
+
+  t.className = type === 'success' ? 'toast-success' : '';
   t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), ms);
+
+  if (bar) {
+    bar.style.transition = 'none';
+    bar.style.transform = 'scaleX(1)';
+    requestAnimationFrame(() => {
+      bar.style.transition = `transform ${ms}ms linear`;
+      bar.style.transform = 'scaleX(0)';
+    });
+  }
+
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), ms);
+}
+
+function toggleTheme() {
+  state.theme = state.theme === 'dark' ? 'light' : 'dark';
+  document.body.setAttribute('data-theme', state.theme);
+  saveState();
+  // update any theme toggle buttons
+  document.querySelectorAll('.theme-toggle').forEach(btn => {
+    btn.textContent = state.theme === 'dark' ? '☀️' : '🌙';
+    btn.title = state.theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+  });
 }
 
 /* ---- EXAM DATE (editable — click the countdown box to change) ---- */
@@ -219,8 +306,10 @@ function meAvInner() {
 }
 
 function updateNavAvatar() {
-  const btn = el('nav-avatar');
-  if (btn) { btn.innerHTML = meAvInner(); btn.style.background = pCol(); }
+  const topAv = el('nav-avatar');
+  if (topAv) { topAv.innerHTML = meAvInner(); topAv.style.background = pCol(); }
+  const sidebarAvCircle = el('sidebar-av-circle');
+  if (sidebarAvCircle) { sidebarAvCircle.innerHTML = meAvInner(); sidebarAvCircle.style.background = pCol(); }
 }
 
 function uploadAvatar() {
@@ -279,11 +368,20 @@ function renderHome() {
   const rc = ragCounts();
   const flashDue = getFlashcardsDueCount();
 
+  const hour = new Date().getHours();
+  const greet = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+  const greetEl = el('home-greeting');
+  if (greetEl) greetEl.textContent = greet;
+
   el('home-countdown-days').textContent = days;
   const examPassed = new Date(getExamDate()) < new Date(new Date().toDateString());
-  el('home-countdown-label').textContent = examPassed ? 'exam date has passed — click to set a new one' : 'days remaining';
+  el('home-countdown-label').textContent = examPassed ? 'exam passed' : 'days to exam';
   el('home-countdown-date').textContent = `Exam: ${getExamDate()} • Unit 2: Cyber Security & Incident Management`;
-  el('home-overall-progress').style.width = prog + '%';
+  const progBar = el('home-overall-progress');
+  progBar.style.width = '0%';
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    progBar.style.width = prog + '%';
+  }));
   el('home-overall-pct').textContent = prog + '%';
   el('home-stat-green').textContent = rc.green;
   el('home-stat-amber').textContent = rc.amber;
@@ -297,6 +395,8 @@ function renderHome() {
 
   renderSectionTiles();
   renderPriorityTopics();
+  renderHeatmap();
+  renderReviseNext();
 }
 
 /* ---- PRIORITY TOPICS (weakest first: red, then amber) ---- */
@@ -346,6 +446,145 @@ function renderPriorityTopics() {
     <div class="search-results" style="margin-bottom:20px">${rows}</div>`;
 }
 
+let homeHeatmapYear = new Date().getFullYear();
+let profileHeatmapYear = new Date().getFullYear();
+
+function isLeapYear(y) {
+  return (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0;
+}
+
+function buildYearHeatmapHTML(year, callbackFn) {
+  const act = state.activity || {};
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  const jan1 = new Date(year, 0, 1);
+  const startPad = (jan1.getDay() + 6) % 7; // cells before Jan 1 to align to Monday
+
+  const daysInYear = isLeapYear(year) ? 366 : 365;
+  const dec31 = new Date(year, 11, 31);
+  const lastDow = (dec31.getDay() + 6) % 7;
+  const endPad = lastDow < 6 ? 6 - lastDow : 0;
+
+  const cells = [];
+  const monthPositions = [];
+  let lastMonth = -1;
+
+  for (let i = 0; i < startPad; i++) {
+    cells.push(`<span class="hm-cell" style="visibility:hidden"></span>`);
+  }
+
+  for (let i = 0; i < daysInYear; i++) {
+    const d = new Date(year, 0, i + 1);
+    const key = `${year}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    const n = act[key] || 0;
+    const isFuture = d > now;
+    const lvl = isFuture ? 0 : (n === 0 ? 0 : n < 3 ? 1 : n < 6 ? 2 : n < 12 ? 3 : 4);
+
+    const weekCol = Math.floor((startPad + i) / 7);
+    const m = d.getMonth();
+    if (m !== lastMonth) { monthPositions.push({ col: weekCol, label: MONTHS[m] }); lastMonth = m; }
+
+    cells.push(`<span class="hm-cell hm-${lvl}"${isFuture ? ' style="opacity:0.25"' : ''} title="${n} action${n !== 1 ? 's' : ''} on ${key}"></span>`);
+  }
+
+  for (let i = 0; i < endPad; i++) {
+    cells.push(`<span class="hm-cell" style="visibility:hidden"></span>`);
+  }
+
+  const monthLabelHTML = monthPositions.map(m =>
+    `<span style="position:absolute;left:${m.col * 16}px;font-size:10px;color:var(--text2);font-weight:700;white-space:nowrap;line-height:1">${m.label}</span>`
+  ).join('');
+
+  const btnStyle = `background:var(--bg3);border:1px solid var(--border);border-radius:8px;width:28px;height:28px;cursor:pointer;font-size:15px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;color:var(--text)`;
+  const nextDisabled = year >= currentYear;
+
+  return `
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+      <button onclick="${callbackFn}(${year - 1})" style="${btnStyle}">‹</button>
+      <span style="font-size:15px;font-weight:800;min-width:44px;text-align:center">${year}</span>
+      <button onclick="${callbackFn}(${year + 1})"${nextDisabled ? ' disabled' : ''} style="${btnStyle};${nextDisabled ? 'opacity:0.3;cursor:default' : ''}">›</button>
+    </div>
+    <div style="overflow-x:auto;padding-bottom:6px">
+      <div style="display:inline-flex;gap:6px;align-items:flex-start">
+        <div class="hm-days" style="margin-top:20px"><span>Mon</span><span>Wed</span><span>Fri</span></div>
+        <div>
+          <div style="position:relative;height:18px;margin-bottom:2px">${monthLabelHTML}</div>
+          <div class="heatmap">${cells.join('')}</div>
+        </div>
+      </div>
+    </div>
+    <div class="hm-legend">Less <span class="hm-cell hm-0"></span><span class="hm-cell hm-1"></span><span class="hm-cell hm-2"></span><span class="hm-cell hm-3"></span><span class="hm-cell hm-4"></span> More</div>`;
+}
+
+function renderHeatmap(year) {
+  if (year !== undefined) homeHeatmapYear = year;
+  const container = el('activity-heatmap');
+  if (!container) return;
+  container.innerHTML = buildYearHeatmapHTML(homeHeatmapYear, 'renderHeatmap');
+}
+
+function renderProfileHeatmap(year) {
+  if (year !== undefined) profileHeatmapYear = year;
+  const container = el('profile-heatmap');
+  if (!container) return;
+  container.innerHTML = buildYearHeatmapHTML(profileHeatmapYear, 'renderProfileHeatmap');
+}
+
+function renderReviseNext() {
+  const container = el('revise-next');
+  if (!container) return;
+
+  const flashData = loadJSON('data/flashcards.json');
+  const cards = (flashData || {}).cards || [];
+  const todayStr = today();
+
+  // Cards due today (spaced repetition nextDue <= today)
+  const dueCards = cards.filter(c => {
+    const due = state.flashcards.nextDue[c.id];
+    return due && due <= todayStr;
+  }).slice(0, 3);
+
+  // Weakest RAG topic
+  const reds = Object.entries(state.rag).filter(([, v]) => v === 'red').map(([k]) => k);
+  const weakCode = reds[0] || null;
+  const weakItem = weakCode ? findItemByCode(weakCode) : null;
+
+  if (!dueCards.length && !weakItem) { container.innerHTML = ''; return; }
+
+  const dueHTML = dueCards.length ? `
+    <div style="margin-bottom:12px">
+      <div style="font-size:12px;color:var(--text2);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px">Flashcards due today</div>
+      ${dueCards.map(c => `
+        <div class="search-result" onclick="navigate('flashcards')" style="cursor:pointer">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="badge">${c.code}</span>
+            <span style="flex:1;font-size:14px">${c.front}</span>
+            <span class="chevron">→</span>
+          </div>
+        </div>`).join('')}
+    </div>` : '';
+
+  const weakHTML = weakItem ? `
+    <div>
+      <div style="font-size:12px;color:var(--text2);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px">🔴 Weakest topic</div>
+      <div class="search-result" onclick="goToResult('${weakItem.section}', '${weakCode}')" style="cursor:pointer">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span class="badge" style="background:#FDECEC;color:#C53030;border-color:#F7C5C5">${weakCode}</span>
+          <span style="flex:1;font-size:14px">${weakItem.term}</span>
+          <span class="chevron">→</span>
+        </div>
+      </div>
+    </div>` : '';
+
+  container.innerHTML = `
+    <div class="card" style="margin-bottom:20px;padding:16px 20px">
+      <h3 style="font-size:14px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px">🎯 What to revise next</h3>
+      ${dueHTML}${weakHTML}
+    </div>`;
+}
+
 function renderSectionTiles() {
   const container = el('section-tiles');
   const sections = [
@@ -363,13 +602,18 @@ function renderSectionTiles() {
       <div class="section-tile" onclick="navigate('sections', {section:'${s.letter}'})">
         <div class="tile-accent" style="background:${col}"></div>
         <div class="tile-code" style="color:${col}">${s.letter}</div>
-        <div class="badge ${tier}" style="margin-bottom:6px">${tier === 'tier1' ? '🔥 Tier 1' : tier === 'tier2' ? '⚡ Tier 2' : '📌 Tier 3'}</div>
+        <div class="badge ${tier}" style="margin-bottom:6px">${tier === 'tier1' ? 'Tier 1' : tier === 'tier2' ? 'Tier 2' : 'Tier 3'}</div>
         <h3>${s.name}</h3>
         <p>${s.topics}</p>
-        <div class="tile-progress"><div class="tile-progress-bar" style="width:${prog}%;background:${col}"></div></div>
+        <div class="tile-progress"><div class="tile-progress-bar" data-target="${prog}" style="width:0%;background:${col};transition:width 0.6s ease-out"></div></div>
         <div style="font-size:12px;color:var(--text2);margin-top:4px">${prog}% confident</div>
       </div>`;
   }).join('');
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    container.querySelectorAll('.tile-progress-bar[data-target]').forEach(bar => {
+      bar.style.width = bar.dataset.target + '%';
+    });
+  }));
 }
 
 /* ---- SECTIONS PAGE ---- */
@@ -422,7 +666,7 @@ function renderSectionContent(container, data, letter) {
     <div class="section-header">
       <button class="section-header-back" onclick="navigate('sections')" title="Back">←</button>
       <h2><span style="color:${col}">${data.section}</span> — ${data.title}</h2>
-      <span class="badge ${sectionTierClass(letter)}">${sectionTierClass(letter) === 'tier1' ? '🔥 Tier 1' : '⚡ Tier 2'}</span>
+      <span class="badge ${sectionTierClass(letter)}">${sectionTierClass(letter) === 'tier1' ? 'Tier 1' : 'Tier 2'}</span>
     </div>`;
 
   data.topics.forEach(topic => {
@@ -528,7 +772,7 @@ const LEITNER_INTERVALS = [0, 1, 2, 4, 8, 16];
 function renderFlashcards() {
   flashData = loadJSON('data/flashcards.json');
   if (!flashData) {
-    el('flashcards-content').innerHTML = `<div class="empty-state"><div class="icon">📚</div><p>Flashcard data loading...</p></div>`;
+    el('flashcards-content').innerHTML = `<div class="empty-state"><p>Flashcard data loading...</p></div>`;
     return;
   }
   buildFlashQueue();
@@ -779,7 +1023,6 @@ function renderQuizMode(container) {
   if (quizIdx >= quizQueue.length) {
     container.innerHTML = `
       <div class="empty-state">
-        <div class="icon">🏆</div>
         <h2 style="margin-bottom:8px">Quiz Complete — ${quizScore}/${quizMax} marks${quizMax ? ` (${Math.round((quizScore / quizMax) * 100)}%)` : ''}</h2>
         <p>${quizQueue.length} questions answered · +${quizScore * 2} XP earned.</p>
         <button class="btn btn-primary" style="margin-top:16px" onclick="qMode='browse';renderQuestions()">Back to browse</button>
@@ -1052,13 +1295,235 @@ let mcq = null;
 let matchGame = null;
 let matchInterval = null;
 
+/* ---- TRUE OR FALSE BLITZ ---- */
+let tfState = null;
+
+/* ---- FILL IN THE BLANK ---- */
+let fitbState = null;
+
+function buildFITBQuestions(count = 10) {
+  const cards = (loadJSON('data/flashcards.json') || {}).cards || [];
+  if (cards.length < 4) return [];
+
+  const shuffled = [...cards].sort(() => Math.random() - 0.5).slice(0, count);
+  return shuffled.map(card => {
+    // Replace the term in the definition with blanks (case-insensitive)
+    const blanked = card.definition.replace(new RegExp(card.term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'), '_____');
+
+    // 3 distractors: other terms from the set
+    const others = cards.filter(c => c.term !== card.term);
+    const distractors = others.sort(() => Math.random() - 0.5).slice(0, 3).map(c => c.term);
+    const options = [card.term, ...distractors].sort(() => Math.random() - 0.5);
+
+    return { definition: blanked, answer: card.term, options, code: card.code };
+  });
+}
+
+function startFITB() {
+  const qs = buildFITBQuestions(10);
+  if (!qs.length) { toast('No flashcard data loaded'); return; }
+  fitbState = { qs, idx: 0, correct: 0, selected: null, answered: false };
+  gamesMode = 'fitb';
+  renderGames();
+}
+
+function renderFITB(container) {
+  if (!fitbState) return;
+  const q = fitbState.qs[fitbState.idx];
+  const total = fitbState.qs.length;
+
+  container.innerHTML = `
+    <div class="quiz-wrap" style="max-width:620px">
+      <div class="quiz-progress" style="margin-bottom:16px">
+        <span>✏️ Fill in the Blank · ${fitbState.idx + 1}/${total}</span>
+        <div class="bar"><div class="bar-fill" style="width:${(fitbState.idx / total) * 100}%"></div></div>
+        <button class="btn btn-secondary btn-sm" onclick="gamesMode=null;fitbState=null;renderGames()">Quit</button>
+      </div>
+      <p style="font-size:12px;color:var(--text2);margin-bottom:8px">${q.code}</p>
+      <div class="card" style="padding:24px;font-size:16px;line-height:1.7;margin-bottom:20px">
+        ${q.definition}
+      </div>
+      <div class="grid2" style="gap:10px">
+        ${q.options.map(opt => {
+          let style = '';
+          if (fitbState.answered) {
+            if (opt === q.answer) style = 'background:var(--green);color:#fff;border-color:var(--green)';
+            else if (opt === fitbState.selected) style = 'background:var(--red);color:#fff;border-color:var(--red)';
+          }
+          return `<button class="btn btn-secondary" style="padding:14px;font-size:15px;${style}" onclick="answerFITB('${opt.replace(/'/g,"\\'")}') " ${fitbState.answered ? 'disabled' : ''}>${opt}</button>`;
+        }).join('')}
+      </div>
+      ${fitbState.answered ? `
+        <div style="text-align:center;margin-top:16px">
+          <p style="color:var(--text2);margin-bottom:10px">${fitbState.selected === q.answer ? '✅ Correct!' : `❌ The answer was: <strong>${q.answer}</strong>`}</p>
+          <button class="btn btn-primary" onclick="fitbNext()">Next →</button>
+        </div>` : ''}
+    </div>`;
+}
+
+function answerFITB(selected) {
+  if (!fitbState || fitbState.answered) return;
+  fitbState.selected = selected;
+  fitbState.answered = true;
+  if (selected === fitbState.qs[fitbState.idx].answer) fitbState.correct++;
+  renderGames();
+}
+
+function fitbNext() {
+  if (!fitbState) return;
+  fitbState.idx++;
+  fitbState.answered = false;
+  fitbState.selected = null;
+  if (fitbState.idx >= fitbState.qs.length) {
+    endFITB();
+  } else {
+    renderGames();
+  }
+}
+
+function endFITB() {
+  if (!fitbState) return;
+  const { correct, qs } = fitbState;
+  const xpEarned = correct * 8;
+  state.xp = (state.xp || 0) + xpEarned;
+  state.questions.fitb_history = state.questions.fitb_history || [];
+  state.questions.fitb_history.push({ correct, total: qs.length, date: today() });
+  bumpActivity(correct);
+  saveState();
+
+  gamesMode = null;
+  fitbState = null;
+  const container = el('games-content');
+  container.innerHTML = `
+    <div class="quiz-wrap" style="max-width:480px;text-align:center">
+      <h2 style="margin-bottom:8px">Round complete!</h2>
+      <p style="font-size:24px;font-weight:700;margin-bottom:4px">${correct} / ${qs.length} correct</p>
+      <p style="color:var(--text2);margin-bottom:16px">+${xpEarned} XP earned</p>
+      <div style="display:flex;gap:10px;justify-content:center">
+        <button class="btn btn-primary" onclick="startFITB()">Play again</button>
+        <button class="btn btn-secondary" onclick="renderGames()">Back to games</button>
+      </div>
+    </div>`;
+}
+
+function buildTFQuestions() {
+  const cards = (loadJSON('data/flashcards.json') || {}).cards || [];
+  if (cards.length < 4) return [];
+  const qs = [];
+
+  cards.forEach((card, i) => {
+    // True statement: real definition
+    qs.push({ statement: `"${card.term}" — ${card.definition}`, answer: true, term: card.term });
+
+    // False statement: correct term, wrong definition (from a different card)
+    const otherIdx = (i + 1 + Math.floor(Math.random() * (cards.length - 2))) % cards.length;
+    const other = cards[otherIdx];
+    qs.push({ statement: `"${card.term}" — ${other.definition}`, answer: false, term: card.term });
+  });
+
+  // Shuffle
+  for (let i = qs.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [qs[i], qs[j]] = [qs[j], qs[i]];
+  }
+  return qs;
+}
+
+function startTrueFalse() {
+  const qs = buildTFQuestions();
+  if (!qs.length) { toast('No flashcard data loaded'); return; }
+  tfState = { qs, idx: 0, correct: 0, total: 0, timeLeft: 30, timer: null };
+  gamesMode = 'tf';
+  renderGames();
+  tfState.timer = setInterval(() => {
+    tfState.timeLeft--;
+    const bar = el('tf-timer-bar');
+    if (bar) bar.style.width = (tfState.timeLeft / 30 * 100) + '%';
+    const label = el('tf-timer-label');
+    if (label) label.textContent = tfState.timeLeft + 's';
+    if (tfState.timeLeft <= 0) endTrueFalse();
+  }, 1000);
+}
+
+function renderTrueFalse(container) {
+  if (!tfState) return;
+  const q = tfState.qs[tfState.idx];
+  container.innerHTML = `
+    <div class="quiz-wrap" style="max-width:600px">
+      <div class="quiz-progress" style="margin-bottom:16px">
+        <span>✅ True or False Blitz · <strong id="tf-timer-label">${tfState.timeLeft}s</strong></span>
+        <div class="bar"><div class="bar-fill" id="tf-timer-bar" style="width:${tfState.timeLeft / 30 * 100}%;background:var(--green)"></div></div>
+        <button class="btn btn-secondary btn-sm" onclick="endTrueFalse()">Quit</button>
+      </div>
+      <div class="card" style="text-align:center;padding:28px 24px;margin-bottom:20px;font-size:17px;line-height:1.6">
+        ${q ? q.statement : ''}
+      </div>
+      <div style="display:flex;gap:12px">
+        <button class="btn btn-primary" style="flex:1;padding:18px;font-size:18px;background:var(--green)" onclick="answerTF(true)" id="tf-true-btn">✅ True</button>
+        <button class="btn btn-primary" style="flex:1;padding:18px;font-size:18px;background:var(--red)" onclick="answerTF(false)" id="tf-false-btn">❌ False</button>
+      </div>
+      <p style="text-align:center;color:var(--text2);font-size:13px;margin-top:12px">Keyboard: ← False · True →</p>
+      <p style="text-align:center;color:var(--text2);font-size:13px;margin-top:4px">Score: ${tfState.correct}/${tfState.total}</p>
+    </div>`;
+}
+
+function answerTF(answer) {
+  if (!tfState || tfState.timeLeft <= 0) return;
+  const q = tfState.qs[tfState.idx];
+  const correct = q.answer === answer;
+  if (correct) tfState.correct++;
+  tfState.total++;
+  tfState.idx = (tfState.idx + 1) % tfState.qs.length;
+
+  // Brief visual feedback
+  const btn = el(answer ? 'tf-true-btn' : 'tf-false-btn');
+  if (btn) {
+    btn.style.opacity = '0.5';
+    setTimeout(() => { if (btn) btn.style.opacity = ''; }, 150);
+  }
+
+  renderGames();
+}
+
+function endTrueFalse() {
+  if (!tfState) return;
+  clearInterval(tfState.timer);
+  const { correct, total } = tfState;
+  const xpEarned = correct * 5;
+  state.xp = (state.xp || 0) + xpEarned;
+  bumpActivity(correct);
+
+  const bestKey = 'u2_tf_best';
+  const prev = parseInt(localStorage.getItem(bestKey) || '0', 10);
+  if (correct > prev) localStorage.setItem(bestKey, String(correct));
+
+  saveState();
+  gamesMode = null;
+  tfState = null;
+
+  const container = el('games-content');
+  container.innerHTML = `
+    <div class="quiz-wrap" style="max-width:480px;text-align:center">
+      <h2 style="margin-bottom:8px">Blitz over!</h2>
+      <p style="font-size:24px;font-weight:700;margin-bottom:4px">${correct} / ${total} correct</p>
+      <p style="color:var(--text2);margin-bottom:16px">+${xpEarned} XP earned</p>
+      <div style="display:flex;gap:10px;justify-content:center">
+        <button class="btn btn-primary" onclick="startTrueFalse()">Play again</button>
+        <button class="btn btn-secondary" onclick="gamesMode=null;renderGames()">Back to games</button>
+      </div>
+    </div>`;
+}
+
 function renderGames() {
   const container = el('games-content');
   if (gamesMode === 'mcq') { renderMCQ(container); return; }
   if (gamesMode === 'match') { renderMatch(container); return; }
+  if (gamesMode === 'tf') { renderTrueFalse(container); return; }
+  if (gamesMode === 'fitb') { renderFITB(container); return; }
   if (gamesMode === 'battle' && battle) { renderBattleUI(container); return; }
 
   const best = localStorage.getItem('u2_match_best');
+  const tfBest = localStorage.getItem('u2_tf_best');
   container.innerHTML = `
     <h2 style="margin-bottom:6px">Games</h2>
     <p style="color:var(--text2);font-size:14px;margin-bottom:18px">Active recall, but fun. Earn XP for every game — you're Level ${xpLevel()} with ${state.xp || 0} XP.</p>
@@ -1074,6 +1539,18 @@ function renderGames() {
         <div class="tile-code">🧩</div>
         <h3>Match</h3>
         <p>Pair terms with definitions against the clock. +30 XP per clear.${best ? ` Best time: <strong>${best}s</strong>` : ''}</p>
+      </div>
+      <div class="section-tile" onclick="startTrueFalse()">
+        <div class="tile-accent" style="background:var(--green)"></div>
+        <div class="tile-code">✅</div>
+        <h3>True or False Blitz</h3>
+        <p>30 seconds. Rapid-fire true/false statements from your flashcards. +5 XP per correct.${tfBest ? ` Best: <strong>${tfBest}</strong>` : ''}</p>
+      </div>
+      <div class="section-tile" onclick="startFITB()">
+        <div class="tile-accent" style="background:var(--accent2)"></div>
+        <div class="tile-code">✏️</div>
+        <h3>Fill in the Blank</h3>
+        <p>A definition with the key term removed — pick the right answer from 4 options. +8 XP per correct.</p>
       </div>
     </div>
     <h3 style="margin:24px 0 12px;font-size:14px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">⚔️ Battle arena — vs the leaderboard</h3>
@@ -1215,7 +1692,7 @@ function ladderFeedHTML() {
   });
 
   const myMove = move['You'] || 0;
-  if (myMove > 0) events.unshift(`⭐ <strong>You</strong> climbed ${myMove} place${myMove !== 1 ? 's' : ''} — keep going`);
+  if (myMove > 0) events.unshift(`<strong>You</strong> climbed ${myMove} place${myMove !== 1 ? 's' : ''} — keep going`);
   if (myMove < 0) events.unshift(`⚠️ <strong>You</strong> slipped ${-myMove} place${myMove !== -1 ? 's' : ''} — the ladder doesn't wait`);
 
   // deterministic daily flavour
@@ -1388,7 +1865,7 @@ function renderLeaderboardPage() {
     ` : modeBoardHTML(lbView)}
     <div style="margin-top:18px;display:flex;gap:8px;flex-wrap:wrap">
       <button class="btn btn-primary" onclick="navigate('games')">⚡ Earn XP in Games</button>
-      <button class="btn btn-secondary" onclick="navigate('flashcards')">📚 Review flashcards</button>
+      <button class="btn btn-secondary" onclick="navigate('flashcards')">Review flashcards</button>
     </div>`;
 }
 
@@ -1413,7 +1890,6 @@ function renderMCQ(container) {
     const pct = Math.round((mcq.score / mcq.qs.length) * 100);
     container.innerHTML = `
       <div class="empty-state">
-        <div class="icon">${pct >= 80 ? '🏆' : pct >= 50 ? '💪' : '📚'}</div>
         <h2 style="margin-bottom:8px">${mcq.score}/${mcq.qs.length} correct (${pct}%)</h2>
         <p>${pct >= 80 ? 'Outstanding — that knowledge is locked in.' : pct >= 50 ? 'Solid — review the ones you missed and go again.' : 'Good effort — hit the flashcards on these topics and retry.'}</p>
         <div style="display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap">
@@ -1845,8 +2321,8 @@ function answerBattle(i) {
     <div class="battle-log">
       ${results.map(r => `
         <div class="battle-log-row">
-          <span>${r.p.me ? '⭐ You' : r.p.name}</span>
-          <span style="color:${r.ok ? 'var(--green-text)' : 'var(--red)'};font-weight:800">${r.ok ? '✓' : '✗'} ${r.time}s${!r.p.alive && battle.mode === 'elim' ? ' 💀' : ''}</span>
+          <span>${r.p.me ? 'You' : r.p.name}</span>
+          <span style="color:${r.ok ? 'var(--green-text)' : 'var(--red)'};font-weight:800">${r.ok ? '✓' : '✗'} ${r.time}s${!r.p.alive && battle.mode === 'elim' ? ' [out]' : ''}</span>
         </div>`).join('')}
       ${note ? `<div style="font-size:13px;font-weight:700;color:var(--accent2);padding:6px 2px 0">${note}</div>` : ''}
     </div>
@@ -1872,7 +2348,7 @@ function finishBattle() {
     if (battle.mode === 'race') xp = me.score * 2 + (won ? 30 : 0);
     else if (battle.mode === 'duel') xp = me.score * 5 + (won ? 35 : 0);
     else xp = me.score * 3 + (won ? 25 : 0);
-    headline = won ? `🏆 You won the ${BATTLE_MODES[battle.mode].name}!` : `You placed #${place} of ${battle.players.length} — ${standings[0].name} took it.`;
+    headline = won ? `You won the ${BATTLE_MODES[battle.mode].name}!` : `You placed #${place} of ${battle.players.length} — ${standings[0].name} took it.`;
   }
   battle.standings = standings;
   battle.xpEarned = xp;
@@ -1893,7 +2369,6 @@ function renderBattleEnd(container) {
   container.innerHTML = `
     <div class="quiz-wrap" style="max-width:680px">
       <div style="text-align:center;padding:18px 0 6px">
-        <div style="font-size:44px;margin-bottom:8px">${battle.standings[0].me ? '🏆' : BATTLE_MODES[battle.mode].icon}</div>
         <h2 style="margin-bottom:4px">${battle.headline}</h2>
         <p style="color:var(--text2);font-size:14px;margin-bottom:14px">+${battle.xpEarned} XP earned</p>
       </div>
@@ -1914,30 +2389,6 @@ function renderBattleEnd(container) {
 }
 
 /* ---- PROFILE ---- */
-function heatmapHTML(weeks = 18) {
-  const act = state.activity || {};
-  const end = new Date();
-  const start = new Date();
-  start.setDate(start.getDate() - weeks * 7 + 1);
-  while (start.getDay() !== 1) start.setDate(start.getDate() - 1); // align to Monday
-
-  const cells = [];
-  const cursor = new Date(start);
-  while (cursor <= end) {
-    const key = cursor.toISOString().split('T')[0];
-    const n = act[key] || 0;
-    const lvl = n === 0 ? 0 : n < 3 ? 1 : n < 6 ? 2 : n < 12 ? 3 : 4;
-    cells.push(`<span class="hm-cell hm-${lvl}" title="${n} action${n !== 1 ? 's' : ''} on ${key}"></span>`);
-    cursor.setDate(cursor.getDate() + 1);
-  }
-
-  return `
-    <div class="heatmap-wrap">
-      <div class="hm-days"><span>Mon</span><span>Wed</span><span>Fri</span></div>
-      <div class="heatmap">${cells.join('')}</div>
-    </div>
-    <div class="hm-legend">Less <span class="hm-cell hm-0"></span><span class="hm-cell hm-1"></span><span class="hm-cell hm-2"></span><span class="hm-cell hm-3"></span><span class="hm-cell hm-4"></span> More</div>`;
-}
 
 function getAchievements() {
   const act = state.activity || {};
@@ -1961,6 +2412,20 @@ function getAchievements() {
   ];
 }
 
+function buildSparklineSVG(data, width = 200, height = 40) {
+  if (!data.length) return '<span style="color:var(--text2);font-size:12px">No data yet</span>';
+  const max = Math.max(...data, 1);
+  const pts = data.map((v, i) => {
+    const x = (i / (data.length - 1 || 1)) * width;
+    const y = height - (v / max) * height;
+    return `${x},${y}`;
+  }).join(' ');
+  return `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" style="display:block">
+    <polyline points="${pts}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="${data.length > 1 ? width : width/2}" cy="${height - (data[data.length-1]/max)*height}" r="3" fill="var(--accent)"/>
+  </svg>`;
+}
+
 function renderProfile() {
   loadData(['a', 'b', 'c', 'd']);
   const xp = state.xp || 0;
@@ -1975,6 +2440,12 @@ function renderProfile() {
   for (let i = 0; i < 7; i++) {
     const d = new Date(); d.setDate(d.getDate() - i);
     last7 += act[d.toISOString().split('T')[0]] || 0;
+  }
+
+  const xpByDay = [];
+  for (let i = 13; i >= 0; i--) {
+    const d = new Date(); d.setDate(d.getDate() - i);
+    xpByDay.push(act[d.toISOString().split('T')[0]] || 0);
   }
 
   const qHist = state.questions.history;
@@ -1998,7 +2469,7 @@ function renderProfile() {
           ${rankChip(xp)}
           <span class="badge">Level ${xpLevel()}</span>
           <span class="badge">#${me.pos} of ${rows.length}</span>
-          <span class="badge">🔥 ${state.streak.count}-day streak</span>
+          <span class="badge">${state.streak.count}-day streak</span>
         </div>
       </div>
       <div style="text-align:right">
@@ -2008,10 +2479,10 @@ function renderProfile() {
     </div>
 
     <div class="card${avatarPickerOpen ? '' : ' hidden'}" id="avatar-picker">
-      <h3 style="margin-bottom:10px">🎨 Customise your avatar</h3>
+      <h3 style="margin-bottom:10px">Customise your avatar</h3>
       <p style="font-size:12px;color:var(--text2);margin-bottom:8px;font-weight:700">YOUR PHOTO</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px">
-        <button class="btn btn-primary btn-sm" onclick="uploadAvatar()">📷 Upload a picture</button>
+        <button class="btn btn-primary btn-sm" onclick="uploadAvatar()">Upload a picture</button>
         ${pImg() ? '<button class="btn btn-secondary btn-sm" onclick="removeAvatarImg()">Remove photo</button>' : ''}
       </div>
       <p style="font-size:12px;color:var(--text2);margin:12px 0 8px;font-weight:700">OR PICK AN ICON</p>
@@ -2025,9 +2496,14 @@ function renderProfile() {
     </div>
 
     <div class="card">
-      <h3 style="margin-bottom:4px">📅 Activity</h3>
+      <h3 style="margin-bottom:4px">Activity</h3>
       <p style="font-size:13px;color:var(--text2);margin-bottom:12px">${totalActs.toLocaleString()} revision actions all-time · ${last7} in the last 7 days</p>
-      ${heatmapHTML()}
+      <div id="profile-heatmap"></div>
+    </div>
+
+    <div class="card" style="margin-bottom:16px">
+      <h3 style="font-size:13px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px">Activity — last 14 days</h3>
+      ${buildSparklineSVG(xpByDay, 280, 48)}
     </div>
 
     <div class="stats-row">
@@ -2040,7 +2516,7 @@ function renderProfile() {
     </div>
 
     <div class="card">
-      <h3 style="margin-bottom:10px">🏅 Achievements <span style="font-size:13px;color:var(--text2);font-weight:600">${unlocked}/${ach.length} unlocked</span></h3>
+      <h3 style="margin-bottom:10px">Achievements <span style="font-size:13px;color:var(--text2);font-weight:600">${unlocked}/${ach.length} unlocked</span></h3>
       <div class="ach-grid">
         ${ach.map(a => `
           <div class="ach${a.done ? ' done' : ''}" title="${a.desc}">
@@ -2049,7 +2525,18 @@ function renderProfile() {
             <span class="ach-desc">${a.desc}</span>
           </div>`).join('')}
       </div>
+    </div>
+
+    <div class="card" style="margin-bottom:16px">
+      <h3 style="font-size:13px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px">⚙️ Settings</h3>
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:14px;font-weight:500">Dark mode</span>
+        <button class="theme-toggle btn btn-secondary btn-sm" onclick="toggleTheme()">
+          ${state.theme === 'dark' ? '☀️ Light mode' : '🌙 Dark mode'}
+        </button>
+      </div>
     </div>`;
+  renderProfileHeatmap();
 }
 
 let avatarPickerOpen = false;
@@ -2087,10 +2574,10 @@ function renderExamKit() {
   ];
 
   const keywordBanks = [
-    { title: '🔍 Section D — Forensics (fast marks)', col: '#6D5BD6', words: ['Faraday bag', 'Write-blocker', 'Forensic image (bit-for-bit copy)', 'Hash value (MD5/SHA) before & after', 'Chain of custody', 'Contemporaneous notes', 'Evidence bag + tamper-proof seal', 'Photograph the scene first'] },
-    { title: '🛡️ Section A — Protection', col: '#4338CA', words: ['Encryption (at rest / in transit)', 'Multi-factor authentication', 'Anti-malware + updates', 'Firewall rules', 'Penetration testing', 'Staff training', 'Acceptable Use Policy', 'GDPR — 72-hour breach reporting'] },
-    { title: '🌐 Section B — Networks', col: '#A8326E', words: ['VPN — encrypted tunnel', 'DMZ for public-facing servers', 'Network segmentation / VLAN', 'DHCP — automatic IP assignment', 'DNS — name resolution', 'WPA3 over WEP', 'MAC filtering (spoofable!)', 'RAID is NOT a backup'] },
-    { title: '📋 Section C — Documentation', col: '#0E9F6E', words: ['Security policy + review date', 'Risk assessment matrix', 'Incident response plan', 'Disaster recovery plan', 'Backup policy (3-2-1 rule)', 'Audit trail / logs', 'Business continuity', 'Roles & responsibilities'] }
+    { title: 'Section D — Forensics (fast marks)', col: '#6D5BD6', words: ['Faraday bag', 'Write-blocker', 'Forensic image (bit-for-bit copy)', 'Hash value (MD5/SHA) before & after', 'Chain of custody', 'Contemporaneous notes', 'Evidence bag + tamper-proof seal', 'Photograph the scene first'] },
+    { title: 'Section A — Protection', col: '#4338CA', words: ['Encryption (at rest / in transit)', 'Multi-factor authentication', 'Anti-malware + updates', 'Firewall rules', 'Penetration testing', 'Staff training', 'Acceptable Use Policy', 'GDPR — 72-hour breach reporting'] },
+    { title: 'Section B — Networks', col: '#A8326E', words: ['VPN — encrypted tunnel', 'DMZ for public-facing servers', 'Network segmentation / VLAN', 'DHCP — automatic IP assignment', 'DNS — name resolution', 'WPA3 over WEP', 'MAC filtering (spoofable!)', 'RAID is NOT a backup'] },
+    { title: 'Section C — Documentation', col: '#0E9F6E', words: ['Security policy + review date', 'Risk assessment matrix', 'Incident response plan', 'Disaster recovery plan', 'Backup policy (3-2-1 rule)', 'Audit trail / logs', 'Business continuity', 'Roles & responsibilities'] }
   ];
 
   container.innerHTML = `
@@ -2098,7 +2585,7 @@ function renderExamKit() {
     <p style="color:var(--text2);font-size:14px;margin-bottom:18px">Command words, mark-scheme patterns and rapid-recall keywords — the exam technique layer that turns knowledge into marks.</p>
 
     <div class="card">
-      <h3 style="margin-bottom:10px">⚡ Command words decoder</h3>
+      <h3 style="margin-bottom:10px">Command words decoder</h3>
       <div class="comparison-table-wrap"><table class="comparison-table">
         <thead><tr><th>Command word</th><th>Typical marks</th><th>What the examiner wants</th></tr></thead>
         <tbody>${commandWords.map(r => `<tr><td><strong>${r[0]}</strong></td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</tbody>
@@ -2106,7 +2593,7 @@ function renderExamKit() {
     </div>
 
     <div class="card">
-      <h3 style="margin-bottom:10px">🏆 The 9-mark formula (levels-based)</h3>
+      <h3 style="margin-bottom:10px">The 9-mark formula (levels-based)</h3>
       <ul class="key-facts">
         <li><strong>Open</strong> — one sentence directly answering the question in scenario terms</li>
         <li><strong>Side 1</strong> — two developed benefits, each linked to the scenario business</li>
@@ -2140,7 +2627,7 @@ function renderSearch() {
     <h2 style="margin-bottom:12px">Search</h2>
     <input type="search" class="search-bar" id="search-input" placeholder="Search spec codes, terms, definitions..." oninput="doSearch(this.value)" autofocus>
     <div id="search-results" class="search-results">
-      <div class="empty-state"><div class="icon">🔍</div><p>Type to search across all content</p></div>
+      <div class="empty-state"><p>Type to search across all content</p></div>
     </div>`;
 }
 
@@ -2171,7 +2658,7 @@ function buildSearchIndex() {
 function doSearch(query) {
   const container = el('search-results');
   if (!query || query.length < 2) {
-    container.innerHTML = `<div class="empty-state"><div class="icon">🔍</div><p>Type to search across all content</p></div>`;
+    container.innerHTML = `<div class="empty-state"><p>Type to search across all content</p></div>`;
     return;
   }
   const q = query.toLowerCase();
@@ -2229,7 +2716,7 @@ function renderPlan() {
   container.innerHTML = `
     <div class="plan-header">
       <h2>Today's Study Plan</h2>
-      <div class="streak-badge">🔥 ${state.streak.count} day streak</div>
+      <div class="streak-badge">${state.streak.count}-day streak</div>
     </div>
     <p style="color:var(--text2);font-size:14px;margin-bottom:16px">${daysUntilExam()} days until your Unit 2 exam. ${getMotivation()}</p>
     ${plan.map(block => `
@@ -2270,7 +2757,7 @@ function buildDailyPlan() {
   if (flashDue > 0) {
     blocks.push({
       id: 'flash',
-      title: `📚 Flashcards (${flashDue} due)`,
+      title: `Flashcards (${flashDue} due)`,
       items: [`Review ${Math.min(flashDue, 20)} flashcards due today`, 'Focus extra on Box 1 cards (weakest)']
     });
   }
@@ -2310,7 +2797,7 @@ function buildDailyPlan() {
 
   blocks.push({
     id: 'practice',
-    title: '✍️ Practice Questions',
+    title: 'Practice Questions',
     items: [
       'Answer 2–3 practice questions on your weakest topic',
       'Self-mark using the model answers',
@@ -2339,8 +2826,8 @@ function getMotivation() {
   if (days > 30) return 'Keep building your knowledge — consistency now makes the difference.';
   if (days > 14) return 'Final stretch! Focus on your weak areas and practise past paper questions.';
   if (days > 7) return 'One week to go — prioritise Tier 1 topics and exam technique.';
-  if (days > 1) return '🚨 Exam is almost here! Flashcards, key facts, extended response practice.';
-  return '📅 Exam is tomorrow! Rest, eat well, and trust your preparation.';
+  if (days > 1) return 'Exam is almost here! Flashcards, key facts, extended response practice.';
+  return 'Exam is tomorrow! Rest, eat well, and trust your preparation.';
 }
 
 function renderRAGSummary() {
@@ -2438,10 +2925,19 @@ function confirmReset() {
 
 /* ---- INIT ---- */
 document.addEventListener('DOMContentLoaded', () => {
+  initSidebar();
   document.querySelectorAll('.nav-btn, .nav-avatar').forEach(btn => {
     btn.addEventListener('click', () => navigate(btn.dataset.page));
   });
   loadData(['a', 'b', 'c', 'd']);
   updateNavAvatar();
+  if (typeof lucide !== 'undefined') lucide.createIcons();
   navigate('home');
+});
+
+document.addEventListener('keydown', e => {
+  if (gamesMode === 'tf') {
+    if (e.key === 'ArrowRight' || e.key === 't' || e.key === 'T') { e.preventDefault(); answerTF(true); }
+    if (e.key === 'ArrowLeft'  || e.key === 'f' || e.key === 'F') { e.preventDefault(); answerTF(false); }
+  }
 });
