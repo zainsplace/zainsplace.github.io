@@ -1,7 +1,7 @@
 # Revision Website
 
 A revision platform for A-Level Cyber Security, built as a single-page app
-with vanilla JavaScript. Made for personal use and for friends to use.
+with vanilla JavaScript. Made for personal use and for friends to use. (VIBE CODED)
 
 **Live site:** [zainsplace.github.io](https://zainsplace.github.io)
 
