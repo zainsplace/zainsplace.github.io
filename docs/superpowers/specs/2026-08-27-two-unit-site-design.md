@@ -37,9 +37,29 @@ wording.
 Verify: `python build_inline.py && git diff --stat data_inline.js`
 Observed: 9 insertions, 9 deletions.
 
-**Nothing in this design may run `build_inline.py` until the nine hand-edits are
-back-ported into `data/*.json` and a rebuild produces a zero diff.** This is task
-one. Skipping it silently degrades live content in both units.
+Unit 1 has drifted too: its committed `data_inline.js` differs from its
+`data/flashcards.json` on card `e3` (`back`). Ten hand-edits total across the two
+units.
+
+**Nothing in this design may run `build_inline.py` until all ten hand-edits are
+back-ported into `data/*.json` and a rebuild produces a zero diff for both
+units.** This is task one. Skipping it silently degrades live content.
+
+## Blocking prerequisite: two games are already broken
+
+Independent of this merge, two of the four games are broken on the live site
+today. Flashcards carry `front`/`back`, but:
+
+- `buildFITBQuestions` (app.js:1311) calls `card.definition.replace(...)` --
+  Fill in the Blank throws `TypeError: Cannot read properties of undefined
+  (reading 'replace')`
+- `buildTFQuestions` (app.js:1416) interpolates `card.term` and
+  `card.definition` -- True or False Blitz renders `"undefined" - undefined`
+
+Reproduced against https://zainsplace.github.io, not inferred. Unit 1's cards use
+the same `front`/`back` shape, so merging propagates the fault to Unit 1 rather
+than fixing it. Fix before or during the merge; do not let the merge be blamed
+for it afterwards.
 
 ## Verified constraints
 
@@ -117,12 +137,24 @@ must use in place of its hardcoded `/^[A-D]/`.
 The first draft said "twelve". The real count is 18 letter-hardcoding sites plus
 three name/colour arrays. Enumerated so the implementer has a checklist:
 
-`app.js` :65 (loadData map), :241-242 (sectionTierClass), :249 (sectionColour),
-:266 (the `[A-D]` regex), :274 (overallProgress), :363, :404, :590-594 (array 1),
-:643-647 (array 2), :827 (flashcard filter), :937 (question tabs),
-:1102/:1113/:1124/:1135 (getFallbackExtended), :1940, :2101, :2430,
-:2577-2580 (exam-kit keyword banks), :2622, :2636, :2712,
+`app.js` :65 (loadData map), :69-74 (**loadJSON** -- returns the three
+unit-specific globals `INLINE_FLASHCARDS`, `INLINE_QUESTIONS`, `INLINE_EXTENDED`;
+it is a stateless passthrough, NOT a cache, so clearing `DATA` does nothing for
+it), :241-242 (sectionTierClass), :249 (sectionColour), :266 (the `[A-D]` regex),
+:274 (overallProgress), :363, :404, :539 (renderReviseNext), :590-594 (array 1),
+:643-647 (array 2), :773 (renderFlashcards), :827 (flashcard filter),
+:922 (renderQuestions), :937 (question tabs), :1087 (renderExtended),
+:1102/:1113/:1124/:1135 (getFallbackExtended), :1305 (buildFITBQuestions),
+:1410 (buildTFQuestions), :1874 (**startMCQ reads `INLINE_FLASHCARDS` directly**,
+bypassing `loadJSON` entirely -- the only such read in the file, and the only one
+without a `|| {}` guard, so it throws rather than degrading), :1940, :2101,
+:2430, :2577-2580 (exam-kit keyword banks), :2622, :2636, :2712,
 :2770-2781 (daily-plan prose), :2834, :2932.
+
+The `loadJSON` group matters most: flashcards, questions, extended writing, Fill
+in the Blank, True/False Blitz and MCQ all read through it or around it. Clearing
+`DATA` flips the sections page to the new unit while every one of those keeps
+serving the old one.
 
 `index.html` :6 title, :7 meta description, :9-10 og tags, :25-26 wordmark,
 :71-72 header, :119-122 hero button target, name and blurb.
@@ -168,9 +200,22 @@ Switching units must therefore:
 2. set `searchBuilt = false` and empty `allSearchContent`
 3. reset `flashFilter` (:767) and `qFilter` (:917), whose bare letters mean
    different sections in each unit and may not exist in the target unit
-4. then re-render
+4. reset the in-flight page modes `qMode` (:916) and `gamesMode` (:1293), and
+   discard their materialised queues -- `quizQueue`, `mcq` (:1294),
+   `matchGame` (:1295), `tfState` (:1299), `fitbState` (:1302), `battle` (:2089)
+5. clear the live timers `matchInterval` (:1296) and `battleTick` (:2090)
+6. re-point whatever `loadJSON` (:69-74) resolves to, and `startMCQ`'s direct
+   `INLINE_FLASHCARDS` read (:1874) -- neither is affected by clearing `DATA`
+7. then re-render
 
-"Re-renders in place" without these steps is the single most likely way to ship
+Steps 4 and 5 are not cosmetic. A quiz or match already in progress keeps its
+queue, and its scoring handlers are baked with the outgoing unit's question ids
+and marks. `recordQuizScore` (:1070) and `awardXP` then write that result into
+whichever unit is now active -- so a Unit 2 question silently credits XP and
+history to Unit 1. A match timer still running at switch time reaches
+`finishMatch` (:2013) and does the same.
+
+"Re-renders in place" without all of this is the single most likely way to ship
 this broken.
 
 ### Migration
@@ -254,8 +299,11 @@ not that IDs are globally unique.
 
 Manual QA:
 
-1. Switch units; confirm sections, flashcards, questions, search results, daily
-   plan and tile progress ALL change, not just the section list
+1. Switch units; confirm sections, flashcards, questions, extended writing,
+   search results, daily plan, tile progress AND all four games ALL change, not
+   just the section list
+1b. Start a quiz, switch unit mid-quiz, finish it; confirm no XP or history
+   lands in the wrong unit. Repeat with a Match game timer running.
 2. Rate a topic in Unit 1; confirm the same code in Unit 2 is untouched
 3. Confirm Unit 1 sections E and F report non-zero progress after rating
 4. Confirm streak, XP, heatmap and game bests are independent per unit
@@ -265,19 +313,53 @@ Manual QA:
 8. Disconnect from the network, open `index.html` from disk; confirm icons render
 9. Confirm tile colours and section order match the current live site for BOTH
    units exactly
+10. Play Fill in the Blank and True or False Blitz in both units; confirm no
+   `undefined` text and no thrown error
 
 ## Out of scope
 
-No new revision features, no visual redesign, no rewriting of Unit 1 content, no
-build tooling beyond the existing script. The site must remain openable by
-double-clicking `index.html` -- with icons.
+No new revision features, no rewriting of Unit 1 content, no build tooling beyond
+the existing script. The site must remain openable by double-clicking
+`index.html` -- with icons.
+
+A visual redesign is **in** scope but is tracked separately: warm paper palette,
+vendored typefaces, and replacing the four-stat row with a single RAG confidence
+strip. It shares the vendoring work with the Lucide fix (both are about removing
+network dependencies) but is otherwise independent of the merge, and should land
+after it so that merge regressions and restyle regressions stay distinguishable.
 
 ## Audit note
 
-This spec was rewritten after an adversarial multi-agent audit produced 37
-findings; 8 were adversarially verified and none were refuted. The corrections
-above were each re-verified by hand against the source. One dimension -- a
-completeness critic asking what nobody examined -- did not run. Areas it would
-have covered that remain unexamined: accessibility, responsive and mobile
-behaviour, browser back/forward and routing, printing, and behaviour under
-corrupt or quota-exceeded localStorage.
+Two adversarial multi-agent audit rounds have run against this spec.
+
+Round 1 (5 dimensions: state/storage, manifest/rendering, data/collisions,
+build/runtime, spec coherence) produced 37 findings; 8 were adversarially
+verified and none refuted.
+
+Round 2 (5 previously unexamined dimensions: routing/navigation, storage
+robustness, games/subsystems, accessibility/responsive, content parity) produced
+34 findings; 6 were adversarially verified, 3 confirmed and 2 refuted. The
+refutations were substantive: the corrupt-localStorage finding was a restatement
+of a gap this document already acknowledged, and the keyboard-accessibility
+finding was real in mechanism but overstated in scope.
+
+Every correction folded into this spec was re-verified by hand against the
+source, and the two broken games were reproduced against the live site.
+
+**Known remaining gaps.** 28 round-2 findings were not adversarially checked,
+and the completeness critic never ran (session limit, twice). The unchecked set
+concentrates in three areas this spec does not fully address:
+
+- **Accessibility.** 16 `<div onclick>` handlers, zero `tabindex`, zero ARIA
+  anywhere in `app.js`. RAG buttons sit inside collapsed panels and are
+  unreachable by keyboard. The focus indicator fails WCAG contrast in both
+  themes. Below 900px the closed sidebar keeps ~12 controls in the tab order
+  off-screen.
+- **Storage robustness.** No `try`/`catch` on any write, no version or
+  migration-completion marker, and two full-state serialisations per action --
+  on a payload the merge roughly doubles.
+- **Content parity.** 34 of 44 Unit 1 model answers use `\n\n` paragraph breaks
+  the shared renderer may not honour; Unit 1's `extendedAnswer` field is read by
+  neither engine.
+
+None of these block the merge, but none should be assumed handled.
