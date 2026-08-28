@@ -823,7 +823,7 @@ function renderPriorityTopics() {
     if (!item) return '';
     const isRed = state.rag[code] === 'red';
     return `
-      <div class="search-result" onclick="goToResult('${item.section}', '${code}')">
+      <div role="button" tabindex="0" class="search-result" onclick="goToResult('${item.section}', '${code}')">
         <div style="display:flex;align-items:center;gap:8px">
           <span class="badge" style="${isRed ? 'background:#FDECEC;color:#C53030;border-color:#F7C5C5' : 'background:#FEF4E0;color:#B7791F;border-color:#F8D5B3'}">${isRed ? '🔴' : '🟡'} ${code}</span>
           <h4 style="flex:1">${item.term}</h4>
@@ -948,7 +948,7 @@ function renderReviseNext() {
     <div style="margin-bottom:12px">
       <div style="font-size:12px;color:var(--text2);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px">Flashcards due today</div>
       ${dueCards.map(c => `
-        <div class="search-result" onclick="navigate('flashcards')" style="cursor:pointer">
+        <div role="button" tabindex="0" class="search-result" onclick="navigate('flashcards')" style="cursor:pointer">
           <div style="display:flex;align-items:center;gap:8px">
             <span class="badge">${c.code}</span>
             <span style="flex:1;font-size:14px">${c.front}</span>
@@ -960,7 +960,7 @@ function renderReviseNext() {
   const weakHTML = weakItem ? `
     <div>
       <div style="font-size:12px;color:var(--text2);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px">🔴 Weakest topic</div>
-      <div class="search-result" onclick="goToResult('${weakItem.section}', '${weakCode}')" style="cursor:pointer">
+      <div role="button" tabindex="0" class="search-result" onclick="goToResult('${weakItem.section}', '${weakCode}')" style="cursor:pointer">
         <div style="display:flex;align-items:center;gap:8px">
           <span class="badge" style="background:#FDECEC;color:#C53030;border-color:#F7C5C5">${weakCode}</span>
           <span style="flex:1;font-size:14px">${weakItem.term}</span>
@@ -985,7 +985,7 @@ function renderSectionTiles() {
     const tier = sectionTierClass(s.letter);
     const col = sectionColour(s.letter);
     return `
-      <div class="section-tile" onclick="navigate('sections', {section:'${s.letter}'})">
+      <div role="button" tabindex="0" class="section-tile" onclick="navigate('sections', {section:'${s.letter}'})">
         <div class="tile-accent" style="background:${col}"></div>
         <div class="tile-code" style="color:${col}">${s.letter}</div>
         <div class="badge ${tier}" style="margin-bottom:6px">${tier === 'tier1' ? 'Tier 1' : tier === 'tier2' ? 'Tier 2' : 'Tier 3'}</div>
@@ -1031,7 +1031,7 @@ function renderSectionList(container) {
     <h2 style="margin-bottom:16px">Sections</h2>
     <div class="grid2">
       ${sections.map(s => `
-        <div class="section-tile" onclick="navigate('sections',{section:'${s.letter}'})">
+        <div role="button" tabindex="0" class="section-tile" onclick="navigate('sections',{section:'${s.letter}'})">
           <div class="tile-accent" style="background:${s.col}"></div>
           <div class="tile-code" style="color:${s.col}">${s.letter}</div>
           <h3>${s.name}</h3>
@@ -1084,7 +1084,7 @@ function renderSpecItem(item, letter) {
 
   return `
     <div class="card" id="item-${item.code}">
-      <div class="card-header" onclick="toggleCard('${item.code}')">
+      <div role="button" tabindex="0" class="card-header" onclick="toggleCard('${item.code}')">
         <span class="badge" style="min-width:65px;text-align:center">${item.code}</span>
         <h3>${item.term}</h3>
         ${isReviewed ? '<span style="color:var(--green);font-size:12px">✓</span>' : ''}
@@ -1229,7 +1229,7 @@ function renderCurrentFlashcard() {
   const pct = Math.round((flashIdx / flashQueue.length) * 100);
   return `
     <div style="font-size:13px;color:var(--text2);margin-bottom:8px">Card ${flashIdx + 1} of ${flashQueue.length} — Box ${box}</div>
-    <div class="flashcard-scene" onclick="flipFlashcard()" id="flash-scene">
+    <div role="button" tabindex="0" class="flashcard-scene" onclick="flipFlashcard()" id="flash-scene">
       <div class="flashcard-inner${flashFlipped ? ' flipped' : ''}" id="flash-inner">
         <div class="flashcard-face front">
           <span class="badge" style="margin-bottom:12px">${card.code}</span>
@@ -1543,7 +1543,7 @@ function renderExtPrompt(p, i) {
 
   return `
     <div class="card" style="margin-bottom:16px">
-      <div class="card-header" onclick="toggleCard('ext-${i}')">
+      <div role="button" tabindex="0" class="card-header" onclick="toggleCard('ext-${i}')">
         <span class="badge">${p.section}</span>
         <span class="badge">${p.marks} marks</span>
         <h3>${p.title}</h3>
@@ -1912,25 +1912,25 @@ function renderGames() {
     <h2 style="margin-bottom:6px">Games</h2>
     <p style="color:var(--text2);font-size:14px;margin-bottom:18px">Active recall, but fun. Earn XP for every game — you're Level ${xpLevel()} with ${state.xp || 0} XP.</p>
     <div class="grid2">
-      <div class="section-tile" onclick="startMCQ()">
+      <div role="button" tabindex="0" class="section-tile" onclick="startMCQ()">
         <div class="tile-accent" style="background:var(--accent)"></div>
         <div class="tile-code">⚡</div>
         <h3>Quick-fire MCQ</h3>
         <p>10 multiple-choice questions generated from your flashcards. +10 XP per correct answer.</p>
       </div>
-      <div class="section-tile" onclick="startMatch()">
+      <div role="button" tabindex="0" class="section-tile" onclick="startMatch()">
         <div class="tile-accent" style="background:var(--pink)"></div>
         <div class="tile-code">🧩</div>
         <h3>Match</h3>
         <p>Pair terms with definitions against the clock. +30 XP per clear.${best ? ` Best time: <strong>${best}s</strong>` : ''}</p>
       </div>
-      <div class="section-tile" onclick="startTrueFalse()">
+      <div role="button" tabindex="0" class="section-tile" onclick="startTrueFalse()">
         <div class="tile-accent" style="background:var(--green)"></div>
         <div class="tile-code">✅</div>
         <h3>True or False Blitz</h3>
         <p>30 seconds. Rapid-fire true/false statements from your flashcards. +5 XP per correct.${tfBest ? ` Best: <strong>${tfBest}</strong>` : ''}</p>
       </div>
-      <div class="section-tile" onclick="startFITB()">
+      <div role="button" tabindex="0" class="section-tile" onclick="startFITB()">
         <div class="tile-accent" style="background:var(--accent2)"></div>
         <div class="tile-code">✏️</div>
         <h3>Fill in the Blank</h3>
@@ -1940,7 +1940,7 @@ function renderGames() {
     <h3 style="margin:24px 0 12px;font-size:14px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">⚔️ Battle arena — vs the leaderboard</h3>
     <div class="grid2">
       ${Object.entries(BATTLE_MODES).map(([key, m]) => `
-        <div class="section-tile" onclick="startBattle('${key}')">
+        <div role="button" tabindex="0" class="section-tile" onclick="startBattle('${key}')">
           <div class="tile-accent" style="background:${key === 'duel' ? 'var(--pink)' : 'var(--accent)'}"></div>
           <div class="tile-code">${m.icon}</div>
           <h3>${m.name}</h3>
@@ -2043,7 +2043,7 @@ const LB_MEDALS = { 1: '🥇', 2: '🥈', 3: '🥉' };
 function lbRowHTML(r, moveMap) {
   const delta = moveMap ? (moveMap[r.name] || 0) : 0;
   return `
-    <div class="lb-row${r.me ? ' me' : ''} clickable" onclick="${r.me ? "navigate('profile')" : `showPlayerCard('${r.name}')`}" title="${r.me ? 'View your profile' : 'View player'}">
+    <div role="button" tabindex="0" class="lb-row${r.me ? ' me' : ''} clickable" onclick="${r.me ? "navigate('profile')" : `showPlayerCard('${r.name}')`}" title="${r.me ? 'View your profile' : 'View player'}">
       <span class="lb-rank">${LB_MEDALS[r.pos] || '#' + r.pos}</span>
       ${lbMoveHTML(delta)}
       <span class="lb-av" style="background:${r.col}">${r.me ? meAvInner() : r.name.charAt(0)}</span>
@@ -2188,7 +2188,7 @@ function modeBoardHTML(mode) {
   const showMeBelow = meRow.pos > 10;
 
   const row = r => `
-    <div class="lb-row${r.me ? ' me' : ''}${r.me ? '' : ' clickable'}" ${r.me ? '' : `onclick="showPlayerCard('${r.name}')"`}>
+    <div role="button" tabindex="0" class="lb-row${r.me ? ' me' : ''}${r.me ? '' : ' clickable'}" ${r.me ? '' : `onclick="showPlayerCard('${r.name}')"`}>
       <span class="lb-rank">${r.pos === 1 ? '👑' : LB_MEDALS[r.pos] || '#' + r.pos}</span>
       <span class="lb-av" style="background:${r.col}">${r.me ? meAvInner() : r.name.charAt(0)}</span>
       <span class="lb-name">${r.name}${r.me ? ' <span class="lb-you">(you)</span>' : ''}</span>
@@ -3054,7 +3054,7 @@ function doSearch(query) {
   }
 
   container.innerHTML = results.map(r => `
-    <div class="search-result" onclick="goToResult('${r.section}', '${r.code}')">
+    <div role="button" tabindex="0" class="search-result" onclick="goToResult('${r.section}', '${r.code}')">
       <div style="display:flex;gap:8px;margin-bottom:4px">
         <span class="badge">${r.code}</span>
         <span class="badge" style="background:rgba(67,56,202,0.08);color:var(--accent2);border-color:rgba(67,56,202,0.25)">${r.section} — ${r.sectionTitle}</span>
@@ -3319,6 +3319,34 @@ function confirmReset() {
 }
 
 /* ---- INIT ---- */
+/* Backdrops are dismiss targets, so they stay out of the tab order. Escape is
+   the keyboard equivalent of clicking outside. */
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  const modal = el('player-modal-overlay');
+  if (modal && modal.classList.contains('visible')) { closePlayerCard(); return; }
+  if (sidebarOpen && window.innerWidth < 900) closeSidebar();
+});
+
+/* Anything given role="button" must also answer to Enter and Space, or it is
+   only usable with a mouse. */
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+  const t = e.target;
+  if (!t || t.getAttribute('role') !== 'button') return;
+  if (t.tagName === 'BUTTON' || t.tagName === 'A') return;
+  e.preventDefault();
+  t.click();
+});
+
+/* The sidebar and its backdrop are driven by a 900px breakpoint; without this
+   they desync when the window is resized across it. */
+let resizeTick = null;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTick);
+  resizeTick = setTimeout(() => { if (sidebarOpen !== null) applySidebarState(); }, 120);
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   initSidebar();
   document.querySelectorAll('.nav-btn, .nav-avatar').forEach(btn => {

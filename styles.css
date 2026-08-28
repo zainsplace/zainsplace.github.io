@@ -1388,3 +1388,9 @@ h3[style*="text-transform:uppercase"], p[style*="text-transform:uppercase"] {
   * { animation-duration: .01ms !important; animation-iteration-count: 1 !important;
       transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
+
+/* Below the breakpoint a closed sidebar is off-screen. visibility:hidden takes
+   its 12 controls out of the tab order too, so Tab does not wander off-screen. */
+@media (max-width: 899px) {
+  .sidebar:not(.open) { visibility: hidden; }
+}
