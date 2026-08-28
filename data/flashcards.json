@@ -1,85 +1,550 @@
 {
   "cards": [
-    {"id":"a1","section":"A","code":"A1.1.1","front":"What is an internal threat?","back":"A security threat from someone inside the organisation with legitimate access — e.g. employee sabotage (deliberate or accidental), theft/loss of equipment, data or software, or use of unauthorised software. Harder to detect than external threats."},
-    {"id":"a2","section":"A","code":"A1.1.4","front":"What human factors cause accidental data loss?","back":"Negligence, poor training, and not following security procedures — made worse by inadequate monitoring and a weak security culture."},
-    {"id":"a3","section":"A","code":"A1.2.1","front":"Name the named virus types in the spec.","back":"Boot sector, web script, macro, worm, rootkit, trojan, browser hijack and polymorphic. A virus attaches to a host file and replicates when run."},
-    {"id":"a4","section":"A","code":"A1.2.1","front":"What is a polymorphic virus?","back":"A virus that changes (mutates) its own code each time it spreads, so signature-based antivirus struggles to detect it."},
-    {"id":"a5","section":"A","code":"A1.2.1","front":"What is spyware? Give an example.","back":"Software that secretly gathers information and sends it to a third party. Examples: keylogger (records keystrokes to steal passwords), system monitor, stalkerware, tracking cookies."},
-    {"id":"a6","section":"A","code":"A1.2.1","front":"What is ransomware and its main defence?","back":"Malware that blocks access to data (usually by encrypting files) and demands payment. Types: encryptors, lockers, scareware, leakware. Best defence: tested OFFLINE backups so you can restore without paying."},
-    {"id":"a7","section":"A","code":"A1.2.1","front":"What is a bot / botnet?","back":"A bot is an infected device under remote attacker control. Many bots together form a botnet, used to send spam or launch DDoS attacks."},
-    {"id":"a8","section":"A","code":"A1.2.2","front":"Difference between DoS and DDoS?","back":"DoS = a single machine floods a target with traffic to make it unavailable. DDoS = many machines (a botnet) flood the target at once, making it harder to stop."},
-    {"id":"a9","section":"A","code":"A1.2.4","front":"Name the social engineering variants.","back":"Phishing (email), vishing (voice/phone), smishing (SMS), whaling (targets senior execs), spear phishing (targets a specific person), pretexting/impersonation, DNS spoofing."},
-    {"id":"a10","section":"A","code":"A1.2.5","front":"What is tailgating?","back":"Following an authorised person through a secure/controlled door to gain entry without using your own credentials. A physical social-engineering threat."},
-    {"id":"a11","section":"A","code":"A1.3","front":"Name the four types of impact of a cyber attack.","back":"Operational loss (can't function), financial loss (fines, compensation, lost profits), reputational loss (lost trust/reviews), and intellectual property loss (designs, trade secrets)."},
-    {"id":"a12","section":"A","code":"A1.4.1","front":"What is the NCSC?","back":"The National Cyber Security Centre — the UK's cyber security authority. Publishes the latest threat reports, malware analysis and advisories, because threats change over time."},
-    {"id":"a13","section":"A","code":"A1.4.3","front":"What is the OWASP Top 10?","back":"A regularly updated list of the most critical web application security risks, produced by the Open Web Application Security Project. Used as a checklist during penetration testing."},
-    {"id":"a14","section":"A","code":"A2.1.1","front":"Name the three firewall port categories.","back":"Well-known/assigned (e.g. port 80 for HTTP), registered (used by OS and specific software), and dynamic/private (temporary/custom services). Open ports are a vulnerability."},
-    {"id":"a15","section":"A","code":"A2.1.3","front":"What is a zero-day exploit?","back":"A brand-new vulnerability that has no patch/fix yet, giving attackers a 'window of exploitation' before the developer can release a patch."},
-    {"id":"a16","section":"A","code":"A2.1.3","front":"What checks make a software download safe?","back":"Trusted source, HTTPS/lock symbol, a pre-install malware scan, and a hash check. Illegal copies may contain backdoors/malware and get no updates."},
-    {"id":"a17","section":"A","code":"A2.1.8","front":"Give three IoT security risks.","back":"Weak/no encryption, default passwords, lack of patches/updates, deployment by non-IT staff, insecure interfaces, and eavesdropping (always-listening devices)."},
-    {"id":"a18","section":"A","code":"A2.4","front":"Name vulnerability assessment tools.","back":"Port scanner, network mapper/system discovery, registry checker, website vulnerability scanner, and vulnerability detection/management software."},
-    {"id":"a19","section":"A","code":"A2.6","front":"What is penetration testing?","back":"Authorised simulated attacks on a system to find weak spots, checked against known vulnerabilities (e.g. the OWASP Top 10), producing a report of findings."},
-    {"id":"a20","section":"A","code":"A2.7","front":"Name the three passive risk management measures.","back":"Risk transfer (pass it to a third party, e.g. insurance), risk avoidance (stop the activity), and risk acceptance (acknowledge and tolerate the risk)."},
-    {"id":"a21","section":"A","code":"A3.1","front":"GDPR vs Computer Misuse Act — what does each cover?","back":"GDPR = protection of personal data and privacy rights. Computer Misuse Act 1990 = unauthorised access to, and modification of, computers and data (makes hacking illegal)."},
-    {"id":"a22","section":"A","code":"A3.3.1","front":"List key GDPR principles.","back":"Lawfulness/fairness/transparency, limited to a stated purpose, accuracy, keep minimum data, store for minimum time, maintain confidentiality and integrity."},
-    {"id":"a23","section":"A","code":"A3.3.1","front":"Name GDPR personal rights.","back":"Right to access own data, be informed, have data corrected/removed/restricted, object to processing, data portability, and not be subject to a solely automated decision."},
-    {"id":"a24","section":"A","code":"A4.1.1","front":"Give examples of physical security measures.","back":"Site locks, card entry (NFC/RFID/QR/magnetic stripe), biometrics (fingerprint/iris/facial/voice), CCTV, security staff, alarms, protected cabling, staff training."},
-    {"id":"a25","section":"A","code":"A4.1.2","front":"Name the three backup types.","back":"Full (everything), Incremental (only changes since the LAST backup), Differential (all changes since the last FULL backup). Note: RAID and archiving are NOT backups."},
-    {"id":"a26","section":"A","code":"A4.1.3","front":"Signature scanning vs heuristics in antivirus?","back":"Signature scanning matches files against a database of KNOWN malware. Heuristics flag suspicious behaviour/content, catching NEW or unknown threats."},
-    {"id":"a27","section":"A","code":"A4.1.5","front":"Name the multi-factor authentication factor types.","back":"Knowledge (something you know, e.g. password), possession (something you have, e.g. USB key), inherence (something you are, e.g. fingerprint), plus location and behaviour factors."},
-    {"id":"a28","section":"A","code":"A4.1.5","front":"How does a USB security key work (MFA)?","back":"The USB key/chip contains a code/protocol that the server/system reads and checks to verify the user's identity — a 'possession' factor in multi-factor authentication."},
-    {"id":"a29","section":"A","code":"A4.1.6","front":"Compare DAC, Role-Based and Rule-Based access control.","back":"DAC: users control access to their own files. Role-Based (RBAC): access set by job role in the organisation. Rule-Based: admin sets rules for individual users."},
-    {"id":"a30","section":"A","code":"A4.1.7","front":"Benefit and drawback of trusted computing?","back":"Benefit: increased security / an extra layer of protection against attacks. Drawback: loss of user control, privacy and anonymity."},
-    {"id":"a31","section":"A","code":"A4.2.2","front":"Symmetric vs asymmetric encryption?","back":"Symmetric uses ONE shared secret key (e.g. AES) — fast but the key must be shared securely. Asymmetric uses a PUBLIC + PRIVATE key pair (e.g. RSA) — slower but no shared secret."},
-    {"id":"a32","section":"A","code":"A4.3","front":"Why is MAC address filtering only 'medium' security?","back":"It allows only listed device MAC addresses onto the Wi-Fi, but MAC addresses can be SPOOFED (faked) by an attacker, so it shouldn't be the only protection."},
-    {"id":"a33","section":"A","code":"A4.3","front":"What is an Evil Twin attack?","back":"An attacker sets up a fake wireless access point that imitates a legitimate one, tricking users into connecting so their traffic can be intercepted."},
-    {"id":"a34","section":"A","code":"A4.4","front":"Name principles of secure system design.","back":"Expect attacks and plan for them, run on fewest privileges (least privilege), assume the design is known (don't rely on secrecy), and comply with standards like ISO 27000."},
-
-    {"id":"b1","section":"B","code":"B1.1.1","front":"LAN vs WAN vs PAN?","back":"LAN = Local Area Network (one site). WAN = Wide Area Network (large geographic area, e.g. the internet). PAN = Personal Area Network (very short range, e.g. Bluetooth)."},
-    {"id":"b2","section":"B","code":"B1.1.2","front":"Intranet vs extranet?","back":"Intranet = a private network for an organisation's own staff. Extranet = extends controlled access to selected outsiders such as suppliers or partners."},
-    {"id":"b3","section":"B","code":"B1.3","front":"Client/server vs peer-to-peer?","back":"Client/server has a central server controlling resources and security (easier to manage/secure). Peer-to-peer shares resources directly between devices with no central server."},
-    {"id":"b4","section":"B","code":"B1.4.1","front":"How does virtualisation improve security?","back":"Through segmentation and isolation/sandboxing/containerisation — risky or suspicious processes run in an isolated environment, reducing the attack surface."},
-    {"id":"b5","section":"B","code":"B1.4.3","front":"Give security issues with BYOD.","back":"Organisational data on a personal device, password policy enforcement, privacy, securing data on/off the device, patching/compatibility, and wiping company data when no longer needed."},
-    {"id":"b6","section":"B","code":"B1.4.3","front":"Security issues of remote working?","back":"Devices seen/used by family or visitors, insecure home Wi-Fi, reliance on third-party tools (e.g. video calls) — needs a VPN/encrypted link and secure home network."},
-    {"id":"b7","section":"B","code":"B2.1.2","front":"Switch vs router vs gateway?","back":"Switch connects devices within a LAN. Router joins different networks and directs packets between them. Gateway translates between different protocols/networks."},
-    {"id":"b8","section":"B","code":"B2.2","front":"Security issues of external media?","back":"Loss/theft, interception/copying, data loss/corruption, limited lifespan/failure, and acting as a malware vector — mitigated by encryption and secure disposal."},
-    {"id":"b9","section":"B","code":"B3.1.1","front":"What is TCP/IP?","back":"The core protocol suite for transmitting data over networks. Uses a four-layer model, sends data as packets with headers, includes error correction, and uses TLS for secure connections."},
-    {"id":"b10","section":"B","code":"B3.1.3","front":"What are the parts of a packet?","back":"Header (source/destination addresses and control info), payload/body (the actual data), and trailer/footer (error-checking). Types include TCP, IP and UDP."},
-    {"id":"b11","section":"B","code":"B3.1.3","front":"TCP vs UDP?","back":"TCP is reliable — it checks packets arrive and re-sends lost ones (good for files/web). UDP is faster but doesn't guarantee delivery (good for streaming/VoIP)."},
-    {"id":"b12","section":"B","code":"B3.1.4","front":"What is NAT?","back":"Network Address Translation maps private internal IP addresses to a public IP address, letting many devices share one public IP and hiding the internal network."},
-    {"id":"b13","section":"B","code":"B3.1.4","front":"Name the RFC 1918 private IP ranges.","back":"10.0.0.0–10.255.255.255, 172.16.0.0–172.31.255.255, 192.168.0.0–192.168.255.255. Also: 169.254.x (APIPA, DHCP failure) and 127.0.0.1 (loopback)."},
-    {"id":"b14","section":"B","code":"B3.2","front":"Security benefits of network segmentation?","back":"Limits access to devices/data/apps, restricts lateral movement of an attacker/malware, creates a smaller attack surface, and makes damage control simpler."},
-    {"id":"b15","section":"B","code":"B3.3","front":"Which device gives secure internet access on a network diagram?","back":"A firewall — placed between the router/internet connection and the internal network to filter traffic. (Sample paper Q1: add a firewall connected to the router.)"},
-    {"id":"b16","section":"B","code":"B3.4.1","front":"What does DNS do?","back":"The Domain Name System resolves human-readable domain names (e.g. example.com) into IP addresses so devices can connect. Can be attacked via DNS spoofing/poisoning."},
-    {"id":"b17","section":"B","code":"B3.4.4","front":"What is DHCP and why is it insecure?","back":"Dynamic Host Configuration Protocol automatically assigns IP addresses/settings to devices. It's insecure because it has NO built-in security, leaving it open to spoofing/rogue-server attacks."},
-    {"id":"b18","section":"B","code":"B3.4.4","front":"Name pieces of DHCP configuration information.","back":"Range of available IP addresses, fixed/reserved IP addresses, lease length/information, default gateway address, and server address."},
-    {"id":"b19","section":"B","code":"B3.4.6","front":"How does a VPN work?","back":"It creates an encrypted 'tunnel' over the public internet between the user and the network, so that even if data is intercepted it cannot be read. Used for secure remote access."},
-    {"id":"b20","section":"B","code":"B3.5.2","front":"Why are SMTP/POP email protocols a security weakness?","back":"They lack built-in encryption, so email content can be intercepted and read in transit unless additional security (e.g. TLS) is added."},
-    {"id":"b21","section":"B","code":"B1.2","front":"Physical vs logical topology?","back":"Physical topology is the actual layout of devices/cables (star, mesh, etc.). Logical topology is how data actually flows through the network (logical bus or ring)."},
-    {"id":"b22","section":"B","code":"B2.3","front":"What is a packet sniffer used for?","back":"A network analyser/packet sniffer captures and inspects network traffic — used for monitoring/troubleshooting, but also by attackers to eavesdrop on unencrypted data."},
-
-    {"id":"c1","section":"C","code":"C1.1.1","front":"What is the Plan-Do-Check-Act loop?","back":"A continuous improvement cycle (from ISO 27001) used in a cyber security policy — security is never 'finished' because threats keep changing, so you keep planning, doing, checking and acting."},
-    {"id":"c2","section":"C","code":"C1.1.1","front":"What should a password policy contain?","back":"Length/complexity, password sharing rules, uniqueness/reuse frequency, minimum/maximum age, expiry, lockout after failed attempts, and deny lists of common passwords."},
-    {"id":"c3","section":"C","code":"C1.1.1","front":"Features of effective staff security training?","back":"Funded/resourced by management, flexible so everyone can take part, varied resources/learning styles, progress tracking, incentives rather than punishment, and ongoing for new threats."},
-    {"id":"c4","section":"C","code":"C1.1.2","front":"What is a security audit?","back":"A check of whether the organisation complies with its security policies and external laws/regulations, identifying gaps/weaknesses and reporting required improvements."},
-    {"id":"c5","section":"C","code":"C1.1.3","front":"What should a backup policy include?","back":"What data is selected, backup method and type, frequency/scheduling, storage strategy, responsibility/accountability, backup TESTING, and legal/recovery procedures."},
-    {"id":"c6","section":"C","code":"C1.1.5","front":"Stages of a cyber security incident response?","back":"Triage/escalation (initial decisions) → main response (analysis, containment, mitigation, recovery) → reviewing, reporting and closing the incident."},
-    {"id":"c7","section":"C","code":"C1.1.5","front":"Who should be on an incident response contact list?","back":"Incident response lead, IT team lead, senior management, legal, public relations, human resources and insurance — plus backup contact numbers."},
-    {"id":"c8","section":"C","code":"C1.1.6","front":"What is triage in a disaster recovery policy?","back":"Listing possible events, rating their severity, and deciding the appropriate response — e.g. activate incident response, the business continuity plan, or the full disaster recovery plan."},
-    {"id":"c9","section":"C","code":"C1.1.7","front":"What does an external services policy cover?","back":"Use of external providers for cloud, hardware, software and support — including authorisation, accountability, compliance, service agreements (SLAs) and incident response."},
-    {"id":"c10","section":"C","code":"C1.1.4","front":"Key elements of a data protection policy?","back":"Appoint a Data Protection Officer, follow GDPR principles, protect rights/privacy, staff training, system security procedures, and apply the policy to external contractors."},
-
-    {"id":"d1","section":"D","code":"D1.1.1","front":"Why use a Faraday bag/cage when seizing a device?","back":"It blocks all wireless signals so the device cannot communicate or be remotely wiped, preserving the evidence on it."},
-    {"id":"d2","section":"D","code":"D1.1.1","front":"What is chain of custody?","back":"A documented record of everyone who has handled a piece of evidence and what they did with it — proves the evidence hasn't been tampered with, keeping it admissible."},
-    {"id":"d3","section":"D","code":"D1.1.2","front":"Why is live forensics challenging?","back":"Data in active memory (RAM) and temporary files are lost when the device is switched off; data changes while the system runs; and remote/corrupted data is hard to capture."},
-    {"id":"d4","section":"D","code":"D1.1.4","front":"What are contemporaneous notes?","back":"Notes made AT THE TIME of the investigation. They improve the reliability and admissibility of evidence because they record exactly what was observed and done."},
-    {"id":"d5","section":"D","code":"D2.1.1","front":"Physical image vs targeted image of a drive?","back":"A physical image copies the ENTIRE drive — including deleted, temporary and system files — capturing more potential evidence. A targeted image copies only selected files, so it could miss evidence."},
-    {"id":"d6","section":"D","code":"D2.1.1","front":"Why generate a hash/checksum of a forensic image?","back":"To prove the copy is identical to the original and hasn't been altered — if the hash still matches later, the evidence's integrity is verified."},
-    {"id":"d7","section":"D","code":"D2.1.3","front":"Why work from a copy/image, not the original device?","back":"Any change to the original data could make it inadmissible in court. Working on a copy preserves the original evidence untouched."},
-    {"id":"d8","section":"D","code":"D2.1.5","front":"What is 'alert fatigue'?","back":"When a system produces so many alerts (often false positives) that investigators stop paying proper attention — risking missing a real threat. Reduced by tuning detection and manual review."},
-    {"id":"d9","section":"D","code":"D2.2.2","front":"Name signs that a system has been compromised.","back":"Unusual inbound/outbound traffic (or from odd regions), unusual login attempts, unusual DNS requests, increased file reads/requests, unusual port usage, and suspicious file changes."},
-    {"id":"d10","section":"D","code":"D2.3","front":"What should a security report contain?","back":"A clear structure (title, contents, intro, headings, conclusions, citations), analysis of what went wrong (procedure/detection/prevention errors), and recommended improvements to policies and protection measures."},
-    {"id":"d11","section":"D","code":"D1.1.3","front":"What must you do before network forensic scanning?","back":"Agree a methodology with the relevant authorities, get permission, and ensure the testing protocol will not disrupt the live system."},
-    {"id":"d12","section":"D","code":"D1.1.1","front":"Steps to isolate a seized device from networks?","back":"Photograph the screen, then turn off the device / remove the battery / use airplane mode / disable wireless / place it in a Faraday bag — so it can't be remotely wiped."}
+    {
+      "id": "a1",
+      "section": "A",
+      "code": "A1.1.1",
+      "front": "What is an internal threat?",
+      "back": "A threat from someone inside the organisation who has legitimate access — e.g. an employee sabotaging systems, stealing data or equipment, or using unauthorised software. Harder to detect than external threats."
+    },
+    {
+      "id": "a2",
+      "section": "A",
+      "code": "A1.1.4",
+      "front": "What human factors cause accidental data loss?",
+      "back": "Negligence, poor training, and not following security procedures — made worse by inadequate monitoring and a weak security culture."
+    },
+    {
+      "id": "a3",
+      "section": "A",
+      "code": "A1.2.1",
+      "front": "Name the named virus types in the spec.",
+      "back": "A virus attaches to a host file and copies itself when the file is run. Spec types: boot sector, web script, macro, worm, rootkit, trojan, browser hijack, polymorphic."
+    },
+    {
+      "id": "a4",
+      "section": "A",
+      "code": "A1.2.1",
+      "front": "What is a polymorphic virus?",
+      "back": "A virus that changes (mutates) its own code each time it spreads, so signature-based antivirus struggles to detect it."
+    },
+    {
+      "id": "a5",
+      "section": "A",
+      "code": "A1.2.1",
+      "front": "What is spyware? Give an example.",
+      "back": "Software that secretly gathers information and sends it to a third party. Best example: a keylogger, which records keystrokes to steal passwords."
+    },
+    {
+      "id": "a6",
+      "section": "A",
+      "code": "A1.2.1",
+      "front": "What is ransomware and its main defence?",
+      "back": "Malware that locks or encrypts your files and demands payment to unlock them. Best defence: tested OFFLINE backups, so you can restore without paying."
+    },
+    {
+      "id": "a7",
+      "section": "A",
+      "code": "A1.2.1",
+      "front": "What is a bot / botnet?",
+      "back": "A bot is an infected device under remote attacker control. Many bots together form a botnet, used to send spam or launch DDoS attacks."
+    },
+    {
+      "id": "a8",
+      "section": "A",
+      "code": "A1.2.2",
+      "front": "Difference between DoS and DDoS?",
+      "back": "DoS = a single machine floods a target with traffic to make it unavailable. DDoS = many machines (a botnet) flood the target at once, making it harder to stop."
+    },
+    {
+      "id": "a9",
+      "section": "A",
+      "code": "A1.2.4",
+      "front": "Name the social engineering variants.",
+      "back": "Phishing (email), vishing (voice/phone), smishing (SMS), whaling (targets senior execs), spear phishing (targets a specific person), pretexting/impersonation, DNS spoofing."
+    },
+    {
+      "id": "a10",
+      "section": "A",
+      "code": "A1.2.5",
+      "front": "What is tailgating?",
+      "back": "Following an authorised person through a secure/controlled door to gain entry without using your own credentials. A physical social-engineering threat."
+    },
+    {
+      "id": "a11",
+      "section": "A",
+      "code": "A1.3",
+      "front": "Name the four types of impact of a cyber attack.",
+      "back": "Operational loss (can't function), financial loss (fines, compensation, lost profits), reputational loss (lost trust/reviews), and intellectual property loss (designs, trade secrets)."
+    },
+    {
+      "id": "a12",
+      "section": "A",
+      "code": "A1.4.1",
+      "front": "What is the NCSC?",
+      "back": "The National Cyber Security Centre — the UK's cyber security authority. Publishes the latest threat reports, malware analysis and advisories, because threats change over time."
+    },
+    {
+      "id": "a13",
+      "section": "A",
+      "code": "A1.4.3",
+      "front": "What is the OWASP Top 10?",
+      "back": "A regularly updated list of the most critical web application security risks, produced by the Open Web Application Security Project. Used as a checklist during penetration testing."
+    },
+    {
+      "id": "a14",
+      "section": "A",
+      "code": "A2.1.1",
+      "front": "Name the three firewall port categories.",
+      "back": "Well-known/assigned (e.g. port 80 for HTTP), registered (used by OS and specific software), and dynamic/private (temporary/custom services). Open ports are a vulnerability."
+    },
+    {
+      "id": "a15",
+      "section": "A",
+      "code": "A2.1.3",
+      "front": "What is a zero-day exploit?",
+      "back": "A brand-new vulnerability that has no patch/fix yet, giving attackers a 'window of exploitation' before the developer can release a patch."
+    },
+    {
+      "id": "a16",
+      "section": "A",
+      "code": "A2.1.3",
+      "front": "What checks make a software download safe?",
+      "back": "Trusted source, HTTPS/lock symbol, a pre-install malware scan, and a hash check. Illegal copies may contain backdoors/malware and get no updates."
+    },
+    {
+      "id": "a17",
+      "section": "A",
+      "code": "A2.1.8",
+      "front": "Give three IoT security risks.",
+      "back": "Weak/no encryption, default passwords, lack of patches/updates, deployment by non-IT staff, insecure interfaces, and eavesdropping (always-listening devices)."
+    },
+    {
+      "id": "a18",
+      "section": "A",
+      "code": "A2.4",
+      "front": "Name vulnerability assessment tools.",
+      "back": "Port scanner, network mapper/system discovery, registry checker, website vulnerability scanner, and vulnerability detection/management software."
+    },
+    {
+      "id": "a19",
+      "section": "A",
+      "code": "A2.6",
+      "front": "What is penetration testing?",
+      "back": "Authorised simulated attacks on a system to find weak spots, checked against known vulnerabilities (e.g. the OWASP Top 10), producing a report of findings."
+    },
+    {
+      "id": "a20",
+      "section": "A",
+      "code": "A2.7",
+      "front": "Name the three passive risk management measures.",
+      "back": "Risk transfer (pass it to a third party, e.g. insurance), risk avoidance (stop the activity), and risk acceptance (acknowledge and tolerate the risk)."
+    },
+    {
+      "id": "a21",
+      "section": "A",
+      "code": "A3.1",
+      "front": "GDPR vs Computer Misuse Act — what does each cover?",
+      "back": "GDPR = protection of personal data and privacy rights. Computer Misuse Act 1990 = unauthorised access to, and modification of, computers and data (makes hacking illegal)."
+    },
+    {
+      "id": "a22",
+      "section": "A",
+      "code": "A3.3.1",
+      "front": "List key GDPR principles.",
+      "back": "Lawfulness/fairness/transparency, limited to a stated purpose, accuracy, keep minimum data, store for minimum time, maintain confidentiality and integrity."
+    },
+    {
+      "id": "a23",
+      "section": "A",
+      "code": "A3.3.1",
+      "front": "Name GDPR personal rights.",
+      "back": "Right to access own data, be informed, have data corrected/removed/restricted, object to processing, data portability, and not be subject to a solely automated decision."
+    },
+    {
+      "id": "a24",
+      "section": "A",
+      "code": "A4.1.1",
+      "front": "Give examples of physical security measures.",
+      "back": "Site locks, card entry (NFC/RFID/QR/magnetic stripe), biometrics (fingerprint/iris/facial/voice), CCTV, security staff, alarms, protected cabling, staff training."
+    },
+    {
+      "id": "a25",
+      "section": "A",
+      "code": "A4.1.2",
+      "front": "Name the three backup types.",
+      "back": "Full (everything), Incremental (only changes since the LAST backup), Differential (all changes since the last FULL backup). Note: RAID and archiving are NOT backups."
+    },
+    {
+      "id": "a26",
+      "section": "A",
+      "code": "A4.1.3",
+      "front": "Signature scanning vs heuristics in antivirus?",
+      "back": "Signature scanning matches files against a database of KNOWN malware. Heuristics flag suspicious behaviour/content, catching NEW or unknown threats."
+    },
+    {
+      "id": "a27",
+      "section": "A",
+      "code": "A4.1.5",
+      "front": "Name the multi-factor authentication factor types.",
+      "back": "Knowledge (something you know, e.g. password), possession (something you have, e.g. USB key), inherence (something you are, e.g. fingerprint), plus location and behaviour factors."
+    },
+    {
+      "id": "a28",
+      "section": "A",
+      "code": "A4.1.5",
+      "front": "How does a USB security key work (MFA)?",
+      "back": "The USB key/chip contains a code/protocol that the server/system reads and checks to verify the user's identity — a 'possession' factor in multi-factor authentication."
+    },
+    {
+      "id": "a29",
+      "section": "A",
+      "code": "A4.1.6",
+      "front": "Compare DAC, Role-Based and Rule-Based access control.",
+      "back": "DAC: users control access to their own files. Role-Based (RBAC): access set by job role in the organisation. Rule-Based: admin sets rules for individual users."
+    },
+    {
+      "id": "a30",
+      "section": "A",
+      "code": "A4.1.7",
+      "front": "Benefit and drawback of trusted computing?",
+      "back": "Benefit: increased security / an extra layer of protection against attacks. Drawback: loss of user control, privacy and anonymity."
+    },
+    {
+      "id": "a31",
+      "section": "A",
+      "code": "A4.2.2",
+      "front": "Symmetric vs asymmetric encryption?",
+      "back": "Symmetric uses ONE shared secret key (e.g. AES) — fast but the key must be shared securely. Asymmetric uses a PUBLIC + PRIVATE key pair (e.g. RSA) — slower but no shared secret."
+    },
+    {
+      "id": "a32",
+      "section": "A",
+      "code": "A4.3",
+      "front": "Why is MAC address filtering only 'medium' security?",
+      "back": "It allows only listed device MAC addresses onto the Wi-Fi, but MAC addresses can be SPOOFED (faked) by an attacker, so it shouldn't be the only protection."
+    },
+    {
+      "id": "a33",
+      "section": "A",
+      "code": "A4.3",
+      "front": "What is an Evil Twin attack?",
+      "back": "An attacker sets up a fake wireless access point that imitates a legitimate one, tricking users into connecting so their traffic can be intercepted."
+    },
+    {
+      "id": "a34",
+      "section": "A",
+      "code": "A4.4",
+      "front": "Name principles of secure system design.",
+      "back": "Expect attacks and plan for them, run on fewest privileges (least privilege), assume the design is known (don't rely on secrecy), and comply with standards like ISO 27000."
+    },
+    {
+      "id": "b1",
+      "section": "B",
+      "code": "B1.1.1",
+      "front": "LAN vs WAN vs PAN?",
+      "back": "LAN = Local Area Network (one site). WAN = Wide Area Network (large geographic area, e.g. the internet). PAN = Personal Area Network (very short range, e.g. Bluetooth)."
+    },
+    {
+      "id": "b2",
+      "section": "B",
+      "code": "B1.1.2",
+      "front": "Intranet vs extranet?",
+      "back": "Intranet = a private network for an organisation's own staff. Extranet = extends controlled access to selected outsiders such as suppliers or partners."
+    },
+    {
+      "id": "b3",
+      "section": "B",
+      "code": "B1.3",
+      "front": "Client/server vs peer-to-peer?",
+      "back": "Client/server has a central server controlling resources and security (easier to manage/secure). Peer-to-peer shares resources directly between devices with no central server."
+    },
+    {
+      "id": "b4",
+      "section": "B",
+      "code": "B1.4.1",
+      "front": "How does virtualisation improve security?",
+      "back": "Through segmentation and isolation/sandboxing/containerisation — risky or suspicious processes run in an isolated environment, reducing the attack surface."
+    },
+    {
+      "id": "b5",
+      "section": "B",
+      "code": "B1.4.3",
+      "front": "Give security issues with BYOD.",
+      "back": "Organisational data on a personal device, password policy enforcement, privacy, securing data on/off the device, patching/compatibility, and wiping company data when no longer needed."
+    },
+    {
+      "id": "b6",
+      "section": "B",
+      "code": "B1.4.3",
+      "front": "Security issues of remote working?",
+      "back": "Devices seen/used by family or visitors, insecure home Wi-Fi, reliance on third-party tools (e.g. video calls) — needs a VPN/encrypted link and secure home network."
+    },
+    {
+      "id": "b7",
+      "section": "B",
+      "code": "B2.1.2",
+      "front": "Switch vs router vs gateway?",
+      "back": "Switch connects devices within a LAN. Router joins different networks and directs packets between them. Gateway translates between different protocols/networks."
+    },
+    {
+      "id": "b8",
+      "section": "B",
+      "code": "B2.2",
+      "front": "Security issues of external media?",
+      "back": "Loss/theft, interception/copying, data loss/corruption, limited lifespan/failure, and acting as a malware vector — mitigated by encryption and secure disposal."
+    },
+    {
+      "id": "b9",
+      "section": "B",
+      "code": "B3.1.1",
+      "front": "What is TCP/IP?",
+      "back": "The core set of rules for sending data across networks. Data is broken into packets with headers, errors are corrected, and TLS can be added for secure connections."
+    },
+    {
+      "id": "b10",
+      "section": "B",
+      "code": "B3.1.3",
+      "front": "What are the parts of a packet?",
+      "back": "Header (source/destination addresses and control info), payload/body (the actual data), and trailer/footer (error-checking). Types include TCP, IP and UDP."
+    },
+    {
+      "id": "b11",
+      "section": "B",
+      "code": "B3.1.3",
+      "front": "TCP vs UDP?",
+      "back": "TCP is reliable — it checks packets arrive and re-sends lost ones (good for files/web). UDP is faster but doesn't guarantee delivery (good for streaming/VoIP)."
+    },
+    {
+      "id": "b12",
+      "section": "B",
+      "code": "B3.1.4",
+      "front": "What is NAT?",
+      "back": "Network Address Translation maps private internal IP addresses to a public IP address, letting many devices share one public IP and hiding the internal network."
+    },
+    {
+      "id": "b13",
+      "section": "B",
+      "code": "B3.1.4",
+      "front": "Name the RFC 1918 private IP ranges.",
+      "back": "10.0.0.0–10.255.255.255, 172.16.0.0–172.31.255.255, 192.168.0.0–192.168.255.255. Also: 169.254.x (APIPA, DHCP failure) and 127.0.0.1 (loopback)."
+    },
+    {
+      "id": "b14",
+      "section": "B",
+      "code": "B3.2",
+      "front": "Security benefits of network segmentation?",
+      "back": "Limits access to devices/data/apps, restricts lateral movement of an attacker/malware, creates a smaller attack surface, and makes damage control simpler."
+    },
+    {
+      "id": "b15",
+      "section": "B",
+      "code": "B3.3",
+      "front": "Which device gives secure internet access on a network diagram?",
+      "back": "A firewall — placed between the router/internet connection and the internal network to filter traffic. (Sample paper Q1: add a firewall connected to the router.)"
+    },
+    {
+      "id": "b16",
+      "section": "B",
+      "code": "B3.4.1",
+      "front": "What does DNS do?",
+      "back": "The Domain Name System resolves human-readable domain names (e.g. example.com) into IP addresses so devices can connect. Can be attacked via DNS spoofing/poisoning."
+    },
+    {
+      "id": "b17",
+      "section": "B",
+      "code": "B3.4.4",
+      "front": "What is DHCP and why is it insecure?",
+      "back": "DHCP automatically gives devices their IP address and settings. It's insecure because it has NO built-in security — attackers can set up a rogue DHCP server."
+    },
+    {
+      "id": "b18",
+      "section": "B",
+      "code": "B3.4.4",
+      "front": "Name pieces of DHCP configuration information.",
+      "back": "Range of available IP addresses, fixed/reserved IP addresses, lease length/information, default gateway address, and server address."
+    },
+    {
+      "id": "b19",
+      "section": "B",
+      "code": "B3.4.6",
+      "front": "How does a VPN work?",
+      "back": "It creates an encrypted 'tunnel' over the public internet between the user and the network, so that even if data is intercepted it cannot be read. Used for secure remote access."
+    },
+    {
+      "id": "b20",
+      "section": "B",
+      "code": "B3.5.2",
+      "front": "Why are SMTP/POP email protocols a security weakness?",
+      "back": "They lack built-in encryption, so email content can be intercepted and read in transit unless additional security (e.g. TLS) is added."
+    },
+    {
+      "id": "b21",
+      "section": "B",
+      "code": "B1.2",
+      "front": "Physical vs logical topology?",
+      "back": "Physical topology is the actual layout of devices/cables (star, mesh, etc.). Logical topology is how data actually flows through the network (logical bus or ring)."
+    },
+    {
+      "id": "b22",
+      "section": "B",
+      "code": "B2.3",
+      "front": "What is a packet sniffer used for?",
+      "back": "A network analyser/packet sniffer captures and inspects network traffic — used for monitoring/troubleshooting, but also by attackers to eavesdrop on unencrypted data."
+    },
+    {
+      "id": "c1",
+      "section": "C",
+      "code": "C1.1.1",
+      "front": "What is the Plan-Do-Check-Act loop?",
+      "back": "Plan–Do–Check–Act: a continuous improvement cycle from ISO 27001. Security is never 'finished' — threats keep changing, so the cycle repeats."
+    },
+    {
+      "id": "c2",
+      "section": "C",
+      "code": "C1.1.1",
+      "front": "What should a password policy contain?",
+      "back": "Length/complexity, password sharing rules, uniqueness/reuse frequency, minimum/maximum age, expiry, lockout after failed attempts, and deny lists of common passwords."
+    },
+    {
+      "id": "c3",
+      "section": "C",
+      "code": "C1.1.1",
+      "front": "Features of effective staff security training?",
+      "back": "Funded/resourced by management, flexible so everyone can take part, varied resources/learning styles, progress tracking, incentives rather than punishment, and ongoing for new threats."
+    },
+    {
+      "id": "c4",
+      "section": "C",
+      "code": "C1.1.2",
+      "front": "What is a security audit?",
+      "back": "A check of whether the organisation complies with its security policies and external laws/regulations, identifying gaps/weaknesses and reporting required improvements."
+    },
+    {
+      "id": "c5",
+      "section": "C",
+      "code": "C1.1.3",
+      "front": "What should a backup policy include?",
+      "back": "What data is selected, backup method and type, frequency/scheduling, storage strategy, responsibility/accountability, backup TESTING, and legal/recovery procedures."
+    },
+    {
+      "id": "c6",
+      "section": "C",
+      "code": "C1.1.5",
+      "front": "Stages of a cyber security incident response?",
+      "back": "Triage/escalation (initial decisions) → main response (analysis, containment, mitigation, recovery) → reviewing, reporting and closing the incident."
+    },
+    {
+      "id": "c7",
+      "section": "C",
+      "code": "C1.1.5",
+      "front": "Who should be on an incident response contact list?",
+      "back": "Incident response lead, IT team lead, senior management, legal, public relations, human resources and insurance — plus backup contact numbers."
+    },
+    {
+      "id": "c8",
+      "section": "C",
+      "code": "C1.1.6",
+      "front": "What is triage in a disaster recovery policy?",
+      "back": "Listing possible events, rating their severity, and deciding the appropriate response — e.g. activate incident response, the business continuity plan, or the full disaster recovery plan."
+    },
+    {
+      "id": "c9",
+      "section": "C",
+      "code": "C1.1.7",
+      "front": "What does an external services policy cover?",
+      "back": "Rules for using external providers (cloud, hardware, software, support). Key points: who authorises them, who is accountable, SLAs, and what happens in an incident."
+    },
+    {
+      "id": "c10",
+      "section": "C",
+      "code": "C1.1.4",
+      "front": "Key elements of a data protection policy?",
+      "back": "Appoint a Data Protection Officer, follow GDPR principles, protect rights/privacy, staff training, system security procedures, and apply the policy to external contractors."
+    },
+    {
+      "id": "d1",
+      "section": "D",
+      "code": "D1.1.1",
+      "front": "Why use a Faraday bag/cage when seizing a device?",
+      "back": "It blocks all wireless signals so the device cannot communicate or be remotely wiped, preserving the evidence on it."
+    },
+    {
+      "id": "d2",
+      "section": "D",
+      "code": "D1.1.1",
+      "front": "What is chain of custody?",
+      "back": "A documented record of everyone who has handled a piece of evidence and what they did with it — proves the evidence hasn't been tampered with, keeping it admissible."
+    },
+    {
+      "id": "d3",
+      "section": "D",
+      "code": "D1.1.2",
+      "front": "Why is live forensics challenging?",
+      "back": "Data in active memory (RAM) and temporary files are lost when the device is switched off; data changes while the system runs; and remote/corrupted data is hard to capture."
+    },
+    {
+      "id": "d4",
+      "section": "D",
+      "code": "D1.1.4",
+      "front": "What are contemporaneous notes?",
+      "back": "Notes made AT THE TIME of the investigation. They improve the reliability and admissibility of evidence because they record exactly what was observed and done."
+    },
+    {
+      "id": "d5",
+      "section": "D",
+      "code": "D2.1.1",
+      "front": "Physical image vs targeted image of a drive?",
+      "back": "A physical image copies the ENTIRE drive — including deleted, temporary and system files — capturing more potential evidence. A targeted image copies only selected files, so it could miss evidence."
+    },
+    {
+      "id": "d6",
+      "section": "D",
+      "code": "D2.1.1",
+      "front": "Why generate a hash/checksum of a forensic image?",
+      "back": "To prove the copy is identical to the original and hasn't been altered — if the hash still matches later, the evidence's integrity is verified."
+    },
+    {
+      "id": "d7",
+      "section": "D",
+      "code": "D2.1.3",
+      "front": "Why work from a copy/image, not the original device?",
+      "back": "Any change to the original data could make it inadmissible in court. Working on a copy preserves the original evidence untouched."
+    },
+    {
+      "id": "d8",
+      "section": "D",
+      "code": "D2.1.5",
+      "front": "What is 'alert fatigue'?",
+      "back": "When a system produces so many alerts (often false positives) that investigators stop paying proper attention — risking missing a real threat. Reduced by tuning detection and manual review."
+    },
+    {
+      "id": "d9",
+      "section": "D",
+      "code": "D2.2.2",
+      "front": "Name signs that a system has been compromised.",
+      "back": "Unusual inbound/outbound traffic (or from odd regions), unusual login attempts, unusual DNS requests, increased file reads/requests, unusual port usage, and suspicious file changes."
+    },
+    {
+      "id": "d10",
+      "section": "D",
+      "code": "D2.3",
+      "front": "What should a security report contain?",
+      "back": "A clear structure (title, intro, headings, conclusion), analysis of what went wrong, and recommended improvements to policies and protection measures."
+    },
+    {
+      "id": "d11",
+      "section": "D",
+      "code": "D1.1.3",
+      "front": "What must you do before network forensic scanning?",
+      "back": "Agree a methodology with the relevant authorities, get permission, and ensure the testing protocol will not disrupt the live system."
+    },
+    {
+      "id": "d12",
+      "section": "D",
+      "code": "D1.1.1",
+      "front": "Steps to isolate a seized device from networks?",
+      "back": "Photograph the screen, then turn off the device / remove the battery / use airplane mode / disable wireless / place it in a Faraday bag — so it can't be remotely wiped."
+    }
   ]
 }
