@@ -1394,3 +1394,15 @@ h3[style*="text-transform:uppercase"], p[style*="text-transform:uppercase"] {
 @media (max-width: 899px) {
   .sidebar:not(.open) { visibility: hidden; }
 }
+
+/* The unit switcher sits below the wordmark, not beside it. */
+.sidebar-top {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  padding: 13px 8px 11px;
+}
+.sidebar-top .sidebar-wordmark { justify-content: flex-start; }
+.sidebar:not(.open) .sidebar-top { align-items: center; }
+.sidebar:not(.open) .sidebar-wordmark { justify-content: center; }
+.unit-switch { padding: 0; }
