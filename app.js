@@ -1705,6 +1705,7 @@ function buildFITBQuestions(count = 10) {
 }
 
 function startFITB() {
+  stopAllTimers();
   const qs = buildFITBQuestions(10);
   if (!qs.length) { toast('No flashcard data loaded'); return; }
   fitbState = { qs, idx: 0, correct: 0, selected: null, answered: false };
@@ -1816,12 +1817,16 @@ function buildTFQuestions() {
 }
 
 function startTrueFalse() {
+  // Starting a second round without this leaks the first interval: tfState is
+  // reassigned, the old timer keeps firing, and it throws once tfState is null.
+  stopAllTimers();
   const qs = buildTFQuestions();
-  if (!qs.length) { toast('No flashcard data loaded'); return; }
+  if (!qs.length) { toast('No revision content loaded for this unit'); return; }
   tfState = { qs, idx: 0, correct: 0, total: 0, timeLeft: 30, timer: null };
   gamesMode = 'tf';
   renderGames();
-  tfState.timer = setInterval(() => {
+  const timer = setInterval(() => {
+    if (!tfState || tfState.timer !== timer) { clearInterval(timer); return; }
     tfState.timeLeft--;
     const bar = el('tf-timer-bar');
     if (bar) bar.style.width = (tfState.timeLeft / 30 * 100) + '%';
@@ -1829,6 +1834,7 @@ function startTrueFalse() {
     if (label) label.textContent = tfState.timeLeft + 's';
     if (tfState.timeLeft <= 0) endTrueFalse();
   }, 1000);
+  tfState.timer = timer;
 }
 
 function renderTrueFalse(container) {
@@ -2255,6 +2261,7 @@ function renderLeaderboardPage() {
 
 /* -- Quick-fire MCQ -- */
 function startMCQ() {
+  stopAllTimers();
   const cards = flashcardsForUnit();
   const qs = [...cards].sort(() => Math.random() - 0.5).slice(0, 10).map(c => {
     let pool = cards.filter(x => x.id !== c.id && x.section === c.section);
@@ -2321,6 +2328,7 @@ function answerMCQ(i) {
 
 /* -- Match game -- */
 function startMatch() {
+  stopAllTimers();
   if (!searchBuilt) { loadData(unitLetters()); buildSearchIndex(); }
   const pool = allSearchContent.filter(x => x.definition && x.definition.length > 20);
   const pairs = [...pool].sort(() => Math.random() - 0.5).slice(0, 6);
@@ -2537,6 +2545,7 @@ function botAnswer(skill) {
 function stopBattleTick() { if (battleTick) { clearInterval(battleTick); battleTick = null; } }
 
 function startBattle(mode, targetName) {
+  stopAllTimers();
   stopBattleTick();
   const oppCount = mode === 'elim' ? 7 : mode === 'duel' ? 1 : 3;
   const opps = pickOpponents(oppCount, mode === 'duel' && !targetName, targetName);
