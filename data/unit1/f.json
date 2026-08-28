@@ -1,6 +1,7 @@
 {
   "section": "F",
   "title": "Legal and Ethical Issues",
+  "tier": 2,
   "topics": [
     {
       "code": "F1",
@@ -11,14 +12,49 @@
           "title": "Moral and Ethical Factors and Implications of the Use of IT",
           "comparisonTable": {
             "title": "Key Ethical Issues in IT — Overview",
-            "headers": ["Issue", "What It Means", "Example", "Stakeholders Affected"],
+            "headers": [
+              "Issue",
+              "What It Means",
+              "Example",
+              "Stakeholders Affected"
+            ],
             "rows": [
-              ["Privacy", "Right to control personal data; risk of surveillance/data misuse", "Social media tracking browsing history for ads", "All individuals using digital systems"],
-              ["Environmental Impact", "IT causes e-waste, energy consumption, carbon emissions", "Data centres consuming ~1% of global electricity", "Society, environment, future generations"],
-              ["Unequal Access", "Digital divide — not everyone can afford/access technology", "Rural areas with no broadband; low-income households without devices", "Disadvantaged communities, developing nations"],
-              ["Assistive Tech Access", "Disabled users need assistive technologies but access is unequal", "Screen readers cost hundreds; not all employers provide them", "Disabled users, employers, schools"],
-              ["Online Behaviour", "Netiquette and responsible digital communication", "Cyberbullying, trolling, spreading misinformation online", "All users, especially young people"],
-              ["Acceptable Use Policies", "Organisational rules governing IT use by staff/students", "School AUP banning social media on school devices", "Employees, students, organisations"]
+              [
+                "Privacy",
+                "Right to control personal data; risk of surveillance/data misuse",
+                "Social media tracking browsing history for ads",
+                "All individuals using digital systems"
+              ],
+              [
+                "Environmental Impact",
+                "IT causes e-waste, energy consumption, carbon emissions",
+                "Data centres consuming ~1% of global electricity",
+                "Society, environment, future generations"
+              ],
+              [
+                "Unequal Access",
+                "Digital divide — not everyone can afford/access technology",
+                "Rural areas with no broadband; low-income households without devices",
+                "Disadvantaged communities, developing nations"
+              ],
+              [
+                "Assistive Tech Access",
+                "Disabled users need assistive technologies but access is unequal",
+                "Screen readers cost hundreds; not all employers provide them",
+                "Disabled users, employers, schools"
+              ],
+              [
+                "Online Behaviour",
+                "Netiquette and responsible digital communication",
+                "Cyberbullying, trolling, spreading misinformation online",
+                "All users, especially young people"
+              ],
+              [
+                "Acceptable Use Policies",
+                "Organisational rules governing IT use by staff/students",
+                "School AUP banning social media on school devices",
+                "Employees, students, organisations"
+              ]
             ]
           },
           "items": [
@@ -119,13 +155,49 @@
           "title": "Role and Impact of Current Legislation in Protecting IT Systems, Users and Their Data",
           "comparisonTable": {
             "title": "UK IT Legislation — Summary Comparison",
-            "headers": ["Legislation", "Year", "What It Covers", "Key Offences / Requirements", "Maximum Penalty"],
+            "headers": [
+              "Legislation",
+              "Year",
+              "What It Covers",
+              "Key Offences / Requirements",
+              "Maximum Penalty"
+            ],
             "rows": [
-              ["Computer Misuse Act", "1990 (amended)", "Unauthorised access to computer systems and data", "S1: Unauthorised access; S2: Unauthorised access with intent; S3: Unauthorised modification", "S1: 2 yrs; S2: 5 yrs; S3: 10 yrs imprisonment"],
-              ["Copyright, Designs and Patents Act", "1988", "Intellectual property rights for creative works and software", "Reproducing/distributing copyrighted work without permission", "Civil damages + up to 10 years imprisonment for criminal infringement"],
-              ["Copyright (Computer Programs) Regulations", "1992", "Specific IP protection for software and programs", "Copying, reverse engineering, or distributing software illegally", "Same as CDPA 1988"],
-              ["Health & Safety / DSE Regulations", "1992/1999", "Workplace safety for IT/screen users", "Employers must provide DSE assessments, breaks, training, proper equipment", "Civil claims / HSE enforcement"],
-              ["Data Protection Act / UK GDPR", "2018/2018", "Protection of personal data; rights of data subjects", "Unlawful processing, failure to report breaches, inadequate security", "ICO fines up to £17.5m or 4% global turnover"]
+              [
+                "Computer Misuse Act",
+                "1990 (amended)",
+                "Unauthorised access to computer systems and data",
+                "S1: Unauthorised access; S2: Unauthorised access with intent; S3: Unauthorised modification",
+                "S1: 2 yrs; S2: 5 yrs; S3: 10 yrs imprisonment"
+              ],
+              [
+                "Copyright, Designs and Patents Act",
+                "1988",
+                "Intellectual property rights for creative works and software",
+                "Reproducing/distributing copyrighted work without permission",
+                "Civil damages + up to 10 years imprisonment for criminal infringement"
+              ],
+              [
+                "Copyright (Computer Programs) Regulations",
+                "1992",
+                "Specific IP protection for software and programs",
+                "Copying, reverse engineering, or distributing software illegally",
+                "Same as CDPA 1988"
+              ],
+              [
+                "Health & Safety / DSE Regulations",
+                "1992/1999",
+                "Workplace safety for IT/screen users",
+                "Employers must provide DSE assessments, breaks, training, proper equipment",
+                "Civil claims / HSE enforcement"
+              ],
+              [
+                "Data Protection Act / UK GDPR",
+                "2018/2018",
+                "Protection of personal data; rights of data subjects",
+                "Unlawful processing, failure to report breaches, inadequate security",
+                "ICO fines up to £17.5m or 4% global turnover"
+              ]
             ]
           },
           "items": [
@@ -137,11 +209,31 @@
               "examTip": "Know all three sections by number and what each covers. Examiners frequently ask you to 'state the section of the Computer Misuse Act that applies' to a scenario. S1 = access only; S2 = access + intent for further crime; S3 = damaging/modifying/impairing systems.",
               "comparisonTable": {
                 "title": "Computer Misuse Act 1990 — Three Offences",
-                "headers": ["Section", "Offence", "Example", "Max Sentence"],
+                "headers": [
+                  "Section",
+                  "Offence",
+                  "Example",
+                  "Max Sentence"
+                ],
                 "rows": [
-                  ["Section 1", "Unauthorised access to computer material", "Using someone else's password to log into their account out of curiosity", "2 years imprisonment + unlimited fine"],
-                  ["Section 2", "Unauthorised access with intent to commit or facilitate further offences", "Hacking into a bank's system intending to transfer funds fraudulently", "5 years imprisonment + unlimited fine"],
-                  ["Section 3", "Unauthorised acts with intent to impair operation of a computer", "Deploying ransomware; launching a DDoS attack; installing a keylogger", "10 years imprisonment + unlimited fine"]
+                  [
+                    "Section 1",
+                    "Unauthorised access to computer material",
+                    "Using someone else's password to log into their account out of curiosity",
+                    "2 years imprisonment + unlimited fine"
+                  ],
+                  [
+                    "Section 2",
+                    "Unauthorised access with intent to commit or facilitate further offences",
+                    "Hacking into a bank's system intending to transfer funds fraudulently",
+                    "5 years imprisonment + unlimited fine"
+                  ],
+                  [
+                    "Section 3",
+                    "Unauthorised acts with intent to impair operation of a computer",
+                    "Deploying ransomware; launching a DDoS attack; installing a keylogger",
+                    "10 years imprisonment + unlimited fine"
+                  ]
                 ]
               },
               "keyFacts": [
@@ -189,14 +281,35 @@
               "examTip": "Know the employer's four main obligations under DSE Regulations: (1) conduct DSE risk assessments; (2) ensure adequate breaks from screen work; (3) provide free eye tests on request; (4) provide training on correct workstation setup. Also know the health risks DSE is designed to prevent.",
               "comparisonTable": {
                 "title": "DSE Regulations — Employer Obligations vs Health Risks Addressed",
-                "headers": ["Employer Obligation", "Health Risk It Addresses"],
+                "headers": [
+                  "Employer Obligation",
+                  "Health Risk It Addresses"
+                ],
                 "rows": [
-                  ["Workstation risk assessment (screen, keyboard, chair, lighting, space)", "Musculoskeletal disorders — RSI, back/neck pain from poor posture"],
-                  ["Regular breaks from DSE work (at least 5-10 mins per hour)", "Eye strain, headaches, fatigue from prolonged screen use"],
-                  ["Free eye tests for DSE workers (annually or as needed)", "Visual fatigue, uncorrected vision problems worsened by screen work"],
-                  ["Provide corrective glasses if required specifically for DSE work", "Vision deterioration linked directly to screen use"],
-                  ["Training on safe workstation setup and correct posture", "Repetitive Strain Injury (RSI), carpal tunnel syndrome from poor technique"],
-                  ["Report DSE-related illness under RIDDOR if absence > 7 days", "Work-related upper limb disorder (WRULD) — employer accountability"]
+                  [
+                    "Workstation risk assessment (screen, keyboard, chair, lighting, space)",
+                    "Musculoskeletal disorders — RSI, back/neck pain from poor posture"
+                  ],
+                  [
+                    "Regular breaks from DSE work (at least 5-10 mins per hour)",
+                    "Eye strain, headaches, fatigue from prolonged screen use"
+                  ],
+                  [
+                    "Free eye tests for DSE workers (annually or as needed)",
+                    "Visual fatigue, uncorrected vision problems worsened by screen work"
+                  ],
+                  [
+                    "Provide corrective glasses if required specifically for DSE work",
+                    "Vision deterioration linked directly to screen use"
+                  ],
+                  [
+                    "Training on safe workstation setup and correct posture",
+                    "Repetitive Strain Injury (RSI), carpal tunnel syndrome from poor technique"
+                  ],
+                  [
+                    "Report DSE-related illness under RIDDOR if absence > 7 days",
+                    "Work-related upper limb disorder (WRULD) — employer accountability"
+                  ]
                 ]
               },
               "keyFacts": [
@@ -216,15 +329,47 @@
               "examTip": "Know the six lawful bases for processing and the seven UK GDPR principles (ADISS LA). Most exam questions focus on: what constitutes personal data, the rights of data subjects, the role of the ICO, and breach notification requirements. Penalties are a favourite mark-grabber — ICO can fine up to £17.5m or 4% of global annual turnover.",
               "comparisonTable": {
                 "title": "UK GDPR — Seven Data Protection Principles",
-                "headers": ["Principle", "Meaning", "Example Violation"],
+                "headers": [
+                  "Principle",
+                  "Meaning",
+                  "Example Violation"
+                ],
                 "rows": [
-                  ["1. Lawfulness, Fairness & Transparency", "Data processed legally, fairly, and openly", "Collecting location data without informing users"],
-                  ["2. Purpose Limitation", "Data only used for the specific purpose it was collected for", "Using customer purchase data to build psychological profiles for resale"],
-                  ["3. Data Minimisation", "Only collect data that is necessary", "Asking for date of birth when only age range is needed"],
-                  ["4. Accuracy", "Data must be accurate and kept up to date", "Storing outdated address causing important letters to be sent elsewhere"],
-                  ["5. Storage Limitation", "Data not kept longer than necessary", "Retaining old employee records indefinitely after departure"],
-                  ["6. Integrity & Confidentiality", "Data secured against unauthorised access, loss, or destruction", "Storing customer passwords in plaintext; inadequate firewall"],
-                  ["7. Accountability", "Organisation must demonstrate compliance", "No documented data protection policies; no DPO appointed where required"]
+                  [
+                    "1. Lawfulness, Fairness & Transparency",
+                    "Data processed legally, fairly, and openly",
+                    "Collecting location data without informing users"
+                  ],
+                  [
+                    "2. Purpose Limitation",
+                    "Data only used for the specific purpose it was collected for",
+                    "Using customer purchase data to build psychological profiles for resale"
+                  ],
+                  [
+                    "3. Data Minimisation",
+                    "Only collect data that is necessary",
+                    "Asking for date of birth when only age range is needed"
+                  ],
+                  [
+                    "4. Accuracy",
+                    "Data must be accurate and kept up to date",
+                    "Storing outdated address causing important letters to be sent elsewhere"
+                  ],
+                  [
+                    "5. Storage Limitation",
+                    "Data not kept longer than necessary",
+                    "Retaining old employee records indefinitely after departure"
+                  ],
+                  [
+                    "6. Integrity & Confidentiality",
+                    "Data secured against unauthorised access, loss, or destruction",
+                    "Storing customer passwords in plaintext; inadequate firewall"
+                  ],
+                  [
+                    "7. Accountability",
+                    "Organisation must demonstrate compliance",
+                    "No documented data protection policies; no DPO appointed where required"
+                  ]
                 ]
               },
               "keyFacts": [

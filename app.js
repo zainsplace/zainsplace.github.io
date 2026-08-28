@@ -1,11 +1,61 @@
-/* ===== UNIT 2 REVISION APP ===== */
+/* ===== BTEC REVISION APP ===== */
 
-/* ---- STATE ---- */
-const STATE_KEY = 'u2rev_state';
-let state = loadState();
-document.body.setAttribute('data-theme', state.theme || 'light');
+/* ---- UNIT MANIFEST ----
+   Colour, order, shortName and blurb live here, NOT in the section JSON.
+   Unit 2's JSON colours are stale; Unit 1's order is not derivable from tier.
+   Values are copied from each unit's live site. Do not "tidy" them. */
+const UNITS = {
+  u1: {
+    id: 'u1', label: 'Unit 1', short: 'U1',
+    name: 'Information Technology Systems',
+    headerSub: 'BTEC National · Information Technology Systems',
+    examDate: null,
+    order: ['c', 'd', 'b', 'e', 'a', 'f'],
+    sections: {
+      a: { colour: '#3182ce', shortName: 'IT Systems & Devices', blurb: 'Devices, OS, Software, Interfaces' },
+      b: { colour: '#d69e2e', shortName: 'Transmitting Data',    blurb: 'Networks, Protocols, Compression' },
+      c: { colour: '#e53e3e', shortName: 'Operating Online',     blurb: 'Cloud, VPN, Online Communities' },
+      d: { colour: '#e53e3e', shortName: 'Protecting Data',      blurb: 'Threats, Encryption, Firewalls' },
+      e: { colour: '#dd6b20', shortName: 'Impact of IT',         blurb: 'Online Services, Data, E-commerce' },
+      f: { colour: '#9f7aea', shortName: 'Legal & Ethical',      blurb: 'GDPR, Computer Misuse, Copyright' }
+    }
+  },
+  u2: {
+    id: 'u2', label: 'Unit 2', short: 'U2',
+    name: 'Cyber Security & Incident Management',
+    headerSub: 'BTEC National · Cyber Security & Incident Management',
+    examDate: '2026-05-15',
+    order: ['a', 'b', 'd', 'c'],
+    keywordBanks: [
+      { title: 'Section D — Forensics (fast marks)', col: '#6D5BD6', words: ['Faraday bag', 'Write-blocker', 'Forensic image (bit-for-bit copy)', 'Hash value (MD5/SHA) before & after', 'Chain of custody', 'Contemporaneous notes', 'Evidence bag + tamper-proof seal', 'Photograph the scene first'] },
+      { title: 'Section A — Protection', col: '#4338CA', words: ['Encryption (at rest / in transit)', 'Multi-factor authentication', 'Anti-malware + updates', 'Firewall rules', 'Penetration testing', 'Staff training', 'Acceptable Use Policy', 'GDPR — 72-hour breach reporting'] },
+      { title: 'Section B — Networks', col: '#A8326E', words: ['VPN — encrypted tunnel', 'DMZ for public-facing servers', 'Network segmentation / VLAN', 'DHCP — automatic IP assignment', 'DNS — name resolution', 'WPA3 over WEP', 'MAC filtering (spoofable!)', 'RAID is NOT a backup'] },
+      { title: 'Section C — Documentation', col: '#0E9F6E', words: ['Security policy + review date', 'Risk assessment matrix', 'Incident response plan', 'Disaster recovery plan', 'Backup policy (3-2-1 rule)', 'Audit trail / logs', 'Business continuity', 'Roles & responsibilities'] }
+    ],
+    sections: {
+      a: { colour: '#4338CA', shortName: 'Cyber Security Threats & Protection', blurb: 'Threats, Vulnerabilities, Encryption, GDPR' },
+      b: { colour: '#A8326E', shortName: 'Networking Architectures & Security', blurb: 'Networks, VPN, DHCP, Firewalls' },
+      c: { colour: '#0E9F6E', shortName: 'Cyber Security Documentation',        blurb: 'Policies, Audits, Incident Response' },
+      d: { colour: '#6D5BD6', shortName: 'Forensic Procedures',                 blurb: 'Evidence, Imaging, Chain of Custody' }
+    }
+  }
+};
 
-function defaultState() {
+function unitDef(id) { return UNITS[id || store.activeUnit]; }
+function unitLetters() { return unitDef().order.slice(); }
+function unitLettersUpper() { return unitDef().order.map(l => l.toUpperCase()); }
+function unitData() { return INLINE_UNITS[store.activeUnit]; }
+
+/* ---- STATE ----
+   Persisted shape: { activeUnit, theme, profile, units: { u1: {...}, u2: {...} } }
+   Everything except theme and profile is per unit: topic codes, flashcard ids
+   and question ids all collide between the two units.
+   `state` below is a live view onto the active unit so the rest of the app can
+   keep using state.rag / state.xp / state.theme unchanged. */
+const STATE_KEY = 'rev_state';
+const GLOBAL_KEYS = new Set(['theme', 'profile', 'activeUnit']);
+
+function defaultUnitState() {
   return {
     rag: {},           // code -> 'red'|'amber'|'green'
     reviewed: {},      // code -> true
@@ -17,33 +67,26 @@ function defaultState() {
     questions: {
       history: []      // {qId, marks, date, selfScore}
     },
-    streak: {
-      last: null,
-      count: 0
-    },
+    streak: { last: null, count: 0 },
     xp: 0,
-    activity: {},     // 'YYYY-MM-DD' -> action count (feeds the heatmap)
-    battles: { played: 0, won: 0, modes: {} },  // modes: { elim: {played, won}, blitz: {played, won, best}, ... }
-    profile: { emoji: '⭐', col: '#A8326E' },
+    activity: {},      // 'YYYY-MM-DD' -> action count (feeds the heatmap)
+    battles: { played: 0, won: 0, modes: {} },
     extended: {
       history: []      // {type, wordCount, date, timeTaken}
     },
-    theme: 'light'
+    examDate: null,
+    planChecks: {},
+    bests: { tf: 0, match: 0 }
   };
 }
 
-function loadState() {
-  try {
-    const raw = localStorage.getItem(STATE_KEY);
-    if (!raw) return defaultState();
-    const s = JSON.parse(raw);
-    const d = defaultState();
-    return deepMerge(d, s);
-  } catch { return defaultState(); }
-}
-
-function saveState() {
-  localStorage.setItem(STATE_KEY, JSON.stringify(state));
+function defaultStore() {
+  return {
+    activeUnit: 'u1',
+    theme: 'light',
+    profile: { emoji: '📘', col: '#1B5A5F' },
+    units: { u1: defaultUnitState(), u2: defaultUnitState() }
+  };
 }
 
 function deepMerge(target, source) {
@@ -58,19 +101,242 @@ function deepMerge(target, source) {
   return out;
 }
 
-/* ---- DATA STORE (inlined — no fetch required) ---- */
-const DATA = {};
+function hasRealHistory(blob) {
+  if (!blob || typeof blob !== 'object') return false;
+  const n = o => o && typeof o === 'object' ? Object.keys(o).length : 0;
+  return n(blob.rag) > 0 || n(blob.reviewed) > 0 ||
+         n(blob.flashcards && blob.flashcards.boxes) > 0 ||
+         (blob.questions && (blob.questions.history || []).length > 0) ||
+         (blob.xp || 0) > 0;
+}
+
+function readLegacy(key) {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : null;
+  } catch { return null; }
+}
+
+function readLegacyNum(key) {
+  const v = parseInt(localStorage.getItem(key) || '0', 10);
+  return Number.isFinite(v) ? v : 0;
+}
+
+/* One-way migration off the old per-site keys. Both units were served from the
+   same origin, so a visitor may hold history from either. Legacy keys are left
+   in place so a bad migration is recoverable by clearing rev_state. */
+function migrateLegacy() {
+  const s = defaultStore();
+  const legacy = { u1: readLegacy('u1rev_state'), u2: readLegacy('u2rev_state') };
+  let migrated = null;
+
+  ['u1', 'u2'].forEach(id => {
+    const blob = legacy[id];
+    if (!hasRealHistory(blob)) return;
+    s.units[id] = deepMerge(defaultUnitState(), blob);
+    if (blob.examDate) s.units[id].examDate = blob.examDate;
+    const checks = readLegacy(id === 'u1' ? 'u1_plan_checks' : 'u2_plan_checks');
+    if (checks) s.units[id].planChecks = checks;
+    migrated = migrated || id;
+    if (blob.theme) s.theme = blob.theme;
+    if (blob.profile) s.profile = Object.assign(s.profile, blob.profile);
+  });
+
+  s.units.u2.bests = {
+    tf: readLegacyNum('u2_tf_best'),
+    match: readLegacyNum('u2_match_best')
+  };
+
+  const last = id => (legacy[id] && legacy[id].streak && legacy[id].streak.last) || '';
+  if (hasRealHistory(legacy.u1) && hasRealHistory(legacy.u2)) {
+    s.activeUnit = last('u1') > last('u2') ? 'u1' : 'u2';
+  } else if (migrated) {
+    s.activeUnit = migrated;
+  }
+  return s;
+}
+
+function loadStore() {
+  let raw = null;
+  try { raw = localStorage.getItem(STATE_KEY); } catch { raw = null; }
+  if (!raw) return migrateLegacy();
+  try {
+    return deepMerge(defaultStore(), JSON.parse(raw));
+  } catch {
+    return defaultStore();
+  }
+}
+
+let store = loadStore();
+
+/* A view onto store.units[activeUnit], with theme/profile passed through to the
+   top level. Lets every existing state.* call site keep working after the split. */
+const state = new Proxy({}, {
+  get(_, k) {
+    if (k === 'activeUnit') return store.activeUnit;
+    if (GLOBAL_KEYS.has(k)) return store[k];
+    return store.units[store.activeUnit][k];
+  },
+  set(_, k, v) {
+    if (GLOBAL_KEYS.has(k)) store[k] = v;
+    else store.units[store.activeUnit][k] = v;
+    return true;
+  },
+  has(_, k) {
+    return GLOBAL_KEYS.has(k) || k in store.units[store.activeUnit];
+  },
+  deleteProperty(_, k) {
+    if (GLOBAL_KEYS.has(k)) delete store[k];
+    else delete store.units[store.activeUnit][k];
+    return true;
+  },
+  ownKeys() {
+    return [...GLOBAL_KEYS].concat(Object.keys(store.units[store.activeUnit]));
+  },
+  getOwnPropertyDescriptor() {
+    return { enumerable: true, configurable: true };
+  }
+});
+
+function saveState() {
+  try {
+    localStorage.setItem(STATE_KEY, JSON.stringify(store));
+  } catch (e) {
+    toastStorageFull();
+  }
+}
+
+let storageWarned = false;
+function toastStorageFull() {
+  if (storageWarned) return;
+  storageWarned = true;
+  if (typeof toast === 'function') {
+    toast('Storage is full — progress is not being saved. Remove your profile photo to free space.');
+  }
+}
+
+document.body.setAttribute('data-theme', store.theme || 'light');
+
+/* ---- DATA STORE (inlined — no fetch required) ----
+   DATA is keyed by section letter only, so it MUST be cleared when the unit
+   changes or the previous unit's content keeps rendering. */
+let DATA = {};
 
 function loadData(sections) {
-  const map = { a: INLINE_A, b: INLINE_B, c: INLINE_C, d: INLINE_D, e: INLINE_E, f: INLINE_F };
-  sections.forEach(s => { if (!DATA[s]) DATA[s] = map[s] || null; });
+  const src = unitData().sections;
+  sections.forEach(s => { if (!DATA[s]) DATA[s] = src[s] || null; });
 }
 
 function loadJSON(path) {
-  if (path === 'data/flashcards.json') return INLINE_FLASHCARDS;
-  if (path === 'data/questions.json')  return INLINE_QUESTIONS;
-  if (path === 'data/extended.json')   return INLINE_EXTENDED || null;
+  const u = unitData();
+  if (path === 'data/flashcards.json') return u.flashcards;
+  if (path === 'data/questions.json')  return u.questions;
+  if (path === 'data/extended.json')   return u.extended || null;
   return null;
+}
+
+function flashcardsForUnit() {
+  return (loadJSON('data/flashcards.json') || {}).cards || [];
+}
+
+function escapeRe(str) {
+  return String(str).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+/* Game high scores are per unit: the question pools differ, so a Unit 1 score
+   is not comparable with a Unit 2 one. */
+function getBest(k) {
+  return (state.bests && state.bests[k]) || 0;
+}
+
+function setBest(k, v) {
+  if (!state.bests) state.bests = { tf: 0, match: 0 };
+  state.bests[k] = v;
+  saveState();
+}
+
+/* Every spec item in the active unit: the objects carrying both a code and a
+   term. These are the term/definition pairs the games are built on. */
+function specItems() {
+  loadData(unitLetters());
+  const out = [];
+  unitLetters().forEach(letter => {
+    const d = DATA[letter];
+    if (!d) return;
+    (function walk(obj) {
+      if (!obj || typeof obj !== 'object') return;
+      if (obj.code && obj.term) out.push(obj);
+      Object.values(obj).forEach(v => { if (v && typeof v === 'object') walk(v); });
+    })(d);
+  });
+  return out;
+}
+
+/* ---- UNIT SWITCHING ----
+   DATA, the search index and every in-flight game hold content keyed by bare
+   section letter. None of it is unit-aware, so all of it must be discarded or
+   the previous unit keeps rendering and its scores land in the wrong namespace. */
+function resetTransientState() {
+  stopAllTimers();          // must run before the state holding the timers is cleared
+  DATA = {};
+  searchBuilt = false;
+  allSearchContent = [];
+  currentSection = null;
+  flashFilter = 'all';
+  qFilter = 'all';
+  qMode = 'browse';
+  gamesMode = 'menu';
+  quizQueue = [];
+  quizIdx = 0;
+  mcq = null;
+  matchGame = null;
+  tfState = null;
+  fitbState = null;
+  battle = null;
+  flashIdx = 0;
+}
+
+/* Every running interval must be cleared, not just the ones held in a named
+   variable. A live True/False timer fires endTrueFalse() up to 30s later and
+   would reset the page — or bank its score into the wrong unit. */
+function stopAllTimers() {
+  if (matchInterval) { clearInterval(matchInterval); matchInterval = null; }
+  if (battleTick) { clearInterval(battleTick); battleTick = null; }
+  if (tfState && tfState.timer) { clearInterval(tfState.timer); tfState.timer = null; }
+  if (typeof extTimers === 'object' && extTimers) {
+    Object.values(extTimers).forEach(t => {
+      if (t && t.interval) clearInterval(t.interval);
+      if (t) t.running = false;
+    });
+  }
+}
+
+function switchUnit(id) {
+  if (!UNITS[id] || id === store.activeUnit) return;
+  store.activeUnit = id;
+  saveState();
+  resetTransientState();
+  applyUnitChrome();
+  navigate('home');
+  toast(UNITS[id].label + ' · ' + UNITS[id].name);
+}
+
+/* Header, wordmark, document title and meta live in static HTML, so they have
+   to be rewritten from script when the unit changes. */
+function applyUnitChrome() {
+  const u = unitDef();
+  document.title = u.label + ' ' + u.name + ' Revision';
+  const set = (id, text) => { const n = el(id); if (n) n.textContent = text; };
+  set('brand-mark', u.short);
+  set('brand-text', u.label + ' ' + u.name.split(' ')[0]);
+  set('dash-title', u.label + ' · ' + u.name);
+  set('dash-sub', u.headerSub);
+  const desc = document.querySelector('meta[name="description"]');
+  if (desc) desc.setAttribute('content', u.label + ': ' + u.name + ' — revision hub with flashcards, exam questions, games and progress tracking.');
+  document.querySelectorAll('.unit-switch-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.unit === u.id);
+    b.setAttribute('aria-pressed', String(b.dataset.unit === u.id));
+  });
 }
 
 /* ---- NAVIGATION ---- */
@@ -86,6 +352,16 @@ const PAGE_TITLES = {
 };
 
 function navigate(page, opts = {}) {
+  // Leaving the games page abandons whatever was running. Without this a live
+  // Blitz or Match timer keeps ticking and banks its score minutes later.
+  if (page !== 'games' && typeof stopAllTimers === 'function') {
+    stopAllTimers();
+    gamesMode = 'menu';
+    tfState = null;
+    matchGame = null;
+    fitbState = null;
+    mcq = null;
+  }
   currentPage = page;
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -124,7 +400,7 @@ function renderPage(page, opts) {
 let sidebarOpen = null; // null = not yet initialised
 
 function initSidebar() {
-  const saved = localStorage.getItem('u2_sidebar');
+  const saved = localStorage.getItem('rev_sidebar') ?? localStorage.getItem('u2_sidebar');
   sidebarOpen = saved !== null ? saved === 'true' : false;
   applySidebarState();
 }
@@ -144,13 +420,13 @@ function applySidebarState() {
 
 function toggleSidebar() {
   sidebarOpen = !sidebarOpen;
-  localStorage.setItem('u2_sidebar', String(sidebarOpen));
+  localStorage.setItem('rev_sidebar', String(sidebarOpen));
   applySidebarState();
 }
 
 function closeSidebar() {
   sidebarOpen = false;
-  localStorage.setItem('u2_sidebar', 'false');
+  localStorage.setItem('rev_sidebar', 'false');
   applySidebarState();
 }
 
@@ -200,15 +476,21 @@ function toggleTheme() {
   });
 }
 
-/* ---- EXAM DATE (editable — click the countdown box to change) ---- */
-const DEFAULT_EXAM_DATE = '2026-05-15';
-
+/* ---- EXAM DATE (per unit, editable — click the countdown box to change) ----
+   Each unit sits a different paper. A unit with no date set shows no countdown
+   rather than a wrong one. */
 function getExamDate() {
-  return state.examDate || DEFAULT_EXAM_DATE;
+  return state.examDate || unitDef().examDate || null;
+}
+
+function hasExamDate() {
+  return !!getExamDate();
 }
 
 function daysUntilExam() {
-  const exam = new Date(getExamDate());
+  const d = getExamDate();
+  if (!d) return null;
+  const exam = new Date(d);
   const now = new Date();
   now.setHours(0, 0, 0, 0);
   exam.setHours(0, 0, 0, 0);
@@ -237,17 +519,54 @@ function ragClass(code) {
   return '';
 }
 
+function sectionMeta(letter) {
+  return unitDef().sections[String(letter).toLowerCase()] || null;
+}
+
+function sectionTitle(letter) {
+  const d = unitData().sections[String(letter).toLowerCase()];
+  return (d && d.title) || '';
+}
+
+function sectionShortName(letter) {
+  const m = sectionMeta(letter);
+  return (m && m.shortName) || sectionTitle(letter);
+}
+
+function sectionBlurb(letter) {
+  const m = sectionMeta(letter);
+  return (m && m.blurb) || '';
+}
+
+function sectionTier(letter) {
+  const d = unitData().sections[String(letter).toLowerCase()];
+  return (d && d.tier) || 3;
+}
+
 function sectionTierClass(letter) {
-  const t1 = ['A', 'B', 'D'];
-  const t2 = ['C'];
-  if (t1.includes(letter)) return 'tier1';
-  if (t2.includes(letter)) return 'tier2';
-  return 'tier3';
+  return 'tier' + sectionTier(letter);
 }
 
 function sectionColour(letter) {
-  const map = { A: '#4338CA', B: '#A8326E', C: '#0E9F6E', D: '#6D5BD6' };
-  return map[letter] || '#4338CA';
+  const m = sectionMeta(letter);
+  return (m && m.colour) || '#1B5A5F';
+}
+
+/* Sections in the unit's own display order, upper-case. Unit 1's order is
+   C,D,B,E,A,F — not derivable from tier or the alphabet. */
+function tier1Letters() {
+  const t1 = unitLettersUpper().filter(L => sectionTier(L) === 1);
+  return t1.length ? t1 : unitLettersUpper();
+}
+
+function sectionList() {
+  return unitLettersUpper().map(L => ({
+    letter: L,
+    name: sectionShortName(L),
+    topics: sectionBlurb(L),
+    tier: sectionTierClass(L),
+    col: sectionColour(L)
+  }));
 }
 
 function sectionProgress(letter) {
@@ -257,13 +576,20 @@ function sectionProgress(letter) {
   return Math.round((done / codes.length) * 100);
 }
 
+/* The letter class must come from the active unit. A hardcoded [A-D] silently
+   drops every Unit 1 E and F code. */
+function codePattern() {
+  return new RegExp('^[' + unitLettersUpper().join('') + '][0-9]+\\.[0-9]+');
+}
+
 function getSectionCodes(letter) {
   const d = DATA[letter.toLowerCase()];
   if (!d) return [];
+  const re = codePattern();
   const codes = [];
   function walk(obj) {
     if (!obj || typeof obj !== 'object') return;
-    if (obj.code && /^[A-D][0-9]+\.[0-9]+/.test(obj.code)) codes.push(obj.code);
+    if (obj.code && re.test(obj.code)) codes.push(obj.code);
     Object.values(obj).forEach(v => { if (typeof v === 'object') walk(v); });
   }
   walk(d);
@@ -271,7 +597,7 @@ function getSectionCodes(letter) {
 }
 
 function overallProgress() {
-  const letters = ['A', 'B', 'C', 'D'];
+  const letters = unitLettersUpper();
   const built = letters.filter(l => DATA[l.toLowerCase()]);
   if (!built.length) return 0;
   let total = 0, done = 0;
@@ -281,6 +607,23 @@ function overallProgress() {
     done += codes.filter(c => state.rag[c] === 'green').length;
   });
   return total ? Math.round((done / total) * 100) : 0;
+}
+
+/* Whole-unit RAG spread, including topics never rated. Feeds the confidence
+   strip on the home page. */
+function ragSpread() {
+  loadData(unitLetters());
+  let total = 0, green = 0, amber = 0, red = 0;
+  unitLettersUpper().forEach(l => {
+    getSectionCodes(l).forEach(c => {
+      total++;
+      const v = state.rag[c];
+      if (v === 'green') green++;
+      else if (v === 'amber') amber++;
+      else if (v === 'red') red++;
+    });
+  });
+  return { total, green, amber, red, unrated: total - green - amber - red };
 }
 
 function ragCounts() {
@@ -297,7 +640,7 @@ function today() {
 }
 
 function pAv() { return (state.profile && state.profile.emoji) || '⭐'; }
-function pCol() { return (state.profile && state.profile.col) || '#A8326E'; }
+function pCol() { return (state.profile && state.profile.col) || '#1B5A5F'; }
 function pImg() { return (state.profile && state.profile.img) || null; }
 
 /* inner content for any "me" avatar: photo if set, else emoji */
@@ -359,8 +702,51 @@ function bumpActivity(n = 1) {
 }
 
 /* ---- HOME ---- */
+/* The confidence strip: one honest picture of the whole syllabus, including
+   the topics never rated — which the old four-number stat row could not show. */
+function renderConfidenceStrip() {
+  const sp = ragSpread();
+  const strip = el('home-strip');
+  const count = el('home-topic-count');
+  if (count) count.textContent = sp.total + (sp.total === 1 ? ' topic' : ' topics');
+  if (!strip) return;
+  if (!sp.total) { strip.innerHTML = ''; return; }
+  const seg = (cls, n) => n ? `<span class="seg ${cls}" style="width:${(n / sp.total) * 100}%">${
+    (n / sp.total) > 0.06 ? n : ''}</span>` : '';
+  strip.innerHTML = seg('s-green', sp.green) + seg('s-amber', sp.amber) +
+                    seg('s-red', sp.red) + seg('s-none', sp.unrated);
+  strip.setAttribute('aria-label',
+    `${sp.green} confident, ${sp.amber} getting there, ${sp.red} need work, ${sp.unrated} not yet rated, of ${sp.total} topics`);
+  const set = (id, v) => { const n = el(id); if (n) n.textContent = v; };
+  set('home-stat-green', sp.green);
+  set('home-stat-amber', sp.amber);
+  set('home-stat-red', sp.red);
+  set('home-stat-unrated', sp.unrated);
+}
+
+/* The hero points at the weakest-rated section, falling back to the unit's
+   first section in its own display order. */
+function heroLetter() {
+  const ranked = unitLettersUpper()
+    .map(L => ({ L, p: sectionProgress(L) }))
+    .sort((a, b) => a.p - b.p);
+  return ranked.length ? ranked[0].L : unitLettersUpper()[0];
+}
+
+function renderHeroCard() {
+  const L = heroLetter();
+  const t = el('home-hero-title');
+  const sub = el('home-hero-sub');
+  if (t) t.textContent = `Section ${L} · ${sectionShortName(L)}`;
+  if (sub) sub.textContent = sectionBlurb(L);
+}
+
+function openHeroSection() {
+  navigate('sections', { section: heroLetter() });
+}
+
 function renderHome() {
-  loadData(['a', 'b', 'd', 'c']);
+  loadData(unitLetters());
   updateStreak();
 
   const days = daysUntilExam();
@@ -373,25 +759,30 @@ function renderHome() {
   const greetEl = el('home-greeting');
   if (greetEl) greetEl.textContent = greet;
 
-  el('home-countdown-days').textContent = days;
-  const examPassed = new Date(getExamDate()) < new Date(new Date().toDateString());
-  el('home-countdown-label').textContent = examPassed ? 'exam passed' : 'days to exam';
-  el('home-countdown-date').textContent = `Exam: ${getExamDate()} • Unit 2: Cyber Security & Incident Management`;
+  if (hasExamDate()) {
+    el('home-countdown-days').textContent = days;
+    const examPassed = new Date(getExamDate()) < new Date(new Date().toDateString());
+    el('home-countdown-label').textContent = examPassed ? 'exam passed' : 'days to exam';
+    el('home-countdown-date').textContent = `Exam: ${getExamDate()} • ${unitDef().label}: ${unitDef().name}`;
+  } else {
+    el('home-countdown-days').textContent = '—';
+    el('home-countdown-label').textContent = 'no exam date set';
+    el('home-countdown-date').textContent = `${unitDef().label}: ${unitDef().name} · tap to set your exam date`;
+  }
   const progBar = el('home-overall-progress');
   progBar.style.width = '0%';
   requestAnimationFrame(() => requestAnimationFrame(() => {
     progBar.style.width = prog + '%';
   }));
   el('home-overall-pct').textContent = prog + '%';
-  el('home-stat-green').textContent = rc.green;
-  el('home-stat-amber').textContent = rc.amber;
-  el('home-stat-red').textContent = rc.red;
+  renderConfidenceStrip();
   el('home-stat-streak').textContent = state.streak.count;
   el('home-flash-due').textContent = flashDue;
   const myRank = rankFor(state.xp || 0);
   el('home-stat-level').textContent = myRank.icon;
   el('home-stat-level').style.color = myRank.col;
   el('home-stat-xp').textContent = `${myRank.name} · ${state.xp || 0} XP`;
+  renderHeroCard();
 
   renderSectionTiles();
   renderPriorityTopics();
@@ -401,7 +792,7 @@ function renderHome() {
 
 /* ---- PRIORITY TOPICS (weakest first: red, then amber) ---- */
 function findItemByCode(code) {
-  for (const key of ['a', 'b', 'c', 'd']) {
+  for (const key of unitLetters()) {
     const d = DATA[key];
     if (!d) continue;
     let found = null;
@@ -587,12 +978,7 @@ function renderReviseNext() {
 
 function renderSectionTiles() {
   const container = el('section-tiles');
-  const sections = [
-    { letter: 'A', name: 'Cyber Security Threats & Protection', topics: 'Threats, Vulnerabilities, Encryption, GDPR' },
-    { letter: 'B', name: 'Networking Architectures & Security', topics: 'Networks, VPN, DHCP, Firewalls' },
-    { letter: 'D', name: 'Forensic Procedures', topics: 'Evidence, Imaging, Chain of Custody' },
-    { letter: 'C', name: 'Cyber Security Documentation', topics: 'Policies, Audits, Incident Response' }
-  ];
+  const sections = sectionList();
 
   container.innerHTML = sections.map(s => {
     const prog = sectionProgress(s.letter);
@@ -640,12 +1026,7 @@ function renderSections(letter) {
 }
 
 function renderSectionList(container) {
-  const sections = [
-    { letter: 'A', name: 'Cyber Security Threats & Protection', tier: 'tier1', col: '#4338CA' },
-    { letter: 'B', name: 'Networking Architectures & Security', tier: 'tier1', col: '#A8326E' },
-    { letter: 'D', name: 'Forensic Procedures', tier: 'tier1', col: '#6D5BD6' },
-    { letter: 'C', name: 'Cyber Security Documentation', tier: 'tier2', col: '#0E9F6E' }
-  ];
+  const sections = sectionList();
   container.innerHTML = `
     <h2 style="margin-bottom:16px">Sections</h2>
     <div class="grid2">
@@ -808,7 +1189,7 @@ function renderFlashUI() {
 
   const boxNames     = ['New / Learning', 'Familiar', 'Confident', 'Strong', 'Mastered'];
   const boxIntervals = ['every 1 day', 'every 2 days', 'every 4 days', 'every 8 days', 'every 16 days'];
-  const boxColors    = ['#C81E1E', '#A8326E', '#D97706', '#0E9F6E', '#4338CA'];
+  const boxColors    = ['#B5443A', '#A85A3C', '#BE7A1C', '#3D7A4E', '#1B5A5F'];
 
   container.innerHTML = `
     <h2 style="margin-bottom:12px">Flashcards</h2>
@@ -934,7 +1315,7 @@ function renderQuestions() {
 }
 
 function renderBrowseMode(container) {
-  const sections = ['all', 'A', 'B', 'C', 'D'];
+  const sections = ['all'].concat(unitLettersUpper());
   const filtered = qFilter === 'all' ? qData.questions : qData.questions.filter(q => q.section === qFilter);
 
   container.innerHTML = `
@@ -1269,10 +1650,10 @@ function xpIntoLevel() { return (state.xp || 0) % XP_PER_LEVEL; }
 const RANKS = [
   { name: 'Bronze',       icon: '🥉', col: '#B45309', min: 0 },
   { name: 'Silver',       icon: '🥈', col: '#64748B', min: 300 },
-  { name: 'Gold',         icon: '🥇', col: '#D97706', min: 750 },
+  { name: 'Gold',         icon: '🥇', col: '#BE7A1C', min: 750 },
   { name: 'Platinum',     icon: '💠', col: '#0E7490', min: 1500 },
-  { name: 'Diamond',      icon: '💎', col: '#4338CA', min: 2500 },
-  { name: 'Master',       icon: '🔮', col: '#A8326E', min: 4000 },
+  { name: 'Diamond',      icon: '💎', col: '#1B5A5F', min: 2500 },
+  { name: 'Master',       icon: '🔮', col: '#A85A3C', min: 4000 },
   { name: 'Cyber Legend', icon: '👑', col: '#44403C', min: 6000 }
 ];
 
@@ -1302,20 +1683,24 @@ let tfState = null;
 let fitbState = null;
 
 function buildFITBQuestions(count = 10) {
-  const cards = (loadJSON('data/flashcards.json') || {}).cards || [];
-  if (cards.length < 4) return [];
+  // Built from spec items, which carry term + definition. Flashcards hold
+  // question/answer pairs, so blanking a term out of those never matches.
+  // Only ~9% of items repeat their term inside the definition, so where that
+  // fails the blank stands in for the term itself rather than dropping the item.
+  const pool = specItems().filter(i => i.term && i.definition);
+  if (pool.length < 4) return [];
 
-  const shuffled = [...cards].sort(() => Math.random() - 0.5).slice(0, count);
-  return shuffled.map(card => {
-    // Replace the term in the definition with blanks (case-insensitive)
-    const blanked = card.definition.replace(new RegExp(card.term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'), '_____');
-
-    // 3 distractors: other terms from the set
-    const others = cards.filter(c => c.term !== card.term);
-    const distractors = others.sort(() => Math.random() - 0.5).slice(0, 3).map(c => c.term);
-    const options = [card.term, ...distractors].sort(() => Math.random() - 0.5);
-
-    return { definition: blanked, answer: card.term, options, code: card.code };
+  const shuffled = [...pool].sort(() => Math.random() - 0.5).slice(0, count);
+  return shuffled.map(item => {
+    const re = new RegExp(escapeRe(item.term), 'gi');
+    const inline = re.test(item.definition);
+    const blanked = inline
+      ? item.definition.replace(new RegExp(escapeRe(item.term), 'gi'), '_____')
+      : '_____ — ' + item.definition;
+    const others = pool.filter(i => i.term !== item.term);
+    const distractors = others.sort(() => Math.random() - 0.5).slice(0, 3).map(i => i.term);
+    const options = [item.term, ...distractors].sort(() => Math.random() - 0.5);
+    return { definition: blanked, answer: item.term, options, code: item.code };
   });
 }
 
@@ -1391,7 +1776,7 @@ function endFITB() {
   bumpActivity(correct);
   saveState();
 
-  gamesMode = null;
+  gamesMode = 'menu';
   fitbState = null;
   const container = el('games-content');
   container.innerHTML = `
@@ -1407,18 +1792,19 @@ function endFITB() {
 }
 
 function buildTFQuestions() {
-  const cards = (loadJSON('data/flashcards.json') || {}).cards || [];
-  if (cards.length < 4) return [];
+  // Spec items carry term + definition; flashcards hold question/answer pairs.
+  const items = specItems().filter(i => i.term && i.definition);
+  if (items.length < 4) return [];
   const qs = [];
 
-  cards.forEach((card, i) => {
+  items.forEach((item, i) => {
     // True statement: real definition
-    qs.push({ statement: `"${card.term}" — ${card.definition}`, answer: true, term: card.term });
+    qs.push({ statement: `"${item.term}" — ${item.definition}`, answer: true, term: item.term });
 
-    // False statement: correct term, wrong definition (from a different card)
-    const otherIdx = (i + 1 + Math.floor(Math.random() * (cards.length - 2))) % cards.length;
-    const other = cards[otherIdx];
-    qs.push({ statement: `"${card.term}" — ${other.definition}`, answer: false, term: card.term });
+    // False statement: correct term, wrong definition (from a different item)
+    const otherIdx = (i + 1 + Math.floor(Math.random() * (items.length - 2))) % items.length;
+    const other = items[otherIdx];
+    qs.push({ statement: `"${item.term}" — ${other.definition}`, answer: false, term: item.term });
   });
 
   // Shuffle
@@ -1493,12 +1879,10 @@ function endTrueFalse() {
   state.xp = (state.xp || 0) + xpEarned;
   bumpActivity(correct);
 
-  const bestKey = 'u2_tf_best';
-  const prev = parseInt(localStorage.getItem(bestKey) || '0', 10);
-  if (correct > prev) localStorage.setItem(bestKey, String(correct));
+  if (correct > getBest('tf')) setBest('tf', correct);
 
   saveState();
-  gamesMode = null;
+  gamesMode = 'menu';
   tfState = null;
 
   const container = el('games-content');
@@ -1522,8 +1906,8 @@ function renderGames() {
   if (gamesMode === 'fitb') { renderFITB(container); return; }
   if (gamesMode === 'battle' && battle) { renderBattleUI(container); return; }
 
-  const best = localStorage.getItem('u2_match_best');
-  const tfBest = localStorage.getItem('u2_tf_best');
+  const best = getBest('match') || null;
+  const tfBest = getBest('tf') || null;
   container.innerHTML = `
     <h2 style="margin-bottom:6px">Games</h2>
     <p style="color:var(--text2);font-size:14px;margin-bottom:18px">Active recall, but fun. Earn XP for every game — you're Level ${xpLevel()} with ${state.xp || 0} XP.</p>
@@ -1571,48 +1955,48 @@ const LB_EPOCH = new Date('2026-06-01').getTime();
 
 const LB_BOTS = [
   /* — your bracket (Bronze/Silver) — */
-  { name: 'itzKayden08',        tag: 'Revision machine',  base: 120, rate: 38, col: '#4338CA' },
-  { name: 'maddie.exe',         tag: 'Forensics nerd',    base: 90,  rate: 31, col: '#A8326E' },
-  { name: 'TTV_R3eceplays',     tag: 'Flashcard grinder (live)', base: 60, rate: 26, col: '#0E9F6E' },
-  { name: 'xX_Sn1per_Lukas_Xx', tag: 'Revises at 11pm the night before', base: 10, rate: 9, col: '#D97706' },
-  { name: 'notlivvy',           tag: '9-mark specialist', base: 80,  rate: 22, col: '#6D5BD6' },
-  { name: 'ZayanFN_09',         tag: 'Match game demon',  base: 40,  rate: 17, col: '#C81E1E' },
+  { name: 'itzKayden08',        tag: 'Revision machine',  base: 120, rate: 38, col: '#1B5A5F' },
+  { name: 'maddie.exe',         tag: 'Forensics nerd',    base: 90,  rate: 31, col: '#A85A3C' },
+  { name: 'TTV_R3eceplays',     tag: 'Flashcard grinder (live)', base: 60, rate: 26, col: '#3D7A4E' },
+  { name: 'xX_Sn1per_Lukas_Xx', tag: 'Revises at 11pm the night before', base: 10, rate: 9, col: '#BE7A1C' },
+  { name: 'notlivvy',           tag: '9-mark specialist', base: 80,  rate: 22, col: '#4A5E8C' },
+  { name: 'ZayanFN_09',         tag: 'Match game demon',  base: 40,  rate: 17, col: '#B5443A' },
   { name: 'sleepyell1e',        tag: 'Quietly cooking',   base: 30,  rate: 13, col: '#0E7490' },
   /* — Silver/Gold — */
   { name: 'big_curtis_W',       tag: 'Streak protector',  base: 320, rate: 12, col: '#64748B' },
-  { name: 'aliyah.studies',     tag: 'Notion aesthetic queen', base: 380, rate: 15, col: '#A8326E' },
-  { name: 'lowkeyjordan',       tag: 'Says he doesn\'t revise. Lies.', base: 700, rate: 14, col: '#0E9F6E' },
-  { name: 'p1xelpatel',         tag: 'MCQ speedrunner',   base: 820, rate: 16, col: '#4338CA' },
-  { name: 'erinhasnoexams',     tag: 'Ironic username',   base: 900, rate: 11, col: '#D97706' },
+  { name: 'aliyah.studies',     tag: 'Notion aesthetic queen', base: 380, rate: 15, col: '#A85A3C' },
+  { name: 'lowkeyjordan',       tag: 'Says he doesn\'t revise. Lies.', base: 700, rate: 14, col: '#3D7A4E' },
+  { name: 'p1xelpatel',         tag: 'MCQ speedrunner',   base: 820, rate: 16, col: '#1B5A5F' },
+  { name: 'erinhasnoexams',     tag: 'Ironic username',   base: 900, rate: 11, col: '#BE7A1C' },
   /* — Silver/Gold (more) — */
-  { name: 'jxck_billings',      tag: 'Group chat admin',  base: 420, rate: 14, col: '#0E9F6E' },
-  { name: 'freyah2009',         tag: 'Colour-coded notes', base: 540, rate: 13, col: '#6D5BD6' },
+  { name: 'jxck_billings',      tag: 'Group chat admin',  base: 420, rate: 14, col: '#3D7A4E' },
+  { name: 'freyah2009',         tag: 'Colour-coded notes', base: 540, rate: 13, col: '#4A5E8C' },
   { name: 'OllieW_main',        tag: '"It\'s my second account"', base: 610, rate: 12, col: '#0E7490' },
-  { name: 'ria.revises',        tag: 'Username says it all', base: 1050, rate: 14, col: '#A8326E' },
-  { name: 'capybara_ben',       tag: 'Here for the games', base: 1150, rate: 10, col: '#D97706' },
+  { name: 'ria.revises',        tag: 'Username says it all', base: 1050, rate: 14, col: '#A85A3C' },
+  { name: 'capybara_ben',       tag: 'Here for the games', base: 1150, rate: 10, col: '#BE7A1C' },
   { name: 'WhoIsTyler_',        tag: 'Mysterious grinder', base: 1300, rate: 13, col: '#44403C' },
   /* — Platinum — */
   { name: 'DefNotArchie',       tag: 'Plat and proud',    base: 1550, rate: 13, col: '#0E7490' },
-  { name: 'emsy_x',             tag: 'Past paper warlord', base: 1700, rate: 15, col: '#6D5BD6' },
+  { name: 'emsy_x',             tag: 'Past paper warlord', base: 1700, rate: 15, col: '#4A5E8C' },
   { name: 'voidwxlker',         tag: 'Revises in dark mode only', base: 1950, rate: 12, col: '#44403C' },
-  { name: 'sadiq.studies',      tag: 'Library resident',  base: 1820, rate: 14, col: '#0E9F6E' },
-  { name: 'gracie_mxy',         tag: 'Flashcards at the bus stop', base: 2100, rate: 11, col: '#A8326E' },
-  { name: 'L0gan_idk',          tag: 'Accidentally good at this', base: 2250, rate: 12, col: '#D97706' },
+  { name: 'sadiq.studies',      tag: 'Library resident',  base: 1820, rate: 14, col: '#3D7A4E' },
+  { name: 'gracie_mxy',         tag: 'Flashcards at the bus stop', base: 2100, rate: 11, col: '#A85A3C' },
+  { name: 'L0gan_idk',          tag: 'Accidentally good at this', base: 2250, rate: 12, col: '#BE7A1C' },
   /* — Diamond — */
-  { name: 'hazza.dnf',          tag: 'Diamond gatekeeper', base: 2600, rate: 11, col: '#4338CA' },
-  { name: 'k1ngmarcus',         tag: 'Self-proclaimed GOAT', base: 3100, rate: 13, col: '#C81E1E' },
-  { name: 'evieplays_x',        tag: 'Duels anyone who asks', base: 2800, rate: 12, col: '#A8326E' },
+  { name: 'hazza.dnf',          tag: 'Diamond gatekeeper', base: 2600, rate: 11, col: '#1B5A5F' },
+  { name: 'k1ngmarcus',         tag: 'Self-proclaimed GOAT', base: 3100, rate: 13, col: '#B5443A' },
+  { name: 'evieplays_x',        tag: 'Duels anyone who asks', base: 2800, rate: 12, col: '#A85A3C' },
   { name: 'thearchitect_jay',   tag: 'Mind palace user (allegedly)', base: 3300, rate: 11, col: '#0E7490' },
-  { name: 'n0tmichelle',        tag: 'Diamond and climbing', base: 3600, rate: 13, col: '#6D5BD6' },
+  { name: 'n0tmichelle',        tag: 'Diamond and climbing', base: 3600, rate: 13, col: '#4A5E8C' },
   /* — Master — */
-  { name: 'taraxo_07',          tag: 'Carried the group project', base: 4200, rate: 10, col: '#A8326E' },
-  { name: 'GlazedDonut_Finn',   tag: 'Nobody knows his real name', base: 4800, rate: 12, col: '#D97706' },
+  { name: 'taraxo_07',          tag: 'Carried the group project', base: 4200, rate: 10, col: '#A85A3C' },
+  { name: 'GlazedDonut_Finn',   tag: 'Nobody knows his real name', base: 4800, rate: 12, col: '#BE7A1C' },
   { name: 'silentcarter_',      tag: 'Never speaks. Always wins.', base: 4500, rate: 11, col: '#44403C' },
-  { name: 'amara.aces',         tag: 'Mock exam merchant', base: 5200, rate: 10, col: '#4338CA' },
+  { name: 'amara.aces',         tag: 'Mock exam merchant', base: 5200, rate: 10, col: '#1B5A5F' },
   /* — Cyber Legend — */
   { name: 'cleanest_ahmxd',     tag: 'Finished the spec in March', base: 6300, rate: 8, col: '#44403C' },
-  { name: 'prodigy_wren',       tag: 'Teachers ask HER for help', base: 6800, rate: 9, col: '#A8326E' },
-  { name: 'xue_2008',           tag: 'The final boss',    base: 7400, rate: 7, col: '#4338CA' }
+  { name: 'prodigy_wren',       tag: 'Teachers ask HER for help', base: 6800, rate: 9, col: '#A85A3C' },
+  { name: 'xue_2008',           tag: 'The final boss',    base: 7400, rate: 7, col: '#1B5A5F' }
 ];
 
 function botXP(bot, daysAgo = 0) {
@@ -1871,7 +2255,7 @@ function renderLeaderboardPage() {
 
 /* -- Quick-fire MCQ -- */
 function startMCQ() {
-  const cards = INLINE_FLASHCARDS.cards;
+  const cards = flashcardsForUnit();
   const qs = [...cards].sort(() => Math.random() - 0.5).slice(0, 10).map(c => {
     let pool = cards.filter(x => x.id !== c.id && x.section === c.section);
     if (pool.length < 3) pool = cards.filter(x => x.id !== c.id);
@@ -1937,7 +2321,7 @@ function answerMCQ(i) {
 
 /* -- Match game -- */
 function startMatch() {
-  if (!searchBuilt) { loadData(['a', 'b', 'c', 'd']); buildSearchIndex(); }
+  if (!searchBuilt) { loadData(unitLetters()); buildSearchIndex(); }
   const pool = allSearchContent.filter(x => x.definition && x.definition.length > 20);
   const pairs = [...pool].sort(() => Math.random() - 0.5).slice(0, 6);
   const tiles = [];
@@ -2013,9 +2397,9 @@ function pickTile(i) {
 function finishMatch() {
   clearInterval(matchInterval);
   const secs = Math.floor((Date.now() - matchGame.start) / 1000);
-  const best = parseInt(localStorage.getItem('u2_match_best') || '0', 10);
+  const best = getBest('match');
   const isBest = !best || secs < best;
-  if (isBest) localStorage.setItem('u2_match_best', String(secs));
+  if (isBest) setBest('match', secs);
   awardXP(30, true);
   setTimeout(() => {
     el('games-content').innerHTML = `
@@ -2098,7 +2482,7 @@ const BATTLE_MODES = {
 };
 
 function battleQuestionPool(n) {
-  if (!searchBuilt) { loadData(['a', 'b', 'c', 'd']); buildSearchIndex(); }
+  if (!searchBuilt) { loadData(unitLetters()); buildSearchIndex(); }
   const pool = allSearchContent.filter(x => x.definition && x.definition.length > 20);
   return [...pool].sort(() => Math.random() - 0.5).slice(0, n).map(p => {
     const wrong = pool.filter(x => x.term !== p.term).sort(() => Math.random() - 0.5).slice(0, 3).map(x => x.term);
@@ -2395,7 +2779,7 @@ function getAchievements() {
   const totalActs = Object.values(act).reduce((a, b) => a + b, 0);
   const rc = ragCounts();
   const mastered = Object.values(state.flashcards.boxes || {}).filter(b => b === 5).length;
-  const best = parseInt(localStorage.getItem('u2_match_best') || '0', 10);
+  const best = getBest('match');
   const battles = state.battles || { played: 0, won: 0 };
 
   return [
@@ -2427,7 +2811,7 @@ function buildSparklineSVG(data, width = 200, height = 40) {
 }
 
 function renderProfile() {
-  loadData(['a', 'b', 'c', 'd']);
+  loadData(unitLetters());
   const xp = state.xp || 0;
   const r = rankFor(xp);
   const rows = getLBRows();
@@ -2452,13 +2836,13 @@ function renderProfile() {
   const recent = qHist.slice(-10);
   const avgScore = recent.length ? Math.round(recent.reduce((a, h) => a + h.selfScore, 0) / recent.length) : null;
   const mastered = Object.values(state.flashcards.boxes || {}).filter(b => b === 5).length;
-  const best = localStorage.getItem('u2_match_best');
+  const best = getBest('match') || null;
   const battles = state.battles || { played: 0, won: 0 };
   const ach = getAchievements();
   const unlocked = ach.filter(a => a.done).length;
 
   const AV_EMOJIS = ['⭐', '🔥', '🧠', '👾', '💀', '🦊', '🐸', '🐱', '🐼', '🦈', '🚀', '🎯', '👑', '💎', '🌙', '⚡'];
-  const AV_COLS = ['#A8326E', '#4338CA', '#0E9F6E', '#D97706', '#0E7490', '#C81E1E', '#44403C', '#6D5BD6'];
+  const AV_COLS = ['#A85A3C', '#1B5A5F', '#3D7A4E', '#BE7A1C', '#0E7490', '#B5443A', '#44403C', '#4A5E8C'];
 
   el('profile-content').innerHTML = `
     <div class="card profile-head">
@@ -2548,7 +2932,7 @@ function toggleAvatarPicker() {
 }
 
 function setProfileAv(emoji, col) {
-  if (!state.profile) state.profile = { emoji: '⭐', col: '#A8326E' };
+  if (!state.profile) state.profile = { emoji: '⭐', col: '#A85A3C' };
   if (emoji) { state.profile.emoji = emoji; delete state.profile.img; } // picking an emoji switches off the photo
   if (col) state.profile.col = col;
   saveState();
@@ -2573,12 +2957,7 @@ function renderExamKit() {
     ['Evaluate', '9–12', 'Both sides + a justified conclusion. The conclusion is what unlocks Level 3.']
   ];
 
-  const keywordBanks = [
-    { title: 'Section D — Forensics (fast marks)', col: '#6D5BD6', words: ['Faraday bag', 'Write-blocker', 'Forensic image (bit-for-bit copy)', 'Hash value (MD5/SHA) before & after', 'Chain of custody', 'Contemporaneous notes', 'Evidence bag + tamper-proof seal', 'Photograph the scene first'] },
-    { title: 'Section A — Protection', col: '#4338CA', words: ['Encryption (at rest / in transit)', 'Multi-factor authentication', 'Anti-malware + updates', 'Firewall rules', 'Penetration testing', 'Staff training', 'Acceptable Use Policy', 'GDPR — 72-hour breach reporting'] },
-    { title: 'Section B — Networks', col: '#A8326E', words: ['VPN — encrypted tunnel', 'DMZ for public-facing servers', 'Network segmentation / VLAN', 'DHCP — automatic IP assignment', 'DNS — name resolution', 'WPA3 over WEP', 'MAC filtering (spoofable!)', 'RAID is NOT a backup'] },
-    { title: 'Section C — Documentation', col: '#0E9F6E', words: ['Security policy + review date', 'Risk assessment matrix', 'Incident response plan', 'Disaster recovery plan', 'Backup policy (3-2-1 rule)', 'Audit trail / logs', 'Business continuity', 'Roles & responsibilities'] }
-  ];
+  const keywordBanks = unitDef().keywordBanks || [];
 
   container.innerHTML = `
     <h2 style="margin-bottom:6px">Exam Kit</h2>
@@ -2619,7 +2998,7 @@ let searchBuilt = false;
 
 function renderSearch() {
   if (!searchBuilt) {
-    loadData(['a', 'b', 'c', 'd', 'e', 'f']);
+    loadData(unitLetters());
     buildSearchIndex();
   }
   const container = el('search-content');
@@ -2633,7 +3012,7 @@ function renderSearch() {
 
 function buildSearchIndex() {
   allSearchContent = [];
-  ['a', 'b', 'c', 'd', 'e', 'f'].forEach(s => {
+  unitLetters().forEach(s => {
     const d = DATA[s];
     if (!d) return;
     function walkData(obj) {
@@ -2709,7 +3088,7 @@ function goToResult(section, code) {
 
 /* ---- DAILY PLAN ---- */
 function renderPlan() {
-  loadData(['a', 'b', 'c', 'd', 'e', 'f']);
+  loadData(unitLetters());
   const container = el('plan-content');
   const plan = buildDailyPlan();
 
@@ -2718,7 +3097,7 @@ function renderPlan() {
       <h2>Today's Study Plan</h2>
       <div class="streak-badge">${state.streak.count}-day streak</div>
     </div>
-    <p style="color:var(--text2);font-size:14px;margin-bottom:16px">${daysUntilExam()} days until your Unit 2 exam. ${getMotivation()}</p>
+    <p style="color:var(--text2);font-size:14px;margin-bottom:16px">${hasExamDate() ? `${daysUntilExam()} days until your ${unitDef().label} exam. ` : ''}${getMotivation()}</p>
     ${plan.map(block => `
       <div class="plan-day">
         <h3>${block.title}</h3>
@@ -2767,8 +3146,7 @@ function buildDailyPlan() {
       id: 'content',
       title: '📖 Content Review',
       items: [
-        'Work through Section A (Threats, Vulnerabilities & Protection) — the largest, most-examined aim',
-        'Work through Section B (Networking & Security) — expect a network diagram and VPN/DHCP/firewall questions',
+        ...tier1Letters().slice(0, 2).map(L => `Work through Section ${L} (${sectionShortName(L)}) — ${sectionBlurb(L)}`),
         weakCodes.length ? `Revisit these red codes: ${weakCodes.join(', ')}` : 'Mark any uncertain codes as Amber or Red for tracking'
       ]
     });
@@ -2778,7 +3156,7 @@ function buildDailyPlan() {
       title: '📖 Focused Review',
       items: [
         'Complete any remaining Amber/Red codes',
-        'Focus on Tier 1 topics: A1-A4 (Threats & Protection), B (Networks), D (Forensics)',
+        `Focus on Tier 1 topics: ${tier1Letters().map(L => `${L} (${sectionShortName(L)})`).join(', ')}`,
         weakCodes.length ? `Priority: ${weakCodes.join(', ')}` : 'Try to clear all Red codes this week'
       ]
     });
@@ -2823,6 +3201,7 @@ function buildDailyPlan() {
 
 function getMotivation() {
   const days = daysUntilExam();
+  if (days === null) return 'Set your exam date to get a countdown and a sharper daily plan.';
   if (days > 30) return 'Keep building your knowledge — consistency now makes the difference.';
   if (days > 14) return 'Final stretch! Focus on your weak areas and practise past paper questions.';
   if (days > 7) return 'One week to go — prioritise Tier 1 topics and exam technique.';
@@ -2831,7 +3210,7 @@ function getMotivation() {
 }
 
 function renderRAGSummary() {
-  const sections = ['A', 'B', 'C', 'D'];
+  const sections = unitLettersUpper();
   return `<div class="stats-row" style="flex-wrap:wrap">
     ${sections.map(l => {
       const codes = getSectionCodes(l);
@@ -2849,18 +3228,19 @@ function renderRAGSummary() {
   </div>`;
 }
 
-const planChecks = JSON.parse(localStorage.getItem('u2_plan_checks') || '{}');
-
+/* Plan ticks live in the unit namespace — a Unit 1 plan must not tick Unit 2's. */
 function getPlanCheck(key) {
   const todayStr = today();
-  return planChecks[todayStr] && planChecks[todayStr][key];
+  const checks = state.planChecks || {};
+  return checks[todayStr] && checks[todayStr][key];
 }
 
 function savePlanCheck(key, val) {
   const todayStr = today();
-  if (!planChecks[todayStr]) planChecks[todayStr] = {};
-  planChecks[todayStr][key] = val;
-  localStorage.setItem('u2_plan_checks', JSON.stringify(planChecks));
+  if (!state.planChecks) state.planChecks = {};
+  if (!state.planChecks[todayStr]) state.planChecks[todayStr] = {};
+  state.planChecks[todayStr][key] = val;
+  saveState();
 }
 
 /* ---- STREAK ---- */
@@ -2882,11 +3262,11 @@ function updateStreak() {
 
 /* ---- EXPORT/IMPORT/RESET ---- */
 function exportData() {
-  const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+  const blob = new Blob([JSON.stringify(store, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `unit2-revision-${today()}.json`;
+  a.download = `btec-revision-${today()}.json`;
   a.click();
   URL.revokeObjectURL(url);
   toast('Progress exported!');
@@ -2903,8 +3283,23 @@ function importData() {
     reader.onload = ev => {
       try {
         const imported = JSON.parse(ev.target.result);
-        state = deepMerge(defaultState(), imported);
+        // A pre-merge export has progress at the top level and no `units` key.
+        // Route it through the same migration path rather than merging a legacy
+        // shape into the new one, which would orphan it permanently.
+        store = imported && imported.units
+          ? deepMerge(defaultStore(), imported)
+          : (() => {
+              const s2 = defaultStore();
+              const target = (imported && imported.examDate === '2026-05-15') ? 'u2' : store.activeUnit;
+              s2.units[target] = deepMerge(defaultUnitState(), imported || {});
+              if (imported && imported.theme) s2.theme = imported.theme;
+              if (imported && imported.profile) s2.profile = imported.profile;
+              s2.activeUnit = target;
+              return s2;
+            })();
         saveState();
+        resetTransientState();
+        applyUnitChrome();
         toast('Progress imported!');
         navigate('home');
       } catch { toast('Invalid file — import failed'); }
@@ -2929,9 +3324,12 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.nav-btn, .nav-avatar').forEach(btn => {
     btn.addEventListener('click', () => navigate(btn.dataset.page));
   });
-  loadData(['a', 'b', 'c', 'd']);
+  document.querySelectorAll('.unit-switch-btn').forEach(btn => {
+    btn.addEventListener('click', () => switchUnit(btn.dataset.unit));
+  });
+  applyUnitChrome();
+  loadData(unitLetters());
   updateNavAvatar();
-  if (typeof lucide !== 'undefined') lucide.createIcons();
   navigate('home');
 });
 

@@ -1,0 +1,8 @@
+# Tooling, not site content
+.claude/
+.superpowers/
+docs/plans/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db

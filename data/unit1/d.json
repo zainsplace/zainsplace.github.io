@@ -1,0 +1,500 @@
+{
+  "section": "D",
+  "title": "Protecting Data and Information",
+  "tier": 1,
+  "colour": "#e53e3e",
+  "topics": [
+    {
+      "code": "D1",
+      "title": "Threats to Data, Information, and Systems",
+      "subtopics": [
+        {
+          "code": "D1.1",
+          "title": "Types of External Threats to Data",
+          "items": [
+            {
+              "code": "D1.1.1",
+              "term": "Viruses and Other Malware",
+              "definition": "Malicious software (malware) designed to damage, disrupt, gain unauthorised access to, or steal data from computer systems. A virus specifically attaches itself to legitimate files and spreads when those files are shared.",
+              "examples": "Ransomware encrypting a hospital's patient records and demanding payment; spyware silently recording keystrokes to steal banking passwords; a worm spreading automatically across a company network.",
+              "examTip": "Learn the specific types and how each works — exams ask you to 'describe' a specific threat, not just 'name malware'. Ransomware = encrypts files + demands payment. Spyware = monitors user secretly. Trojan = disguised as legitimate software.",
+              "keyFacts": [
+                "Virus: attaches to files, spreads when files are shared, requires user action to activate",
+                "Worm: self-replicating, spreads automatically across networks without user action",
+                "Ransomware: encrypts victim's files, demands payment (ransom) for decryption key",
+                "Spyware: secretly monitors user activity, captures keystrokes, sends data to attacker",
+                "Trojan: disguises itself as legitimate software to trick users into installing it",
+                "Adware: displays unwanted adverts, may also collect data without consent",
+                "All malware types can cause data loss, financial loss, and reputational damage"
+              ],
+              "comparisonTable": {
+                "title": "Types of Malware Compared",
+                "headers": ["Type", "How it spreads", "What it does", "Key distinguishing feature"],
+                "rows": [
+                  ["Virus", "Attached to files; spreads when files shared/opened", "Corrupts or deletes files; can spread across systems", "Needs a host file; requires user to run it"],
+                  ["Worm", "Exploits network vulnerabilities; spreads automatically", "Consumes bandwidth; installs backdoors; self-replicates", "No host file needed; spreads without user action"],
+                  ["Ransomware", "Email attachments, malicious downloads, exploit kits", "Encrypts files; demands payment for decryption key", "Victim's own data used as leverage"],
+                  ["Spyware", "Bundled with free software; drive-by downloads", "Records keystrokes, screenshots, browsing; steals credentials", "Operates silently in background"],
+                  ["Trojan", "Disguised as legitimate software download", "Creates backdoor; installs other malware; steals data", "Tricks user into installing it voluntarily"],
+                  ["Adware", "Bundled with free software or browser extensions", "Displays unwanted ads; may track browsing", "Often technically 'legal' if buried in terms"]
+                ]
+              }
+            },
+            {
+              "code": "D1.1.2",
+              "term": "Unauthorised Access – Hackers",
+              "definition": "Hackers gain access to systems or networks without permission. They may exploit software vulnerabilities, use stolen credentials, or deploy tools such as brute-force attacks to bypass security.",
+              "examples": "A hacker exploiting an unpatched vulnerability in a company's web server to access customer data; a criminal using credential stuffing to log into accounts using passwords leaked in a previous breach.",
+              "examTip": "'Unauthorised access' is the correct Pearson terminology. Distinguish between black-hat (malicious), white-hat (ethical/security testing) and grey-hat hackers if the question asks about types.",
+              "keyFacts": [
+                "Exploit software vulnerabilities — unpatched software is a key target",
+                "Brute-force attacks: systematically try all password combinations until one works",
+                "Credential stuffing: use username/password pairs leaked from one breach on other sites",
+                "SQL injection: insert malicious code into web forms to access databases",
+                "Man-in-the-middle (MitM): intercept communication between two parties",
+                "Motivated by financial gain, data theft, disruption, or notoriety"
+              ]
+            },
+            {
+              "code": "D1.1.3",
+              "term": "Accidental Damage",
+              "definition": "Unintentional harm to hardware, software, or data caused by human error or physical accidents — not by malicious intent.",
+              "examples": "An employee accidentally deleting a database; hardware damage from spilling liquid on a server; a staff member overwriting important files while running a script.",
+              "examTip": "Accidental damage is an external OR internal threat depending on context. It is distinct from deliberate malicious action — examiners may ask you to distinguish between intentional and unintentional threats.",
+              "keyFacts": [
+                "Human error is one of the most common causes of data loss",
+                "Protection measures: regular backups, file permissions, version control",
+                "Staff training reduces the likelihood of accidental damage",
+                "Clearly distinct from deliberate/malicious threats"
+              ]
+            },
+            {
+              "code": "D1.1.4",
+              "term": "Social Engineering",
+              "definition": "Manipulating people — rather than systems — into revealing confidential information or performing actions that compromise security. Exploits human psychology (trust, fear, authority) rather than technical vulnerabilities.",
+              "examples": "Phishing email pretending to be a bank asking the user to 'verify' login details; a vishing call where an attacker poses as IT support to get an employee's password; a pretexting attack where an attacker creates a fabricated scenario.",
+              "examTip": "Social engineering attacks the human, not the machine. Key techniques: phishing (email), vishing (voice/phone), smishing (SMS), pretexting (fabricated scenario), baiting (physical USB left somewhere). Exams often use phishing scenarios.",
+              "keyFacts": [
+                "Phishing: fake emails mimicking trusted organisations to steal credentials or install malware",
+                "Spear-phishing: targeted phishing using personal details to appear more convincing",
+                "Vishing: voice/phone call impersonating IT support, bank, or authority figure",
+                "Smishing: phishing via SMS text messages",
+                "Pretexting: attacker invents a scenario to justify requesting sensitive information",
+                "Baiting: leaving infected USB drives in public places hoping someone plugs them in",
+                "Defence: staff training/awareness, email filtering, multi-factor authentication"
+              ],
+              "comparisonTable": {
+                "title": "Social Engineering Techniques Compared",
+                "headers": ["Technique", "Method", "Example", "Key defence"],
+                "rows": [
+                  ["Phishing", "Fake email mimicking trusted sender", "Email appearing to be from bank asking to 'verify' account", "Email filtering; verify sender; never click unverified links"],
+                  ["Spear-phishing", "Targeted phishing using personal details", "Email using victim's name and employer details to appear legitimate", "Staff awareness training; verify requests through separate channel"],
+                  ["Vishing", "Phone call impersonating authority figure", "Caller claiming to be IT support asking for password to 'fix an issue'", "Never give passwords by phone; verify caller identity independently"],
+                  ["Smishing", "Phishing via SMS text message", "Text claiming parcel delivery failed, asking to click link to rebook", "Do not click links in unexpected texts; verify via official website"],
+                  ["Pretexting", "Fabricated scenario to justify information request", "Attacker poses as HR to collect employee personal details for 'payroll update'", "Verify identity via official channels before providing any information"],
+                  ["Baiting", "Physical media left for victim to find and use", "Infected USB drive left in company car park labelled 'Salary Data'", "Policy against using unknown USB devices; security awareness training"]
+                ]
+              }
+            },
+            {
+              "code": "D1.1.5",
+              "term": "Natural Disasters",
+              "definition": "Physical events (floods, fires, earthquakes, power surges from lightning) that can destroy hardware, corrupt data, and cause prolonged system downtime.",
+              "examples": "A server room flooded, destroying all on-site storage; a fire in a data centre wiping out backup tapes stored alongside primary servers; a lightning strike causing a power surge that destroys equipment.",
+              "examTip": "Natural disasters justify the need for off-site backups and disaster recovery plans. If the question mentions a flood or fire destroying data, link to D2.1.3 (backup and recovery procedures).",
+              "keyFacts": [
+                "Cannot be predicted or prevented — only mitigated through preparation",
+                "Off-site or cloud backups protect data from local physical disasters",
+                "Disaster recovery plans (DRP) define how operations resume after a disaster",
+                "Geographic redundancy: keeping backups in a different physical location or country",
+                "Business continuity planning ensures organisation can continue operating"
+              ]
+            }
+          ]
+        },
+        {
+          "code": "D1.2",
+          "title": "Types of Internal Threats to Data",
+          "items": [
+            {
+              "code": "D1.2.1",
+              "term": "Access to Inappropriate Websites",
+              "definition": "Employees visiting malicious, illegal, or policy-violating websites on organisation systems, which can introduce malware, result in legal liability, or compromise the network.",
+              "examples": "An employee visiting a piracy site that silently installs malware; accessing gambling sites on a work device; downloading pirated software from a third-party website.",
+              "examTip": "This is an internal threat because it originates from an authorised user's (mis)behaviour. Link to acceptable use policies (F1.1.6) and web filtering as a control.",
+              "keyFacts": [
+                "Can introduce malware via drive-by downloads or malicious ads",
+                "Creates legal liability if illegal content is accessed on organisation systems",
+                "Productivity loss is also a concern",
+                "Mitigated by web filtering software and acceptable use policies",
+                "Monitoring of web usage raises ethical concerns about employee privacy"
+              ]
+            },
+            {
+              "code": "D1.2.2",
+              "term": "Accidental Disclosure of Data",
+              "definition": "Unintentional sharing of confidential or personal data by an employee — without malicious intent, but still constituting a data breach.",
+              "examples": "Emailing a spreadsheet of customer data to the wrong recipient; sharing a screen during a video call that reveals confidential documents; leaving a laptop unlocked in a public place.",
+              "examTip": "Accidental disclosure is still a GDPR breach even if unintentional. The organisation is still liable. Exams may ask you to distinguish this from D1.2.3 (deliberate stealing/leaking).",
+              "keyFacts": [
+                "Still a reportable GDPR breach even with no malicious intent",
+                "Organisation must notify the ICO within 72 hours if the breach risks individuals' rights",
+                "Common causes: wrong email recipient, unencrypted data sent, lost devices",
+                "Mitigated by staff training, email DLP tools, encryption, clear desk policies",
+                "Example: a healthcare worker accidentally emailing patient records to the wrong clinic"
+              ]
+            },
+            {
+              "code": "D1.2.3",
+              "term": "Stealing/Leaking Information",
+              "definition": "A deliberate internal threat where an employee, contractor, or other authorised user intentionally copies, shares, or sells confidential data — often to a competitor, for financial gain, or out of grievance.",
+              "examples": "A departing employee copying the entire customer database to a personal USB before leaving; an employee selling trade secrets to a competitor; a contractor leaking confidential product designs.",
+              "examTip": "The key distinction from D1.2.2 is intent — this is deliberate. Inside knowledge makes this particularly damaging as the threat actor already has legitimate access.",
+              "keyFacts": [
+                "Insider threat: particularly dangerous because attacker already has access rights",
+                "Motivation: financial gain, grievance, coercion by external parties",
+                "Hard to detect — difficult to distinguish malicious data access from normal work",
+                "Mitigation: principle of least privilege (only grant access needed for the role)",
+                "Data Loss Prevention (DLP) tools can monitor and block unusual data transfers",
+                "Background checks, exit interviews, and revoking access promptly on departure"
+              ]
+            },
+            {
+              "code": "D1.2.4",
+              "term": "Use of Portable Devices",
+              "definition": "Employees using USB drives, external hard drives, laptops, or personal mobile devices for work purposes, which can introduce malware or result in data being lost or stolen if the device is lost.",
+              "examples": "An employee copying sensitive files to an unencrypted USB drive that is then lost; a personal laptop infected with malware connecting to the corporate network via VPN; a memory stick containing patient records left on a train.",
+              "examTip": "USB/portable devices = two risks in one: (1) malware introduction, (2) data loss if device lost or stolen. The organisation can mitigate by encrypting data on portable devices and blocking USB ports via policy/software.",
+              "keyFacts": [
+                "Lost/stolen devices containing unencrypted data = serious GDPR breach",
+                "USB drives can introduce malware if they contain infected files",
+                "BYOD (Bring Your Own Device) policies govern use of personal devices for work",
+                "Encryption of data on portable devices reduces impact of loss",
+                "Many organisations disable USB ports entirely or use device management software",
+                "Baiting attacks specifically exploit human curiosity about unknown USB drives"
+              ],
+              "comparisonTable": {
+                "title": "Internal Threats Compared",
+                "headers": ["Threat", "Intentional?", "Who causes it", "Example", "Primary control"],
+                "rows": [
+                  ["Inappropriate website access", "Usually unintentional", "Any employee", "Visiting piracy site that installs malware", "Web filtering, AUP"],
+                  ["Accidental disclosure", "No — human error", "Any employee", "Emailing customer data to wrong address", "Staff training, DLP tools, encryption"],
+                  ["Stealing/leaking data", "Yes — deliberate", "Disgruntled or bribed employee", "Copying customer DB to USB before leaving", "Least privilege access, DLP, monitoring"],
+                  ["Portable device misuse", "Either — often careless", "Any employee", "Losing unencrypted USB with patient data", "Encryption, USB port controls, BYOD policy"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "code": "D1.3",
+          "title": "Impact on Individuals and Organisations",
+          "items": [
+            {
+              "code": "D1.3.1",
+              "term": "Loss of Data",
+              "definition": "Data is permanently lost, destroyed, or made inaccessible — whether through attack, accidental deletion, hardware failure, or disaster. Can range from minor inconvenience to catastrophic operational failure.",
+              "examples": "A ransomware attack encrypting all files and the organisation having no backup; a flood destroying the only copy of a customer database.",
+              "examTip": "Loss of data is a direct impact. Examiners expect you to link it to downstream consequences: operational disruption, inability to serve customers, loss of revenue.",
+              "keyFacts": [
+                "Can affect individuals: losing personal files, identity documents, photos",
+                "Can affect organisations: loss of customer records, financial data, intellectual property",
+                "If no backup exists, data loss may be permanent",
+                "Operational disruption: cannot process orders, access accounts, or function normally",
+                "Prevention: regular offsite backups, RAID storage, cloud replication"
+              ]
+            },
+            {
+              "code": "D1.3.2",
+              "term": "Financial Loss Due to Legal Action",
+              "definition": "Organisations that suffer or cause a data breach may face financial penalties from the ICO under GDPR, and civil lawsuits from individuals whose data was compromised.",
+              "examples": "ICO fining a company £500,000 for failing to secure customer data; a class-action lawsuit from customers affected by a data breach; the cost of notifying affected individuals and hiring forensic investigators.",
+              "examTip": "Always quote the GDPR fine scale for high marks: up to £17.5 million OR 4% of global annual turnover (whichever is higher). This shows examiner-level knowledge.",
+              "keyFacts": [
+                "GDPR fines: up to £17.5 million or 4% of global annual turnover (whichever is greater)",
+                "ICO (Information Commissioner's Office) enforces data protection law in the UK",
+                "Must notify ICO within 72 hours of becoming aware of a breach",
+                "Must notify affected individuals if breach poses high risk to their rights",
+                "Additional costs: forensic investigation, system recovery, customer notification, PR crisis management",
+                "Civil claims from affected individuals add further financial liability"
+              ]
+            },
+            {
+              "code": "D1.3.3",
+              "term": "Loss of Customers Due to Public Image",
+              "definition": "A data breach or cyber attack that becomes public knowledge damages customer trust and the organisation's reputation, leading to reduced sales, customer churn, and long-term brand damage.",
+              "examples": "A retailer suffering a breach of payment card data losing 20% of customers to competitors; a social media platform losing user trust after a data scandal; negative press coverage amplifying customer anxiety.",
+              "examTip": "Reputational damage is a long-term impact — even after the technical issue is fixed, customers may not return. Examiners want you to explain the chain: breach → publicity → loss of trust → fewer customers → reduced revenue.",
+              "keyFacts": [
+                "Loss of trust is difficult and slow to rebuild",
+                "Social media amplifies negative coverage rapidly",
+                "Affected customers may switch to competitors permanently",
+                "Share price of listed companies often drops significantly after a major breach",
+                "Long-term revenue impact may far exceed the direct cost of the breach itself",
+                "Organisations need a PR/communications strategy alongside technical response"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "D2",
+      "title": "Protecting Data",
+      "subtopics": [
+        {
+          "code": "D2.1",
+          "title": "Techniques Used to Protect Data and Systems",
+          "items": [
+            {
+              "code": "D2.1.1",
+              "term": "File Permissions",
+              "definition": "Access controls applied to files and folders that determine which users or user groups can read, write, execute, or delete specific files. Implements the principle of least privilege.",
+              "examples": "A payroll file set so only HR staff can view and edit it; a shared read-only document that all employees can view but not modify; a system folder that only administrators can access.",
+              "examTip": "File permissions = controlling WHO can do WHAT with which files. Link to principle of least privilege — users only get the minimum access required for their job.",
+              "keyFacts": [
+                "Read: user can view but not change the file",
+                "Write: user can modify or create files in a folder",
+                "Execute: user can run a program/script",
+                "Delete: user can remove files",
+                "Applied to individuals or groups (e.g. all Sales staff have read-only access to pricing data)",
+                "Reduces risk of both accidental and deliberate data modification or leakage"
+              ]
+            },
+            {
+              "code": "D2.1.2",
+              "term": "Access Levels",
+              "definition": "A hierarchy of user privilege levels that determine what systems, data, and functions different users can access. Higher access levels have greater permissions.",
+              "examples": "Guest user can only view public pages; standard employee can access their department's files; manager can access team reports; IT admin has full system access.",
+              "examTip": "Access levels = role-based access control (RBAC). The principle of least privilege means each user only has the minimum access needed for their role — reducing the attack surface.",
+              "keyFacts": [
+                "Common levels: guest → standard user → manager → administrator → root/superuser",
+                "Role-based: access is tied to job function, not individual preference",
+                "Reduces damage if an account is compromised — attacker only gets that user's permissions",
+                "Should be reviewed regularly — especially when employees change roles or leave",
+                "Separation of duties: no single user should have access to all critical functions"
+              ],
+              "comparisonTable": {
+                "title": "File Permissions vs Access Levels",
+                "headers": ["Feature", "File Permissions", "Access Levels"],
+                "rows": [
+                  ["What it controls", "What a user can do with a specific file/folder (read/write/execute/delete)", "What systems, applications, and data a user can access at all"],
+                  ["Granularity", "Fine-grained — per file/folder", "Broader — per role or user group"],
+                  ["Example", "Only finance team can write to budget.xlsx", "Only managers can log in to the HR management system"],
+                  ["Managed by", "File system (OS) permissions", "User account management / directory services (e.g. Active Directory)"],
+                  ["Principle applied", "Least privilege at file level", "Least privilege at system/resource level"],
+                  ["Why it matters", "Prevents unauthorised file modification or data leakage", "Limits blast radius if account is compromised"]
+                ]
+              }
+            },
+            {
+              "code": "D2.1.3",
+              "term": "Backup and Recovery Procedures",
+              "definition": "A strategy for regularly copying data to a separate location so it can be restored if the original is lost, corrupted, or destroyed. The recovery plan defines how and how fast systems can be brought back online.",
+              "examples": "A company performing daily incremental backups to cloud storage and weekly full backups to an off-site data centre; a hospital restoring patient records from last night's backup after a ransomware attack.",
+              "examTip": "Learn the three backup types: full, incremental, differential. Also: 3-2-1 rule (3 copies, 2 different media, 1 off-site). Exams often ask 'why keep backups off-site?' — answer: to protect against local disasters (fire, flood).",
+              "keyFacts": [
+                "Full backup: copies all data every time — slowest and most storage, but fastest to restore",
+                "Incremental backup: copies only data changed since the last backup — fast and small, slower to restore",
+                "Differential backup: copies data changed since last full backup — middle ground",
+                "3-2-1 rule: 3 copies of data, on 2 different types of media, with 1 stored off-site",
+                "Recovery Time Objective (RTO): how quickly systems must be restored",
+                "Recovery Point Objective (RPO): maximum acceptable data loss (e.g. can lose up to 24 hours of data)",
+                "Backups must be tested — an untested backup may not restore correctly"
+              ],
+              "comparisonTable": {
+                "title": "Backup Types Compared",
+                "headers": ["Type", "What it backs up", "Backup speed", "Storage needed", "Restore speed", "Best for"],
+                "rows": [
+                  ["Full backup", "All data every time", "Slowest", "Most storage", "Fastest — one backup set", "Weekly baseline; critical systems"],
+                  ["Incremental backup", "Only changes since last backup (full or incremental)", "Fastest", "Least storage", "Slowest — need full + all incrementals", "Daily backups; large datasets"],
+                  ["Differential backup", "All changes since last full backup", "Medium", "Medium", "Medium — need full + latest differential", "Balance between storage and restore speed"]
+                ]
+              }
+            },
+            {
+              "code": "D2.1.4",
+              "term": "Passwords and Multi-Factor Authentication (MFA)",
+              "definition": "Passwords are the primary method of verifying a user's identity. MFA requires additional verification factors beyond just the password, significantly increasing security.",
+              "examples": "A user logging in with a password plus a 6-digit code from an authenticator app; a bank requiring password + fingerprint to authorise a large transfer; SMS verification code sent to a mobile phone.",
+              "examTip": "Pearson groups passwords AND MFA together under D2.1.4. For MFA, name the three factor types: something you KNOW (password/PIN), something you HAVE (phone/token), something you ARE (biometric). Exams often ask why MFA is more secure than password alone.",
+              "keyFacts": [
+                "Strong password: long (12+ characters), mix of upper/lower case, numbers and symbols, not a dictionary word",
+                "Password managers store complex passwords securely so users don't reuse weak passwords",
+                "MFA factor types: something you KNOW + something you HAVE + something you ARE",
+                "Even if password is stolen/guessed, attacker cannot access account without second factor",
+                "Common MFA methods: SMS code, authenticator app (TOTP), hardware token, biometric",
+                "Single sign-on (SSO): one secure login grants access to multiple systems — reduces password fatigue"
+              ]
+            },
+            {
+              "code": "D2.1.5",
+              "term": "Biometrics",
+              "definition": "Authentication using unique physical or behavioural characteristics of a person — such as fingerprints, facial structure, iris patterns, or voice.",
+              "examples": "Fingerprint scanner to unlock a smartphone; facial recognition to access a secure office; iris scan at airport border control.",
+              "examTip": "Biometrics = 'something you ARE'. Key advantage: cannot be forgotten or easily shared. Key concern: if biometric data is stolen, it cannot be changed like a password.",
+              "keyFacts": [
+                "Types: fingerprint, facial recognition, iris scan, retinal scan, voice recognition, gait analysis",
+                "Advantage: unique to individual — cannot be forgotten, lost, or easily shared",
+                "Advantage: faster than typing a password",
+                "Disadvantage: biometric data cannot be changed if compromised",
+                "Disadvantage: can be fooled (spoofed) by high-quality photos/models in some systems",
+                "Raises privacy concerns — organisations must store biometric data securely under GDPR",
+                "False acceptance rate (FAR) vs false rejection rate (FRR) trade-off"
+              ]
+            },
+            {
+              "code": "D2.1.6",
+              "term": "Physical Access Control",
+              "definition": "Security measures that physically prevent unauthorised individuals from entering areas containing IT equipment, servers, or sensitive data.",
+              "examples": "Swipe card system to enter a server room; biometric door locks on a data centre; CCTV cameras monitoring office entry points; security guards at building reception.",
+              "examTip": "Physical access control prevents the most direct form of attack — walking in and stealing hardware. Exams may ask you to explain why physical security is as important as cybersecurity.",
+              "keyFacts": [
+                "Swipe cards / key fobs: grant access only to authorised personnel; access logs created",
+                "Biometric door locks: fingerprint or iris required to enter secure areas",
+                "Security guards: human oversight of access control",
+                "CCTV: deters and records unauthorised access attempts",
+                "Mantrap / airlock: two-door system where second door only opens after first is closed — prevents tailgating",
+                "Clean desk policy: no sensitive documents left visible or accessible when unattended"
+              ]
+            },
+            {
+              "code": "D2.1.7",
+              "term": "Digital Certificates",
+              "definition": "Electronic credentials issued by a trusted Certificate Authority (CA) that verify the identity of a website, server, or individual, and enable encrypted communications.",
+              "examples": "The padlock icon in a browser indicating a valid SSL/TLS certificate; an organisation's web server presenting a certificate signed by a trusted CA like DigiCert; code signing certificates verifying that software has not been tampered with.",
+              "examTip": "Digital certificates = proof of identity + enable encryption. The CA is the trusted third party. HTTPS websites must have a valid certificate — if it's expired/invalid, browsers warn the user.",
+              "keyFacts": [
+                "Issued by a Certificate Authority (CA) — a trusted third party (e.g. DigiCert, Let's Encrypt)",
+                "Contains: website/owner's public key, identity information, expiry date, CA's digital signature",
+                "Used in HTTPS to (1) verify the server is genuine and (2) establish the encryption key",
+                "Without a valid certificate, an attacker could impersonate a website (man-in-the-middle)",
+                "Browsers show a padlock icon for valid certificates; warning page for expired/untrusted ones",
+                "Also used in email (S/MIME) and software distribution (code signing)"
+              ]
+            }
+          ]
+        },
+        {
+          "code": "D2.2",
+          "title": "Features and Functions of Antivirus Software",
+          "items": [
+            {
+              "code": "D2.2",
+              "term": "Antivirus Software",
+              "definition": "Security software that detects, quarantines, and removes malicious software from a system by scanning files against a database of known malware signatures and using behavioural analysis to detect unknown threats.",
+              "examples": "Windows Defender scanning downloaded files and alerting the user to ransomware; corporate endpoint protection software blocking a trojan before it can execute.",
+              "examTip": "Antivirus must be kept updated — new malware is created daily and old definitions won't catch new threats. Heuristic analysis catches zero-day (unknown) threats by suspicious behaviour, not just known signatures.",
+              "keyFacts": [
+                "Signature-based detection: compares files against database of known malware signatures",
+                "Heuristic analysis: detects suspicious behaviour patterns to catch unknown/zero-day malware",
+                "Real-time scanning: monitors files and processes continuously as they run",
+                "Quarantine: moves suspected malware to an isolated location before deletion",
+                "Regular definition updates essential: without updates, new malware won't be detected",
+                "Cannot protect against threats it hasn't been updated to recognise",
+                "Should be combined with other controls (firewall, MFA, backups) — not used in isolation"
+              ]
+            }
+          ]
+        },
+        {
+          "code": "D2.3",
+          "title": "Features and Functions of Firewalls",
+          "items": [
+            {
+              "code": "D2.3",
+              "term": "Firewalls",
+              "definition": "A security system that monitors and controls incoming and outgoing network traffic based on predefined security rules. Creates a barrier between a trusted internal network and untrusted external networks (such as the internet).",
+              "examples": "A company firewall blocking all incoming traffic on ports not required for business operations; a personal firewall on a laptop blocking an application from making unexpected outbound connections; a next-generation firewall performing deep packet inspection.",
+              "examTip": "Hardware firewall = sits at the network perimeter, protects all devices behind it. Software firewall = installed on individual device. Exams often ask to 'describe the function' — answer: monitors traffic, applies rules to allow/block, creates barrier between internal and external networks.",
+              "keyFacts": [
+                "Packet filtering: examines each data packet's source/destination address and port against rules",
+                "Stateful inspection: tracks active connections, only allows packets that are part of established sessions",
+                "Application layer (next-gen) firewall: inspects packet contents, not just headers",
+                "Can block specific websites, applications, or IP address ranges",
+                "Hardware firewall: dedicated device protecting entire network (e.g. at company router)",
+                "Software firewall: runs on individual computers (e.g. Windows Firewall)",
+                "Cannot protect against threats originating inside the network (insider threats)"
+              ],
+              "comparisonTable": {
+                "title": "Hardware Firewall vs Software Firewall",
+                "headers": ["Feature", "Hardware Firewall", "Software Firewall"],
+                "rows": [
+                  ["Where it sits", "Network perimeter — between internet and internal network", "On individual device (PC, laptop, server)"],
+                  ["What it protects", "All devices on the network", "Only the device it is installed on"],
+                  ["Performance impact", "None on individual devices — runs on dedicated hardware", "Uses some CPU and RAM on the host device"],
+                  ["Cost", "Higher upfront cost for dedicated appliance", "Often free (built into OS) or low-cost subscription"],
+                  ["Management", "Centralised — IT team manages rules for all devices", "Decentralised — each device has its own settings"],
+                  ["Limitation", "Does not protect against threats originating inside the network", "Only protects one device; user may disable it"],
+                  ["Best for", "Businesses protecting their entire network", "Individual users; supplementary layer on specific devices"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "code": "D2.4",
+          "title": "Features and Functions of Encryption Methods",
+          "items": [
+            {
+              "code": "D2.4.1",
+              "term": "Encryption of Stored Data (Data at Rest)",
+              "definition": "Encrypting data stored on hard drives, databases, USB drives, or cloud storage so that even if the physical medium is stolen or accessed without authorisation, the data cannot be read without the decryption key.",
+              "examples": "BitLocker encrypting a laptop's hard drive so a stolen laptop's data cannot be read; an encrypted database of customer payment details; encrypted backup tapes stored off-site.",
+              "examTip": "Data at rest = stored data. Full disk encryption means if a device is stolen, the data is unreadable. Key management is critical — if the key is lost, the data cannot be recovered either.",
+              "keyFacts": [
+                "Full disk encryption (FDE): encrypts entire hard drive — e.g. BitLocker (Windows), FileVault (macOS)",
+                "Database encryption: individual records or entire database encrypted at storage level",
+                "Protects against theft of physical devices (laptops, USB drives, backup tapes)",
+                "The decryption key must be stored separately and securely",
+                "Does not protect data once it is accessed — a logged-in user still sees plaintext data"
+              ]
+            },
+            {
+              "code": "D2.4.2",
+              "term": "Encryption of Data During Transmission (Data in Transit)",
+              "definition": "Encrypting data as it travels across a network or the internet so that it cannot be read if intercepted by a third party.",
+              "examples": "A VPN encrypting all traffic between a remote worker and the company network; TLS encrypting email messages in transit; end-to-end encryption in WhatsApp meaning only sender and recipient can read messages.",
+              "examTip": "Data in transit = data being sent. Key protocols: TLS/SSL (for HTTPS, email), VPN tunnelling. End-to-end encryption (E2E) means even the service provider cannot read the content.",
+              "keyFacts": [
+                "TLS (Transport Layer Security): successor to SSL; protects HTTPS web traffic and email",
+                "VPN: encrypts all traffic between device and network endpoint",
+                "End-to-end encryption (E2E): only sender and recipient can decrypt — not even the platform provider",
+                "Symmetric encryption: both parties use the same key (fast; key must be shared securely)",
+                "Asymmetric encryption: public/private key pair — public key encrypts, private key decrypts (used to establish TLS sessions)",
+                "Without encryption, data sent over public Wi-Fi can be intercepted (MitM attack)"
+              ]
+            },
+            {
+              "code": "D2.4.3",
+              "term": "Encryption in Secure Websites (HTTPS)",
+              "definition": "HTTPS (HyperText Transfer Protocol Secure) uses TLS/SSL encryption to secure communication between a user's browser and a web server, verifying the server's identity and encrypting all data exchanged.",
+              "examples": "A bank's website using HTTPS to protect login credentials and transaction data; an e-commerce site encrypting payment card details during checkout; a browser displaying a padlock icon to confirm a secure connection.",
+              "examTip": "HTTPS = HTTP + TLS/SSL. The three things HTTPS provides: (1) encryption — data cannot be read in transit, (2) integrity — data has not been tampered with, (3) authentication — server identity verified via digital certificate.",
+              "keyFacts": [
+                "Padlock icon in browser = valid HTTPS/TLS certificate in place",
+                "TLS handshake: browser and server agree on encryption method and exchange keys before data transfer",
+                "Digital certificate (issued by CA) verifies the server's identity — prevents impersonation",
+                "Without HTTPS, login credentials sent over HTTP can be captured by a packet sniffer",
+                "Google Chrome marks HTTP sites as 'Not Secure' — HTTPS is now the standard",
+                "HSTS (HTTP Strict Transport Security): forces browsers to always use HTTPS for a domain"
+              ],
+              "comparisonTable": {
+                "title": "Encryption Contexts Compared",
+                "headers": ["Context", "Data at Rest (D2.4.1)", "Data in Transit (D2.4.2)", "HTTPS (D2.4.3)"],
+                "rows": [
+                  ["What is protected", "Stored files, databases, drives", "Data being sent across a network", "Web traffic between browser and server"],
+                  ["When protection applies", "While data is stored / device is offline", "While data is being transmitted", "During every HTTPS web session"],
+                  ["Key technology", "BitLocker, FileVault, AES encryption", "TLS, VPN, E2E encryption", "TLS/SSL + digital certificate"],
+                  ["Main threat prevented", "Physical theft of device/storage", "Man-in-the-middle interception", "Impersonation of website + data interception"],
+                  ["Example attack prevented", "Stolen encrypted laptop — data unreadable", "Intercepted Wi-Fi traffic — data unreadable", "Fake bank website impersonation thwarted"],
+                  ["Who manages it", "OS/disk encryption software; DBA for databases", "Network admin (VPN); app developers (TLS)", "Web server admin (certificate) + browser"]
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

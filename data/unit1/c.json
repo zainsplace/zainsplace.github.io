@@ -1,0 +1,510 @@
+{
+  "section": "C",
+  "title": "Operating Online",
+  "tier": 1,
+  "colour": "#e53e3e",
+  "topics": [
+    {
+      "code": "C1",
+      "title": "Online Systems",
+      "subtopics": [
+        {
+          "code": "C1.1",
+          "title": "Cloud Computing Models",
+          "items": [
+            {
+              "code": "C1.1.1",
+              "term": "Private Cloud",
+              "definition": "Cloud infrastructure operated solely for one organisation, managed internally or by a third party. Hosted on-premise or at a dedicated facility.",
+              "examples": "A hospital running its own cloud servers to store patient records securely; a bank with its own cloud for financial data.",
+              "examTip": "Private cloud = more control + security but higher cost. Contrast with public cloud in 'discuss' questions.",
+              "keyFacts": [
+                "Organisation has full control over data and security",
+                "Higher setup and maintenance cost than public cloud",
+                "Better for sensitive/confidential data (e.g. financial, medical)",
+                "Not shared with other organisations"
+              ]
+            },
+            {
+              "code": "C1.1.2",
+              "term": "Public Cloud",
+              "definition": "Cloud services delivered over the internet and shared across multiple organisations. Managed by a third-party provider (e.g. AWS, Microsoft Azure, Google Cloud).",
+              "examples": "A small business using Google Drive; a school using Microsoft 365; a startup hosting its app on AWS.",
+              "examTip": "Public cloud = low cost, scalable, but less control over where your data is stored.",
+              "keyFacts": [
+                "Pay-as-you-go pricing — cost-effective for small organisations",
+                "Scalable — can increase/decrease resources instantly",
+                "Data stored on shared infrastructure",
+                "Provider responsible for maintenance and security of hardware"
+              ]
+            },
+            {
+              "code": "C1.1.3",
+              "term": "Hybrid Cloud",
+              "definition": "A combination of private and public cloud, allowing data and applications to be shared between them. Sensitive data stays on private cloud; less sensitive workloads use public cloud.",
+              "examples": "A retailer storing customer payment data on a private cloud but running its public-facing website on a public cloud.",
+              "examTip": "Hybrid cloud = best of both worlds. Good for a 'discuss suitability' question — mention flexibility and cost savings.",
+              "keyFacts": [
+                "Sensitive data kept on private cloud for security/compliance",
+                "Less sensitive tasks handled by cheaper public cloud",
+                "More complex to manage than either alone",
+                "Allows organisations to scale using public cloud when demand spikes"
+              ]
+            },
+            {
+              "code": "C1.1.4",
+              "term": "Infrastructure as a Service (IaaS)",
+              "definition": "Cloud model providing virtualised computing resources over the internet — servers, storage, networking. Organisation manages OS, applications and data; provider manages physical hardware.",
+              "examples": "Amazon EC2 (virtual servers); Microsoft Azure Virtual Machines; Google Compute Engine.",
+              "examTip": "IaaS = you manage OS and above; provider manages hardware. Most flexible but most responsibility.",
+              "keyFacts": [
+                "Organisation rents virtual machines and storage",
+                "Full control over operating system and software installed",
+                "Suitable for organisations that need custom infrastructure",
+                "Pay for what you use — no hardware purchase needed"
+              ]
+            },
+            {
+              "code": "C1.1.5",
+              "term": "Software as a Service (SaaS)",
+              "definition": "Cloud model where software applications are delivered over the internet on a subscription basis. Provider manages everything — hardware, OS, application. User just uses the software via browser.",
+              "examples": "Microsoft 365 (Word, Excel online); Google Workspace; Salesforce CRM; Spotify.",
+              "examTip": "SaaS = no installation needed, access anywhere. Most common in exam scenarios — link to productivity/remote working.",
+              "keyFacts": [
+                "No software installation required on user devices",
+                "Accessible from any device with internet connection",
+                "Automatic updates managed by provider",
+                "Subscription-based pricing (monthly/annual)"
+              ]
+            },
+            {
+              "code": "C1.1.6",
+              "term": "Platform as a Service (PaaS)",
+              "definition": "Cloud model providing a platform for developers to build, test, and deploy applications without managing underlying infrastructure. Provider manages hardware and OS; developer manages applications and data.",
+              "examples": "Google App Engine; Heroku; Microsoft Azure App Service.",
+              "examTip": "PaaS = for developers building apps. Middle ground between IaaS (most control) and SaaS (least control).",
+              "keyFacts": [
+                "Developer focuses on writing code, not managing servers",
+                "Provider handles OS updates, security patches, scaling",
+                "Faster development — pre-built tools and frameworks available",
+                "Less flexible than IaaS but less management overhead"
+              ],
+              "comparisonTable": {
+                "title": "Cloud Service Models Compared (IaaS vs PaaS vs SaaS)",
+                "headers": ["Feature", "IaaS", "PaaS", "SaaS"],
+                "rows": [
+                  ["What you get", "Virtual hardware (servers, storage, networking)", "Development platform + runtime environment", "Ready-to-use software application"],
+                  ["You manage", "OS, middleware, apps, data", "Apps and data only", "Nothing — just use it"],
+                  ["Provider manages", "Physical hardware only", "Hardware + OS + middleware", "Everything"],
+                  ["Control level", "Highest", "Medium", "Lowest"],
+                  ["Flexibility", "Most flexible", "Moderate", "Least flexible"],
+                  ["Who uses it", "IT teams needing custom infrastructure", "Developers building applications", "End users / businesses wanting ready software"],
+                  ["Example", "Amazon EC2, Azure VMs", "Google App Engine, Heroku", "Microsoft 365, Salesforce, Spotify"],
+                  ["Typical cost", "Pay per resource used", "Pay per resource/API calls", "Subscription (monthly/annual)"]
+                ]
+              }
+            },
+            {
+              "code": "C1.1.1-C1.1.3",
+              "term": "Cloud Deployment Models Compared",
+              "definition": "The three deployment models differ in who owns, controls, and shares the cloud infrastructure.",
+              "examples": "NHS using private cloud for patient records; a startup using AWS public cloud; a retailer using hybrid cloud.",
+              "examTip": "In 'discuss suitability' questions: match the deployment model to the scenario. Sensitive data → private/hybrid. Small budget/startup → public. Large org needing both → hybrid.",
+              "keyFacts": [],
+              "comparisonTable": {
+                "title": "Cloud Deployment Models Compared",
+                "headers": ["Feature", "Private Cloud", "Public Cloud", "Hybrid Cloud"],
+                "rows": [
+                  ["Who uses it", "Single organisation only", "Multiple organisations (shared)", "One organisation using both"],
+                  ["Who manages it", "Org or contracted provider", "Third-party provider (e.g. AWS)", "Mix of both"],
+                  ["Cost", "High setup + maintenance cost", "Low — pay-as-you-go", "Medium — private portion is costly"],
+                  ["Security/Control", "Highest — full control", "Lower — shared infrastructure", "High for sensitive data, lower for rest"],
+                  ["Scalability", "Limited — must provision own hardware", "Very high — instant scaling", "High — can burst to public cloud"],
+                  ["Best for", "Sensitive data (medical, financial, legal)", "Small/medium orgs, startups, variable demand", "Large orgs with mixed data sensitivity"],
+                  ["GDPR risk", "Low — data stays in-house", "Higher — data may leave UK", "Medium — depends on what goes where"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "code": "C1.2",
+          "title": "Impact and Implications of Cloud Computing",
+          "items": [
+            {
+              "code": "C1.2",
+              "term": "Impact and Implications of Cloud Computing for Individuals and Organisations",
+              "definition": "Cloud computing changes how individuals store data and access software, and how organisations manage IT infrastructure, costs, and workforce.",
+              "examples": "An individual using iCloud for photo backup; a business moving from on-premise servers to AWS to reduce IT costs.",
+              "examTip": "For a 'discuss' question: cover benefits AND drawbacks. Benefits: cost, scalability, accessibility. Drawbacks: security, internet dependency, vendor lock-in.",
+              "keyFacts": [
+                "BENEFITS — Individuals: access files anywhere, automatic backups, no hardware cost",
+                "BENEFITS — Organisations: reduced capital expenditure, scalable, always up-to-date software",
+                "DRAWBACKS: requires reliable internet connection; data security concerns",
+                "DRAWBACKS: vendor lock-in — difficult to switch providers; ongoing subscription costs",
+                "Data may be stored in a different country — legal/compliance implications",
+                "Enables remote working — employees can access systems from anywhere"
+              ],
+              "extendedAnswer": "Cloud computing offers significant benefits for organisations, including reduced capital expenditure on hardware and the ability to scale resources up or down based on demand. Employees can access data and applications from any location, supporting remote working and improving productivity. However, organisations face risks: if internet connectivity is lost, access to cloud systems is unavailable, causing disruption. Security concerns arise as data is stored on third-party servers, potentially in different countries, raising data protection compliance issues under GDPR. There is also risk of vendor lock-in, where migrating data away from one provider is costly and complex."
+            }
+          ]
+        },
+        {
+          "code": "C1.3",
+          "title": "Systems that Enable Remote Working",
+          "items": [
+            {
+              "code": "C1.3.1",
+              "term": "VPNs (Virtual Private Networks)",
+              "definition": "A VPN creates an encrypted tunnel between a user's device and the organisation's network over the internet, allowing secure remote access as if physically connected to the office network.",
+              "examples": "An employee working from home connecting to the company intranet via VPN; a journalist using a VPN to securely transmit reports.",
+              "examTip": "VPN = encryption + secure tunnel + remote access. Often appears with data transmission security questions.",
+              "keyFacts": [
+                "Encrypts all data transmitted between device and network",
+                "Masks the user's IP address — provides anonymity",
+                "Allows remote workers to access internal network resources securely",
+                "Can reduce performance due to encryption overhead",
+                "Protects data from interception on public Wi-Fi"
+              ]
+            },
+            {
+              "code": "C1.3.2",
+              "term": "Remote Desktop Technologies",
+              "definition": "Software that allows a user to view and control another computer's desktop remotely over a network or internet connection.",
+              "examples": "Microsoft Remote Desktop; TeamViewer; IT support staff remotely fixing a user's computer.",
+              "examTip": "Remote desktop = see and control another machine. Useful for IT support and employees accessing office computers from home.",
+              "keyFacts": [
+                "Full control of remote computer — run applications, access files",
+                "Requires stable internet connection for smooth operation",
+                "Security risk if not properly secured — attackers could gain access",
+                "Useful for IT support without physical presence",
+                "Commonly used with VPN for added security"
+              ],
+              "comparisonTable": {
+                "title": "VPN vs Remote Desktop Technology",
+                "headers": ["Feature", "VPN", "Remote Desktop"],
+                "rows": [
+                  ["What it does", "Encrypts tunnel so device accesses the network as if on-site", "Displays and controls a remote machine's desktop"],
+                  ["Data location", "Files stay on organisation's servers; user works via secure connection", "All processing on remote machine; user just sees the screen"],
+                  ["Best for", "Accessing shared files and intranet resources from home", "Full control of office PC; IT support; specific software only on office machine"],
+                  ["Security concern", "Endpoint device must be secure; VPN credentials can be stolen", "If poorly secured, anyone could take control of the remote machine"],
+                  ["Internet dependency", "Yes — needs reliable connection for performance", "Yes — latency makes it slow on poor connections"],
+                  ["Example tools", "Cisco AnyConnect, OpenVPN, Windows VPN", "Microsoft Remote Desktop, TeamViewer, Chrome Remote Desktop"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "code": "C1.4",
+          "title": "Factors Affecting Use and Selection of Online Systems",
+          "items": [
+            {
+              "code": "C1.4.1",
+              "term": "Security",
+              "definition": "The level of protection an online system provides for data and user accounts, including encryption, access control, and compliance with regulations.",
+              "examTip": "Always mention security as a factor — link to data sensitivity and GDPR for high marks.",
+              "keyFacts": [
+                "Organisations must ensure cloud providers are GDPR-compliant",
+                "Encryption of data at rest and in transit is essential",
+                "Multi-factor authentication adds extra security layer",
+                "Security breaches can lead to financial penalties and reputational damage"
+              ]
+            },
+            {
+              "code": "C1.4.2",
+              "term": "Cost",
+              "definition": "The total cost of adopting and running an online system, including subscription fees, data transfer costs, training, and migration costs.",
+              "examTip": "Compare subscription (ongoing) vs capital (one-off) cost in cloud vs on-premise discussions.",
+              "keyFacts": [
+                "Cloud: lower upfront cost, but ongoing subscription fees",
+                "On-premise: high upfront hardware cost, lower ongoing cost",
+                "Scalable pricing — only pay for resources used",
+                "Hidden costs: data transfer fees, support, training"
+              ]
+            },
+            {
+              "code": "C1.4.3",
+              "term": "Ease of Use",
+              "definition": "How intuitive and simple the online system is for employees and customers to learn and operate.",
+              "examTip": "Ease of use links to staff training needs and productivity — mention both in extended answers.",
+              "keyFacts": [
+                "Complex systems require more training — increases cost and downtime",
+                "Good UX reduces errors and increases productivity",
+                "Affects employee adoption and satisfaction"
+              ]
+            },
+            {
+              "code": "C1.4.4",
+              "term": "Features",
+              "definition": "The functionality offered by an online system — whether it meets the specific needs of the organisation (e.g. storage capacity, collaboration tools, analytics).",
+              "examTip": "Match features to the scenario in the question — does the system do what the business needs?",
+              "keyFacts": [
+                "Must match user and organisational requirements",
+                "Feature comparison drives provider selection",
+                "Excess features can increase complexity and cost"
+              ]
+            },
+            {
+              "code": "C1.4.5",
+              "term": "Connectivity",
+              "definition": "The quality and reliability of the internet connection required to use the online system effectively.",
+              "examTip": "Cloud systems are useless without internet — mention this as a risk/drawback in cloud questions.",
+              "keyFacts": [
+                "Unreliable connection causes downtime and productivity loss",
+                "High-bandwidth applications (video, large files) need fast connections",
+                "Remote/rural areas may have poor connectivity — limits cloud adoption"
+              ]
+            },
+            {
+              "code": "C1.4.6",
+              "term": "Scalability",
+              "definition": "The ability of an online system to grow or shrink in capacity to meet changing demand, without significant cost or disruption.",
+              "examTip": "Scalability is a key benefit of cloud — use this in any 'discuss cloud suitability' question.",
+              "keyFacts": [
+                "Cloud systems can scale up during peak demand (e.g. Christmas for retail)",
+                "Scale down when demand falls — avoid paying for unused capacity",
+                "On-premise systems are harder and slower to scale",
+                "Important for rapidly growing organisations"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "C2",
+      "title": "Online Communities",
+      "subtopics": [
+        {
+          "code": "C2.1",
+          "title": "Ways of Communicating and Interacting with Online Communities",
+          "items": [
+            {
+              "code": "C2.1.1",
+              "term": "Social Media",
+              "definition": "Platforms that allow users to create and share content and interact with others. Examples include Instagram, X (Twitter), Facebook, LinkedIn, TikTok.",
+              "examples": "A business using Instagram to market products; a school using Twitter to communicate with parents.",
+              "examTip": "Social media = marketing + communication + community building. Can appear in E1 (targeted marketing) or C2 questions.",
+              "keyFacts": [
+                "Instant communication to large audiences",
+                "Used for marketing, customer service, brand building",
+                "Risk: negative comments spread quickly; reputational damage",
+                "Privacy concerns — personal data collected by platforms"
+              ]
+            },
+            {
+              "code": "C2.1.2",
+              "term": "Blog/Vlog",
+              "definition": "A blog is a regularly updated website with written content; a vlog is a video-based blog. Both allow individuals or organisations to share information, opinions, or expertise.",
+              "examples": "A technology blogger reviewing new products; a YouTuber creating tutorial videos.",
+              "examTip": "Blog/vlog = one-to-many communication. Often used for education/information sharing.",
+              "keyFacts": [
+                "Allows creators to build an audience over time",
+                "Can generate advertising revenue",
+                "Comments section allows interaction with readers/viewers",
+                "Used by businesses for content marketing"
+              ]
+            },
+            {
+              "code": "C2.1.3",
+              "term": "Wiki",
+              "definition": "A collaboratively edited website where multiple users can create and edit content. Wikipedia is the most well-known example.",
+              "examples": "Wikipedia; internal company wikis for knowledge sharing; fan wikis for games or TV shows.",
+              "examTip": "Wiki = collaborative, anyone can edit. Reliability can be an issue — content may not always be accurate.",
+              "keyFacts": [
+                "Collaborative — content created and updated by community",
+                "Free to access — democratises knowledge",
+                "Accuracy concerns — unverified edits possible",
+                "Used internally by organisations for documentation"
+              ]
+            },
+            {
+              "code": "C2.1.4",
+              "term": "Chatrooms",
+              "definition": "Online spaces where multiple users can communicate in real time via text messages. Can be public or private.",
+              "examples": "Discord servers; IRC channels; customer support live chat.",
+              "examTip": "Chatrooms = real-time, synchronous communication. Contrast with forums (asynchronous).",
+              "keyFacts": [
+                "Real-time communication between multiple users",
+                "Can be public (open to anyone) or private (invite only)",
+                "Risk: inappropriate content, cyberbullying, grooming",
+                "Used by businesses for customer support"
+              ]
+            },
+            {
+              "code": "C2.1.5",
+              "term": "Instant Messaging",
+              "definition": "One-to-one or small group real-time text communication via apps such as WhatsApp, iMessage, or Microsoft Teams.",
+              "examples": "WhatsApp for personal messaging; Microsoft Teams for workplace communication.",
+              "examTip": "IM = faster than email, more informal. Good for quick workplace updates.",
+              "keyFacts": [
+                "Faster than email for quick queries",
+                "Supports file sharing, voice, and video",
+                "Can blur work/personal boundaries",
+                "End-to-end encryption in apps like WhatsApp"
+              ]
+            },
+            {
+              "code": "C2.1.6",
+              "term": "Podcasts",
+              "definition": "Audio recordings (sometimes with video) distributed online for on-demand listening. Users subscribe and download episodes.",
+              "examples": "BBC podcasts; educational podcasts on exam topics; business podcasts.",
+              "examTip": "Podcasts = asynchronous, on-demand audio content. One-to-many communication.",
+              "keyFacts": [
+                "Consumed on-demand — listener chooses when to listen",
+                "Growing medium for education, news, entertainment",
+                "Low cost to produce — accessible to individuals",
+                "No real-time interaction — one-way communication"
+              ]
+            },
+            {
+              "code": "C2.1.7",
+              "term": "Forums",
+              "definition": "Online discussion boards where users post questions or comments and others reply asynchronously. Threads allow organised discussion.",
+              "examples": "Reddit; Stack Overflow; manufacturer support forums.",
+              "examTip": "Forums = asynchronous discussion, searchable threads. Contrast with chatrooms (real-time).",
+              "keyFacts": [
+                "Posts are permanent and searchable — useful reference",
+                "Asynchronous — no need to be online at same time",
+                "Community-moderated — quality varies",
+                "Used for technical support, hobby communities, discussion"
+              ],
+              "comparisonTable": {
+                "title": "Online Community Types Compared",
+                "headers": ["Feature", "Chatroom", "Forum", "Blog/Vlog", "Instant Messaging", "Social Media"],
+                "rows": [
+                  ["Communication style", "Real-time (synchronous)", "Asynchronous (threaded replies)", "One-to-many, asynchronous", "Real-time, one-to-one/small group", "One-to-many, asynchronous"],
+                  ["Permanence", "Messages often not saved", "Posts permanent and searchable", "Posts permanent", "Usually saved in history", "Posts visible until deleted"],
+                  ["Audience size", "Small to medium groups", "Open to all; large communities", "Potentially global audience", "Small group", "Potentially millions"],
+                  ["Best for", "Live discussion, events, support", "Technical help, reference, Q&A", "Sharing expertise, marketing", "Quick workplace/personal communication", "Brand building, marketing, news"],
+                  ["Organisation use", "Customer live support", "Knowledge base, community support", "Content marketing, SEO", "Internal team communication", "Marketing, PR, customer engagement"],
+                  ["Privacy", "Can be public or private", "Usually public", "Usually public", "Private", "Usually public (can restrict)"],
+                  ["Example", "Discord, IRC", "Reddit, Stack Overflow", "WordPress blog, YouTube", "WhatsApp, Teams", "Instagram, X, LinkedIn"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "code": "C2.2",
+          "title": "Considerations for Individuals and Organisations",
+          "items": [
+            {
+              "code": "C2.2.1",
+              "term": "User Experience (UX)",
+              "definition": "How easy, enjoyable, and effective the online community platform is to use — covering ease of use, performance, availability, and accessibility.",
+              "examTip": "UX considerations: is it fast? Can users with disabilities access it? Is it available 24/7?",
+              "keyFacts": [
+                "Ease of use affects adoption — poor UX drives users away",
+                "Performance: slow platforms frustrate users",
+                "Availability: downtime means lost revenue/productivity",
+                "Accessibility: must work for users with disabilities (screen readers, etc.)"
+              ]
+            },
+            {
+              "code": "C2.2.2",
+              "term": "Meeting User Needs",
+              "definition": "Whether the platform's features and content match what its users actually require.",
+              "examTip": "Always tie platform choice back to specific user needs in scenario questions.",
+              "keyFacts": [
+                "Platform must offer features users actually need",
+                "Feedback mechanisms help identify unmet needs",
+                "Mismatch between platform and needs reduces engagement"
+              ]
+            },
+            {
+              "code": "C2.2.3",
+              "term": "Cost",
+              "definition": "The financial implications of setting up, running, and maintaining an online community platform — including subscription, hosting, moderation, and staff costs.",
+              "keyFacts": [
+                "Free platforms vs paid — trade-offs in features and control",
+                "Moderation costs for keeping community safe",
+                "Hidden costs: advertising, premium features, bandwidth"
+              ]
+            },
+            {
+              "code": "C2.2.4",
+              "term": "Privacy",
+              "definition": "The degree to which users' personal information is protected on the platform, and whether their data is shared with third parties.",
+              "examTip": "Privacy links to F2 (GDPR) — data collected by social platforms must be handled lawfully.",
+              "keyFacts": [
+                "GDPR requires users to consent to data collection",
+                "Platforms may sell data to advertisers — privacy risk",
+                "Users may be unaware of what data is collected",
+                "Organisations must have a clear privacy policy"
+              ]
+            },
+            {
+              "code": "C2.2.5",
+              "term": "Security",
+              "definition": "Protecting user accounts and data from unauthorised access, hacking, and malicious content on the online community platform.",
+              "keyFacts": [
+                "Account security: strong passwords, MFA",
+                "Malicious links/content spread through communities",
+                "Organisations must monitor for data breaches",
+                "HTTPS ensures data in transit is encrypted"
+              ]
+            },
+            {
+              "code": "C2.2.6",
+              "term": "Downtime",
+              "definition": "Periods when the online platform is unavailable, preventing users from accessing content or communicating.",
+              "keyFacts": [
+                "Planned downtime for maintenance vs unexpected outages",
+                "Business-critical platforms need high availability (99.9% uptime)",
+                "Downtime causes loss of revenue and user trust",
+                "Cloud-hosted platforms generally have better uptime than self-hosted"
+              ]
+            },
+            {
+              "code": "C2.2.7",
+              "term": "Training",
+              "definition": "The education required for employees and users to effectively use and manage the online community platform.",
+              "keyFacts": [
+                "Staff need training to moderate and manage platforms",
+                "Users may need guidance on how to interact safely",
+                "Training has a cost — time and money",
+                "Ongoing training needed as platforms update"
+              ]
+            },
+            {
+              "code": "C2.2.8",
+              "term": "Integration with Current Systems",
+              "definition": "How easily the online community platform connects with existing software and systems already used by the organisation.",
+              "keyFacts": [
+                "Must integrate with CRM, email, analytics tools",
+                "Poor integration creates duplicate work and data silos",
+                "API availability is key to integration",
+                "Migration from old system can cause temporary disruption"
+              ]
+            },
+            {
+              "code": "C2.2.9",
+              "term": "Productivity",
+              "definition": "The impact of the online community platform on the efficiency and output of employees and the organisation.",
+              "keyFacts": [
+                "Well-used communities can speed up problem-solving and collaboration",
+                "Excessive social media use can reduce focus and output",
+                "Organisations often set acceptable use policies to manage this",
+                "Internal communities (e.g. Yammer, Teams) can replace lengthy email chains"
+              ]
+            },
+            {
+              "code": "C2.2.10",
+              "term": "Working Practices and Company Policies",
+              "definition": "The rules and guidelines organisations set for how employees interact on online communities — including acceptable use policies and social media guidelines.",
+              "examTip": "Link to F1.1.6 (acceptable use policies) — organisations set rules to protect their reputation and comply with law.",
+              "keyFacts": [
+                "Acceptable use policies (AUPs) define what is/isn't allowed",
+                "Employees represent the company online — misconduct has consequences",
+                "Policies must comply with employment law and GDPR",
+                "Remote work has made online communication policies more important"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
