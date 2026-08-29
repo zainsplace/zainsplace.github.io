@@ -118,8 +118,10 @@ function readLegacy(key) {
 }
 
 function readLegacyNum(key) {
-  const v = parseInt(localStorage.getItem(key) || '0', 10);
-  return Number.isFinite(v) ? v : 0;
+  try {
+    const v = parseInt(localStorage.getItem(key) || '0', 10);
+    return Number.isFinite(v) ? v : 0;
+  } catch { return 0; }
 }
 
 /* One-way migration off the old per-site keys. Both units were served from the
@@ -133,7 +135,11 @@ function migrateLegacy() {
   ['u1', 'u2'].forEach(id => {
     const blob = legacy[id];
     if (!hasRealHistory(blob)) return;
-    s.units[id] = deepMerge(defaultUnitState(), blob);
+    // theme/profile/activeUnit are global. Left inside a unit blob they collide
+    // with the Proxy's global keys and make Object.keys(state) throw.
+    const unitOnly = Object.assign({}, blob);
+    GLOBAL_KEYS.forEach(k => delete unitOnly[k]);
+    s.units[id] = deepMerge(defaultUnitState(), unitOnly);
     if (blob.examDate) s.units[id].examDate = blob.examDate;
     const checks = readLegacy(id === 'u1' ? 'u1_plan_checks' : 'u2_plan_checks');
     if (checks) s.units[id].planChecks = checks;
@@ -156,12 +162,35 @@ function migrateLegacy() {
   return s;
 }
 
+/* Valid JSON is not the same as a valid store. Without this, {"units":[]} or
+   {"activeUnit":"u3"} parses fine and then every state read throws. */
+function isPlainObject(v) {
+  return !!v && typeof v === 'object' && !Array.isArray(v);
+}
+
+function coerceStore(raw) {
+  const base = defaultStore();
+  if (!isPlainObject(raw)) return base;
+  const out = defaultStore();
+  if (typeof raw.theme === 'string') out.theme = raw.theme;
+  if (isPlainObject(raw.profile)) out.profile = Object.assign(out.profile, raw.profile);
+  if (isPlainObject(raw.units)) {
+    Object.keys(out.units).forEach(id => {
+      if (isPlainObject(raw.units[id])) {
+        out.units[id] = deepMerge(defaultUnitState(), raw.units[id]);
+      }
+    });
+  }
+  out.activeUnit = UNITS[raw.activeUnit] ? raw.activeUnit : base.activeUnit;
+  return out;
+}
+
 function loadStore() {
   let raw = null;
   try { raw = localStorage.getItem(STATE_KEY); } catch { raw = null; }
   if (!raw) return migrateLegacy();
   try {
-    return deepMerge(defaultStore(), JSON.parse(raw));
+    return coerceStore(JSON.parse(raw));
   } catch {
     return defaultStore();
   }
@@ -191,7 +220,8 @@ const state = new Proxy({}, {
     return true;
   },
   ownKeys() {
-    return [...GLOBAL_KEYS].concat(Object.keys(store.units[store.activeUnit]));
+    // Must be duplicate-free: a proxy ownKeys trap that repeats a key throws.
+    return [...new Set([...GLOBAL_KEYS, ...Object.keys(store.units[store.activeUnit])])];
   },
   getOwnPropertyDescriptor() {
     return { enumerable: true, configurable: true };
@@ -284,6 +314,7 @@ function resetTransientState() {
   currentSection = null;
   flashFilter = 'all';
   qFilter = 'all';
+  if (typeof flashPracticeMode !== 'undefined') flashPracticeMode = false;
   qMode = 'browse';
   gamesMode = 'menu';
   quizQueue = [];
@@ -508,7 +539,7 @@ function daysUntilExam() {
 }
 
 function setExamDate() {
-  const current = getExamDate();
+  const current = getExamDate() || '';
   const input = prompt('Enter your exam date (YYYY-MM-DD):', current);
   if (!input) return;
   if (!/^\d{4}-\d{2}-\d{2}$/.test(input.trim()) || isNaN(new Date(input.trim()).getTime())) {
@@ -1215,7 +1246,7 @@ function renderFlashUI() {
     <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center">
       <select id="flash-filter" onchange="setFlashFilter(this.value)" style="background:var(--bg2);border:1px solid var(--border);color:var(--text);padding:9px 12px;border-radius:var(--radius-sm);font-size:14px;font-family:'Inter',sans-serif;font-weight:600;box-shadow:var(--shadow-sm);cursor:pointer">
         <option value="all" ${flashFilter === 'all' ? 'selected' : ''}>All sections</option>
-        ${['A','B','C','D'].map(l => `<option value="${l}" ${flashFilter === l ? 'selected' : ''}>${l}</option>`).join('')}
+        ${unitLettersUpper().map(l => `<option value="${l}" ${flashFilter === l ? 'selected' : ''}>${l}</option>`).join('')}
       </select>
       <span style="font-size:14px;color:var(--text2)">${due} due today / ${total} total</span>
       <button class="btn btn-secondary btn-sm" onclick="flashPracticeMode=false;buildFlashQueue();renderFlashUI()">Refresh queue</button>
@@ -1707,8 +1738,17 @@ function buildFITBQuestions(count = 10) {
     const blanked = inline
       ? item.definition.replace(new RegExp(escapeRe(item.term), 'gi'), '_____')
       : '_____ — ' + item.definition;
-    const others = pool.filter(i => i.term !== item.term);
-    const distractors = others.sort(() => Math.random() - 0.5).slice(0, 3).map(i => i.term);
+    // Distractors must be distinct from the answer AND from each other, or the
+    // board shows two identical buttons and one correct answer scores wrong.
+    const seen = new Set([item.term.toLowerCase()]);
+    const distractors = [];
+    for (const cand of pool.slice().sort(() => Math.random() - 0.5)) {
+      const key = String(cand.term).toLowerCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      distractors.push(cand.term);
+      if (distractors.length === 3) break;
+    }
     const options = [item.term, ...distractors].sort(() => Math.random() - 0.5);
     return { definition: blanked, answer: item.term, options, code: item.code };
   });
@@ -1812,10 +1852,18 @@ function buildTFQuestions() {
     // True statement: real definition
     qs.push({ statement: `"${item.term}" — ${item.definition}`, answer: true, term: item.term });
 
-    // False statement: correct term, wrong definition (from a different item)
-    const otherIdx = (i + 1 + Math.floor(Math.random() * (items.length - 2))) % items.length;
-    const other = items[otherIdx];
-    qs.push({ statement: `"${item.term}" — ${other.definition}`, answer: false, term: item.term });
+    // False statement: correct term, wrong definition. The decoy must not share
+    // this item's term — Unit 1 repeats 17 terms across 50 items, and pairing a
+    // term with another definition of the SAME term produces a true statement
+    // that gets marked wrong.
+    let other = null;
+    for (let step = 1; step < items.length; step++) {
+      const cand = items[(i + step) % items.length];
+      if (cand.term !== item.term && cand.definition !== item.definition) { other = cand; break; }
+    }
+    if (other) {
+      qs.push({ statement: `"${item.term}" — ${other.definition}`, answer: false, term: item.term });
+    }
   });
 
   // Shuffle
@@ -3306,24 +3354,33 @@ function importData() {
     reader.onload = ev => {
       try {
         const imported = JSON.parse(ev.target.result);
-        // A pre-merge export has progress at the top level and no `units` key.
-        // Route it through the same migration path rather than merging a legacy
-        // shape into the new one, which would orphan it permanently.
-        store = imported && imported.units
-          ? deepMerge(defaultStore(), imported)
-          : (() => {
-              const s2 = defaultStore();
-              const target = (imported && imported.examDate === '2026-05-15') ? 'u2' : store.activeUnit;
-              s2.units[target] = deepMerge(defaultUnitState(), imported || {});
-              if (imported && imported.theme) s2.theme = imported.theme;
-              if (imported && imported.profile) s2.profile = imported.profile;
-              s2.activeUnit = target;
-              return s2;
-            })();
+        let message;
+        if (isPlainObject(imported) && isPlainObject(imported.units)) {
+          // A backup from this version: full store, both units.
+          store = coerceStore(imported);
+          message = 'Progress imported.';
+        } else if (isPlainObject(imported)) {
+          // A pre-merge backup: progress at the top level, no `units` key, and
+          // nothing in it reliably says which unit it came from — the old site
+          // only wrote examDate if the student edited it. So it goes into the
+          // unit that is currently open, and the OTHER unit is left untouched.
+          const target = store.activeUnit;
+          if (!confirm(`This looks like a backup from the older site.\n\nImport it into ${unitDef(target).label} — ${unitDef(target).name}?\n\nYour other unit will not be affected. Switch unit first if this is the wrong one.`)) {
+            toast('Import cancelled.');
+            return;
+          }
+          store.units[target] = deepMerge(defaultUnitState(), imported);
+          if (typeof imported.theme === 'string') store.theme = imported.theme;
+          if (isPlainObject(imported.profile)) store.profile = imported.profile;
+          message = 'Imported into ' + unitDef(target).label + '.';
+        } else {
+          toast('Invalid file — import failed');
+          return;
+        }
         saveState();
         resetTransientState();
         applyUnitChrome();
-        toast('Progress imported!');
+        toast(message);
         navigate('home');
       } catch { toast('Invalid file — import failed'); }
     };
@@ -3333,10 +3390,14 @@ function importData() {
 }
 
 function confirmReset() {
-  if (confirm('Reset ALL progress? This cannot be undone.')) {
-    state = defaultState();
+  // Resets the unit you are looking at. With two units, wiping both from one
+  // button is a trap: the other unit's work is not visible from here.
+  const u = unitDef();
+  if (confirm(`Reset all ${u.label} progress? This cannot be undone. Your other unit is not affected.`)) {
+    store.units[store.activeUnit] = defaultUnitState();
     saveState();
-    toast('Progress reset.');
+    resetTransientState();
+    toast(u.label + ' progress reset.');
     navigate('home');
   }
 }

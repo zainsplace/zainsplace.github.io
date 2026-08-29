@@ -1374,7 +1374,10 @@ h3[style*="text-transform:uppercase"], p[style*="text-transform:uppercase"] {
    One 16px radius on everything gave no hierarchy. Section cards now carry a
    coloured left edge instead of a coloured glow. */
 .section-tile, .card, .stat-box, .panel { border-radius: var(--radius); }
-.tile-accent { width: 4px !important; border-radius: 0 !important; }
+.section-tile .tile-accent {
+  top: 0; bottom: 0; left: 0; right: auto;
+  width: 4px; height: auto; border-radius: 0;
+}
 
 /* Visible keyboard focus — the old indicator failed contrast in both themes */
 :focus-visible {
