@@ -1,0 +1,89 @@
+diff --git a/app.js b/app.js
+index c7d1729..5396a37 100644
+--- a/app.js
++++ b/app.js
+@@ -106,6 +106,8 @@ function renderPage(page, opts) {
+ /* ---- HELPERS ---- */
+ function el(id) { return document.getElementById(id); }
+ 
++function escapeHTML(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
++
+ function toast(msg, ms = 2000) {
+   const t = el('toast');
+   t.textContent = msg;
+@@ -660,11 +662,18 @@ function setFlashFilter(val) {
+ 
+ function getFlashcardsDueCount() {
+   const todayStr = today();
+-  let count = 0;
+-  Object.entries(state.flashcards.nextDue).forEach(([id, due]) => {
+-    if (!due || due <= todayStr) count++;
+-  });
+-  return count;
++  const fd = loadJSON('data/flashcards.json');
++  if (!fd) {
++    let count = 0;
++    Object.entries(state.flashcards.nextDue).forEach(([id, due]) => {
++      if (!due || due <= todayStr) count++;
++    });
++    return count;
++  }
++  return fd.cards.filter(card => {
++    const due = state.flashcards.nextDue[card.id];
++    return !due || due <= todayStr;
++  }).length;
+ }
+ 
+ /* ---- QUESTIONS ---- */
+@@ -840,6 +849,13 @@ let extTimeLeft = 0;
+ let extTimerRunning = false;
+ 
+ function renderExtended() {
++  // Clear any stale intervals from previous renders before re-rendering
++  Object.keys(extTimers).forEach(id => {
++    if (extTimers[id] && extTimers[id].interval) {
++      clearInterval(extTimers[id].interval);
++      extTimers[id].interval = null;
++    }
++  });
+   const container = el('extended-content');
+   const prompts = loadJSON('data/extended.json') || getFallbackExtended();
+ 
+@@ -1833,8 +1849,7 @@ function answerBattle(i) {
+     if (r0.ok && !r1.ok) pointTo = r0.p;
+     else if (r1.ok && !r0.ok) pointTo = r1.p;
+     else if (r0.ok && r1.ok) pointTo = r0.time <= r1.time ? r0.p : r1.p;
+-    // duel scoring = points won, not raw corrects
+-    results.forEach(r => { if (r.ok) r.p.score--; });
++    // duel scoring = only the round winner gets a point
+     if (pointTo) { pointTo.score++; note = `${pointTo.me ? 'You take' : pointTo.name + ' takes'} the point${r0.ok && r1.ok ? ' on speed!' : '!'}`; }
+     else note = 'Both wrong — no point.';
+     if (battle.players.some(p => p.score >= 4)) battle.over = true;
+@@ -2200,7 +2215,8 @@ function doSearch(query) {
+ 
+ function highlight(text, query) {
+   if (!query) return text;
+-  const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
++  const safeQuery = escapeHTML(query);
++  const regex = new RegExp(`(${safeQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+   return text.replace(regex, '<span class="highlight">$1</span>');
+ }
+ 
+@@ -2384,12 +2400,14 @@ function updateStreak() {
+   const yesterday = new Date();
+   yesterday.setDate(yesterday.getDate() - 1);
+   const yStr = yesterday.toISOString().split('T')[0];
++  // Only extend/continue the streak if the user has done at least one revision action today
++  const hasActivityToday = state.activity && (state.activity[todayStr] || 0) > 0;
+   if (last === yStr) {
+-    state.streak.count++;
++    if (hasActivityToday) state.streak.count++;
+   } else if (last !== todayStr) {
+-    state.streak.count = 1;
++    state.streak.count = hasActivityToday ? 1 : 0;
+   }
+-  state.streak.last = todayStr;
++  if (hasActivityToday) state.streak.last = todayStr;
+   saveState();
+ }
+ 

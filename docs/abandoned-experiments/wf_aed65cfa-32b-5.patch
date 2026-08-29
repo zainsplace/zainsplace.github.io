@@ -1,0 +1,115 @@
+diff --git a/app.js b/app.js
+index c7d1729..7ee70b9 100644
+--- a/app.js
++++ b/app.js
+@@ -79,11 +79,14 @@ let currentSection = null;
+ function navigate(page, opts = {}) {
+   currentPage = page;
+   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
++  document.querySelectorAll('.nav-btn, .nav-avatar').forEach(b => {
++    const isActive = b.dataset.page === page;
++    b.classList.toggle('active', isActive);
++    if (isActive) b.setAttribute('aria-current', 'page');
++    else b.removeAttribute('aria-current');
++  });
+   const pageEl = document.getElementById('page-' + page);
+   if (pageEl) pageEl.classList.add('active');
+-  const navEl = document.querySelector(`.nav-btn[data-page="${page}"]`);
+-  if (navEl) navEl.classList.add('active');
+   renderPage(page, opts);
+ }
+ 
+@@ -1556,7 +1559,10 @@ function finishMatch() {
+ }
+ 
+ /* -- PLAYER CARD — click any rival on the ladder -- */
++let playerCardTrigger = null;
++
+ function showPlayerCard(name) {
++  playerCardTrigger = document.activeElement || null;
+   const rows = getLBRows();
+   const r = rows.find(x => x.name === name);
+   const bot = LB_BOTS.find(b => b.name === name);
+@@ -1576,7 +1582,7 @@ function showPlayerCard(name) {
+     <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+       <span class="lb-av" style="background:${r.col};width:56px;height:56px;font-size:24px">${name.charAt(0)}</span>
+       <div>
+-        <h2 style="margin-bottom:2px;font-size:20px">${name}</h2>
++        <h2 id="player-modal-title" style="margin-bottom:2px;font-size:20px">${name}</h2>
+         <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+           ${rankChip(r.xp)}
+           <span class="badge">#${r.pos} of ${rows.length}</span>
+@@ -1598,10 +1604,15 @@ function showPlayerCard(name) {
+       <button class="btn btn-secondary" onclick="closePlayerCard()">Close</button>
+     </div>`;
+   el('player-modal-overlay').classList.add('show');
++  el('player-modal').focus();
+ }
+ 
+ function closePlayerCard() {
+   el('player-modal-overlay').classList.remove('show');
++  if (playerCardTrigger && typeof playerCardTrigger.focus === 'function') {
++    playerCardTrigger.focus();
++  }
++  playerCardTrigger = null;
+ }
+ 
+ function challengePlayer(name) {
+@@ -2441,6 +2452,14 @@ document.addEventListener('DOMContentLoaded', () => {
+   document.querySelectorAll('.nav-btn, .nav-avatar').forEach(btn => {
+     btn.addEventListener('click', () => navigate(btn.dataset.page));
+   });
++  document.addEventListener('keydown', e => {
++    if (e.key === 'Escape') {
++      const overlay = el('player-modal-overlay');
++      if (overlay && overlay.classList.contains('show')) {
++        closePlayerCard();
++      }
++    }
++  });
+   loadData(['a', 'b', 'c', 'd']);
+   updateNavAvatar();
+   navigate('home');
+diff --git a/index.html b/index.html
+index d87dbed..8953660 100644
+--- a/index.html
++++ b/index.html
+@@ -17,17 +17,17 @@
+ <nav>
+   <div class="nav-inner">
+     <div class="nav-logo">Unit 2 Cyber</div>
+-    <button class="nav-btn" data-page="home">Home</button>
+-    <button class="nav-btn" data-page="sections">Sections</button>
+-    <button class="nav-btn" data-page="flashcards">Flashcards</button>
+-    <button class="nav-btn" data-page="questions">Questions</button>
+-    <button class="nav-btn" data-page="games">Games</button>
+-    <button class="nav-btn" data-page="leaderboard">Leaderboard</button>
+-    <button class="nav-btn" data-page="extended">Extended</button>
+-    <button class="nav-btn" data-page="examkit">Exam Kit</button>
+-    <button class="nav-btn" data-page="search">Search</button>
+-    <button class="nav-btn" data-page="plan">Plan</button>
+-    <button class="nav-avatar" id="nav-avatar" data-page="profile" title="Your profile">⭐</button>
++    <button class="nav-btn" data-page="home" aria-label="Home" title="Home">Home</button>
++    <button class="nav-btn" data-page="sections" aria-label="Sections" title="Sections">Sections</button>
++    <button class="nav-btn" data-page="flashcards" aria-label="Flashcards" title="Flashcards">Flashcards</button>
++    <button class="nav-btn" data-page="questions" aria-label="Questions" title="Questions">Questions</button>
++    <button class="nav-btn" data-page="games" aria-label="Games" title="Games">Games</button>
++    <button class="nav-btn" data-page="leaderboard" aria-label="Leaderboard" title="Leaderboard">Leaderboard</button>
++    <button class="nav-btn" data-page="extended" aria-label="Extended" title="Extended">Extended</button>
++    <button class="nav-btn" data-page="examkit" aria-label="Exam Kit" title="Exam Kit">Exam Kit</button>
++    <button class="nav-btn" data-page="search" aria-label="Search" title="Search">Search</button>
++    <button class="nav-btn" data-page="plan" aria-label="Plan" title="Plan">Plan</button>
++    <button class="nav-avatar" id="nav-avatar" data-page="profile" aria-label="Your profile" title="Your profile">⭐</button>
+   </div>
+ </nav>
+ 
+@@ -169,7 +169,7 @@
+ </main>
+ 
+ <div class="modal-overlay" id="player-modal-overlay" onclick="if(event.target===this)closePlayerCard()">
+-  <div class="modal" id="player-modal"></div>
++  <div class="modal" id="player-modal" role="dialog" aria-modal="true" aria-labelledby="player-modal-title" tabindex="-1"></div>
+ </div>
+ 
+ <div id="toast"></div>

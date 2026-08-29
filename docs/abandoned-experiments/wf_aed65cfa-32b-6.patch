@@ -1,0 +1,138 @@
+diff --git a/app.js b/app.js
+index c7d1729..f693ae9 100644
+--- a/app.js
++++ b/app.js
+@@ -2436,6 +2436,23 @@ function confirmReset() {
+   }
+ }
+ 
++/* ---- THEME ---- */
++function applyTheme(theme) {
++  document.documentElement.setAttribute('data-theme', theme);
++  state.theme = theme;
++  saveState();
++  const iconEl = el('theme-icon');
++  if (iconEl) {
++    iconEl.setAttribute('data-lucide', theme === 'dark' ? 'sun' : 'moon');
++    if (window.lucide) lucide.createIcons({ nodes: [iconEl] });
++  }
++}
++
++function toggleTheme() {
++  const next = (state.theme === 'dark') ? 'light' : 'dark';
++  applyTheme(next);
++}
++
+ /* ---- INIT ---- */
+ document.addEventListener('DOMContentLoaded', () => {
+   document.querySelectorAll('.nav-btn, .nav-avatar').forEach(btn => {
+@@ -2443,5 +2460,10 @@ document.addEventListener('DOMContentLoaded', () => {
+   });
+   loadData(['a', 'b', 'c', 'd']);
+   updateNavAvatar();
++
++  // Apply saved theme and render initial Lucide icons
++  if (state.theme === 'dark') applyTheme('dark');
++  if (window.lucide) lucide.createIcons();
++
+   navigate('home');
+ });
+diff --git a/index.html b/index.html
+index d87dbed..26e99f5 100644
+--- a/index.html
++++ b/index.html
+@@ -27,6 +27,9 @@
+     <button class="nav-btn" data-page="examkit">Exam Kit</button>
+     <button class="nav-btn" data-page="search">Search</button>
+     <button class="nav-btn" data-page="plan">Plan</button>
++    <button class="theme-toggle top-bar-theme-btn" id="top-bar-theme" onclick="toggleTheme()" aria-label="Switch theme" title="Switch theme">
++      <i data-lucide="moon" id="theme-icon"></i>
++    </button>
+     <button class="nav-avatar" id="nav-avatar" data-page="profile" title="Your profile">⭐</button>
+   </div>
+ </nav>
+@@ -174,6 +177,7 @@
+ 
+ <div id="toast"></div>
+ 
++<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+ <script src="data_inline.js"></script>
+ <script src="app.js"></script>
+ </body>
+diff --git a/styles.css b/styles.css
+index a3a69b4..94e0b1d 100644
+--- a/styles.css
++++ b/styles.css
+@@ -50,6 +50,30 @@
+   --shadow: 0 1px 2px rgba(28,27,25,0.05), 0 8px 24px rgba(28,27,25,0.06);
+   --shadow-sm: 0 1px 2px rgba(28,27,25,0.05), 0 2px 8px rgba(28,27,25,0.05);
+   --press: scale(0.98);
++
++  /* heatmap intensity scale */
++  --hm-0: #eee;
++  --hm-1: #ddd6fe;
++  --hm-2: #a78bfa;
++  --hm-3: #7c3aed;
++  --hm-4: #5b21b6;
++}
++
++[data-theme="dark"] {
++  --bg: #18181B;
++  --bg2: #1F1F23;
++  --bg3: #27272A;
++  --border: #3F3F46;
++  --text: #F4F4F5;
++  --text2: #A1A1AA;
++  --ink: #F4F4F5;
++
++  /* heatmap dark overrides */
++  --hm-0: #2a2540;
++  --hm-1: #3d3060;
++  --hm-2: #5b3fa8;
++  --hm-3: #7c3aed;
++  --hm-4: #a78bfa;
+ }
+ 
+ * { box-sizing: border-box; margin: 0; padding: 0; }
+@@ -124,6 +148,24 @@ nav {
+   white-space: nowrap;
+ }
+ 
++/* THEME TOGGLE */
++.top-bar-theme-btn {
++  background: none;
++  border: 1px solid var(--border);
++  border-radius: var(--radius-sm);
++  color: var(--text2);
++  padding: 6px 8px;
++  cursor: pointer;
++  display: flex;
++  align-items: center;
++  justify-content: center;
++  flex-shrink: 0;
++  transition: color 0.15s, border-color 0.15s;
++  margin-left: auto;
++}
++.top-bar-theme-btn:hover { color: var(--text); border-color: var(--text2); }
++.top-bar-theme-btn svg { width: 18px; height: 18px; stroke: currentColor; }
++
+ /* MAIN */
+ main {
+   max-width: 1400px;
+@@ -972,11 +1014,11 @@ textarea.response-area:focus { border-color: var(--accent); }
+   border-radius: 3.5px;
+   display: inline-block;
+ }
+-.hm-0 { background: var(--bg3); box-shadow: inset 1px 1px 2px rgba(28,27,25,0.15); }
+-.hm-1 { background: #C7D2FE; }
+-.hm-2 { background: #818CF8; }
+-.hm-3 { background: #4F46E5; }
+-.hm-4 { background: #312E81; }
++.hm-0 { background: var(--hm-0); box-shadow: inset 1px 1px 2px rgba(28,27,25,0.15); }
++.hm-1 { background: var(--hm-1); }
++.hm-2 { background: var(--hm-2); }
++.hm-3 { background: var(--hm-3); }
++.hm-4 { background: var(--hm-4); }
+ .hm-legend {
+   display: flex;
+   align-items: center;
