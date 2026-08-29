@@ -330,16 +330,26 @@ function resetTransientState() {
 /* Every running interval must be cleared, not just the ones held in a named
    variable. A live True/False timer fires endTrueFalse() up to 30s later and
    would reset the page — or bank its score into the wrong unit. */
-function stopAllTimers() {
+function stopGameTimers() {
   if (matchInterval) { clearInterval(matchInterval); matchInterval = null; }
   if (battleTick) { clearInterval(battleTick); battleTick = null; }
   if (tfState && tfState.timer) { clearInterval(tfState.timer); tfState.timer = null; }
+}
+
+/* Extended-writing timers are the student's own exam practice, not game state.
+   They are only torn down on a unit switch, never on ordinary navigation. */
+function stopExtendedTimers() {
   if (typeof extTimers === 'object' && extTimers) {
     Object.values(extTimers).forEach(t => {
       if (t && t.interval) clearInterval(t.interval);
       if (t) t.running = false;
     });
   }
+}
+
+function stopAllTimers() {
+  stopGameTimers();
+  stopExtendedTimers();
 }
 
 function switchUnit(id) {
@@ -385,8 +395,8 @@ const PAGE_TITLES = {
 function navigate(page, opts = {}) {
   // Leaving the games page abandons whatever was running. Without this a live
   // Blitz or Match timer keeps ticking and banks its score minutes later.
-  if (page !== 'games' && typeof stopAllTimers === 'function') {
-    stopAllTimers();
+  if (page !== 'games' && typeof stopGameTimers === 'function') {
+    stopGameTimers();
     gamesMode = 'menu';
     tfState = null;
     matchGame = null;
@@ -2389,7 +2399,17 @@ function startMatch() {
   stopAllTimers();
   if (!searchBuilt) { loadData(unitLetters()); buildSearchIndex(); }
   const pool = allSearchContent.filter(x => x.definition && x.definition.length > 20);
-  const pairs = [...pool].sort(() => Math.random() - 0.5).slice(0, 6);
+  // Unit 1 repeats terms across items; two identical term tiles make the visible
+  // pairing ambiguous and score a correct match as wrong.
+  const usedTerms = new Set();
+  const pairs = [];
+  for (const cand of [...pool].sort(() => Math.random() - 0.5)) {
+    const key = String(cand.term).toLowerCase();
+    if (usedTerms.has(key)) continue;
+    usedTerms.add(key);
+    pairs.push(cand);
+    if (pairs.length === 6) break;
+  }
   const tiles = [];
   pairs.forEach((p, i) => {
     tiles.push({ pair: i, kind: 'term', text: p.term });
@@ -3249,11 +3269,11 @@ function buildDailyPlan() {
     items: [
       'Answer 2–3 practice questions on your weakest topic',
       'Self-mark using the model answers',
-      days <= 14 ? 'Try at least 1 extended response (9–12 marks) per session' : 'Attempt a 4-mark "explain" question for any red-coded topic'
+      (days !== null && days <= 14) ? 'Try at least 1 extended response (9–12 marks) per session' : 'Attempt a 4-mark "explain" question for any red-coded topic'
     ]
   });
 
-  if (days <= 7) {
+  if (days !== null && !examPassed() && days <= 7) {
     blocks.push({
       id: 'technique',
       title: '🎯 Exam Technique',
