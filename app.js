@@ -487,6 +487,16 @@ function hasExamDate() {
   return !!getExamDate();
 }
 
+/* daysUntilExam() clamps at 0, so a date in the past looks identical to "today".
+   Without this the plan tells a student the exam is tomorrow months after it sat. */
+function examPassed() {
+  const d = getExamDate();
+  if (!d) return false;
+  const exam = new Date(d); exam.setHours(0, 0, 0, 0);
+  const now = new Date(); now.setHours(0, 0, 0, 0);
+  return exam < now;
+}
+
 function daysUntilExam() {
   const d = getExamDate();
   if (!d) return null;
@@ -3106,7 +3116,7 @@ function renderPlan() {
       <h2>Today's Study Plan</h2>
       <div class="streak-badge">${state.streak.count}-day streak</div>
     </div>
-    <p style="color:var(--text2);font-size:14px;margin-bottom:16px">${hasExamDate() ? `${daysUntilExam()} days until your ${unitDef().label} exam. ` : ''}${getMotivation()}</p>
+    <p style="color:var(--text2);font-size:14px;margin-bottom:16px">${hasExamDate() && !examPassed() ? `${daysUntilExam()} days until your ${unitDef().label} exam. ` : ''}${getMotivation()}</p>
     ${plan.map(block => `
       <div class="plan-day">
         <h3>${block.title}</h3>
@@ -3150,7 +3160,10 @@ function buildDailyPlan() {
     });
   }
 
-  if (days > 14) {
+  // No date set, or the exam already sat: give the general plan, never "Final Week".
+  const undated = !hasExamDate() || examPassed();
+
+  if (undated || days > 14) {
     blocks.push({
       id: 'content',
       title: '📖 Content Review',
@@ -3211,6 +3224,7 @@ function buildDailyPlan() {
 function getMotivation() {
   const days = daysUntilExam();
   if (days === null) return 'Set your exam date to get a countdown and a sharper daily plan.';
+  if (examPassed()) return 'That exam has been and gone — set a new date, or switch unit from the sidebar.';
   if (days > 30) return 'Keep building your knowledge — consistency now makes the difference.';
   if (days > 14) return 'Final stretch! Focus on your weak areas and practise past paper questions.';
   if (days > 7) return 'One week to go — prioritise Tier 1 topics and exam technique.';
