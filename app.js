@@ -637,8 +637,11 @@ function setExamDate() {
   const current = getExamDate() || '';
   const input = prompt('Enter your exam date (YYYY-MM-DD):', current);
   if (!input) return;
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(input.trim()) || isNaN(new Date(input.trim()).getTime())) {
-    toast('Invalid date — use YYYY-MM-DD format');
+  // Must use the same validator the countdown uses. A looser check here let
+  // "2026-02-31" through — JS rolls it to 3 March, so it is not NaN — and the
+  // student got "Exam date updated!" with no countdown to show for it.
+  if (!parseExamDate(input)) {
+    toast('Invalid date — use YYYY-MM-DD, e.g. 2027-05-14');
     return;
   }
   state.examDate = input.trim();
