@@ -41,10 +41,24 @@ const UNITS = {
   }
 };
 
-function unitDef(id) { return UNITS[id || store.activeUnit]; }
+function isUnitId(id) {
+  return typeof id === 'string' && Object.prototype.hasOwnProperty.call(UNITS, id);
+}
+
+/* UNITS is a plain object literal, so a bare UNITS[x] lookup is truthy for
+   'constructor', 'toString', '__proto__' and friends. A backup carrying one of
+   those as activeUnit used to pass validation, persist, and then throw on every
+   subsequent load with no way back except clearing site data. */
+function unitDef(id) {
+  const key = id || store.activeUnit;
+  return isUnitId(key) ? UNITS[key] : UNITS.u1;
+}
 function unitLetters() { return unitDef().order.slice(); }
 function unitLettersUpper() { return unitDef().order.map(l => l.toUpperCase()); }
-function unitData() { return INLINE_UNITS[store.activeUnit]; }
+function unitData() {
+  const key = isUnitId(store.activeUnit) ? store.activeUnit : 'u1';
+  return INLINE_UNITS[key] || INLINE_UNITS.u1;
+}
 
 /* ---- STATE ----
    Persisted shape: { activeUnit, theme, profile, units: { u1: {...}, u2: {...} } }
@@ -110,7 +124,12 @@ function deepMerge(target, source) {
    Valid JSON is not a valid store: `{"units":{"u1":{"streak":null}}}` parses
    fine and then throws on the home page. */
 function coerceLike(def, raw) {
-  if (Array.isArray(def)) return Array.isArray(raw) ? raw : def.slice();
+  if (Array.isArray(def)) {
+    if (!Array.isArray(raw)) return def.slice();
+    // History arrays are read as objects (h.qId, h.selfScore). One null entry
+    // blanks a whole page, so drop anything that is not a plain object.
+    return raw.filter(isPlainObject);
+  }
   if (isPlainObject(def)) {
     if (!isPlainObject(raw)) return def;
     const out = {};
@@ -217,7 +236,7 @@ function coerceStore(raw) {
   if (!isPlainObject(raw)) return base;
   const out = defaultStore();
   if (typeof raw.theme === 'string') out.theme = raw.theme;
-  if (isPlainObject(raw.profile)) out.profile = Object.assign(out.profile, raw.profile);
+  if (isPlainObject(raw.profile)) out.profile = coerceLike(base.profile, raw.profile);
   if (isPlainObject(raw.units)) {
     Object.keys(out.units).forEach(id => {
       if (isPlainObject(raw.units[id])) {
@@ -225,7 +244,7 @@ function coerceStore(raw) {
       }
     });
   }
-  out.activeUnit = UNITS[raw.activeUnit] ? raw.activeUnit : base.activeUnit;
+  out.activeUnit = isUnitId(raw.activeUnit) ? raw.activeUnit : base.activeUnit;
   return out;
 }
 
@@ -275,8 +294,10 @@ const state = new Proxy({}, {
 function saveState() {
   try {
     localStorage.setItem(STATE_KEY, JSON.stringify(store));
+    return true;
   } catch (e) {
     toastStorageFull();
+    return false;
   }
 }
 
@@ -382,13 +403,22 @@ function stopGameTimers() {
 
 /* Extended-writing timers are the student's own exam practice, not game state.
    They are only torn down on a unit switch, never on ordinary navigation. */
+/* A unit switch abandons the essay as well as the clock, so the timer is
+   discarded outright. Merely pausing it left a stale `remaining` behind while
+   the page re-rendered from the prompt's full time, and Start jumped backwards. */
+function clearExtDrafts() {
+  Object.keys(extDrafts).forEach(k => { delete extDrafts[k]; });
+}
+
 function stopExtendedTimers() {
   if (typeof extTimers === 'object' && extTimers) {
-    Object.values(extTimers).forEach(t => {
+    Object.keys(extTimers).forEach(k => {
+      const t = extTimers[k];
       if (t && t.interval) clearInterval(t.interval);
-      if (t) t.running = false;
+      delete extTimers[k];
     });
   }
+  clearExtDrafts();
 }
 
 function stopAllTimers() {
@@ -397,7 +427,7 @@ function stopAllTimers() {
 }
 
 function switchUnit(id) {
-  if (!UNITS[id] || id === store.activeUnit) return;
+  if (!isUnitId(id) || id === store.activeUnit) return;
   store.activeUnit = id;
   saveState();
   resetTransientState();
@@ -574,21 +604,32 @@ function hasExamDate() {
 
 /* daysUntilExam() clamps at 0, so a date in the past looks identical to "today".
    Without this the plan tells a student the exam is tomorrow months after it sat. */
+/* new Date('2026-08-29') is UTC midnight, which floors to the PREVIOUS local day
+   anywhere west of Greenwich and fired 'Exam is today' a day early. Build the
+   date from its parts so it is local midnight everywhere. */
+function parseExamDate(v) {
+  if (typeof v !== 'string') return null;
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v.trim());
+  if (!m) return null;
+  const d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+  if (isNaN(d.getTime())) return null;
+  if (d.getFullYear() !== Number(m[1]) || d.getMonth() !== Number(m[2]) - 1
+      || d.getDate() !== Number(m[3])) return null;   // rejects 2026-02-31
+  d.setHours(0, 0, 0, 0);
+  return d;
+}
+
 function examPassed() {
-  const d = getExamDate();
-  if (!d) return false;
-  const exam = new Date(d); exam.setHours(0, 0, 0, 0);
+  const exam = parseExamDate(getExamDate());
+  if (!exam) return false;
   const now = new Date(); now.setHours(0, 0, 0, 0);
   return exam < now;
 }
 
 function daysUntilExam() {
-  const d = getExamDate();
-  if (!d) return null;
-  const exam = new Date(d);
-  const now = new Date();
-  now.setHours(0, 0, 0, 0);
-  exam.setHours(0, 0, 0, 0);
+  const exam = parseExamDate(getExamDate());
+  if (!exam) return null;
+  const now = new Date(); now.setHours(0, 0, 0, 0);
   return Math.max(0, Math.round((exam - now) / 86400000));
 }
 
@@ -1600,6 +1641,7 @@ function renderExtended() {
     <h2 style="margin-bottom:16px">Extended Response Builder</h2>
     <p style="color:var(--text2);font-size:14px;margin-bottom:16px">Practise long-answer questions under timed conditions. Q4 carries 22 marks — this is where Distinctions are won or lost.</p>
     ${prompts.map((p, i) => renderExtPrompt(p, i)).join('')}`;
+  restoreExtDrafts();
 }
 
 function getFallbackExtended() {
@@ -1744,12 +1786,25 @@ function updateTimerDisplay(id, secs, totalSecs) {
   else if (secs <= totalSecs * 0.33) el_timer.classList.add('warning');
 }
 
+/* renderExtended rebuilds the page from innerHTML on every visit, so the draft
+   has to live outside the DOM. Kept in memory only — an exam answer is not
+   something to silently persist to the student's browser storage. */
+const extDrafts = {};
+
 function updateWordCount(id) {
   const textarea = el('ext-text-' + id);
   const wc = el('wc-' + id);
   if (!textarea || !wc) return;
+  extDrafts[id] = textarea.value;
   const words = textarea.value.trim().split(/\s+/).filter(w => w.length > 0).length;
   wc.textContent = words + ' words';
+}
+
+function restoreExtDrafts() {
+  Object.keys(extDrafts).forEach(id => {
+    const ta = el('ext-text-' + id);
+    if (ta && !ta.value) { ta.value = extDrafts[id]; updateWordCount(id); }
+  });
 }
 
 function toggleModelExt(id) {
@@ -1949,8 +2004,18 @@ function buildTFQuestions() {
     //    ("Survey" paired with Questionnaire's "Similar to a survey…" reads as
     //    true) — and made the whole round identical on every play.
     const sub = c => String(c).split('.').slice(0, 2).join('.');
+    // Exact inequality is not enough: Unit 1 restates the same factor under a
+    // longer name in another section, so "Compatibility" would draw the
+    // definition of "Hardware and Software Compatibility" — a true statement
+    // keyed false. Reject any term that contains, or is contained by, this one.
+    const norm = t => String(t).toLowerCase().replace(/[^a-z0-9 ]/g, '').trim();
+    const mine = norm(item.term);
+    const overlaps = t => {
+      const o = norm(t);
+      return o === mine || o.includes(mine) || mine.includes(o);
+    };
     const valid = items.filter(c =>
-      c.term !== item.term && c.definition !== item.definition);
+      !overlaps(c.term) && c.definition !== item.definition);
     const distant = valid.filter(c => sub(c.code) !== sub(item.code));
     const pool = distant.length ? distant : valid;
     const other = pool.length ? pool[Math.floor(Math.random() * pool.length)] : null;
@@ -3483,13 +3548,15 @@ function importData() {
           toast('Invalid file — import failed');
           return;
         }
-        saveState();
+        const saved = saveState();
         resetTransientState();
         document.body.setAttribute('data-theme', store.theme || 'light');
         applyUnitChrome();
         updateNavAvatar();
-        toast(message);
         navigate('home');
+        // Do not claim success if the write failed — the restored progress
+        // would silently revert on the next reload.
+        if (saved) toast(message);
       } catch { toast('Invalid file — import failed'); }
     };
     reader.readAsText(file);
