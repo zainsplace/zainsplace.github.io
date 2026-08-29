@@ -743,8 +743,22 @@ function escapeHTML(v) {
 }
 
 function pAv() {
-  const e = (state.profile && state.profile.emoji) || '📘';
-  return escapeHTML(String(e).slice(0, 4));
+  const e = String((state.profile && state.profile.emoji) || '📘');
+  return escapeHTML(firstGrapheme(e));
+}
+
+/* Slicing by UTF-16 unit cuts a flag, skin tone or ZWJ family mid-character and
+   renders a replacement glyph. The picker only offers single-codepoint emoji,
+   but an imported backup can carry anything. */
+function firstGrapheme(str) {
+  try {
+    if (typeof Intl !== 'undefined' && Intl.Segmenter) {
+      const seg = new Intl.Segmenter(undefined, { granularity: 'grapheme' });
+      for (const g of seg.segment(str)) return g.segment;
+      return '';
+    }
+  } catch { /* fall through */ }
+  return Array.from(str).slice(0, 8).join('');
 }
 
 function pCol() {
