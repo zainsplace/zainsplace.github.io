@@ -89,9 +89,13 @@ function defaultStore() {
   };
 }
 
+const UNSAFE_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
+
 function deepMerge(target, source) {
   const out = Object.assign({}, target);
   for (const k in source) {
+    if (!Object.prototype.hasOwnProperty.call(source, k)) continue;
+    if (UNSAFE_KEYS.has(k)) continue;   // a JSON "__proto__" key would otherwise
     if (source[k] && typeof source[k] === 'object' && !Array.isArray(source[k])) {
       out[k] = deepMerge(target[k] || {}, source[k]);
     } else {
@@ -99,6 +103,46 @@ function deepMerge(target, source) {
     }
   }
   return out;
+}
+
+/* Coerce a parsed value against the shape of a known-good default. Anything of
+   the wrong type is replaced by the default rather than trusted, at every depth.
+   Valid JSON is not a valid store: `{"units":{"u1":{"streak":null}}}` parses
+   fine and then throws on the home page. */
+function coerceLike(def, raw) {
+  if (Array.isArray(def)) return Array.isArray(raw) ? raw : def.slice();
+  if (isPlainObject(def)) {
+    if (!isPlainObject(raw)) return def;
+    const out = {};
+    Object.keys(def).forEach(k => { out[k] = coerceLike(def[k], raw[k]); });
+    // Free-form maps (rag, activity, planChecks…) start empty in the default,
+    // so their real keys are carried over — minus anything unsafe.
+    Object.keys(raw).forEach(k => {
+      if (UNSAFE_KEYS.has(k) || k in out) return;
+      if (raw[k] !== null && typeof raw[k] !== 'function') out[k] = raw[k];
+    });
+    return out;
+  }
+  if (typeof def === 'number') return typeof raw === 'number' && isFinite(raw) ? raw : def;
+  if (typeof def === 'string') return typeof raw === 'string' ? raw : def;
+  if (typeof def === 'boolean') return typeof raw === 'boolean' ? raw : def;
+  // def is null: accept a string (examDate, streak.last) or keep null
+  return typeof raw === 'string' || typeof raw === 'number' ? raw : def;
+}
+
+function coerceUnit(raw) {
+  const unit = coerceLike(defaultUnitState(), raw);
+  GLOBAL_KEYS.forEach(k => { delete unit[k]; });   // theme/profile never live in a unit
+  return unit;
+}
+
+/* Does this look like a pre-merge backup rather than an arbitrary JSON file?
+   The old site always wrote these keys, and a stray data file will not have them. */
+function looksLikeLegacyBackup(o) {
+  if (!isPlainObject(o)) return false;
+  const shaped = ['rag', 'reviewed', 'flashcards', 'questions', 'streak', 'activity'];
+  const present = shaped.filter(k => isPlainObject(o[k]));
+  return present.length >= 3 || (typeof o.xp === 'number' && present.length >= 2);
 }
 
 function hasRealHistory(blob) {
@@ -177,7 +221,7 @@ function coerceStore(raw) {
   if (isPlainObject(raw.units)) {
     Object.keys(out.units).forEach(id => {
       if (isPlainObject(raw.units[id])) {
-        out.units[id] = deepMerge(defaultUnitState(), raw.units[id]);
+        out.units[id] = coerceUnit(raw.units[id]);
       }
     });
   }
@@ -1785,7 +1829,7 @@ function buildFITBQuestions(count = 10) {
 }
 
 function startFITB() {
-  stopAllTimers();
+  stopGameTimers();
   const qs = buildFITBQuestions(10);
   if (!qs.length) { toast('No flashcard data loaded'); return; }
   fitbState = { qs, idx: 0, correct: 0, selected: null, answered: false };
@@ -1882,15 +1926,20 @@ function buildTFQuestions() {
     // True statement: real definition
     qs.push({ statement: `"${item.term}" — ${item.definition}`, answer: true, term: item.term });
 
-    // False statement: correct term, wrong definition. The decoy must not share
-    // this item's term — Unit 1 repeats 17 terms across 50 items, and pairing a
-    // term with another definition of the SAME term produces a true statement
-    // that gets marked wrong.
-    let other = null;
-    for (let step = 1; step < items.length; step++) {
-      const cand = items[(i + step) % items.length];
-      if (cand.term !== item.term && cand.definition !== item.definition) { other = cand; break; }
-    }
+    // False statement: correct term, wrong definition. Two traps here.
+    // 1. The decoy must not share this item's term — Unit 1 repeats 17 terms,
+    //    and a term paired with another definition of itself reads as TRUE.
+    // 2. It must not simply be the next item. Breaking on the first candidate
+    //    made every decoy items[i+1], which is a sibling in the same subtopic
+    //    75% of the time — the most semantically overlapping content there is
+    //    ("Survey" paired with Questionnaire's "Similar to a survey…" reads as
+    //    true) — and made the whole round identical on every play.
+    const sub = c => String(c).split('.').slice(0, 2).join('.');
+    const valid = items.filter(c =>
+      c.term !== item.term && c.definition !== item.definition);
+    const distant = valid.filter(c => sub(c.code) !== sub(item.code));
+    const pool = distant.length ? distant : valid;
+    const other = pool.length ? pool[Math.floor(Math.random() * pool.length)] : null;
     if (other) {
       qs.push({ statement: `"${item.term}" — ${other.definition}`, answer: false, term: item.term });
     }
@@ -1907,7 +1956,7 @@ function buildTFQuestions() {
 function startTrueFalse() {
   // Starting a second round without this leaks the first interval: tfState is
   // reassigned, the old timer keeps firing, and it throws once tfState is null.
-  stopAllTimers();
+  stopGameTimers();
   const qs = buildTFQuestions();
   if (!qs.length) { toast('No revision content loaded for this unit'); return; }
   tfState = { qs, idx: 0, correct: 0, total: 0, timeLeft: 30, timer: null };
@@ -2349,7 +2398,7 @@ function renderLeaderboardPage() {
 
 /* -- Quick-fire MCQ -- */
 function startMCQ() {
-  stopAllTimers();
+  stopGameTimers();
   const cards = flashcardsForUnit();
   const qs = [...cards].sort(() => Math.random() - 0.5).slice(0, 10).map(c => {
     let pool = cards.filter(x => x.id !== c.id && x.section === c.section);
@@ -2416,7 +2465,7 @@ function answerMCQ(i) {
 
 /* -- Match game -- */
 function startMatch() {
-  stopAllTimers();
+  stopGameTimers();
   if (!searchBuilt) { loadData(unitLetters()); buildSearchIndex(); }
   const pool = allSearchContent.filter(x => x.definition && x.definition.length > 20);
   // Unit 1 repeats terms across items; two identical term tiles make the visible
@@ -2643,7 +2692,7 @@ function botAnswer(skill) {
 function stopBattleTick() { if (battleTick) { clearInterval(battleTick); battleTick = null; } }
 
 function startBattle(mode, targetName) {
-  stopAllTimers();
+  stopGameTimers();
   stopBattleTick();
   const oppCount = mode === 'elim' ? 7 : mode === 'duel' ? 1 : 3;
   const opps = pickOpponents(oppCount, mode === 'duel' && !targetName, targetName);
@@ -3289,7 +3338,7 @@ function buildDailyPlan() {
     items: [
       'Answer 2–3 practice questions on your weakest topic',
       'Self-mark using the model answers',
-      (days !== null && days <= 14) ? 'Try at least 1 extended response (9–12 marks) per session' : 'Attempt a 4-mark "explain" question for any red-coded topic'
+      (days !== null && !examPassed() && days <= 14) ? 'Try at least 1 extended response (9–12 marks) per session' : 'Attempt a 4-mark "explain" question for any red-coded topic'
     ]
   });
 
@@ -3317,7 +3366,8 @@ function getMotivation() {
   if (days > 14) return 'Final stretch! Focus on your weak areas and practise past paper questions.';
   if (days > 7) return 'One week to go — prioritise Tier 1 topics and exam technique.';
   if (days > 1) return 'Exam is almost here! Flashcards, key facts, extended response practice.';
-  return 'Exam is tomorrow! Rest, eat well, and trust your preparation.';
+  if (days === 1) return 'Exam is tomorrow! Rest, eat well, and trust your preparation.';
+  return 'Exam is today. Skim your red topics, then go in calm — you have done the work.';
 }
 
 function renderRAGSummary() {
@@ -3399,7 +3449,7 @@ function importData() {
           // A backup from this version: full store, both units.
           store = coerceStore(imported);
           message = 'Progress imported.';
-        } else if (isPlainObject(imported)) {
+        } else if (looksLikeLegacyBackup(imported)) {
           // A pre-merge backup: progress at the top level, no `units` key, and
           // nothing in it reliably says which unit it came from — the old site
           // only wrote examDate if the student edited it. So it goes into the
@@ -3409,9 +3459,11 @@ function importData() {
             toast('Import cancelled.');
             return;
           }
-          store.units[target] = deepMerge(defaultUnitState(), imported);
+          store.units[target] = coerceUnit(imported);
           if (typeof imported.theme === 'string') store.theme = imported.theme;
-          if (isPlainObject(imported.profile)) store.profile = imported.profile;
+          if (isPlainObject(imported.profile)) {
+            store.profile = coerceLike(defaultStore().profile, imported.profile);
+          }
           message = 'Imported into ' + unitDef(target).label + '.';
         } else {
           toast('Invalid file — import failed');
@@ -3419,7 +3471,9 @@ function importData() {
         }
         saveState();
         resetTransientState();
+        document.body.setAttribute('data-theme', store.theme || 'light');
         applyUnitChrome();
+        updateNavAvatar();
         toast(message);
         navigate('home');
       } catch { toast('Invalid file — import failed'); }
