@@ -690,9 +690,29 @@ function today() {
   return new Date().toISOString().split('T')[0];
 }
 
-function pAv() { return (state.profile && state.profile.emoji) || '⭐'; }
-function pCol() { return (state.profile && state.profile.col) || '#1B5A5F'; }
-function pImg() { return (state.profile && state.profile.img) || null; }
+/* Profile values normally come from a fixed picker, but an imported backup can
+   set them to anything and backups are meant to be shared between students, so
+   they are sanitised at the point they reach innerHTML. */
+function escapeHTML(v) {
+  return String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                  .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+function pAv() {
+  const e = (state.profile && state.profile.emoji) || '📘';
+  return escapeHTML(String(e).slice(0, 4));
+}
+
+function pCol() {
+  const c = (state.profile && state.profile.col) || '';
+  return /^#[0-9a-fA-F]{3,8}$/.test(c) ? c : '#1B5A5F';
+}
+function pImg() {
+  const src = state.profile && state.profile.img;
+  // Only an inline image is ever legitimate here — the camera writes a data URL.
+  return (typeof src === 'string' && /^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/=]+$/.test(src))
+    ? src : null;
+}
 
 /* inner content for any "me" avatar: photo if set, else emoji */
 function meAvInner() {
