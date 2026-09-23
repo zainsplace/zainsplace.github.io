@@ -1197,6 +1197,8 @@ textarea.response-area:focus { border-color: var(--accent); box-shadow: 0 0 0 4p
 .lb-tier { margin-bottom: 24px; }
 .lb-tier-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-weight: 800; font-size: 16px; margin-bottom: 10px; padding: 0 2px; }
 .lb-tier-count { font-size: 12px; font-weight: 700; color: var(--text2); }
+.season-banner { font-size: 13px; line-height: 1.5; color: var(--text2); background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 9px 12px; margin-bottom: 14px; }
+.season-banner strong { color: var(--accent); }
 .lb-tier.mine .lb-tier-head { font-size: 18px; }
 .lb-tier.mine .lb-tier-head span:first-child { color: var(--accent) !important; }
 

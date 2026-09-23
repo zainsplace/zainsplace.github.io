@@ -91,7 +91,9 @@ function defaultUnitState() {
     },
     examDate: null,
     planChecks: {},
-    bests: { tf: 0, match: 0 }
+    bests: { tf: 0, match: 0 },
+    season: { id: 0, startXP: 0 },   // XP banked before the current season began
+    rankBest: 0                      // highest rank index ever held (achievements)
   };
 }
 
@@ -954,10 +956,10 @@ function renderHome() {
   renderConfidenceStrip();
   el('home-stat-streak').textContent = state.streak.count;
   el('home-flash-due').textContent = flashDue;
-  const myRank = rankFor(state.xp || 0);
+  const myRank = rankInfo(myStanding().tier);
   el('home-stat-level').textContent = myRank.icon;
   el('home-stat-level').style.color = myRank.col;
-  el('home-stat-xp').textContent = `${myRank.name} · ${state.xp || 0} XP`;
+  el('home-stat-xp').textContent = `${myRank.name} · ${seasonXP()} season XP`;
   renderHeroCard();
 
   renderSectionTiles();
@@ -2402,28 +2404,80 @@ function awardXP(n, quiet) {
 function xpLevel() { return Math.floor((state.xp || 0) / XP_PER_LEVEL) + 1; }
 function xpIntoLevel() { return (state.xp || 0) % XP_PER_LEVEL; }
 
-/* ---- RANKS ---- */
+/* ---- RANKS ----
+   Ranks used to be XP thresholds, and rivals gain XP every day forever, so the
+   whole ladder drifted upwards until nobody was left in Bronze or Silver. Ranks
+   are now places on the table: each rank holds a fixed share of the players,
+   shaped like a bell curve, filled from the top. However much XP everyone
+   earns, only the top ~5% can ever be Cyber Legend. `share` is a percentage. */
 const RANKS = [
-  { name: 'Bronze',       icon: '🥉', col: '#B45309', min: 0 },
-  { name: 'Silver',       icon: '🥈', col: '#64748B', min: 300 },
-  { name: 'Gold',         icon: '🥇', col: '#BE7A1C', min: 750 },
-  { name: 'Platinum',     icon: '💠', col: '#0E7490', min: 1500 },
-  { name: 'Diamond',      icon: '💎', col: '#1B5A5F', min: 2500 },
-  { name: 'Master',       icon: '🔮', col: '#A85A3C', min: 4000 },
-  { name: 'Cyber Legend', icon: '👑', col: '#44403C', min: 6000 }
+  { name: 'Bronze',       icon: '🥉', col: '#B45309', share: 5 },
+  { name: 'Silver',       icon: '🥈', col: '#64748B', share: 12 },
+  { name: 'Gold',         icon: '🥇', col: '#BE7A1C', share: 20 },
+  { name: 'Platinum',     icon: '💠', col: '#0E7490', share: 26 },
+  { name: 'Diamond',      icon: '💎', col: '#1B5A5F', share: 20 },
+  { name: 'Master',       icon: '🔮', col: '#A85A3C', share: 12 },
+  { name: 'Cyber Legend', icon: '👑', col: '#7B61B8', share: 5 }
 ];
 
-function rankFor(xp) {
-  let r = RANKS[0];
-  for (const t of RANKS) { if (xp >= t.min) r = t; else break; }
-  const idx = RANKS.indexOf(r);
-  const next = RANKS[idx + 1] || null;
-  return { ...r, idx, next };
+// Places per rank for n players: largest-remainder rounding, at least one each
+// (so n must be at least RANKS.length; the ladder always has 41 players).
+function rankSizes(n) {
+  const raw = RANKS.map(r => r.share * n / 100);
+  const sizes = raw.map(x => Math.max(1, Math.floor(x)));
+  let spare = n - sizes.reduce((a, b) => a + b, 0);
+  const order = raw.map((x, i) => [x - Math.floor(x), i]).sort((a, b) => b[0] - a[0]);
+  for (let k = 0; spare > 0; k = (k + 1) % order.length, spare--) sizes[order[k][1]]++;
+  return sizes;
 }
 
-function rankChip(xp) {
-  const r = rankFor(xp);
+function rankInfo(idx) {
+  return { ...RANKS[idx], idx, next: RANKS[idx + 1] ? { ...RANKS[idx + 1], idx: idx + 1 } : null };
+}
+
+// Rows arrive sorted best-first; hand out places from the top rank down.
+function assignRanks(rows) {
+  const sizes = rankSizes(rows.length);
+  let pos = 0;
+  for (let t = RANKS.length - 1; t >= 0; t--) {
+    for (let k = 0; k < sizes[t] && pos < rows.length; k++) rows[pos++].tier = t;
+  }
+}
+
+function rankChip(tier) {
+  const r = RANKS[tier] || RANKS[0];
   return `<span class="rank-chip" style="color:${r.col};border-color:${r.col}40;background:${r.col}14">${r.icon} ${r.name}</span>`;
+}
+
+/* ---- SEASONS ----
+   Season 2 started with a full reset: every rival and every student begins on
+   0 season XP. Lifetime XP (levels, the profile total) is untouched; ranks come
+   from what you earn this season. startXP is banked per unit the first time the
+   unit is used in the new season. */
+const SEASON = { id: 2, name: 'Season 2', start: '2026-09-23' };
+const SEASON_START = new Date(SEASON.start + 'T00:00:00').getTime();
+
+function seasonDays(daysAgo = 0) {
+  return Math.max(0, Math.floor((Date.now() - SEASON_START) / 86400000) - daysAgo);
+}
+
+// The old XP thresholds, used once to carry over rank achievements already earned.
+const LEGACY_RANK_MIN = [0, 300, 750, 1500, 2500, 4000, 6000];
+
+function ensureSeason() {
+  const cur = state.season;
+  if (cur && cur.id === SEASON.id && typeof cur.startXP === 'number') return;
+  const xp = state.xp || 0;
+  let legacy = 0;
+  LEGACY_RANK_MIN.forEach((min, i) => { if (xp >= min) legacy = i; });
+  state.season = { id: SEASON.id, startXP: xp };
+  state.rankBest = Math.max(state.rankBest || 0, legacy);
+  saveState();
+}
+
+function seasonXP() {
+  ensureSeason();
+  return Math.max(0, (state.xp || 0) - state.season.startXP);
 }
 
 /* ---- GAMES (MCQ quick-fire + match) ---- */
@@ -2794,13 +2848,15 @@ const LB_BOTS = [
 ];
 
 function botXP(bot, daysAgo = 0) {
-  const days = Math.max(0, Math.floor((Date.now() - LB_EPOCH) / 86400000) - daysAgo);
-  // deterministic daily jitter so bots don't grow in a perfectly straight line —
-  // and so they genuinely overtake each other from one day to the next
-  let h = 0;
-  for (const ch of bot.name) h = (h * 31 + ch.charCodeAt(0)) % 997;
-  const jitter = ((days * h) % 17) - 8;
-  return Math.max(0, bot.base + bot.rate * days + jitter);
+  const days = seasonDays(daysAgo);
+  const h = nameHash(bot.name, 997);
+  // Last season's standing (base) sets a small head start and the pace; the old
+  // climbers (high rate) keep some momentum. Daily form (±16) lets close rivals
+  // genuinely overtake each other.
+  const headStart = Math.round(bot.base / 60);
+  const pace = 8 + bot.base / 260 + (bot.rate - 12) * 0.4;
+  const form = days ? (((days * h) % 17) - 8) * 2 : 0;
+  return Math.max(0, Math.round(headStart + pace * days + form));
 }
 
 function nameHash(name, mod = 9973) {
@@ -2809,12 +2865,23 @@ function nameHash(name, mod = 9973) {
   return h;
 }
 
+/* Season standings. xp here is SEASON XP. Ties go to the rival, so a fresh
+   season starts you at the bottom. Every row gets .pos and .tier. */
 function getLBRows(daysAgo = 0) {
   const rows = LB_BOTS.map(b => ({ name: b.name, tag: b.tag, col: b.col, xp: botXP(b, daysAgo), me: false }));
-  rows.push({ name: 'You', tag: `Level ${xpLevel()}`, col: pCol(), xp: state.xp || 0, me: true });
-  rows.sort((a, b) => b.xp - a.xp);
+  rows.push({ name: 'You', tag: `Level ${xpLevel()}`, col: pCol(), xp: seasonXP(), me: true });
+  rows.sort((a, b) => b.xp - a.xp || a.me - b.me);
   rows.forEach((r, i) => { r.pos = i + 1; });
+  assignRanks(rows);
+  if (!daysAgo) {
+    const me = rows.find(r => r.me);
+    if (me.tier > (state.rankBest || 0)) { state.rankBest = me.tier; saveState(); }
+  }
   return rows;
+}
+
+function myStanding() {
+  return getLBRows().find(r => r.me);
 }
 
 /* position change vs yesterday: positive = climbed */
@@ -2842,7 +2909,7 @@ function lbRowHTML(r, moveMap) {
       ${lbMoveHTML(delta)}
       <span class="lb-av" style="background:${r.col}">${r.me ? meAvInner() : r.name.charAt(0)}</span>
       <span class="lb-name">${r.name}${r.me ? ' <span class="lb-you">(you)</span>' : ''}<span class="lb-tag">${r.tag}</span></span>
-      ${rankChip(r.xp)}
+      ${rankChip(r.tier)}
       <span class="lb-xp">${r.xp.toLocaleString()} XP</span>
     </div>`;
 }
@@ -2852,11 +2919,13 @@ function ladderFeedHTML() {
   const move = lbMovementMap();
   const events = [];
 
-  LB_BOTS.forEach(b => {
-    const rNow = rankFor(botXP(b)), rPrev = rankFor(botXP(b, 1));
-    if (rNow.name !== rPrev.name && rNow.min > rPrev.min) {
-      events.push(`${rNow.icon} <strong>${b.name}</strong> reached ${rNow.name}`);
-    }
+  const tierYesterday = {};
+  getLBRows(1).forEach(r => { tierYesterday[r.name] = r.tier; });
+  getLBRows().forEach(r => {
+    if (r.me || tierYesterday[r.name] === undefined) return;
+    const now = RANKS[r.tier];
+    if (r.tier > tierYesterday[r.name]) events.push(`${now.icon} <strong>${r.name}</strong> took a ${now.name} place`);
+    else if (r.tier < tierYesterday[r.name]) events.push(`▼ <strong>${r.name}</strong> was pushed down to ${now.name}`);
   });
 
   const movers = Object.entries(move)
@@ -2915,18 +2984,18 @@ function renderLeaderboardHTML() {
 function renderLeaderboardByTier() {
   const rows = getLBRows();
   const move = lbMovementMap();
-  const tiers = [...RANKS].reverse();
+  const sizes = rankSizes(rows.length);
 
   return `
-    ${tiers.map(t => {
-      const members = rows.filter(r => rankFor(r.xp).name === t.name);
+    ${RANKS.map((t, i) => ({ t, i })).reverse().map(({ t, i }) => {
+      const members = rows.filter(r => r.tier === i);
       if (!members.length) return '';
       const mine = members.some(r => r.me);
       return `
         <div class="lb-tier${mine ? ' mine' : ''}">
           <div class="lb-tier-head" style="color:${t.col}">
             <span>${t.icon} ${t.name}</span>
-            <span class="lb-tier-count">${t.min.toLocaleString()}+ XP · ${members.length} player${members.length !== 1 ? 's' : ''}${mine ? ' · your division' : ''}</span>
+            <span class="lb-tier-count">${sizes[i]} place${sizes[i] !== 1 ? 's' : ''} · ${RANKS[i].share}% of players${mine ? ' · your division' : ''}</span>
           </div>
           <div class="lb-board">${members.map(r => lbRowHTML(r, move)).join('')}</div>
         </div>`;
@@ -2998,27 +3067,33 @@ function modeBoardHTML(mode) {
 }
 
 function renderRankLadder() {
-  const xp = state.xp || 0;
-  const me = rankFor(xp);
-  const toNext = me.next ? me.next.min - xp : 0;
-  const span = me.next ? me.next.min - me.min : 1;
-  const pct = me.next ? Math.min(100, Math.round(((xp - me.min) / span) * 100)) : 100;
+  const rows = getLBRows();
+  const me = rows.find(r => r.me);
+  const rank = rankInfo(me.tier);
+  const sizes = rankSizes(rows.length);
+  const inMine = rows.filter(r => r.tier === me.tier);
+  // To move up you must overtake the lowest player in the rank above.
+  const gate = rank.next ? rows.filter(r => r.tier === rank.next.idx).pop() : null;
+  const toNext = gate ? Math.max(1, gate.xp - me.xp + 1) : 0;
+  const floor = inMine[inMine.length - 1].xp;
+  const pct = gate ? Math.min(100, Math.round(((me.xp - floor) / Math.max(1, gate.xp + 1 - floor)) * 100)) : 100;
+  const status = gate
+    ? `${toNext.toLocaleString()} season XP to overtake <strong>${gate.name}</strong> for a ${rank.next.icon} ${rank.next.name} place, roughly ${Math.max(1, Math.ceil(toNext / 10))} correct MCQs or ${Math.max(1, Math.ceil(toNext / 30))} match clears.`
+    : me.pos === 1
+      ? `Top of the table. Only ${sizes[me.tier]} players can be ${rank.name}, so hold on to it.`
+      : `You hold a ${rank.name} place. Stay in the top ${sizes[me.tier]} to keep it.`;
 
   return `
     <div class="card" style="margin-bottom:18px">
-      <h3 style="margin-bottom:4px">${me.icon} Your rank: <span style="color:${me.col}">${me.name}</span></h3>
-      <p style="font-size:13px;color:var(--text2);margin-bottom:10px">${
-        me.next
-          ? `${toNext.toLocaleString()} XP to ${me.next.icon} ${me.next.name} — roughly ${Math.max(1, Math.ceil(toNext / 10))} correct MCQs or ${Math.max(1, Math.ceil(toNext / 30))} match clears.`
-          : 'Maximum rank achieved. You ARE the syllabus. 👑'
-      }</p>
+      <h3 style="margin-bottom:4px">${rank.icon} Your rank: <span style="color:${rank.col}">${rank.name}</span></h3>
+      <p style="font-size:13px;color:var(--text2);margin-bottom:10px">${status}</p>
       <div class="progress-bar-wrap"><div class="progress-bar" style="width:${pct}%"></div></div>
       <div class="rank-ladder">
-        ${RANKS.map(r => `
-          <div class="rank-step${r.name === me.name ? ' current' : ''}${xp >= r.min ? ' unlocked' : ''}">
+        ${RANKS.map((r, i) => `
+          <div class="rank-step${i === me.tier ? ' current' : ''}${i <= me.tier ? ' unlocked' : ''}">
             <span class="rank-step-icon">${r.icon}</span>
             <span class="rank-step-name">${r.name}</span>
-            <span class="rank-step-xp">${r.min.toLocaleString()}+</span>
+            <span class="rank-step-xp">${sizes[i]} place${sizes[i] !== 1 ? 's' : ''}</span>
           </div>`).join('')}
       </div>
     </div>`;
@@ -3030,6 +3105,7 @@ function renderLeaderboardPage() {
   el('leaderboard-content').innerHTML = `
     <h2 style="margin-bottom:6px">Leaderboard</h2>
     <p style="color:var(--text2);font-size:14px;margin-bottom:14px">Earn XP from flashcards, games and quizzes to climb. Rivals revise daily — fall behind and they'll pass you.</p>
+    <div class="season-banner"><strong>${SEASON.name}</strong> · ranks reset on ${new Date(SEASON_START).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' })}. Each rank has a fixed number of places, so to move up you have to overtake someone.</div>
     <div class="tabs" style="max-width:680px">
       <button class="tab-btn ${isOverall ? 'active' : ''}" onclick="setLbView('overall')">🏁 Overall</button>
       ${Object.keys(MODE_BOARD_META).map(m => `
@@ -3235,7 +3311,7 @@ function showPlayerCard(name) {
   const played = 14 + (h % 88);
   const favMode = ['Elimination', 'Race to 10', 'Duel', 'Blitz 60'][h % 4];
   const daysIn = Math.max(1, Math.floor((Date.now() - LB_EPOCH) / 86400000));
-  const meXp = state.xp || 0;
+  const meXp = seasonXP();
   const gap = r.xp - meXp;
 
   el('player-modal').innerHTML = `
@@ -3245,7 +3321,7 @@ function showPlayerCard(name) {
       <div>
         <h2 style="margin-bottom:2px;font-size:20px">${name}</h2>
         <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
-          ${rankChip(r.xp)}
+          ${rankChip(r.tier)}
           <span class="badge">#${r.pos} of ${rows.length}</span>
           ${lbMoveHTML(move)}
         </div>
@@ -3316,10 +3392,10 @@ function pickOpponents(k, directlyAbove, targetName) {
 
   // matchmaking: weighted draw — your own tier pulls hardest, adjacent tiers are
   // common, and a small floor keeps every rank possible (rare cross-rank lobbies)
-  const myTier = rankFor(me.xp).idx;
+  const myTier = me.tier;
   const pool = others.map(o => ({
     o,
-    w: 1 / (1 + Math.pow(Math.abs(rankFor(o.xp).idx - myTier), 2) * 3) + 0.04
+    w: 1 / (1 + Math.pow(Math.abs(o.tier - myTier), 2) * 3) + 0.04
   }));
 
   const picks = [];
@@ -3598,8 +3674,8 @@ function getAchievements() {
     { icon: '⚔️', name: 'First Blood',     desc: 'Win any battle',                done: battles.won >= 1 },
     { icon: '🏹', name: 'Warlord',         desc: 'Win 10 battles',                done: battles.won >= 10 },
     { icon: '⏱️', name: 'Speed Demon',     desc: 'Clear Match in under 30s',      done: best > 0 && best < 30 },
-    { icon: '🥈', name: 'Silver Surfer',   desc: 'Reach Silver rank',             done: (state.xp || 0) >= 300 },
-    { icon: '💎', name: 'Shine Bright',    desc: 'Reach Diamond rank',            done: (state.xp || 0) >= 2500 },
+    { icon: '🥈', name: 'Silver Surfer',   desc: 'Reach Silver rank',             done: (state.rankBest || 0) >= 1 },
+    { icon: '💎', name: 'Shine Bright',    desc: 'Reach Diamond rank',            done: (state.rankBest || 0) >= 4 },
     { icon: '✍️', name: 'Examiner\'s Pet', desc: 'Self-mark 20 questions',        done: state.questions.history.length >= 20 }
   ];
 }
@@ -3622,7 +3698,6 @@ function buildSparklineSVG(data, width = 200, height = 40) {
 function renderProfile() {
   loadData(unitLetters());
   const xp = state.xp || 0;
-  const r = rankFor(xp);
   const rows = getLBRows();
   const me = rows.find(x => x.me);
   const rc = ragCounts();
@@ -3659,7 +3734,7 @@ function renderProfile() {
       <div style="flex:1">
         <h2 style="margin-bottom:2px">You</h2>
         <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-          ${rankChip(xp)}
+          ${rankChip(me.tier)}
           <span class="badge">Level ${xpLevel()}</span>
           <span class="badge">#${me.pos} of ${rows.length}</span>
           <span class="badge">${state.streak.count}-day streak</span>
