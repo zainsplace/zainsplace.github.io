@@ -5333,1567 +5333,2524 @@ const INLINE_UNITS = {
           "section": "C",
           "code": "C1.1.1",
           "front": "What is a Private Cloud?",
-          "back": "Cloud infrastructure operated solely for one organisation. Hosted on-premise or at a dedicated facility. More control and security but higher cost than public cloud."
+          "back": "Cloud used by one organisation only. More control and security, but costlier."
         },
         {
           "id": "c2",
           "section": "C",
           "code": "C1.1.2",
           "front": "What is a Public Cloud?",
-          "back": "Cloud services delivered over the internet, shared across multiple organisations, managed by a third-party provider (e.g. AWS, Azure). Low cost and scalable but less control over data location."
+          "back": "Shared cloud run by a provider (e.g. AWS). Cheap and scalable, but less control."
         },
         {
           "id": "c3",
           "section": "C",
           "code": "C1.1.3",
           "front": "What is a Hybrid Cloud?",
-          "back": "Combines private and public cloud. Sensitive data stays on private cloud; less sensitive workloads use cheaper public cloud. Offers flexibility but is more complex to manage."
+          "back": "A mix: sensitive data on private cloud, everything else on cheaper public cloud."
         },
         {
           "id": "c4",
           "section": "C",
           "code": "C1.1.4",
           "front": "What does IaaS stand for and what does it provide?",
-          "back": "Infrastructure as a Service. Provides virtualised computing resources (servers, storage, networking) over the internet. Organisation manages OS and software; provider manages physical hardware. Example: Amazon EC2."
+          "back": "Infrastructure as a Service: rented servers, storage and networking; you manage the OS. E.g. Amazon EC2."
         },
         {
           "id": "c5",
           "section": "C",
           "code": "C1.1.5",
           "front": "What does SaaS stand for and what does it provide?",
-          "back": "Software as a Service. Software delivered over the internet on subscription — no installation needed. Provider manages everything. Examples: Microsoft 365, Google Workspace. Accessible from any device."
+          "back": "Software as a Service: subscription software over the internet, e.g. Microsoft 365."
         },
         {
           "id": "c6",
           "section": "C",
           "code": "C1.1.6",
           "front": "What does PaaS stand for and what does it provide?",
-          "back": "Platform as a Service. Provides a platform for developers to build and deploy apps without managing infrastructure. Provider handles OS and hardware; developer manages the application. Example: Google App Engine, Heroku."
+          "back": "Platform as a Service: build and deploy apps without managing servers, e.g. Heroku."
         },
         {
           "id": "c7",
           "section": "C",
           "code": "C1.2",
           "front": "Give TWO benefits and TWO drawbacks of cloud computing for an organisation.",
-          "back": "BENEFITS: Reduced capital expenditure (no hardware to buy); scalable (resources increase/decrease with demand). DRAWBACKS: Internet dependency (outage = no access); security risk (data held by third party, GDPR implications)."
+          "back": "Benefits: lower upfront cost, scalable. Drawbacks: needs internet, data held by a third party."
         },
         {
           "id": "c8",
           "section": "C",
           "code": "C1.3.1",
           "front": "What is a VPN and how does it enable remote working?",
-          "back": "Virtual Private Network — creates an encrypted tunnel between a device and the organisation's network over the internet. Allows remote workers to access internal resources securely as if in the office. Protects data from interception on public Wi-Fi."
+          "back": "An encrypted tunnel to the company network, so remote staff work securely as if in the office."
         },
         {
           "id": "c9",
           "section": "C",
           "code": "C1.3.2",
           "front": "What is remote desktop technology?",
-          "back": "Software allowing a user to view and control another computer's desktop remotely over a network/internet. Used by IT support and remote workers. Examples: Microsoft Remote Desktop, TeamViewer. Security risk if not properly protected."
+          "back": "Viewing and controlling another computer remotely, e.g. TeamViewer for IT support."
         },
         {
           "id": "c10",
           "section": "C",
           "code": "C1.4.1",
           "front": "Why is security a factor when selecting an online system?",
-          "back": "Organisation must ensure cloud provider is GDPR-compliant. Data must be encrypted at rest and in transit. Security breaches can cause financial penalties and reputational damage. MFA adds extra protection."
+          "back": "Breaches bring fines and reputational damage, so providers must be GDPR-compliant and encrypt data."
         },
         {
           "id": "c11",
           "section": "C",
           "code": "C1.4.6",
           "front": "What is scalability in the context of cloud computing?",
-          "back": "The ability to increase or decrease resources on demand without significant cost or disruption. Cloud can scale up during peak demand (e.g. Christmas retail) and scale down to avoid paying for unused capacity. On-premise systems are harder to scale."
+          "back": "Increasing or reducing resources on demand, e.g. scaling up for Christmas."
         },
         {
           "id": "c12",
           "section": "C",
           "code": "C2.1.1",
           "front": "Give TWO ways social media can be used by an organisation and ONE risk.",
-          "back": "USES: Marketing/advertising to large audiences; direct customer communication/service. RISK: Negative comments spread rapidly — can cause serious reputational damage. Also: personal data collected by platforms raises privacy concerns."
+          "back": "Uses: marketing, customer service. Risk: negative comments spread fast."
         },
         {
           "id": "c13",
           "section": "C",
           "code": "C2.1.3",
           "front": "What is a wiki and what is its main limitation?",
-          "back": "A collaboratively edited website where multiple users can create and edit content (e.g. Wikipedia). Main limitation: accuracy concerns — content may be unverified or contain errors since anyone can edit."
+          "back": "A site anyone can edit (e.g. Wikipedia). Limitation: content may be inaccurate."
         },
         {
           "id": "c14",
           "section": "C",
           "code": "C2.1.4",
           "front": "Difference between a chatroom and a forum?",
-          "back": "Chatroom: real-time (synchronous) communication — users must be online at the same time. Forum: asynchronous — posts are permanent and searchable, users reply in their own time. Forums better for reference; chatrooms better for live discussion."
+          "back": "Chatroom: real-time. Forum: posts stay up and people reply in their own time."
         },
         {
           "id": "c15",
           "section": "C",
           "code": "C2.2.4",
           "front": "What privacy consideration must organisations be aware of when using online communities?",
-          "back": "GDPR requires users to consent to data collection. Platforms may sell data to advertisers — users may not know what data is collected. Organisations must have a clear privacy policy and ensure their social media use complies with data protection law."
+          "back": "Users must consent to data collection (GDPR), so a clear privacy policy is needed."
         },
         {
           "id": "c16",
           "section": "C",
           "code": "C2.2.10",
           "front": "What is an Acceptable Use Policy (AUP)?",
-          "back": "A set of rules an organisation sets for how employees interact online. Defines what is/isn't allowed (e.g. no sharing confidential data, professional conduct on social media). Employees represent the company online — misconduct can have legal and reputational consequences."
+          "back": "Rules for how staff use IT and behave online, e.g. no sharing confidential data."
         },
         {
           "id": "c17",
           "section": "C",
           "code": "C2.1.2",
           "front": "What is a blog/vlog and give ONE organisational use?",
-          "back": "Blog: a website where an individual or organisation regularly posts written content (articles, news, opinions). Vlog: video equivalent, typically hosted on YouTube. Organisations use blogs/vlogs to demonstrate expertise, engage customers, and improve search engine visibility (SEO). Risk: content must be regularly updated or credibility suffers."
+          "back": "Regular written posts (blog) or videos (vlog). Use: showing expertise to engage customers."
         },
         {
           "id": "c18",
           "section": "C",
           "code": "C2.1.5",
           "front": "What is instant messaging and give ONE advantage over email for organisations?",
-          "back": "Real-time text (and file) communication between users over the internet. Examples: Microsoft Teams, Slack, WhatsApp. ADVANTAGE: faster responses than email; enables quick team collaboration; reduces volume of formal emails. Risk: informal tone may compromise professionalism; harder to archive formally."
+          "back": "Real-time messaging, e.g. Teams. Advantage: faster replies than email."
         },
         {
           "id": "c19",
           "section": "C",
           "code": "C2.1.6",
           "front": "What is a podcast and give ONE use for an organisation?",
-          "back": "An audio (or video) programme available for download or streaming on demand — users subscribe and receive new episodes automatically. Organisations use podcasts for training content, thought leadership, or marketing. ADVANTAGE: accessible to wide audiences; low production cost. LIMITATION: one-way communication — no real-time interaction with audience."
+          "back": "On-demand audio episodes. Use: staff training or marketing."
         },
         {
           "id": "c21",
           "section": "C",
           "code": "C1.4.2-5",
           "front": "State FOUR factors (other than security and scalability) that affect the selection of an online system.",
-          "back": "1. Cost: subscription fees, data usage costs — must offer value for money. 2. Ease of use: intuitive interface reduces training time and errors. 3. Features: system must have the functionality the organisation needs. 4. Connectivity: requires reliable internet access; must be accessible from required devices and locations."
+          "back": "Cost, ease of use, features and connectivity."
         },
         {
           "id": "d1",
           "section": "D",
           "code": "D1.1.1",
           "front": "What is malware? Give THREE examples.",
-          "back": "Malicious software designed to damage, disrupt, or gain unauthorised access to systems. Examples: viruses (attach to files and spread), ransomware (encrypts files and demands payment), spyware (monitors user activity secretly), Trojans (disguise as legitimate software)."
+          "back": "Software designed to cause harm, e.g. viruses, ransomware, spyware."
         },
         {
           "id": "d2",
           "section": "D",
           "code": "D1.1.4",
           "front": "What is social engineering? Give an example.",
-          "back": "Manipulating people into revealing confidential information or performing actions that compromise security. Example: phishing — sending fake emails pretending to be a bank to trick users into entering their login details."
+          "back": "Tricking people into giving away information, e.g. phishing emails."
         },
         {
           "id": "d3",
           "section": "D",
           "code": "D1.3",
           "front": "State THREE impacts of a data breach on an organisation.",
-          "back": "1. Loss of data — customer/business data permanently lost or stolen. 2. Financial loss — GDPR fines (up to £17.5m or 4% global turnover) and compensation claims. 3. Reputational damage — loss of customer trust, negative publicity, fewer sales."
+          "back": "Data loss, financial loss (GDPR fines) and reputational damage."
         },
         {
           "id": "d4",
           "section": "D",
           "code": "D2.4",
           "front": "What is encryption and how does it protect data?",
-          "back": "The process of converting data into an unreadable format using an algorithm and key. Only someone with the correct decryption key can read it. Protects stored data, data in transit (e.g. emails), and data on secure websites (HTTPS uses SSL/TLS encryption)."
+          "back": "Scrambles data so only someone with the decryption key can read it."
         },
         {
           "id": "d5",
           "section": "D",
           "code": "D2.1.4",
           "front": "What is Multi-Factor Authentication (MFA) and why is it more secure than a password alone?",
-          "back": "MFA requires two or more verification factors: something you know (password), something you have (phone/token), something you are (biometric). Even if a password is stolen, attacker cannot access the account without the second factor."
+          "back": "Two or more factors (know / have / are), so a stolen password alone isn't enough."
         },
         {
           "id": "d6",
           "section": "D",
           "code": "D2.3",
           "front": "What does a firewall do?",
-          "back": "A firewall monitors and controls incoming/outgoing network traffic based on security rules. It blocks unauthorised access to/from a private network. Can be hardware or software. Creates a barrier between trusted internal network and untrusted external networks (internet)."
+          "back": "Filters incoming and outgoing traffic using rules, blocking unauthorised access."
         },
         {
           "id": "d7",
           "section": "D",
           "code": "D1.1.2",
           "front": "What is unauthorised access (hacking)? Distinguish between a black-hat and white-hat hacker.",
-          "back": "A hacker gains unauthorised access to computer systems. Black-hat: malicious intent — steals data, deploys malware, causes disruption; illegal under the Computer Misuse Act 1990. White-hat (ethical hacker): hired by organisations to test their security — finds vulnerabilities before criminals do; authorised and legal."
+          "back": "Access without permission. Black-hat: malicious and illegal. White-hat: hired to test security."
         },
         {
           "id": "d8",
           "section": "D",
           "code": "D1.1.3",
           "front": "How can accidental damage threaten data? Give TWO examples and ONE protection method.",
-          "back": "Physical damage to hardware can cause data loss — e.g. dropping a laptop, spilling liquid on a server, hardware failure. Power surges can corrupt data on storage devices. PROTECTION: regular offsite backups ensure data can be recovered; UPS (Uninterruptible Power Supply) protects against power surges."
+          "back": "Dropped laptops, spills, power surges. Protect with backups or a UPS."
         },
         {
           "id": "d9",
           "section": "D",
           "code": "D1.1.5",
           "front": "How do natural disasters threaten IT systems? How can organisations protect against this?",
-          "back": "Floods, fires, and earthquakes can physically destroy servers and data centres — all on-site data could be permanently lost. PROTECTION: offsite or cloud backups; geographically separate data centres provide failover; disaster recovery plans outline procedures for restoring systems."
+          "back": "Floods and fires can destroy on-site data. Protect with off-site or cloud backups."
         },
         {
           "id": "d10",
           "section": "D",
           "code": "D1.2",
           "front": "State FOUR internal threats to data within an organisation.",
-          "back": "1. Access to inappropriate websites: malware may be downloaded unintentionally. 2. Accidental disclosure: employee emails sensitive data to wrong recipient. 3. Stealing/leaking information: disgruntled employee copies data to a USB drive or emails it to a competitor. 4. Use of portable devices: USB drives can introduce malware or be used to remove data from the building."
+          "back": "Risky websites, accidental disclosure, staff leaking data, portable devices."
         },
         {
           "id": "d11",
           "section": "D",
           "code": "D2.1.1-2",
           "front": "What are file permissions and access levels? How do they protect data?",
-          "back": "File permissions control who can read, write, or execute specific files/folders. Access levels restrict which parts of a system different users can reach — e.g. staff see only their department's data; only admins can change system settings. Principle of least privilege: users only access what they need, limiting damage if an account is compromised."
+          "back": "Control who can read, write or run files, so users only access what they need."
         },
         {
           "id": "d12",
           "section": "D",
           "code": "D2.1.3",
           "front": "What is a backup? What should a good backup strategy include?",
-          "back": "A copy of data stored separately, used to restore data after loss or corruption. Good strategy (3-2-1 rule): 3 copies of data, on 2 different media types, with 1 stored offsite or in the cloud. Types: full backup (all data) or incremental (only changes since last backup). Recovery procedures must be tested regularly — a backup is useless if it cannot be restored."
+          "back": "A separate copy for restoring lost data. Use 3-2-1: 3 copies, 2 media, 1 off-site."
         },
         {
           "id": "d13",
           "section": "D",
           "code": "D2.1.5",
           "front": "What are biometric security methods? Give TWO examples and ONE advantage over passwords.",
-          "back": "Security systems that identify users based on unique physical characteristics. Examples: fingerprint scanner, facial recognition, iris scan, voice recognition. ADVANTAGE: cannot be forgotten or shared like a password; harder to fake. DISADVANTAGE: if biometric data is compromised, it cannot be changed — raises privacy concerns."
+          "back": "ID by body features, e.g. fingerprint, face. Advantage: can't be forgotten or shared."
         },
         {
           "id": "d14",
           "section": "D",
           "code": "D2.1.6",
           "front": "What is physical access control? Give THREE examples.",
-          "back": "Security measures that restrict physical entry to buildings, rooms, or equipment. Examples: swipe card / key fob entry (records who entered and when); PIN pads on server room doors; CCTV monitoring entrances and server rooms; cable locks securing laptops. Digital security is useless if an attacker can physically access a server."
+          "back": "Restricting physical entry, e.g. swipe cards, PIN-locked doors, CCTV."
         },
         {
           "id": "d15",
           "section": "D",
           "code": "D2.1.7",
           "front": "What is a digital certificate and how is it used?",
-          "back": "An electronic document that verifies the identity of a website or organisation, issued by a trusted Certificate Authority (CA). Used in HTTPS to confirm a website is genuine (not a spoof). Contains the public encryption key. Browsers show a padlock icon when a valid certificate is present — users can verify authenticity before entering data."
+          "back": "Proves a website's identity; issued by a Certificate Authority. Gives the HTTPS padlock."
         },
         {
           "id": "d16",
           "section": "D",
           "code": "D2.2",
           "front": "What does antivirus software do? State THREE key functions.",
-          "back": "1. Scanning: checks files and programs for known malware signatures. 2. Real-time protection: monitors system activity continuously, blocking suspicious behaviour. 3. Quarantine: isolates infected files to prevent spread. 4. Updates: regularly downloads new virus definitions to detect the latest threats. Limitation: zero-day attacks (brand-new malware) may not yet be in the definitions database."
+          "back": "Scans for known malware, protects in real time, and quarantines infected files."
         },
         {
           "id": "b1",
           "section": "B",
           "code": "B1.1.3",
           "front": "What is Wi-Fi and give ONE advantage and ONE disadvantage?",
-          "back": "Wi-Fi: wireless networking standard using radio waves to connect devices to a network/internet. ADVANTAGE: no cables needed — flexible, mobile use. DISADVANTAGE: signal strength weakens with distance/walls; more susceptible to interference and security risks than wired connections."
+          "back": "Wireless networking by radio. Advantage: no cables. Disadvantage: weaker through walls, less secure."
         },
         {
           "id": "b2",
           "section": "B",
           "code": "B1.1.4",
           "front": "What is Ethernet? Give ONE advantage over Wi-Fi.",
-          "back": "Wired networking standard using cables (copper or fibre optic) to connect devices. ADVANTAGE: more reliable, faster, and more secure than Wi-Fi — signal not affected by interference; harder for others to intercept."
+          "back": "Wired networking by cable. Advantage: faster, more reliable and more secure."
         },
         {
           "id": "b3",
           "section": "B",
           "code": "B2.1.1",
           "front": "Describe a star network topology.",
-          "back": "All devices connect to a central switch/hub. If one device fails, others are unaffected (only that connection goes down). If the central switch fails, ALL devices lose connection. Most common topology in modern networks — easy to manage and add devices."
+          "back": "Every device connects to a central switch. If the switch fails, everything goes down."
         },
         {
           "id": "b4",
           "section": "B",
           "code": "B2.2.3",
           "front": "What is a WAN and how does it differ from a LAN?",
-          "back": "WAN (Wide Area Network): covers large geographic areas, often connecting multiple LANs (e.g. across cities or countries). Uses third-party infrastructure (e.g. phone lines, fibre). LAN (Local Area Network): limited to a small area (e.g. one building). Organisation owns the infrastructure."
+          "back": "A WAN covers a large area using third-party lines. A LAN covers one site you own."
         },
         {
           "id": "b5",
           "section": "B",
           "code": "B2.2.4",
           "front": "What is a VPN and why would an organisation use one?",
-          "back": "Virtual Private Network: creates encrypted tunnel over the internet for secure data transmission. Used to securely connect remote workers to the company network, or to link office branches over the internet without a costly dedicated line."
+          "back": "An encrypted tunnel over the internet, securely linking remote staff or branches."
         },
         {
           "id": "b6",
           "section": "B",
           "code": "B3.1.3",
           "front": "What is the difference between HTTP and HTTPS?",
-          "back": "HTTP: HyperText Transfer Protocol — transfers web pages over the internet; data is unencrypted. HTTPS: HTTP Secure — uses SSL/TLS encryption to protect data in transit. Ensures data cannot be intercepted and verifies the website is genuine. Essential for any site handling personal data or payments."
+          "back": "HTTPS encrypts data with SSL/TLS; HTTP doesn't."
         },
         {
           "id": "b7",
           "section": "B",
           "code": "B3.3",
           "front": "What is bandwidth and what is latency?",
-          "back": "Bandwidth: the maximum amount of data that can be transmitted per second (measured in Mbps/Gbps). Higher bandwidth = more data per second. Latency: the delay between sending data and it being received (measured in ms). Lower latency = faster response. Both affect network performance."
+          "back": "Bandwidth: data per second (Mbps). Latency: delay before data arrives (ms)."
         },
         {
           "id": "b8",
           "section": "B",
           "code": "B3.5",
           "front": "Difference between lossy and lossless compression?",
-          "back": "Lossy: permanently removes some data to achieve smaller file sizes — some quality is lost (irreversible). Used for images (JPEG), audio (MP3), video (MP4). Lossless: reduces file size without losing any data — original can be perfectly restored. Used for text, ZIP files, PNG images."
+          "back": "Lossy permanently removes data (JPEG, MP3). Lossless keeps it all (ZIP, PNG)."
         },
         {
           "id": "b9",
           "section": "B",
           "code": "B1.1.1",
           "front": "What is Bluetooth? Give ONE advantage and ONE disadvantage.",
-          "back": "A short-range wireless standard using radio waves (typically up to 10 metres) for device-to-device connections. ADVANTAGE: no cables needed; easy pairing for peripherals (headphones, keyboards, mice). DISADVANTAGE: short range and lower data speeds than Wi-Fi; security risks include bluejacking (unsolicited messages) and bluesnarfing (unauthorised data access)."
+          "back": "Short-range wireless (~10 m). Advantage: easy pairing. Disadvantage: short range, slower than Wi-Fi."
         },
         {
           "id": "b10",
           "section": "B",
           "code": "B1.1.2",
           "front": "What is USB? State TWO uses and ONE advantage over wireless connections.",
-          "back": "Universal Serial Bus — a wired standard for transferring data and power between devices. Uses: connecting peripherals (keyboard, mouse, printer); transferring files via USB flash drive; charging devices. ADVANTAGE: faster and more reliable data transfer than Bluetooth; no pairing needed; simultaneously supplies power to the connected device."
+          "back": "Wired data and power. Uses: peripherals, flash drives. Advantage: faster and more reliable than Bluetooth."
         },
         {
           "id": "b11",
           "section": "B",
           "code": "B2.1.2",
           "front": "Describe a ring network topology. Give ONE advantage and ONE disadvantage.",
-          "back": "Devices connect in a closed loop — data travels in one direction around the ring, passing through each device in turn. ADVANTAGE: equal access for all devices; performs well under heavy load. DISADVANTAGE: if one device or cable fails, the entire network can go down; adding devices disrupts the network. Rarely used in modern networks."
+          "back": "Devices in a loop, data flows one way. Advantage: copes with heavy load. Disadvantage: one failure breaks it."
         },
         {
           "id": "b12",
           "section": "B",
           "code": "B2.1.3",
           "front": "Describe a bus network topology. Give ONE advantage and ONE disadvantage.",
-          "back": "All devices connect to a single central cable (the backbone). Data travels along the cable and all devices receive it; only the intended recipient processes it. ADVANTAGE: cheap and simple to set up. DISADVANTAGE: if the main cable fails, the entire network fails; performance degrades as more devices are added due to data collisions. Mainly historical."
+          "back": "All devices on one backbone cable. Advantage: cheap. Disadvantage: if the cable fails, everything fails."
         },
         {
           "id": "b13",
           "section": "B",
           "code": "B2.2.1",
           "front": "What is a Personal Area Network (PAN)? Give ONE example.",
-          "back": "A network covering a very small area — typically a single person's workspace or body area (a few metres). Usually uses Bluetooth or USB. Example: a smartphone connected to wireless earphones and a smartwatch. Unlike a LAN, a PAN is for personal device connectivity rather than sharing resources across an organisation."
+          "back": "A network of a few metres around one person, e.g. a phone linked to earbuds."
         },
         {
           "id": "b14",
           "section": "B",
           "code": "B3.1.1",
           "front": "What is the difference between SMTP, POP3, and IMAP?",
-          "back": "SMTP (Simple Mail Transfer Protocol): used to SEND emails from a client to a server, or between servers. POP3 (Post Office Protocol): downloads emails from the server to one device and typically deletes them from the server — emails only accessible on that device. IMAP (Internet Message Access Protocol): emails stay on the server and sync across all devices — changes (read/delete) reflect everywhere."
+          "back": "SMTP sends. POP3 downloads to one device. IMAP keeps mail synced across devices."
         },
         {
           "id": "b15",
           "section": "B",
           "code": "B3.1.2",
           "front": "What is VoIP? Give ONE advantage and ONE disadvantage.",
-          "back": "Voice over Internet Protocol — transmits voice calls as digital data packets over the internet instead of traditional phone lines. ADVANTAGE: much cheaper than traditional calls, especially internationally; works on any internet-connected device. DISADVANTAGE: dependent on internet connection quality — poor connection causes call quality issues or dropped calls; vulnerable to cyberattacks."
+          "back": "Voice calls over the internet. Advantage: cheap. Disadvantage: depends on connection quality."
         },
         {
           "id": "b16",
           "section": "B",
           "code": "B3.4",
           "front": "Why does file format matter when transmitting data? Give an example.",
-          "back": "File format affects file size (bandwidth and time needed), compatibility (recipient must be able to open it), and quality. Example: sending a RAW image uses far more bandwidth than a JPEG — impractical over slow connections. Compressed formats (MP3, JPEG, MP4) reduce transmission time but may reduce quality. Lossless formats preserve quality but take longer to transmit."
+          "back": "It affects size, compatibility and quality, e.g. RAW images are far bigger than JPEGs."
         },
         {
           "id": "b17",
           "section": "B",
           "code": "B3.6",
           "front": "What is a codec and why is it needed for audio/video?",
-          "back": "A codec (Coder-Decoder) is software that compresses audio/video data for storage or transmission and decompresses it for playback. Without a codec, raw audio/video files would be too large to stream or store practically. Examples: H.264/H.265 for video; AAC for audio. Both sender and receiver must have compatible codecs — mismatched codecs prevent playback."
+          "back": "Compresses and decompresses audio/video so it's small enough to stream, e.g. H.264."
         },
         {
           "id": "e1",
           "section": "E",
           "code": "E1.1.1",
           "front": "Give TWO benefits of online retail for customers and ONE risk.",
-          "back": "BENEFITS: Shop 24/7 from anywhere; wider choice of products; easy price comparison. RISK: Personal/payment data at risk of breach; products cannot be physically inspected before purchase; returns process can be inconvenient."
+          "back": "Benefits: shop 24/7, wider choice. Risk: payment data could be breached."
         },
         {
           "id": "e2",
           "section": "E",
           "code": "E1.2.2",
           "front": "What is targeted marketing? How does it use IT?",
-          "back": "Marketing that uses data about individuals (browsing history, purchase history, demographics) to show personalised adverts. IT systems analyse transactional data and cookies to build customer profiles. Example: Amazon recommending products based on past purchases."
+          "back": "Personalised adverts from browsing and purchase data, e.g. Amazon recommendations."
         },
         {
           "id": "e3",
           "section": "E",
           "code": "E2.5.1",
           "front": "What is verification in data entry?",
-          "back": "Checking that data has been entered correctly — comparing input against original source. Methods: double entry (entering data twice and comparing), proofreading. Catches transcription errors but does NOT check whether the data itself is correct/valid."
+          "back": "Checking data was entered correctly, e.g. double entry. It doesn't check the data is sensible."
         },
         {
           "id": "e4",
           "section": "E",
           "code": "E2.5.2",
           "front": "What is validation? Give TWO types.",
-          "back": "Automated checking that data entered is reasonable, complete, and in the correct format. Types: Range check (value within acceptable range, e.g. age 0–120); Presence check (field cannot be left empty); Format check (data matches expected pattern, e.g. postcode format); Length check (correct number of characters)."
+          "back": "Automatic checks that data is sensible, e.g. range check, presence check."
         },
         {
           "id": "e5",
           "section": "E",
           "code": "E1.1.2",
           "front": "Give TWO benefits and TWO risks of online financial services for customers.",
-          "back": "BENEFITS: 24/7 access to banking and payments — no branch visits needed; instant transfers and mobile payments. RISKS: Phishing attacks targeting login credentials; data breaches exposing financial details. Organisations must use HTTPS, MFA, and encryption to protect transactions."
+          "back": "Benefits: 24/7 access, instant transfers. Risks: phishing, data breaches."
         },
         {
           "id": "e6",
           "section": "E",
           "code": "E1.1.3",
           "front": "Give TWO benefits and ONE limitation of online education and training.",
-          "back": "BENEFITS: Accessible from anywhere at any time — removes geographic and time barriers; often cheaper than in-person courses; can be self-paced with multimedia content. LIMITATION: Lack of face-to-face interaction may reduce motivation; requires reliable internet access; not suitable for all skill types (e.g. hands-on practical work)."
+          "back": "Benefits: learn anywhere, often cheaper. Limitation: less face-to-face interaction."
         },
         {
           "id": "e7",
           "section": "E",
           "code": "E1.1.4",
           "front": "Give ONE advantage and TWO risks of accessing news and information online.",
-          "back": "ADVANTAGE: Immediate access to breaking news worldwide; wide variety of sources and perspectives. RISKS: Misinformation and fake news — anyone can publish online without editorial oversight; filter bubbles — algorithms show content matching existing views, limiting exposure to different perspectives."
+          "back": "Advantage: instant news. Risks: fake news and filter bubbles."
         },
         {
           "id": "e8",
           "section": "E",
           "code": "E1.1.5",
           "front": "Give TWO impacts of the growth of online entertainment on traditional businesses.",
-          "back": "Physical media sales (CDs, DVDs, game discs) have declined dramatically — stores have closed (e.g. HMV). Traditional TV broadcasters face competition from streaming services (Netflix, Disney+). POSITIVE for tech sector: demand for server infrastructure and broadband has grown. Subscription models now dominate over one-off purchases."
+          "back": "Physical media sales have collapsed (e.g. HMV closures) and TV competes with streaming."
         },
         {
           "id": "e9",
           "section": "E",
           "code": "E1.1.6",
           "front": "What are online booking systems? Give TWO benefits and ONE risk.",
-          "back": "Automated systems allowing customers to reserve services (flights, hotels, appointments) over the internet, 24/7. BENEFITS: Available at any time without staff involvement; reduces administrative costs; shows real-time availability. RISK: System downtime prevents bookings; a data breach could expose customer payment and personal details."
+          "back": "Online reservations, e.g. flights. Benefits: 24/7, lower admin costs. Risk: downtime stops bookings."
         },
         {
           "id": "e10",
           "section": "E",
           "code": "E1.2.1",
           "front": "What is transactional data and how do organisations use it?",
-          "back": "Data generated from transactions — purchases, logins, website clicks, searches. Organisations analyse it to: identify buying patterns; personalise product recommendations; target marketing campaigns; manage stock levels; detect fraud. Example: Amazon uses purchase history to recommend products; banks analyse transactions to flag unusual activity."
+          "back": "Data from purchases, clicks and logins. Used for recommendations, marketing and fraud detection."
         },
         {
           "id": "e11",
           "section": "E",
           "code": "E1.2.3",
           "front": "What is collaborative working using IT? Give TWO tools and ONE benefit.",
-          "back": "Multiple people working together on shared tasks or documents using IT, regardless of location. Tools: Google Workspace / Microsoft 365 (real-time document editing); video conferencing (Teams, Zoom); project management tools (Trello, Asana). BENEFIT: Teams collaborate across different locations and time zones — reduces travel costs and delays."
+          "back": "Working on shared files from anywhere. Tools: Microsoft 365, Zoom. Benefit: less travel."
         },
         {
           "id": "e12",
           "section": "E",
           "code": "E1.2.4",
           "front": "State THREE IT tools that enable remote working and ONE organisational implication.",
-          "back": "Tools: VPN (secure access to company network); video conferencing (Teams/Zoom); cloud storage (access files anywhere); remote desktop software. IMPLICATION: Organisations can reduce office space costs and access talent from anywhere — BUT security risks increase if personal devices or home networks are used without proper controls."
+          "back": "VPN, video calls, cloud storage. Implication: less office space needed, but higher security risk."
         },
         {
           "id": "e13",
           "section": "E",
           "code": "E2.1",
           "front": "What is the difference between primary and secondary data? Give an example of each.",
-          "back": "Primary data: collected first-hand for a specific purpose (e.g. questionnaire sent to customers about a new product). Fresh and directly relevant, but time-consuming and expensive to collect. Secondary data: already exists, collected by someone else (e.g. census data, published market research). Cheaper and quicker, but may be outdated or not exactly relevant to the need."
+          "back": "Primary: collected yourself (e.g. a questionnaire). Secondary: someone else's (e.g. census data)."
         },
         {
           "id": "e14",
           "section": "E",
           "code": "E2.2",
           "front": "Give THREE methods of ensuring the reliability of information.",
-          "back": "1. Cross-referencing: check information against multiple independent sources. 2. Source credibility: use peer-reviewed, authoritative, or official sources rather than anonymous websites. 3. Currency: check the date — old data may no longer be accurate. 4. Consistency: verify information is consistent with related known facts. 5. Triangulation: compare data from different collection methods."
+          "back": "Cross-reference sources, use credible sources, and check the date."
         },
         {
           "id": "e15",
           "section": "E",
           "code": "E2.3",
           "front": "Name FOUR methods of collecting data/opinions. Give ONE advantage of each.",
-          "back": "Survey: reaches large numbers of people quickly, cheap to distribute digitally. Questionnaire: standardised questions allow easy comparison of responses. Focus group: in-depth qualitative insight — explores opinions and feelings in detail. Interview: allows follow-up questions; produces richer, more detailed responses than written methods."
+          "back": "Survey: reaches many. Questionnaire: easy to compare. Focus group: in-depth. Interview: follow-ups."
         },
         {
           "id": "e16",
           "section": "E",
           "code": "E2.4",
           "front": "Give THREE reasons why data accuracy is important for organisations.",
-          "back": "1. Decision making: inaccurate data leads to poor business decisions (e.g. wrong stock orders). 2. Legal compliance: GDPR requires personal data to be accurate and up to date — inaccurate records can result in fines. 3. Customer trust: billing errors or wrong deliveries caused by bad data damage reputation. 4. Operational efficiency: errors in financial or stock data cause costly operational problems."
+          "back": "Better decisions, GDPR compliance, and customer trust."
         },
         {
           "id": "e17",
           "section": "E",
           "code": "E2.6",
           "front": "Give THREE characteristics of a good user interface for a data collection system.",
-          "back": "1. Ease of use: intuitive layout so users can enter data quickly without errors. 2. Accessibility: compatible with assistive technologies; usable by all. 3. Error reduction: validation rules, drop-down menus, and input masks prevent incorrect entry. 4. Performance: fast response times prevent frustration. 5. Functionality: all required fields present; data can be saved and submitted easily."
+          "back": "Easy to use, accessible, and prevents errors (validation, drop-downs)."
         },
         {
           "id": "a1",
           "section": "A",
           "code": "A3.2.3",
           "front": "What is virtual memory?",
-          "back": "A memory management technique where the OS uses part of the hard disk as an extension of RAM. When RAM is full, less-used data is temporarily moved to the hard disk (swapping/paging), freeing RAM for active processes. Slower than RAM but prevents crashes when RAM is exhausted."
+          "back": "Using part of the disk as extra RAM when RAM is full. Slower than real RAM."
         },
         {
           "id": "a2",
           "section": "A",
           "code": "A3.5",
           "front": "Name and describe FOUR types of user interface.",
-          "back": "1. CLI (Command Line Interface): text commands typed by user — powerful but requires expertise. 2. GUI (Graphical User Interface): icons, windows, mouse — intuitive for general users. 3. Menu-driven: user selects from menus — limited but simple (e.g. ATM). 4. Touchscreen GUI: same as GUI but touch input — used on smartphones/tablets."
+          "back": "CLI (typed commands), GUI (windows and icons), menu-driven (e.g. ATM), touchscreen."
         },
         {
           "id": "a3",
           "section": "A",
           "code": "A3.6",
           "front": "Difference between open source and proprietary software?",
-          "back": "Open source: source code is freely available, can be modified and redistributed (e.g. Linux, LibreOffice). Low/no cost, community support. Proprietary: source code is closed, owned by company, cannot be modified (e.g. Windows, MS Office). Usually costs money, vendor provides support."
+          "back": "Open source: free, editable code (Linux). Proprietary: closed code, usually paid (Windows)."
         },
         {
           "id": "a4",
           "section": "A",
           "code": "A2.3",
           "front": "Give FOUR characteristics of storage media.",
-          "back": "1. Capacity: how much data it can hold (GB/TB). 2. Cost: price per GB. 3. Speed: how fast data is read/written. 4. Compatibility: whether the device works with the system. SSD = faster but more expensive per GB than HDD. USB flash drives = portable but lower capacity than HDD."
+          "back": "Capacity, cost per GB, speed and compatibility."
         },
         {
           "id": "a5",
           "section": "A",
           "code": "A1.1.1",
           "front": "What is a personal computer (PC)? State ONE difference between a desktop and a laptop.",
-          "back": "A general-purpose computing device designed for individual use, running a full OS (Windows, macOS, Linux). Desktop: more powerful for the price, easily upgraded, not portable — suited to fixed workstations. Laptop: portable and battery-powered, less upgradeable — suited to mobile workers and students."
+          "back": "A general-purpose computer for one user. Desktops are more powerful; laptops are portable."
         },
         {
           "id": "a6",
           "section": "A",
           "code": "A1.1.2",
           "front": "What is a multifunctional device (MFD)?",
-          "back": "A device that combines multiple functions in one unit — typically printing, scanning, copying, and faxing. Used in offices to reduce the number of separate devices needed, saving space and cost. Example: an all-in-one printer/scanner/copier. Can connect to a network so multiple users share one device."
+          "back": "One device that prints, scans and copies, saving space and cost."
         },
         {
           "id": "a7",
           "section": "A",
           "code": "A1.1.3",
           "front": "What are mobile devices? Give TWO advantages and ONE disadvantage for users.",
-          "back": "Portable digital devices such as smartphones and tablets. ADVANTAGES: can be used anywhere (portability); always connected via mobile data or Wi-Fi; multi-purpose (camera, GPS, apps, communication in one device). DISADVANTAGE: smaller screen; battery life is limited; more vulnerable to loss/theft than desktop equipment."
+          "back": "Phones and tablets. Advantages: portable, always connected. Disadvantage: easily lost or stolen."
         },
         {
           "id": "a8",
           "section": "A",
           "code": "A1.1.4",
           "front": "Name THREE types of server and state the function of each.",
-          "back": "File server: stores and manages files centrally so network users can access shared data. Application server: hosts and runs software applications accessed by client devices over the network. Web server: stores web page files and delivers them to users' browsers via HTTP/HTTPS in response to requests."
+          "back": "File server: stores shared files. Application server: runs apps. Web server: serves web pages."
         },
         {
           "id": "a9",
           "section": "A",
           "code": "A1.1.5",
           "front": "What are entertainment systems? Give TWO examples and ONE impact of internet connectivity.",
-          "back": "Digital devices designed primarily for media consumption and gaming. Examples: games consoles (PlayStation, Xbox), smart TVs, streaming sticks (Amazon Fire Stick). Internet connectivity enables online multiplayer gaming, streaming services (Netflix, Disney+), and downloadable content — transforming single-use devices into connected platforms."
+          "back": "E.g. consoles, smart TVs. The internet adds streaming and online multiplayer."
         },
         {
           "id": "a10",
           "section": "A",
           "code": "A1.1.6",
           "front": "What is the difference between a still digital camera and a video camera?",
-          "back": "Still camera: captures individual photographs stored as digital image files (JPEG, RAW). Video camera: records continuous footage as a video file (MP4, MOV). Smartphones typically combine both. Used in sectors such as retail (product photography), healthcare (medical imaging), security (CCTV), and media."
+          "back": "A still camera takes photos; a video camera records footage."
         },
         {
           "id": "a11",
           "section": "A",
           "code": "A1.1.7",
           "front": "What are navigation systems? Give TWO examples of their use.",
-          "back": "GPS-based systems that use satellite signals to determine location and provide route guidance. Uses: sat navs for drivers giving turn-by-turn directions; mapping apps on smartphones (Google Maps, Apple Maps) with live traffic data; fleet tracking allowing logistics companies to monitor delivery vehicle locations in real time."
+          "back": "GPS location and routing, e.g. sat navs and fleet tracking."
         },
         {
           "id": "a12a",
           "section": "A",
           "code": "A1.1.9",
           "front": "What is an embedded system? Give TWO examples.",
-          "back": "A computer built into a larger device to perform one specific function. Examples: microcontroller in a washing machine controlling the wash cycle; engine management unit (ECU) in a car; thermostat in a central heating system. Cannot be reprogrammed by the user — designed for a fixed task."
+          "back": "A computer inside a device doing one job, e.g. a washing machine or car ECU."
         },
         {
           "id": "a12b",
           "section": "A",
           "code": "A1.1.9",
           "front": "What is the Internet of Things (IoT)? Give TWO examples.",
-          "back": "Everyday objects connected to the internet that send and receive data automatically without human input. Examples: smart thermostat (adjusts heating based on learned patterns); fitness tracker (sends health data to a smartphone); smart fridge (monitors stock and orders food). Relies on sensors, wireless connectivity, and cloud storage."
+          "back": "Everyday objects connected to the internet, e.g. smart thermostats, fitness trackers."
         },
         {
           "id": "a13a",
           "section": "A",
           "code": "A1.2.6",
           "front": "How are digital devices used in healthcare? Give TWO examples.",
-          "back": "Patient monitoring systems track vital signs (heart rate, blood pressure) in real time and alert staff to changes. Electronic health records stored on servers allow authorised staff to access patient data instantly from anywhere in the hospital. Robotic surgery systems allow precision operations controlled by surgeons remotely."
+          "back": "Patient monitoring and electronic health records."
         },
         {
           "id": "a13b",
           "section": "A",
           "code": "A1.2.5",
           "front": "How are digital devices used in manufacturing? Give TWO examples.",
-          "back": "CNC (Computer Numerical Control) machines use embedded systems for precise automated cutting and shaping — reduces human error. Sensors on production lines log quality control data automatically, detecting defects in real time. Robotic arms perform repetitive assembly tasks faster and more consistently than humans."
+          "back": "CNC machines and robotic assembly arms."
         },
         {
           "id": "a13c",
           "section": "A",
           "code": "A1.2.2",
           "front": "How are digital devices used in education? Give TWO examples.",
-          "back": "Interactive whiteboards let teachers display, annotate, and interact with digital content during lessons. Virtual Learning Environments (VLEs) such as Google Classroom allow students to access resources, submit work, and receive feedback online from any device. Tablets and laptops enable personalised, self-paced learning."
+          "back": "Interactive whiteboards and VLEs like Google Classroom."
         },
         {
           "id": "a14",
           "section": "A",
           "code": "A1.3.2",
           "front": "What is a flowchart? Name FOUR standard symbols used.",
-          "back": "A diagram showing the step-by-step flow of a process or algorithm using standard shapes. Symbols: Oval/terminator (start and end points), Rectangle (process or action), Diamond (decision — yes/no branch), Parallelogram (input or output), Arrow (direction of flow). Used to plan algorithms, system processes, and troubleshooting guides."
+          "back": "A diagram of a process's steps. Oval (start/end), rectangle (process), diamond (decision), parallelogram (input/output)."
         },
         {
           "id": "a15",
           "section": "A",
           "code": "A2.1.1",
           "front": "Name FOUR input devices and describe their use.",
-          "back": "Keyboard: types text and commands. Mouse: moves pointer and selects items in a GUI. Barcode scanner: reads product barcodes for stock control or retail. Microphone: captures audio for voice recognition or recording. Scanner: converts physical documents into digital images. Touchscreen: touch-based input combining input and output in one surface."
+          "back": "Keyboard (typing), mouse (pointing), barcode scanner (stock), microphone (audio)."
         },
         {
           "id": "a16",
           "section": "A",
           "code": "A2.1.2",
           "front": "Name FOUR output devices and describe their use.",
-          "back": "Monitor: displays visual output (text, images, video). Printer: produces hard-copy output — laser printers for high-volume black-and-white; inkjet for colour quality. Speakers: produce audio output. Projector: displays screen content on a large surface for presentations. Braille embosser: produces tactile braille output for visually impaired users."
+          "back": "Monitor (display), printer (hard copy), speakers (audio), projector (presentations)."
         },
         {
           "id": "a17",
           "section": "A",
           "code": "A2.2",
           "front": "Name FOUR assistive technologies and state who benefits from each.",
-          "back": "Screen reader: converts on-screen text to speech — benefits visually impaired users. Adaptive keyboard: larger keys or modified layout — benefits users with motor difficulties. Braille display: converts text to tactile braille output — benefits blind users. Eye-tracking software: controls the cursor using eye movement — benefits users with severe motor impairment. Speech-to-text: converts spoken words to text — benefits users with dyslexia or limited hand mobility."
+          "back": "Screen reader (visually impaired), adaptive keyboard (motor), braille display (blind), eye tracking (severe motor)."
         },
         {
           "id": "a18",
           "section": "A",
           "code": "A2.4",
           "front": "What is the difference between manual and automatic data processing?",
-          "back": "Manual: a person inputs, processes, or verifies data (e.g. a clerk entering invoice data by hand). Slower and more prone to human error, but may be needed for complex or irregular data. Automatic: systems process data without human intervention (e.g. barcode scanners at checkout, automated bank transactions). Faster, more consistent, and handles large volumes — but requires initial setup and maintenance."
+          "back": "Manual: done by a person, slower and error-prone. Automatic: done by the system, fast and consistent."
         },
         {
           "id": "a19",
           "section": "A",
           "code": "A3.1",
           "front": "Name SIX types of operating system and briefly describe each.",
-          "back": "Batch: processes jobs in groups without user interaction (e.g. payroll). Multitasking: runs multiple programs simultaneously (e.g. Windows, macOS). Network OS: manages shared network resources and user access (e.g. Windows Server). Real-time OS: processes inputs instantly with minimal delay (e.g. aircraft controls). Mobile OS: designed for smartphones/tablets (e.g. Android, iOS). Multi-user OS: allows multiple users to access the system simultaneously (e.g. Linux servers)."
+          "back": "Batch (jobs in groups), multitasking, network, real-time (instant, e.g. aircraft), mobile, multi-user."
         },
         {
           "id": "a20",
           "section": "A",
           "code": "A3.2.1",
           "front": "How does the operating system manage networking?",
-          "back": "The OS handles protocols (rules for data transmission), establishes and maintains network connections, allocates network resources to processes, monitors bandwidth usage, and ensures data is sent and received correctly. Example: Windows manages TCP/IP connections and assigns IP addresses via DHCP. Without OS networking management, devices cannot communicate on a network."
+          "back": "It handles protocols and connections, shares out network resources, and gets IPs via DHCP."
         },
         {
           "id": "a21",
           "section": "A",
           "code": "A3.2.2",
           "front": "How does the operating system manage security?",
-          "back": "Access control: restricts which users can access files or applications. Built-in malware protection (e.g. Windows Defender) scans for threats. Drive encryption (e.g. BitLocker) protects stored data. OS-level firewall blocks unauthorised network traffic. Audit logs record login attempts and file access so administrators can detect suspicious activity."
+          "back": "Access control, antivirus, drive encryption, firewall and audit logs."
         },
         {
           "id": "a22",
           "section": "A",
           "code": "A3.2.4",
           "front": "How does an OS manage multitasking?",
-          "back": "The OS uses process scheduling to share CPU time between multiple running programs. Methods include round-robin (each process gets equal time slices) and priority scheduling (higher-priority processes get more CPU time). Context switching saves the state of one process so the CPU can switch to another and return. This creates the appearance of simultaneous execution."
+          "back": "Scheduling shares CPU time between programs, switching fast so they seem simultaneous."
         },
         {
           "id": "a23",
           "section": "A",
           "code": "A3.2.5",
           "front": "What is a device driver and why is it needed?",
-          "back": "Software that allows the OS to communicate with a hardware device (e.g. printer, graphics card, webcam). It translates generic OS commands into device-specific instructions. Without the correct driver, the OS cannot use the device. Drivers must be updated when OS updates occur — outdated drivers can cause errors, crashes, or security vulnerabilities."
+          "back": "Software that lets the OS talk to a hardware device, e.g. a printer."
         },
         {
           "id": "a24",
           "section": "A",
           "code": "A3.2.6",
           "front": "How does an OS manage user accounts?",
-          "back": "The OS authenticates users (username + password, biometrics, or MFA). User profiles store individual settings and preferences. Account management tools set permissions — what files and applications each user can access. Administrator accounts have full system access; standard accounts are restricted, reducing the risk of damage if an account is compromised."
+          "back": "Authenticates users, stores profiles, and sets permissions (admin vs standard)."
         },
         {
           "id": "a25",
           "section": "A",
           "code": "A3.3",
           "front": "What is the difference between utility software and application software? Give an example of each.",
-          "back": "Utility software: performs maintenance or management tasks for the OS or hardware (e.g. antivirus, disk defragmenter, backup software, compression tools). Runs in the background to keep the system running efficiently. Application software: designed for end-user tasks (e.g. word processor, spreadsheet, web browser, photo editor). Used directly by the user to complete specific tasks."
+          "back": "Utility: maintains the system (antivirus). Application: user tasks (word processor)."
         },
         {
           "id": "a26",
           "section": "A",
           "code": "A3.4",
           "front": "Give FOUR factors that affect the choice of operating system or application software.",
-          "back": "1. Cost: licensing fees, subscription costs, or free (open source). 2. Compatibility: must work with existing hardware and other software. 3. Security: frequency of security updates and vulnerability history. 4. Features: must meet user and business needs. 5. Performance: speed and hardware requirements. 6. Business needs: industry-standard software may be required (e.g. Adobe Creative Suite for design agencies)."
+          "back": "Cost, compatibility, security and features."
         },
         {
           "id": "a27a",
           "section": "A",
           "code": "A3.7.1",
           "front": "Name TWO image file formats and state ONE characteristic of each.",
-          "back": "JPEG: lossy compression — reduces file size by permanently discarding some data; used for photographs. PNG: lossless compression — no quality lost, supports transparent backgrounds; used for logos and web graphics. RAW: uncompressed — maximum quality but very large file size; used by professional photographers."
+          "back": "JPEG: lossy, for photos. PNG: lossless, supports transparency."
         },
         {
           "id": "a27b",
           "section": "A",
           "code": "A3.7.2",
           "front": "Name TWO audio file formats and state ONE characteristic of each.",
-          "back": "MP3: lossy compression — significantly smaller file size with slight quality loss; widely used for music streaming and download. WAV: uncompressed — high quality but large file size; used in professional audio recording and editing. FLAC: lossless compression — smaller than WAV but no quality loss; used by audiophiles."
+          "back": "MP3: lossy, small files. WAV: uncompressed, high quality."
         },
         {
           "id": "a27c",
           "section": "A",
           "code": "A3.7.3",
           "front": "Name TWO video file formats and state ONE characteristic of each.",
-          "back": "MP4: lossy compression — good balance of quality and file size; widely compatible across devices and platforms. AVI: older format — larger file sizes, high quality; used in video editing software. MOV: Apple's format — high quality, used on iPhones and Final Cut Pro; less compatible outside Apple devices."
+          "back": "MP4: lossy, works everywhere. MOV: Apple's format, high quality."
         },
         {
           "id": "a28",
           "section": "A",
           "code": "A4.1",
           "front": "Give FIVE factors that affect an organisation's choice of IT system.",
-          "back": "1. User needs: must support the tasks users need to perform. 2. Cost: purchase, maintenance, and training costs. 3. Compatibility: must work with existing systems and software. 4. Security: must meet data protection requirements. 5. Connectivity: network requirements must be met. 6. Implementation: migration timescales, testing, and acceptable downtime must be planned."
+          "back": "User needs, cost, compatibility, security and connectivity."
         },
         {
           "id": "a29a",
           "section": "A",
           "code": "A4.2.1",
           "front": "How is IT used for stock control? Give ONE example.",
-          "back": "EPOS (Electronic Point of Sale) systems record every sale and automatically update stock levels in real time. When stock falls below a set threshold, the system triggers an automatic reorder. Reduces waste, prevents stockouts, and removes the need for manual stock checks."
+          "back": "EPOS updates stock on each sale and reorders automatically when it runs low."
         },
         {
           "id": "a29b",
           "section": "A",
           "code": "A4.2.2",
           "front": "How is IT used for data logging? Give ONE example.",
-          "back": "Sensors automatically record data (e.g. temperature, humidity, pressure) at set intervals without human input. Example: sensors in a pharmaceutical cold-storage unit log temperature every 10 minutes — if readings go out of range, an alert is triggered automatically. Faster and more accurate than manual recording."
+          "back": "Sensors record readings automatically, e.g. temperature in cold storage."
         },
         {
           "id": "a29c",
           "section": "A",
           "code": "A4.2.6",
           "front": "How is IT used for advertising? Give ONE example.",
-          "back": "Digital advertising platforms (e.g. Google Ads, Facebook Ads) analyse transactional and browsing data to display targeted adverts to specific audiences. Example: a user who searched for trainers online is shown adverts for trainers on other websites (retargeting). Far more cost-effective and measurable than traditional print advertising."
+          "back": "Targeted ads based on browsing data, e.g. showing trainer ads after a trainer search."
         },
         {
           "id": "a30",
           "section": "A",
           "code": "A4.3",
           "front": "State THREE ways a new IT system can impact an organisation.",
-          "back": "1. Staff training: employees need initial and ongoing training — increases costs and temporarily reduces productivity. 2. Cost: implementation costs include hardware, software, installation, and downtime during migration. 3. Working practices: workflows and job roles change — some tasks may be automated, altering staffing needs. 4. Productivity: may improve long-term but typically dips during the transition period."
+          "back": "Training costs, implementation costs, and changed working practices."
         },
         {
           "id": "a31",
           "section": "A",
           "code": "A5",
           "front": "Give TWO ways AI/emerging technology affects IT systems, and TWO implications for organisations.",
-          "back": "SYSTEM EFFECTS: AI can optimise resource allocation in real time; machine learning improves predictive maintenance of hardware. ORGANISATIONAL IMPLICATIONS: Automation of repetitive tasks reduces staffing needs (job displacement risk); organisations can process far larger datasets faster, gaining competitive advantage. Security concern: AI is also used by attackers to create more sophisticated threats."
+          "back": "Effects: optimised resources, predictive maintenance. Implications: fewer jobs, faster data processing."
         },
         {
           "id": "f1",
           "section": "F",
           "code": "F2.1.1",
           "front": "What does the Computer Misuse Act 1990 cover?",
-          "back": "Three offences: 1. Unauthorised access to a computer (e.g. hacking) — up to 2 years in prison. 2. Unauthorised access with intent to commit further offence (e.g. hacking to steal data). 3. Unauthorised modification of computer material (e.g. planting a virus, deleting files) — up to 10 years."
+          "back": "Unauthorised access, access with intent to commit further crime, and unauthorised modification."
         },
         {
           "id": "f2",
           "section": "F",
           "code": "F2.1.5",
           "front": "What are the key principles of the Data Protection Act 2018 / GDPR?",
-          "back": "Personal data must be: processed lawfully and with consent; collected for a specific purpose; adequate and not excessive; accurate and up to date; not kept longer than necessary; kept secure. Individuals have rights: to access their data, correct it, and request deletion ('right to be forgotten')."
+          "back": "Lawful, specific purpose, not excessive, accurate, not kept too long, secure."
         },
         {
           "id": "f3",
           "section": "F",
           "code": "F1.1.1",
           "front": "What is a privacy concern in the context of IT systems?",
-          "back": "Individuals may not know what personal data is collected about them (e.g. browsing data, location, purchase history). Data may be sold to third parties without explicit consent. GDPR gives individuals the right to know what data is held and how it is used. Organisations must have transparent privacy policies."
+          "back": "People may not know what data is collected or if it's sold, so clear privacy policies are needed."
         },
         {
           "id": "f4",
           "section": "F",
           "code": "F1.1.3",
           "front": "What is meant by 'unequal access to information technology'?",
-          "back": "Not everyone has equal access to IT — due to cost, disability, age, geography, or digital literacy. This is the 'digital divide'. Can disadvantage individuals in education, employment, and access to services. Organisations and governments should consider accessibility and affordable access to reduce inequality."
+          "back": "The digital divide: cost, disability, age or location stop some people using IT."
         },
         {
           "id": "c22",
           "section": "C",
           "code": "C2.2.1",
           "front": "What is meant by 'user experience' as a consideration when choosing an online community platform?",
-          "back": "User experience covers: ease of use (intuitive interface reduces training time); performance (fast loading, minimal lag); availability (accessible 24/7 from any device); accessibility (usable by people with disabilities, compatible with assistive technologies). Poor user experience leads to low adoption — staff or customers won't use a system that is slow or difficult to navigate."
+          "back": "Ease of use, performance, availability and accessibility."
         },
         {
           "id": "c23",
           "section": "C",
           "code": "C2.2.2",
           "front": "Why is 'meeting user needs' an important consideration when selecting an online community tool?",
-          "back": "The platform must actually support the tasks users need to perform. Example: a customer support team needs threaded conversations and file sharing — a basic chat tool may not meet those needs. If the system does not meet user needs, staff will work around it (using unauthorised tools), creating security and consistency risks. Organisations should consult users before selecting a platform."
+          "back": "If the platform doesn't fit users' tasks, they'll switch to unauthorised tools."
         },
         {
           "id": "c24",
           "section": "C",
           "code": "C2.2.3",
           "front": "Why is cost a consideration when an organisation adopts an online community or communication platform?",
-          "back": "Costs include: subscription or licensing fees (per user or per month); implementation costs (setup, data migration); ongoing maintenance; training staff to use the platform. Hidden costs include lost productivity during transition. Organisations must weigh the total cost of ownership against the benefits — a cheaper platform may lack essential features, increasing costs elsewhere."
+          "back": "Licences, setup, maintenance and training all add up."
         },
         {
           "id": "c25",
           "section": "C",
           "code": "C2.2.5",
           "front": "What security considerations apply when an organisation uses online communities or communication platforms?",
-          "back": "Data shared on third-party platforms (Teams, Slack, social media) may be stored on external servers — organisation has less control. Risks: unauthorised access to internal discussions; data breaches at the platform provider; employees sharing confidential information unintentionally. Mitigations: strong access controls, MFA, clear policies on what may be shared, choosing platforms that are GDPR-compliant and encrypted."
+          "back": "Data sits on third-party servers. Mitigate with MFA, access controls and clear policies."
         },
         {
           "id": "c26",
           "section": "C",
           "code": "C2.2.6",
           "front": "What is downtime and why is it a consideration when using online systems or communities?",
-          "back": "Downtime is when an online system is unavailable — due to maintenance, server failure, or cyberattack. If an organisation relies on a cloud-based communication platform and it goes down, staff cannot collaborate and customers cannot be supported — directly impacting productivity and revenue. Organisations should check a provider's SLA (Service Level Agreement) which guarantees a minimum uptime percentage (e.g. 99.9%)."
+          "back": "Time a system is unavailable, which stops work. Check the provider's SLA uptime."
         },
         {
           "id": "c27",
           "section": "C",
           "code": "C2.2.7",
           "front": "Why is training a consideration when introducing an online community platform?",
-          "back": "Staff need initial training to use a new platform effectively — poorly trained users make mistakes, use the system incorrectly, or avoid using it altogether. Ongoing training is needed when the platform updates. Training has costs (time, money) and temporarily reduces productivity. Ease of use of the platform directly affects how much training is needed — a more intuitive system reduces training burden."
+          "back": "Untrained staff make mistakes or avoid the system, and training costs time and money."
         },
         {
           "id": "c28",
           "section": "C",
           "code": "C2.2.8",
           "front": "Why is integration with current systems a consideration when selecting an online platform?",
-          "back": "A new communication or community platform must work alongside existing systems (e.g. email, CRM, project management tools). Poor integration creates duplication of work — staff must re-enter data in multiple places. APIs allow platforms to share data automatically. Example: Microsoft Teams integrates with Outlook calendar and SharePoint — staff can schedule meetings and share files without switching applications."
+          "back": "It must work with existing systems (e.g. email), or staff end up re-entering data."
         },
         {
           "id": "c29",
           "section": "C",
           "code": "C2.2.9",
           "front": "How can online community tools affect an organisation's productivity?",
-          "back": "POSITIVE: Real-time communication (Teams, Slack) speeds up decision-making; file sharing and collaborative editing reduce delays; remote teams stay connected. NEGATIVE: Constant notifications are distracting — can reduce focus and output; time spent on social media at work reduces productivity; over-reliance on messaging can replace face-to-face communication needed for complex decisions. Organisations must set clear policies on appropriate use."
+          "back": "Positive: faster decisions and collaboration. Negative: constant notifications distract."
         },
         {
           "id": "c30",
           "section": "C",
           "code": "C1.2",
           "front": "How does cloud computing specifically impact INDIVIDUALS (as opposed to organisations)?",
-          "back": "Individuals can access files and services from any device anywhere — no dependence on one physical machine. Software is always up to date (no manual updates needed). Storage is virtually unlimited (Google Drive, iCloud). RISKS: personal data stored by third parties raises privacy concerns; data breaches could expose personal information; if the service is discontinued, data may be lost. Internet dependency means no access during outages."
+          "back": "Benefits: access files anywhere, always up to date. Risks: privacy, needs internet."
         },
         {
           "id": "c31",
           "section": "C",
           "code": "C1.1",
           "front": "When would an organisation choose IaaS, PaaS, or SaaS? Give ONE use case for each.",
-          "back": "IaaS: organisation needs control over OS and software but wants to avoid physical hardware — e.g. a business running its own custom server environment on AWS. PaaS: development team needs an environment to build and test apps without managing servers — e.g. using Google App Engine to deploy a web application. SaaS: standard software needed by non-technical staff — e.g. using Microsoft 365 for email and office tasks. More control = more responsibility for the organisation."
+          "back": "IaaS: custom servers (AWS). PaaS: building apps (App Engine). SaaS: everyday software (Microsoft 365)."
         },
         {
           "id": "f5",
           "section": "F",
           "code": "F1.1.2",
           "front": "Describe TWO environmental impacts of IT systems.",
-          "back": "1. Energy consumption: data centres consume vast amounts of electricity for processing and cooling — a major source of carbon emissions. 2. E-waste: discarded devices contain toxic materials (lead, mercury) — improper disposal pollutes the environment. 3. Manufacturing carbon footprint: producing devices and global IT infrastructure has a large environmental cost. Mitigation: energy-efficient servers, recycling schemes, renewable energy for data centres."
+          "back": "Data centres use huge amounts of energy, and e-waste contains toxic materials."
         },
         {
           "id": "f6",
           "section": "F",
           "code": "F1.1.4",
           "front": "Why is equal access to assistive technology an ethical concern?",
-          "back": "Assistive technology (screen readers, adaptive keyboards, etc.) enables people with disabilities to use IT systems effectively. Without it, they are excluded from employment, education, and services — potentially breaching equality legislation (Equality Act 2010). There is also a cost barrier. Organisations have an ethical and legal duty to make their systems accessible to all users."
+          "back": "Without it, disabled people are shut out of work and education (Equality Act 2010)."
         },
         {
           "id": "f7",
           "section": "F",
           "code": "F1.1.5",
           "front": "What is netiquette? Give FOUR examples of good online behaviour.",
-          "back": "Netiquette (internet etiquette) — rules of respectful and appropriate behaviour online. Examples: 1. Do not write in ALL CAPS (considered shouting). 2. Be respectful — no offensive or discriminatory content. 3. Do not share others' personal information without consent. 4. Cite sources — do not plagiarise. 5. Respond to messages in a reasonable time. Organisations enforce netiquette through Acceptable Use Policies."
+          "back": "Polite online behaviour: no ALL CAPS, be respectful, don't share others' data, cite sources."
         },
         {
           "id": "f8",
           "section": "F",
           "code": "F2.1.2-3",
           "front": "What does copyright legislation protect? How does it apply to digital content?",
-          "back": "The Copyright, Designs and Patents Act 1988 protects original creative works (music, images, software, text, video) — the creator controls how their work is used and copied. Digital implications: illegally copying or distributing software, music, or images online is a criminal offence. Fair dealing allows limited use for education or research. Software is specifically protected — organisations must have valid licences for all software they use."
+          "back": "Original work (software, music, images) from being copied. Using unlicensed software is illegal."
         },
         {
           "id": "f9",
           "section": "F",
           "code": "F2.1.4",
           "front": "What do Health and Safety / Display Screen Equipment (DSE) regulations require?",
-          "back": "DSE regulations protect employees who regularly use computer screens. Requirements: workstations must be assessed for ergonomic risks; employees must have regular breaks from screen use; correct posture (adjustable chair, monitor at eye level, wrists flat); adequate lighting to prevent glare. Employers must provide eye tests on request. Non-compliance risks RSI (repetitive strain injury), eye strain, and back problems — plus legal liability."
+          "back": "Assessed workstations, regular screen breaks, good posture and lighting, free eye tests."
         },
         {
           "id": "a32",
           "section": "A",
           "code": "A1.1.8",
           "front": "What are communication devices? Give THREE examples.",
-          "back": "Devices designed to transmit and receive data between users. Examples: smartphones (calls, texts, internet), routers (connect devices to a network/internet), VoIP phones (voice calls over the internet). Can be wired or wireless; modern devices often combine multiple communication methods."
+          "back": "Devices that send and receive data, e.g. smartphones, routers, VoIP phones."
         },
         {
           "id": "a33",
           "section": "A",
           "code": "A1.3.1",
           "front": "What is a system diagram and what is it used for?",
-          "back": "A visual representation of an IT system showing components and how they connect, using standard symbols. Used to plan, document, and communicate IT infrastructure. Shows relationships between devices (e.g. servers, switches, clients) without showing internal workings. Helps stakeholders understand the system without needing technical knowledge."
+          "back": "A diagram of a system's components and connections, used to plan and explain it."
         },
         {
           "id": "a34",
           "section": "A",
           "code": "A2.1.3",
           "front": "Name FOUR types of storage device and give ONE characteristic of each.",
-          "back": "HDD (Hard Disk Drive): high capacity at low cost per GB — uses spinning magnetic disks. SSD (Solid State Drive): faster read/write speeds, more durable — no moving parts. USB flash drive: small and portable — easy file transfer between devices. Optical disc (DVD/Blu-ray): cheap to produce — used to distribute software and media."
+          "back": "HDD: cheap, high capacity. SSD: fast, no moving parts. USB: portable. Optical: cheap to distribute."
         },
         {
           "id": "b18",
           "section": "B",
           "code": "B2.2.2",
           "front": "What is a LAN? Give TWO advantages for an organisation.",
-          "back": "Local Area Network: connects devices within a small geographic area (e.g. one building). Organisation owns the infrastructure. ADVANTAGES: fast data transfer speeds; allows sharing of resources (printers, files, internet connection); more secure than a WAN as data stays on-site."
+          "back": "A network within one building. Advantages: fast, and shares printers and files."
         },
         {
           "id": "b19",
           "section": "B",
           "code": "B2.3",
           "front": "Give FOUR factors that affect an organisation's choice of network.",
-          "back": "1. Cost: hardware, cabling, and maintenance budget. 2. Security: wired networks more secure than wireless. 3. Performance: speed and bandwidth required. 4. Scalability: whether the network can expand as the organisation grows. 5. Compatibility: new network must work with existing devices and software."
+          "back": "Cost, security, performance and scalability."
         },
         {
           "id": "b20",
           "section": "B",
           "code": "B2.4",
           "front": "How do network components affect performance? Give THREE examples.",
-          "back": "Switch: determines how quickly data is routed between devices — faster switch = less delay. Bandwidth: higher bandwidth allows more data to be transmitted simultaneously. Number of devices: more devices sharing a network reduces available bandwidth per device. Cable type: fibre optic is faster and less prone to interference than copper Ethernet."
+          "back": "Switch speed, bandwidth, number of devices, and cable type (fibre is fastest)."
         },
         {
           "id": "b21",
           "section": "B",
           "code": "B3.1.4",
           "front": "What is a secure payment system? How is transaction data protected?",
-          "back": "An online system for processing financial transactions (e.g. card payments). Protections: HTTPS/SSL encryption protects card data in transit; PCI DSS standard sets security requirements for payment processing; tokenisation replaces real card details with a random token so sensitive data is never stored on the merchant's server."
+          "back": "Card payments protected by HTTPS, PCI DSS rules and tokenisation."
         },
         {
           "id": "b22",
           "section": "B",
           "code": "B3.2",
           "front": "State THREE security risks when transmitting data and a protection for each.",
-          "back": "1. Interception (man-in-the-middle): attacker captures data in transit — PROTECTION: encryption (HTTPS/SSL). 2. Eavesdropping on public Wi-Fi: data can be read by others — PROTECTION: VPN. 3. Spoofing (fake website): users enter data on a fraudulent site — PROTECTION: digital certificates verify site identity."
+          "back": "Interception → encryption. Public Wi-Fi snooping → VPN. Fake sites → digital certificates."
         },
         {
           "id": "f10",
           "section": "F",
           "code": "F1.1.6",
           "front": "What is an Acceptable Use Policy (AUP) and why is it important ethically?",
-          "back": "A formal document stating rules for how employees may use an organisation's IT systems and the internet. Ethical importance: protects individuals from harassment and inappropriate content; ensures staff do not misuse company data; sets expectations for online behaviour. Breaching an AUP can result in disciplinary action or legal consequences."
+          "back": "Rules for using company IT. It protects people from misuse and sets clear expectations."
         }
       ]
     },
     "questions": {
+      "papers": [
+        {
+          "id": "p1",
+          "title": "Mock Paper 1",
+          "scenarios": [
+            "s1",
+            "s2",
+            "s4",
+            "s6"
+          ]
+        },
+        {
+          "id": "p2",
+          "title": "Mock Paper 2",
+          "scenarios": [
+            "s3",
+            "s5",
+            "s7",
+            "s8"
+          ]
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "s1",
+          "number": 1,
+          "title": "Harbourside Dental Practice",
+          "stem": "Harbourside Dental Practice in Plymouth has four dentists and two receptionists.\n\nPatients currently book appointments by telephone. Receptionists write each appointment in a paper diary and keep patient records in filing cabinets.\n\nThe practice manager wants patients to book appointments online and plans to store all patient records, including X-ray images, on a new computer system."
+        },
+        {
+          "id": "s2",
+          "number": 2,
+          "title": "Northway Bikes",
+          "stem": "Northway Bikes rents bicycles to the public in Newcastle. Customers use a mobile app to find a bike at one of 40 docking stations, unlock it by scanning a QR code, and pay when they return it.\n\nThe head office has 25 staff who manage the app, bookings and customer support."
+        },
+        {
+          "id": "s3",
+          "number": 3,
+          "title": "Castle Lane Primary School",
+          "stem": "Castle Lane Primary School has 210 pupils aged 4 to 11. Teachers use laptops, and the school is buying 30 tablets for pupils to use in lessons.\n\nAn IT technician visits one day a week to maintain the school’s computer system."
+        },
+        {
+          "id": "s4",
+          "number": 4,
+          "title": "Greenleaf Architects",
+          "stem": "Greenleaf Architects designs houses in Bristol. The firm has an office with three rooms.\n\n**Design studio:** six desktop computers and one large-format printer.\n\n**Meeting room:** a smart TV that staff and visitors cast presentations to without cables.\n\n**Server cupboard:** a file server that stores all drawings, and the connection to the internet.\n\n**Site visits:** architects take a tablet to building sites and need to open drawings stored on the file server."
+        },
+        {
+          "id": "s5",
+          "number": 5,
+          "title": "Maple Leaf Care Homes",
+          "stem": "Maple Leaf runs four care homes in Yorkshire. Carers currently record residents’ care notes on paper at the end of each shift.\n\nThe company plans to use an online care-management system. Carers will record notes on handheld devices while they work, and managers will be able to see the notes from any of the four homes."
+        },
+        {
+          "id": "s6",
+          "number": 6,
+          "title": "Trent Valley Building Society",
+          "stem": "Trent Valley Building Society has 12 branches in the Midlands. Members can manage their savings accounts through a website and a mobile app.\n\nBranch staff can view and update members’ personal and financial details."
+        },
+        {
+          "id": "s7",
+          "number": 7,
+          "title": "Brightside Events",
+          "stem": "Brightside Events runs a three-day music festival for 20,000 people each summer.\n\nAll tickets are sold through Brightside’s website. Customers create an account and receive an e-ticket with a QR code."
+        },
+        {
+          "id": "s8",
+          "number": 8,
+          "title": "Coastline Logistics",
+          "stem": "Coastline Logistics delivers parcels for online shops from a warehouse in Felixstowe. It has 60 delivery vans.\n\nStaff record stock arriving at the warehouse using handheld barcode scanners."
+        }
+      ],
       "questions": [
         {
-          "id": "q1",
-          "section": "C",
-          "code": "C1.1",
+          "id": "s1-a-i",
+          "scenario": "s1",
+          "part": "(a)(i)",
+          "section": "A",
+          "code": "A2.1",
           "marks": 2,
-          "commandWord": "State",
-          "question": "State TWO types of cloud computing service model.",
-          "modelAnswer": "Any two of: Software as a Service (SaaS); Platform as a Service (PaaS); Infrastructure as a Service (IaaS).",
-          "markPoints": [
-            "1 mark per correct service model named (max 2)"
-          ]
+          "commandWord": "Give",
+          "context": "The practice will buy new hardware for the reception desk and the treatment rooms.",
+          "question": "Give **two** input devices, other than a keyboard and a mouse, the practice could use to capture patient information.",
+          "slots": 2,
+          "traps": [
+            "\"other than a keyboard and a mouse\": the two most obvious answers score nothing here."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "1 mark for each correct answer, up to 2 marks.",
+            "points": [
+              "Touch screen / tablet (e.g. patient check-in)",
+              "Scanner / document scanner (e.g. scanning old paper records)",
+              "Camera / webcam (e.g. patient photo)",
+              "Signature pad / stylus (e.g. consent forms)",
+              "Card reader (e.g. payment)",
+              "Microphone (e.g. voice notes)",
+              "Digital X-ray sensor"
+            ],
+            "accept": [
+              "Any other input device that fits a dental practice"
+            ],
+            "reject": [
+              "Keyboard or mouse (excluded by the question)",
+              "Output devices such as a printer or monitor"
+            ]
+          },
+          "modelAnswer": "1. Scanner\n2. Touch screen"
         },
         {
-          "id": "q2",
-          "section": "C",
-          "code": "C1.1",
-          "marks": 4,
-          "commandWord": "Explain",
-          "question": "Explain the difference between a public cloud and a private cloud.",
-          "modelAnswer": "A public cloud is cloud infrastructure that is shared across multiple organisations and managed by a third-party provider such as AWS or Microsoft Azure. It is cost-effective because organisations pay only for what they use, but they have less control over where their data is stored.\n\nA private cloud is operated solely for one organisation and provides more control over data security and compliance. However, it is more expensive to set up and maintain than a public cloud.",
-          "markPoints": [
-            "Public cloud: shared infrastructure / managed by third party (1 mark)",
-            "Public cloud: lower cost / accessible over internet (1 mark)",
-            "Private cloud: used by single organisation (1 mark)",
-            "Private cloud: more secure/more control / higher cost (1 mark)"
-          ]
-        },
-        {
-          "id": "q3",
-          "section": "C",
-          "code": "C1.2",
-          "marks": 6,
-          "commandWord": "Discuss",
-          "question": "A school is considering moving its student data and teaching resources to a cloud-based system. Discuss the benefits and drawbacks of this decision for the school.",
-          "modelAnswer": "Moving to cloud computing would offer the school several benefits. The school would not need to invest in expensive on-site servers or maintain hardware, reducing capital expenditure — important for a school operating on a limited budget. Cloud storage also allows staff and students to access resources from any device with an internet connection, supporting remote learning.\n\nHowever, there are significant drawbacks. Student data is particularly sensitive; storing it on cloud servers raises data protection concerns, as the school must ensure the provider is GDPR-compliant. If the internet connection fails, neither staff nor students would be able to access teaching resources or student records, causing significant disruption to learning. There is also the risk of vendor lock-in — if the school becomes dependent on one provider, switching later could be expensive and disruptive.",
-          "markPoints": [
-            "L1 (1-2): Simple benefit or drawback identified with little/no development",
-            "L2 (3-4): At least one benefit AND one drawback explained with some reference to the scenario",
-            "L3 (5-6): Multiple benefits and drawbacks explained and linked to the school context; balanced discussion"
-          ]
-        },
-        {
-          "id": "q4",
-          "section": "C",
-          "code": "C1.3.1",
-          "marks": 4,
-          "commandWord": "Explain",
-          "question": "Explain how a VPN allows employees to work securely from home.",
-          "modelAnswer": "A VPN (Virtual Private Network) creates an encrypted tunnel between the employee's device at home and the organisation's network. This means all data transmitted between the employee and the company is encrypted and cannot be read if intercepted. The employee can access internal resources — such as shared files and databases — as if they were physically in the office, even though they are connecting over the public internet.",
-          "markPoints": [
-            "Creates encrypted tunnel / encrypts data in transit (1 mark)",
-            "Connects over the public internet (1 mark)",
-            "Allows access to internal network resources remotely (1 mark)",
-            "Data cannot be intercepted / read by third parties (1 mark)"
-          ]
-        },
-        {
-          "id": "q5",
-          "section": "C",
-          "code": "C2.1",
+          "id": "s1-a-ii",
+          "scenario": "s1",
+          "part": "(a)(ii)",
+          "section": "A",
+          "code": "A2.3",
           "marks": 2,
-          "commandWord": "State",
-          "question": "State TWO ways an organisation can interact with online communities.",
-          "modelAnswer": "Any two of: social media; blogs/vlogs; wikis; chatrooms; instant messaging; podcasts; forums.",
-          "markPoints": [
-            "1 mark per correct method (max 2)"
-          ]
+          "commandWord": "Give",
+          "context": "",
+          "question": "Give **two** characteristics of storage media the practice should consider when choosing where to store the X-ray images.",
+          "slots": 2,
+          "traps": [
+            "It asks for characteristics (capacity, speed, cost…), not for storage devices. Naming \"SSD\" or \"USB stick\" scores nothing."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "1 mark for each correct answer, up to 2 marks.",
+            "points": [
+              "Capacity (X-ray images are large files)",
+              "Speed / read-write / access time",
+              "Cost (per GB)",
+              "Reliability / durability / lifespan",
+              "Portability",
+              "Security (e.g. supports encryption)"
+            ],
+            "accept": [],
+            "reject": [
+              "Brand names or device types on their own (e.g. \"SSD\"): the question asks for characteristics",
+              "\"Size\" unless it is clearly capacity"
+            ]
+          },
+          "modelAnswer": "1. Capacity\n2. Access speed"
         },
         {
-          "id": "q6",
-          "section": "C",
-          "code": "C2.2",
-          "marks": 4,
-          "commandWord": "Describe",
-          "question": "Describe TWO considerations for an organisation when using an online community platform.",
-          "modelAnswer": "Security: the organisation must ensure user accounts and data are protected from unauthorised access. This includes implementing strong passwords and encryption to prevent data breaches that could damage the organisation's reputation.\n\nPrivacy: the organisation must ensure the platform complies with GDPR. Users must consent to data collection, and the organisation must have a clear privacy policy explaining what data is collected and how it is used.",
-          "markPoints": [
-            "Security identified (1 mark) + development/explanation (1 mark)",
-            "Privacy/any other valid consideration identified (1 mark) + development (1 mark)"
-          ]
-        },
-        {
-          "id": "q7",
-          "section": "D",
-          "code": "D1.1",
-          "marks": 2,
-          "commandWord": "State",
-          "question": "State TWO types of external threat to an organisation's data.",
-          "modelAnswer": "Any two of: viruses/malware; unauthorised access (hackers); social engineering (e.g. phishing); accidental damage; natural disasters.",
-          "markPoints": [
-            "1 mark per correct threat (max 2)"
-          ]
-        },
-        {
-          "id": "q8",
-          "section": "D",
-          "code": "D1.1.4",
-          "marks": 4,
-          "commandWord": "Explain",
-          "question": "Explain what is meant by social engineering and describe ONE technique used by attackers.",
-          "modelAnswer": "Social engineering is the manipulation of people into revealing confidential information or performing actions that compromise security, rather than exploiting technical vulnerabilities in systems.\n\nPhishing is a common technique where attackers send fake emails that appear to come from a legitimate source such as a bank or employer. The email tricks the recipient into clicking a malicious link or entering their login credentials on a fake website, giving the attacker access to the victim's account.",
-          "markPoints": [
-            "Social engineering defined: manipulating people (not systems) (1 mark)",
-            "To reveal confidential information / take security-compromising action (1 mark)",
-            "Named technique (e.g. phishing) (1 mark)",
-            "Explanation of how the technique works (1 mark)"
-          ]
-        },
-        {
-          "id": "q9",
-          "section": "D",
-          "code": "D1.3",
-          "marks": 6,
-          "commandWord": "Explain",
-          "question": "Explain the impacts of a data breach on an organisation.",
-          "modelAnswer": "A data breach can have serious financial consequences. Under GDPR, the Information Commissioner's Office (ICO) can impose fines of up to £17.5 million or 4% of global annual turnover for serious breaches. The organisation may also face civil lawsuits from individuals whose data was compromised.\n\nThe organisation's reputation would be severely damaged. Customers who learn their personal data has been exposed are likely to lose trust in the organisation and take their business elsewhere. Negative media coverage can amplify this reputational damage, potentially resulting in long-term loss of revenue.\n\nOperationally, the organisation may need to take systems offline to investigate the breach and prevent further loss, causing disruption to normal business operations. The cost of hiring cybersecurity experts and notifying affected customers (required within 72 hours under GDPR) adds further expense.",
-          "markPoints": [
-            "L1 (1-2): One impact identified with limited development",
-            "L2 (3-4): Two or more impacts explained (e.g. financial and reputational)",
-            "L3 (5-6): Three or more impacts well-explained with clear links between them; e.g. financial (fines + lost revenue), reputational (lost customer trust), operational (downtime)"
-          ]
-        },
-        {
-          "id": "q10",
-          "section": "D",
-          "code": "D2.4",
-          "marks": 4,
-          "commandWord": "Explain",
-          "question": "Explain how encryption is used to protect data on websites that use HTTPS.",
-          "modelAnswer": "HTTPS uses SSL/TLS encryption to protect data transmitted between a user's browser and a web server. When a user connects to an HTTPS site, the server sends a digital certificate to verify its identity. A symmetric encryption key is then agreed between the browser and server, and all subsequent data — including login credentials and payment details — is encrypted using this key. Even if the data is intercepted in transit, it cannot be read without the decryption key.",
-          "markPoints": [
-            "HTTPS uses SSL/TLS / encryption protocol named (1 mark)",
-            "Data encrypted in transit / between browser and server (1 mark)",
-            "Digital certificate verifies server identity (1 mark)",
-            "Intercepted data cannot be read without key (1 mark)"
-          ]
-        },
-        {
-          "id": "q11",
-          "section": "D",
-          "code": "D2.1",
-          "marks": 4,
-          "commandWord": "Describe",
-          "question": "Describe TWO techniques an organisation can use to protect its data from unauthorised access.",
-          "modelAnswer": "Multi-factor authentication (MFA) requires users to verify their identity using two or more factors — typically a password plus a code sent to their phone. This means that even if a password is stolen, an attacker cannot access the account without the second factor.\n\nFile permissions allow the organisation to control who can read, write, or execute specific files. This ensures employees can only access data relevant to their role, reducing the risk of accidental or deliberate data leaks from within the organisation.",
-          "markPoints": [
-            "MFA / passwords / biometrics identified (1 mark) + development (1 mark)",
-            "File permissions / access levels identified (1 mark) + development (1 mark)"
-          ]
-        },
-        {
-          "id": "q12",
-          "section": "B",
-          "code": "B1.1",
-          "marks": 4,
-          "commandWord": "Compare",
-          "question": "Compare Wi-Fi and Ethernet as methods of network connection.",
-          "modelAnswer": "Wi-Fi uses radio waves to connect devices wirelessly, meaning users can move around freely without being tethered to a cable. However, Wi-Fi signals can be weakened by walls and interference from other devices, making the connection less reliable. Wi-Fi is also less secure than Ethernet as the signal can be intercepted more easily.\n\nEthernet uses physical cables (copper or fibre optic) to connect devices. This provides a faster, more reliable connection with lower latency, making it better for tasks requiring consistent bandwidth such as video conferencing. However, it limits the physical movement of devices.",
-          "markPoints": [
-            "Wi-Fi wireless / no cables / portable (1 mark)",
-            "Wi-Fi disadvantage: interference / less secure / slower (1 mark)",
-            "Ethernet: wired / faster / more reliable (1 mark)",
-            "Ethernet disadvantage: limits movement / cable required (1 mark)"
-          ]
-        },
-        {
-          "id": "q13",
-          "section": "B",
-          "code": "B2.1",
-          "marks": 4,
-          "commandWord": "Describe",
-          "question": "Describe ONE advantage and ONE disadvantage of a star network topology.",
-          "modelAnswer": "Advantage: in a star topology, if one device or cable fails, only that device loses its connection — all other devices continue to function normally. This makes the network more fault-tolerant and easier to troubleshoot.\n\nDisadvantage: if the central switch or hub fails, all devices connected to it lose their network connection simultaneously, making the entire network dependent on that single point of failure.",
-          "markPoints": [
-            "Advantage identified (e.g. fault isolation) (1 mark) + development (1 mark)",
-            "Disadvantage identified (e.g. single point of failure at switch) (1 mark) + development (1 mark)"
-          ]
-        },
-        {
-          "id": "q14",
-          "section": "B",
-          "code": "B3.1.3",
-          "marks": 2,
-          "commandWord": "State",
-          "question": "State the difference between HTTP and HTTPS.",
-          "modelAnswer": "HTTP transfers data without encryption (unsecured). HTTPS uses SSL/TLS encryption to secure data in transit, protecting it from interception.",
-          "markPoints": [
-            "HTTP: no encryption / unsecured (1 mark)",
-            "HTTPS: uses SSL/TLS / encrypts data in transit (1 mark)"
-          ]
-        },
-        {
-          "id": "q15",
-          "section": "B",
-          "code": "B3.5",
-          "marks": 4,
-          "commandWord": "Explain",
-          "question": "Explain the difference between lossy and lossless compression. Give an example of when each would be used.",
-          "modelAnswer": "Lossy compression permanently removes some data from a file to achieve a smaller file size, resulting in reduced quality that cannot be restored. It is typically used for images (JPEG), audio (MP3), and video (MP4) where some quality loss is acceptable but file size is important for streaming or storage.\n\nLossless compression reduces file size without losing any data — the original file can be perfectly reconstructed from the compressed version. It is used where accuracy is critical, such as compressing text documents (ZIP), software files, or medical images where data integrity must be maintained.",
-          "markPoints": [
-            "Lossy: permanently removes data / reduced quality (1 mark)",
-            "Lossy example: JPEG / MP3 / MP4 / streaming (1 mark)",
-            "Lossless: no data lost / can be fully restored (1 mark)",
-            "Lossless example: ZIP / text / PNG / software files (1 mark)"
-          ]
-        },
-        {
-          "id": "q16",
-          "section": "B",
-          "code": "B3.3",
-          "marks": 4,
-          "commandWord": "Explain",
-          "question": "Explain the factors that affect the performance of a network.",
-          "modelAnswer": "Bandwidth determines how much data can be transmitted per second — a higher bandwidth network can transfer more data simultaneously, improving performance for multiple users. Latency is the delay between data being sent and received; high latency causes slow response times, particularly noticeable in real-time applications such as video calls.\n\nThe number of users connected also affects performance — as more devices share the network, available bandwidth per device decreases. The quality of hardware (switches, cables, routers) also impacts performance; older or lower-quality equipment may create bottlenecks.",
-          "markPoints": [
-            "Bandwidth explained with effect on performance (1 mark)",
-            "Latency explained with effect (1 mark)",
-            "Number of users / congestion (1 mark)",
-            "Hardware quality / cables / switches (1 mark)"
-          ]
-        },
-        {
-          "id": "q17",
+          "id": "s1-b",
+          "scenario": "s1",
+          "part": "(b)",
           "section": "E",
           "code": "E1.1",
           "marks": 4,
-          "commandWord": "Describe",
-          "question": "Describe TWO benefits of online retail for a business.",
-          "modelAnswer": "Online retail allows a business to reach a global customer base rather than being limited to customers in a local area. The business can operate 24 hours a day, 7 days a week, enabling sales to continue even when physical stores are closed.\n\nOnline retail typically reduces overheads compared to physical stores — the business does not need to pay rent for retail premises or employ as many shop floor staff, increasing profit margins.",
-          "markPoints": [
-            "Wider customer reach / global audience (1 mark) + development (1 mark)",
-            "Reduced overheads / lower costs / 24/7 operation (1 mark) + development (1 mark)"
-          ]
-        },
-        {
-          "id": "q18",
-          "section": "E",
-          "code": "E1.2.2",
-          "marks": 4,
           "commandWord": "Explain",
-          "question": "Explain how an organisation uses transactional data for targeted marketing.",
-          "modelAnswer": "Transactional data records details of each customer purchase — what was bought, when, at what price, and by whom. Organisations analyse this data to identify patterns in individual customer behaviour, such as frequently purchased products or preferred brands.\n\nThis analysis allows the organisation to send personalised marketing — for example, recommending similar products or offering discounts on items a customer regularly buys. This increases the likelihood of a sale, improves the customer experience, and is more cost-effective than blanket advertising to all customers.",
-          "markPoints": [
-            "Transactional data records purchases / customer behaviour (1 mark)",
-            "Data analysed to identify patterns / preferences (1 mark)",
-            "Used to send personalised recommendations / adverts (1 mark)",
-            "Increases conversion / more effective than generic marketing (1 mark)"
-          ]
+          "context": "",
+          "question": "Explain **two** drawbacks to the patients of the practice moving appointment booking online.",
+          "slots": 2,
+          "traps": [
+            "\"to the patients\": drawbacks to the practice (cost, training staff) are not credited.",
+            "Each drawback needs a consequence for the patient to earn the second mark."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "rule": "1 mark for identifying a point and 1 more for expanding it (a reason or consequence linked to the scenario), up to 4 marks.",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "points": [
+              [
+                "Patients without internet access or a suitable device",
+                "cannot book online so may have to wait for phone lines / are disadvantaged"
+              ],
+              [
+                "Some patients (e.g. elderly) have low IT skills",
+                "so they may struggle to use the booking system and book the wrong slot or give up"
+              ],
+              [
+                "Less human contact / no one to ask",
+                "so patients cannot easily explain urgent dental pain or ask questions while booking"
+              ],
+              [
+                "Concerns about personal/medical data being stored online",
+                "so patients may worry their details could be leaked or misused"
+              ],
+              [
+                "System downtime / website not working",
+                "means patients cannot book or change appointments when they need to"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Drawbacks to the practice, e.g. set-up cost or staff training",
+              "\"Hacking\" on its own with no link to the patient"
+            ]
+          },
+          "modelAnswer": "1. Some elderly patients may not be confident using websites, so they could struggle to book and end up without an appointment.\n2. If the booking website goes down, patients cannot book or cancel appointments until it is fixed."
         },
         {
-          "id": "q19",
-          "section": "E",
-          "code": "E2.5",
-          "marks": 4,
-          "commandWord": "Explain",
-          "question": "Explain the difference between verification and validation in data entry systems.",
-          "modelAnswer": "Verification checks that data has been entered correctly by comparing the input to the original source. A common method is double entry, where a user enters data twice and the system checks both entries match. This catches typing errors but does not check whether the data itself is valid.\n\nValidation is an automated process that checks whether entered data is reasonable, complete, and in the correct format. For example, a range check ensures a numeric value falls within acceptable limits (e.g. age must be between 0 and 120). Validation cannot check if data is true — only that it is in the correct format.",
-          "markPoints": [
-            "Verification: checking data entered correctly / matches original (1 mark)",
-            "Example of verification (e.g. double entry, proofreading) (1 mark)",
-            "Validation: automated check data is reasonable/correct format (1 mark)",
-            "Example of validation (range/presence/format/length check) (1 mark)"
-          ]
-        },
-        {
-          "id": "q20",
-          "section": "A",
-          "code": "A3.2",
-          "marks": 4,
-          "commandWord": "Explain",
-          "question": "Explain TWO functions of an operating system.",
-          "modelAnswer": "Memory management: the operating system allocates RAM to running programs, ensuring each process has sufficient memory and preventing processes from interfering with each other. When RAM is full, it uses virtual memory (swapping data to the hard disk) to avoid crashes.\n\nSecurity management: the OS controls user authentication, manages access levels, and implements encryption to protect data. It also manages the system firewall to prevent unauthorised network access.",
-          "markPoints": [
-            "Memory management identified (1 mark) + explanation (allocates RAM, virtual memory, swapping) (1 mark)",
-            "Security / user accounts / any valid OS function identified (1 mark) + explanation (1 mark)"
-          ]
-        },
-        {
-          "id": "q21",
-          "section": "A",
-          "code": "A3.5",
-          "marks": 4,
-          "commandWord": "Describe",
-          "question": "Describe TWO types of user interface.",
-          "modelAnswer": "A Graphical User Interface (GUI) uses icons, windows, menus, and a pointer (usually a mouse) to allow users to interact with the computer visually. It is intuitive and requires minimal technical knowledge, making it suitable for general users.\n\nA Command Line Interface (CLI) requires the user to type text commands. It provides more direct control over the system and is faster for experienced users performing repetitive tasks, but it requires knowledge of specific commands and is not suitable for inexperienced users.",
-          "markPoints": [
-            "GUI identified (1 mark) + description (icons/windows/mouse/intuitive) (1 mark)",
-            "CLI identified (1 mark) + description (text commands/requires expertise/faster for experts) (1 mark)"
-          ]
-        },
-        {
-          "id": "q22",
-          "section": "A",
-          "code": "A3.6",
-          "marks": 4,
-          "commandWord": "Explain",
-          "question": "Explain ONE benefit and ONE drawback of open source software compared to proprietary software.",
-          "modelAnswer": "A benefit of open source software is that it is usually free to download and use, significantly reducing software licensing costs for organisations. The source code is also publicly available, allowing developers to customise it to meet specific needs.\n\nA drawback is that open source software may offer less dedicated technical support than proprietary software. Users typically rely on community forums rather than a dedicated helpdesk. This can be a problem for organisations that require guaranteed support response times.",
-          "markPoints": [
-            "Benefit: free/no licence cost / customisable source code (1 mark) + development (1 mark)",
-            "Drawback: limited formal support / security risks / compatibility issues (1 mark) + development (1 mark)"
-          ]
-        },
-        {
-          "id": "q23",
-          "section": "F",
-          "code": "F2.1.5",
-          "marks": 4,
-          "commandWord": "Explain",
-          "question": "Explain how the Data Protection Act 2018 / GDPR protects individuals.",
-          "modelAnswer": "The Data Protection Act 2018 (incorporating GDPR) requires organisations to handle personal data responsibly. Data must be collected for a specific, lawful purpose and not used for anything else without the individual's consent. Organisations must not hold more data than necessary and must keep it accurate and up to date.\n\nIndividuals are given rights under the Act, including the right to access the data held about them, the right to have inaccurate data corrected, and the right to request deletion of their data (the 'right to be forgotten'). Organisations that fail to comply face significant fines from the ICO.",
-          "markPoints": [
-            "Data collected lawfully / for specified purpose / with consent (1 mark)",
-            "Data must be accurate / not excessive / secure (1 mark)",
-            "Individual rights: access / correct / delete data (1 mark)",
-            "ICO can impose fines for non-compliance (1 mark)"
-          ]
-        },
-        {
-          "id": "q24",
-          "section": "F",
-          "code": "F2.1.1",
-          "marks": 4,
-          "commandWord": "Describe",
-          "question": "Describe the THREE offences under the Computer Misuse Act 1990.",
-          "modelAnswer": "The first offence is unauthorised access to a computer system — this covers hacking into a system without permission and carries a maximum sentence of two years in prison.\n\nThe second offence is unauthorised access with intent to commit a further offence — for example, hacking a company's system to steal financial data with intent to commit fraud. This carries a more severe penalty.\n\nThe third offence is unauthorised modification of computer material — this includes installing malware, deleting files, or making changes to a system without permission. This carries a maximum sentence of ten years in prison.",
-          "markPoints": [
-            "Offence 1: unauthorised access / hacking (1 mark)",
-            "Offence 2: unauthorised access with intent to commit further crime (1 mark)",
-            "Offence 3: unauthorised modification / installing malware / deleting files (1 mark)",
-            "Penalties or additional detail for any offence (1 mark)"
-          ]
-        },
-        {
-          "id": "q25",
-          "section": "A",
-          "code": "A1.1",
-          "marks": 2,
-          "commandWord": "Give",
-          "question": "Give TWO examples of embedded systems.",
-          "modelAnswer": "Any two of: smart thermostat; washing machine control system; ABS brakes in a car; traffic light controller; pacemaker; IoT sensors.",
-          "markPoints": [
-            "1 mark per valid embedded system example (max 2)"
-          ]
-        },
-        {
-          "id": "q26",
-          "section": "B",
-          "code": "B2.2",
-          "marks": 4,
-          "commandWord": "Explain",
-          "question": "Explain the difference between a LAN and a WAN.",
-          "modelAnswer": "A LAN (Local Area Network) covers a small geographic area, typically a single building or site such as a school or office. The organisation usually owns all the networking hardware (cables, switches). LANs offer high speed and low latency because all devices are physically close.\n\nA WAN (Wide Area Network) covers a large geographic area — such as connecting offices in different cities or countries — using third-party telecommunications infrastructure (e.g. fibre optic cables, leased lines). WANs are typically slower and more expensive to maintain than LANs due to the distances and infrastructure involved.",
-          "markPoints": [
-            "LAN: small geographic area / single building or site (1 mark)",
-            "LAN: organisation owns hardware / high speed / low cost (1 mark)",
-            "WAN: large geographic area / multiple sites / countries (1 mark)",
-            "WAN: uses third-party infrastructure / slower / higher cost (1 mark)"
-          ]
-        },
-        {
-          "id": "q27",
-          "section": "D",
-          "code": "D1.2",
-          "marks": 4,
-          "commandWord": "Describe",
-          "question": "Describe TWO internal threats to an organisation's data.",
-          "modelAnswer": "Accidental disclosure of data occurs when an employee unintentionally shares confidential information — for example, sending an email containing personal customer data to the wrong recipient. This can violate GDPR and cause reputational damage even though it was not malicious.\n\nStealing or leaking information is a deliberate internal threat where a disgruntled employee copies and shares sensitive data with competitors or externally. This type of insider threat is particularly dangerous because the employee already has legitimate access to the data.",
-          "markPoints": [
-            "Accidental disclosure identified (1 mark) + development (1 mark)",
-            "Stealing/leaking information / inappropriate website access / portable devices identified (1 mark) + development (1 mark)"
-          ]
-        },
-        {
-          "id": "q28",
-          "section": "C",
-          "code": "C1.4",
-          "marks": 4,
-          "commandWord": "Explain",
-          "question": "Explain why scalability is an important factor for an organisation when selecting a cloud computing service.",
-          "modelAnswer": "Scalability is the ability to increase or decrease computing resources on demand. For an organisation, this means that during periods of high demand — for example, a retailer during the Christmas period — additional server capacity can be provisioned almost instantly without purchasing new hardware.\n\nWhen demand falls, the organisation can reduce its resource usage and only pay for what it uses, avoiding the cost of maintaining idle hardware. This makes cloud computing more cost-efficient than on-premise infrastructure, which must be sized for peak demand but sits underused most of the time.",
-          "markPoints": [
-            "Scalability: ability to increase/decrease resources on demand (1 mark)",
-            "Useful during peak demand periods / can scale up quickly (1 mark)",
-            "Can scale down and reduce costs (1 mark)",
-            "On-premise cannot scale as easily / must buy hardware in advance (1 mark)"
-          ]
-        },
-        {
-          "id": "q29",
-          "section": "E",
-          "code": "E1.1.2",
-          "marks": 4,
-          "commandWord": "Describe",
-          "question": "Describe TWO benefits of online financial services (e.g. online banking) for customers.",
-          "modelAnswer": "Online banking allows customers to access their accounts, transfer money, and pay bills at any time of day, from any location with internet access. This is significantly more convenient than visiting a branch during opening hours.\n\nOnline financial services also offer faster transactions. Bank transfers that once took three working days can now be completed almost instantly using Faster Payments. This benefits customers who need to make time-sensitive payments.",
-          "markPoints": [
-            "24/7 access / accessible anywhere (1 mark) + development (1 mark)",
-            "Faster transactions / real-time balance checking / convenience (1 mark) + development (1 mark)"
-          ]
-        },
-        {
-          "id": "q30",
-          "section": "A",
-          "code": "A4.1",
-          "marks": 4,
-          "commandWord": "Explain",
-          "question": "Explain TWO factors an organisation should consider when choosing a new IT system.",
-          "modelAnswer": "Cost is an important factor — the organisation must consider both the initial purchase cost and the ongoing costs of maintenance, training, and licensing. For a small organisation, the total cost of ownership must be within budget.\n\nCompatibility is also crucial — the new system must work with existing hardware, software, and data formats already used by the organisation. If the new system is incompatible, additional costs for conversion or replacement of other systems will be incurred.",
-          "markPoints": [
-            "Cost identified (1 mark) + development (initial/ongoing/total cost of ownership) (1 mark)",
-            "Compatibility / security / user needs / performance / implementation identified (1 mark) + development (1 mark)"
-          ]
-        },
-        {
-          "id": "q31",
-          "section": "F",
-          "code": "F1.1",
-          "marks": 6,
-          "commandWord": "Discuss",
-          "question": "Discuss the ethical issues associated with organisations collecting and using personal data for targeted marketing.",
-          "modelAnswer": "The primary ethical issue is privacy — individuals may be unaware of the extent to which their data (browsing history, location, purchase patterns) is being collected and used. Even when consent is given through lengthy terms and conditions, it is questionable whether this constitutes truly informed consent.\n\nTargeted marketing can also create a 'filter bubble' effect where individuals are only shown content aligned with their existing interests, limiting their exposure to different perspectives. This can be seen as a form of manipulation.\n\nHowever, there are arguments that targeted marketing benefits consumers by showing them relevant products rather than generic adverts, potentially saving them time. Organisations argue that data collection enables a better user experience.\n\nOverall, the ethical concern centres on the power imbalance — organisations have far more knowledge about individuals than individuals have about how their data is used. Stronger regulation and genuine transparency would help address this.",
-          "markPoints": [
-            "L1 (1-2): One ethical issue identified with limited explanation",
-            "L2 (3-4): Two ethical issues explained (e.g. privacy, consent, manipulation)",
-            "L3 (5-6): Multiple issues explained with counterarguments considered; balanced evaluation reaching a reasoned conclusion"
-          ]
-        },
-        {
-          "id": "q32",
+          "id": "s1-c",
+          "scenario": "s1",
+          "part": "(c)",
           "section": "D",
           "code": "D2.2",
           "marks": 4,
           "commandWord": "Describe",
-          "question": "Describe how antivirus software protects a computer system.",
-          "modelAnswer": "Antivirus software constantly monitors the files and processes on a computer, comparing them against a database of known malware signatures. When a match is found, the software alerts the user and quarantines or deletes the malicious file to prevent damage.\n\nModern antivirus software also uses heuristic analysis to detect previously unknown threats by identifying suspicious behaviour patterns — for example, a program attempting to modify system files without authorisation. Regular updates to the virus definition database are essential to protect against new malware.",
-          "markPoints": [
-            "Scans files / compares to malware signature database (1 mark)",
-            "Quarantines or deletes detected malware (1 mark)",
-            "Heuristic analysis / detects unknown threats by behaviour (1 mark)",
-            "Regular updates needed to remain effective (1 mark)"
-          ]
+          "context": "The patient records will contain sensitive medical information. Antivirus software will be installed on every computer.",
+          "question": "Describe how antivirus software protects the patient records stored on the computer system.",
+          "slots": 0,
+          "traps": [
+            "Describe how it protects: marks are for the process (scan → compare → quarantine → update), not for saying it \"keeps data safe\"."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "1 mark for each correct answer, up to 4 marks.",
+            "points": [
+              "Scans files / emails / downloads / USB devices",
+              "Compares files with a database of known malware signatures",
+              "Uses heuristic analysis to spot suspicious behaviour / new, unknown malware",
+              "Real-time / background monitoring as files are opened",
+              "Quarantines or deletes infected files so they cannot damage/encrypt records",
+              "Alerts the user when a threat is found",
+              "Regularly updates its definitions to detect the latest threats",
+              "Scheduled full-system scans"
+            ],
+            "accept": [],
+            "reject": [
+              "\"Stops hackers\" (that is a firewall)",
+              "\"Stops viruses\" with no description of how"
+            ]
+          },
+          "modelAnswer": "Antivirus software scans files, emails and downloads and compares them with a database of known malware signatures. It also uses heuristics to spot suspicious behaviour from new malware. Any infected file is quarantined so it cannot damage the patient records, and the definitions are updated regularly so it can detect the latest threats."
         },
         {
-          "id": "q33",
+          "id": "s1-d",
+          "scenario": "s1",
+          "part": "(d)",
+          "section": "D",
+          "code": "D2.1",
+          "marks": 6,
+          "commandWord": "Discuss",
+          "context": "",
+          "question": "Discuss the methods, other than antivirus software and firewalls, the practice could use to protect patient data.",
+          "slots": 0,
+          "traps": [
+            "\"other than antivirus software and firewalls\": any time spent on those two earns nothing.",
+            "Discuss means consider both sides, e.g. the benefit of each method and a drawback or limitation."
+          ],
+          "markScheme": {
+            "type": "levels",
+            "focus": "Methods other than antivirus and firewalls, applied to patient data at a dental practice.",
+            "indicative": [
+              "Access levels: receptionists see appointments only; dentists see clinical notes and X-rays",
+              "File permissions: read-only vs read/write vs full control, matched to job role",
+              "Encryption of stored records so a stolen computer does not expose patient data",
+              "Backups (full / incremental / differential) stored off-site or in the cloud, with tested recovery",
+              "Physical security: locked server cupboard, keypad on the office door, CCTV",
+              "Biometrics or multi-factor authentication for staff logins",
+              "Strong password policy / automatic screen lock at reception where patients can see",
+              "Staff training so they recognise phishing and do not share passwords",
+              "Drawbacks weighed: cost, extra time for staff, training needed"
+            ],
+            "reject": [
+              "Antivirus software or firewalls (excluded by the question)"
+            ]
+          },
+          "modelAnswer": "The practice could set access levels so each member of staff only sees what their job needs. Receptionists would see appointment details, while dentists would also see clinical notes and X-rays. This limits the damage if one account is misused, although it takes time to set up and must be updated when staff change roles.\n\nPatient records should be encrypted. If a laptop or the server was stolen, the data would be unreadable without the key. The drawback is that a lost key could lock the practice out of its own records.\n\nRegular backups, for example a nightly incremental backup and a weekly full backup stored off-site or in the cloud, would let the practice recover records after a fire, failure or ransomware attack. Backups only help if the recovery is tested.\n\nPhysical controls matter too: the server should be in a locked room with a keypad, and reception screens should lock automatically because patients stand close to them. Multi-factor authentication would stop a stolen password being enough to log in, but adds a step for busy staff."
+        },
+        {
+          "id": "s2-a",
+          "scenario": "s2",
+          "part": "(a)",
           "section": "B",
-          "code": "B3.1.1",
+          "code": "B3.1",
+          "marks": 2,
+          "commandWord": "Give",
+          "context": "The app emails a receipt to the customer at the end of each hire.",
+          "question": "Give **two** protocols used when sending and receiving email.",
+          "slots": 2,
+          "traps": [],
+          "markScheme": {
+            "type": "points",
+            "rule": "1 mark for each correct answer, up to 2 marks.",
+            "points": [
+              "SMTP (sending)",
+              "POP / POP3 (receiving/downloading)",
+              "IMAP (receiving/syncing)"
+            ],
+            "accept": [
+              "TLS/SSL where linked to securing email"
+            ],
+            "reject": [
+              "HTTP or HTTPS (web pages, not email protocols)",
+              "Email clients such as Outlook"
+            ]
+          },
+          "modelAnswer": "1. SMTP\n2. IMAP"
+        },
+        {
+          "id": "s2-b-i",
+          "scenario": "s2",
+          "part": "(b)(i)",
+          "section": "C",
+          "code": "C1.3",
           "marks": 4,
           "commandWord": "Explain",
-          "question": "Explain the difference between IMAP and POP3 for receiving email.",
-          "modelAnswer": "IMAP (Internet Message Access Protocol) stores emails on the mail server and synchronises them across multiple devices. This means a user can access the same emails from a phone, laptop, and desktop, and any changes (such as deleting or moving an email) are reflected on all devices.\n\nPOP3 (Post Office Protocol 3) downloads emails from the server to a single device and typically deletes them from the server. This means emails are only accessible from the device they were downloaded to, which can be a limitation for users who access email on multiple devices.",
-          "markPoints": [
-            "IMAP: stores emails on server / syncs across devices (1 mark)",
-            "IMAP: changes reflected on all devices (1 mark)",
-            "POP3: downloads to one device / typically deletes from server (1 mark)",
-            "POP3: emails only on one device (1 mark)"
-          ]
+          "context": "Some head office staff work from home two days a week.",
+          "question": "Explain **two** benefits to Northway Bikes of staff using a virtual private network (VPN) when working from home.",
+          "slots": 2,
+          "traps": [
+            "\"to Northway Bikes\": explain what the company gains, not what a home user gains from a consumer VPN."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "rule": "1 mark for identifying a point and 1 more for expanding it (a reason or consequence linked to the scenario), up to 4 marks.",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "points": [
+              [
+                "Data is sent through an encrypted tunnel",
+                "so customer and payment data cannot be read if it is intercepted on a home network"
+              ],
+              [
+                "Staff can access internal systems/files as if in the office",
+                "so customer support can continue without staff travelling in"
+              ],
+              [
+                "Secure use of untrusted networks (home/public Wi-Fi)",
+                "reducing the risk of a data breach and fines under data protection law"
+              ],
+              [
+                "Only authenticated staff can connect to the company network",
+                "so the booking system is protected from unauthorised access"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "\"It is secure\" with no explanation",
+              "\"Hides your IP address/location\" (a benefit to an individual, not the company)",
+              "Benefits of remote working in general that are not about the VPN"
+            ]
+          },
+          "modelAnswer": "1. A VPN creates an encrypted tunnel, so if staff are on insecure home Wi-Fi, customer payment details cannot be read if intercepted.\n2. Staff can reach the booking system and shared files as if they were in the office, so customer support keeps running when they work from home."
         },
         {
-          "id": "q34",
-          "section": "A",
-          "code": "A3.1",
-          "marks": 2,
-          "commandWord": "State",
-          "question": "State TWO types of operating system.",
-          "modelAnswer": "Any two of: batch; distributed; multitasking; network OS; real-time OS; mobile OS; single use; multi-user.",
-          "markPoints": [
-            "1 mark per valid OS type (max 2)"
-          ]
+          "id": "s2-b-ii",
+          "scenario": "s2",
+          "part": "(b)(ii)",
+          "section": "B",
+          "code": "B3.3",
+          "marks": 4,
+          "commandWord": "Explain",
+          "context": "The app updates bike availability at every dock every few seconds.",
+          "question": "Explain **two** ways high latency could affect customers using the app.",
+          "slots": 2,
+          "traps": [
+            "Latency is delay, not the amount of data. Answers about large files downloading slowly describe bandwidth."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "rule": "1 mark for identifying a point and 1 more for expanding it (a reason or consequence linked to the scenario), up to 4 marks.",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "points": [
+              [
+                "Bike availability shown is out of date",
+                "so a customer may walk to a dock and find no bike available"
+              ],
+              [
+                "Delay between scanning the QR code and the bike unlocking",
+                "leaving customers waiting at the dock / frustrated"
+              ],
+              [
+                "Two customers could book the same bike",
+                "because updates reach the server too late, causing booking conflicts"
+              ],
+              [
+                "Live map / journey tracking lags behind",
+                "so customers see the wrong position or time and are charged incorrectly"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "A definition of latency on its own",
+              "Slow downloads of large files (that is bandwidth, not latency)"
+            ]
+          },
+          "modelAnswer": "1. The app would show out-of-date availability, so a customer could arrive at a dock and find the bike already taken.\n2. There would be a delay between scanning the QR code and the lock opening, so customers are left waiting at the dock."
         },
         {
-          "id": "q35",
+          "id": "s2-c",
+          "scenario": "s2",
+          "part": "(c)",
           "section": "E",
           "code": "E2.1",
           "marks": 4,
           "commandWord": "Explain",
-          "question": "Explain the difference between primary and secondary sources of data.",
-          "modelAnswer": "Primary data is original data collected directly for a specific purpose or research project. Methods include surveys, questionnaires, interviews, and focus groups. Primary data is up to date and specific to the researcher's needs, but it can be expensive and time-consuming to collect.\n\nSecondary data is data that already exists and was collected by someone else for a different purpose — for example, government statistics, published reports, or existing research. It is quicker and cheaper to access, but may not be perfectly suited to the researcher's current needs and could be outdated.",
-          "markPoints": [
-            "Primary: collected for specific purpose / first-hand data (1 mark)",
-            "Primary: examples (survey, interview) / up to date / expensive to collect (1 mark)",
-            "Secondary: already exists / collected by others (1 mark)",
-            "Secondary: examples (reports, statistics) / cheaper but may be outdated/less relevant (1 mark)"
-          ]
+          "context": "Every hire records the customer, start and end docks, times, distance and payment.",
+          "question": "Explain **two** ways Northway Bikes could use the transactional data it collects.",
+          "slots": 2,
+          "traps": [],
+          "markScheme": {
+            "type": "chain",
+            "rule": "1 mark for identifying a point and 1 more for expanding it (a reason or consequence linked to the scenario), up to 4 marks.",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "points": [
+              [
+                "Identify the busiest docks and times",
+                "so staff can move bikes to where demand is highest / add more docks"
+              ],
+              [
+                "Targeted marketing based on journey history",
+                "e.g. offering a monthly pass to frequent riders to increase sales"
+              ],
+              [
+                "Set prices by demand (peak/off-peak)",
+                "to increase revenue at busy times and encourage use when quiet"
+              ],
+              [
+                "Plan maintenance from the distance each bike has travelled",
+                "so bikes are serviced before they break down"
+              ],
+              [
+                "Detect unusual activity / fraud",
+                "e.g. many hires from one card in a short time"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "\"To improve the business\" with no specific use",
+              "Selling customer data (would breach data protection law)"
+            ]
+          },
+          "modelAnswer": "1. It can find out which docks are busiest at rush hour, so staff can move bikes there before customers arrive.\n2. It can see who hires bikes most often and send them offers for a monthly pass, increasing sales."
         },
         {
-          "id": "q36",
-          "section": "C",
-          "code": "C1.1",
-          "marks": 8,
-          "commandWord": "Discuss",
-          "question": "A national charity is considering moving from on-premise servers to cloud computing. The charity processes large volumes of donor personal data and relies on its systems being available 24/7. Discuss whether cloud computing is suitable for the charity. [8 marks]",
-          "modelAnswer": "Cloud computing offers several advantages that could make it suitable for the charity. Moving to a cloud service would eliminate the need to maintain on-premise servers, reducing capital expenditure — important for a charity operating on limited funds. Cloud platforms are also scalable, allowing the charity to increase storage capacity as its donor database grows without purchasing additional hardware. Using SaaS applications would give staff access to systems from anywhere, which could improve flexibility.\n\nHowever, there are significant concerns specific to this scenario. The charity processes large volumes of personal data from donors, which means any cloud provider must be fully GDPR-compliant. Data stored on cloud servers may be located in different countries, raising questions about data sovereignty and compliance with UK data protection law. A breach of donor data could not only result in ICO fines but would severely damage the charity's reputation and reduce donor trust.\n\nThe charity's requirement for 24/7 availability is also a risk factor. Cloud services, despite generally having high uptime, are dependent on the charity maintaining a reliable internet connection. Any internet outage would prevent access to all systems, causing complete operational disruption.\n\nOverall, cloud computing could be suitable for the charity, particularly a private or hybrid cloud model that gives greater control over sensitive donor data while retaining the cost and scalability benefits. The charity would need to conduct thorough due diligence on the provider's security credentials and GDPR compliance before proceeding.",
-          "markPoints": [
-            "L1 (1-3): One or two points identified, limited development, may not link to the scenario",
-            "L2 (4-6): Benefits and drawbacks explained with some links to the charity scenario (donor data, 24/7 need)",
-            "L3 (7-8): Comprehensive discussion covering multiple benefits AND specific risks linked to scenario; evaluative conclusion about suitability"
-          ]
+          "id": "s2-d",
+          "scenario": "s2",
+          "part": "(d)",
+          "section": "E",
+          "code": "E1.1",
+          "marks": 9,
+          "commandWord": "Evaluate",
+          "context": "",
+          "question": "Evaluate the use of a mobile app, rather than a website, for customers hiring bikes.",
+          "slots": 0,
+          "traps": [
+            "\"rather than a website\": you must compare the two. Listing app features alone stays in the lower levels.",
+            "Evaluate needs a judgement at the end that follows from your points."
+          ],
+          "markScheme": {
+            "type": "levels",
+            "focus": "A mobile app compared with a website, for customers hiring bikes, ending with a supported judgement.",
+            "indicative": [
+              "App uses the phone’s GPS to show the nearest docks and route",
+              "App uses the camera to scan the QR code and unlock a bike quickly",
+              "Push notifications (hire reminders, receipts, offers)",
+              "Stored login and payment details make repeat hires quicker",
+              "Customer must download and install it, which uses storage and data; one-off tourists may not bother",
+              "Separate versions for iOS and Android cost more to build and update",
+              "Customers without a smartphone, or with an old one, are excluded",
+              "A website works in any browser with no install, but cannot scan a QR code or use GPS as smoothly",
+              "Conclusion: app suits regular riders and unlocking; a website is a useful fallback for occasional users"
+            ],
+            "reject": []
+          },
+          "modelAnswer": "A mobile app has clear advantages for hiring bikes. It can use the phone’s GPS to show the nearest dock with a bike available and the camera to scan the QR code, so a customer can unlock a bike in seconds. Login and payment details are stored, so regular commuters can hire again quickly, and push notifications can remind them to return the bike before the price goes up.\n\nHowever, customers must download and install the app first. A tourist who only wants one ride may give up rather than install it, so Northway could lose one-off hires. Customers without a smartphone, or with an old phone that cannot run the app, are excluded completely. Northway also has to build and update separate iOS and Android versions, which costs more than one website.\n\nA website would work on any device with a browser and needs no installation, which suits occasional users. But it is less convenient at the dock because using the camera and location from a browser is slower and less reliable.\n\nOverall, the app is the better choice because unlocking by QR code and finding bikes by GPS are central to the service, and most customers will be regular riders. Northway should still offer a simple website for booking and support so occasional customers are not lost."
         },
         {
-          "id": "q37",
+          "id": "s3-a-i",
+          "scenario": "s3",
+          "part": "(a)(i)",
+          "section": "A",
+          "code": "A3.3",
+          "marks": 2,
+          "commandWord": "Give",
+          "context": "",
+          "question": "Give **two** types of utility software the IT technician might install on the teachers’ laptops.",
+          "slots": 2,
+          "traps": [
+            "Utility software maintains the system. Application software (Word, a browser) is used to do tasks and scores nothing here."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "1 mark for each correct answer, up to 2 marks.",
+            "points": [
+              "Antivirus / anti-malware",
+              "Firewall",
+              "Backup software",
+              "Disk defragmenter",
+              "File compression",
+              "Disk clean-up",
+              "Encryption software",
+              "File manager",
+              "Password manager"
+            ],
+            "accept": [],
+            "reject": [
+              "Application software such as a word processor, web browser or presentation software",
+              "Operating systems",
+              "VPN"
+            ]
+          },
+          "modelAnswer": "1. Antivirus software\n2. Backup software"
+        },
+        {
+          "id": "s3-a-ii",
+          "scenario": "s3",
+          "part": "(a)(ii)",
           "section": "A",
           "code": "A2.2",
           "marks": 2,
-          "commandWord": "State",
-          "question": "State TWO examples of assistive technology.",
-          "modelAnswer": "Any two of: screen reader; braille display; screen magnifier; adaptive keyboard; eye-tracking software; text-to-speech software; sip-and-puff switch; head pointer.",
-          "markPoints": [
-            "1 mark per valid assistive technology (max 2)"
-          ]
+          "commandWord": "Give",
+          "context": "",
+          "question": "Give **two** assistive technologies the school could provide for a pupil with a visual impairment.",
+          "slots": 2,
+          "traps": [
+            "The technology must suit a visual impairment. Eye-tracking is for motor impairments."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "1 mark for each correct answer, up to 2 marks.",
+            "points": [
+              "Screen reader / text-to-speech",
+              "Screen magnifier",
+              "Braille display / braille embosser",
+              "Speech recognition / voice control",
+              "High-contrast or large-print keyboard",
+              "High-contrast display settings"
+            ],
+            "accept": [],
+            "reject": [
+              "Technologies for other needs, e.g. eye-tracking or a switch for motor impairments"
+            ]
+          },
+          "modelAnswer": "1. Screen reader\n2. Screen magnifier"
         },
         {
-          "id": "q38",
-          "section": "D",
-          "code": "D2.1",
-          "marks": 2,
-          "commandWord": "State",
-          "question": "State TWO methods of physical access control used to protect IT systems.",
-          "modelAnswer": "Any two of: biometric scanners (fingerprint/retinal); key card/swipe card access; CCTV cameras; security guards; locked server rooms.",
-          "markPoints": [
-            "1 mark per valid physical access control method (max 2)"
-          ]
-        },
-        {
-          "id": "q39",
-          "section": "F",
-          "code": "F2.1.2",
-          "marks": 4,
-          "commandWord": "Explain",
-          "question": "Explain how the Copyright, Designs and Patents Act 1988 protects software developers.",
-          "modelAnswer": "The Copyright, Designs and Patents Act 1988 automatically protects original software created by a developer — they do not need to register it. The Act gives the developer exclusive rights to copy, distribute, and modify their software.\n\nAnyone who copies, distributes, or adapts the software without the developer's permission is committing copyright infringement, which is a criminal offence. This protects the developer's ability to monetise their work and prevents others from profiting from their code without permission.",
-          "markPoints": [
-            "Automatically protects original software / no registration needed (1 mark)",
-            "Gives exclusive rights to copy/distribute/modify (1 mark)",
-            "Copying without permission = copyright infringement / criminal offence (1 mark)",
-            "Protects developer's ability to profit from work (1 mark)"
-          ]
-        },
-        {
-          "id": "q40",
-          "section": "B",
-          "code": "B2.3",
-          "marks": 4,
-          "commandWord": "Explain",
-          "question": "Explain TWO factors that affect the choice of network for an organisation.",
-          "modelAnswer": "Security is an important factor — the organisation must choose a network that provides sufficient protection for the data being transmitted. A business handling sensitive financial data, for example, would require a more secure network solution such as a VPN or private WAN rather than relying solely on a public internet connection.\n\nCost is also a key consideration. Setting up a WAN to connect multiple office sites involves significant infrastructure costs, including leased lines and networking equipment. The organisation must balance connection quality and security against available budget.",
-          "markPoints": [
-            "Security identified (1 mark) + development linked to data sensitivity / business type (1 mark)",
-            "Cost / user needs / scalability / implementation / compatibility identified (1 mark) + development (1 mark)"
-          ]
-        },
-        {
-          "id": "q41",
-          "section": "E",
-          "code": "E1.2.4",
-          "marks": 4,
-          "commandWord": "Describe",
-          "question": "Describe TWO benefits of remote working enabled by IT systems.",
-          "modelAnswer": "Remote working allows employees to work from any location, removing the need to commute to an office. This can improve work-life balance and reduce travel costs for employees, potentially increasing job satisfaction and staff retention.\n\nFor the organisation, remote working can reduce costs associated with maintaining a large office — less desk space is needed if employees work from home on a rota. IT systems such as VPNs, cloud software, and video conferencing tools make it possible for teams to collaborate effectively regardless of location.",
-          "markPoints": [
-            "Flexibility / no commute / improved work-life balance (1 mark) + development (1 mark)",
-            "Reduced office costs / wider recruitment pool / business continuity (1 mark) + development (1 mark)"
-          ]
-        },
-        {
-          "id": "q42",
+          "id": "s3-b",
+          "scenario": "s3",
+          "part": "(b)",
           "section": "A",
-          "code": "A5",
+          "code": "A3.4",
           "marks": 4,
           "commandWord": "Explain",
-          "question": "Explain TWO ways in which artificial intelligence (AI) is affecting the use of IT systems in organisations.",
-          "modelAnswer": "AI enables automation of repetitive tasks that previously required human input — for example, AI chatbots can handle routine customer queries 24/7, reducing the need for large customer service teams and lowering staffing costs.\n\nAI also enhances data analysis capabilities. Organisations can use machine learning to identify patterns in large datasets that humans could not process manually — for example, detecting fraudulent transactions in real time by identifying unusual spending patterns. This improves security and business decision-making.",
-          "markPoints": [
-            "Automation of tasks / chatbots / reducing staffing needs (1 mark) + development (1 mark)",
-            "Enhanced data analysis / pattern recognition / fraud detection / decision support (1 mark) + development (1 mark)"
-          ]
+          "context": "The tablets will be shared between classes.",
+          "question": "Explain **two** factors, other than cost, that affect the school’s choice of operating system for the tablets.",
+          "slots": 2,
+          "traps": [
+            "\"other than cost\": price, licensing and budget answers score nothing."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "rule": "1 mark for identifying a point and 1 more for expanding it (a reason or consequence linked to the scenario), up to 4 marks.",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "points": [
+              [
+                "Compatibility with the apps and systems the school already uses",
+                "so teachers’ lesson apps and the school network work on the tablets"
+              ],
+              [
+                "Security features / frequency of updates",
+                "to protect pupil data and keep devices safe from malware"
+              ],
+              [
+                "Ease of use / familiar interface",
+                "so young pupils and staff need little training"
+              ],
+              [
+                "Device management / parental-style controls",
+                "so the technician can restrict what pupils install or access"
+              ],
+              [
+                "Availability of educational apps",
+                "so the tablets support the curriculum"
+              ],
+              [
+                "Length of support / update lifespan",
+                "so the tablets stay secure for several years"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Cost, price or licence fees (excluded by the question)",
+              "\"It is better\" / \"It is faster\" on its own"
+            ]
+          },
+          "modelAnswer": "1. Compatibility: the OS must run the reading and maths apps the school already pays for, or teachers could not use them in lessons.\n2. Ease of use: a simple, familiar interface means five-year-olds can use the tablets without lots of help, saving lesson time."
         },
         {
-          "id": "q43",
-          "section": "F",
-          "code": "F2.1.1",
-          "marks": 6,
-          "commandWord": "Discuss",
-          "question": "A company employee has accessed confidential customer records without authorisation to pass information to a competitor. Discuss which section(s) of the Computer Misuse Act 1990 apply and the potential consequences for the employee. [6 marks]",
-          "modelAnswer": "Section 1 of the Computer Misuse Act 1990 applies because the employee accessed computer material (customer records) without authorisation. Even though the employee had legitimate access to the company's systems as part of their job, accessing files beyond the scope of their role constitutes unauthorised access under Section 1.\n\nSection 2 also applies because the unauthorised access was carried out with the intent to commit a further offence — passing the data to a competitor could constitute fraud or breach of confidence. Section 2 requires both unauthorised access and intent to commit or facilitate a further crime.\n\nThe consequences for the employee are serious. Under Section 1, the maximum penalty is 2 years' imprisonment and an unlimited fine. Under Section 2, the maximum penalty increases to 5 years' imprisonment. Additionally, the employee could face civil action from the company for breach of contract and a claim for damages. Their employer could also report the breach to the ICO under GDPR, which could result in the company itself being fined if adequate access controls were not in place.",
-          "markPoints": [
-            "Section 1 identified: unauthorised access to computer material (1 mark)",
-            "Section 1 explained with reference to scenario — accessing beyond role scope (1 mark)",
-            "Section 2 identified: unauthorised access with intent to commit further offence (1 mark)",
-            "Section 2 linked to scenario — intent to pass data to competitor = further crime (1 mark)",
-            "Consequence: criminal penalties (imprisonment/fine for S1 or S2) (1 mark)",
-            "Additional consequence: civil action / GDPR implications / dismissal (1 mark)"
-          ]
+          "id": "s3-c",
+          "scenario": "s3",
+          "part": "(c)",
+          "section": "A",
+          "code": "A3.5",
+          "marks": 3,
+          "commandWord": "Describe",
+          "context": "",
+          "question": "Describe **one** type of user interface suitable for pupils aged 5 to 7.",
+          "slots": 0,
+          "traps": [
+            "\"one\": if you describe two, only the first is marked.",
+            "The justification must link to the age of the pupils."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "rule": "1 mark for a suitable interface, 1 for a justification, 1 for expanding the justification.",
+            "steps": [
+              "Interface",
+              "Justify",
+              "Expand"
+            ],
+            "points": [
+              [
+                "Graphical user interface (GUI) with touch input",
+                "uses large icons and pictures instead of text, as young pupils cannot read well yet",
+                "so they can tap to open apps without needing to use a mouse or type"
+              ],
+              [
+                "Speech / voice interface",
+                "pupils can speak commands instead of reading or typing",
+                "which suits children whose reading and spelling are still developing"
+              ],
+              [
+                "Menu-driven interface",
+                "offers a small number of choices on screen",
+                "so pupils cannot get lost or change settings by mistake"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Command-line interface (needs typed commands)",
+              "More than one interface: only the first is marked"
+            ]
+          },
+          "modelAnswer": "A touch-screen GUI would suit them because it uses large icons and pictures rather than text, which matters because many pupils this age cannot read well. They can simply tap an icon to open an app, so they do not need mouse skills."
         },
         {
-          "id": "q44",
+          "id": "s3-d",
+          "scenario": "s3",
+          "part": "(d)",
           "section": "F",
           "code": "F1.1",
+          "marks": 9,
+          "commandWord": "Evaluate",
+          "context": "The school plans to set homework on an online learning platform that pupils access from home.",
+          "question": "Evaluate the moral and ethical implications of setting homework on an online learning platform.",
+          "slots": 0,
+          "traps": [
+            "Moral and ethical means fairness, privacy, accessibility and wellbeing, not the school’s costs.",
+            "A conclusion that simply says \"it is good\" without conditions will not reach Level 3."
+          ],
+          "markScheme": {
+            "type": "levels",
+            "focus": "Moral and ethical implications for pupils and families of online homework, weighed up with a conclusion.",
+            "indicative": [
+              "Digital divide: some families have no device, only a shared phone, or no broadband",
+              "Pupils with disabilities need the platform to work with assistive technology",
+              "Privacy: pupil data (names, work, progress) held by a third-party provider; consent from parents",
+              "Online safety: messaging features could allow contact from strangers or cyberbullying",
+              "Health: more screen time for young children",
+              "Positives: resources available at any time, instant feedback, adaptive tasks, parents can see progress",
+              "Environment: less paper, but more devices and energy use",
+              "Mitigations: loan devices, paper alternative, homework club, GDPR-compliant provider",
+              "Conclusion: acceptable only if the school provides alternatives so no pupil is disadvantaged"
+            ],
+            "reject": []
+          },
+          "modelAnswer": "Online homework has real benefits. Pupils can access resources at any time, get instant feedback on their answers, and parents can log in to see their child’s progress. Tasks can adapt to each pupil’s level, which helps those who are struggling as well as those who need a challenge.\n\nThe main ethical concern is fairness. Some families have no computer, share one phone between several children, or have no broadband. Those pupils would be unable to complete homework through no fault of their own, which widens the gap between them and their classmates. Pupils with visual or motor impairments may also be excluded if the platform does not work with screen readers or other assistive technology.\n\nThere are privacy issues too. The platform would hold pupils’ names, work and progress data on a third party’s servers, so the school must make sure the provider complies with data protection law and that parents understand what is collected. If the platform has messaging, young children could be exposed to cyberbullying or contact from strangers.\n\nOverall, online homework is ethically acceptable only if the school removes the barriers. It should lend devices or run a homework club, offer a paper alternative, and choose an accessible, GDPR-compliant platform with messaging turned off. Without these steps, the benefits would go mainly to pupils who are already advantaged."
+        },
+        {
+          "id": "s4-a",
+          "scenario": "s4",
+          "part": "(a)",
+          "section": "B",
+          "code": "A1.3",
+          "marks": 6,
+          "commandWord": "Draw",
+          "context": "",
+          "question": "Draw a diagram to show how the office network is set up and how architects connect when on site visits.\n\nThe diagram must include:\n• devices and systems that are used\n• connection types and annotations.",
+          "slots": 0,
+          "traps": [
+            "Every room in the stem is a mark: miss a room and you lose a mark.",
+            "\"connection types and annotations\": unlabelled lines earn nothing.",
+            "Draw it on paper, then tick what your diagram shows."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "1 mark for each feature shown correctly, up to 6 marks.",
+            "points": [
+              "Design studio: six desktops AND the printer connected to a switch (wired, e.g. Ethernet)",
+              "Meeting room: smart TV connected through a wireless access point (Wi-Fi)",
+              "Server cupboard: file server connected to the switch",
+              "Router connected to the internet, with a firewall between the internet and the office network",
+              "Tablet connects over a mobile network (4G/5G / cell tower) to the internet, then to the server (e.g. via VPN)",
+              "Complete, working system with every device and connection type labelled"
+            ],
+            "accept": [
+              "Wired or wireless connections, as long as they are labelled and sensible"
+            ],
+            "reject": [
+              "Devices not in the scenario",
+              "Unlabelled lines (no connection type)",
+              "Tablet connected directly to the server with no internet link"
+            ]
+          },
+          "modelAnswer": "Studio PCs ×6 and printer → switch (Ethernet). Switch → file server (Ethernet). Switch → router → firewall → internet. Wireless access point on the switch → smart TV (Wi-Fi). Tablet → 4G/5G cell tower → internet → firewall → file server (VPN, encrypted). Every line labelled with its connection type."
+        },
+        {
+          "id": "s4-b",
+          "scenario": "s4",
+          "part": "(b)",
+          "section": "B",
+          "code": "B1.2",
+          "marks": 2,
+          "commandWord": "Explain",
+          "context": "",
+          "question": "Explain **one** factor that affects the choice of connection type for the computers in the design studio.",
+          "slots": 0,
+          "traps": [
+            "\"one\": only your first factor is marked.",
+            "\"Faster\" on its own earns nothing. Say what is faster and why it matters here."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "rule": "1 mark for a factor, 1 for an expansion linked to the design studio.",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "points": [
+              [
+                "Bandwidth / transfer speed",
+                "drawings are large files, so a wired Gigabit Ethernet connection transfers them quickly"
+              ],
+              [
+                "Reliability / interference",
+                "a wired connection is not affected by walls or other devices, so it will not drop while saving work"
+              ],
+              [
+                "Security",
+                "cables are harder to intercept than Wi-Fi, protecting client designs"
+              ],
+              [
+                "Mobility",
+                "the desktops do not move, so the flexibility of wireless is not needed"
+              ],
+              [
+                "Cost of installation",
+                "running cables to six desks costs more than one access point"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "\"Faster\" or \"better\" with no reason",
+              "Compatibility"
+            ]
+          },
+          "modelAnswer": "Bandwidth: the architects save very large drawing files, so a wired Ethernet connection is needed to transfer them to the file server quickly."
+        },
+        {
+          "id": "s4-c",
+          "scenario": "s4",
+          "part": "(c)",
+          "section": "B",
+          "code": "B3.5",
+          "marks": 4,
+          "commandWord": "Explain",
+          "context": "Clients often complain that emailed drawings take a long time to arrive.",
+          "question": "Explain **two** ways the firm could reduce the time taken to send drawings to clients.",
+          "slots": 2,
+          "traps": [
+            "Lossy compression is wrong for technical drawings because detail would be lost."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "rule": "1 mark for identifying a point and 1 more for expanding it (a reason or consequence linked to the scenario), up to 4 marks.",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "points": [
+              [
+                "Compress files using lossless compression (e.g. ZIP)",
+                "makes files smaller to send without losing any detail from the drawing"
+              ],
+              [
+                "Convert to a suitable file format (e.g. PDF instead of the original CAD file)",
+                "which is smaller and opens on any device"
+              ],
+              [
+                "Share a cloud link instead of an email attachment",
+                "the client downloads only when needed and attachment size limits are avoided"
+              ],
+              [
+                "Upgrade the internet connection / increase bandwidth",
+                "so more data is sent per second"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Lossy compression (would lose detail from technical drawings)",
+              "\"Use a faster computer\" (not about transmission)"
+            ]
+          },
+          "modelAnswer": "1. Compress the drawings with lossless compression such as ZIP. The files become smaller so they send faster, and no detail in the drawing is lost.\n2. Send a PDF instead of the original design file. It is much smaller and the client can open it without special software."
+        },
+        {
+          "id": "s4-d",
+          "scenario": "s4",
+          "part": "(d)",
+          "section": "C",
+          "code": "C1.2",
+          "marks": 12,
+          "commandWord": "Evaluate",
+          "context": "",
+          "question": "Evaluate the suitability of cloud storage, compared to the on-site file server, for storing the firm’s drawings.",
+          "slots": 0,
+          "traps": [
+            "\"compared to\": every point should say how cloud is better or worse than the server they already have.",
+            "12 marks: you need depth on both sides (performance AND suitability) and a conclusion that follows from them."
+          ],
+          "markScheme": {
+            "type": "levels",
+            "focus": "Cloud storage against the existing on-site server for large drawing files, both used at the office and on site, ending with a judgement.",
+            "indicative": [
+              "Cloud: architects can open drawings on site over 4G/5G without needing a VPN into the office",
+              "Cloud: provider handles backup and disaster recovery; a fire at the office would not destroy the drawings",
+              "Cloud: scalable storage, pay per month rather than buying and replacing server hardware",
+              "Cloud: easier to share with clients using links / collaborate",
+              "Cloud: large files must upload/download over the internet, slower than the office LAN; slow sites suffer",
+              "Cloud: no access at all if the internet fails; ongoing subscription cost",
+              "Cloud: data held by a third party; the firm must check security and where the data is stored (GDPR)",
+              "On-site: fast LAN access in the studio, full control over security and data",
+              "On-site: firm pays for hardware, maintenance and backups; single point of failure",
+              "Hybrid option: keep working files local and sync to the cloud",
+              "Conclusion weighing performance, access, security, cost"
+            ],
+            "reject": []
+          },
+          "modelAnswer": "Cloud storage would make drawings much easier to reach on site visits. At the moment architects must connect back to the office server, which needs a VPN and relies on the office connection. With cloud storage, the tablet could open drawings directly over 4G or 5G. Sharing with clients also becomes simpler, since the firm can send a link instead of a large attachment.\n\nThe cloud provider would also handle backups and disaster recovery. If the office had a fire or the server failed, the drawings would still be safe. Storage can be increased as the firm grows, and the monthly subscription replaces the cost of buying and maintaining a server.\n\nPerformance is the main weakness. Drawings are very large, and opening or saving them over the internet is much slower than over the office LAN. Designers in the studio could spend a lot of time waiting. If the internet connection fails, nobody can reach any drawings at all, whereas the local server keeps working inside the office.\n\nSecurity and control also change. The on-site server is fully controlled by the firm, while cloud storage means trusting a third party with client designs. Greenleaf would need to check the provider encrypts data and stores it in a way that meets data protection law. The subscription is also an ongoing cost that never ends.\n\nOverall, neither option is perfect on its own. The most suitable choice is a hybrid: keep the file server for fast work in the studio and sync finished drawings to cloud storage. That gives architects access on site and off-site backups without slowing down the designers."
+        },
+        {
+          "id": "s5-a",
+          "scenario": "s5",
+          "part": "(a)",
+          "section": "C",
+          "code": "C1.1",
+          "marks": 3,
+          "commandWord": "Describe",
+          "context": "",
+          "question": "Describe **one** cloud computing model Maple Leaf could use for the care-management system.",
+          "slots": 0,
+          "traps": [
+            "\"one\": describe a single model. The third mark comes from linking it to Maple Leaf."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "rule": "1 mark for a model, 1 for a description of it, 1 for how it suits Maple Leaf.",
+            "steps": [
+              "Model",
+              "Describe",
+              "Apply"
+            ],
+            "points": [
+              [
+                "Software as a Service (SaaS)",
+                "software is hosted and maintained by the provider and accessed through a browser/app",
+                "so the homes need no IT staff to install or update it"
+              ],
+              [
+                "Public cloud",
+                "resources shared between many organisations and run by a third-party provider on subscription",
+                "so Maple Leaf avoids buying servers"
+              ],
+              [
+                "Private cloud",
+                "infrastructure dedicated to one organisation",
+                "giving more control over sensitive resident health data"
+              ],
+              [
+                "Hybrid cloud",
+                "combines private and public cloud",
+                "e.g. resident records private, rota and training material public"
+              ],
+              [
+                "Infrastructure as a Service (IaaS)",
+                "virtual servers and storage rented over the internet",
+                "paying only for what they use as more homes join"
+              ],
+              [
+                "Platform as a Service (PaaS)",
+                "provider manages the infrastructure and tools for building apps",
+                "if Maple Leaf wanted a custom system developed"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "More than one model: only the first is marked"
+            ]
+          },
+          "modelAnswer": "Maple Leaf could use Software as a Service. The care-management software is hosted and maintained by the provider and carers use it through an app, so the homes do not need their own IT staff to install or update it."
+        },
+        {
+          "id": "s5-b",
+          "scenario": "s5",
+          "part": "(b)",
+          "section": "C",
+          "code": "C1.2",
+          "marks": 4,
+          "commandWord": "Explain",
+          "context": "",
+          "question": "Explain **two** impacts on the carers of recording care notes on handheld devices instead of on paper.",
+          "slots": 2,
+          "traps": [
+            "\"on the carers\": benefits to Maple Leaf as a company, or to residents, are not credited."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "rule": "1 mark for identifying a point and 1 more for expanding it (a reason or consequence linked to the scenario), up to 4 marks.",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "points": [
+              [
+                "Notes can be recorded at the bedside as care happens",
+                "so carers do not spend time writing up at the end of a shift"
+              ],
+              [
+                "Carers can see up-to-date notes from other shifts",
+                "so they know about a resident’s changes before starting care"
+              ],
+              [
+                "Carers need training / may lack confidence with devices",
+                "so some may find the change stressful or slow at first"
+              ],
+              [
+                "Reliance on battery and Wi-Fi",
+                "if a device dies or signal drops, carers cannot record or read notes"
+              ],
+              [
+                "Work can be monitored more closely",
+                "which some carers may find intrusive / stressful"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Impacts on the company (e.g. cost savings)",
+              "Impacts on residents or families only"
+            ]
+          },
+          "modelAnswer": "1. Carers can record notes straight away at the bedside, so they no longer spend the end of each shift writing up paper notes.\n2. Some carers are not confident with technology and will need training, so the change could be stressful and slow them down at first."
+        },
+        {
+          "id": "s5-c",
+          "scenario": "s5",
+          "part": "(c)",
+          "section": "C",
+          "code": "C2.1",
+          "marks": 4,
+          "commandWord": "Explain",
+          "context": "",
+          "question": "Explain **two** ways Maple Leaf could use online communities to keep in touch with residents’ families.",
+          "slots": 2,
+          "traps": [],
+          "markScheme": {
+            "type": "chain",
+            "rule": "1 mark for identifying a point and 1 more for expanding it (a reason or consequence linked to the scenario), up to 4 marks.",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "points": [
+              [
+                "Video calls between residents and families",
+                "so relatives who live far away can see residents regularly"
+              ],
+              [
+                "Private social media group / page",
+                "to share photos of activities so families feel involved"
+              ],
+              [
+                "Instant messaging",
+                "to give families quick updates, e.g. after a doctor’s visit"
+              ],
+              [
+                "Blog / newsletter / vlog",
+                "to share news about events at the home with all families at once"
+              ],
+              [
+                "Forum / FAQ",
+                "so families can ask questions and share advice at any time"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Email or phone calls alone (not online communities)"
+            ]
+          },
+          "modelAnswer": "1. Staff could set up video calls, so relatives who live far away can see and talk to residents regularly.\n2. A private social media group could share photos of activities, so families feel involved in residents’ daily lives."
+        },
+        {
+          "id": "s5-d",
+          "scenario": "s5",
+          "part": "(d)",
+          "section": "C",
+          "code": "C1.4",
+          "marks": 12,
+          "commandWord": "Evaluate",
+          "context": "",
+          "question": "Evaluate the factors Maple Leaf should consider when selecting an online care-management system.",
+          "slots": 0,
+          "traps": [
+            "12 marks: naming lots of factors is not enough. Each needs explaining in the care-home context and weighing against the others."
+          ],
+          "markScheme": {
+            "type": "levels",
+            "focus": "Factors affecting selection of an online system, each applied to four care homes handling health data, with a judgement on which matter most.",
+            "indicative": [
+              "Security: health data is sensitive; encryption, access levels, provider’s data location and GDPR compliance",
+              "Cost: subscription per user/per home vs no upfront hardware; hidden costs of training and devices",
+              "Ease of use: carers have mixed IT skills, work quickly; a simple interface reduces training and errors",
+              "Features: care plans, medication reminders, alerts to managers, family access",
+              "Connectivity: Wi-Fi must cover every room; offline mode if signal drops",
+              "Scalability: can add more homes or residents easily",
+              "Availability / downtime: an outage could stop carers seeing medication records; check the SLA",
+              "Integration with existing systems (e.g. GP or NHS records, rota software)",
+              "Conclusion identifying the most important factors (e.g. security and availability because of resident safety)"
+            ],
+            "reject": [
+              "Factors listed with no link to care homes"
+            ]
+          },
+          "modelAnswer": "Security is the most important factor. The system will hold residents’ medical and personal details, which are especially sensitive under data protection law. Maple Leaf must check that the provider encrypts data, stores it securely, and lets managers set access levels so carers only see the residents they look after. A breach could lead to large fines and families losing trust in the homes.\n\nEase of use matters because carers have very different levels of IT skill and are often busy. If the system is complicated, notes may be missed or entered wrongly, which could put residents at risk. A simple, clear interface would reduce training time and mistakes.\n\nConnectivity and availability are closely linked. Carers will use handheld devices around the building, so Wi-Fi must reach every room. If the system goes offline, carers might not be able to see medication records, so Maple Leaf should choose a system with an offline mode and a strong uptime guarantee in its service level agreement.\n\nCost is also a factor. An online system avoids buying servers, but there is a monthly subscription per user, as well as the cost of devices and training. A cheap system that lacks features such as medication alerts could cost more in the long run. Scalability matters if the company plans to open more homes, since it should be easy to add users.\n\nOverall, security and availability should come first, because the system handles sensitive data and supports resident safety. Once these are met, ease of use should decide between the remaining options, as the system only works if carers use it properly. Cost should be considered last, not first."
+        },
+        {
+          "id": "s6-a-i",
+          "scenario": "s6",
+          "part": "(a)(i)",
+          "section": "D",
+          "code": "D1.2",
+          "marks": 2,
+          "commandWord": "Give",
+          "context": "",
+          "question": "Give **two** internal threats to the building society’s data.",
+          "slots": 2,
+          "traps": [
+            "\"internal\": threats from outside (hackers, phishing, floods) score nothing."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "1 mark for each correct answer, up to 2 marks.",
+            "points": [
+              "Accidental disclosure (e.g. emailing data to the wrong person)",
+              "Stealing or leaking data (e.g. a disgruntled employee)",
+              "Using portable storage devices / USB sticks",
+              "Staff visiting inappropriate websites and downloading malware",
+              "Accidental deletion or modification of data",
+              "Sharing passwords / leaving computers unlocked"
+            ],
+            "accept": [],
+            "reject": [
+              "External threats such as hackers, phishing emails or natural disasters"
+            ]
+          },
+          "modelAnswer": "1. A member of staff accidentally emailing members’ details to the wrong person\n2. A disgruntled employee copying data to a USB stick"
+        },
+        {
+          "id": "s6-a-ii",
+          "scenario": "s6",
+          "part": "(a)(ii)",
+          "section": "D",
+          "code": "D1.1",
+          "marks": 2,
+          "commandWord": "Give",
+          "context": "",
+          "question": "Give **two** types of social engineering that could be used against the building society’s members.",
+          "slots": 2,
+          "traps": [
+            "Social engineering manipulates people. Malware types are a different topic."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "1 mark for each correct answer, up to 2 marks.",
+            "points": [
+              "Phishing (email)",
+              "Vishing (phone call)",
+              "Smishing (text message)",
+              "Pharming / fake website",
+              "Pretexting / impersonating staff",
+              "Shoulder surfing",
+              "Baiting"
+            ],
+            "accept": [],
+            "reject": [
+              "Types of malware (virus, ransomware, trojan)",
+              "\"Hacking\" on its own"
+            ]
+          },
+          "modelAnswer": "1. Phishing\n2. Vishing"
+        },
+        {
+          "id": "s6-b",
+          "scenario": "s6",
+          "part": "(b)",
+          "section": "D",
+          "code": "D1.3",
+          "marks": 4,
+          "commandWord": "Explain",
+          "context": "A member of staff accidentally emails a spreadsheet containing 500 members’ names, addresses, dates of birth and account balances to the wrong person.",
+          "question": "Explain **two** impacts on the members of this data breach.",
+          "slots": 2,
+          "traps": [
+            "\"on the members\": fines and reputational damage are impacts on the society, so they score nothing here."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "rule": "1 mark for identifying a point and 1 more for expanding it (a reason or consequence linked to the scenario), up to 4 marks.",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "points": [
+              [
+                "Identity theft",
+                "criminals could use the personal details to open accounts or loans in the member’s name"
+              ],
+              [
+                "Financial loss / fraud",
+                "money could be taken or accounts misused"
+              ],
+              [
+                "Targeted phishing or scam calls",
+                "criminals know they are members, so fake messages seem believable"
+              ],
+              [
+                "Stress / anxiety / loss of trust",
+                "members may move their savings elsewhere"
+              ],
+              [
+                "Time and inconvenience",
+                "changing passwords, contacting the society, monitoring accounts"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Impacts on the building society (fines, reputation, lost customers)"
+            ]
+          },
+          "modelAnswer": "1. Criminals could use members’ names, addresses and dates of birth to commit identity theft, such as taking out loans in their name.\n2. Members could receive convincing scam calls because criminals know they bank with Trent Valley, so they may be tricked into giving away passwords."
+        },
+        {
+          "id": "s6-c",
+          "scenario": "s6",
+          "part": "(c)",
+          "section": "D",
+          "code": "D2.4",
+          "marks": 4,
+          "commandWord": "Describe",
+          "context": "",
+          "question": "Describe how encryption protects members’ data when they use the app.",
+          "slots": 0,
+          "traps": [
+            "Encryption does not stop someone getting the data. It stops them reading it."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "1 mark for each correct answer, up to 4 marks.",
+            "points": [
+              "Converts plaintext into ciphertext (unreadable form)",
+              "Uses an algorithm and a key",
+              "Only someone with the correct key can decrypt it",
+              "Intercepted data cannot be read / understood",
+              "Data in transit between the app and the server is encrypted (e.g. HTTPS/TLS)",
+              "Asymmetric: data encrypted with a public key can only be decrypted with the private key",
+              "Data at rest (on the phone or server) is encrypted, so a stolen device or server does not expose it"
+            ],
+            "accept": [],
+            "reject": [
+              "\"Stops hackers getting in\" (encryption does not stop access, it makes data unreadable)",
+              "\"Makes it secure\" with no description"
+            ]
+          },
+          "modelAnswer": "Encryption uses an algorithm and a key to turn members’ data into ciphertext before it is sent from the app. If a criminal intercepts it, they cannot read it, because only the building society’s server holds the key to decrypt it. Data stored on the phone can also be encrypted, so a stolen phone does not reveal account details."
+        },
+        {
+          "id": "s6-d",
+          "scenario": "s6",
+          "part": "(d)",
+          "section": "F",
+          "code": "F2.1",
+          "marks": 9,
+          "commandWord": "Evaluate",
+          "context": "",
+          "question": "Evaluate how effectively current legislation protects the building society’s members and their data.",
+          "slots": 0,
+          "traps": [
+            "\"how effectively\": describing what each law says is only half the answer. You must judge how well it works and where it fails."
+          ],
+          "markScheme": {
+            "type": "levels",
+            "focus": "How well laws such as the Data Protection Act / UK GDPR and the Computer Misuse Act protect members, including their limits, with a judgement.",
+            "indicative": [
+              "DPA 2018 / UK GDPR: data must be accurate, secure, used only for its stated purpose, not kept longer than needed",
+              "Members’ rights: access, correction, erasure; they can see what is held",
+              "Breaches must be reported (to the ICO within 72 hours); fines give the society a strong reason to protect data",
+              "Computer Misuse Act 1990: unauthorised access and modification are criminal offences, a deterrent to hackers",
+              "Limits: laws punish after the harm, they cannot undo a breach",
+              "Limits: attackers overseas are hard to trace and prosecute",
+              "Limits: members can still be tricked into giving details away (social engineering)",
+              "Other laws, e.g. Equality Act for accessible online services",
+              "Conclusion: good framework that pushes the society to protect data, but not enough alone without technical measures and member awareness"
+            ],
+            "reject": []
+          },
+          "modelAnswer": "The Data Protection Act 2018 and UK GDPR give members strong protection. The society must keep data secure and accurate and use it only for the purpose it was collected. Members have the right to see what is held about them and to have errors corrected. Because a serious breach can lead to large fines from the ICO and must be reported, the society has a strong incentive to invest in security and train its staff.\n\nThe Computer Misuse Act 1990 makes unauthorised access to computer systems, and changing data without permission, criminal offences. This deters hackers and gives the police powers to prosecute them.\n\nHowever, the laws have clear limits. They mostly act after harm has been done. A fine does not return a member’s stolen savings or undo identity theft. Many attackers operate from other countries, where they are very difficult to trace and prosecute, so the Computer Misuse Act has little effect on them. The laws also cannot stop members being tricked by phishing into handing over their own login details.\n\nOverall, legislation is effective at making the building society take data protection seriously, and it gives members rights and routes to complain. It does not fully protect them, though. It has to be combined with technical measures such as encryption and multi-factor authentication, and with educating members about scams."
+        },
+        {
+          "id": "s7-a-i",
+          "scenario": "s7",
+          "part": "(a)(i)",
+          "section": "E",
+          "code": "E2.5",
+          "marks": 2,
+          "commandWord": "Give",
+          "context": "The booking form asks every customer for their date of birth.",
+          "question": "Give **two** validation checks that could be used on the date of birth field.",
+          "slots": 2,
+          "traps": [
+            "Validation (automatic, is it sensible?) is not verification (double entry, proofreading)."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "1 mark for each correct answer, up to 2 marks.",
+            "points": [
+              "Presence check",
+              "Format check (e.g. DD/MM/YYYY)",
+              "Range check (e.g. not in the future / age 16+)",
+              "Type check (numbers only in each part)",
+              "Length check"
+            ],
+            "accept": [],
+            "reject": [
+              "Double entry or proofreading (these are verification, not validation)"
+            ]
+          },
+          "modelAnswer": "1. Presence check\n2. Range check"
+        },
+        {
+          "id": "s7-a-ii",
+          "scenario": "s7",
+          "part": "(a)(ii)",
+          "section": "E",
+          "code": "E2.3",
+          "marks": 2,
+          "commandWord": "Give",
+          "context": "",
+          "question": "Give **two** methods Brightside could use to collect festival-goers’ opinions of this year’s event.",
+          "slots": 2,
+          "traps": [],
+          "markScheme": {
+            "type": "points",
+            "rule": "1 mark for each correct answer, up to 2 marks.",
+            "points": [
+              "Online survey",
+              "Questionnaire (e.g. paper at the exit)",
+              "Interviews",
+              "Focus group",
+              "Social media polls / comments",
+              "Feedback app or kiosk at the site"
+            ],
+            "accept": [],
+            "reject": []
+          },
+          "modelAnswer": "1. Online survey emailed after the event\n2. Focus group"
+        },
+        {
+          "id": "s7-b",
+          "scenario": "s7",
+          "part": "(b)",
+          "section": "E",
+          "code": "E2.4",
+          "marks": 4,
+          "commandWord": "Explain",
+          "context": "",
+          "question": "Explain **two** reasons why it is important that the customer data Brightside collects is accurate.",
+          "slots": 2,
+          "traps": [],
+          "markScheme": {
+            "type": "chain",
+            "rule": "1 mark for identifying a point and 1 more for expanding it (a reason or consequence linked to the scenario), up to 4 marks.",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "points": [
+              [
+                "E-tickets are sent to the customer’s email",
+                "if the address is wrong the customer does not receive their ticket and cannot get in"
+              ],
+              [
+                "Data protection law requires personal data to be accurate",
+                "so inaccurate records could lead to fines"
+              ],
+              [
+                "Age checks depend on the date of birth",
+                "wrong data could let under-age customers in, breaking licensing rules"
+              ],
+              [
+                "Marketing is based on customer data",
+                "inaccurate data wastes money on adverts sent to the wrong people"
+              ],
+              [
+                "Planning staff, security and facilities",
+                "wrong numbers could make the site unsafe or overstaffed"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "\"So the data is correct\" (repeats the question)"
+            ]
+          },
+          "modelAnswer": "1. E-tickets are emailed, so if a customer’s email address is wrong they never receive their ticket and cannot get into the festival.\n2. The date of birth is used to check age, so inaccurate data could let under-age customers into areas that sell alcohol, breaking licensing laws."
+        },
+        {
+          "id": "s7-c",
+          "scenario": "s7",
+          "part": "(c)",
+          "section": "E",
+          "code": "E2.2",
+          "marks": 4,
+          "commandWord": "Explain",
+          "context": "Brightside reads reviews on a ticket review website and comments on social media to plan next year’s festival.",
+          "question": "Explain **two** ways Brightside could check the reliability of this information.",
+          "slots": 2,
+          "traps": [],
+          "markScheme": {
+            "type": "chain",
+            "rule": "1 mark for identifying a point and 1 more for expanding it (a reason or consequence linked to the scenario), up to 4 marks.",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "points": [
+              [
+                "Cross-reference with other sources (own survey, ticket and bar sales)",
+                "to see whether complaints match what actually happened"
+              ],
+              [
+                "Check the credibility of the source",
+                "e.g. verified ticket holders rather than anonymous accounts that may be fake"
+              ],
+              [
+                "Check the date",
+                "reviews from previous years may be about problems already fixed"
+              ],
+              [
+                "Look for bias",
+                "e.g. competitors posting fake reviews or only the angriest customers commenting"
+              ],
+              [
+                "Consider the sample size",
+                "a few comments may not represent 20,000 festival-goers"
+              ]
+            ],
+            "accept": [],
+            "reject": []
+          },
+          "modelAnswer": "1. Compare the reviews with Brightside’s own survey results, so it can see whether a complaint was widespread or just one person’s view.\n2. Check the date of each review, because comments from earlier festivals may be about problems that have already been fixed."
+        },
+        {
+          "id": "s7-d",
+          "scenario": "s7",
+          "part": "(d)",
+          "section": "E",
+          "code": "E1.1",
           "marks": 6,
           "commandWord": "Discuss",
-          "question": "A school is introducing a new IT acceptable use policy (AUP) for students. Discuss what the AUP should include and why it is important for the school to have one. [6 marks]",
-          "modelAnswer": "An acceptable use policy should clearly define what students are and are not permitted to do on school IT systems. It should specify permitted activities (e.g. educational research, using school-approved software), prohibited activities (e.g. accessing social media, downloading games, visiting inappropriate websites), and the consequences of breaching the policy (e.g. loss of IT access, disciplinary action).\n\nThe AUP should also include a clause informing students that their activity on school systems may be monitored. This is both a legal requirement under GDPR — students must be informed that their data (in this case, their browsing activity) is being processed — and a deterrent against misuse.\n\nIt is important for the school to have an AUP because it protects the school legally: if a student breaches the policy and causes harm (e.g. cyberbullying another student using school equipment), the school can demonstrate it had clear rules in place. It also helps manage security risks by preventing students from installing malware or accessing harmful content on school networks. Finally, it sets clear expectations for acceptable digital behaviour, which supports students' wider digital literacy and netiquette skills.",
-          "markPoints": [
-            "AUP contents: permitted and prohibited activities identified (1 mark)",
-            "AUP includes consequences of breach (1 mark)",
-            "Monitoring clause included with GDPR justification (1 mark)",
-            "Importance: legal protection for the school (1 mark)",
-            "Importance: security risk management (preventing malware/inappropriate content) (1 mark)",
-            "Importance: setting expectations / supporting digital literacy / netiquette (1 mark)"
-          ]
+          "context": "",
+          "question": "Discuss the impact on Brightside of selling tickets only online.",
+          "slots": 0,
+          "traps": [
+            "\"on Brightside\": focus on the company. Customer points only count where you link them back to Brightside (reputation, lost sales)."
+          ],
+          "markScheme": {
+            "type": "levels",
+            "focus": "Benefits and drawbacks for Brightside of online-only ticket sales.",
+            "indicative": [
+              "Tickets on sale 24/7 and to customers anywhere, so higher and faster sales",
+              "Lower costs: no box office staff; e-tickets mean no printing or posting",
+              "Instant sales data for planning; customer data for marketing",
+              "QR e-tickets are harder to forge and quick to scan at the gate",
+              "Website may crash when tickets are released because of huge demand",
+              "Customers without internet access or a bank card are excluded, which may harm reputation",
+              "Security: Brightside is responsible for protecting payment and personal data",
+              "Bots and touts may buy tickets in bulk to resell",
+              "Payment provider fees on every transaction"
+            ],
+            "reject": []
+          },
+          "modelAnswer": "Selling tickets only online lets Brightside sell 24 hours a day to people anywhere in the country, so tickets can sell out quickly. It saves money because there is no box office to staff and no tickets to print or post. The QR code e-tickets are harder to forge and can be scanned quickly at the gate, and Brightside gets instant data on how many tickets have sold.\n\nHowever, there are risks. When tickets are released, demand could crash the website, frustrating customers and damaging Brightside’s reputation. Touts may use bots to buy large numbers of tickets and resell them at higher prices. Brightside also becomes responsible for protecting thousands of customers’ payment and personal details, and a breach could lead to fines. Customers without internet access or a bank card would be unable to buy tickets at all."
+        },
+        {
+          "id": "s8-a",
+          "scenario": "s8",
+          "part": "(a)",
+          "section": "A",
+          "code": "A2.4",
+          "marks": 2,
+          "commandWord": "Give",
+          "context": "",
+          "question": "Give **two** benefits to Coastline of using barcode scanners instead of typing stock details manually.",
+          "slots": 2,
+          "traps": [],
+          "markScheme": {
+            "type": "points",
+            "rule": "1 mark for each correct answer, up to 2 marks.",
+            "points": [
+              "Faster to record each item",
+              "Fewer data entry errors / more accurate",
+              "Can process large volumes of stock",
+              "Stock levels update in real time",
+              "Less staff time needed / lower staffing cost",
+              "Consistent every time"
+            ],
+            "accept": [],
+            "reject": [
+              "Drawbacks, e.g. damaged barcodes cannot be read"
+            ]
+          },
+          "modelAnswer": "1. Fewer errors than typing product codes\n2. Stock levels update in real time"
+        },
+        {
+          "id": "s8-b",
+          "scenario": "s8",
+          "part": "(b)",
+          "section": "A",
+          "code": "A5.3",
+          "marks": 4,
+          "commandWord": "Explain",
+          "context": "Coastline plans to fit Internet of Things (IoT) sensors to its delivery vans.",
+          "question": "Explain **two** ways the IoT sensors could improve Coastline’s delivery service.",
+          "slots": 2,
+          "traps": [],
+          "markScheme": {
+            "type": "chain",
+            "rule": "1 mark for identifying a point and 1 more for expanding it (a reason or consequence linked to the scenario), up to 4 marks.",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "points": [
+              [
+                "GPS tracking of each van",
+                "so customers can be told an accurate delivery time"
+              ],
+              [
+                "Live traffic data used to change routes",
+                "so fewer deliveries are late"
+              ],
+              [
+                "Temperature sensors for chilled parcels",
+                "raise an alert before food or medicine spoils"
+              ],
+              [
+                "Engine / tyre sensors for predictive maintenance",
+                "vans are fixed before they break down mid-round"
+              ],
+              [
+                "Photo / signature proof of delivery uploaded automatically",
+                "reducing disputes about missing parcels"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Benefits unrelated to deliveries, e.g. cheaper sensors"
+            ]
+          },
+          "modelAnswer": "1. GPS sensors track where each van is, so customers can be sent an accurate one-hour delivery slot.\n2. Engine sensors warn when a van needs servicing, so it is repaired before it breaks down in the middle of a delivery round."
+        },
+        {
+          "id": "s8-c",
+          "scenario": "s8",
+          "part": "(c)",
+          "section": "A",
+          "code": "A4.3",
+          "marks": 4,
+          "commandWord": "Explain",
+          "context": "Coastline is introducing an artificial intelligence (AI) system that plans delivery routes automatically.",
+          "question": "Explain **two** implications for Coastline’s staff of introducing an AI system to plan delivery routes.",
+          "slots": 2,
+          "traps": [
+            "\"for Coastline’s staff\": business costs and profits are not credited."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "rule": "1 mark for identifying a point and 1 more for expanding it (a reason or consequence linked to the scenario), up to 4 marks.",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "points": [
+              [
+                "Staff need training",
+                "so drivers and planners understand the new system, taking time away from work"
+              ],
+              [
+                "Job roles change / some jobs may be lost",
+                "route planners may be redeployed or made redundant"
+              ],
+              [
+                "Drivers have less control over their routes",
+                "which may lower morale if the AI makes poor choices they know are wrong"
+              ],
+              [
+                "Staff may feel monitored",
+                "because the system tracks timings closely, adding pressure"
+              ],
+              [
+                "New skills needed",
+                "e.g. staff to manage and check the AI’s data"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Implications for Coastline as a business only (cost, profit)"
+            ]
+          },
+          "modelAnswer": "1. The staff who currently plan routes by hand may no longer be needed, so they could be moved to other roles or lose their jobs.\n2. Drivers must follow the routes the AI chooses, so they lose control over their day and may become frustrated if they know a quicker way."
+        },
+        {
+          "id": "s8-d",
+          "scenario": "s8",
+          "part": "(d)",
+          "section": "F",
+          "code": "F1.1",
+          "marks": 9,
+          "commandWord": "Evaluate",
+          "context": "",
+          "question": "Evaluate the environmental impact of Coastline’s increased use of IT systems.",
+          "slots": 0,
+          "traps": [
+            "Environmental impact has two sides: savings (fuel, paper) AND costs (e-waste, energy). One-sided answers stay in Level 1."
+          ],
+          "markScheme": {
+            "type": "levels",
+            "focus": "Positive and negative environmental effects of Coastline’s IT (sensors, AI, scanners, data centres), with a judgement.",
+            "indicative": [
+              "Route optimisation reduces fuel use and emissions",
+              "Predictive maintenance keeps vans running efficiently and extends their life",
+              "Digital proof of delivery and records reduce paper",
+              "Fewer failed deliveries means fewer repeat journeys",
+              "Manufacturing sensors, scanners and devices uses raw materials and energy",
+              "E-waste when devices are replaced; toxic materials if not recycled",
+              "AI and cloud services run in data centres that use a lot of electricity and cooling",
+              "Mitigation: recycle devices, choose providers powered by renewable energy, keep devices longer",
+              "Conclusion weighing fuel savings against device and energy costs"
+            ],
+            "reject": []
+          },
+          "modelAnswer": "Coastline’s IT systems could reduce its environmental impact in several ways. The AI system plans more efficient routes, so 60 vans drive fewer miles and burn less fuel, which cuts carbon emissions. GPS tracking and accurate delivery slots mean fewer failed deliveries and fewer repeat journeys. Engine sensors allow predictive maintenance, keeping vans efficient and extending their life. Digital proof of delivery also removes paper.\n\nHowever, the technology has its own costs. Every sensor, scanner and tablet must be manufactured, which uses raw materials and energy. When they are replaced they become e-waste, which can contain toxic materials if not recycled properly. The AI system and cloud services run in data centres that use large amounts of electricity for processing and cooling.\n\nOn balance, the effect is likely to be positive. Fuel from 60 vans driving every day is a much bigger source of emissions than a few hundred small devices, so even a small cut in mileage outweighs the impact of the technology. Coastline can improve this further by recycling old devices, keeping them for longer and choosing a cloud provider that uses renewable energy."
         }
       ]
     },
@@ -8596,546 +9553,546 @@ const INLINE_UNITS = {
           "section": "A",
           "code": "A1.1.1",
           "front": "What is an internal threat?",
-          "back": "A threat from someone inside the organisation who has legitimate access — e.g. an employee sabotaging systems, stealing data or equipment, or using unauthorised software. Harder to detect than external threats."
+          "back": "Someone inside with legitimate access (e.g. an employee) who sabotages, steals data or uses unauthorised software."
         },
         {
           "id": "a2",
           "section": "A",
           "code": "A1.1.4",
           "front": "What human factors cause accidental data loss?",
-          "back": "Negligence, poor training, and not following security procedures — made worse by inadequate monitoring and a weak security culture."
+          "back": "Negligence, poor training and not following security procedures."
         },
         {
           "id": "a3",
           "section": "A",
           "code": "A1.2.1",
           "front": "Name the named virus types in the spec.",
-          "back": "A virus attaches to a host file and copies itself when the file is run. Spec types: boot sector, web script, macro, worm, rootkit, trojan, browser hijack, polymorphic."
+          "back": "Boot sector, web script, macro, worm, rootkit, trojan, browser hijack, polymorphic."
         },
         {
           "id": "a4",
           "section": "A",
           "code": "A1.2.1",
           "front": "What is a polymorphic virus?",
-          "back": "A virus that changes (mutates) its own code each time it spreads, so signature-based antivirus struggles to detect it."
+          "back": "A virus that changes its code each time it spreads, so signature-based antivirus misses it."
         },
         {
           "id": "a5",
           "section": "A",
           "code": "A1.2.1",
           "front": "What is spyware? Give an example.",
-          "back": "Software that secretly gathers information and sends it to a third party. Best example: a keylogger, which records keystrokes to steal passwords."
+          "back": "Software that secretly sends your data to a third party, e.g. a keylogger."
         },
         {
           "id": "a6",
           "section": "A",
           "code": "A1.2.1",
           "front": "What is ransomware and its main defence?",
-          "back": "Malware that locks or encrypts your files and demands payment to unlock them. Best defence: tested OFFLINE backups, so you can restore without paying."
+          "back": "Encrypts your files and demands payment. Defence: tested offline backups."
         },
         {
           "id": "a7",
           "section": "A",
           "code": "A1.2.1",
           "front": "What is a bot / botnet?",
-          "back": "A bot is an infected device under remote attacker control. Many bots together form a botnet, used to send spam or launch DDoS attacks."
+          "back": "Bot: an infected device under remote control. Botnet: many bots, used for spam or DDoS."
         },
         {
           "id": "a8",
           "section": "A",
           "code": "A1.2.2",
           "front": "Difference between DoS and DDoS?",
-          "back": "DoS = a single machine floods a target with traffic to make it unavailable. DDoS = many machines (a botnet) flood the target at once, making it harder to stop."
+          "back": "DoS: one machine floods a target. DDoS: many machines (a botnet), so it's harder to stop."
         },
         {
           "id": "a9",
           "section": "A",
           "code": "A1.2.4",
           "front": "Name the social engineering variants.",
-          "back": "Phishing (email), vishing (voice/phone), smishing (SMS), whaling (targets senior execs), spear phishing (targets a specific person), pretexting/impersonation, DNS spoofing."
+          "back": "Phishing (email), vishing (phone), smishing (SMS), whaling (execs), spear phishing (one person), pretexting, DNS spoofing."
         },
         {
           "id": "a10",
           "section": "A",
           "code": "A1.2.5",
           "front": "What is tailgating?",
-          "back": "Following an authorised person through a secure/controlled door to gain entry without using your own credentials. A physical social-engineering threat."
+          "back": "Following an authorised person through a secure door without using your own credentials."
         },
         {
           "id": "a11",
           "section": "A",
           "code": "A1.3",
           "front": "Name the four types of impact of a cyber attack.",
-          "back": "Operational loss (can't function), financial loss (fines, compensation, lost profits), reputational loss (lost trust/reviews), and intellectual property loss (designs, trade secrets)."
+          "back": "Operational, financial, reputational and intellectual property loss."
         },
         {
           "id": "a12",
           "section": "A",
           "code": "A1.4.1",
           "front": "What is the NCSC?",
-          "back": "The National Cyber Security Centre — the UK's cyber security authority. Publishes the latest threat reports, malware analysis and advisories, because threats change over time."
+          "back": "National Cyber Security Centre: the UK authority publishing current threat reports and advice."
         },
         {
           "id": "a13",
           "section": "A",
           "code": "A1.4.3",
           "front": "What is the OWASP Top 10?",
-          "back": "A regularly updated list of the most critical web application security risks, produced by the Open Web Application Security Project. Used as a checklist during penetration testing."
+          "back": "A regularly updated list of the most critical web app security risks, used in pen testing."
         },
         {
           "id": "a14",
           "section": "A",
           "code": "A2.1.1",
           "front": "Name the three firewall port categories.",
-          "back": "Well-known/assigned (e.g. port 80 for HTTP), registered (used by OS and specific software), and dynamic/private (temporary/custom services). Open ports are a vulnerability."
+          "back": "Well-known (e.g. 80 for HTTP), registered, and dynamic/private."
         },
         {
           "id": "a15",
           "section": "A",
           "code": "A2.1.3",
           "front": "What is a zero-day exploit?",
-          "back": "A brand-new vulnerability that has no patch/fix yet, giving attackers a 'window of exploitation' before the developer can release a patch."
+          "back": "A new vulnerability with no patch yet, so attackers can exploit it first."
         },
         {
           "id": "a16",
           "section": "A",
           "code": "A2.1.3",
           "front": "What checks make a software download safe?",
-          "back": "Trusted source, HTTPS/lock symbol, a pre-install malware scan, and a hash check. Illegal copies may contain backdoors/malware and get no updates."
+          "back": "Trusted source, HTTPS, a malware scan before installing, and a hash check."
         },
         {
           "id": "a17",
           "section": "A",
           "code": "A2.1.8",
           "front": "Give three IoT security risks.",
-          "back": "Weak/no encryption, default passwords, lack of patches/updates, deployment by non-IT staff, insecure interfaces, and eavesdropping (always-listening devices)."
+          "back": "Default passwords, weak encryption and no security updates."
         },
         {
           "id": "a18",
           "section": "A",
           "code": "A2.4",
           "front": "Name vulnerability assessment tools.",
-          "back": "Port scanner, network mapper/system discovery, registry checker, website vulnerability scanner, and vulnerability detection/management software."
+          "back": "Port scanner, network mapper, registry checker and website vulnerability scanner."
         },
         {
           "id": "a19",
           "section": "A",
           "code": "A2.6",
           "front": "What is penetration testing?",
-          "back": "Authorised simulated attacks on a system to find weak spots, checked against known vulnerabilities (e.g. the OWASP Top 10), producing a report of findings."
+          "back": "Authorised simulated attacks to find weak spots, ending in a report of findings."
         },
         {
           "id": "a20",
           "section": "A",
           "code": "A2.7",
           "front": "Name the three passive risk management measures.",
-          "back": "Risk transfer (pass it to a third party, e.g. insurance), risk avoidance (stop the activity), and risk acceptance (acknowledge and tolerate the risk)."
+          "back": "Transfer (e.g. insurance), avoidance (stop the activity) and acceptance."
         },
         {
           "id": "a21",
           "section": "A",
           "code": "A3.1",
           "front": "GDPR vs Computer Misuse Act — what does each cover?",
-          "back": "GDPR = protection of personal data and privacy rights. Computer Misuse Act 1990 = unauthorised access to, and modification of, computers and data (makes hacking illegal)."
+          "back": "GDPR: personal data and privacy. CMA 1990: unauthorised access to or modification of computers."
         },
         {
           "id": "a22",
           "section": "A",
           "code": "A3.3.1",
           "front": "List key GDPR principles.",
-          "back": "Lawfulness/fairness/transparency, limited to a stated purpose, accuracy, keep minimum data, store for minimum time, maintain confidentiality and integrity."
+          "back": "Lawful, fair and transparent; set purpose; accurate; minimal data; kept minimum time; secure."
         },
         {
           "id": "a23",
           "section": "A",
           "code": "A3.3.1",
           "front": "Name GDPR personal rights.",
-          "back": "Right to access own data, be informed, have data corrected/removed/restricted, object to processing, data portability, and not be subject to a solely automated decision."
+          "back": "Access, be informed, correct/erase/restrict, object, portability, no solely automated decisions."
         },
         {
           "id": "a24",
           "section": "A",
           "code": "A4.1.1",
           "front": "Give examples of physical security measures.",
-          "back": "Site locks, card entry (NFC/RFID/QR/magnetic stripe), biometrics (fingerprint/iris/facial/voice), CCTV, security staff, alarms, protected cabling, staff training."
+          "back": "Locks, card entry, biometrics, CCTV, security staff and alarms."
         },
         {
           "id": "a25",
           "section": "A",
           "code": "A4.1.2",
           "front": "Name the three backup types.",
-          "back": "Full (everything), Incremental (only changes since the LAST backup), Differential (all changes since the last FULL backup). Note: RAID and archiving are NOT backups."
+          "back": "Full (everything), incremental (changes since last backup), differential (changes since last full)."
         },
         {
           "id": "a26",
           "section": "A",
           "code": "A4.1.3",
           "front": "Signature scanning vs heuristics in antivirus?",
-          "back": "Signature scanning matches files against a database of KNOWN malware. Heuristics flag suspicious behaviour/content, catching NEW or unknown threats."
+          "back": "Signature: matches known malware. Heuristics: flags suspicious behaviour, catching new threats."
         },
         {
           "id": "a27",
           "section": "A",
           "code": "A4.1.5",
           "front": "Name the multi-factor authentication factor types.",
-          "back": "Knowledge (something you know, e.g. password), possession (something you have, e.g. USB key), inherence (something you are, e.g. fingerprint), plus location and behaviour factors."
+          "back": "Knowledge (password), possession (USB key), inherence (fingerprint), plus location and behaviour."
         },
         {
           "id": "a28",
           "section": "A",
           "code": "A4.1.5",
           "front": "How does a USB security key work (MFA)?",
-          "back": "The USB key/chip contains a code/protocol that the server/system reads and checks to verify the user's identity — a 'possession' factor in multi-factor authentication."
+          "back": "A possession factor: the system reads a code on the key to verify the user."
         },
         {
           "id": "a29",
           "section": "A",
           "code": "A4.1.6",
           "front": "Compare DAC, Role-Based and Rule-Based access control.",
-          "back": "DAC: users control access to their own files. Role-Based (RBAC): access set by job role in the organisation. Rule-Based: admin sets rules for individual users."
+          "back": "DAC: owners control their files. Role-based: by job role. Rule-based: admin sets rules per user."
         },
         {
           "id": "a30",
           "section": "A",
           "code": "A4.1.7",
           "front": "Benefit and drawback of trusted computing?",
-          "back": "Benefit: increased security / an extra layer of protection against attacks. Drawback: loss of user control, privacy and anonymity."
+          "back": "Benefit: an extra layer of security. Drawback: less user control and privacy."
         },
         {
           "id": "a31",
           "section": "A",
           "code": "A4.2.2",
           "front": "Symmetric vs asymmetric encryption?",
-          "back": "Symmetric uses ONE shared secret key (e.g. AES) — fast but the key must be shared securely. Asymmetric uses a PUBLIC + PRIVATE key pair (e.g. RSA) — slower but no shared secret."
+          "back": "Symmetric: one shared key (AES), fast. Asymmetric: public/private pair (RSA), no shared secret."
         },
         {
           "id": "a32",
           "section": "A",
           "code": "A4.3",
           "front": "Why is MAC address filtering only 'medium' security?",
-          "back": "It allows only listed device MAC addresses onto the Wi-Fi, but MAC addresses can be SPOOFED (faked) by an attacker, so it shouldn't be the only protection."
+          "back": "Only listed devices can join, but MAC addresses can be spoofed."
         },
         {
           "id": "a33",
           "section": "A",
           "code": "A4.3",
           "front": "What is an Evil Twin attack?",
-          "back": "An attacker sets up a fake wireless access point that imitates a legitimate one, tricking users into connecting so their traffic can be intercepted."
+          "back": "A fake Wi-Fi access point copying a real one to intercept users' traffic."
         },
         {
           "id": "a34",
           "section": "A",
           "code": "A4.4",
           "front": "Name principles of secure system design.",
-          "back": "Expect attacks and plan for them, run on fewest privileges (least privilege), assume the design is known (don't rely on secrecy), and comply with standards like ISO 27000."
+          "back": "Expect attacks, least privilege, don't rely on secrecy, follow standards (ISO 27000)."
         },
         {
           "id": "b1",
           "section": "B",
           "code": "B1.1.1",
           "front": "LAN vs WAN vs PAN?",
-          "back": "LAN = Local Area Network (one site). WAN = Wide Area Network (large geographic area, e.g. the internet). PAN = Personal Area Network (very short range, e.g. Bluetooth)."
+          "back": "LAN: one site. WAN: large area (e.g. the internet). PAN: very short range (e.g. Bluetooth)."
         },
         {
           "id": "b2",
           "section": "B",
           "code": "B1.1.2",
           "front": "Intranet vs extranet?",
-          "back": "Intranet = a private network for an organisation's own staff. Extranet = extends controlled access to selected outsiders such as suppliers or partners."
+          "back": "Intranet: private, for staff. Extranet: gives selected outsiders (e.g. suppliers) controlled access."
         },
         {
           "id": "b3",
           "section": "B",
           "code": "B1.3",
           "front": "Client/server vs peer-to-peer?",
-          "back": "Client/server has a central server controlling resources and security (easier to manage/secure). Peer-to-peer shares resources directly between devices with no central server."
+          "back": "Client/server: a central server controls resources, easier to secure. P2P: devices share directly."
         },
         {
           "id": "b4",
           "section": "B",
           "code": "B1.4.1",
           "front": "How does virtualisation improve security?",
-          "back": "Through segmentation and isolation/sandboxing/containerisation — risky or suspicious processes run in an isolated environment, reducing the attack surface."
+          "back": "It isolates risky processes (sandboxing/containers), shrinking the attack surface."
         },
         {
           "id": "b5",
           "section": "B",
           "code": "B1.4.3",
           "front": "Give security issues with BYOD.",
-          "back": "Organisational data on a personal device, password policy enforcement, privacy, securing data on/off the device, patching/compatibility, and wiping company data when no longer needed."
+          "back": "Company data on personal devices, enforcing passwords, patching, and wiping data when staff leave."
         },
         {
           "id": "b6",
           "section": "B",
           "code": "B1.4.3",
           "front": "Security issues of remote working?",
-          "back": "Devices seen/used by family or visitors, insecure home Wi-Fi, reliance on third-party tools (e.g. video calls) — needs a VPN/encrypted link and secure home network."
+          "back": "Insecure home Wi-Fi, family using devices, third-party tools. Needs a VPN."
         },
         {
           "id": "b7",
           "section": "B",
           "code": "B2.1.2",
           "front": "Switch vs router vs gateway?",
-          "back": "Switch connects devices within a LAN. Router joins different networks and directs packets between them. Gateway translates between different protocols/networks."
+          "back": "Switch: links devices in a LAN. Router: links networks. Gateway: translates between protocols."
         },
         {
           "id": "b8",
           "section": "B",
           "code": "B2.2",
           "front": "Security issues of external media?",
-          "back": "Loss/theft, interception/copying, data loss/corruption, limited lifespan/failure, and acting as a malware vector — mitigated by encryption and secure disposal."
+          "back": "Loss/theft, interception, failure and malware. Mitigate with encryption."
         },
         {
           "id": "b9",
           "section": "B",
           "code": "B3.1.1",
           "front": "What is TCP/IP?",
-          "back": "The core set of rules for sending data across networks. Data is broken into packets with headers, errors are corrected, and TLS can be added for secure connections."
+          "back": "The core rules for sending data across networks as packets, with error correction."
         },
         {
           "id": "b10",
           "section": "B",
           "code": "B3.1.3",
           "front": "What are the parts of a packet?",
-          "back": "Header (source/destination addresses and control info), payload/body (the actual data), and trailer/footer (error-checking). Types include TCP, IP and UDP."
+          "back": "Header (addresses, control info), payload (the data), trailer (error checking)."
         },
         {
           "id": "b11",
           "section": "B",
           "code": "B3.1.3",
           "front": "TCP vs UDP?",
-          "back": "TCP is reliable — it checks packets arrive and re-sends lost ones (good for files/web). UDP is faster but doesn't guarantee delivery (good for streaming/VoIP)."
+          "back": "TCP: reliable, resends lost packets (files/web). UDP: faster, no guarantee (streaming/VoIP)."
         },
         {
           "id": "b12",
           "section": "B",
           "code": "B3.1.4",
           "front": "What is NAT?",
-          "back": "Network Address Translation maps private internal IP addresses to a public IP address, letting many devices share one public IP and hiding the internal network."
+          "back": "Maps private IPs to one public IP, hiding the internal network."
         },
         {
           "id": "b13",
           "section": "B",
           "code": "B3.1.4",
           "front": "Name the RFC 1918 private IP ranges.",
-          "back": "10.0.0.0–10.255.255.255, 172.16.0.0–172.31.255.255, 192.168.0.0–192.168.255.255. Also: 169.254.x (APIPA, DHCP failure) and 127.0.0.1 (loopback)."
+          "back": "10.x.x.x, 172.16–31.x.x and 192.168.x.x."
         },
         {
           "id": "b14",
           "section": "B",
           "code": "B3.2",
           "front": "Security benefits of network segmentation?",
-          "back": "Limits access to devices/data/apps, restricts lateral movement of an attacker/malware, creates a smaller attack surface, and makes damage control simpler."
+          "back": "Limits access, stops attackers moving sideways, and shrinks the attack surface."
         },
         {
           "id": "b15",
           "section": "B",
           "code": "B3.3",
           "front": "Which device gives secure internet access on a network diagram?",
-          "back": "A firewall — placed between the router/internet connection and the internal network to filter traffic. (Sample paper Q1: add a firewall connected to the router.)"
+          "back": "A firewall, between the router and the internal network."
         },
         {
           "id": "b16",
           "section": "B",
           "code": "B3.4.1",
           "front": "What does DNS do?",
-          "back": "The Domain Name System resolves human-readable domain names (e.g. example.com) into IP addresses so devices can connect. Can be attacked via DNS spoofing/poisoning."
+          "back": "Turns domain names (e.g. example.com) into IP addresses."
         },
         {
           "id": "b17",
           "section": "B",
           "code": "B3.4.4",
           "front": "What is DHCP and why is it insecure?",
-          "back": "DHCP automatically gives devices their IP address and settings. It's insecure because it has NO built-in security — attackers can set up a rogue DHCP server."
+          "back": "Automatically assigns IP settings. No built-in security, so a rogue DHCP server can be set up."
         },
         {
           "id": "b18",
           "section": "B",
           "code": "B3.4.4",
           "front": "Name pieces of DHCP configuration information.",
-          "back": "Range of available IP addresses, fixed/reserved IP addresses, lease length/information, default gateway address, and server address."
+          "back": "IP range, reserved IPs, lease length, default gateway and server address."
         },
         {
           "id": "b19",
           "section": "B",
           "code": "B3.4.6",
           "front": "How does a VPN work?",
-          "back": "It creates an encrypted 'tunnel' over the public internet between the user and the network, so that even if data is intercepted it cannot be read. Used for secure remote access."
+          "back": "An encrypted tunnel over the internet, so intercepted data can't be read."
         },
         {
           "id": "b20",
           "section": "B",
           "code": "B3.5.2",
           "front": "Why are SMTP/POP email protocols a security weakness?",
-          "back": "They lack built-in encryption, so email content can be intercepted and read in transit unless additional security (e.g. TLS) is added."
+          "back": "No built-in encryption, so emails can be read in transit unless TLS is added."
         },
         {
           "id": "b21",
           "section": "B",
           "code": "B1.2",
           "front": "Physical vs logical topology?",
-          "back": "Physical topology is the actual layout of devices/cables (star, mesh, etc.). Logical topology is how data actually flows through the network (logical bus or ring)."
+          "back": "Physical: the actual layout of devices and cables. Logical: how data flows."
         },
         {
           "id": "b22",
           "section": "B",
           "code": "B2.3",
           "front": "What is a packet sniffer used for?",
-          "back": "A network analyser/packet sniffer captures and inspects network traffic — used for monitoring/troubleshooting, but also by attackers to eavesdrop on unencrypted data."
+          "back": "Captures and inspects traffic: for troubleshooting, or by attackers to eavesdrop."
         },
         {
           "id": "c1",
           "section": "C",
           "code": "C1.1.1",
           "front": "What is the Plan-Do-Check-Act loop?",
-          "back": "Plan–Do–Check–Act: a continuous improvement cycle from ISO 27001. Security is never 'finished' — threats keep changing, so the cycle repeats."
+          "back": "A repeating improvement cycle from ISO 27001, because threats keep changing."
         },
         {
           "id": "c2",
           "section": "C",
           "code": "C1.1.1",
           "front": "What should a password policy contain?",
-          "back": "Length/complexity, password sharing rules, uniqueness/reuse frequency, minimum/maximum age, expiry, lockout after failed attempts, and deny lists of common passwords."
+          "back": "Length/complexity, no sharing, no reuse, expiry, lockout, and banned common passwords."
         },
         {
           "id": "c3",
           "section": "C",
           "code": "C1.1.1",
           "front": "Features of effective staff security training?",
-          "back": "Funded/resourced by management, flexible so everyone can take part, varied resources/learning styles, progress tracking, incentives rather than punishment, and ongoing for new threats."
+          "back": "Management-funded, flexible, varied, tracked, incentivised and ongoing."
         },
         {
           "id": "c4",
           "section": "C",
           "code": "C1.1.2",
           "front": "What is a security audit?",
-          "back": "A check of whether the organisation complies with its security policies and external laws/regulations, identifying gaps/weaknesses and reporting required improvements."
+          "back": "A check that the organisation meets its policies and the law, reporting gaps to fix."
         },
         {
           "id": "c5",
           "section": "C",
           "code": "C1.1.3",
           "front": "What should a backup policy include?",
-          "back": "What data is selected, backup method and type, frequency/scheduling, storage strategy, responsibility/accountability, backup TESTING, and legal/recovery procedures."
+          "back": "What data, method/type, frequency, storage, who's responsible, and testing."
         },
         {
           "id": "c6",
           "section": "C",
           "code": "C1.1.5",
           "front": "Stages of a cyber security incident response?",
-          "back": "Triage/escalation (initial decisions) → main response (analysis, containment, mitigation, recovery) → reviewing, reporting and closing the incident."
+          "back": "Triage/escalation → response (contain, mitigate, recover) → review and close."
         },
         {
           "id": "c7",
           "section": "C",
           "code": "C1.1.5",
           "front": "Who should be on an incident response contact list?",
-          "back": "Incident response lead, IT team lead, senior management, legal, public relations, human resources and insurance — plus backup contact numbers."
+          "back": "Incident lead, IT lead, senior management, legal, PR, HR and insurance."
         },
         {
           "id": "c8",
           "section": "C",
           "code": "C1.1.6",
           "front": "What is triage in a disaster recovery policy?",
-          "back": "Listing possible events, rating their severity, and deciding the appropriate response — e.g. activate incident response, the business continuity plan, or the full disaster recovery plan."
+          "back": "List possible events, rate their severity, and choose the response (incident, BCP or full DR)."
         },
         {
           "id": "c9",
           "section": "C",
           "code": "C1.1.7",
           "front": "What does an external services policy cover?",
-          "back": "Rules for using external providers (cloud, hardware, software, support). Key points: who authorises them, who is accountable, SLAs, and what happens in an incident."
+          "back": "Rules for outside providers: who authorises, who's accountable, SLAs and incident handling."
         },
         {
           "id": "c10",
           "section": "C",
           "code": "C1.1.4",
           "front": "Key elements of a data protection policy?",
-          "back": "Appoint a Data Protection Officer, follow GDPR principles, protect rights/privacy, staff training, system security procedures, and apply the policy to external contractors."
+          "back": "A Data Protection Officer, GDPR principles, staff training, and covering contractors."
         },
         {
           "id": "d1",
           "section": "D",
           "code": "D1.1.1",
           "front": "Why use a Faraday bag/cage when seizing a device?",
-          "back": "It blocks all wireless signals so the device cannot communicate or be remotely wiped, preserving the evidence on it."
+          "back": "It blocks wireless signals so the device can't be remotely wiped."
         },
         {
           "id": "d2",
           "section": "D",
           "code": "D1.1.1",
           "front": "What is chain of custody?",
-          "back": "A documented record of everyone who has handled a piece of evidence and what they did with it — proves the evidence hasn't been tampered with, keeping it admissible."
+          "back": "A record of everyone who handled the evidence, proving it wasn't tampered with."
         },
         {
           "id": "d3",
           "section": "D",
           "code": "D1.1.2",
           "front": "Why is live forensics challenging?",
-          "back": "Data in active memory (RAM) and temporary files are lost when the device is switched off; data changes while the system runs; and remote/corrupted data is hard to capture."
+          "back": "RAM is lost at power-off, data keeps changing, and remote data is hard to capture."
         },
         {
           "id": "d4",
           "section": "D",
           "code": "D1.1.4",
           "front": "What are contemporaneous notes?",
-          "back": "Notes made AT THE TIME of the investigation. They improve the reliability and admissibility of evidence because they record exactly what was observed and done."
+          "back": "Notes made at the time, making evidence more reliable and admissible."
         },
         {
           "id": "d5",
           "section": "D",
           "code": "D2.1.1",
           "front": "Physical image vs targeted image of a drive?",
-          "back": "A physical image copies the ENTIRE drive — including deleted, temporary and system files — capturing more potential evidence. A targeted image copies only selected files, so it could miss evidence."
+          "back": "Physical: the whole drive, including deleted files. Targeted: selected files only, may miss evidence."
         },
         {
           "id": "d6",
           "section": "D",
           "code": "D2.1.1",
           "front": "Why generate a hash/checksum of a forensic image?",
-          "back": "To prove the copy is identical to the original and hasn't been altered — if the hash still matches later, the evidence's integrity is verified."
+          "back": "To prove the copy matches the original and hasn't been altered."
         },
         {
           "id": "d7",
           "section": "D",
           "code": "D2.1.3",
           "front": "Why work from a copy/image, not the original device?",
-          "back": "Any change to the original data could make it inadmissible in court. Working on a copy preserves the original evidence untouched."
+          "back": "Changing the original could make it inadmissible, so you work on a copy."
         },
         {
           "id": "d8",
           "section": "D",
           "code": "D2.1.5",
           "front": "What is 'alert fatigue'?",
-          "back": "When a system produces so many alerts (often false positives) that investigators stop paying proper attention — risking missing a real threat. Reduced by tuning detection and manual review."
+          "back": "So many (often false) alerts that investigators stop noticing real ones."
         },
         {
           "id": "d9",
           "section": "D",
           "code": "D2.2.2",
           "front": "Name signs that a system has been compromised.",
-          "back": "Unusual inbound/outbound traffic (or from odd regions), unusual login attempts, unusual DNS requests, increased file reads/requests, unusual port usage, and suspicious file changes."
+          "back": "Unusual traffic, logins, DNS requests or port use, and odd file reads or changes."
         },
         {
           "id": "d10",
           "section": "D",
           "code": "D2.3",
           "front": "What should a security report contain?",
-          "back": "A clear structure (title, intro, headings, conclusion), analysis of what went wrong, and recommended improvements to policies and protection measures."
+          "back": "A clear structure, what went wrong, and recommended improvements."
         },
         {
           "id": "d11",
           "section": "D",
           "code": "D1.1.3",
           "front": "What must you do before network forensic scanning?",
-          "back": "Agree a methodology with the relevant authorities, get permission, and ensure the testing protocol will not disrupt the live system."
+          "back": "Agree a method, get permission, and make sure it won't disrupt the live system."
         },
         {
           "id": "d12",
           "section": "D",
           "code": "D1.1.1",
           "front": "Steps to isolate a seized device from networks?",
-          "back": "Photograph the screen, then turn off the device / remove the battery / use airplane mode / disable wireless / place it in a Faraday bag — so it can't be remotely wiped."
+          "back": "Photograph the screen, then cut its connections (power off, airplane mode, Faraday bag)."
         }
       ]
     },

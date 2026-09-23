@@ -5,952 +5,952 @@
       "section": "C",
       "code": "C1.1.1",
       "front": "What is a Private Cloud?",
-      "back": "Cloud infrastructure operated solely for one organisation. Hosted on-premise or at a dedicated facility. More control and security but higher cost than public cloud."
+      "back": "Cloud used by one organisation only. More control and security, but costlier."
     },
     {
       "id": "c2",
       "section": "C",
       "code": "C1.1.2",
       "front": "What is a Public Cloud?",
-      "back": "Cloud services delivered over the internet, shared across multiple organisations, managed by a third-party provider (e.g. AWS, Azure). Low cost and scalable but less control over data location."
+      "back": "Shared cloud run by a provider (e.g. AWS). Cheap and scalable, but less control."
     },
     {
       "id": "c3",
       "section": "C",
       "code": "C1.1.3",
       "front": "What is a Hybrid Cloud?",
-      "back": "Combines private and public cloud. Sensitive data stays on private cloud; less sensitive workloads use cheaper public cloud. Offers flexibility but is more complex to manage."
+      "back": "A mix: sensitive data on private cloud, everything else on cheaper public cloud."
     },
     {
       "id": "c4",
       "section": "C",
       "code": "C1.1.4",
       "front": "What does IaaS stand for and what does it provide?",
-      "back": "Infrastructure as a Service. Provides virtualised computing resources (servers, storage, networking) over the internet. Organisation manages OS and software; provider manages physical hardware. Example: Amazon EC2."
+      "back": "Infrastructure as a Service: rented servers, storage and networking; you manage the OS. E.g. Amazon EC2."
     },
     {
       "id": "c5",
       "section": "C",
       "code": "C1.1.5",
       "front": "What does SaaS stand for and what does it provide?",
-      "back": "Software as a Service. Software delivered over the internet on subscription — no installation needed. Provider manages everything. Examples: Microsoft 365, Google Workspace. Accessible from any device."
+      "back": "Software as a Service: subscription software over the internet, e.g. Microsoft 365."
     },
     {
       "id": "c6",
       "section": "C",
       "code": "C1.1.6",
       "front": "What does PaaS stand for and what does it provide?",
-      "back": "Platform as a Service. Provides a platform for developers to build and deploy apps without managing infrastructure. Provider handles OS and hardware; developer manages the application. Example: Google App Engine, Heroku."
+      "back": "Platform as a Service: build and deploy apps without managing servers, e.g. Heroku."
     },
     {
       "id": "c7",
       "section": "C",
       "code": "C1.2",
       "front": "Give TWO benefits and TWO drawbacks of cloud computing for an organisation.",
-      "back": "BENEFITS: Reduced capital expenditure (no hardware to buy); scalable (resources increase/decrease with demand). DRAWBACKS: Internet dependency (outage = no access); security risk (data held by third party, GDPR implications)."
+      "back": "Benefits: lower upfront cost, scalable. Drawbacks: needs internet, data held by a third party."
     },
     {
       "id": "c8",
       "section": "C",
       "code": "C1.3.1",
       "front": "What is a VPN and how does it enable remote working?",
-      "back": "Virtual Private Network — creates an encrypted tunnel between a device and the organisation's network over the internet. Allows remote workers to access internal resources securely as if in the office. Protects data from interception on public Wi-Fi."
+      "back": "An encrypted tunnel to the company network, so remote staff work securely as if in the office."
     },
     {
       "id": "c9",
       "section": "C",
       "code": "C1.3.2",
       "front": "What is remote desktop technology?",
-      "back": "Software allowing a user to view and control another computer's desktop remotely over a network/internet. Used by IT support and remote workers. Examples: Microsoft Remote Desktop, TeamViewer. Security risk if not properly protected."
+      "back": "Viewing and controlling another computer remotely, e.g. TeamViewer for IT support."
     },
     {
       "id": "c10",
       "section": "C",
       "code": "C1.4.1",
       "front": "Why is security a factor when selecting an online system?",
-      "back": "Organisation must ensure cloud provider is GDPR-compliant. Data must be encrypted at rest and in transit. Security breaches can cause financial penalties and reputational damage. MFA adds extra protection."
+      "back": "Breaches bring fines and reputational damage, so providers must be GDPR-compliant and encrypt data."
     },
     {
       "id": "c11",
       "section": "C",
       "code": "C1.4.6",
       "front": "What is scalability in the context of cloud computing?",
-      "back": "The ability to increase or decrease resources on demand without significant cost or disruption. Cloud can scale up during peak demand (e.g. Christmas retail) and scale down to avoid paying for unused capacity. On-premise systems are harder to scale."
+      "back": "Increasing or reducing resources on demand, e.g. scaling up for Christmas."
     },
     {
       "id": "c12",
       "section": "C",
       "code": "C2.1.1",
       "front": "Give TWO ways social media can be used by an organisation and ONE risk.",
-      "back": "USES: Marketing/advertising to large audiences; direct customer communication/service. RISK: Negative comments spread rapidly — can cause serious reputational damage. Also: personal data collected by platforms raises privacy concerns."
+      "back": "Uses: marketing, customer service. Risk: negative comments spread fast."
     },
     {
       "id": "c13",
       "section": "C",
       "code": "C2.1.3",
       "front": "What is a wiki and what is its main limitation?",
-      "back": "A collaboratively edited website where multiple users can create and edit content (e.g. Wikipedia). Main limitation: accuracy concerns — content may be unverified or contain errors since anyone can edit."
+      "back": "A site anyone can edit (e.g. Wikipedia). Limitation: content may be inaccurate."
     },
     {
       "id": "c14",
       "section": "C",
       "code": "C2.1.4",
       "front": "Difference between a chatroom and a forum?",
-      "back": "Chatroom: real-time (synchronous) communication — users must be online at the same time. Forum: asynchronous — posts are permanent and searchable, users reply in their own time. Forums better for reference; chatrooms better for live discussion."
+      "back": "Chatroom: real-time. Forum: posts stay up and people reply in their own time."
     },
     {
       "id": "c15",
       "section": "C",
       "code": "C2.2.4",
       "front": "What privacy consideration must organisations be aware of when using online communities?",
-      "back": "GDPR requires users to consent to data collection. Platforms may sell data to advertisers — users may not know what data is collected. Organisations must have a clear privacy policy and ensure their social media use complies with data protection law."
+      "back": "Users must consent to data collection (GDPR), so a clear privacy policy is needed."
     },
     {
       "id": "c16",
       "section": "C",
       "code": "C2.2.10",
       "front": "What is an Acceptable Use Policy (AUP)?",
-      "back": "A set of rules an organisation sets for how employees interact online. Defines what is/isn't allowed (e.g. no sharing confidential data, professional conduct on social media). Employees represent the company online — misconduct can have legal and reputational consequences."
+      "back": "Rules for how staff use IT and behave online, e.g. no sharing confidential data."
     },
     {
       "id": "c17",
       "section": "C",
       "code": "C2.1.2",
       "front": "What is a blog/vlog and give ONE organisational use?",
-      "back": "Blog: a website where an individual or organisation regularly posts written content (articles, news, opinions). Vlog: video equivalent, typically hosted on YouTube. Organisations use blogs/vlogs to demonstrate expertise, engage customers, and improve search engine visibility (SEO). Risk: content must be regularly updated or credibility suffers."
+      "back": "Regular written posts (blog) or videos (vlog). Use: showing expertise to engage customers."
     },
     {
       "id": "c18",
       "section": "C",
       "code": "C2.1.5",
       "front": "What is instant messaging and give ONE advantage over email for organisations?",
-      "back": "Real-time text (and file) communication between users over the internet. Examples: Microsoft Teams, Slack, WhatsApp. ADVANTAGE: faster responses than email; enables quick team collaboration; reduces volume of formal emails. Risk: informal tone may compromise professionalism; harder to archive formally."
+      "back": "Real-time messaging, e.g. Teams. Advantage: faster replies than email."
     },
     {
       "id": "c19",
       "section": "C",
       "code": "C2.1.6",
       "front": "What is a podcast and give ONE use for an organisation?",
-      "back": "An audio (or video) programme available for download or streaming on demand — users subscribe and receive new episodes automatically. Organisations use podcasts for training content, thought leadership, or marketing. ADVANTAGE: accessible to wide audiences; low production cost. LIMITATION: one-way communication — no real-time interaction with audience."
+      "back": "On-demand audio episodes. Use: staff training or marketing."
     },
     {
       "id": "c21",
       "section": "C",
       "code": "C1.4.2-5",
       "front": "State FOUR factors (other than security and scalability) that affect the selection of an online system.",
-      "back": "1. Cost: subscription fees, data usage costs — must offer value for money. 2. Ease of use: intuitive interface reduces training time and errors. 3. Features: system must have the functionality the organisation needs. 4. Connectivity: requires reliable internet access; must be accessible from required devices and locations."
+      "back": "Cost, ease of use, features and connectivity."
     },
     {
       "id": "d1",
       "section": "D",
       "code": "D1.1.1",
       "front": "What is malware? Give THREE examples.",
-      "back": "Malicious software designed to damage, disrupt, or gain unauthorised access to systems. Examples: viruses (attach to files and spread), ransomware (encrypts files and demands payment), spyware (monitors user activity secretly), Trojans (disguise as legitimate software)."
+      "back": "Software designed to cause harm, e.g. viruses, ransomware, spyware."
     },
     {
       "id": "d2",
       "section": "D",
       "code": "D1.1.4",
       "front": "What is social engineering? Give an example.",
-      "back": "Manipulating people into revealing confidential information or performing actions that compromise security. Example: phishing — sending fake emails pretending to be a bank to trick users into entering their login details."
+      "back": "Tricking people into giving away information, e.g. phishing emails."
     },
     {
       "id": "d3",
       "section": "D",
       "code": "D1.3",
       "front": "State THREE impacts of a data breach on an organisation.",
-      "back": "1. Loss of data — customer/business data permanently lost or stolen. 2. Financial loss — GDPR fines (up to £17.5m or 4% global turnover) and compensation claims. 3. Reputational damage — loss of customer trust, negative publicity, fewer sales."
+      "back": "Data loss, financial loss (GDPR fines) and reputational damage."
     },
     {
       "id": "d4",
       "section": "D",
       "code": "D2.4",
       "front": "What is encryption and how does it protect data?",
-      "back": "The process of converting data into an unreadable format using an algorithm and key. Only someone with the correct decryption key can read it. Protects stored data, data in transit (e.g. emails), and data on secure websites (HTTPS uses SSL/TLS encryption)."
+      "back": "Scrambles data so only someone with the decryption key can read it."
     },
     {
       "id": "d5",
       "section": "D",
       "code": "D2.1.4",
       "front": "What is Multi-Factor Authentication (MFA) and why is it more secure than a password alone?",
-      "back": "MFA requires two or more verification factors: something you know (password), something you have (phone/token), something you are (biometric). Even if a password is stolen, attacker cannot access the account without the second factor."
+      "back": "Two or more factors (know / have / are), so a stolen password alone isn't enough."
     },
     {
       "id": "d6",
       "section": "D",
       "code": "D2.3",
       "front": "What does a firewall do?",
-      "back": "A firewall monitors and controls incoming/outgoing network traffic based on security rules. It blocks unauthorised access to/from a private network. Can be hardware or software. Creates a barrier between trusted internal network and untrusted external networks (internet)."
+      "back": "Filters incoming and outgoing traffic using rules, blocking unauthorised access."
     },
     {
       "id": "d7",
       "section": "D",
       "code": "D1.1.2",
       "front": "What is unauthorised access (hacking)? Distinguish between a black-hat and white-hat hacker.",
-      "back": "A hacker gains unauthorised access to computer systems. Black-hat: malicious intent — steals data, deploys malware, causes disruption; illegal under the Computer Misuse Act 1990. White-hat (ethical hacker): hired by organisations to test their security — finds vulnerabilities before criminals do; authorised and legal."
+      "back": "Access without permission. Black-hat: malicious and illegal. White-hat: hired to test security."
     },
     {
       "id": "d8",
       "section": "D",
       "code": "D1.1.3",
       "front": "How can accidental damage threaten data? Give TWO examples and ONE protection method.",
-      "back": "Physical damage to hardware can cause data loss — e.g. dropping a laptop, spilling liquid on a server, hardware failure. Power surges can corrupt data on storage devices. PROTECTION: regular offsite backups ensure data can be recovered; UPS (Uninterruptible Power Supply) protects against power surges."
+      "back": "Dropped laptops, spills, power surges. Protect with backups or a UPS."
     },
     {
       "id": "d9",
       "section": "D",
       "code": "D1.1.5",
       "front": "How do natural disasters threaten IT systems? How can organisations protect against this?",
-      "back": "Floods, fires, and earthquakes can physically destroy servers and data centres — all on-site data could be permanently lost. PROTECTION: offsite or cloud backups; geographically separate data centres provide failover; disaster recovery plans outline procedures for restoring systems."
+      "back": "Floods and fires can destroy on-site data. Protect with off-site or cloud backups."
     },
     {
       "id": "d10",
       "section": "D",
       "code": "D1.2",
       "front": "State FOUR internal threats to data within an organisation.",
-      "back": "1. Access to inappropriate websites: malware may be downloaded unintentionally. 2. Accidental disclosure: employee emails sensitive data to wrong recipient. 3. Stealing/leaking information: disgruntled employee copies data to a USB drive or emails it to a competitor. 4. Use of portable devices: USB drives can introduce malware or be used to remove data from the building."
+      "back": "Risky websites, accidental disclosure, staff leaking data, portable devices."
     },
     {
       "id": "d11",
       "section": "D",
       "code": "D2.1.1-2",
       "front": "What are file permissions and access levels? How do they protect data?",
-      "back": "File permissions control who can read, write, or execute specific files/folders. Access levels restrict which parts of a system different users can reach — e.g. staff see only their department's data; only admins can change system settings. Principle of least privilege: users only access what they need, limiting damage if an account is compromised."
+      "back": "Control who can read, write or run files, so users only access what they need."
     },
     {
       "id": "d12",
       "section": "D",
       "code": "D2.1.3",
       "front": "What is a backup? What should a good backup strategy include?",
-      "back": "A copy of data stored separately, used to restore data after loss or corruption. Good strategy (3-2-1 rule): 3 copies of data, on 2 different media types, with 1 stored offsite or in the cloud. Types: full backup (all data) or incremental (only changes since last backup). Recovery procedures must be tested regularly — a backup is useless if it cannot be restored."
+      "back": "A separate copy for restoring lost data. Use 3-2-1: 3 copies, 2 media, 1 off-site."
     },
     {
       "id": "d13",
       "section": "D",
       "code": "D2.1.5",
       "front": "What are biometric security methods? Give TWO examples and ONE advantage over passwords.",
-      "back": "Security systems that identify users based on unique physical characteristics. Examples: fingerprint scanner, facial recognition, iris scan, voice recognition. ADVANTAGE: cannot be forgotten or shared like a password; harder to fake. DISADVANTAGE: if biometric data is compromised, it cannot be changed — raises privacy concerns."
+      "back": "ID by body features, e.g. fingerprint, face. Advantage: can't be forgotten or shared."
     },
     {
       "id": "d14",
       "section": "D",
       "code": "D2.1.6",
       "front": "What is physical access control? Give THREE examples.",
-      "back": "Security measures that restrict physical entry to buildings, rooms, or equipment. Examples: swipe card / key fob entry (records who entered and when); PIN pads on server room doors; CCTV monitoring entrances and server rooms; cable locks securing laptops. Digital security is useless if an attacker can physically access a server."
+      "back": "Restricting physical entry, e.g. swipe cards, PIN-locked doors, CCTV."
     },
     {
       "id": "d15",
       "section": "D",
       "code": "D2.1.7",
       "front": "What is a digital certificate and how is it used?",
-      "back": "An electronic document that verifies the identity of a website or organisation, issued by a trusted Certificate Authority (CA). Used in HTTPS to confirm a website is genuine (not a spoof). Contains the public encryption key. Browsers show a padlock icon when a valid certificate is present — users can verify authenticity before entering data."
+      "back": "Proves a website's identity; issued by a Certificate Authority. Gives the HTTPS padlock."
     },
     {
       "id": "d16",
       "section": "D",
       "code": "D2.2",
       "front": "What does antivirus software do? State THREE key functions.",
-      "back": "1. Scanning: checks files and programs for known malware signatures. 2. Real-time protection: monitors system activity continuously, blocking suspicious behaviour. 3. Quarantine: isolates infected files to prevent spread. 4. Updates: regularly downloads new virus definitions to detect the latest threats. Limitation: zero-day attacks (brand-new malware) may not yet be in the definitions database."
+      "back": "Scans for known malware, protects in real time, and quarantines infected files."
     },
     {
       "id": "b1",
       "section": "B",
       "code": "B1.1.3",
       "front": "What is Wi-Fi and give ONE advantage and ONE disadvantage?",
-      "back": "Wi-Fi: wireless networking standard using radio waves to connect devices to a network/internet. ADVANTAGE: no cables needed — flexible, mobile use. DISADVANTAGE: signal strength weakens with distance/walls; more susceptible to interference and security risks than wired connections."
+      "back": "Wireless networking by radio. Advantage: no cables. Disadvantage: weaker through walls, less secure."
     },
     {
       "id": "b2",
       "section": "B",
       "code": "B1.1.4",
       "front": "What is Ethernet? Give ONE advantage over Wi-Fi.",
-      "back": "Wired networking standard using cables (copper or fibre optic) to connect devices. ADVANTAGE: more reliable, faster, and more secure than Wi-Fi — signal not affected by interference; harder for others to intercept."
+      "back": "Wired networking by cable. Advantage: faster, more reliable and more secure."
     },
     {
       "id": "b3",
       "section": "B",
       "code": "B2.1.1",
       "front": "Describe a star network topology.",
-      "back": "All devices connect to a central switch/hub. If one device fails, others are unaffected (only that connection goes down). If the central switch fails, ALL devices lose connection. Most common topology in modern networks — easy to manage and add devices."
+      "back": "Every device connects to a central switch. If the switch fails, everything goes down."
     },
     {
       "id": "b4",
       "section": "B",
       "code": "B2.2.3",
       "front": "What is a WAN and how does it differ from a LAN?",
-      "back": "WAN (Wide Area Network): covers large geographic areas, often connecting multiple LANs (e.g. across cities or countries). Uses third-party infrastructure (e.g. phone lines, fibre). LAN (Local Area Network): limited to a small area (e.g. one building). Organisation owns the infrastructure."
+      "back": "A WAN covers a large area using third-party lines. A LAN covers one site you own."
     },
     {
       "id": "b5",
       "section": "B",
       "code": "B2.2.4",
       "front": "What is a VPN and why would an organisation use one?",
-      "back": "Virtual Private Network: creates encrypted tunnel over the internet for secure data transmission. Used to securely connect remote workers to the company network, or to link office branches over the internet without a costly dedicated line."
+      "back": "An encrypted tunnel over the internet, securely linking remote staff or branches."
     },
     {
       "id": "b6",
       "section": "B",
       "code": "B3.1.3",
       "front": "What is the difference between HTTP and HTTPS?",
-      "back": "HTTP: HyperText Transfer Protocol — transfers web pages over the internet; data is unencrypted. HTTPS: HTTP Secure — uses SSL/TLS encryption to protect data in transit. Ensures data cannot be intercepted and verifies the website is genuine. Essential for any site handling personal data or payments."
+      "back": "HTTPS encrypts data with SSL/TLS; HTTP doesn't."
     },
     {
       "id": "b7",
       "section": "B",
       "code": "B3.3",
       "front": "What is bandwidth and what is latency?",
-      "back": "Bandwidth: the maximum amount of data that can be transmitted per second (measured in Mbps/Gbps). Higher bandwidth = more data per second. Latency: the delay between sending data and it being received (measured in ms). Lower latency = faster response. Both affect network performance."
+      "back": "Bandwidth: data per second (Mbps). Latency: delay before data arrives (ms)."
     },
     {
       "id": "b8",
       "section": "B",
       "code": "B3.5",
       "front": "Difference between lossy and lossless compression?",
-      "back": "Lossy: permanently removes some data to achieve smaller file sizes — some quality is lost (irreversible). Used for images (JPEG), audio (MP3), video (MP4). Lossless: reduces file size without losing any data — original can be perfectly restored. Used for text, ZIP files, PNG images."
+      "back": "Lossy permanently removes data (JPEG, MP3). Lossless keeps it all (ZIP, PNG)."
     },
     {
       "id": "b9",
       "section": "B",
       "code": "B1.1.1",
       "front": "What is Bluetooth? Give ONE advantage and ONE disadvantage.",
-      "back": "A short-range wireless standard using radio waves (typically up to 10 metres) for device-to-device connections. ADVANTAGE: no cables needed; easy pairing for peripherals (headphones, keyboards, mice). DISADVANTAGE: short range and lower data speeds than Wi-Fi; security risks include bluejacking (unsolicited messages) and bluesnarfing (unauthorised data access)."
+      "back": "Short-range wireless (~10 m). Advantage: easy pairing. Disadvantage: short range, slower than Wi-Fi."
     },
     {
       "id": "b10",
       "section": "B",
       "code": "B1.1.2",
       "front": "What is USB? State TWO uses and ONE advantage over wireless connections.",
-      "back": "Universal Serial Bus — a wired standard for transferring data and power between devices. Uses: connecting peripherals (keyboard, mouse, printer); transferring files via USB flash drive; charging devices. ADVANTAGE: faster and more reliable data transfer than Bluetooth; no pairing needed; simultaneously supplies power to the connected device."
+      "back": "Wired data and power. Uses: peripherals, flash drives. Advantage: faster and more reliable than Bluetooth."
     },
     {
       "id": "b11",
       "section": "B",
       "code": "B2.1.2",
       "front": "Describe a ring network topology. Give ONE advantage and ONE disadvantage.",
-      "back": "Devices connect in a closed loop — data travels in one direction around the ring, passing through each device in turn. ADVANTAGE: equal access for all devices; performs well under heavy load. DISADVANTAGE: if one device or cable fails, the entire network can go down; adding devices disrupts the network. Rarely used in modern networks."
+      "back": "Devices in a loop, data flows one way. Advantage: copes with heavy load. Disadvantage: one failure breaks it."
     },
     {
       "id": "b12",
       "section": "B",
       "code": "B2.1.3",
       "front": "Describe a bus network topology. Give ONE advantage and ONE disadvantage.",
-      "back": "All devices connect to a single central cable (the backbone). Data travels along the cable and all devices receive it; only the intended recipient processes it. ADVANTAGE: cheap and simple to set up. DISADVANTAGE: if the main cable fails, the entire network fails; performance degrades as more devices are added due to data collisions. Mainly historical."
+      "back": "All devices on one backbone cable. Advantage: cheap. Disadvantage: if the cable fails, everything fails."
     },
     {
       "id": "b13",
       "section": "B",
       "code": "B2.2.1",
       "front": "What is a Personal Area Network (PAN)? Give ONE example.",
-      "back": "A network covering a very small area — typically a single person's workspace or body area (a few metres). Usually uses Bluetooth or USB. Example: a smartphone connected to wireless earphones and a smartwatch. Unlike a LAN, a PAN is for personal device connectivity rather than sharing resources across an organisation."
+      "back": "A network of a few metres around one person, e.g. a phone linked to earbuds."
     },
     {
       "id": "b14",
       "section": "B",
       "code": "B3.1.1",
       "front": "What is the difference between SMTP, POP3, and IMAP?",
-      "back": "SMTP (Simple Mail Transfer Protocol): used to SEND emails from a client to a server, or between servers. POP3 (Post Office Protocol): downloads emails from the server to one device and typically deletes them from the server — emails only accessible on that device. IMAP (Internet Message Access Protocol): emails stay on the server and sync across all devices — changes (read/delete) reflect everywhere."
+      "back": "SMTP sends. POP3 downloads to one device. IMAP keeps mail synced across devices."
     },
     {
       "id": "b15",
       "section": "B",
       "code": "B3.1.2",
       "front": "What is VoIP? Give ONE advantage and ONE disadvantage.",
-      "back": "Voice over Internet Protocol — transmits voice calls as digital data packets over the internet instead of traditional phone lines. ADVANTAGE: much cheaper than traditional calls, especially internationally; works on any internet-connected device. DISADVANTAGE: dependent on internet connection quality — poor connection causes call quality issues or dropped calls; vulnerable to cyberattacks."
+      "back": "Voice calls over the internet. Advantage: cheap. Disadvantage: depends on connection quality."
     },
     {
       "id": "b16",
       "section": "B",
       "code": "B3.4",
       "front": "Why does file format matter when transmitting data? Give an example.",
-      "back": "File format affects file size (bandwidth and time needed), compatibility (recipient must be able to open it), and quality. Example: sending a RAW image uses far more bandwidth than a JPEG — impractical over slow connections. Compressed formats (MP3, JPEG, MP4) reduce transmission time but may reduce quality. Lossless formats preserve quality but take longer to transmit."
+      "back": "It affects size, compatibility and quality, e.g. RAW images are far bigger than JPEGs."
     },
     {
       "id": "b17",
       "section": "B",
       "code": "B3.6",
       "front": "What is a codec and why is it needed for audio/video?",
-      "back": "A codec (Coder-Decoder) is software that compresses audio/video data for storage or transmission and decompresses it for playback. Without a codec, raw audio/video files would be too large to stream or store practically. Examples: H.264/H.265 for video; AAC for audio. Both sender and receiver must have compatible codecs — mismatched codecs prevent playback."
+      "back": "Compresses and decompresses audio/video so it's small enough to stream, e.g. H.264."
     },
     {
       "id": "e1",
       "section": "E",
       "code": "E1.1.1",
       "front": "Give TWO benefits of online retail for customers and ONE risk.",
-      "back": "BENEFITS: Shop 24/7 from anywhere; wider choice of products; easy price comparison. RISK: Personal/payment data at risk of breach; products cannot be physically inspected before purchase; returns process can be inconvenient."
+      "back": "Benefits: shop 24/7, wider choice. Risk: payment data could be breached."
     },
     {
       "id": "e2",
       "section": "E",
       "code": "E1.2.2",
       "front": "What is targeted marketing? How does it use IT?",
-      "back": "Marketing that uses data about individuals (browsing history, purchase history, demographics) to show personalised adverts. IT systems analyse transactional data and cookies to build customer profiles. Example: Amazon recommending products based on past purchases."
+      "back": "Personalised adverts from browsing and purchase data, e.g. Amazon recommendations."
     },
     {
       "id": "e3",
       "section": "E",
       "code": "E2.5.1",
       "front": "What is verification in data entry?",
-      "back": "Checking that data has been entered correctly — comparing input against original source. Methods: double entry (entering data twice and comparing), proofreading. Catches transcription errors but does NOT check whether the data itself is correct/valid."
+      "back": "Checking data was entered correctly, e.g. double entry. It doesn't check the data is sensible."
     },
     {
       "id": "e4",
       "section": "E",
       "code": "E2.5.2",
       "front": "What is validation? Give TWO types.",
-      "back": "Automated checking that data entered is reasonable, complete, and in the correct format. Types: Range check (value within acceptable range, e.g. age 0–120); Presence check (field cannot be left empty); Format check (data matches expected pattern, e.g. postcode format); Length check (correct number of characters)."
+      "back": "Automatic checks that data is sensible, e.g. range check, presence check."
     },
     {
       "id": "e5",
       "section": "E",
       "code": "E1.1.2",
       "front": "Give TWO benefits and TWO risks of online financial services for customers.",
-      "back": "BENEFITS: 24/7 access to banking and payments — no branch visits needed; instant transfers and mobile payments. RISKS: Phishing attacks targeting login credentials; data breaches exposing financial details. Organisations must use HTTPS, MFA, and encryption to protect transactions."
+      "back": "Benefits: 24/7 access, instant transfers. Risks: phishing, data breaches."
     },
     {
       "id": "e6",
       "section": "E",
       "code": "E1.1.3",
       "front": "Give TWO benefits and ONE limitation of online education and training.",
-      "back": "BENEFITS: Accessible from anywhere at any time — removes geographic and time barriers; often cheaper than in-person courses; can be self-paced with multimedia content. LIMITATION: Lack of face-to-face interaction may reduce motivation; requires reliable internet access; not suitable for all skill types (e.g. hands-on practical work)."
+      "back": "Benefits: learn anywhere, often cheaper. Limitation: less face-to-face interaction."
     },
     {
       "id": "e7",
       "section": "E",
       "code": "E1.1.4",
       "front": "Give ONE advantage and TWO risks of accessing news and information online.",
-      "back": "ADVANTAGE: Immediate access to breaking news worldwide; wide variety of sources and perspectives. RISKS: Misinformation and fake news — anyone can publish online without editorial oversight; filter bubbles — algorithms show content matching existing views, limiting exposure to different perspectives."
+      "back": "Advantage: instant news. Risks: fake news and filter bubbles."
     },
     {
       "id": "e8",
       "section": "E",
       "code": "E1.1.5",
       "front": "Give TWO impacts of the growth of online entertainment on traditional businesses.",
-      "back": "Physical media sales (CDs, DVDs, game discs) have declined dramatically — stores have closed (e.g. HMV). Traditional TV broadcasters face competition from streaming services (Netflix, Disney+). POSITIVE for tech sector: demand for server infrastructure and broadband has grown. Subscription models now dominate over one-off purchases."
+      "back": "Physical media sales have collapsed (e.g. HMV closures) and TV competes with streaming."
     },
     {
       "id": "e9",
       "section": "E",
       "code": "E1.1.6",
       "front": "What are online booking systems? Give TWO benefits and ONE risk.",
-      "back": "Automated systems allowing customers to reserve services (flights, hotels, appointments) over the internet, 24/7. BENEFITS: Available at any time without staff involvement; reduces administrative costs; shows real-time availability. RISK: System downtime prevents bookings; a data breach could expose customer payment and personal details."
+      "back": "Online reservations, e.g. flights. Benefits: 24/7, lower admin costs. Risk: downtime stops bookings."
     },
     {
       "id": "e10",
       "section": "E",
       "code": "E1.2.1",
       "front": "What is transactional data and how do organisations use it?",
-      "back": "Data generated from transactions — purchases, logins, website clicks, searches. Organisations analyse it to: identify buying patterns; personalise product recommendations; target marketing campaigns; manage stock levels; detect fraud. Example: Amazon uses purchase history to recommend products; banks analyse transactions to flag unusual activity."
+      "back": "Data from purchases, clicks and logins. Used for recommendations, marketing and fraud detection."
     },
     {
       "id": "e11",
       "section": "E",
       "code": "E1.2.3",
       "front": "What is collaborative working using IT? Give TWO tools and ONE benefit.",
-      "back": "Multiple people working together on shared tasks or documents using IT, regardless of location. Tools: Google Workspace / Microsoft 365 (real-time document editing); video conferencing (Teams, Zoom); project management tools (Trello, Asana). BENEFIT: Teams collaborate across different locations and time zones — reduces travel costs and delays."
+      "back": "Working on shared files from anywhere. Tools: Microsoft 365, Zoom. Benefit: less travel."
     },
     {
       "id": "e12",
       "section": "E",
       "code": "E1.2.4",
       "front": "State THREE IT tools that enable remote working and ONE organisational implication.",
-      "back": "Tools: VPN (secure access to company network); video conferencing (Teams/Zoom); cloud storage (access files anywhere); remote desktop software. IMPLICATION: Organisations can reduce office space costs and access talent from anywhere — BUT security risks increase if personal devices or home networks are used without proper controls."
+      "back": "VPN, video calls, cloud storage. Implication: less office space needed, but higher security risk."
     },
     {
       "id": "e13",
       "section": "E",
       "code": "E2.1",
       "front": "What is the difference between primary and secondary data? Give an example of each.",
-      "back": "Primary data: collected first-hand for a specific purpose (e.g. questionnaire sent to customers about a new product). Fresh and directly relevant, but time-consuming and expensive to collect. Secondary data: already exists, collected by someone else (e.g. census data, published market research). Cheaper and quicker, but may be outdated or not exactly relevant to the need."
+      "back": "Primary: collected yourself (e.g. a questionnaire). Secondary: someone else's (e.g. census data)."
     },
     {
       "id": "e14",
       "section": "E",
       "code": "E2.2",
       "front": "Give THREE methods of ensuring the reliability of information.",
-      "back": "1. Cross-referencing: check information against multiple independent sources. 2. Source credibility: use peer-reviewed, authoritative, or official sources rather than anonymous websites. 3. Currency: check the date — old data may no longer be accurate. 4. Consistency: verify information is consistent with related known facts. 5. Triangulation: compare data from different collection methods."
+      "back": "Cross-reference sources, use credible sources, and check the date."
     },
     {
       "id": "e15",
       "section": "E",
       "code": "E2.3",
       "front": "Name FOUR methods of collecting data/opinions. Give ONE advantage of each.",
-      "back": "Survey: reaches large numbers of people quickly, cheap to distribute digitally. Questionnaire: standardised questions allow easy comparison of responses. Focus group: in-depth qualitative insight — explores opinions and feelings in detail. Interview: allows follow-up questions; produces richer, more detailed responses than written methods."
+      "back": "Survey: reaches many. Questionnaire: easy to compare. Focus group: in-depth. Interview: follow-ups."
     },
     {
       "id": "e16",
       "section": "E",
       "code": "E2.4",
       "front": "Give THREE reasons why data accuracy is important for organisations.",
-      "back": "1. Decision making: inaccurate data leads to poor business decisions (e.g. wrong stock orders). 2. Legal compliance: GDPR requires personal data to be accurate and up to date — inaccurate records can result in fines. 3. Customer trust: billing errors or wrong deliveries caused by bad data damage reputation. 4. Operational efficiency: errors in financial or stock data cause costly operational problems."
+      "back": "Better decisions, GDPR compliance, and customer trust."
     },
     {
       "id": "e17",
       "section": "E",
       "code": "E2.6",
       "front": "Give THREE characteristics of a good user interface for a data collection system.",
-      "back": "1. Ease of use: intuitive layout so users can enter data quickly without errors. 2. Accessibility: compatible with assistive technologies; usable by all. 3. Error reduction: validation rules, drop-down menus, and input masks prevent incorrect entry. 4. Performance: fast response times prevent frustration. 5. Functionality: all required fields present; data can be saved and submitted easily."
+      "back": "Easy to use, accessible, and prevents errors (validation, drop-downs)."
     },
     {
       "id": "a1",
       "section": "A",
       "code": "A3.2.3",
       "front": "What is virtual memory?",
-      "back": "A memory management technique where the OS uses part of the hard disk as an extension of RAM. When RAM is full, less-used data is temporarily moved to the hard disk (swapping/paging), freeing RAM for active processes. Slower than RAM but prevents crashes when RAM is exhausted."
+      "back": "Using part of the disk as extra RAM when RAM is full. Slower than real RAM."
     },
     {
       "id": "a2",
       "section": "A",
       "code": "A3.5",
       "front": "Name and describe FOUR types of user interface.",
-      "back": "1. CLI (Command Line Interface): text commands typed by user — powerful but requires expertise. 2. GUI (Graphical User Interface): icons, windows, mouse — intuitive for general users. 3. Menu-driven: user selects from menus — limited but simple (e.g. ATM). 4. Touchscreen GUI: same as GUI but touch input — used on smartphones/tablets."
+      "back": "CLI (typed commands), GUI (windows and icons), menu-driven (e.g. ATM), touchscreen."
     },
     {
       "id": "a3",
       "section": "A",
       "code": "A3.6",
       "front": "Difference between open source and proprietary software?",
-      "back": "Open source: source code is freely available, can be modified and redistributed (e.g. Linux, LibreOffice). Low/no cost, community support. Proprietary: source code is closed, owned by company, cannot be modified (e.g. Windows, MS Office). Usually costs money, vendor provides support."
+      "back": "Open source: free, editable code (Linux). Proprietary: closed code, usually paid (Windows)."
     },
     {
       "id": "a4",
       "section": "A",
       "code": "A2.3",
       "front": "Give FOUR characteristics of storage media.",
-      "back": "1. Capacity: how much data it can hold (GB/TB). 2. Cost: price per GB. 3. Speed: how fast data is read/written. 4. Compatibility: whether the device works with the system. SSD = faster but more expensive per GB than HDD. USB flash drives = portable but lower capacity than HDD."
+      "back": "Capacity, cost per GB, speed and compatibility."
     },
     {
       "id": "a5",
       "section": "A",
       "code": "A1.1.1",
       "front": "What is a personal computer (PC)? State ONE difference between a desktop and a laptop.",
-      "back": "A general-purpose computing device designed for individual use, running a full OS (Windows, macOS, Linux). Desktop: more powerful for the price, easily upgraded, not portable — suited to fixed workstations. Laptop: portable and battery-powered, less upgradeable — suited to mobile workers and students."
+      "back": "A general-purpose computer for one user. Desktops are more powerful; laptops are portable."
     },
     {
       "id": "a6",
       "section": "A",
       "code": "A1.1.2",
       "front": "What is a multifunctional device (MFD)?",
-      "back": "A device that combines multiple functions in one unit — typically printing, scanning, copying, and faxing. Used in offices to reduce the number of separate devices needed, saving space and cost. Example: an all-in-one printer/scanner/copier. Can connect to a network so multiple users share one device."
+      "back": "One device that prints, scans and copies, saving space and cost."
     },
     {
       "id": "a7",
       "section": "A",
       "code": "A1.1.3",
       "front": "What are mobile devices? Give TWO advantages and ONE disadvantage for users.",
-      "back": "Portable digital devices such as smartphones and tablets. ADVANTAGES: can be used anywhere (portability); always connected via mobile data or Wi-Fi; multi-purpose (camera, GPS, apps, communication in one device). DISADVANTAGE: smaller screen; battery life is limited; more vulnerable to loss/theft than desktop equipment."
+      "back": "Phones and tablets. Advantages: portable, always connected. Disadvantage: easily lost or stolen."
     },
     {
       "id": "a8",
       "section": "A",
       "code": "A1.1.4",
       "front": "Name THREE types of server and state the function of each.",
-      "back": "File server: stores and manages files centrally so network users can access shared data. Application server: hosts and runs software applications accessed by client devices over the network. Web server: stores web page files and delivers them to users' browsers via HTTP/HTTPS in response to requests."
+      "back": "File server: stores shared files. Application server: runs apps. Web server: serves web pages."
     },
     {
       "id": "a9",
       "section": "A",
       "code": "A1.1.5",
       "front": "What are entertainment systems? Give TWO examples and ONE impact of internet connectivity.",
-      "back": "Digital devices designed primarily for media consumption and gaming. Examples: games consoles (PlayStation, Xbox), smart TVs, streaming sticks (Amazon Fire Stick). Internet connectivity enables online multiplayer gaming, streaming services (Netflix, Disney+), and downloadable content — transforming single-use devices into connected platforms."
+      "back": "E.g. consoles, smart TVs. The internet adds streaming and online multiplayer."
     },
     {
       "id": "a10",
       "section": "A",
       "code": "A1.1.6",
       "front": "What is the difference between a still digital camera and a video camera?",
-      "back": "Still camera: captures individual photographs stored as digital image files (JPEG, RAW). Video camera: records continuous footage as a video file (MP4, MOV). Smartphones typically combine both. Used in sectors such as retail (product photography), healthcare (medical imaging), security (CCTV), and media."
+      "back": "A still camera takes photos; a video camera records footage."
     },
     {
       "id": "a11",
       "section": "A",
       "code": "A1.1.7",
       "front": "What are navigation systems? Give TWO examples of their use.",
-      "back": "GPS-based systems that use satellite signals to determine location and provide route guidance. Uses: sat navs for drivers giving turn-by-turn directions; mapping apps on smartphones (Google Maps, Apple Maps) with live traffic data; fleet tracking allowing logistics companies to monitor delivery vehicle locations in real time."
+      "back": "GPS location and routing, e.g. sat navs and fleet tracking."
     },
     {
       "id": "a12a",
       "section": "A",
       "code": "A1.1.9",
       "front": "What is an embedded system? Give TWO examples.",
-      "back": "A computer built into a larger device to perform one specific function. Examples: microcontroller in a washing machine controlling the wash cycle; engine management unit (ECU) in a car; thermostat in a central heating system. Cannot be reprogrammed by the user — designed for a fixed task."
+      "back": "A computer inside a device doing one job, e.g. a washing machine or car ECU."
     },
     {
       "id": "a12b",
       "section": "A",
       "code": "A1.1.9",
       "front": "What is the Internet of Things (IoT)? Give TWO examples.",
-      "back": "Everyday objects connected to the internet that send and receive data automatically without human input. Examples: smart thermostat (adjusts heating based on learned patterns); fitness tracker (sends health data to a smartphone); smart fridge (monitors stock and orders food). Relies on sensors, wireless connectivity, and cloud storage."
+      "back": "Everyday objects connected to the internet, e.g. smart thermostats, fitness trackers."
     },
     {
       "id": "a13a",
       "section": "A",
       "code": "A1.2.6",
       "front": "How are digital devices used in healthcare? Give TWO examples.",
-      "back": "Patient monitoring systems track vital signs (heart rate, blood pressure) in real time and alert staff to changes. Electronic health records stored on servers allow authorised staff to access patient data instantly from anywhere in the hospital. Robotic surgery systems allow precision operations controlled by surgeons remotely."
+      "back": "Patient monitoring and electronic health records."
     },
     {
       "id": "a13b",
       "section": "A",
       "code": "A1.2.5",
       "front": "How are digital devices used in manufacturing? Give TWO examples.",
-      "back": "CNC (Computer Numerical Control) machines use embedded systems for precise automated cutting and shaping — reduces human error. Sensors on production lines log quality control data automatically, detecting defects in real time. Robotic arms perform repetitive assembly tasks faster and more consistently than humans."
+      "back": "CNC machines and robotic assembly arms."
     },
     {
       "id": "a13c",
       "section": "A",
       "code": "A1.2.2",
       "front": "How are digital devices used in education? Give TWO examples.",
-      "back": "Interactive whiteboards let teachers display, annotate, and interact with digital content during lessons. Virtual Learning Environments (VLEs) such as Google Classroom allow students to access resources, submit work, and receive feedback online from any device. Tablets and laptops enable personalised, self-paced learning."
+      "back": "Interactive whiteboards and VLEs like Google Classroom."
     },
     {
       "id": "a14",
       "section": "A",
       "code": "A1.3.2",
       "front": "What is a flowchart? Name FOUR standard symbols used.",
-      "back": "A diagram showing the step-by-step flow of a process or algorithm using standard shapes. Symbols: Oval/terminator (start and end points), Rectangle (process or action), Diamond (decision — yes/no branch), Parallelogram (input or output), Arrow (direction of flow). Used to plan algorithms, system processes, and troubleshooting guides."
+      "back": "A diagram of a process's steps. Oval (start/end), rectangle (process), diamond (decision), parallelogram (input/output)."
     },
     {
       "id": "a15",
       "section": "A",
       "code": "A2.1.1",
       "front": "Name FOUR input devices and describe their use.",
-      "back": "Keyboard: types text and commands. Mouse: moves pointer and selects items in a GUI. Barcode scanner: reads product barcodes for stock control or retail. Microphone: captures audio for voice recognition or recording. Scanner: converts physical documents into digital images. Touchscreen: touch-based input combining input and output in one surface."
+      "back": "Keyboard (typing), mouse (pointing), barcode scanner (stock), microphone (audio)."
     },
     {
       "id": "a16",
       "section": "A",
       "code": "A2.1.2",
       "front": "Name FOUR output devices and describe their use.",
-      "back": "Monitor: displays visual output (text, images, video). Printer: produces hard-copy output — laser printers for high-volume black-and-white; inkjet for colour quality. Speakers: produce audio output. Projector: displays screen content on a large surface for presentations. Braille embosser: produces tactile braille output for visually impaired users."
+      "back": "Monitor (display), printer (hard copy), speakers (audio), projector (presentations)."
     },
     {
       "id": "a17",
       "section": "A",
       "code": "A2.2",
       "front": "Name FOUR assistive technologies and state who benefits from each.",
-      "back": "Screen reader: converts on-screen text to speech — benefits visually impaired users. Adaptive keyboard: larger keys or modified layout — benefits users with motor difficulties. Braille display: converts text to tactile braille output — benefits blind users. Eye-tracking software: controls the cursor using eye movement — benefits users with severe motor impairment. Speech-to-text: converts spoken words to text — benefits users with dyslexia or limited hand mobility."
+      "back": "Screen reader (visually impaired), adaptive keyboard (motor), braille display (blind), eye tracking (severe motor)."
     },
     {
       "id": "a18",
       "section": "A",
       "code": "A2.4",
       "front": "What is the difference between manual and automatic data processing?",
-      "back": "Manual: a person inputs, processes, or verifies data (e.g. a clerk entering invoice data by hand). Slower and more prone to human error, but may be needed for complex or irregular data. Automatic: systems process data without human intervention (e.g. barcode scanners at checkout, automated bank transactions). Faster, more consistent, and handles large volumes — but requires initial setup and maintenance."
+      "back": "Manual: done by a person, slower and error-prone. Automatic: done by the system, fast and consistent."
     },
     {
       "id": "a19",
       "section": "A",
       "code": "A3.1",
       "front": "Name SIX types of operating system and briefly describe each.",
-      "back": "Batch: processes jobs in groups without user interaction (e.g. payroll). Multitasking: runs multiple programs simultaneously (e.g. Windows, macOS). Network OS: manages shared network resources and user access (e.g. Windows Server). Real-time OS: processes inputs instantly with minimal delay (e.g. aircraft controls). Mobile OS: designed for smartphones/tablets (e.g. Android, iOS). Multi-user OS: allows multiple users to access the system simultaneously (e.g. Linux servers)."
+      "back": "Batch (jobs in groups), multitasking, network, real-time (instant, e.g. aircraft), mobile, multi-user."
     },
     {
       "id": "a20",
       "section": "A",
       "code": "A3.2.1",
       "front": "How does the operating system manage networking?",
-      "back": "The OS handles protocols (rules for data transmission), establishes and maintains network connections, allocates network resources to processes, monitors bandwidth usage, and ensures data is sent and received correctly. Example: Windows manages TCP/IP connections and assigns IP addresses via DHCP. Without OS networking management, devices cannot communicate on a network."
+      "back": "It handles protocols and connections, shares out network resources, and gets IPs via DHCP."
     },
     {
       "id": "a21",
       "section": "A",
       "code": "A3.2.2",
       "front": "How does the operating system manage security?",
-      "back": "Access control: restricts which users can access files or applications. Built-in malware protection (e.g. Windows Defender) scans for threats. Drive encryption (e.g. BitLocker) protects stored data. OS-level firewall blocks unauthorised network traffic. Audit logs record login attempts and file access so administrators can detect suspicious activity."
+      "back": "Access control, antivirus, drive encryption, firewall and audit logs."
     },
     {
       "id": "a22",
       "section": "A",
       "code": "A3.2.4",
       "front": "How does an OS manage multitasking?",
-      "back": "The OS uses process scheduling to share CPU time between multiple running programs. Methods include round-robin (each process gets equal time slices) and priority scheduling (higher-priority processes get more CPU time). Context switching saves the state of one process so the CPU can switch to another and return. This creates the appearance of simultaneous execution."
+      "back": "Scheduling shares CPU time between programs, switching fast so they seem simultaneous."
     },
     {
       "id": "a23",
       "section": "A",
       "code": "A3.2.5",
       "front": "What is a device driver and why is it needed?",
-      "back": "Software that allows the OS to communicate with a hardware device (e.g. printer, graphics card, webcam). It translates generic OS commands into device-specific instructions. Without the correct driver, the OS cannot use the device. Drivers must be updated when OS updates occur — outdated drivers can cause errors, crashes, or security vulnerabilities."
+      "back": "Software that lets the OS talk to a hardware device, e.g. a printer."
     },
     {
       "id": "a24",
       "section": "A",
       "code": "A3.2.6",
       "front": "How does an OS manage user accounts?",
-      "back": "The OS authenticates users (username + password, biometrics, or MFA). User profiles store individual settings and preferences. Account management tools set permissions — what files and applications each user can access. Administrator accounts have full system access; standard accounts are restricted, reducing the risk of damage if an account is compromised."
+      "back": "Authenticates users, stores profiles, and sets permissions (admin vs standard)."
     },
     {
       "id": "a25",
       "section": "A",
       "code": "A3.3",
       "front": "What is the difference between utility software and application software? Give an example of each.",
-      "back": "Utility software: performs maintenance or management tasks for the OS or hardware (e.g. antivirus, disk defragmenter, backup software, compression tools). Runs in the background to keep the system running efficiently. Application software: designed for end-user tasks (e.g. word processor, spreadsheet, web browser, photo editor). Used directly by the user to complete specific tasks."
+      "back": "Utility: maintains the system (antivirus). Application: user tasks (word processor)."
     },
     {
       "id": "a26",
       "section": "A",
       "code": "A3.4",
       "front": "Give FOUR factors that affect the choice of operating system or application software.",
-      "back": "1. Cost: licensing fees, subscription costs, or free (open source). 2. Compatibility: must work with existing hardware and other software. 3. Security: frequency of security updates and vulnerability history. 4. Features: must meet user and business needs. 5. Performance: speed and hardware requirements. 6. Business needs: industry-standard software may be required (e.g. Adobe Creative Suite for design agencies)."
+      "back": "Cost, compatibility, security and features."
     },
     {
       "id": "a27a",
       "section": "A",
       "code": "A3.7.1",
       "front": "Name TWO image file formats and state ONE characteristic of each.",
-      "back": "JPEG: lossy compression — reduces file size by permanently discarding some data; used for photographs. PNG: lossless compression — no quality lost, supports transparent backgrounds; used for logos and web graphics. RAW: uncompressed — maximum quality but very large file size; used by professional photographers."
+      "back": "JPEG: lossy, for photos. PNG: lossless, supports transparency."
     },
     {
       "id": "a27b",
       "section": "A",
       "code": "A3.7.2",
       "front": "Name TWO audio file formats and state ONE characteristic of each.",
-      "back": "MP3: lossy compression — significantly smaller file size with slight quality loss; widely used for music streaming and download. WAV: uncompressed — high quality but large file size; used in professional audio recording and editing. FLAC: lossless compression — smaller than WAV but no quality loss; used by audiophiles."
+      "back": "MP3: lossy, small files. WAV: uncompressed, high quality."
     },
     {
       "id": "a27c",
       "section": "A",
       "code": "A3.7.3",
       "front": "Name TWO video file formats and state ONE characteristic of each.",
-      "back": "MP4: lossy compression — good balance of quality and file size; widely compatible across devices and platforms. AVI: older format — larger file sizes, high quality; used in video editing software. MOV: Apple's format — high quality, used on iPhones and Final Cut Pro; less compatible outside Apple devices."
+      "back": "MP4: lossy, works everywhere. MOV: Apple's format, high quality."
     },
     {
       "id": "a28",
       "section": "A",
       "code": "A4.1",
       "front": "Give FIVE factors that affect an organisation's choice of IT system.",
-      "back": "1. User needs: must support the tasks users need to perform. 2. Cost: purchase, maintenance, and training costs. 3. Compatibility: must work with existing systems and software. 4. Security: must meet data protection requirements. 5. Connectivity: network requirements must be met. 6. Implementation: migration timescales, testing, and acceptable downtime must be planned."
+      "back": "User needs, cost, compatibility, security and connectivity."
     },
     {
       "id": "a29a",
       "section": "A",
       "code": "A4.2.1",
       "front": "How is IT used for stock control? Give ONE example.",
-      "back": "EPOS (Electronic Point of Sale) systems record every sale and automatically update stock levels in real time. When stock falls below a set threshold, the system triggers an automatic reorder. Reduces waste, prevents stockouts, and removes the need for manual stock checks."
+      "back": "EPOS updates stock on each sale and reorders automatically when it runs low."
     },
     {
       "id": "a29b",
       "section": "A",
       "code": "A4.2.2",
       "front": "How is IT used for data logging? Give ONE example.",
-      "back": "Sensors automatically record data (e.g. temperature, humidity, pressure) at set intervals without human input. Example: sensors in a pharmaceutical cold-storage unit log temperature every 10 minutes — if readings go out of range, an alert is triggered automatically. Faster and more accurate than manual recording."
+      "back": "Sensors record readings automatically, e.g. temperature in cold storage."
     },
     {
       "id": "a29c",
       "section": "A",
       "code": "A4.2.6",
       "front": "How is IT used for advertising? Give ONE example.",
-      "back": "Digital advertising platforms (e.g. Google Ads, Facebook Ads) analyse transactional and browsing data to display targeted adverts to specific audiences. Example: a user who searched for trainers online is shown adverts for trainers on other websites (retargeting). Far more cost-effective and measurable than traditional print advertising."
+      "back": "Targeted ads based on browsing data, e.g. showing trainer ads after a trainer search."
     },
     {
       "id": "a30",
       "section": "A",
       "code": "A4.3",
       "front": "State THREE ways a new IT system can impact an organisation.",
-      "back": "1. Staff training: employees need initial and ongoing training — increases costs and temporarily reduces productivity. 2. Cost: implementation costs include hardware, software, installation, and downtime during migration. 3. Working practices: workflows and job roles change — some tasks may be automated, altering staffing needs. 4. Productivity: may improve long-term but typically dips during the transition period."
+      "back": "Training costs, implementation costs, and changed working practices."
     },
     {
       "id": "a31",
       "section": "A",
       "code": "A5",
       "front": "Give TWO ways AI/emerging technology affects IT systems, and TWO implications for organisations.",
-      "back": "SYSTEM EFFECTS: AI can optimise resource allocation in real time; machine learning improves predictive maintenance of hardware. ORGANISATIONAL IMPLICATIONS: Automation of repetitive tasks reduces staffing needs (job displacement risk); organisations can process far larger datasets faster, gaining competitive advantage. Security concern: AI is also used by attackers to create more sophisticated threats."
+      "back": "Effects: optimised resources, predictive maintenance. Implications: fewer jobs, faster data processing."
     },
     {
       "id": "f1",
       "section": "F",
       "code": "F2.1.1",
       "front": "What does the Computer Misuse Act 1990 cover?",
-      "back": "Three offences: 1. Unauthorised access to a computer (e.g. hacking) — up to 2 years in prison. 2. Unauthorised access with intent to commit further offence (e.g. hacking to steal data). 3. Unauthorised modification of computer material (e.g. planting a virus, deleting files) — up to 10 years."
+      "back": "Unauthorised access, access with intent to commit further crime, and unauthorised modification."
     },
     {
       "id": "f2",
       "section": "F",
       "code": "F2.1.5",
       "front": "What are the key principles of the Data Protection Act 2018 / GDPR?",
-      "back": "Personal data must be: processed lawfully and with consent; collected for a specific purpose; adequate and not excessive; accurate and up to date; not kept longer than necessary; kept secure. Individuals have rights: to access their data, correct it, and request deletion ('right to be forgotten')."
+      "back": "Lawful, specific purpose, not excessive, accurate, not kept too long, secure."
     },
     {
       "id": "f3",
       "section": "F",
       "code": "F1.1.1",
       "front": "What is a privacy concern in the context of IT systems?",
-      "back": "Individuals may not know what personal data is collected about them (e.g. browsing data, location, purchase history). Data may be sold to third parties without explicit consent. GDPR gives individuals the right to know what data is held and how it is used. Organisations must have transparent privacy policies."
+      "back": "People may not know what data is collected or if it's sold, so clear privacy policies are needed."
     },
     {
       "id": "f4",
       "section": "F",
       "code": "F1.1.3",
       "front": "What is meant by 'unequal access to information technology'?",
-      "back": "Not everyone has equal access to IT — due to cost, disability, age, geography, or digital literacy. This is the 'digital divide'. Can disadvantage individuals in education, employment, and access to services. Organisations and governments should consider accessibility and affordable access to reduce inequality."
+      "back": "The digital divide: cost, disability, age or location stop some people using IT."
     },
     {
       "id": "c22",
       "section": "C",
       "code": "C2.2.1",
       "front": "What is meant by 'user experience' as a consideration when choosing an online community platform?",
-      "back": "User experience covers: ease of use (intuitive interface reduces training time); performance (fast loading, minimal lag); availability (accessible 24/7 from any device); accessibility (usable by people with disabilities, compatible with assistive technologies). Poor user experience leads to low adoption — staff or customers won't use a system that is slow or difficult to navigate."
+      "back": "Ease of use, performance, availability and accessibility."
     },
     {
       "id": "c23",
       "section": "C",
       "code": "C2.2.2",
       "front": "Why is 'meeting user needs' an important consideration when selecting an online community tool?",
-      "back": "The platform must actually support the tasks users need to perform. Example: a customer support team needs threaded conversations and file sharing — a basic chat tool may not meet those needs. If the system does not meet user needs, staff will work around it (using unauthorised tools), creating security and consistency risks. Organisations should consult users before selecting a platform."
+      "back": "If the platform doesn't fit users' tasks, they'll switch to unauthorised tools."
     },
     {
       "id": "c24",
       "section": "C",
       "code": "C2.2.3",
       "front": "Why is cost a consideration when an organisation adopts an online community or communication platform?",
-      "back": "Costs include: subscription or licensing fees (per user or per month); implementation costs (setup, data migration); ongoing maintenance; training staff to use the platform. Hidden costs include lost productivity during transition. Organisations must weigh the total cost of ownership against the benefits — a cheaper platform may lack essential features, increasing costs elsewhere."
+      "back": "Licences, setup, maintenance and training all add up."
     },
     {
       "id": "c25",
       "section": "C",
       "code": "C2.2.5",
       "front": "What security considerations apply when an organisation uses online communities or communication platforms?",
-      "back": "Data shared on third-party platforms (Teams, Slack, social media) may be stored on external servers — organisation has less control. Risks: unauthorised access to internal discussions; data breaches at the platform provider; employees sharing confidential information unintentionally. Mitigations: strong access controls, MFA, clear policies on what may be shared, choosing platforms that are GDPR-compliant and encrypted."
+      "back": "Data sits on third-party servers. Mitigate with MFA, access controls and clear policies."
     },
     {
       "id": "c26",
       "section": "C",
       "code": "C2.2.6",
       "front": "What is downtime and why is it a consideration when using online systems or communities?",
-      "back": "Downtime is when an online system is unavailable — due to maintenance, server failure, or cyberattack. If an organisation relies on a cloud-based communication platform and it goes down, staff cannot collaborate and customers cannot be supported — directly impacting productivity and revenue. Organisations should check a provider's SLA (Service Level Agreement) which guarantees a minimum uptime percentage (e.g. 99.9%)."
+      "back": "Time a system is unavailable, which stops work. Check the provider's SLA uptime."
     },
     {
       "id": "c27",
       "section": "C",
       "code": "C2.2.7",
       "front": "Why is training a consideration when introducing an online community platform?",
-      "back": "Staff need initial training to use a new platform effectively — poorly trained users make mistakes, use the system incorrectly, or avoid using it altogether. Ongoing training is needed when the platform updates. Training has costs (time, money) and temporarily reduces productivity. Ease of use of the platform directly affects how much training is needed — a more intuitive system reduces training burden."
+      "back": "Untrained staff make mistakes or avoid the system, and training costs time and money."
     },
     {
       "id": "c28",
       "section": "C",
       "code": "C2.2.8",
       "front": "Why is integration with current systems a consideration when selecting an online platform?",
-      "back": "A new communication or community platform must work alongside existing systems (e.g. email, CRM, project management tools). Poor integration creates duplication of work — staff must re-enter data in multiple places. APIs allow platforms to share data automatically. Example: Microsoft Teams integrates with Outlook calendar and SharePoint — staff can schedule meetings and share files without switching applications."
+      "back": "It must work with existing systems (e.g. email), or staff end up re-entering data."
     },
     {
       "id": "c29",
       "section": "C",
       "code": "C2.2.9",
       "front": "How can online community tools affect an organisation's productivity?",
-      "back": "POSITIVE: Real-time communication (Teams, Slack) speeds up decision-making; file sharing and collaborative editing reduce delays; remote teams stay connected. NEGATIVE: Constant notifications are distracting — can reduce focus and output; time spent on social media at work reduces productivity; over-reliance on messaging can replace face-to-face communication needed for complex decisions. Organisations must set clear policies on appropriate use."
+      "back": "Positive: faster decisions and collaboration. Negative: constant notifications distract."
     },
     {
       "id": "c30",
       "section": "C",
       "code": "C1.2",
       "front": "How does cloud computing specifically impact INDIVIDUALS (as opposed to organisations)?",
-      "back": "Individuals can access files and services from any device anywhere — no dependence on one physical machine. Software is always up to date (no manual updates needed). Storage is virtually unlimited (Google Drive, iCloud). RISKS: personal data stored by third parties raises privacy concerns; data breaches could expose personal information; if the service is discontinued, data may be lost. Internet dependency means no access during outages."
+      "back": "Benefits: access files anywhere, always up to date. Risks: privacy, needs internet."
     },
     {
       "id": "c31",
       "section": "C",
       "code": "C1.1",
       "front": "When would an organisation choose IaaS, PaaS, or SaaS? Give ONE use case for each.",
-      "back": "IaaS: organisation needs control over OS and software but wants to avoid physical hardware — e.g. a business running its own custom server environment on AWS. PaaS: development team needs an environment to build and test apps without managing servers — e.g. using Google App Engine to deploy a web application. SaaS: standard software needed by non-technical staff — e.g. using Microsoft 365 for email and office tasks. More control = more responsibility for the organisation."
+      "back": "IaaS: custom servers (AWS). PaaS: building apps (App Engine). SaaS: everyday software (Microsoft 365)."
     },
     {
       "id": "f5",
       "section": "F",
       "code": "F1.1.2",
       "front": "Describe TWO environmental impacts of IT systems.",
-      "back": "1. Energy consumption: data centres consume vast amounts of electricity for processing and cooling — a major source of carbon emissions. 2. E-waste: discarded devices contain toxic materials (lead, mercury) — improper disposal pollutes the environment. 3. Manufacturing carbon footprint: producing devices and global IT infrastructure has a large environmental cost. Mitigation: energy-efficient servers, recycling schemes, renewable energy for data centres."
+      "back": "Data centres use huge amounts of energy, and e-waste contains toxic materials."
     },
     {
       "id": "f6",
       "section": "F",
       "code": "F1.1.4",
       "front": "Why is equal access to assistive technology an ethical concern?",
-      "back": "Assistive technology (screen readers, adaptive keyboards, etc.) enables people with disabilities to use IT systems effectively. Without it, they are excluded from employment, education, and services — potentially breaching equality legislation (Equality Act 2010). There is also a cost barrier. Organisations have an ethical and legal duty to make their systems accessible to all users."
+      "back": "Without it, disabled people are shut out of work and education (Equality Act 2010)."
     },
     {
       "id": "f7",
       "section": "F",
       "code": "F1.1.5",
       "front": "What is netiquette? Give FOUR examples of good online behaviour.",
-      "back": "Netiquette (internet etiquette) — rules of respectful and appropriate behaviour online. Examples: 1. Do not write in ALL CAPS (considered shouting). 2. Be respectful — no offensive or discriminatory content. 3. Do not share others' personal information without consent. 4. Cite sources — do not plagiarise. 5. Respond to messages in a reasonable time. Organisations enforce netiquette through Acceptable Use Policies."
+      "back": "Polite online behaviour: no ALL CAPS, be respectful, don't share others' data, cite sources."
     },
     {
       "id": "f8",
       "section": "F",
       "code": "F2.1.2-3",
       "front": "What does copyright legislation protect? How does it apply to digital content?",
-      "back": "The Copyright, Designs and Patents Act 1988 protects original creative works (music, images, software, text, video) — the creator controls how their work is used and copied. Digital implications: illegally copying or distributing software, music, or images online is a criminal offence. Fair dealing allows limited use for education or research. Software is specifically protected — organisations must have valid licences for all software they use."
+      "back": "Original work (software, music, images) from being copied. Using unlicensed software is illegal."
     },
     {
       "id": "f9",
       "section": "F",
       "code": "F2.1.4",
       "front": "What do Health and Safety / Display Screen Equipment (DSE) regulations require?",
-      "back": "DSE regulations protect employees who regularly use computer screens. Requirements: workstations must be assessed for ergonomic risks; employees must have regular breaks from screen use; correct posture (adjustable chair, monitor at eye level, wrists flat); adequate lighting to prevent glare. Employers must provide eye tests on request. Non-compliance risks RSI (repetitive strain injury), eye strain, and back problems — plus legal liability."
+      "back": "Assessed workstations, regular screen breaks, good posture and lighting, free eye tests."
     },
     {
       "id": "a32",
       "section": "A",
       "code": "A1.1.8",
       "front": "What are communication devices? Give THREE examples.",
-      "back": "Devices designed to transmit and receive data between users. Examples: smartphones (calls, texts, internet), routers (connect devices to a network/internet), VoIP phones (voice calls over the internet). Can be wired or wireless; modern devices often combine multiple communication methods."
+      "back": "Devices that send and receive data, e.g. smartphones, routers, VoIP phones."
     },
     {
       "id": "a33",
       "section": "A",
       "code": "A1.3.1",
       "front": "What is a system diagram and what is it used for?",
-      "back": "A visual representation of an IT system showing components and how they connect, using standard symbols. Used to plan, document, and communicate IT infrastructure. Shows relationships between devices (e.g. servers, switches, clients) without showing internal workings. Helps stakeholders understand the system without needing technical knowledge."
+      "back": "A diagram of a system's components and connections, used to plan and explain it."
     },
     {
       "id": "a34",
       "section": "A",
       "code": "A2.1.3",
       "front": "Name FOUR types of storage device and give ONE characteristic of each.",
-      "back": "HDD (Hard Disk Drive): high capacity at low cost per GB — uses spinning magnetic disks. SSD (Solid State Drive): faster read/write speeds, more durable — no moving parts. USB flash drive: small and portable — easy file transfer between devices. Optical disc (DVD/Blu-ray): cheap to produce — used to distribute software and media."
+      "back": "HDD: cheap, high capacity. SSD: fast, no moving parts. USB: portable. Optical: cheap to distribute."
     },
     {
       "id": "b18",
       "section": "B",
       "code": "B2.2.2",
       "front": "What is a LAN? Give TWO advantages for an organisation.",
-      "back": "Local Area Network: connects devices within a small geographic area (e.g. one building). Organisation owns the infrastructure. ADVANTAGES: fast data transfer speeds; allows sharing of resources (printers, files, internet connection); more secure than a WAN as data stays on-site."
+      "back": "A network within one building. Advantages: fast, and shares printers and files."
     },
     {
       "id": "b19",
       "section": "B",
       "code": "B2.3",
       "front": "Give FOUR factors that affect an organisation's choice of network.",
-      "back": "1. Cost: hardware, cabling, and maintenance budget. 2. Security: wired networks more secure than wireless. 3. Performance: speed and bandwidth required. 4. Scalability: whether the network can expand as the organisation grows. 5. Compatibility: new network must work with existing devices and software."
+      "back": "Cost, security, performance and scalability."
     },
     {
       "id": "b20",
       "section": "B",
       "code": "B2.4",
       "front": "How do network components affect performance? Give THREE examples.",
-      "back": "Switch: determines how quickly data is routed between devices — faster switch = less delay. Bandwidth: higher bandwidth allows more data to be transmitted simultaneously. Number of devices: more devices sharing a network reduces available bandwidth per device. Cable type: fibre optic is faster and less prone to interference than copper Ethernet."
+      "back": "Switch speed, bandwidth, number of devices, and cable type (fibre is fastest)."
     },
     {
       "id": "b21",
       "section": "B",
       "code": "B3.1.4",
       "front": "What is a secure payment system? How is transaction data protected?",
-      "back": "An online system for processing financial transactions (e.g. card payments). Protections: HTTPS/SSL encryption protects card data in transit; PCI DSS standard sets security requirements for payment processing; tokenisation replaces real card details with a random token so sensitive data is never stored on the merchant's server."
+      "back": "Card payments protected by HTTPS, PCI DSS rules and tokenisation."
     },
     {
       "id": "b22",
       "section": "B",
       "code": "B3.2",
       "front": "State THREE security risks when transmitting data and a protection for each.",
-      "back": "1. Interception (man-in-the-middle): attacker captures data in transit — PROTECTION: encryption (HTTPS/SSL). 2. Eavesdropping on public Wi-Fi: data can be read by others — PROTECTION: VPN. 3. Spoofing (fake website): users enter data on a fraudulent site — PROTECTION: digital certificates verify site identity."
+      "back": "Interception → encryption. Public Wi-Fi snooping → VPN. Fake sites → digital certificates."
     },
     {
       "id": "f10",
       "section": "F",
       "code": "F1.1.6",
       "front": "What is an Acceptable Use Policy (AUP) and why is it important ethically?",
-      "back": "A formal document stating rules for how employees may use an organisation's IT systems and the internet. Ethical importance: protects individuals from harassment and inappropriate content; ensures staff do not misuse company data; sets expectations for online behaviour. Breaching an AUP can result in disciplinary action or legal consequences."
+      "back": "Rules for using company IT. It protects people from misuse and sets clear expectations."
     }
   ]
 }

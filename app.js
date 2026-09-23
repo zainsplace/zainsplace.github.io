@@ -79,7 +79,8 @@ function defaultUnitState() {
       history: []      // {date, correct, wrong}
     },
     questions: {
-      history: []      // {qId, marks, date, selfScore}
+      history: [],     // {qId, marks, date, selfScore}
+      mocks: []        // {paper, date, score, max, minutes}
     },
     streak: { last: null, count: 0 },
     xp: 0,
@@ -381,6 +382,7 @@ function resetTransientState() {
   qFilter = 'all';
   if (typeof flashPracticeMode !== 'undefined') flashPracticeMode = false;
   qMode = 'browse';
+  mock = null;
   gamesMode = 'menu';
   quizQueue = [];
   quizIdx = 0;
@@ -424,6 +426,7 @@ function stopExtendedTimers() {
 function stopAllTimers() {
   stopGameTimers();
   stopExtendedTimers();
+  stopMockTimer();
 }
 
 function switchUnit(id) {
@@ -1419,7 +1422,8 @@ function renderCurrentFlashcard() {
       <button class="rag-btn active-red" onclick="answerFlash(false)">✗ Didn't know</button>
       <button class="rag-btn active-green" onclick="answerFlash(true)">✓ Got it!</button>
     </div>
-    <div class="progress-bar-wrap" style="margin-top:12px"><div class="progress-bar" id="flash-progress-bar" style="width:${pct}%"></div></div>`;
+    <div class="progress-bar-wrap" style="margin-top:12px"><div class="progress-bar" id="flash-progress-bar" style="width:${pct}%"></div></div>
+    <div class="flash-keys"><kbd>Space</kbd> flip · <kbd>←</kbd> didn't know · <kbd>→</kbd> got it</div>`;
 }
 
 function flipFlashcard() {
@@ -1467,7 +1471,7 @@ function getFlashcardsDueCount() {
 
 /* ---- QUESTIONS ---- */
 let qData = null;
-let qMode = 'browse';
+let qMode = 'browse';   // 'browse' | 'quiz' | 'mock'
 let qFilter = 'all';
 let quizQueue = [];
 let quizIdx = 0;
@@ -1480,43 +1484,120 @@ function renderQuestions() {
     return;
   }
 
-  if (qMode === 'quiz') {
+  if (qMode === 'mock') {
+    renderMock(container);
+  } else if (qMode === 'quiz') {
     renderQuizMode(container);
   } else {
     renderBrowseMode(container);
   }
 }
 
+/* Unit 1 questions are written like the real paper: grouped under a numbered
+   scenario, with a structured mark scheme the student marks themselves against.
+   Unit 2's questions have neither, and keep the plain model answer + 0..N buttons. */
+function qScenario(q) {
+  return q.scenario && qData.scenarios ? qData.scenarios.find(s => s.id === q.scenario) : null;
+}
+
+// Question text uses **bold** (as the paper bolds "two") and blank-line paragraphs.
+function examText(s) {
+  return String(s || '')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .split(/\n\n+/).map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('');
+}
+
 function renderBrowseMode(container) {
   const sections = ['all'].concat(unitLettersUpper());
   const filtered = qFilter === 'all' ? qData.questions : qData.questions.filter(q => q.section === qFilter);
+  const grouped = qData.scenarios && qFilter === 'all';
+  const body = grouped
+    ? qData.scenarios.map(s => renderScenarioBlock(s, filtered.filter(q => q.scenario === s.id))).join('')
+    : filtered.map(q => renderQuestionCard(q, true)).join('');
 
   container.innerHTML = `
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:16px">
       <h2>Practice Questions</h2>
-      <button class="btn btn-primary btn-sm" onclick="startQuiz()">Start Quiz Mode</button>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        ${qData.papers ? `<button class="btn btn-secondary btn-sm" onclick="openMockMenu()">Mock paper</button>` : ''}
+        <button class="btn btn-primary btn-sm" onclick="startQuiz()">Start Quiz Mode</button>
+      </div>
     </div>
+    ${qData.scenarios ? `<p class="q-intro">Set out like the real paper. Read the scenario, then answer each part. The number in brackets is the marks, so it tells you how much to write. When you mark yourself, you mark against the mark scheme, not a guess.</p>` : ''}
     <div class="tabs">
       ${sections.map(s => `<button class="tab-btn ${qFilter === s ? 'active' : ''}" onclick="setQFilter('${s}')">${s === 'all' ? 'All' : s}</button>`).join('')}
     </div>
     <div style="color:var(--text2);font-size:13px;margin-bottom:12px">${filtered.length} questions</div>
-    ${filtered.map(q => renderQuestionCard(q)).join('')}`;
+    ${body}`;
 }
 
-function renderQuestionCard(q) {
+function renderScenarioBlock(s, qs) {
+  if (!qs.length) return '';
+  const total = qs.reduce((n, q) => n + q.marks, 0);
+  return `
+    <section class="exam-q">
+      <div class="exam-q-head"><span class="exam-q-num">${s.number}</span><h3>${s.title}</h3></div>
+      <div class="scenario-stem">${examText(s.stem)}</div>
+      ${qs.map(q => renderQuestionCard(q, false)).join('')}
+      <div class="exam-q-total">(Total for Question ${s.number} = ${total} marks)</div>
+    </section>`;
+}
+
+function renderAnswerArea(q, id) {
+  if (q.commandWord === 'Draw') {
+    return `<p class="q-draw-note">Draw this on paper, then use <strong>Mark my answer</strong> to tick what your diagram shows.</p>`;
+  }
+  if (q.slots > 1) {
+    return Array.from({ length: q.slots }, (_, i) => `
+      <div class="answer-slot"><span aria-hidden="true">${i + 1}</span>
+        <textarea class="quiz-answer-area" id="${id}-${i}" rows="2" aria-label="Answer ${i + 1}"></textarea></div>`).join('');
+  }
+  const rows = q.marks >= 9 ? 12 : q.marks >= 6 ? 8 : 4;
+  return `<textarea class="quiz-answer-area" id="${id}" rows="${rows}" placeholder="Write your answer here..."></textarea>`;
+}
+
+function renderExamQuestion(q, showStem) {
+  const sc = qScenario(q);
+  const peek = sc && showStem ? `
+    <details class="scenario-peek"><summary>Question ${sc.number}: ${sc.title}</summary>
+      <div class="scenario-stem">${examText(sc.stem)}</div></details>` : '';
+  return `
+    ${peek}
+    ${q.context ? `<div class="q-context">${examText(q.context)}</div>` : ''}
+    <div class="q-text">
+      <span class="q-part">${q.part}</span>
+      <div class="q-body">${examText(q.question)}</div>
+      <span class="q-tariff">(${q.marks})</span>
+    </div>`;
+}
+
+function renderQuestionCard(q, showStem) {
   const hist = state.questions.history.filter(h => h.qId === q.id);
   const lastScore = hist.length ? hist[hist.length - 1].selfScore : null;
   const scoreClass = lastScore === null ? '' : lastScore >= 70 ? 'active-green' : lastScore >= 40 ? 'active-amber' : 'active-red';
-
-  return `
-    <div class="question-card" id="qcard-${q.id}">
+  const meta = `
       <div class="question-meta">
         <span class="badge">${q.section}</span>
         <span class="badge">${q.marks} marks</span>
         <span class="badge">${q.commandWord}</span>
         <span class="q-marks">${q.code || ''}</span>
         ${lastScore !== null ? `<span class="badge ${scoreClass}">${lastScore}%</span>` : ''}
-      </div>
+      </div>`;
+
+  if (q.markScheme) {
+    return `
+    <div class="question-card" id="qcard-${q.id}">
+      ${meta}
+      ${renderExamQuestion(q, showStem)}
+      ${renderAnswerArea(q, 'ans-' + q.id)}
+      <button class="btn btn-primary btn-sm" onclick="openMarker('${q.id}', 'browse')">Mark my answer</button>
+      <div class="marker" id="marker-${q.id}" hidden></div>
+    </div>`;
+  }
+
+  return `
+    <div class="question-card" id="qcard-${q.id}">
+      ${meta}
       <p style="font-size:15px;line-height:1.5;margin-bottom:12px">${q.question}</p>
       <textarea class="quiz-answer-area" id="ans-${q.id}" placeholder="Write your answer here..." rows="4"></textarea>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -1557,6 +1638,177 @@ function recordScore(qId, score, maxMarks) {
   if (sm) sm.style.display = 'none';
 }
 
+/* ---- Mark-scheme marker ----
+   points: 1 mark per ticked point.
+   chain:  "identify then expand": a later step only counts once the step before
+           it is ticked, and only as many points as the question asks for count.
+   levels: pick the level that fits, then a mark inside that band. */
+const markerLevel = {};
+
+function findQuestion(qId) {
+  return qData && qData.questions.find(x => x.id === qId);
+}
+
+function levelBands(q) {
+  const size = Math.round(q.marks / 3);
+  const evaluate = q.commandWord === 'Evaluate';
+  const bands = [
+    ['Basic', 'Mostly general knowledge, only loosely tied to the scenario. May only look at one side. Little breaking down of the issue.',
+      'Any conclusion is missing or not backed up.'],
+    ['Good', 'Points are applied to the scenario and both sides are considered. The issue is broken down with some explanation.',
+      'The conclusion is partly supported by your points.'],
+    ['Thorough', 'Every point is applied to the scenario, both sides are balanced, and the issue is broken down in depth.',
+      'The conclusion clearly follows from what you argued.'],
+  ];
+  return bands.map(([name, text, concl], i) => ({
+    level: i + 1, name,
+    min: i * size + 1, max: i === 2 ? q.marks : (i + 1) * size,
+    text: evaluate ? `${text} ${concl}` : text,
+  }));
+}
+
+function maxChains(q) {
+  return Math.max(1, Math.round(q.marks / q.markScheme.steps.length));
+}
+
+function renderMarker(q, ctx) {
+  const ms = q.markScheme;
+  const id = q.id;
+  const list = (title, items, cls) => items && items.length
+    ? `<div class="${cls}"><div class="ms-title">${title}</div><ul>${items.map(t => `<li>${t}</li>`).join('')}</ul></div>` : '';
+
+  let body = '';
+  if (ms.type === 'points') {
+    body = ms.points.concat(['Another valid point that is not listed']).map((p, i) => `
+      <label class="ms-row"><input type="checkbox" data-pt="${i}" onchange="updateMarker('${id}')"><span>${p}</span></label>`).join('');
+  } else if (ms.type === 'chain') {
+    const other = [ms.steps.map((s, i) => i === 0 ? 'Another valid point that is not listed' : 'Expanded it properly')];
+    body = ms.points.concat(other).map(p => `
+      <div class="ms-chain">${p.map((part, s) => `
+        <label class="ms-row${s ? ' ms-sub' : ''}"><input type="checkbox" onchange="updateMarker('${id}')">
+          <span><b>${ms.steps[s]}</b> ${part}</span></label>`).join('')}</div>`).join('');
+  } else {
+    body = `
+      <div class="ms-title">What a strong answer could cover</div>
+      <p class="ms-note">${ms.focus} Tick what you covered to help you judge. There are no marks per point here.</p>
+      ${ms.indicative.map(p => `<label class="ms-row"><input type="checkbox"><span>${p}</span></label>`).join('')}
+      <div class="ms-title" style="margin-top:14px">Which level fits your answer best?</div>
+      <label class="ms-level"><input type="radio" name="lvl-${id}" onchange="pickLevel('${id}', 0)"><span><b>Level 0</b> (0 marks) Nothing creditworthy.</span></label>
+      ${levelBands(q).map(b => `
+        <label class="ms-level"><input type="radio" name="lvl-${id}" onchange="pickLevel('${id}', ${b.level})">
+          <span><b>Level ${b.level}: ${b.name}</b> (${b.min}–${b.max} marks) ${b.text}</span></label>`).join('')}
+      <div class="ms-band" id="band-${id}"></div>`;
+  }
+
+  return `
+    ${list('Watch the wording', q.traps, 'ms-trap')}
+    <div class="ms-rule">${ms.rule || 'Levelled mark scheme: the whole answer is judged, not individual points.'}</div>
+    ${body}
+    ${list('Also credit', ms.accept, 'ms-accept')}
+    ${list('Do not credit', ms.reject, 'ms-reject')}
+    <p class="ms-cap" id="cap-${id}" hidden></p>
+    <details class="ms-example"><summary>Show example answer</summary><div>${examText(q.modelAnswer)}</div></details>
+    <div class="ms-score">
+      <span>Your mark: <strong id="score-${id}">–</strong>/${q.marks}</span>
+      <button class="btn btn-primary btn-sm" onclick="recordMarked('${id}', '${ctx}')">Record mark</button>
+    </div>`;
+}
+
+function openMarker(qId, ctx) {
+  const q = findQuestion(qId);
+  const box = el('marker-' + qId);
+  if (!q || !box) return;
+  if (!box.hidden) { box.hidden = true; return; }
+  delete markerLevel[qId];
+  box.innerHTML = renderMarker(q, ctx);
+  box.hidden = false;
+  updateMarker(qId);
+}
+
+function markerScore(q) {
+  const box = el('marker-' + q.id);
+  const ms = q.markScheme;
+  if (!box) return null;
+  if (ms.type === 'levels') {
+    const lv = markerLevel[q.id];
+    return lv && lv.mark !== undefined ? lv.mark : null;
+  }
+  if (ms.type === 'points') {
+    return Math.min(q.marks, box.querySelectorAll('input[data-pt]:checked').length);
+  }
+  const per = [];
+  box.querySelectorAll('.ms-chain').forEach(row => {
+    let earned = 0, open = true;
+    row.querySelectorAll('input').forEach(b => {
+      b.disabled = !open;
+      if (!open) b.checked = false;
+      if (open && b.checked) earned++;
+      open = open && b.checked;
+    });
+    if (earned) per.push(earned);
+  });
+  const cap = el('cap-' + q.id);
+  const limit = maxChains(q);
+  if (cap) {
+    cap.hidden = per.length <= limit;
+    cap.textContent = `The question asks for ${limit === 1 ? 'one point' : limit + ' points'}. The examiner only marks the first ${limit === 1 ? 'one' : limit} you wrote.`;
+  }
+  per.sort((a, b) => b - a);
+  return Math.min(q.marks, per.slice(0, limit).reduce((a, b) => a + b, 0));
+}
+
+function updateMarker(qId) {
+  const q = findQuestion(qId);
+  const out = el('score-' + qId);
+  if (!q || !out) return;
+  const s = markerScore(q);
+  out.textContent = s === null ? '–' : s;
+}
+
+function pickLevel(qId, level) {
+  const q = findQuestion(qId);
+  const band = el('band-' + qId);
+  if (!q || !band) return;
+  if (level === 0) {
+    markerLevel[qId] = { level: 0, mark: 0 };
+    band.innerHTML = '';
+  } else {
+    const b = levelBands(q)[level - 1];
+    markerLevel[qId] = { level };
+    const marks = Array.from({ length: b.max - b.min + 1 }, (_, i) => b.min + i);
+    band.innerHTML = `
+      <p class="ms-note">Top of the band if you fully meet the description, bottom if you only just reach it.</p>
+      <div class="self-mark">${marks.map(m => `
+        <button class="btn btn-secondary btn-sm" data-mark="${m}" onclick="pickLevelMark('${qId}', ${m})">${m}</button>`).join('')}</div>`;
+  }
+  updateMarker(qId);
+}
+
+function pickLevelMark(qId, mark) {
+  if (!markerLevel[qId]) return;
+  markerLevel[qId].mark = mark;
+  const band = el('band-' + qId);
+  if (band) band.querySelectorAll('[data-mark]').forEach(b => {
+    const on = +b.dataset.mark === mark;
+    b.classList.toggle('btn-primary', on);
+    b.classList.toggle('btn-secondary', !on);
+    b.setAttribute('aria-pressed', on);
+  });
+  updateMarker(qId);
+}
+
+function recordMarked(qId, ctx) {
+  const q = findQuestion(qId);
+  if (!q) return;
+  const score = markerScore(q);
+  if (score === null) { toast('Choose a level and a mark first'); return; }
+  if (ctx === 'quiz') { recordQuizScore(qId, score, q.marks); return; }
+  if (ctx === 'mock') { recordMockMark(qId, score); return; }
+  recordScore(qId, score, q.marks);
+  const box = el('marker-' + qId);
+  if (box) box.hidden = true;
+}
+
 function setQFilter(f) {
   qFilter = f;
   renderQuestions();
@@ -1584,6 +1836,30 @@ function renderQuizMode(container) {
     return;
   }
   const q = quizQueue[quizIdx];
+  if (q.markScheme) {
+    container.innerHTML = `
+    <div class="quiz-wrap">
+      <div class="quiz-progress">
+        <span>${quizIdx + 1}/${quizQueue.length}</span>
+        <div class="bar"><div class="bar-fill" style="width:${Math.round((quizIdx/quizQueue.length)*100)}%"></div></div>
+        <button class="btn btn-secondary btn-sm" onclick="qMode='browse';renderQuestions()">Exit</button>
+      </div>
+      <div class="card" style="margin-bottom:12px">
+        <div class="question-meta">
+          <span class="badge">${q.section}</span>
+          <span class="badge">${q.marks} marks</span>
+          <span class="badge">${q.commandWord}</span>
+        </div>
+        ${qScenario(q) ? `<div class="exam-q-head"><span class="exam-q-num">${qScenario(q).number}</span><h3>${qScenario(q).title}</h3></div>
+        <div class="scenario-stem">${examText(qScenario(q).stem)}</div>` : ''}
+        ${renderExamQuestion(q, false)}
+        ${renderAnswerArea(q, 'quiz-ans')}
+        <button class="btn btn-primary btn-full" onclick="openMarker('${q.id}', 'quiz')">Mark my answer</button>
+        <div class="marker" id="marker-${q.id}" hidden></div>
+      </div>
+    </div>`;
+    return;
+  }
   container.innerHTML = `
     <div class="quiz-wrap">
       <div class="quiz-progress">
@@ -1629,6 +1905,297 @@ function recordQuizScore(qId, score, maxMarks) {
   saveState();
   quizIdx++;
   renderQuestions();
+}
+
+/* ---- MOCK PAPER ----
+   A whole paper under exam conditions: answer everything against the clock with
+   no mark schemes in sight, then mark each part afterwards. The clock counts to a
+   fixed end time, so leaving the page does not pause it, as in the exam hall.
+   Answers live in memory only, like extended-writing drafts. */
+let mock = null;   // { paperId, phase: 'sit'|'mark'|'done', endAt, startedAt, answers, scores, minutesUsed }
+let mockTick = null;
+
+// The real Unit 1 paper is 90 marks in 2 hours; mocks keep that pace.
+function mockMinutes(marks) { return Math.round(marks * 4 / 3); }
+
+function mockPaper(id) { return (qData.papers || []).find(p => p.id === id); }
+
+function paperQuestions(p) {
+  return p.scenarios.flatMap(sid => qData.questions.filter(q => q.scenario === sid));
+}
+
+function paperMarks(p) { return paperQuestions(p).reduce((n, q) => n + q.marks, 0); }
+
+function stopMockTimer() {
+  if (mockTick) { clearInterval(mockTick); mockTick = null; }
+}
+
+function openMockMenu() {
+  qMode = 'mock';
+  mock = null;
+  renderQuestions();
+}
+
+function exitMock() {
+  if (mock && mock.phase === 'sit' && !confirm('Leave this paper? Your answers will be lost.')) return;
+  if (mock && mock.phase === 'mark' && !confirm('Leave without seeing your results? Your marking will be lost.')) return;
+  stopMockTimer();
+  mock = null;
+  qMode = 'browse';
+  renderQuestions();
+}
+
+function startMock(paperId) {
+  const p = mockPaper(paperId);
+  if (!p) return;
+  const now = Date.now();
+  mock = { paperId, phase: 'sit', startedAt: now, endAt: now + mockMinutes(paperMarks(p)) * 60000,
+           answers: {}, scores: {}, minutesUsed: 0 };
+  stopMockTimer();
+  mockTick = setInterval(updateMockClock, 1000);
+  renderQuestions();
+  window.scrollTo(0, 0);
+}
+
+function updateMockClock() {
+  if (!mock || mock.phase !== 'sit') { stopMockTimer(); return; }
+  const left = Math.max(0, Math.round((mock.endAt - Date.now()) / 1000));
+  const t = el('mock-timer');
+  if (t) {
+    const h = Math.floor(left / 3600), m = Math.floor(left % 3600 / 60), s = left % 60;
+    t.textContent = `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    t.classList.toggle('warning', left <= 600 && left > 60);
+    t.classList.toggle('critical', left <= 60);
+  }
+  if (left === 0) {
+    toast('Time is up. Pens down.', 3000);
+    finishMock(true);
+  }
+}
+
+function mockSave(input) {
+  if (mock) mock.answers[input.id] = input.value;
+}
+
+function finishMock(timeUp) {
+  if (!mock || mock.phase !== 'sit') return;
+  if (!timeUp && !confirm('Finish the paper and start marking?')) return;
+  stopMockTimer();
+  mock.minutesUsed = Math.min(Math.round((Date.now() - mock.startedAt) / 60000), mockMinutes(paperMarks(mockPaper(mock.paperId))));
+  mock.phase = 'mark';
+  if (currentPage === 'questions' && qMode === 'mock') { renderQuestions(); window.scrollTo(0, 0); }
+}
+
+function renderMock(container) {
+  if (!mock) return renderMockMenu(container);
+  const p = mockPaper(mock.paperId);
+  if (mock.phase === 'sit') return renderMockSit(container, p);
+  if (mock.phase === 'mark') return renderMockMarking(container, p);
+  return renderMockResults(container, p);
+}
+
+function renderMockMenu(container) {
+  const past = (state.questions.mocks || []).filter(m => typeof m.score === 'number' && typeof m.max === 'number');
+  container.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+      <h2>Mock Paper</h2>
+      <button class="btn btn-secondary btn-sm" onclick="exitMock()">Back to questions</button>
+    </div>
+    <p class="q-intro">Sit a whole paper against the clock, as in the real exam: four scenarios, answer every part, no mark schemes until you finish. Then mark each answer against the mark scheme to get your total. Have paper and a pen ready for the diagram question.</p>
+    <div class="mock-papers">
+      ${qData.papers.map(p => {
+        const marks = paperMarks(p);
+        const mine = past.filter(m => m.paper === p.id);
+        const best = mine.length ? Math.max(...mine.map(m => Math.round(m.score / m.max * 100))) : null;
+        return `
+        <div class="card mock-paper-card">
+          <h3>${p.title}</h3>
+          <div class="mock-paper-meta">${marks} marks · ${mockMinutes(marks)} minutes</div>
+          <ol class="mock-paper-list">${p.scenarios.map(sid => {
+            const sc = qData.scenarios.find(s => s.id === sid);
+            return `<li>${sc ? sc.title : sid}</li>`;
+          }).join('')}</ol>
+          ${best !== null ? `<div class="mock-paper-meta">Attempts: ${mine.length} · Best: ${best}%</div>` : ''}
+          <button class="btn btn-primary btn-full" onclick="startMock('${p.id}')">Start ${p.title}</button>
+        </div>`;
+      }).join('')}
+    </div>
+    ${past.length ? `
+      <h3 style="margin:18px 0 8px">Past attempts</h3>
+      <div class="mock-history">${past.slice(-8).reverse().map(m => {
+        const p = mockPaper(m.paper);
+        return `<div><span>${p ? p.title : 'Mock paper'}</span><span>${String(m.date || '')}</span><strong>${m.score}/${m.max} (${Math.round(m.score / m.max * 100)}%)</strong></div>`;
+      }).join('')}</div>` : ''}`;
+}
+
+function renderMockSit(container, p) {
+  const marks = paperMarks(p);
+  const qs = paperQuestions(p);
+  container.innerHTML = `
+    <div class="mock-bar">
+      <strong>${p.title}</strong>
+      <span class="timer-display mock-timer" id="mock-timer" role="timer" aria-label="Time remaining">–</span>
+      <button class="btn btn-primary btn-sm" onclick="finishMock(false)">Finish and mark</button>
+    </div>
+    <div class="mock-front">
+      <strong>Answer ALL questions.</strong> Total ${marks} marks · ${mockMinutes(marks)} minutes.
+      The marks for each part are shown in brackets. Use them to judge how much to write.
+      <button class="btn btn-secondary btn-sm" style="margin-left:auto" onclick="exitMock()">Leave paper</button>
+    </div>
+    ${p.scenarios.map((sid, i) => {
+      const sc = qData.scenarios.find(s => s.id === sid);
+      const parts = qs.filter(q => q.scenario === sid);
+      return `
+      <section class="exam-q">
+        <div class="exam-q-head"><span class="exam-q-num">${i + 1}</span><h3>${sc.title}</h3></div>
+        <div class="scenario-stem">${examText(sc.stem)}</div>
+        ${parts.map(q => `
+          <div class="question-card">
+            ${renderExamQuestion(q, false)}
+            ${renderAnswerArea(q, 'mock-' + q.id)}
+          </div>`).join('')}
+        <div class="exam-q-total">(Total for Question ${i + 1} = ${parts.reduce((n, q) => n + q.marks, 0)} marks)</div>
+      </section>`;
+    }).join('')}
+    <div class="exam-q-total" style="font-size:15px">TOTAL FOR PAPER = ${marks} MARKS</div>
+    <button class="btn btn-primary btn-full" style="margin-top:12px" onclick="finishMock(false)">Finish and mark</button>`;
+  container.querySelectorAll('textarea').forEach(t => {
+    t.value = mock.answers[t.id] || '';
+    t.addEventListener('input', () => mockSave(t));
+  });
+  updateMockClock();
+}
+
+// What the student wrote for one part, as read-only text for marking.
+function mockAnswerHtml(q) {
+  if (q.commandWord === 'Draw') return '<em>Drawn on paper. Look at your diagram while you tick.</em>';
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const base = 'mock-' + q.id;
+  const parts = q.slots > 1
+    ? Array.from({ length: q.slots }, (_, i) => mock.answers[`${base}-${i}`] || '').map((a, i) => a.trim() ? `${i + 1}. ${a}` : '')
+    : [mock.answers[base] || ''];
+  const text = parts.filter(a => a.trim()).join('\n');
+  return text ? esc(text) : '<em>No answer written.</em>';
+}
+
+function mockProgressHtml(p) {
+  const qs = paperQuestions(p);
+  const done = qs.filter(q => q.id in mock.scores);
+  const got = done.reduce((n, q) => n + mock.scores[q.id], 0);
+  return `Marked <strong>${done.length}</strong> of ${qs.length} parts · <strong>${got}</strong>/${paperMarks(p)} marks so far`;
+}
+
+function renderMockMarking(container, p) {
+  const qs = paperQuestions(p);
+  container.innerHTML = `
+    <div class="mock-bar">
+      <strong>Marking: ${p.title}</strong>
+      <span class="mock-progress" id="mock-progress">${mockProgressHtml(p)}</span>
+      <button class="btn btn-primary btn-sm" onclick="showMockResults()">See results</button>
+    </div>
+    <p class="q-intro">Time used: ${mock.minutesUsed} minutes. Mark each part honestly against the mark scheme. Read the "Do not credit" list before you tick. Parts you skip count as 0.</p>
+    ${p.scenarios.map((sid, i) => {
+      const sc = qData.scenarios.find(s => s.id === sid);
+      return `
+      <section class="exam-q">
+        <div class="exam-q-head"><span class="exam-q-num">${i + 1}</span><h3>${sc.title}</h3></div>
+        <details class="scenario-peek"><summary>Re-read the scenario</summary><div class="scenario-stem">${examText(sc.stem)}</div></details>
+        ${qs.filter(q => q.scenario === sid).map(q => `
+          <div class="question-card" id="mockq-${q.id}">
+            ${renderExamQuestion(q, false)}
+            <div class="mock-answer">${mockAnswerHtml(q)}</div>
+            <div class="mock-marked" id="mocked-${q.id}" ${q.id in mock.scores ? '' : 'hidden'}>
+              Marked <strong>${mock.scores[q.id] ?? ''}</strong>/${q.marks}
+              <button class="btn btn-secondary btn-sm" onclick="remarkMock('${q.id}')">Re-mark</button>
+            </div>
+            <div class="marker" id="marker-${q.id}" ${q.id in mock.scores ? 'hidden' : ''}>${q.id in mock.scores ? '' : renderMarker(q, 'mock')}</div>
+          </div>`).join('')}
+      </section>`;
+    }).join('')}
+    <button class="btn btn-primary btn-full" onclick="showMockResults()">See results</button>`;
+  qs.forEach(q => { if (!(q.id in mock.scores)) updateMarker(q.id); });
+}
+
+function recordMockMark(qId, score) {
+  const q = findQuestion(qId);
+  if (!mock || !q) return;
+  mock.scores[qId] = score;
+  const box = el('marker-' + qId);
+  if (box) box.hidden = true;
+  const done = el('mocked-' + qId);
+  if (done) { done.hidden = false; done.querySelector('strong').textContent = score; }
+  const prog = el('mock-progress');
+  if (prog) prog.innerHTML = mockProgressHtml(mockPaper(mock.paperId));
+  // Carry on to the next unmarked part, as an examiner works down the paper.
+  const next = paperQuestions(mockPaper(mock.paperId)).find(x => !(x.id in mock.scores));
+  if (next && el('mockq-' + next.id)) el('mockq-' + next.id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function remarkMock(qId) {
+  const q = findQuestion(qId);
+  const box = el('marker-' + qId);
+  if (!q || !box) return;
+  delete mock.scores[qId];
+  delete markerLevel[qId];
+  el('mocked-' + qId).hidden = true;
+  box.innerHTML = renderMarker(q, 'mock');
+  box.hidden = false;
+  updateMarker(qId);
+  const prog = el('mock-progress');
+  if (prog) prog.innerHTML = mockProgressHtml(mockPaper(mock.paperId));
+}
+
+function showMockResults() {
+  const p = mockPaper(mock.paperId);
+  const qs = paperQuestions(p);
+  const unmarked = qs.filter(q => !(q.id in mock.scores)).length;
+  if (unmarked && !confirm(`${unmarked} part${unmarked === 1 ? ' is' : 's are'} not marked yet and will count as 0. See results anyway?`)) return;
+  qs.forEach(q => { if (!(q.id in mock.scores)) mock.scores[q.id] = 0; });
+  const score = qs.reduce((n, q) => n + mock.scores[q.id], 0);
+  const max = paperMarks(p);
+  state.questions.mocks = state.questions.mocks || [];
+  state.questions.mocks.push({ paper: p.id, date: today(), score, max, minutes: mock.minutesUsed });
+  qs.forEach(q => state.questions.history.push({ qId: q.id, marks: q.marks, date: today(),
+                                                  selfScore: Math.round(mock.scores[q.id] / q.marks * 100) }));
+  state.xp = (state.xp || 0) + score * 2;
+  bumpActivity();
+  saveState();
+  mock.phase = 'done';
+  renderQuestions();
+  window.scrollTo(0, 0);
+}
+
+function renderMockResults(container, p) {
+  const qs = paperQuestions(p);
+  const sum = list => list.reduce((a, q) => [a[0] + mock.scores[q.id], a[1] + q.marks], [0, 0]);
+  const pct = ([g, m]) => m ? Math.round(g / m * 100) : 0;
+  const [score, max] = sum(qs);
+  const extended = sum(qs.filter(q => q.marks >= 6 && q.commandWord !== 'Draw'));
+  const short = sum(qs.filter(q => !(q.marks >= 6 && q.commandWord !== 'Draw')));
+  const weaker = pct(extended) < pct(short)
+    ? 'Your extended answers (6, 9 and 12 marks) dropped the most marks. Practise applying every point to the scenario and ending with a conclusion that follows from your points.'
+    : 'Your short answers dropped the most marks. Re-read the "Watch the wording" notes. Most lost marks come from answering a slightly different question.';
+  const row = (label, [g, m]) => `
+    <div class="mock-row"><span>${label}</span>
+      <div class="bar"><div class="bar-fill" style="width:${pct([g, m])}%"></div></div>
+      <strong>${g}/${m}</strong></div>`;
+
+  container.innerHTML = `
+    <div class="card mock-result">
+      <div class="mock-paper-meta">${p.title} · ${mock.minutesUsed} of ${mockMinutes(max)} minutes used</div>
+      <div class="mock-score">${score}<span>/${max}</span></div>
+      <div class="mock-paper-meta">${pct([score, max])}% · +${score * 2} XP</div>
+    </div>
+    <h3 style="margin:18px 0 8px">By question</h3>
+    ${p.scenarios.map((sid, i) => row(`Q${i + 1} ${qData.scenarios.find(s => s.id === sid).title}`, sum(qs.filter(q => q.scenario === sid)))).join('')}
+    <h3 style="margin:18px 0 8px">By type</h3>
+    ${row('Short answers (2–4 marks, plus the diagram)', short)}
+    ${row('Extended answers (6, 9, 12 marks)', extended)}
+    <p class="q-intro" style="margin-top:12px">${weaker}</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+      <button class="btn btn-primary btn-sm" onclick="openMockMenu()">Back to mock papers</button>
+      <button class="btn btn-secondary btn-sm" onclick="exitMock()">Back to questions</button>
+    </div>`;
 }
 
 /* ---- EXTENDED RESPONSE ---- */
@@ -3621,6 +4188,26 @@ document.addEventListener('DOMContentLoaded', () => {
   loadData(unitLetters());
   updateNavAvatar();
   navigate('home');
+});
+
+/* Flashcards: Space flips, → is "Got it", ← is "Didn't know". The arrows only
+   grade once the card is flipped, matching the on-screen buttons. */
+document.addEventListener('keydown', e => {
+  if (currentPage !== 'flashcards' || e.repeat) return;
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  const t = e.target;
+  if (t && (/^(INPUT|SELECT|TEXTAREA)$/.test(t.tagName) || t.isContentEditable)) return;
+  if (!el('flash-inner')) return;
+  if (e.key === ' ' || e.key === 'Spacebar') {
+    // A focused button or role="button" (the card itself) handles Space already.
+    if (e.defaultPrevented || (t && (t.tagName === 'BUTTON' || t.getAttribute('role') === 'button'))) return;
+    e.preventDefault();
+    flipFlashcard();
+  } else if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+    if (!flashFlipped) return;
+    e.preventDefault();
+    answerFlash(e.key === 'ArrowRight');
+  }
 });
 
 document.addEventListener('keydown', e => {

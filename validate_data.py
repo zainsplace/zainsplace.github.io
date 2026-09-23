@@ -137,6 +137,33 @@ for unit, (folder, letters) in UNITS.items():
         all_qs = [q['id'] for q in qs]
         if len(all_qs) != len(set(all_qs)):
             err('%s: duplicate question ids' % unit)
+        # Exam-style questions: every scenario reference resolves and every
+        # mark scheme is one the marker in app.js knows how to score.
+        qfile = load(folder, 'questions')
+        scen_ids = {s['id'] for s in qfile.get('scenarios', [])}
+        for p in qfile.get('papers', []):
+            missing = [s for s in p.get('scenarios', []) if s not in scen_ids]
+            if missing or not p.get('scenarios'):
+                err('%s: mock paper %s has missing scenarios %s' % (unit, p.get('id'), missing))
+        for q in qs:
+            if q.get('scenario') and q['scenario'] not in scen_ids:
+                err('%s: question %s points at unknown scenario %s' % (unit, q['id'], q['scenario']))
+            ms = q.get('markScheme')
+            if not ms:
+                continue
+            kind = ms.get('type')
+            if kind == 'points' and not ms.get('points'):
+                err('%s: question %s has an empty points mark scheme' % (unit, q['id']))
+            elif kind == 'chain':
+                steps = len(ms.get('steps', []))
+                if not steps or any(len(p) != steps for p in ms.get('points', [])):
+                    err('%s: question %s chain points do not match its steps' % (unit, q['id']))
+            elif kind == 'levels':
+                if q['marks'] % 3 or not ms.get('indicative'):
+                    err('%s: question %s levels need marks divisible by 3 and indicative content'
+                        % (unit, q['id']))
+            elif kind not in ('points', 'chain'):
+                err('%s: question %s has unknown mark scheme type %r' % (unit, q['id'], kind))
     except (FileNotFoundError, KeyError) as e:
         err('%s: questions.json unreadable (%s)' % (unit, e))
 
