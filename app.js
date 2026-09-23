@@ -481,6 +481,7 @@ function navigate(page, opts = {}) {
     matchGame = null;
     fitbState = null;
     mcq = null;
+    battle = null;
   }
   currentPage = page;
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -3442,23 +3443,34 @@ function startBattle(mode, targetName) {
     battle.players.forEach(p => {
       if (!p.me) p.blitzFinal = Math.max(2, Math.round(6 + p.skill * 14 + (Math.random() * 6 - 3)));
     });
-    battleTick = setInterval(() => {
-      if (currentPage !== 'games' || !battle || battle.mode !== 'blitz') { stopBattleTick(); return; }
-      const left = Math.max(0, battle.blitzEnd - Date.now());
-      const elapsed = (60000 - left) / 60000;
-      battle.players.forEach(p => { if (!p.me) p.score = Math.min(p.blitzFinal, Math.floor(p.blitzFinal * elapsed)); });
-      const bar = el('battle-bar');
-      if (bar) bar.style.width = (left / 600) + '%';
-      const clock = el('blitz-clock');
-      if (clock) clock.textContent = Math.ceil(left / 1000) + 's';
-      const strip = el('battle-strip');
-      if (strip) strip.innerHTML = battleStripHTML();
-      if (left <= 0) { finishBattle(); renderGames(); }
-    }, 250);
   }
   gamesMode = 'battle';
   renderGames();
   if (mode !== 'blitz') startBattleQuestion();
+}
+
+function blitzLeft() {
+  return Math.max(0, battle.blitzEnd - Date.now());
+}
+
+/* Blitz runs ONE clock for the whole minute; it also moves the rivals' scores.
+   It must survive answering questions (only a per-question timer is stopped
+   there) and is restarted by renderBattleUI if you left the page and came back. */
+function startBlitzTick() {
+  stopBattleTick();
+  battleTick = setInterval(() => {
+    if (currentPage !== 'games' || !battle || battle.mode !== 'blitz' || battle.over) { stopBattleTick(); return; }
+    const left = blitzLeft();
+    const elapsed = (60000 - left) / 60000;
+    battle.players.forEach(p => { if (!p.me) p.score = Math.min(p.blitzFinal, Math.floor(p.blitzFinal * elapsed)); });
+    const bar = el('battle-bar');
+    if (bar) bar.style.width = (left / 600) + '%';
+    const clock = el('blitz-clock');
+    if (clock) clock.textContent = Math.ceil(left / 1000) + 's';
+    const strip = el('battle-strip');
+    if (strip) strip.innerHTML = battleStripHTML();
+    if (left <= 0) { finishBattle(); renderGames(); }
+  }, 250);
 }
 
 function startBattleQuestion() {
@@ -3487,12 +3499,14 @@ function renderBattleUI(container) {
   const q = battle.qs[battle.idx];
   if (!q) { finishBattle(); renderBattleEnd(container); return; }
   const target = battle.mode === 'race' ? ' · first to 10' : battle.mode === 'duel' ? ' · first to 4 points' : '';
+  const blitz = battle.mode === 'blitz';
+  if (blitz && blitzLeft() <= 0) { finishBattle(); renderBattleEnd(container); return; }
 
   container.innerHTML = `
     <div class="quiz-wrap" style="max-width:680px">
       <div class="quiz-progress">
-        <span>${BATTLE_MODES[battle.mode].icon} ${BATTLE_MODES[battle.mode].name}${target}${battle.mode === 'blitz' ? ' · <strong id="blitz-clock">60s</strong>' : ''}</span>
-        <div class="bar"><div class="bar-fill" id="battle-bar" style="width:100%"></div></div>
+        <span>${BATTLE_MODES[battle.mode].icon} ${BATTLE_MODES[battle.mode].name}${target}${blitz ? ` · <strong id="blitz-clock">${Math.ceil(blitzLeft() / 1000)}s</strong>` : ''}</span>
+        <div class="bar"><div class="bar-fill" id="battle-bar" style="width:${blitz ? blitzLeft() / 600 : 100}%"></div></div>
         <button class="btn btn-secondary btn-sm" onclick="quitBattle()">Quit</button>
       </div>
       <div class="battle-strip" id="battle-strip">${battleStripHTML()}</div>
@@ -3505,6 +3519,7 @@ function renderBattleUI(container) {
         <div id="battle-result"></div>
       </div>
     </div>`;
+  if (blitz && !battleTick) startBlitzTick();
 }
 
 function quitBattle() {
@@ -3517,7 +3532,8 @@ function quitBattle() {
 function answerBattle(i) {
   if (!battle || battle.answered) return;
   battle.answered = true;
-  stopBattleTick();
+  // Only the per-question timer stops here. Blitz's clock is for the whole minute.
+  if (battle.mode !== 'blitz') stopBattleTick();
   const q = battle.qs[battle.idx];
   const me = battle.players[0];
   const myTime = i < 0 ? BATTLE_Q_SECS : +(((Date.now() - battle.qStart) / 1000)).toFixed(1);
