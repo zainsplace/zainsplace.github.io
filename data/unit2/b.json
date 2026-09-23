@@ -15,64 +15,63 @@
             {
               "code": "B1.1.1",
               "term": "Network Types (LAN, WAN, etc.)",
-              "definition": "The main categories of network defined by their geographic size and purpose.",
-              "examples": "A LAN in one office; a WAN linking offices across the country; a PAN connecting a phone to earbuds.",
-              "examTip": "LAN = one site; WAN = wide area (e.g. the internet); SAN = storage; PAN = personal (Bluetooth range).",
+              "definition": "The main kinds of network, defined by size and purpose.",
+              "examples": "A LAN in one office; a WAN linking offices nationally; a PAN of phone and earbuds.",
+              "examTip": "LAN = one site; WAN = wide area; SAN = storage; PAN = personal.",
               "keyFacts": [
-                "LAN — Local Area Network (one site)",
-                "WLAN — Wireless LAN",
-                "WAN — Wide Area Network (large/geographic)",
-                "SAN — Storage Area Network; PAN — Personal Area Network",
-                "The internet — the global WAN"
+                "LAN / WLAN: one site, wired or wireless",
+                "WAN: large area",
+                "SAN: storage; PAN: personal",
+                "The internet: the global WAN"
               ]
             },
             {
               "code": "B1.1.2",
               "term": "Private Network Types",
-              "definition": "Networks restricted to particular users rather than the open internet.",
-              "examples": "A company intranet for staff; an extranet giving suppliers limited access; a private cloud network.",
-              "examTip": "Intranet = internal only; Extranet = extends to selected outsiders (e.g. partners/suppliers).",
+              "definition": "Networks restricted to particular users instead of the open internet.",
+              "examples": "A staff intranet; an extranet for suppliers.",
+              "examTip": "Intranet = staff only. Extranet = selected outsiders too.",
               "keyFacts": [
-                "Intranet — private network for an organisation's staff",
-                "Extranet — controlled access for selected external partners",
-                "Cloud network — private networking over cloud infrastructure"
+                "Intranet: private, for staff",
+                "Extranet: controlled access for partners",
+                "Cloud network: private networking in the cloud"
               ]
             },
             {
               "code": "B1.1.3",
               "term": "Wired & Wireless Integration",
-              "definition": "Combining wired and wireless technologies in one network, and the issues this raises.",
-              "examples": "Wi-Fi access points connected to a wired Ethernet backbone; managing channels to avoid interference.",
-              "examTip": "Issues fall into compatibility, admin (channels/IP) and technical (signal strength/interference).",
+              "definition": "Combining wired and wireless technology in one network, and the issues it raises.",
+              "examples": "Wi-Fi access points connected to a wired backbone.",
+              "examTip": "Issues: compatibility, admin (channels, IPs) and technical (signal, interference).",
               "keyFacts": [
-                "Ethernet standards for wired and wireless (802 family)",
-                "Compatibility/interoperability issues (protocols, access points)",
-                "Admin issues (channels, IP addresses)",
-                "Technical issues (signal strength, interference)"
+                "802 family of standards",
+                "Compatibility between protocols and access points",
+                "Admin: channels and IP addresses",
+                "Signal strength and interference"
               ]
             },
             {
               "code": "B1.1.4",
               "term": "Schematic Diagrams",
-              "definition": "Logical and physical diagrams that show how a network is laid out, sometimes including port numbers or addresses.",
-              "examples": "Completing a network diagram by adding a firewall between the router and the switch (sample paper Q1).",
-              "examTip": "You may be asked to interpret OR amend a network diagram — practise adding devices like firewalls and labelling connections.",
+              "definition": "Diagrams showing how a network is laid out, sometimes with ports or addresses.",
+              "examples": "Adding a firewall between the router and the switch.",
+              "examTip": "Practise reading and changing diagrams, e.g. adding a firewall and labelling links.",
               "keyFacts": [
-                "Logical diagrams show data flow; physical diagrams show real devices/cabling",
-                "May show specific port numbers or network addresses",
-                "Exam may ask you to complete/amend a diagram"
+                "Logical: how data flows",
+                "Physical: real devices and cabling",
+                "May show ports or addresses"
               ]
             },
             {
               "code": "B1.1.5",
               "term": "Network Features/Requirements",
-              "definition": "The qualities organisations need from a network, several of which relate to security.",
-              "examples": "Designing for scalability and fault tolerance so the network copes with growth and failures.",
-              "examTip": "Security-related requirements include security settings, reliability, fault tolerance and backup management.",
+              "definition": "The qualities an organisation needs from its network, many linked to security.",
+              "examples": "Designing for growth and to survive failures.",
+              "examTip": "Security-related needs: security settings, reliability, fault tolerance, backups.",
               "keyFacts": [
-                "Scalability, performance/response time, reliability",
-                "Software/hardware and file sharing/compatibility",
-                "Backup management, security settings, fault tolerance, communications"
+                "Scalability and performance",
+                "Reliability and fault tolerance",
+                "Backup management and security settings"
               ]
             }
           ]
@@ -85,24 +84,24 @@
               "code": "B1.2",
               "term": "Network Topologies",
               "definition": "The physical and logical arrangement of devices on a network.",
-              "examples": "A star topology where every device connects to a central switch; a wireless mesh for resilient coverage.",
-              "examTip": "Physical topology = the layout of cables/devices; logical topology = how data actually flows (bus/ring).",
+              "examples": "A star network around a switch; a wireless mesh.",
+              "examTip": "Physical = cable and device layout; logical = how data flows.",
               "keyFacts": [
-                "Physical: star, extended star, hierarchical, wireless mesh, ad-hoc (BYOD)",
-                "Logical: logical bus, logical ring",
-                "Star is common — failure of one cable doesn't down the whole network"
+                "Physical: star, extended star, hierarchical, mesh",
+                "Logical: bus or ring",
+                "In a star, one broken cable doesn't stop the network"
               ]
             },
             {
               "code": "B1.3",
               "term": "Network Architecture",
-              "definition": "The model used to organise how devices share resources and responsibilities.",
-              "examples": "A client/server network with central control; a peer-to-peer network sharing files directly.",
-              "examTip": "Client/server = central control & security; peer-to-peer = no central server; thin client = processing on the server.",
+              "definition": "How devices on a network share resources and responsibilities.",
+              "examples": "Client/server with central control; peer-to-peer file sharing.",
+              "examTip": "Client/server = central control and security; P2P = no server; thin client = processing on the server.",
               "keyFacts": [
-                "Peer-to-peer — devices share resources directly, no central server",
-                "Client/server — central server controls resources and security",
-                "Thin client — minimal local device, processing done on the server"
+                "Peer-to-peer: devices share directly",
+                "Client/server: central control",
+                "Thin client: the server does the processing"
               ]
             }
           ]
@@ -114,52 +113,52 @@
             {
               "code": "B1.4.1",
               "term": "Virtualisation",
-              "definition": "Running multiple virtual machines/environments on one physical host, improving security through isolation.",
-              "examples": "Sandboxing a suspicious program in an isolated virtual machine; segmenting workloads.",
-              "examTip": "Security benefit: isolation/sandboxing reduces the attack surface and contains threats.",
+              "definition": "Running several virtual machines on one physical machine, isolating them from each other.",
+              "examples": "Testing a suspicious program in an isolated virtual machine.",
+              "examTip": "Security benefit: isolation contains threats and shrinks the attack surface.",
               "keyFacts": [
-                "Segmentation of systems",
-                "Isolation/sandboxing/containerisation",
-                "Reduced attack surface"
+                "Segments systems",
+                "Sandboxing and containers",
+                "Smaller attack surface"
               ]
             },
             {
               "code": "B1.4.2",
               "term": "Cloud Computing (security issues)",
-              "definition": "Security risks that come with relying on cloud services.",
-              "examples": "A default-open access setting exposing storage; account hijacking; an insecure API to a cloud service.",
-              "examTip": "Cloud risks: misconfiguration/default settings, provider reliance, API vulnerabilities, account hijacking.",
+              "definition": "Security risks that come from relying on cloud services.",
+              "examples": "Storage left open by default settings; hijacked accounts.",
+              "examTip": "Risks: misconfiguration, reliance on the provider, insecure APIs, hijacking.",
               "keyFacts": [
-                "Configuration issues / default access settings",
-                "Reliance on the service provider; data leaks/loss/theft",
-                "API vulnerabilities in the interface to cloud services",
+                "Wrong or default settings",
+                "Reliance on the provider",
+                "Insecure APIs",
                 "Account hijacking"
               ]
             },
             {
               "code": "B1.4.3a",
               "term": "BYOD (Bring Your Own Device)",
-              "definition": "Allowing staff to use their own devices for work, which creates data-security and management issues.",
-              "examples": "An employee's personal phone holding company emails; wiping company data when they leave.",
-              "examTip": "BYOD blurs personal/organisational data — issues include password policy, privacy, wiping data, and patching.",
+              "definition": "Staff using their own devices for work, mixing personal and company data.",
+              "examples": "Company email on a personal phone.",
+              "examTip": "Issues: passwords, privacy, patching, wiping data when staff leave.",
               "keyFacts": [
-                "Organisational data on a private device",
-                "Issues: password policy, privacy, data security on/off device",
-                "Patches/updates/compatibility; separating org vs personal apps",
-                "Wiping data when no longer required; auditing data movement"
+                "Company data on a private device",
+                "Enforcing password policy",
+                "Keeping it patched",
+                "Wiping company data when no longer needed"
               ]
             },
             {
               "code": "B1.4.3b",
               "term": "SDN, SAN, IoT & Remote Working",
-              "definition": "Further modern trends: software-defined networking, storage area networks, IoT, and remote working — each with security implications.",
-              "examples": "SDN centrally managing segmentation; a home worker needing a VPN on an insecure home Wi-Fi.",
-              "examTip": "Remote working risks: shared home devices, insecure home Wi-Fi, reliance on third-party tools — needs VPN/encryption.",
+              "definition": "Other trends (SDN, SANs, IoT and remote working) and their security issues.",
+              "examples": "A home worker needing a VPN on insecure home Wi-Fi.",
+              "examTip": "Remote working risks: shared devices, home Wi-Fi, third-party tools. Needs a VPN.",
               "keyFacts": [
-                "SDN — segmentation, remote management, automation, scalability",
-                "SAN — redundancy, scalability, access controls, encryption",
-                "IoT — API issues, default passwords, no patches, botnets, eavesdropping",
-                "Remote working — shared devices, home Wi-Fi security, need for VPN"
+                "SDN: central management and segmentation",
+                "SAN: redundancy, access control, encryption",
+                "IoT: default passwords, no patches, botnets",
+                "Remote working: shared devices, home Wi-Fi"
               ]
             }
           ]
@@ -177,37 +176,38 @@
             {
               "code": "B2.1.1",
               "term": "End-User Devices",
-              "definition": "Devices used directly by people, with connectivity and processing, plus fixed networked devices.",
-              "examples": "Smartphones, laptops, tablets, smartwatches; servers, workstations, NAS, networked printers.",
-              "examTip": "Split into mobile devices and fixed networked devices (server, PC, printer, scanner, NAS).",
+              "definition": "Devices people use directly, both mobile and fixed.",
+              "examples": "Phones, laptops, tablets; servers, PCs, networked printers.",
+              "examTip": "Split into mobile devices and fixed networked devices.",
               "keyFacts": [
-                "Mobile: phone, laptop, tablet, console, smartwatch, camera, VR/AR",
-                "Fixed: server, PC/workstation, printer, scanner, NAS",
-                "Multi-functional devices combine several of these"
+                "Mobile: phone, laptop, tablet, smartwatch",
+                "Fixed: server, PC, printer, NAS",
+                "Multifunction devices combine several"
               ]
             },
             {
               "code": "B2.1.2",
               "term": "Connectivity Devices",
-              "definition": "Hardware that connects devices and networks together and directs traffic.",
-              "examples": "A managed switch segmenting traffic; a router joining networks; a gateway translating between protocols.",
-              "examTip": "Switch (connects devices in a LAN), router (joins networks), gateway (translates protocols), bridge, repeater, AP, modem.",
+              "definition": "Hardware that connects devices and networks and directs traffic.",
+              "examples": "A switch in a LAN; a router joining networks.",
+              "examTip": "Switch: connects devices in a LAN. Router: joins networks. Gateway: translates protocols.",
               "keyFacts": [
-                "Switch (managed/unmanaged), router (wired/wireless), gateway",
-                "Bridge, repeater, access point, USB hub (active/passive)",
-                "Modem: DSL/copper, optical fibre, wireless"
+                "Switch (managed or unmanaged)",
+                "Router and gateway",
+                "Bridge, repeater, access point",
+                "Modem: DSL, fibre, wireless"
               ]
             },
             {
               "code": "B2.1.3",
               "term": "Connection Media",
-              "definition": "The cabled and wireless media that carry network data.",
-              "examples": "Ethernet (CAT6) cable; optical fibre; Wi-Fi; Bluetooth; Li-Fi.",
-              "examTip": "Optical fibre = fast, secure, hard to tap. Wireless media (Wi-Fi/Bluetooth/NFC) are easier to intercept.",
+              "definition": "The cables and wireless links that carry network data.",
+              "examples": "Ethernet cable; fibre; Wi-Fi; Bluetooth.",
+              "examTip": "Fibre is fast and hard to tap; wireless is easier to intercept.",
               "keyFacts": [
-                "Cable: Ethernet, USB (current + legacy)",
-                "Wireless: Wi-Fi (802.11), NFC, Bluetooth, cellular/5G",
-                "Optical fibre and Li-Fi"
+                "Cable: Ethernet, USB",
+                "Wireless: Wi-Fi, Bluetooth, NFC, 5G",
+                "Fibre and Li-Fi"
               ]
             }
           ]
@@ -219,26 +219,26 @@
             {
               "code": "B2.2",
               "term": "Security Issues of External Media",
-              "definition": "The security risks of removable storage and external media.",
-              "examples": "A lost USB stick exposing data; an external drive used to spread malware; data corruption over time.",
-              "examTip": "External media risks: loss/theft, interception/copying, malware vector, lifespan/failure — mitigated by encryption and secure disposal.",
+              "definition": "The security risks of removable storage.",
+              "examples": "A lost USB stick; an external drive spreading malware.",
+              "examTip": "Risks: loss/theft, copying, malware, failure. Fix with encryption and secure disposal.",
               "keyFacts": [
-                "Encryption and secure disposal of media",
-                "Loss/theft and interception/copying",
-                "Data loss/corruption and media lifespan/failure",
-                "Acts as a malware vector"
+                "Loss, theft and copying",
+                "Can carry malware",
+                "Media fails over time",
+                "Encrypt and dispose of securely"
               ]
             },
             {
               "code": "B2.3",
               "term": "Software Components",
-              "definition": "The operating systems, monitoring tools and applications that run on a network.",
-              "examples": "A packet sniffer analysing traffic; an events/logs viewer; remote-access admin tools.",
-              "examTip": "Monitoring tools (performance monitor, logs viewer, vulnerability scanner, packet sniffer) are key for spotting incidents — link to D2.",
+              "definition": "The OSs, monitoring tools and applications running on a network.",
+              "examples": "A packet sniffer; a log viewer; remote admin tools.",
+              "examTip": "Monitoring tools help spot incidents: link to forensics.",
               "keyFacts": [
-                "Network/device OS: GUI, CLI, web interface for configuration",
-                "Monitoring tools: performance monitor, logs viewer, vulnerability scanner, packet sniffer",
-                "Applications: remote working tools, database, document management, mapping tools"
+                "Configured through GUI, CLI or web interface",
+                "Monitoring: performance, logs, vulnerability scans, packet sniffing",
+                "Remote working and document tools"
               ]
             }
           ]
@@ -256,39 +256,39 @@
             {
               "code": "B3.1.1",
               "term": "TCP/IP",
-              "definition": "The core suite of protocols used to transmit data across networks and the internet, organised as a four-layer model.",
-              "examples": "TCP breaking a file into packets, IP addressing them, and TLS securing the connection.",
-              "examTip": "TCP/IP uses a four-layer model; TLS adds security; packets have headers; error correction ensures delivery.",
+              "definition": "The core set of rules for sending data across networks as packets.",
+              "examples": "TCP splits a file into packets, IP addresses them, TLS secures the link.",
+              "examTip": "Four-layer model; TLS adds security; error correction ensures delivery.",
               "keyFacts": [
                 "Four-layer model",
-                "Transport Layer Security (TLS) for secure connections",
-                "Data sent as packets with headers",
+                "TLS for secure connections",
+                "Packets with headers",
                 "Error correction"
               ]
             },
             {
               "code": "B3.1.2-3",
               "term": "Ports & Packets",
-              "definition": "Ports identify services/connections; packets are the units data is broken into for transmission.",
-              "examples": "Port 443 for HTTPS; a TCP packet with header, payload and trailer.",
-              "examTip": "Packet structure: header (addresses), payload (data), trailer/footer (error check). Know TCP vs UDP.",
+              "definition": "Ports identify services; packets are the chunks data is split into.",
+              "examples": "Port 443 for HTTPS.",
+              "examTip": "Packet = header (addresses), payload (data), trailer (error check). Know TCP vs UDP.",
               "keyFacts": [
-                "Hardware ports (switch) vs software/virtual IP ports",
-                "Packet parts: header, payload/body, trailer/footer",
-                "Packet types: TCP (reliable), IP, UDP (fast, no guarantee)"
+                "Hardware ports vs software ports",
+                "Header, payload, trailer",
+                "TCP: reliable; UDP: fast, no guarantee"
               ]
             },
             {
               "code": "B3.1.4",
               "term": "NAT & IP Addressing",
-              "definition": "Network Address Translation maps private internal addresses to public ones; addressing uses IPv4/IPv6 and reserved private ranges.",
-              "examples": "A home router using NAT so many devices share one public IP; 192.168.x.x private addresses.",
-              "examTip": "Know the private ranges (10.x, 172.16-31.x, 192.168.x), APIPA (169.254.x) and loopback 127.0.0.1.",
+              "definition": "NAT maps private addresses to a public one; private IP ranges are reserved for internal use.",
+              "examples": "Many home devices sharing one public IP.",
+              "examTip": "Private ranges: 10.x, 172.16–31.x, 192.168.x. APIPA 169.254.x; loopback 127.0.0.1.",
               "keyFacts": [
-                "NAT types: static, dynamic, Port Address Translation (PAT)",
-                "IPv4 and IPv6 address formats",
-                "RFC 1918 private ranges: 10.x, 172.16-31.x, 192.168.x",
-                "APIPA 169.254.x (DHCP failure); 127.0.0.1 loopback"
+                "NAT types: static, dynamic, PAT",
+                "IPv4 and IPv6",
+                "APIPA 169.254.x = DHCP failed",
+                "127.0.0.1 = loopback"
               ]
             }
           ]
@@ -300,25 +300,25 @@
             {
               "code": "B3.2",
               "term": "Domains, Sub-domains & Segmentation",
-              "definition": "Dividing a network into segments to control access and limit how far an attacker can spread.",
-              "examples": "Putting guest Wi-Fi on a separate segment from staff systems (sample paper Q2).",
-              "examTip": "Segmentation security benefits: limits access, restricts lateral movement, smaller attack surface, simpler damage control.",
+              "definition": "Dividing a network into segments to control access and limit an attacker's spread.",
+              "examples": "Putting guest Wi-Fi on a separate segment from staff systems.",
+              "examTip": "Benefits: limits access, stops lateral movement, smaller attack surface.",
               "keyFacts": [
-                "Uses hierarchy, trust relationships and access control",
-                "Limits access to devices, data and applications",
-                "Restricts lateral movement of an attacker/malware",
-                "Smaller attack surface and simpler damage control"
+                "Limits access to devices and data",
+                "Stops attackers moving sideways",
+                "Smaller attack surface",
+                "Easier to contain damage"
               ]
             },
             {
               "code": "B3.3",
               "term": "Network Configuration Devices",
-              "definition": "The devices used to build and configure networks securely.",
-              "examples": "A firewall filtering traffic; a router directing packets; a WAP providing wireless access.",
-              "examTip": "For 'secure internet access' the expected device is a FIREWALL (sample paper Q1ai).",
+              "definition": "Devices used to build and configure a network securely.",
+              "examples": "A firewall filtering traffic; a router directing packets.",
+              "examTip": "For \"secure internet access\" the expected answer is a FIREWALL.",
               "keyFacts": [
                 "Server, router, switch",
-                "Wireless Access Point (WAP)",
+                "Wireless access point",
                 "Firewall, bridge, gateway"
               ]
             }
@@ -331,51 +331,50 @@
             {
               "code": "B3.4.1",
               "term": "Domain Name System (DNS)",
-              "definition": "The service that resolves human-readable domain names into IP addresses.",
-              "examples": "Typing www.example.com and DNS returning its IP address so the browser can connect.",
-              "examTip": "DNS resolution = name → IP. DNS can be attacked (spoofing/poisoning) — link to A1.2.4.",
+              "definition": "The service that turns domain names into IP addresses.",
+              "examples": "www.example.com → its IP address.",
+              "examTip": "DNS can be attacked by spoofing or poisoning.",
               "keyFacts": [
-                "DNS resolution process (name to IP)",
-                "Reverse DNS resolution (IP to name)",
-                "DNS cache and IPv6 DNS"
+                "Name → IP (and reverse)",
+                "Results are cached",
+                "Supports IPv6"
               ]
             },
             {
               "code": "B3.4.2-3",
               "term": "Directory & Authentication Services",
-              "definition": "Services that manage identities and verify users across a network.",
-              "examples": "Active Directory managing user accounts; MFA at login; single sign-on across apps.",
-              "examTip": "Authentication types: single-factor, two-factor (TFA), multi-factor (MFA), single sign-on (SSO). Protocols: PAP, CHAP, EAP.",
+              "definition": "Services that manage user identities and check them across a network.",
+              "examples": "Active Directory accounts; single sign-on.",
+              "examTip": "Types: single-factor, two-factor, multi-factor, SSO.",
               "keyFacts": [
-                "Directory services: Active Directory, Open Directory, OpenLDAP",
-                "Authentication types: single-factor, TFA, MFA, SSO",
-                "Authentication protocols: PAP, CHAP, EAP"
+                "Active Directory, OpenLDAP",
+                "Single-factor, 2FA, MFA, SSO",
+                "Protocols: PAP, CHAP, EAP"
               ]
             },
             {
               "code": "B3.4.4",
               "term": "DHCP",
-              "definition": "Dynamic Host Configuration Protocol automatically assigns IP addresses and settings to devices on a network.",
-              "examples": "A laptop joining Wi-Fi and being given an IP address, gateway and lease automatically.",
-              "examTip": "DHCP config includes IP range, lease length, gateway, reservations. DHCP has no built-in security (sample paper Q3) — open to spoofing.",
+              "definition": "Automatically gives devices an IP address and network settings.",
+              "examples": "A laptop joining Wi-Fi and getting its settings automatically.",
+              "examTip": "DHCP has no built-in security, so a rogue DHCP server can be set up.",
               "keyFacts": [
-                "DHCP servers assign IPs to clients automatically",
-                "Config: address range, lease info, reservations, server address",
-                "Inherently insecure — no built-in security measures",
-                "Vulnerable to DHCP spoofing/rogue server attacks"
+                "Assigns IP, gateway and lease",
+                "Config: address range, lease, reservations",
+                "No built-in security",
+                "Open to spoofing"
               ]
             },
             {
               "code": "B3.4.5-6",
               "term": "Routing & Remote Access",
-              "definition": "How data is routed between networks, and how remote users connect securely.",
-              "examples": "A VPN giving a home worker secure access to office systems; BGP routing traffic across the internet.",
-              "examTip": "A VPN creates an encrypted 'tunnel' over the internet so remote data can't be read if intercepted (sample paper Q2c).",
+              "definition": "How traffic is routed between networks and how remote users connect securely.",
+              "examples": "A VPN giving a home worker secure access.",
+              "examTip": "A VPN is an encrypted tunnel, so intercepted data can't be read.",
               "keyFacts": [
-                "Routing: static, dynamic/adaptive, routing tables",
-                "IGPs (within a network), EGPs/BGP (between networks/internet)",
-                "Remote access by dial-up or VPN over the internet",
-                "VPN encrypts the connection (a secure tunnel)"
+                "Static or dynamic routing",
+                "BGP routes traffic across the internet",
+                "Remote access via VPN"
               ]
             }
           ]
@@ -387,25 +386,25 @@
             {
               "code": "B3.5.1",
               "term": "File & Print Services",
-              "definition": "Services that provide shared file storage and shared printing across a network.",
-              "examples": "A file server holding shared documents; a print server queuing and prioritising print jobs.",
-              "examTip": "File server = central storage; print server = manages shared printers, queues and drivers.",
+              "definition": "Shared file storage and shared printing across a network.",
+              "examples": "A file server for shared documents; a print server queuing jobs.",
+              "examTip": "File server = central storage; print server = manages shared printers.",
               "keyFacts": [
-                "File server — networked file storage, tracking, sharing",
-                "Print server — sharing, queueing, prioritising",
-                "Printer configuration and driver management"
+                "File server: storage and sharing",
+                "Print server: queues and prioritises",
+                "Manages printer drivers"
               ]
             },
             {
               "code": "B3.5.2",
               "term": "Web, Mail & Communication Services",
-              "definition": "Services delivering web, email and real-time communication, several of which lack built-in encryption.",
-              "examples": "A web server using HTTPS; email sent via SMTP; a VoIP call.",
-              "examTip": "Mail protocols (SMTP, POP, MIME) lack built-in encryption — a security weakness. Web services use HTTP/HTTPS and XML.",
+              "definition": "Web, email and real-time communication services, some without built-in encryption.",
+              "examples": "A website over HTTPS; email via SMTP; a VoIP call.",
+              "examTip": "SMTP and POP have no built-in encryption: a security weakness.",
               "keyFacts": [
-                "Web services: HTTP/HTTPS, XML, OS/language independent",
-                "Mail services: SMTP, POP, MIME — lack built-in encryption",
-                "Comms: email, VoIP, SMS, video conferencing, CaaS"
+                "Web: HTTP/HTTPS",
+                "Mail: SMTP, POP, MIME, unencrypted by default",
+                "Email, VoIP, SMS, video calls"
               ]
             }
           ]

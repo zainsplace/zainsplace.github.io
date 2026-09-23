@@ -15,65 +15,64 @@
             {
               "code": "D1.1.1a",
               "term": "Confiscation of Devices",
-              "definition": "Correctly seizing a device so that evidence is preserved and admissible.",
-              "examples": "Photographing the screen, putting a phone in a Faraday bag, and documenting the chain of custody.",
-              "examTip": "A Faraday bag/cage blocks all signals so the device can't be remotely wiped or communicate. Document chain of custody!",
+              "definition": "Seizing a device correctly so the evidence is preserved and usable in court.",
+              "examples": "Photograph the screen, put the phone in a Faraday bag, record the chain of custody.",
+              "examTip": "A Faraday bag blocks all signals, so the device can't be remotely wiped.",
               "keyFacts": [
-                "Plan for a range of devices; collect passwords/PINs, chargers/cables",
-                "Retain the current power state if possible",
-                "Isolate from networks: photograph screen, airplane mode, Faraday bag/cage",
-                "Appropriate packaging, document chain of custody, establish legal permissions"
+                "Collect passwords, chargers and cables",
+                "Keep its power state if possible",
+                "Isolate: airplane mode or Faraday bag",
+                "Package it and record chain of custody"
               ]
             },
             {
               "code": "D1.1.1b",
               "term": "Imaging & Analysis",
-              "definition": "Taking a forensic image (exact copy) of the system and analysing it with forensic tools.",
-              "examples": "Imaging a drive then reviewing system logs and user activity for evidence of compromise.",
-              "examTip": "You analyse a COPY/image, never the original — this preserves the evidence (link D2.1.3).",
+              "definition": "Making an exact copy (image) of a system and analysing it with forensic tools.",
+              "examples": "Imaging a drive, then reviewing logs and user activity.",
+              "examTip": "Always analyse the COPY, never the original.",
               "keyFacts": [
-                "Take an image (exact copy) of the system",
-                "Use a forensic analysis tool",
-                "Review files, settings, system logs and user activity",
-                "Analyse malware activity and alerts"
+                "Take an exact image",
+                "Use forensic tools",
+                "Review files, logs and user activity",
+                "Look for malware activity"
               ]
             },
             {
               "code": "D1.1.2",
               "term": "Challenges of Live Forensics",
-              "definition": "Difficulties of collecting evidence from a system that is still running.",
-              "examples": "Capturing data in RAM before it is lost when the device is switched off.",
-              "examTip": "Live forensics is tricky because data in active memory (RAM) and temporary files are lost when powered off.",
+              "definition": "The difficulties of collecting evidence from a system that is still running.",
+              "examples": "Capturing RAM before it is lost at power-off.",
+              "examTip": "RAM and temporary files are lost when the device is switched off.",
               "keyFacts": [
-                "Data changes in situ while the system runs",
-                "Recovering/preventing corruption of data",
-                "Capturing data in active memory (RAM) and remote data",
-                "Not losing temporary files"
+                "Data keeps changing while it runs",
+                "Risk of corrupting data",
+                "RAM and remote data are hard to capture"
               ]
             },
             {
               "code": "D1.1.3",
               "term": "Network Forensics",
-              "definition": "Collecting and analysing evidence from network infrastructure after an incident.",
-              "examples": "Reviewing firewall, router and server logs to trace an attacker's activity.",
-              "examTip": "Always agree methodology and get permission first, and ensure testing won't disrupt the live system.",
+              "definition": "Collecting and analysing evidence from network devices after an incident.",
+              "examples": "Reviewing firewall and router logs to trace an attacker.",
+              "examTip": "Agree a method, get permission, and don't disrupt the live system.",
               "keyFacts": [
-                "Agree a methodology with supervisory/investigatory authorities",
-                "Get permission; ensure testing won't disrupt the live system",
-                "Use passive and active analysis tools",
-                "Review firewalls, switches, routers, WAPs and client/server logs"
+                "Agree methodology with authorities",
+                "Get permission first",
+                "Passive and active tools",
+                "Check firewall, switch, router and server logs"
               ]
             },
             {
               "code": "D1.1.4",
               "term": "Documenting the Scene",
-              "definition": "Recording the scene of an incident thoroughly and at the time.",
-              "examples": "Taking photos and diagrams of equipment, plus contemporaneous notes and witness statements.",
-              "examTip": "'Contemporaneous notes' = notes made at the time. These strengthen the reliability of evidence.",
+              "definition": "Recording the incident scene thoroughly and at the time.",
+              "examples": "Photos, diagrams, notes made on the spot, witness statements.",
+              "examTip": "Contemporaneous notes = made at the time. They make evidence more reliable.",
               "keyFacts": [
-                "Plan for a range of scenarios and secure the scene",
-                "Plans, photos and diagrams of the scene",
-                "Contemporaneous notes (made at the time)",
+                "Secure the scene",
+                "Photos and diagrams",
+                "Contemporaneous notes",
                 "Witness statements"
               ]
             }
@@ -92,52 +91,51 @@
             {
               "code": "D2.1.1",
               "term": "Retaining System Snapshots",
-              "definition": "Keeping exact copies/images of the system so they can be compared against a clean original.",
-              "examples": "Taking a physical image of an entire drive and generating a hash to prove it hasn't changed.",
-              "examTip": "A physical image copies the ENTIRE drive (including deleted/temporary files); a targeted image copies only selected files. Physical captures more potential evidence (sample paper Q4c).",
+              "definition": "Keeping exact copies of the system to compare against a clean original.",
+              "examples": "Imaging a whole drive and hashing it to prove it hasn't changed.",
+              "examTip": "Physical image = the whole drive, including deleted files. Targeted image = selected files only.",
               "keyFacts": [
-                "Keep originals/a clean system for comparison",
-                "Generate a hash/checksum for copies/images to prove integrity",
-                "Capture whole disk, files/folders, memory (RAM/BIOS/SIM)",
-                "Include temporary files, deleted data and system-generated files"
+                "Keep a clean original for comparison",
+                "Hash copies to prove they're unchanged",
+                "Capture disk, files and memory",
+                "Include deleted and temporary files"
               ]
             },
             {
               "code": "D2.1.2",
               "term": "Recording Findings & Reliability",
-              "definition": "Documenting all findings and actions so the evidence is reliable and the chain of custody is intact.",
-              "examples": "Logging every action taken, by whom, with timestamps.",
-              "examTip": "No action should change data on the device; collection must be by a competent person; keep a chain of custody.",
+              "definition": "Documenting every finding and action so the evidence is reliable.",
+              "examples": "Logging every action, by whom, with timestamps.",
+              "examTip": "Nothing should change the data; a competent person collects it; keep a chain of custody.",
               "keyFacts": [
-                "No collection/action should change data on the device",
-                "Collection by a competent person",
-                "Create a trail/record of all actions (chain of custody)",
-                "Document who is responsible for collection/decisions"
+                "No action should change the data",
+                "Collected by a competent person",
+                "Chain of custody for every action",
+                "Record who made each decision"
               ]
             },
             {
               "code": "D2.1.3",
               "term": "Recording Alterations",
-              "definition": "Recording any changes — intentional or accidental — made by the investigator, because altered data may be inadmissible.",
-              "examples": "Always working from a copy/image so the original remains untouched.",
-              "examTip": "Altered original data can be ruled inadmissible in court — that's why investigators work with copies/images.",
+              "definition": "Recording any changes the investigator makes, because altered data may be inadmissible.",
+              "examples": "Working only from a copy so the original is untouched.",
+              "examTip": "Altered originals can be thrown out of court, so investigators use copies.",
               "keyFacts": [
-                "Document all actions from initial seizure",
+                "Record every action from seizure",
                 "Altered data may be inadmissible",
-                "Work with copies/images, not the original device"
+                "Work from copies, not the original"
               ]
             },
             {
               "code": "D2.1.4-5",
               "term": "Visual Evidence & False Positives",
-              "definition": "Creating visual evidence of findings, and ensuring evidence is genuine and not a false positive.",
-              "examples": "Screenshots with date-time stamps; manually reviewing alerts to filter out false positives.",
-              "examTip": "High false-positive rates cause 'alert fatigue'. Manual review filters obvious false positives.",
+              "definition": "Creating visual evidence and making sure findings are real, not false positives.",
+              "examples": "Time-stamped screenshots; manually checking alerts.",
+              "examTip": "Too many false positives cause alert fatigue.",
               "keyFacts": [
-                "Visual evidence: photos, videos, screenshots with timestamps/metadata",
-                "Define file signatures and search criteria",
-                "Know tool error rates; manually review positives",
-                "Avoid alert fatigue from too many false positives"
+                "Photos, video and time-stamped screenshots",
+                "Know your tools' error rates",
+                "Manually review positives"
               ]
             }
           ]
@@ -149,40 +147,40 @@
             {
               "code": "D2.2.1",
               "term": "Evidence of a Crime or Incident",
-              "definition": "Assessing whether findings show a crime, regulatory breach, policy breach or other incident.",
-              "examples": "Findings showing a criminal hack, a GDPR breach, or negligence by staff.",
-              "examTip": "Findings could indicate criminal activity, regulatory/contractual breach, policy non-compliance, a cyber attack or negligence.",
+              "definition": "Deciding whether findings show a crime, a legal breach, a policy breach or another incident.",
+              "examples": "Findings showing a hack, a GDPR breach or staff negligence.",
+              "examTip": "Could be crime, a regulatory or contract breach, a policy breach, an attack or negligence.",
               "keyFacts": [
-                "Criminal activity or regulatory breach",
-                "Civil liability / contractual breach",
-                "Non-compliance with internal policy",
-                "Cyber attack, negligence or mismanagement"
+                "Crime or regulatory breach",
+                "Contract breach",
+                "Internal policy breach",
+                "Attack, negligence or mismanagement"
               ]
             },
             {
               "code": "D2.2.2",
               "term": "Signs of System Compromise",
-              "definition": "Indicators that a system has been compromised internally or externally.",
-              "examples": "Unusual outbound traffic to a foreign region; spikes in failed login attempts; unusual DNS requests.",
-              "examTip": "Indicators of compromise: unusual traffic, unusual logins, unusual DNS/port use, suspicious file changes.",
+              "definition": "Signs that a system has been compromised.",
+              "examples": "Unusual traffic abroad; spikes in failed logins; odd DNS requests.",
+              "examTip": "Indicators: unusual traffic, logins, DNS or port use, suspicious file changes.",
               "keyFacts": [
-                "Unusual traffic (inbound/outbound, odd regions, DoS signs)",
-                "Unusual login attempts and DNS requests",
-                "Increase in file/data reads/requests; unusual port usage",
-                "Suspicious changes to files or system data"
+                "Unusual traffic or destinations",
+                "Unusual logins and DNS requests",
+                "Spikes in file reads; odd ports",
+                "Suspicious file changes"
               ]
             },
             {
               "code": "D2.3",
               "term": "Writing Security Reports",
-              "definition": "Producing a structured report on the incident and recommending improvements to prevent recurrence.",
-              "examples": "A report with a clear structure analysing what went wrong and recommending policy and training improvements.",
-              "examTip": "Report structure: title, contents, intro, headings, consistent bullets/numbering, conclusions, citations.",
+              "definition": "A structured report on the incident with recommendations to stop it happening again.",
+              "examples": "A report analysing what went wrong and recommending policy and training changes.",
+              "examTip": "Structure: title, contents, intro, headings, conclusions, citations.",
               "keyFacts": [
-                "Clear structure: title, contents, intro, headings, conclusions, citations",
-                "Analyse: errors in procedures/preventative measures, detection delays",
-                "Recommend improvements to IT policies",
-                "Recommend improvements to physical, software, hardware, process and training measures"
+                "Clear structure",
+                "What went wrong and why detection was slow",
+                "Improve policies",
+                "Improve physical, software, hardware and training measures"
               ]
             }
           ]

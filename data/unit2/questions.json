@@ -17,7 +17,7 @@
       "marks": 2,
       "commandWord": "Describe",
       "question": "Describe the difference between a DoS and a DDoS attack.",
-      "modelAnswer": "A DoS (Denial of Service) attack uses a single computer to flood a target system with traffic so it becomes unavailable. A DDoS (Distributed Denial of Service) attack uses many computers (a botnet) to flood the target at the same time, making it harder to block.",
+      "modelAnswer": "A DoS attack floods a target from a single computer to make it unavailable (1). A DDoS uses many computers (a botnet) at once, so it is much harder to block (1).",
       "markPoints": ["DoS uses a single source/machine (1)", "DDoS uses many sources/a botnet, making it harder to stop (1)"]
     },
     {
@@ -47,7 +47,7 @@
       "marks": 4,
       "commandWord": "Describe",
       "question": "Describe one digital threat to an organisation's network and an appropriate countermeasure for it.",
-      "modelAnswer": "A phishing attack is a threat where an attacker sends a deceptive email pretending to be from a trusted source to trick staff into revealing login credentials. This could give the attacker access to the network. An appropriate countermeasure is regular staff security-awareness training so employees can recognise and report phishing emails, combined with email filtering to block suspicious messages.",
+      "modelAnswer": "Phishing: an email pretending to be from a trusted source tricks staff into giving away their login (1), letting the attacker into the network (1). Countermeasure: security-awareness training plus email filtering (1), so staff recognise and report phishing and most of it never arrives (1).",
       "markPoints": ["Identifies a valid digital threat (1)", "Describes how the threat works/affects the network (1)", "Identifies an appropriate countermeasure (1)", "Explains how the countermeasure reduces the threat (1)"]
     },
     {
@@ -107,7 +107,7 @@
       "marks": 3,
       "commandWord": "Describe",
       "question": "Describe how a VPN allows a remote worker to connect securely to their organisation.",
-      "modelAnswer": "A VPN creates an encrypted tunnel between the remote worker's device and the organisation's network over the public internet (1). Data sent through this tunnel is encrypted, so if it is intercepted it cannot be read (1). This lets the worker access internal files and systems securely as if they were on-site (1).",
+      "modelAnswer": "A VPN creates an encrypted tunnel between the worker's device and the organisation's network over the internet (1). Intercepted data cannot be read (1), so the worker can safely use internal files and systems as if on-site (1).",
       "markPoints": ["Creates a secure tunnel over the internet (1)", "Data is encrypted so interception is useless (1)", "Allows secure access to internal resources (1)"]
     },
     {
@@ -127,7 +127,7 @@
       "marks": 3,
       "commandWord": "Describe",
       "question": "Describe one method of attacking a network by exploiting DHCP.",
-      "modelAnswer": "An attacker sets up a rogue DHCP server on the network (1). Because DHCP has no built-in authentication, client devices may accept IP configuration from the rogue server instead of the legitimate one (1). The attacker can then supply a malicious default gateway/DNS, routing the victim's traffic through their machine to intercept or alter it (1).",
+      "modelAnswer": "The attacker sets up a rogue DHCP server (1). DHCP has no authentication, so devices may accept its settings instead of the real server's (1). It hands out a malicious gateway or DNS server, sending victims' traffic through the attacker to intercept or alter (1).",
       "markPoints": ["Sets up a rogue/fake DHCP server (1)", "DHCP has no authentication so clients trust it (1)", "Attacker redirects/intercepts traffic via malicious settings (1)"]
     },
     {
@@ -137,7 +137,7 @@
       "marks": 3,
       "commandWord": "Describe",
       "question": "Staff and guest Wi-Fi both connect to a single switch, which is a security risk. Describe how the network should be changed to reduce this risk.",
-      "modelAnswer": "The guest and staff traffic should be separated using network segmentation, for example by placing them on separate VLANs or separate switches (1). Guest Wi-Fi should only be given internet access and kept off the internal network (1). This stops guests reaching staff devices/data and limits the lateral movement of any attacker (1).",
+      "modelAnswer": "Separate staff and guest traffic, e.g. on different VLANs or switches (1). Give guests internet access only (1), so they cannot reach staff devices or data and an attacker cannot move across the network (1).",
       "markPoints": ["Separate the networks (segmentation/VLANs/separate switch) (1)", "Restrict guests to internet-only / off internal network (1)", "Prevents access to internal resources / limits attack spread (1)"]
     },
     {
@@ -217,7 +217,7 @@
       "marks": 3,
       "commandWord": "Describe",
       "question": "Describe the process for creating a forensic image of a device's drive.",
-      "modelAnswer": "Connect the drive using a write-blocker so the original data cannot be changed (1). Use forensic imaging software to copy the entire drive bit-for-bit to a secure storage device (1). Generate a hash/checksum of both the original and the copy to prove the image is identical and has not been altered (1).",
+      "modelAnswer": "Connect the drive through a write-blocker so the original can't change (1). Make a bit-for-bit copy with forensic imaging software (1). Hash both the original and the copy to prove they are identical (1).",
       "markPoints": ["Use a write-blocker / prevent changes to the original (1)", "Create a bit-for-bit copy with forensic software (1)", "Generate a hash/checksum to verify integrity (1)"]
     },
     {

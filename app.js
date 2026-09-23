@@ -1211,7 +1211,9 @@ function renderSectionList(container) {
           <div class="tile-accent" style="background:${s.col}"></div>
           <div class="tile-code" style="color:${s.col}">${s.letter}</div>
           <h3>${s.name}</h3>
+          <p>${s.topics}</p>
           <div class="tile-progress"><div class="tile-progress-bar" style="width:${sectionProgress(s.letter)}%;background:${s.col}"></div></div>
+          <div style="font-size:12px;color:var(--text2);margin-top:4px">${sectionProgress(s.letter)}% confident</div>
         </div>`).join('')}
     </div>`;
 }
@@ -1223,7 +1225,7 @@ function renderSectionContent(container, data, letter) {
     <div class="section-header">
       <button class="section-header-back" onclick="navigate('sections')" title="Back">←</button>
       <h2><span style="color:${col}">${data.section}</span> — ${data.title}</h2>
-      <span class="badge ${sectionTierClass(letter)}">${sectionTierClass(letter) === 'tier1' ? 'Tier 1' : 'Tier 2'}</span>
+      <span class="badge ${sectionTierClass(letter)}">Tier ${sectionTier(letter)}</span>
     </div>`;
 
   data.topics.forEach(topic => {
@@ -1231,7 +1233,7 @@ function renderSectionContent(container, data, letter) {
     topic.subtopics.forEach(sub => {
       html += `<div class="subtopic-header" style="font-size:12px;margin-bottom:4px">${sub.code ? sub.code + (sub.title ? ' — ' + sub.title : '') : sub.title || ''}</div>`;
       if (sub.comparisonTable) {
-        html += `<div class="subtopic-table-wrap"><div class="subtopic-table-title">Overview</div>${renderComparisonTable(sub.comparisonTable)}</div>`;
+        html += `<div class="subtopic-table-wrap">${sub.comparisonTable.title ? '' : '<div class="subtopic-table-title">Overview</div>'}${renderComparisonTable(sub.comparisonTable)}</div>`;
       }
       sub.items.forEach(item => {
         html += renderSpecItem(item, letter);
@@ -1386,7 +1388,7 @@ function renderFlashUI() {
       <span style="font-size:14px;color:var(--text2)">${due} due today / ${total} total</span>
       <button class="btn btn-secondary btn-sm" onclick="flashPracticeMode=false;buildFlashQueue();renderFlashUI()">Refresh queue</button>
     </div>
-    ${flashPracticeMode ? `<div style="background:rgba(67,56,202,0.08);border:2px solid rgba(67,56,202,0.25);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:12px;font-size:13px;color:var(--accent2)"><strong>Practice mode</strong> — reviewing all ${flashQueue.length} cards. Leitner progress is not being saved. <button class="btn btn-secondary btn-sm" style="margin-left:8px" onclick="flashPracticeMode=false;buildFlashQueue();renderFlashUI()">Exit practice mode</button></div>` : ''}
+    ${flashPracticeMode ? `<div style="background:var(--accent-light);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:12px;font-size:13px;color:var(--text)"><strong>Practice mode</strong> — reviewing all ${flashQueue.length} cards. Leitner progress is not being saved. <button class="btn btn-secondary btn-sm" style="margin-left:8px" onclick="flashPracticeMode=false;buildFlashQueue();renderFlashUI()">Exit practice mode</button></div>` : ''}
     ${due === 0 && !flashPracticeMode ? `
       <div class="empty-state">
         <div class="icon">🎉</div>
@@ -2209,7 +2211,7 @@ function renderExtended() {
 
   container.innerHTML = `
     <h2 style="margin-bottom:16px">Extended Response Builder</h2>
-    <p style="color:var(--text2);font-size:14px;margin-bottom:16px">Practise long-answer questions under timed conditions. Q4 carries 22 marks — this is where Distinctions are won or lost.</p>
+    <p style="color:var(--text2);font-size:14px;margin-bottom:16px">Practise long answers against the clock, timed at exam pace. Plan with the structure, write, then mark yourself against the mark scheme.</p>
     ${prompts.map((p, i) => renderExtPrompt(p, i)).join('')}`;
   restoreExtDrafts();
 }
@@ -3131,7 +3133,8 @@ function startMatch() {
   const tiles = [];
   pairs.forEach((p, i) => {
     tiles.push({ pair: i, kind: 'term', text: p.term });
-    tiles.push({ pair: i, kind: 'def', text: p.definition.length > 90 ? p.definition.substring(0, 90) + '…' : p.definition });
+    // Definitions are kept to about one line (validate_data.py caps them), so this only guards stray long ones.
+    tiles.push({ pair: i, kind: 'def', text: p.definition.length > 120 ? p.definition.substring(0, 120) + '…' : p.definition });
   });
   tiles.sort(() => Math.random() - 0.5);
   matchGame = { tiles, sel: null, done: new Set(), start: Date.now() };
@@ -3609,9 +3612,10 @@ function buildSparklineSVG(data, width = 200, height = 40) {
     const y = height - (v / max) * height;
     return `${x},${y}`;
   }).join(' ');
-  return `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" style="display:block">
-    <polyline points="${pts}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-    <circle cx="${data.length > 1 ? width : width/2}" cy="${height - (data[data.length-1]/max)*height}" r="3" fill="var(--accent)"/>
+  // Padded viewBox so the stroke and end dot aren't clipped; stretches to its card.
+  const pad = 4;
+  return `<svg width="100%" height="${height}" viewBox="${-pad} ${-pad} ${width + pad * 2} ${height + pad * 2}" preserveAspectRatio="none" style="display:block;overflow:visible">
+    <polyline points="${pts}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
   </svg>`;
 }
 
@@ -3751,15 +3755,15 @@ function setProfileAv(emoji, col) {
 function renderExamKit() {
   const container = el('examkit-content');
 
+  // Marks as they appear on the real Unit 1 paper ("Give two" = 2, one per point).
   const commandWords = [
-    ['State / Give / Name', '1', 'One-word or one-phrase answer. No explanation needed — don\'t waste time.'],
-    ['Identify', '1', 'Pick out the relevant fact from the scenario. Short and direct.'],
-    ['Describe', '2–4', 'Give linked statements that paint a picture. No reasons required.'],
-    ['Explain', '2–4', 'Point + linked expansion. One mark for each. Always include the "because…".'],
-    ['Analyse', '4–6', 'Break it down — how the parts relate, causes and effects, step-by-step logic.'],
-    ['Discuss', '6–9', 'Explore BOTH sides (benefits AND drawbacks), applied to the scenario.'],
-    ['Assess', '6–9', 'Weigh up importance/impact of factors, with a supported judgement.'],
-    ['Evaluate', '9–12', 'Both sides + a justified conclusion. The conclusion is what unlocks Level 3.']
+    ['Give / State', '1 per point', 'Just the point. No explanation needed.'],
+    ['Identify', '1', 'Pick out the relevant fact, often from the scenario.'],
+    ['Describe', '3–4', 'Linked points saying how or what. "Describe one": point, justify, expand.'],
+    ['Explain', '2–4', 'Point + expansion ("because…", "so…") linked to the scenario. 2 marks each.'],
+    ['Draw', '6', 'A diagram with every device from the scenario and each connection labelled.'],
+    ['Discuss', '6', 'Both sides, applied to the scenario. Marked by level.'],
+    ['Evaluate', '9–12', 'Both sides + a conclusion that follows from your points. Marked by level.']
   ];
 
   const keywordBanks = unitDef().keywordBanks || [];
@@ -3782,9 +3786,10 @@ function renderExamKit() {
         <li><strong>Open</strong> — one sentence directly answering the question in scenario terms</li>
         <li><strong>Side 1</strong> — two developed benefits, each linked to the scenario business</li>
         <li><strong>Side 2</strong> — two developed drawbacks/risks, each linked to the scenario</li>
-        <li><strong>Conclusion</strong> — a justified judgement ("Overall… because…"). No conclusion = capped at Level 2</li>
+        <li><strong>Conclusion</strong> — a justified judgement ("Overall… because…"). No supported conclusion = stuck in the lower levels</li>
       </ul>
       <div class="exam-tip">Generic answers cap your marks. Name the business, its size, its data, its budget — every paragraph.</div>
+      <div class="exam-tip" style="margin-top:8px">Read every word of the question. "Other than…", "to the customers" and "acceptable" each rule out answers that would otherwise score.</div>
     </div>
 
     <h3 style="margin:22px 0 12px;font-size:14px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">Rapid-recall keyword banks</h3>
@@ -3862,7 +3867,7 @@ function doSearch(query) {
     <div role="button" tabindex="0" class="search-result" onclick="goToResult('${r.section}', '${r.code}')">
       <div style="display:flex;gap:8px;margin-bottom:4px">
         <span class="badge">${r.code}</span>
-        <span class="badge" style="background:rgba(67,56,202,0.08);color:var(--accent2);border-color:rgba(67,56,202,0.25)">${r.section} — ${r.sectionTitle}</span>
+        <span class="badge" style="background:var(--accent-light);color:var(--accent);border-color:transparent">${r.section} — ${r.sectionTitle}</span>
       </div>
       <h4>${highlight(r.term, query)}</h4>
       <p>${highlight(r.definition.substring(0, 120), query)}${r.definition.length > 120 ? '...' : ''}</p>
@@ -3986,7 +3991,7 @@ function buildDailyPlan() {
     title: 'Practice Questions',
     items: [
       'Answer 2–3 practice questions on your weakest topic',
-      'Self-mark using the model answers',
+      'Mark yourself against the mark scheme',
       (days !== null && !examPassed() && days <= 14) ? 'Try at least 1 extended response (9–12 marks) per session' : 'Attempt a 4-mark "explain" question for any red-coded topic'
     ]
   });

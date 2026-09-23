@@ -1,12 +1,12 @@
 [
   {
     "id": "backup-9",
-    "title": "Evaluate a Backup Strategy (9 marks)",
+    "title": "Evaluate a Backup Strategy",
     "marks": 9,
     "time": 720,
     "section": "A",
     "command": "Evaluate",
-    "question": "A company's backup strategy is: RAID 1 (mirrored drives) on the servers; a daily copy of working files to one of five reused USB sticks (Mon–Fri); a weekly copy of all company data to a portable hard drive; and disk images of all servers, PCs and laptops. Evaluate the effectiveness of this backup strategy. [9 marks]",
+    "question": "A company's backup strategy is: RAID 1 (mirrored drives) on the servers; a daily copy of working files to one of five reused USB sticks (Mon–Fri); a weekly copy of all company data to a portable hard drive; and disk images of all servers, PCs and laptops. Evaluate the effectiveness of this backup strategy.",
     "structure": [
       "Introduce what a good backup strategy needs to achieve (recover all data after loss/attack).",
       "Strengths: disk images allow full restore; weekly full copy; daily incremental-style USB copies; RAID gives uptime.",
@@ -31,12 +31,12 @@
   },
   {
     "id": "macfilter-9",
-    "title": "Evaluate MAC Address Filtering (9 marks)",
+    "title": "Evaluate MAC Address Filtering",
     "marks": 9,
     "time": 720,
     "section": "A",
     "command": "Evaluate",
-    "question": "A company is considering using MAC address filtering to protect both its Staff Wi-Fi and its Guest Wi-Fi. Evaluate the use of MAC address filtering on the company's Wi-Fi. [9 marks]",
+    "question": "A company is considering using MAC address filtering to protect both its Staff Wi-Fi and its Guest Wi-Fi. Evaluate the use of MAC address filtering on the company's Wi-Fi.",
     "structure": [
       "Explain what MAC address filtering does (allow/deny list of device hardware addresses).",
       "Staff Wi-Fi: set up once, only modified for new devices, helps block unlisted devices.",
@@ -63,12 +63,12 @@
   },
   {
     "id": "wpa-9",
-    "title": "Evaluate WPA2 vs WPA3 (9 marks)",
+    "title": "Evaluate WPA2 vs WPA3",
     "marks": 9,
     "time": 720,
     "section": "A",
     "command": "Evaluate",
-    "question": "A company's wireless access points can be configured to use either Wi-Fi Protected Access 2 (WPA2) or WPA3. Evaluate the use of WPA2 and WPA3 on the company's WAPs. [9 marks]",
+    "question": "A company's wireless access points can be configured to use either Wi-Fi Protected Access 2 (WPA2) or WPA3. Evaluate the use of WPA2 and WPA3 on the company's WAPs.",
     "structure": [
       "Explain that both are wireless encryption standards protecting Wi-Fi traffic.",
       "WPA3 strengths: stronger encryption, better protection against password-guessing/brute-force, individualised encryption on open networks.",
@@ -94,12 +94,12 @@
   },
   {
     "id": "physical-9",
-    "title": "Evaluate Office Physical Security (9 marks)",
+    "title": "Evaluate Office Physical Security",
     "marks": 9,
     "time": 720,
     "section": "A",
     "command": "Evaluate",
-    "question": "A company occupies one floor of a shared office building. The lifts, stairwells and toilets are open to the public, and the working area is a single open-plan space that can be partitioned. Evaluate the management of physical security threats to the company's offices. [9 marks]",
+    "question": "A company occupies one floor of a shared office building. The lifts, stairwells and toilets are open to the public, and the working area is a single open-plan space that can be partitioned. Evaluate the management of physical security threats to the company's offices.",
     "structure": [
       "Identify the physical threats from a shared, partly-public building (tailgating, theft of unattended devices, shoulder surfing, access to the server room).",
       "Evaluate controls: controlled doors/card entry, CCTV, security staff, locked server room, clear-desk policy, screen locks.",
@@ -124,12 +124,12 @@
   },
   {
     "id": "policy-9",
-    "title": "Evaluate Security Policies & Training (9 marks)",
+    "title": "Evaluate Security Policies & Training",
     "marks": 9,
     "time": 720,
     "section": "C",
     "command": "Evaluate",
-    "question": "A company relies mainly on technical security measures such as firewalls and antivirus, and has only a brief, one-off staff security training session when employees join. Evaluate the company's approach to managing cyber security through policies and training. [9 marks]",
+    "question": "A company relies mainly on technical security measures such as firewalls and antivirus, and has only a brief, one-off staff security training session when employees join. Evaluate the company's approach to managing cyber security through policies and training.",
     "structure": [
       "Explain that technical measures alone are not enough — many breaches come from people (social engineering, errors).",
       "Strengths of technical measures: firewalls/antivirus block many automated/external threats.",

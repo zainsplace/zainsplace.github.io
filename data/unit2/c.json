@@ -15,129 +15,130 @@
             {
               "code": "C1.1.1a",
               "term": "Cyber Security Policy (Plan-Do-Check-Act)",
-              "definition": "An overarching policy that manages security as an ongoing cycle, using the Plan-Do-Check-Act loop from ISO 27001.",
-              "examples": "An organisation reviewing and improving its security measures every quarter using PDCA.",
-              "examTip": "Plan-Do-Check-Act = continuous improvement. Security is never 'finished' because threats change (link A1.4).",
+              "definition": "The overall security policy, run as a repeating Plan-Do-Check-Act cycle (ISO 27001).",
+              "examples": "Reviewing and improving security measures every quarter.",
+              "examTip": "PDCA = continuous improvement. Security is never finished because threats change.",
               "keyFacts": [
-                "Based on the Plan-Do-Check-Act loop (ISO 27001:2013)",
-                "Treats security as a continuous, repeating cycle",
-                "Covers internet/email use, passwords, staff responsibilities and training"
+                "Plan-Do-Check-Act loop from ISO 27001",
+                "Security as a repeating cycle",
+                "Covers internet use, passwords, staff duties, training"
               ]
             },
             {
               "code": "C1.1.1b",
               "term": "Internet & Email Use Policy",
-              "definition": "Rules governing acceptable use of internet and email at work.",
-              "examples": "Banning download of executable files; warning that the organisation may scan traffic and retain emails.",
-              "examTip": "Covers offensive/illegal material, sending confidential info, copyright, dangerous sites, and monitoring rights.",
+              "definition": "Rules for acceptable internet and email use at work.",
+              "examples": "Banning downloads of executable files; warning that email may be monitored.",
+              "examTip": "Covers offensive material, confidential info, copyright, risky sites and monitoring.",
               "keyFacts": [
-                "No inappropriate, offensive or illegal material",
-                "Rules on sending confidential information and privacy",
-                "No upload/download of copyrighted material or risky executables",
-                "Organisation's right to scan traffic and retain emails"
+                "No offensive or illegal material",
+                "Rules on sending confidential information",
+                "No copyrighted or risky downloads",
+                "The organisation may scan traffic and keep emails"
               ]
             },
             {
               "code": "C1.1.1c",
               "term": "Security & Password Procedures",
-              "definition": "The rules and tools that enforce strong passwords and secure account behaviour.",
-              "examples": "Deny lists blocking common passwords; lockout after failed login attempts; logging password attempts.",
-              "examTip": "A password policy should include: length/strength, sharing rules, uniqueness/reuse, lockout, minimum age, expiry (sample paper Q4a).",
+              "definition": "Rules and tools that enforce strong passwords and safe account use.",
+              "examples": "Blocking common passwords; locking accounts after failed logins.",
+              "examTip": "Include: length/strength, no sharing, no reuse, lockout, minimum age, expiry.",
               "keyFacts": [
-                "Length/strength policy and enforcement tools",
-                "Deny lists of common/weak passwords",
-                "Monitoring/logging of password attempts; lockout policy",
-                "Using technology to reduce reliance on passwords"
+                "Length and strength rules",
+                "Deny list of common passwords",
+                "Log attempts and lock out",
+                "Use technology to rely less on passwords"
               ]
             },
             {
               "code": "C1.1.1d",
               "term": "Staff Responsibilities & Training",
-              "definition": "What staff must do for security, and how the organisation trains them.",
-              "examples": "Staff completing annual security training and reporting suspicious emails.",
-              "examTip": "Effective training is ongoing, flexible, uses varied resources, tracks progress, and uses incentives not punishment.",
+              "definition": "What staff must do for security, and how they are trained.",
+              "examples": "Annual security training; reporting suspicious emails.",
+              "examTip": "Good training is funded, flexible, varied, tracked, rewarding and ongoing.",
               "keyFacts": [
-                "Staff: complete training, follow procedures, report suspicious activity",
-                "Training should be funded, flexible and ongoing",
-                "Use incentives rather than punishment; track progress",
-                "Refresh training for new threats"
+                "Staff: train, follow procedures, report suspicious activity",
+                "Training is ongoing and flexible",
+                "Incentives, not punishment",
+                "Refreshed for new threats"
               ]
             },
             {
               "code": "C1.1.2",
               "term": "Security Audits",
-              "definition": "Checks that verify whether the organisation is complying with its security policies and external regulations.",
-              "examples": "An audit finding that several accounts still belong to ex-employees.",
-              "examTip": "An audit identifies gaps/weaknesses and checks compliance against internal policies AND external laws.",
+              "definition": "A check that the organisation follows its own security policies and the law.",
+              "examples": "Finding accounts that still belong to ex-employees.",
+              "examTip": "Finds gaps and checks against internal policy AND external law.",
               "keyFacts": [
-                "Defined audit goals and scope",
-                "Identifies problems/gaps/weaknesses",
-                "Checks against internal policies and external laws",
-                "Reports results and required improvements"
+                "Set goals and scope",
+                "Find gaps and weaknesses",
+                "Check against policy and law",
+                "Report required improvements"
               ]
             },
             {
               "code": "C1.1.3",
               "term": "Backup Policy",
-              "definition": "A documented policy defining what data is backed up, how, how often and who is responsible.",
-              "examples": "A policy requiring nightly incremental backups, weekly full backups, and quarterly restore tests.",
-              "examTip": "A good backup policy includes testing (restores) and legal compliance — not just doing the backups.",
+              "definition": "A written policy stating what is backed up, how, how often and by whom.",
+              "examples": "Nightly incrementals, weekly fulls, quarterly restore tests.",
+              "examTip": "A good policy includes testing restores and legal compliance.",
               "keyFacts": [
-                "Selection of data, backup methods and type",
-                "Frequency/scheduling and storage strategy",
-                "Responsibility/accountability and backup testing",
-                "Legal compliance and emergency/recovery procedures"
+                "What data, which method and type",
+                "How often, where stored",
+                "Who is responsible",
+                "Test backups regularly"
               ]
             },
             {
               "code": "C1.1.4",
               "term": "Data Protection Policy",
-              "definition": "A policy ensuring the organisation complies with data protection law (GDPR).",
-              "examples": "Appointing a Data Protection Officer and applying the policy to external contractors too.",
-              "examTip": "Links to GDPR (A3). Key elements: DPO, following principles, protecting rights, staff training, accountability.",
+              "definition": "A policy making sure the organisation follows data protection law (GDPR).",
+              "examples": "Appointing a Data Protection Officer; covering contractors too.",
+              "examTip": "Links to GDPR. Key parts: DPO, principles, rights, training, accountability.",
               "keyFacts": [
                 "Appoint a Data Protection Officer",
-                "Follow data protection principles and protect rights/privacy",
-                "Staff training and system security procedures",
-                "Applies to external contractors/vendors too"
+                "Follow GDPR principles and rights",
+                "Train staff",
+                "Applies to contractors"
               ]
             },
             {
               "code": "C1.1.5",
               "term": "Cyber Security Incident Response Policy",
-              "definition": "A plan for how the organisation responds when a security incident occurs.",
-              "examples": "A flowchart for triaging an incident, plus a contact list including legal, PR, HR and insurance.",
-              "examTip": "Response stages: triage/escalation → analysis, containment, mitigation, recovery → review/report/close.",
+              "definition": "The plan for how the organisation responds to a security incident.",
+              "examples": "A triage flowchart and contact list including legal, PR, HR and insurance.",
+              "examTip": "Stages: triage/escalate → contain, mitigate, recover → review and close.",
               "keyFacts": [
-                "Contacts: response lead, IT, senior management, legal, PR, HR, insurance",
-                "Procedures: triage/escalation; containment/mitigation/recovery; review/close",
-                "Communications: backup contact numbers, conference facility"
+                "Contacts: response lead, IT, management, legal, PR, HR, insurance",
+                "Triage and escalation",
+                "Contain, mitigate, recover",
+                "Review, report, close"
               ]
             },
             {
               "code": "C1.1.6",
               "term": "Disaster Recovery Policy",
-              "definition": "A policy for recovering systems and operations after a major disruptive event.",
-              "examples": "Triage deciding whether to activate the incident response, business continuity or full disaster recovery plan.",
-              "examTip": "Disaster recovery includes triage (rating event severity), defined roles, contact lists and monitoring.",
+              "definition": "A policy for restoring systems and operations after a major disruption.",
+              "examples": "Deciding whether to trigger incident response, business continuity or full recovery.",
+              "examTip": "Includes triage (rating severity), roles, contact lists and monitoring.",
               "keyFacts": [
-                "Defined purpose and scope",
-                "Triage: list possible events, their severity and response",
-                "May activate incident response, business continuity or DR plan",
-                "Clear roles, responsibilities and contact lists"
+                "Clear purpose and scope",
+                "Triage: list events and rate severity",
+                "Choose which plan to activate",
+                "Clear roles and contacts"
               ]
             },
             {
               "code": "C1.1.7",
               "term": "External Services Policy",
-              "definition": "A policy governing the use of external providers for cloud, hardware, software and support.",
-              "examples": "A service-level agreement specifying response and fix times for an outsourced support provider.",
-              "examTip": "Covers cloud, hardware, software and support — including SLAs (service time, response time, escalation).",
+              "definition": "A policy for using outside providers for cloud, hardware, software and support.",
+              "examples": "A service level agreement setting response and fix times.",
+              "examTip": "Covers authorisation, accountability, SLAs and incident handling.",
               "keyFacts": [
-                "General: authorisation, accountability, contacts, compliance, incident response",
-                "Cloud: resources to protect, acceptable use, data protection",
-                "Hardware/software: vendors, service agreements, licensing, support",
-                "Support SLAs: service time, response time, fix time, escalation"
+                "Who authorises and who is accountable",
+                "Cloud: what's protected, data protection",
+                "Vendors, licences, support agreements",
+                "SLAs: response and fix times"
               ]
             }
           ]

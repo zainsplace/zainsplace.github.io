@@ -110,6 +110,12 @@ for unit, (folder, letters) in UNITS.items():
         for it in items:
             all_codes.append(it['code'])
 
+        # Notes are kept to flashcard length: games show definitions whole, and
+        # the Match game truncates anything past 120 characters.
+        long_defs = [it['code'] for it in items if len(it.get('definition', '')) > 120]
+        if long_defs:
+            err('%s/%s.json: definitions over 120 characters: %s' % (unit, letter, ', '.join(long_defs[:5])))
+
         # A term with no code cannot be rated or tracked.
         missing = [t.get('title') or t.get('term')
                    for t in items_of(d, []) if not t.get('code')]
@@ -129,6 +135,9 @@ for unit, (folder, letters) in UNITS.items():
         bad = [c['id'] for c in cards if not c.get('front') or not c.get('back')]
         if bad:
             err('%s: flashcards missing front/back: %s' % (unit, bad[:5]))
+        long_backs = [c['id'] for c in cards if len(c.get('back', '')) > 140]
+        if long_backs:
+            err('%s: flashcard answers over 140 characters: %s' % (unit, ', '.join(long_backs[:5])))
     except (FileNotFoundError, KeyError) as e:
         err('%s: flashcards.json unreadable (%s)' % (unit, e))
 

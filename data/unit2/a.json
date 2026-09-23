@@ -15,50 +15,49 @@
             {
               "code": "A1.1.1",
               "term": "Employee Sabotage (deliberate & accidental)",
-              "definition": "Damage or disruption caused by people inside an organisation — either on purpose (a disgruntled worker) or by mistake. Includes theft or loss of physical equipment, data or software/licences, and the use of unauthorised software.",
-              "examples": "An employee copying the customer database to a USB stick before resigning; a worker installing pirated software that brings malware onto the network.",
-              "examTip": "Internal threats come from people with legitimate access, so they are harder to detect than external ones. Always say WHO and WHAT they did.",
+              "definition": "Damage caused by insiders, on purpose or by mistake, including theft and unauthorised software.",
+              "examples": "Copying the customer database to a USB before resigning; installing pirated software.",
+              "examTip": "Insiders have legitimate access, so they are harder to detect. Say WHO did WHAT.",
               "keyFacts": [
-                "Can be deliberate (revenge, theft) or accidental (carelessness)",
-                "Theft/loss can be of equipment, data, or software/licences",
-                "Unauthorised software causes licence/legal liability and compatibility issues",
-                "Unauthorised software may be used for spying, harassment or to avoid monitoring"
+                "Deliberate (revenge, theft) or accidental",
+                "Theft of equipment, data or licences",
+                "Unauthorised software brings legal and malware risks"
               ]
             },
             {
               "code": "A1.1.2",
               "term": "Accidental or Deliberate Damage",
-              "definition": "Physical events that damage IT systems and the data they hold. These can be natural, accidental or deliberate.",
-              "examples": "A burst pipe flooding a server room; an arson attack; a power cut corrupting unsaved data.",
-              "examTip": "These threats justify off-site/cloud backups and disaster recovery plans (link to A4 and C1).",
+              "definition": "Physical events, natural, accidental or deliberate, that damage IT systems and data.",
+              "examples": "A burst pipe flooding a server room; arson; a power cut.",
+              "examTip": "Justifies off-site backups and disaster recovery plans.",
               "keyFacts": [
-                "Includes fire, flood, power loss, terrorism and other disasters",
-                "Causes loss of both hardware and the data stored on it",
-                "Mitigated by off-site backups, UPS, fire suppression and DR plans"
+                "Fire, flood, power loss, terrorism",
+                "Destroys hardware and the data on it",
+                "Reduce with off-site backups, UPS, fire suppression"
               ]
             },
             {
               "code": "A1.1.3",
               "term": "Weak Security Measures & Unsafe Practices",
-              "definition": "Poor habits and weak controls that make an organisation easier to attack, such as not securing equipment, not vetting visitors, or browsing untrustworthy websites.",
-              "examples": "Leaving a server room unlocked; letting a visitor wander unescorted; staff visiting dodgy download sites on work PCs.",
-              "examTip": "Unsafe practices are a 'human' vulnerability — the fix is usually training and policy, not just technology.",
+              "definition": "Poor habits and weak controls that make an organisation easier to attack.",
+              "examples": "An unlocked server room; unescorted visitors; staff on dodgy download sites.",
+              "examTip": "A human weakness: fix it with training and policy, not just technology.",
               "keyFacts": [
-                "Poor physical security of equipment and storage devices",
-                "No security vetting of visitors",
-                "Visiting untrustworthy websites that host malware"
+                "Equipment not physically secured",
+                "Visitors not vetted",
+                "Visiting untrustworthy websites"
               ]
             },
             {
               "code": "A1.1.4",
               "term": "Accidental Loss/Disclosure of Data or Credentials",
-              "definition": "Sensitive data or login details being exposed through human factors rather than a deliberate attack.",
-              "examples": "Emailing a spreadsheet of customer details to the wrong address; writing a password on a sticky note; losing an unencrypted laptop.",
-              "examTip": "Root causes are negligence, poor training and not following procedures — caused by a weak security culture.",
+              "definition": "Data or logins exposed through human error rather than a deliberate attack.",
+              "examples": "Emailing customer data to the wrong person; a password on a sticky note.",
+              "examTip": "Root causes: negligence, poor training, not following procedures.",
               "keyFacts": [
-                "Human factors: negligence, poor training, not following procedures",
-                "Made worse by inadequate monitoring and reporting",
-                "Underlying cause is often a weak security culture"
+                "Human factors: negligence, poor training",
+                "Worse with weak monitoring",
+                "Usually a weak security culture"
               ]
             }
           ]
@@ -70,120 +69,115 @@
             {
               "code": "A1.2.1a",
               "term": "Viruses",
-              "definition": "Malicious code that attaches to a host file or program and replicates when that file is run, spreading to other files and systems.",
-              "examples": "A macro virus hidden in a Word document; a boot sector virus that loads before the OS.",
-              "examTip": "Know the named types: boot sector, web script, macro, worm, rootkit, trojan, browser hijack, polymorphic.",
+              "definition": "Malicious code that attaches to a file and copies itself when the file is run.",
+              "examples": "A macro virus in a Word document.",
+              "examTip": "Know the types: boot sector, web script, macro, worm, rootkit, trojan, browser hijack, polymorphic.",
               "keyFacts": [
-                "Boot sector — infects the start-up area of a disk",
-                "Macro — hidden in document macros (e.g. Office files)",
-                "Worm — self-replicates across networks without a host file",
-                "Rootkit — hides deep in the OS to avoid detection",
-                "Trojan — disguised as legitimate software",
-                "Polymorphic — changes its code to evade signature scanning"
+                "Macro: hidden in document macros",
+                "Worm: spreads across networks by itself",
+                "Rootkit: hides deep in the OS",
+                "Polymorphic: changes its code to avoid detection"
               ]
             },
             {
               "code": "A1.2.1b",
               "term": "Spyware",
-              "definition": "Software that secretly gathers information about a user and sends it to a third party without consent.",
-              "examples": "A keylogger recording passwords as they are typed; stalkerware tracking a phone's location; tracking cookies following browsing habits.",
-              "examTip": "Keylogger = records keystrokes to steal credentials. This is a favourite exam term.",
+              "definition": "Software that secretly collects information about a user and sends it to a third party.",
+              "examples": "A keylogger recording passwords.",
+              "examTip": "Keylogger = records keystrokes to steal logins. A favourite exam term.",
               "keyFacts": [
-                "Keylogger/data thief — records keystrokes to steal credentials",
-                "System monitor — captures all activity on a device",
-                "Mobile tracker/stalkerware — secretly tracks location/usage",
-                "Web beacons and tracking cookies — monitor online behaviour"
+                "Keylogger: records keystrokes",
+                "System monitor: captures all activity",
+                "Stalkerware: tracks a phone's location",
+                "Tracking cookies follow browsing"
               ]
             },
             {
               "code": "A1.2.1c",
               "term": "Adware",
-              "definition": "Software that automatically displays or downloads advertising. Ranges from legitimate ad-supported software to abusive/deceptive adware.",
-              "examples": "A free app showing pop-up ads; a 'potentially unwanted program' (PUP) bundled with a download.",
-              "examTip": "Not all adware is illegal — distinguish legitimate adware from abusive/deceptive (and sometimes illegal) adware.",
+              "definition": "Software that displays or downloads adverts, from legitimate to deceptive.",
+              "examples": "A free app showing pop-ups; unwanted software bundled with a download.",
+              "examTip": "Not all adware is illegal: tell legitimate adware from abusive adware.",
               "keyFacts": [
-                "Potentially Unwanted Program (PUP) — installed alongside other software",
-                "Legitimate adware funds free software with consent",
-                "Abusive/deceptive adware tricks users and can be illegal"
+                "PUP: installed alongside other software",
+                "Legitimate adware funds free apps with consent",
+                "Deceptive adware can be illegal"
               ]
             },
             {
               "code": "A1.2.1d",
               "term": "Ransomware",
-              "definition": "Malware that blocks access to data or systems — usually by encrypting files — and demands payment (a ransom) to restore access.",
-              "examples": "An 'encryptor' scrambling all company files; a 'locker' freezing the whole screen; 'leakware' threatening to publish stolen data.",
-              "examTip": "Best defence is reliable, tested OFFLINE backups so you can restore without paying. Link to A4.1.2 / C1.1.3.",
+              "definition": "Malware that locks or encrypts your data and demands payment to restore it.",
+              "examples": "An encryptor scrambling all company files.",
+              "examTip": "Best defence: tested OFFLINE backups, so you can restore without paying.",
               "keyFacts": [
-                "Encryptors — encrypt files so they cannot be opened",
-                "Lockers — lock the device/screen entirely",
-                "Scareware — fake warnings pressuring the user to pay",
-                "Leakware/doxware — threatens to publish stolen data",
-                "Defence: tested offline backups, patching, staff awareness"
+                "Encryptors: files can't be opened",
+                "Lockers: whole screen locked",
+                "Leakware: threatens to publish data",
+                "Defend with offline backups, patching, training"
               ]
             },
             {
               "code": "A1.2.1e",
               "term": "Bots",
-              "definition": "Compromised computers controlled remotely by an attacker. A network of bots (a botnet) can be used to launch large-scale attacks such as DDoS.",
-              "examples": "Thousands of infected IoT devices used together to flood a website with traffic.",
-              "examTip": "Bots/botnets connect malware (A1.2.1) to DDoS attacks (A1.2.2) — a common exam link.",
+              "definition": "Infected devices controlled remotely; many together form a botnet.",
+              "examples": "Thousands of infected IoT devices flooding a website.",
+              "examTip": "Botnets link malware to DDoS attacks: a common exam link.",
               "keyFacts": [
-                "An infected device under remote attacker control",
-                "Many bots together form a botnet",
-                "Used to send spam or launch DDoS attacks"
+                "Controlled remotely by the attacker",
+                "Many bots = a botnet",
+                "Used for spam and DDoS"
               ]
             },
             {
               "code": "A1.2.2",
               "term": "Hacking",
-              "definition": "Gaining unauthorised access to systems or data, targeting commercial organisations, governments or individuals.",
-              "examples": "A DDoS attack taking a website offline; defacing a public web page (front-end tampering); altering records in a database (back-end tampering).",
-              "examTip": "DoS = one source; DDoS = many sources (a botnet). Distinguish front-end vs back-end data tampering.",
+              "definition": "Gaining unauthorised access to systems or data.",
+              "examples": "A DDoS taking a website offline; changing records in a database.",
+              "examTip": "DoS = one source; DDoS = many (a botnet).",
               "keyFacts": [
-                "DoS — one machine floods a target to make it unavailable",
-                "DDoS — many machines (botnet) flood the target",
-                "Data theft — stealing confidential information",
-                "Data tampering — altering back-end databases or front-end web pages",
-                "Cyberwarfare — state-sponsored attacks on infrastructure"
+                "DoS: one machine floods a target",
+                "DDoS: a botnet floods it",
+                "Data theft and data tampering",
+                "Cyberwarfare by states"
               ]
             },
             {
               "code": "A1.2.3",
               "term": "Sabotage",
-              "definition": "Deliberately damaging, destroying or corrupting data, systems or infrastructure — by commercial rivals, governments, individuals or terrorists.",
-              "examples": "Poisoning the data used to train an AI; creating AI-generated deepfake video; hijacking internet-connected industrial machinery.",
-              "examTip": "'Fakes' now explicitly includes AI-generated images/video/audio — a modern exam topic.",
+              "definition": "Deliberately damaging or corrupting data, systems or infrastructure.",
+              "examples": "Poisoning AI training data; hijacking connected machinery.",
+              "examTip": "\"Fakes\" includes AI-generated images, video and audio.",
               "keyFacts": [
-                "Data poisoning, tampering and destruction",
-                "Fakes — images/video/audio/documents made manually or with AI",
-                "Damage to/hijacking of machinery, vehicles, IoT devices",
-                "Targets can include critical national infrastructure"
+                "Data poisoning, tampering, destruction",
+                "AI-generated fakes",
+                "Hijacking machinery, vehicles, IoT",
+                "Can target national infrastructure"
               ]
             },
             {
               "code": "A1.2.4",
               "term": "Social Engineering",
-              "definition": "Manipulating or deceiving people into giving away secure information, rather than attacking technology directly.",
-              "examples": "A phishing email pretending to be from the bank; a vishing phone call impersonating IT support; spear phishing aimed at one named employee.",
-              "examTip": "Know the variants: phishing (email), vishing (voice), smishing (SMS), whaling (senior targets), spear phishing (specific target).",
+              "definition": "Tricking people into giving away secure information instead of attacking technology.",
+              "examples": "A fake bank email; a call pretending to be IT support.",
+              "examTip": "Know the variants: phishing, vishing, smishing, whaling, spear phishing.",
               "keyFacts": [
-                "Phishing (email), vishing (phone), smishing (SMS)",
-                "Whaling — targets senior executives; spear phishing — targets a specific person",
-                "DNS spoofing — redirects users to fake sites",
-                "Pretexting/impersonation — inventing a scenario to gain trust",
-                "Best defence is staff training and awareness"
+                "Phishing (email), vishing (phone), smishing (text)",
+                "Whaling: senior staff; spear phishing: one person",
+                "Pretexting: a made-up story",
+                "Best defence: training"
               ]
             },
             {
               "code": "A1.2.5",
               "term": "Physical Security Threats",
-              "definition": "Threats that rely on physically reaching a secure area or device rather than attacking over a network.",
-              "examples": "Tailgating through a controlled door behind a staff member; shoulder surfing a password; stealing an unattended laptop.",
-              "examTip": "Tailgating (following someone through a secure door) appeared in the sample paper — learn the one-line definition.",
+              "definition": "Threats that involve physically reaching a secure area or device.",
+              "examples": "Tailgating through a door; shoulder surfing a password.",
+              "examTip": "Tailgating = following someone through a secure door. Learn this definition.",
               "keyFacts": [
-                "Unauthorised area access: tailgating, forced entry, impersonation, coercion",
-                "Unauthorised device access: unattended devices, shoulder surfing, theft, lost devices",
-                "Devices in public areas are especially exposed"
+                "Area access: tailgating, forced entry, impersonation",
+                "Device access: unattended devices, shoulder surfing, theft",
+                "Devices in public places are most exposed"
               ]
             }
           ]
@@ -195,49 +189,49 @@
             {
               "code": "A1.3.1",
               "term": "Operational Loss",
-              "definition": "The impact on an organisation's ability to function and deliver its products or services.",
-              "examples": "A factory production line halting after a ransomware attack; a website being unavailable so customers cannot order.",
-              "examTip": "Operational = the business can't operate. Cover output, service availability and data availability.",
+              "definition": "The organisation can't operate or deliver its products and services.",
+              "examples": "A production line stopped by ransomware; a website down so no orders.",
+              "examTip": "Operational = the business can't function.",
               "keyFacts": [
-                "Loss of manufacturing output",
-                "Loss of service availability",
-                "Loss of data availability"
+                "Lost production",
+                "Services unavailable",
+                "Data unavailable"
               ]
             },
             {
               "code": "A1.3.2",
               "term": "Financial Loss",
-              "definition": "The monetary cost of an incident to the organisation, including lost income, compensation and legal liability.",
-              "examples": "GDPR fines after a breach; refunds and identity-protection costs for affected customers; legal fees.",
-              "examTip": "Break financial loss into organisational costs, compensation and legal liability for full marks.",
+              "definition": "The money an incident costs: lost income, compensation and legal costs.",
+              "examples": "GDPR fines; refunds to affected customers.",
+              "examTip": "Split it into organisational costs, compensation and legal liability.",
               "keyFacts": [
-                "Organisational: cash flow problems, loss of profits, higher insurance",
-                "Compensation: refunds, payments for compromised data, remedial costs",
-                "Legal liability: fines, penalty payments, legal fees"
+                "Lost profits, higher insurance",
+                "Compensation and refunds",
+                "Fines and legal fees"
               ]
             },
             {
               "code": "A1.3.3",
               "term": "Reputational Loss",
-              "definition": "Damage to how customers and the public view an organisation following an incident.",
-              "examples": "Customers leaving negative reviews on social media; a drop in trust scores after a publicised breach.",
-              "examTip": "Reputational damage is often the longest-lasting impact — lost trust is hard to rebuild. Great point for 9-markers.",
+              "definition": "Damage to how customers and the public see the organisation.",
+              "examples": "Angry reviews on social media after a breach.",
+              "examTip": "Often the longest-lasting impact: lost trust is hard to rebuild.",
               "keyFacts": [
                 "Loss of customer trust",
-                "Poor reviews on social media, review sites and own website",
-                "Reduced scores on reputation metrics"
+                "Poor reviews online",
+                "Lower reputation scores"
               ]
             },
             {
               "code": "A1.3.4",
               "term": "Intellectual Property Loss",
-              "definition": "The theft or exposure of an organisation's valuable confidential ideas and information.",
-              "examples": "A competitor stealing a new product design or trade secret; leaked testing and development data.",
-              "examTip": "IP loss can destroy competitive advantage even if no personal data is involved.",
+              "definition": "Theft or exposure of an organisation's valuable ideas and secrets.",
+              "examples": "A rival stealing a new product design.",
+              "examTip": "Destroys competitive advantage even with no personal data involved.",
               "keyFacts": [
-                "New product designs",
+                "Product designs",
                 "Testing and development data",
-                "Organisational strategy and trade secrets"
+                "Strategy and trade secrets"
               ]
             }
           ]
@@ -249,37 +243,37 @@
             {
               "code": "A1.4.1",
               "term": "NCSC (UK)",
-              "definition": "The National Cyber Security Centre — the UK's authority on cyber security, providing threat reports, malware analysis, advisories and guidance.",
-              "examples": "Checking the NCSC website for the latest ransomware advisory.",
-              "examTip": "NCSC = UK. Provides up-to-date threat reports because threats change over time.",
+              "definition": "The National Cyber Security Centre: the UK authority publishing threat reports and advice.",
+              "examples": "Checking the NCSC site for the latest ransomware advisory.",
+              "examTip": "NCSC = UK. Use it because threats keep changing.",
               "keyFacts": [
-                "UK government body for cyber security",
-                "Publishes latest threat reports and malware analysis",
-                "Issues news, advisories and guidance on recent activity"
+                "UK government body",
+                "Threat reports and malware analysis",
+                "Advisories and guidance"
               ]
             },
             {
               "code": "A1.4.2",
               "term": "NIST (USA)",
-              "definition": "The National Institute of Standards and Technology — a US body that issues cyber security news, standards and advisories.",
-              "examples": "Referencing NIST guidance on password policy.",
-              "examTip": "NIST = USA equivalent of NCSC. Sets widely-used security standards.",
+              "definition": "The US National Institute of Standards and Technology, which issues security standards and advisories.",
+              "examples": "Following NIST guidance on password policy.",
+              "examTip": "NIST = the US equivalent of the NCSC.",
               "keyFacts": [
-                "US standards organisation",
-                "Publishes news and advisories on recent activity",
-                "Produces widely-adopted security frameworks"
+                "US standards body",
+                "News and advisories",
+                "Widely used security frameworks"
               ]
             },
             {
               "code": "A1.4.3",
               "term": "OWASP & the OWASP Top 10",
-              "definition": "The Open Web Application Security Project — a non-profit producing the OWASP Top 10, a regularly updated list of the most critical web application security risks.",
-              "examples": "Using the OWASP Top 10 to check a website for SQL injection risks.",
-              "examTip": "OWASP Top 10 is referenced in penetration testing (A2.6). Link the two.",
+              "definition": "A non-profit whose Top 10 lists the most critical web application security risks.",
+              "examples": "Checking a website for SQL injection using the OWASP Top 10.",
+              "examTip": "Used in penetration testing: link the two.",
               "keyFacts": [
-                "Focuses on web application security",
-                "Publishes the OWASP Top 10 critical risks",
-                "Used as a checklist during penetration testing"
+                "Focus: web application security",
+                "Top 10 is updated regularly",
+                "A checklist for pen testing"
               ]
             }
           ]
@@ -297,100 +291,98 @@
             {
               "code": "A2.1.1",
               "term": "Network Vulnerabilities",
-              "definition": "Weaknesses in network configuration that attackers can exploit, especially around firewall ports and external storage devices.",
-              "examples": "An open port 80 left exposed; a USB flash drive carrying malware onto the network.",
-              "examTip": "Know the three port categories: well-known (e.g. 80 for HTTP), registered, and dynamic/private. Open ports = a vulnerability.",
+              "definition": "Weaknesses in network set-up, especially open firewall ports and external storage.",
+              "examples": "An exposed open port; malware arriving on a USB stick.",
+              "examTip": "Port types: well-known (e.g. 80 for HTTP), registered, dynamic/private. Open ports = risk.",
               "keyFacts": [
-                "Firewall ports: well-known (e.g. 80/HTTP), registered, dynamic/private",
-                "Port vulnerabilities: open ports, spoofing, DoS",
-                "External storage (USB, SD, external HDD, SSD, optical/tape) can introduce malware"
+                "Three port categories",
+                "Risks: open ports, spoofing, DoS",
+                "External storage can bring in malware"
               ]
             },
             {
               "code": "A2.1.2",
               "term": "Organisational Vulnerabilities",
-              "definition": "Weaknesses in how an organisation manages permissions, passwords and accounts.",
-              "examples": "Giving every user administrator rights; allowing weak, reused passwords; not disabling a leaver's account.",
-              "examTip": "Password policy elements (min/max length, character rules, reuse frequency, minimum age) are common 'state two' marks.",
+              "definition": "Weaknesses in how permissions, passwords and accounts are managed.",
+              "examples": "Everyone having admin rights; not disabling a leaver's account.",
+              "examTip": "Password policy points (length, characters, reuse, age) are easy marks.",
               "keyFacts": [
-                "Permissions: read/write/execute/modify for user/admin/system/group",
-                "Password policy: length, character rules, reuse frequency, minimum age",
-                "Password management: password managers, lockout of inactive accounts, leaver process",
-                "Auto-fill by browser or dedicated software can be a risk"
+                "Permissions: read, write, execute, modify",
+                "Password policy: length, characters, reuse, age",
+                "Lock unused accounts; remove leavers",
+                "Browser auto-fill is a risk"
               ]
             },
             {
               "code": "A2.1.3",
               "term": "Software Vulnerabilities",
-              "definition": "Weaknesses introduced by untrustworthy, outdated or poorly designed software.",
-              "examples": "Installing pirated software with a backdoor; an unpatched web app vulnerable to SQL injection; a zero-day exploit.",
-              "examTip": "Zero-day = a brand new flaw with no patch yet, leaving a window of exploitation. SQL injection appears in the sample paper.",
+              "definition": "Weaknesses from untrustworthy, outdated or badly made software.",
+              "examples": "Pirated software with a backdoor; an unpatched web app open to SQL injection.",
+              "examTip": "Zero-day = a new flaw with no patch yet.",
               "keyFacts": [
-                "Untrustworthy sources / malicious installers",
-                "Safe downloads need: trusted source, HTTPS, pre-install malware scan, hash check",
-                "Illegal copies lack updates and may contain backdoors/malware",
-                "Zero-day exploits — new threats before a patch exists",
-                "SQL injection and missing patches/updates"
+                "Safe downloads: trusted source, HTTPS, malware scan, hash check",
+                "Illegal copies get no updates",
+                "Zero-day exploits",
+                "SQL injection and missing patches"
               ]
             },
             {
               "code": "A2.1.4",
               "term": "OS / GUI / CLI Vulnerabilities",
-              "definition": "Weaknesses in the operating system and its interfaces, usually from being out of date or misconfigured.",
-              "examples": "Running an unsupported version of Windows; missing security patches; insecure default settings.",
-              "examTip": "Unsupported/out-of-support software is a key vulnerability because it no longer receives security patches.",
+              "definition": "Weaknesses in the OS and its interfaces, usually from being outdated or misconfigured.",
+              "examples": "An unsupported version of Windows.",
+              "examTip": "Unsupported software no longer gets security patches.",
               "keyFacts": [
-                "Unsupported/out-of-support versions",
-                "Missing patches/updates",
-                "Missing or incorrect security settings"
+                "Unsupported versions",
+                "Missing patches",
+                "Wrong security settings"
               ]
             },
             {
               "code": "A2.1.5",
               "term": "Mobile Device Vulnerabilities",
-              "definition": "Mobile devices rely on Original Equipment Manufacturers (OEMs) to release system software updates, so they can be left unpatched.",
-              "examples": "An old Android phone no longer receiving security updates from its manufacturer.",
-              "examTip": "The key point: reliance on OEMs means updates may be slow or stop, leaving known flaws unpatched.",
+              "definition": "Phones depend on their manufacturer (OEM) for updates, so they can be left unpatched.",
+              "examples": "An old Android phone that no longer gets updates.",
+              "examTip": "Updates may be slow or stop entirely, leaving known flaws open.",
               "keyFacts": [
-                "Updates depend on the device manufacturer (OEM)",
-                "Older devices may stop receiving updates",
-                "Leaves known vulnerabilities unpatched"
+                "Updates come from the manufacturer",
+                "Older devices stop getting them",
+                "Known flaws stay unpatched"
               ]
             },
             {
               "code": "A2.1.6",
               "term": "Physical Vulnerabilities",
-              "definition": "Weaknesses that allow theft of, or physical access to, equipment holding sensitive data.",
-              "examples": "Stealing a mobile device or data storage device; weak security on a restricted area.",
-              "examTip": "Physical vulnerabilities are mitigated by physical security measures (A4.1.1) — link them.",
+              "definition": "Weaknesses that allow theft of, or physical access to, equipment holding data.",
+              "examples": "A stolen laptop; a badly secured restricted area.",
+              "examTip": "Link to physical security measures.",
               "keyFacts": [
-                "Theft of equipment/devices holding sensitive data",
-                "Vulnerable mobile devices and data storage devices",
-                "Poor or missing security for restricted areas"
+                "Theft of devices holding data",
+                "Poor security for restricted areas"
               ]
             },
             {
               "code": "A2.1.7",
               "term": "People-Process Vulnerabilities",
-              "definition": "Weaknesses arising from how people actually use the system day to day.",
-              "examples": "An employee sharing their login; a flawed process that lets data leave the organisation unchecked.",
-              "examTip": "These are 'human' vulnerabilities — fixed by training, policy and good processes.",
+              "definition": "Weaknesses in how people actually use systems day to day.",
+              "examples": "Sharing a login; a process that lets data leave unchecked.",
+              "examTip": "Human weaknesses: fixed by training, policy and better processes.",
               "keyFacts": [
-                "Leaks, both intentional and accidental",
+                "Leaks, deliberate or accidental",
                 "Sharing security details",
-                "Flawed security processes"
+                "Flawed processes"
               ]
             },
             {
               "code": "A2.1.8",
               "term": "Cloud & IoT Security Implications",
-              "definition": "Security risks specific to cloud computing and Internet of Things devices.",
-              "examples": "A misconfigured cloud bucket exposing data; an IoT camera with a default password being hijacked.",
-              "examTip": "IoT risks (default passwords, no encryption, no patches, always-listening) are a modern hot topic — learn several.",
+              "definition": "Security risks specific to cloud services and IoT devices.",
+              "examples": "A misconfigured cloud store exposing data; a hijacked IoT camera.",
+              "examTip": "Learn several IoT risks: default passwords, no encryption, no patches, always listening.",
               "keyFacts": [
-                "Cloud: default/incorrect settings, third-party access, reliance on provider, data leaving the network",
-                "IoT: weak/no encryption, default passwords, lack of patches",
-                "IoT: deployment by non-IT staff, insecure interfaces, eavesdropping (always listening)"
+                "Cloud: wrong settings, third-party access, reliance on provider",
+                "IoT: weak encryption, default passwords, no patches",
+                "IoT: set up by non-IT staff, always listening"
               ]
             }
           ]
@@ -402,25 +394,25 @@
             {
               "code": "A2.2",
               "term": "Sources of Vulnerability Information",
-              "definition": "Where to find up-to-date information about known hardware and software vulnerabilities.",
-              "examples": "Checking a manufacturer's website for a firmware fix; reading a security forum for IT professionals.",
-              "examTip": "Three named sources: manufacturer's website, professional forums/help sites, specialist third-party sites.",
+              "definition": "Where to find up-to-date information on known vulnerabilities.",
+              "examples": "A manufacturer's website; a professional security forum.",
+              "examTip": "Three sources: manufacturer, professional forums, specialist third-party sites.",
               "keyFacts": [
                 "Manufacturer's website",
-                "Forums/technical help sites for IT and security professionals",
-                "Third-party sites specialising in specific hardware/software"
+                "IT and security forums",
+                "Specialist third-party sites"
               ]
             },
             {
               "code": "A2.3",
               "term": "Attack Vectors",
-              "definition": "The routes or pathways an attacker uses to reach a system — wireless links, internet connections and internal network devices.",
-              "examples": "Attacking over Wi-Fi or Bluetooth; intercepting a connection at the router; exploiting a switch or access point.",
-              "examTip": "An attack vector is the 'way in'. Wireless vectors include Wi-Fi, Bluetooth, cellular, satellite, IR, NFC and RFID.",
+              "definition": "The routes an attacker uses to reach a system.",
+              "examples": "Attacking over Wi-Fi or Bluetooth; exploiting a router.",
+              "examTip": "An attack vector is the \"way in\".",
               "keyFacts": [
-                "Wireless: Wi-Fi (802.11), Bluetooth, cellular, satellite, IR, NFC, RFID",
-                "Internet connection: copper, optical fibre, Wi-Fi, cellular/5G + their devices",
-                "Internal access devices: router, switch, wireless access point"
+                "Wireless: Wi-Fi, Bluetooth, cellular, NFC, RFID",
+                "Internet connections",
+                "Internal devices: router, switch, access point"
               ]
             }
           ]
@@ -432,50 +424,50 @@
             {
               "code": "A2.4",
               "term": "Vulnerability Assessment Tools",
-              "definition": "Software tools used to find weaknesses in computer systems before attackers do.",
-              "examples": "A port scanner checking which ports are open; a website vulnerability scanner testing a web app.",
-              "examTip": "Know the named tools: port scanner, network mapper, registry checker, website vulnerability scanner.",
+              "definition": "Tools that find weaknesses in systems before attackers do.",
+              "examples": "A port scanner; a website vulnerability scanner.",
+              "examTip": "Know the named tools.",
               "keyFacts": [
-                "Port scanner and network mapper/system discovery",
-                "Registry checker and website vulnerability scanner",
-                "Vulnerability detection/management software",
-                "Assessing user vulnerabilities (e.g. phishing simulations)"
+                "Port scanner and network mapper",
+                "Registry checker",
+                "Website vulnerability scanner",
+                "Phishing simulations test users"
               ]
             },
             {
               "code": "A2.5",
               "term": "Independent Third-Party Review",
-              "definition": "Having an external expert review system and network designs before they are implemented.",
-              "examples": "Hiring a consultancy to review a new network design and certify it.",
-              "examTip": "Purpose: establishes due diligence and provides independent third-party certification.",
+              "definition": "An outside expert reviewing system designs before they are built.",
+              "examples": "A consultancy reviewing and certifying a new network design.",
+              "examTip": "Shows due diligence and gives independent certification.",
               "keyFacts": [
                 "Done before implementation",
-                "Establishes due diligence",
-                "Provides third-party certification"
+                "Shows due diligence",
+                "Third-party certification"
               ]
             },
             {
               "code": "A2.6",
               "term": "Penetration Testing",
-              "definition": "Authorised simulated attacks on a system to find weak spots, checking against known vulnerabilities such as the OWASP Top 10.",
-              "examples": "A 'pen tester' attempting to break into a network and producing a report of weaknesses found.",
-              "examTip": "Pen testing uses real attack techniques but with permission, then produces a report. Links to OWASP (A1.4.3).",
+              "definition": "Authorised simulated attacks to find weak spots, ending in a report.",
+              "examples": "A pen tester trying to break into a network.",
+              "examTip": "Real attack techniques used with permission. Links to OWASP.",
               "keyFacts": [
-                "Uses a range of techniques to find weak spots",
-                "Checks against lists of known vulnerabilities (OWASP Top 10)",
-                "Produces reports in appropriate formats"
+                "Uses a range of attack techniques",
+                "Checks against known lists (OWASP Top 10)",
+                "Produces a report"
               ]
             },
             {
               "code": "A2.7",
               "term": "Passive Risk Management",
-              "definition": "Ways of managing risk that do not involve adding active security controls: transferring, avoiding or accepting the risk.",
-              "examples": "Buying cyber insurance (transfer); stopping a risky activity (avoidance); accepting a small, low-impact risk.",
-              "examTip": "Three passive options: transfer (e.g. insurance/3rd party), avoid (stop the activity), accept (live with it).",
+              "definition": "Managing risk without adding security controls: transfer, avoid or accept it.",
+              "examples": "Buying cyber insurance; stopping a risky activity.",
+              "examTip": "Three options: transfer, avoid, accept.",
               "keyFacts": [
-                "Risk transfer — pass it to a third party (e.g. insurer/provider)",
-                "Risk avoidance — stop the risky activity",
-                "Risk acceptance — acknowledge and tolerate the risk"
+                "Transfer: pass it on, e.g. insurance",
+                "Avoid: stop the activity",
+                "Accept: tolerate a small risk"
               ]
             }
           ]
@@ -493,25 +485,25 @@
             {
               "code": "A3.1.1",
               "term": "General Data Protection Regulation (GDPR)",
-              "definition": "Legislation setting out requirements for protecting personal data and the privacy rights of individuals.",
-              "examples": "An organisation must get consent before collecting data and must report a breach within 72 hours.",
-              "examTip": "GDPR = personal data + privacy rights. Computer Misuse Act = unauthorised access. Don't mix them up.",
+              "definition": "Law protecting personal data and people's privacy rights.",
+              "examples": "Getting consent before collecting data; reporting a breach within 72 hours.",
+              "examTip": "GDPR = personal data and privacy. Don't mix it up with the Computer Misuse Act.",
               "keyFacts": [
-                "Protects personal data and privacy rights",
-                "Applies to data in storage and when transferred",
-                "Covers personally identifying information (PII)"
+                "Protects personal data and privacy",
+                "Applies to stored and transferred data",
+                "Covers anything that identifies a person"
               ]
             },
             {
               "code": "A3.1.2",
               "term": "Computer Misuse Act 1990",
-              "definition": "Legislation that protects personal data held by organisations from unauthorised access and modification.",
-              "examples": "Hacking into a system you have no permission to access is an offence under this Act.",
-              "examTip": "Computer Misuse Act = unauthorised access to/modification of computers and data.",
+              "definition": "Law making unauthorised access to, or modification of, computers and data a crime.",
+              "examples": "Hacking into a system you have no permission to use.",
+              "examTip": "Computer Misuse Act = unauthorised access and modification.",
               "keyFacts": [
-                "Covers unauthorised access to computers/devices",
-                "Covers unauthorised access to and modification of data",
-                "Makes hacking and creating malware criminal offences"
+                "Unauthorised access is an offence",
+                "Changing data without permission is an offence",
+                "Covers hacking and creating malware"
               ]
             }
           ]
@@ -523,39 +515,39 @@
             {
               "code": "A3.3.1a",
               "term": "GDPR Principles",
-              "definition": "The core rules organisations must follow when processing personal data.",
-              "examples": "Only collecting the minimum data needed, keeping it accurate, and deleting it when no longer required.",
-              "examTip": "Remember key principles: lawful/fair/transparent, purpose limited, accurate, minimal, kept minimum time, confidential.",
+              "definition": "The core rules for processing personal data under GDPR.",
+              "examples": "Collecting the minimum data, keeping it accurate, deleting it when done.",
+              "examTip": "Lawful/fair/transparent, set purpose, accurate, minimal, minimum time, secure.",
               "keyFacts": [
-                "Lawfulness, fairness and transparency",
-                "Limited to a stated purpose; accuracy",
-                "Keep the minimum amount of data for the minimum time",
-                "Maintain confidentiality and integrity"
+                "Lawful, fair and transparent",
+                "Limited purpose; accurate",
+                "Minimum data for minimum time",
+                "Kept confidential and intact"
               ]
             },
             {
               "code": "A3.3.1b",
               "term": "GDPR Lawful Reasons for Processing",
-              "definition": "An organisation must have a valid legal basis to process personal data.",
-              "examples": "Processing payroll data under 'contractual obligation'; using medical data under 'vital interest'.",
-              "examTip": "Six lawful bases: consent, contract, legitimate interest, vital interest, legal requirement, public interest.",
+              "definition": "The valid legal reasons an organisation can have for processing personal data.",
+              "examples": "Payroll under \"contract\"; medical data under \"vital interest\".",
+              "examTip": "Six bases: consent, contract, legitimate interest, vital interest, legal requirement, public interest.",
               "keyFacts": [
-                "Consent and contractual obligation",
-                "Legitimate interest and vital interest",
-                "Legal requirement and public interest"
+                "Consent; contract",
+                "Legitimate interest; vital interest",
+                "Legal requirement; public interest"
               ]
             },
             {
               "code": "A3.3.1c",
               "term": "GDPR Personal Rights",
-              "definition": "The rights individuals have over their own personal data under GDPR.",
-              "examples": "A customer requesting a copy of all data held on them (access), or asking for it to be deleted.",
-              "examTip": "Key rights: access, be informed, correct/remove/restrict, object, portability, no solely-automated decisions.",
+              "definition": "The rights people have over their own personal data.",
+              "examples": "Asking for a copy of your data or for it to be deleted.",
+              "examTip": "Access, be informed, correct/erase/restrict, object, portability, no solely automated decisions.",
               "keyFacts": [
-                "Right to access their own data and be informed how it is used",
-                "Right to have data corrected, removed or restricted",
-                "Right to object, and to data portability (machine-readable format)",
-                "Right not to be subject to a solely automated decision"
+                "Access and be informed",
+                "Correct, erase or restrict",
+                "Object; portability",
+                "Not subject to solely automated decisions"
               ]
             }
           ]
@@ -573,103 +565,103 @@
             {
               "code": "A4.1.1",
               "term": "Physical Security Measures",
-              "definition": "Measures that physically protect equipment, sites and restricted areas from unauthorised access.",
-              "examples": "RFID card entry; fingerprint scanners; CCTV; security staff; alarms; locked server cabinets.",
-              "examTip": "Group these into: locks, card entry, biometrics, surveillance (CCTV/staff/alarms), and staff training.",
+              "definition": "Measures that physically protect equipment, sites and restricted areas.",
+              "examples": "Card entry; fingerprint scanners; CCTV; locked server cabinets.",
+              "examTip": "Group them: locks, card entry, biometrics, surveillance, training.",
               "keyFacts": [
-                "Site locks: mechanical, electronic, network-connected",
-                "Card entry: NFC, RFID, barcode/QR, magnetic stripe, chip",
-                "Biometrics: fingerprint, iris/retina, facial, voice, signature",
-                "CCTV, security staff, alarms, protected cabling, staff training"
+                "Locks: mechanical or electronic",
+                "Card entry: NFC, RFID, QR, chip",
+                "Biometrics: fingerprint, iris, face, voice",
+                "CCTV, guards, alarms"
               ]
             },
             {
               "code": "A4.1.2",
               "term": "Backup & Recovery Procedures",
-              "definition": "Strategies for copying data so it can be restored after loss, corruption or attack.",
-              "examples": "A full weekly backup plus daily incremental backups stored off-site and in the cloud.",
-              "examTip": "Know the 3 backup types: FULL (everything), INCREMENTAL (changes since last backup), DIFFERENTIAL (changes since last full). RAID is NOT a backup.",
+              "definition": "Copying data so it can be restored after loss, corruption or attack.",
+              "examples": "A weekly full backup plus daily incrementals stored off-site.",
+              "examTip": "Full, incremental (since last backup), differential (since last full). RAID is NOT a backup.",
               "keyFacts": [
                 "Types: full, differential, incremental",
-                "Strategies: onsite/offsite/cloud, automated/manual, hot/warm site",
-                "RAID and archiving are NOT the same as backup",
-                "Recovery: file restore, image restore, full/bare-metal restore"
+                "On-site, off-site, cloud",
+                "RAID and archiving are not backups",
+                "Restore a file, an image or the whole system"
               ]
             },
             {
               "code": "A4.1.3",
               "term": "Antivirus & Detection Techniques",
-              "definition": "Software that detects, blocks and removes malware using signatures, heuristics and integrity checks.",
-              "examples": "Quarantining a suspicious file; matching a file against known virus signatures.",
-              "examTip": "Signature scanning catches known malware; heuristics catch new/suspicious behaviour. Know both.",
+              "definition": "Software that detects, blocks and removes malware using signatures and heuristics.",
+              "examples": "Quarantining a suspicious file.",
+              "examTip": "Signatures catch known malware; heuristics catch new behaviour.",
               "keyFacts": [
-                "Virus signatures and scanning (known threats)",
-                "Heuristics — flag suspicious behaviour/new threats",
-                "File integrity check / checksum",
-                "Responses: warning, logging, prevent execution, quarantine, deletion"
+                "Signature scanning: known threats",
+                "Heuristics: suspicious behaviour",
+                "File integrity checks",
+                "Responses: warn, block, quarantine, delete"
               ]
             },
             {
               "code": "A4.1.4",
               "term": "Firewalls & Filtering Techniques",
-              "definition": "Hardware or software that filters network traffic using rules to block unauthorised access.",
-              "examples": "A firewall blocking inbound traffic on all ports except those needed; application-layer filtering.",
-              "examTip": "Firewalls use inbound and outbound rules and can do packet filtering and application-layer awareness.",
+              "definition": "Hardware or software that filters traffic using rules to block unauthorised access.",
+              "examples": "Blocking inbound traffic on every port except those needed.",
+              "examTip": "Inbound and outbound rules; packet filtering; application awareness.",
               "keyFacts": [
                 "Packet filtering and inspection",
                 "Application-layer awareness",
                 "Inbound and outbound rules",
-                "Filtering by network address"
+                "Filtering by address"
               ]
             },
             {
               "code": "A4.1.5",
               "term": "User Authentication & MFA",
-              "definition": "Verifying that a user is who they claim to be, often using multiple factors (MFA).",
-              "examples": "Password + USB security key; fingerprint + PIN; an authenticator app code.",
-              "examTip": "MFA factors: knowledge (something you know), possession (have), inherence (are), plus location/behaviour. USB security key = possession factor (sample paper).",
+              "definition": "Checking users are who they claim to be, often using more than one factor.",
+              "examples": "Password + USB security key; an authenticator app code.",
+              "examTip": "Factors: knowledge, possession, inherence, plus location and behaviour. A USB key = possession.",
               "keyFacts": [
-                "Single-factor vs multi-factor authentication (MFA)",
-                "Factors: knowledge, possession, inherence, location, behaviour",
-                "Security tokens: connected (USB key), contactless, disconnected (code generator)",
-                "Kerberos, key exchange, and certificate-based authentication (TLS/SSL, PKI, CA)"
+                "Single-factor vs multi-factor",
+                "Knowledge, possession, inherence",
+                "Tokens: USB key, contactless, code generator",
+                "Certificate-based authentication"
               ]
             },
             {
               "code": "A4.1.6",
               "term": "Access Controls",
-              "definition": "Methods that restrict which users can access which resources.",
-              "examples": "Role-Based Access Control giving the finance team access to accounts but not HR files.",
-              "examTip": "DAC = users control their own files; Role-Based = by job role; Rule-Based = rules per individual user.",
+              "definition": "Methods that control which users can access which resources.",
+              "examples": "Finance can open accounts but not HR files.",
+              "examTip": "DAC: owners control files. Role-based: by job. Rule-based: rules per user.",
               "keyFacts": [
-                "Discretionary Access Control (DAC) — users control their own resources",
-                "Role-Based Access Control — access set by role in the organisation",
-                "Rule-Based Access Control — rules set for individual users",
-                "Applies to apps, folders, files, datasets, physical devices"
+                "DAC: users control their own resources",
+                "Role-based: by job role",
+                "Rule-based: rules for each user",
+                "Applies to apps, files and devices"
               ]
             },
             {
               "code": "A4.1.7",
               "term": "Trusted Computing",
-              "definition": "Hardware-based security (e.g. a trusted platform) that increases security but can reduce user control.",
-              "examples": "A TPM chip checking the system is in a trusted state before allowing access.",
-              "examTip": "Trusted computing appeared in the sample paper — benefit: increased security; drawback: loss of user control/privacy.",
+              "definition": "Hardware-based security, e.g. a TPM chip, that adds protection but reduces user control.",
+              "examples": "A TPM checking the system is trusted before start-up.",
+              "examTip": "Benefit: more security. Drawback: less user control and privacy.",
               "keyFacts": [
-                "Benefit: increased security / another layer of protection",
-                "Drawback: loss of user control, privacy and anonymity"
+                "Adds another layer of protection",
+                "Less user control, privacy and anonymity"
               ]
             },
             {
               "code": "A4.1.8-9",
               "term": "Device Security & Finding Lost Devices",
-              "definition": "Measures that protect devices and allow lost or stolen ones to be located, locked or wiped.",
-              "examples": "Using GPS 'find my device'; remotely wiping a stolen phone; auto-locking the screen after failed logins.",
-              "examTip": "Remote lock/wipe and timed lockout are strong answers for protecting a lost/stolen device.",
+              "definition": "Measures that protect devices and help locate, lock or wipe lost ones.",
+              "examples": "\"Find my device\"; remotely wiping a stolen phone.",
+              "examTip": "Remote lock/wipe and timed lockout are strong answers.",
               "keyFacts": [
-                "Location tech: GPS, phone-home, tracking software",
-                "Timed lockout of screen; lock after failed login attempts",
-                "Memory wipe/factory reset after failed attempts",
-                "Remote lock/wipe/reset of lost or stolen devices"
+                "GPS and tracking software",
+                "Screen locks after time or failed logins",
+                "Wipe after too many failed attempts",
+                "Remote lock and wipe"
               ]
             }
           ]
@@ -681,26 +673,26 @@
             {
               "code": "A4.2.1",
               "term": "Storage Encryption",
-              "definition": "Encrypting data at rest so it is unreadable if the device or media is stolen.",
-              "examples": "Full-disk encryption on a laptop; encrypting an individual confidential file or folder.",
-              "examTip": "Storage encryption protects data 'at rest' — vital for lost/stolen devices. Link to A4.1.9.",
+              "definition": "Encrypting stored data so a stolen device or drive is unreadable.",
+              "examples": "Full-disk encryption on a laptop.",
+              "examTip": "Protects data \"at rest\": vital for lost or stolen devices.",
               "keyFacts": [
                 "Safe password storage",
                 "Digital Rights Management (DRM)",
-                "File, folder, disc and device encryption"
+                "File, folder, disk and device encryption"
               ]
             },
             {
               "code": "A4.2.2",
               "term": "Communications Encryption",
-              "definition": "Encrypting data in transit so it cannot be read if intercepted.",
-              "examples": "HTTPS securing a website; a VPN encrypting remote-worker traffic; end-to-end encrypted messaging.",
-              "examTip": "Symmetric = one shared secret key (AES, fast); asymmetric = public+private key pair (RSA). Know the difference.",
+              "definition": "Encrypting data in transit so it can't be read if intercepted.",
+              "examples": "HTTPS; VPNs; end-to-end encrypted messaging.",
+              "examTip": "Symmetric = one shared key (AES, fast). Asymmetric = public/private pair (RSA).",
               "keyFacts": [
-                "Symmetric: one secret key, e.g. AES (fast)",
-                "Asymmetric: public + private keys, e.g. RSA, Diffie-Hellman",
-                "Used in TOR, VPNs, HTTPS, digital certificates",
-                "End-to-End Encryption (E2EE) in secure messaging apps"
+                "Symmetric: one secret key, e.g. AES",
+                "Asymmetric: public + private keys, e.g. RSA",
+                "Used in VPNs, HTTPS, TOR",
+                "End-to-end encryption in messaging"
               ]
             }
           ]
@@ -712,27 +704,27 @@
             {
               "code": "A4.3",
               "term": "Protecting a WLAN",
-              "definition": "Precautions that protect a wireless LAN from unauthorised access.",
-              "examples": "Using WPA3 encryption; hiding the SSID; MAC address filtering; changing default passwords.",
-              "examTip": "MAC filtering and WPA2/WPA3 appear in the sample paper. Remember MAC addresses can be spoofed (so 'medium' security).",
+              "definition": "Precautions that protect a wireless network from unauthorised access.",
+              "examples": "WPA3; hiding the SSID; MAC filtering; changing default passwords.",
+              "examTip": "MAC addresses can be spoofed, so MAC filtering is only medium security.",
               "keyFacts": [
-                "MAC address filtering and hiding the SSID",
-                "Wireless encryption: WPA2/WPA3, Wi-Fi Protected Setup",
-                "Known attacks: unsecured AP, piggybacking, Evil Twin, sniffing",
-                "Mitigation: change defaults, allow/block lists, VPNs, WPA2/3, firewalls"
+                "MAC filtering; hide the SSID",
+                "Use WPA2/WPA3",
+                "Attacks: Evil Twin, piggybacking, sniffing",
+                "Change defaults; use VPNs and firewalls"
               ]
             },
             {
               "code": "A4.4",
               "term": "Secure Network & System Design",
-              "definition": "Principles that build security into a system from the start, rather than adding it later.",
-              "examples": "Designing with 'least privilege' and assuming attackers will try to get in.",
-              "examTip": "Key principles: expect attacks, least privilege, don't rely on secrecy, comply with standards (ISO 27000).",
+              "definition": "Building security in from the start rather than adding it later.",
+              "examples": "Designing with least privilege and assuming attackers will try.",
+              "examTip": "Expect attacks, least privilege, don't rely on secrecy, follow standards (ISO 27000).",
               "keyFacts": [
-                "Expect attacks and plan for them",
-                "Run on fewest privileges (least privilege)",
-                "Assume the design will be known — avoid relying on secrecy/obscurity",
-                "Comply with standards such as ISO 27000"
+                "Expect attacks",
+                "Least privilege",
+                "Don't rely on secrecy",
+                "Follow ISO 27000"
               ]
             }
           ]
