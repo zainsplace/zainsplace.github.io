@@ -76,7 +76,8 @@ function defaultUnitState() {
     flashcards: {
       boxes: {},       // cardId -> 1..5
       nextDue: {},     // cardId -> ISO date string
-      history: []      // {date, correct, wrong}
+      history: [],     // {date, correct, wrong}
+      newDay: { date: '', count: 0, extra: 0 }   // new cards introduced today
     },
     questions: {
       history: [],     // {qId, marks, date, selfScore}
@@ -103,7 +104,8 @@ function defaultUnitState() {
 function defaultStore() {
   return {
     activeUnit: 'u1',
-    theme: 'light',
+    // First visit follows the device's light/dark setting; after that, the student's choice.
+    theme: (typeof matchMedia === 'function' && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
     profile: { emoji: '📘', col: '#1B5A5F' },
     units: { u1: defaultUnitState(), u2: defaultUnitState() }
   };
@@ -605,10 +607,21 @@ function toggleTheme() {
   state.theme = state.theme === 'dark' ? 'light' : 'dark';
   document.body.setAttribute('data-theme', state.theme);
   saveState();
-  // update any theme toggle buttons
+  syncThemeButtons();
+}
+
+/* Run on load too: the top-bar button is static HTML and used to show 🌙
+   "Switch to dark mode" after reloading in dark mode. The Profile button keeps
+   its words; it used to be reduced to a bare emoji on toggle. */
+function syncThemeButtons() {
+  const dark = state.theme === 'dark';
   document.querySelectorAll('.theme-toggle').forEach(btn => {
-    btn.textContent = state.theme === 'dark' ? '☀️' : '🌙';
-    btn.title = state.theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+    const label = dark ? 'Switch to light mode' : 'Switch to dark mode';
+    btn.title = label;
+    btn.setAttribute('aria-label', label);
+    btn.textContent = btn.classList.contains('top-bar-theme-btn')
+      ? (dark ? '☀️' : '🌙')
+      : (dark ? '☀️ Light mode' : '🌙 Dark mode');
   });
 }
 
@@ -1165,15 +1178,9 @@ function renderReviseNext() {
   const container = el('revise-next');
   if (!container) return;
 
-  const flashData = loadJSON('data/flashcards.json');
-  const cards = (flashData || {}).cards || [];
-  const todayStr = today();
-
-  // Cards due today (spaced repetition nextDue <= today)
-  const dueCards = cards.filter(c => {
-    const due = state.flashcards.nextDue[c.id];
-    return due && due <= todayStr;
-  }).slice(0, 3);
+  // Today's flashcards: due reviews first, then new cards (same rule as the Flashcards page)
+  const todayCards = dueFlashcards();
+  const dueCards = todayCards.all.slice(0, 3);
 
   // Weakest RAG topic
   const reds = Object.entries(state.rag).filter(([, v]) => v === 'red').map(([k]) => k);
@@ -1184,7 +1191,7 @@ function renderReviseNext() {
 
   const dueHTML = dueCards.length ? `
     <div style="margin-bottom:12px">
-      <div style="font-size:12px;color:var(--text2);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px">Flashcards due today</div>
+      <div style="font-size:12px;color:var(--text2);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px">${todayCards.reviews.length ? 'Flashcards due today' : 'New flashcards to learn today'}</div>
       ${dueCards.map(c => `
         <div role="button" tabindex="0" class="search-result" onclick="navigate('flashcards')" style="cursor:pointer">
           <div style="display:flex;align-items:center;gap:8px">
@@ -1409,16 +1416,49 @@ function renderFlashcards() {
   renderFlashUI();
 }
 
+/* A card is NEW until it is first graded. New cards are introduced at most
+   NEW_CARDS_PER_DAY a day: before this a new student was handed all 136 at once,
+   while Home and the Plan, which only counted studied cards, said "0 due".
+   dueFlashcards() is the one definition of "due" that every page uses. */
+const NEW_CARDS_PER_DAY = 20;
+
+function newDayToday() {
+  const nd = state.flashcards.newDay;
+  if (!nd || nd.date !== today()) state.flashcards.newDay = { date: today(), count: 0, extra: 0 };
+  return state.flashcards.newDay;
+}
+
+function newCardsLeftToday() {
+  const nd = state.flashcards.newDay;
+  const isToday = nd && nd.date === today();
+  const used = isToday ? (nd.count || 0) : 0;
+  const extra = isToday ? (nd.extra || 0) : 0;
+  return Math.max(0, NEW_CARDS_PER_DAY + extra - used);
+}
+
+// Today's cards for a section filter: due reviews first, then new cards up to today's allowance.
+function dueFlashcards(filter = 'all') {
+  const cards = flashcardsForUnit().filter(c => filter === 'all' || c.section === filter);
+  const t = today();
+  const reviews = cards.filter(c => { const d = state.flashcards.nextDue[c.id]; return d && d <= t; });
+  const unseen = cards.filter(c => !state.flashcards.nextDue[c.id]);
+  const fresh = unseen.slice(0, newCardsLeftToday());
+  return { reviews, fresh, unseen: unseen.length, all: reviews.concat(fresh) };
+}
+
+function learnMoreNew() {
+  newDayToday().extra += NEW_CARDS_PER_DAY;
+  saveState();
+  flashPracticeMode = false;
+  buildFlashQueue();
+  renderFlashUI();
+}
+
 function buildFlashQueue() {
   if (!flashData) return;
-  const todayStr = today();
-  flashQueue = flashData.cards.filter(card => {
-    if (flashFilter !== 'all' && card.section !== flashFilter) return false;
-    if (flashPracticeMode) return true;
-    const due = state.flashcards.nextDue[card.id];
-    if (!due || due <= todayStr) return true;
-    return false;
-  });
+  flashQueue = flashPracticeMode
+    ? flashData.cards.filter(card => flashFilter === 'all' || card.section === flashFilter)
+    : dueFlashcards(flashFilter).all;
   flashIdx = 0;
   flashFlipped = false;
 }
@@ -1427,6 +1467,12 @@ function renderFlashUI() {
   const container = el('flashcards-content');
   const total = flashData ? flashData.cards.length : 0;
   const due = flashQueue.length;
+  const today_ = dueFlashcards(flashFilter);
+  const dueLabel = flashPracticeMode
+    ? `${due} in practice / ${total} total`
+    : `${today_.reviews.length} to review · ${today_.fresh.length} new today / ${total} total`;
+  const moreNew = !flashPracticeMode && today_.unseen > today_.fresh.length
+    ? `<button class="btn btn-secondary btn-sm" onclick="learnMoreNew()">Learn ${Math.min(NEW_CARDS_PER_DAY, today_.unseen - today_.fresh.length)} more new</button>` : '';
 
   const boxCounts = [0, 0, 0, 0, 0];
   if (flashData) {
@@ -1456,22 +1502,31 @@ function renderFlashUI() {
         <option value="all" ${flashFilter === 'all' ? 'selected' : ''}>All sections</option>
         ${unitLettersUpper().map(l => `<option value="${l}" ${flashFilter === l ? 'selected' : ''}>${l}</option>`).join('')}
       </select>
-      <span style="font-size:14px;color:var(--text2)">${due} due today / ${total} total</span>
+      <span style="font-size:14px;color:var(--text2)">${dueLabel}</span>
       <button class="btn btn-secondary btn-sm" onclick="flashPracticeMode=false;buildFlashQueue();renderFlashUI()">Refresh queue</button>
     </div>
     ${flashPracticeMode ? `<div style="background:var(--accent-light);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:12px;font-size:13px;color:var(--text)"><strong>Practice mode</strong> — reviewing all ${flashQueue.length} cards. Leitner progress is not being saved. <button class="btn btn-secondary btn-sm" style="margin-left:8px" onclick="flashPracticeMode=false;buildFlashQueue();renderFlashUI()">Exit practice mode</button></div>` : ''}
     ${due === 0 && !flashPracticeMode ? `
       <div class="empty-state">
         <div class="icon">🎉</div>
-        <p>No flashcards due! Check back tomorrow.</p>
-        <button class="btn btn-primary" style="margin-top:12px" onclick="flashPracticeMode=true;flashFilter='all';buildFlashQueue();renderFlashUI()">Study all cards anyway</button>
+        <p>${today_.unseen ? `Today's ${NEW_CARDS_PER_DAY} new cards are done and nothing is due for review. New cards stick better spread over days.` : 'No flashcards due! Check back tomorrow.'}</p>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px">
+          ${moreNew}
+          <button class="btn btn-primary" onclick="flashPracticeMode=true;flashFilter='all';buildFlashQueue();renderFlashUI()">Study all cards anyway</button>
+        </div>
       </div>` : renderCurrentFlashcard()}`;
 }
 
 function renderCurrentFlashcard() {
   if (flashIdx >= flashQueue.length) {
+    const left = flashPracticeMode ? null : dueFlashcards(flashFilter);
+    const more = left && left.unseen > left.fresh.length && !left.all.length
+      ? `<button class="btn btn-secondary" onclick="learnMoreNew()">Learn ${Math.min(NEW_CARDS_PER_DAY, left.unseen)} more new</button>` : '';
     return `<div class="empty-state"><div class="icon">🎉</div><p>Session complete! ${flashQueue.length} cards reviewed.</p>
-      <button class="btn btn-primary" style="margin-top:12px" onclick="flashPracticeMode=false;buildFlashQueue();renderFlashUI()">Start again</button></div>`;
+      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px">
+        ${more}
+        <button class="btn btn-primary" onclick="flashPracticeMode=false;buildFlashQueue();renderFlashUI()">${left && left.all.length ? 'Keep going' : 'Start again'}</button>
+      </div></div>`;
   }
   const card = flashQueue[flashIdx];
   const box = state.flashcards.boxes[card.id] || 1;
@@ -1510,6 +1565,7 @@ function flipFlashcard() {
 function answerFlash(correct) {
   const card = flashQueue[flashIdx];
   if (!flashPracticeMode) {
+    if (!state.flashcards.nextDue[card.id]) newDayToday().count++;   // first grading: a new card used up
     const curBox = state.flashcards.boxes[card.id] || 1;
     const newBox = correct ? Math.min(5, curBox + 1) : 1;
     state.flashcards.boxes[card.id] = newBox;
@@ -1534,12 +1590,7 @@ function setFlashFilter(val) {
 }
 
 function getFlashcardsDueCount() {
-  const todayStr = today();
-  let count = 0;
-  Object.entries(state.flashcards.nextDue).forEach(([id, due]) => {
-    if (!due || due <= todayStr) count++;
-  });
-  return count;
+  return dueFlashcards().all.length;
 }
 
 /* ---- QUESTIONS ----
@@ -4511,8 +4562,14 @@ function buildDailyPlan() {
   if (flashDue > 0) {
     blocks.push({
       id: 'flash',
-      title: `Flashcards (${flashDue} due)`,
-      items: [`Review ${Math.min(flashDue, 20)} flashcards due today`, 'Focus extra on Box 1 cards (weakest)']
+      title: `Flashcards (${flashDue} today)`,
+      items: (() => {
+        const t = dueFlashcards();
+        const out = [];
+        if (t.reviews.length) out.push(`Review the ${t.reviews.length} card${t.reviews.length === 1 ? '' : 's'} due today, Box 1 (weakest) first`);
+        if (t.fresh.length) out.push(`Learn ${t.fresh.length} new card${t.fresh.length === 1 ? '' : 's'}`);
+        return out;
+      })()
     });
   }
 
@@ -4698,6 +4755,7 @@ function importData() {
         const saved = saveState();
         resetTransientState();
         document.body.setAttribute('data-theme', store.theme || 'light');
+        syncThemeButtons();
         applyUnitChrome();
         updateNavAvatar();
         navigate('home');
@@ -4723,6 +4781,17 @@ function confirmReset() {
     navigate('home');
   }
 }
+
+/* Drafts, essays and the mock save 400ms after typing stops. A phone can kill a
+   backgrounded tab, and a closed tab never fires the timer, so flush on hide. */
+function flushPendingSaves() {
+  [draftTick, extDraftTick, mockSaveTick].forEach(t => clearTimeout(t));
+  saveState();
+}
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') flushPendingSaves();
+});
+window.addEventListener('pagehide', flushPendingSaves);
 
 /* ---- INIT ---- */
 /* Backdrops are dismiss targets, so they stay out of the tab order. Escape is
@@ -4759,6 +4828,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => switchUnit(btn.dataset.unit));
   });
   applyUnitChrome();
+  syncThemeButtons();
   loadData(unitLetters());
   updateNavAvatar();
   navigate('home');
