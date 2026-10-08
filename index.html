@@ -10,7 +10,7 @@
   <meta property="og:description" content="Flashcards, exam questions, games and progress tracking for BTEC National IT, Units 1 and 2.">
   <meta property="og:type" content="website">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231B5A5F'/%3E%3Ctext x='50' y='70' font-size='54' font-family='Georgia,serif' font-weight='700' fill='%23F5F1E8' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css?v=14">
+  <link rel="stylesheet" href="styles.css?v=15">
 </head>
 <body>
 
@@ -70,7 +70,7 @@
 
 <main>
 
-  <!-- HOME -->
+  <!-- HOME: about today. One card says what to do now; progress and topics follow. -->
   <div class="page" id="page-home">
     <div class="dash-header">
       <div class="dash-header-info">
@@ -78,12 +78,20 @@
         <h2 class="dash-title" id="dash-title">Unit 2 Cyber Security</h2>
         <p class="dash-sub" id="dash-sub">BTEC National · Cyber Security &amp; Incident Management</p>
       </div>
-      <button class="countdown-pill" onclick="setExamDate()" title="Click to set your exam date">
-        <span class="countdown-days" id="home-countdown-days">--</span>
-        <span class="countdown-label" id="home-countdown-label">days to exam</span>
-        <span class="countdown-date" id="home-countdown-date"></span>
-      </button>
+      <button class="exam-chip" id="home-exam-chip" onclick="setExamDate()">Set exam date</button>
     </div>
+
+    <div id="home-mock-resume"></div>
+
+    <section class="today-card" aria-labelledby="today-title">
+      <p class="today-kicker" id="today-date">Today</p>
+      <h3 class="today-title" id="today-title">Today's revision</h3>
+      <ol class="today-tasks" id="today-tasks"></ol>
+      <div class="today-foot">
+        <button class="today-link" onclick="navigate('plan')">Full plan for today <span aria-hidden="true">&rarr;</span></button>
+        <button class="today-link" onclick="navigate('games')">Games &amp; battles <span aria-hidden="true">&rarr;</span></button>
+      </div>
+    </section>
 
     <section class="confidence" aria-labelledby="confidence-title">
       <div class="confidence-head">
@@ -99,51 +107,15 @@
       </ul>
     </section>
 
-    <div class="meta-row">
-      <span class="meta-item"><b id="home-stat-streak">0</b> day streak</span>
-      <span class="meta-sep"></span>
-      <span class="meta-item"><b id="home-flash-due">0</b> cards due</span>
-      <span class="meta-sep"></span>
-      <span class="meta-item"><b id="home-stat-level">L1</b> <span id="home-stat-xp">0/250 XP</span></span>
-      <span class="meta-sep"></span>
-      <span class="meta-item"><b id="home-overall-pct">0%</b> overall</span>
+    <div class="stat-chips">
+      <span class="stat-chip"><b id="home-stat-streak">0</b> day streak</span>
+      <span class="stat-chip"><span id="home-stat-level" aria-hidden="true"></span><span id="home-stat-xp">Bronze · 0 season XP</span></span>
+      <span class="stat-chip"><b id="home-overall-pct">0%</b> confident overall</span>
     </div>
-    <div class="progress-bar-wrap" aria-hidden="true">
-      <div class="progress-bar" id="home-overall-progress" style="width:0%"></div>
-    </div>
-
-    <div class="action-deck">
-      <button class="action-hero" id="home-hero" onclick="openHeroSection()">
-        <span class="action-hero-kicker">Continue revising</span>
-        <span class="action-hero-title" id="home-hero-title">Start Section A</span>
-        <span class="action-hero-sub" id="home-hero-sub"></span>
-        <span class="action-hero-arrow" aria-hidden="true">&rarr;</span>
-      </button>
-      <div class="action-index">
-        <button class="action-row" onclick="navigate('flashcards')">
-          <span class="action-label">Flashcards</span><span class="action-arrow" aria-hidden="true">&rarr;</span>
-        </button>
-        <button class="action-row" onclick="navigate('questions')">
-          <span class="action-label">Practice questions</span><span class="action-arrow" aria-hidden="true">&rarr;</span>
-        </button>
-        <button class="action-row" onclick="navigate('games')">
-          <span class="action-label">Games &amp; battles</span><span class="action-arrow" aria-hidden="true">&rarr;</span>
-        </button>
-        <button class="action-row" onclick="navigate('plan')">
-          <span class="action-label">Today's plan</span><span class="action-arrow" aria-hidden="true">&rarr;</span>
-        </button>
-      </div>
-    </div>
-
-    <div id="home-mock-resume"></div>
-
-    <div id="revise-next"></div>
 
     <div id="priority-topics"></div>
 
-    <div id="activity-heatmap" style="margin-bottom:24px"></div>
-
-    <h3 style="margin-bottom:12px;font-size:14px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">Sections</h3>
+    <h3 class="home-section-title">Sections</h3>
     <div class="grid2" id="section-tiles"></div>
   </div>
 
@@ -211,7 +183,7 @@
   <div id="toast-bar"></div>
 </div>
 
-<script src="data_inline.js?v=14"></script>
-<script src="app.js?v=14"></script>
+<script src="data_inline.js?v=15"></script>
+<script src="app.js?v=15"></script>
 </body>
 </html>

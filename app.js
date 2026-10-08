@@ -967,12 +967,87 @@ function heroLetter() {
   return ranked.length ? ranked[0].L : unitLettersUpper()[0];
 }
 
-function renderHeroCard() {
+/* ---- TODAY CARD ----
+   Home leads with what to do now, worked out from the student's own progress:
+   today's flashcards, exam questions to retry (or one to try), and the weakest
+   section. Each row is one tap into that task. */
+function openPracticeFiltered(show) {
+  qMode = 'practice';
+  qShow = show;
+  qFilter = 'all';
+  qIdx = 0;
+  navigate('questions');
+}
+
+function todayTasks() {
+  const tasks = [];
+  const plural = (n, w) => `${n} ${w}${n === 1 ? '' : 's'}`;
+
+  const fc = dueFlashcards();
+  if (fc.all.length) {
+    tasks.push({
+      title: plural(fc.all.length, 'flashcard'),
+      sub: [fc.reviews.length && `${fc.reviews.length} to review`, fc.fresh.length && `${fc.fresh.length} new`].filter(Boolean).join(' · '),
+      action: "navigate('flashcards')"
+    });
+  }
+
+  const qs = (loadJSON('data/questions.json') || {}).questions || [];
+  const latest = latestScores();
+  const weak = qs.filter(q => q.id in latest && latest[q.id] < WEAK_PCT).length;
+  const untried = qs.filter(q => !(q.id in latest)).length;
+  if (weak) {
+    tasks.push({ title: `Retry ${plural(weak, 'question')}`, sub: `You scored under ${WEAK_PCT}% last time`, action: "openPracticeFiltered('weak')" });
+  } else if (untried) {
+    tasks.push({ title: 'Practise an exam question', sub: `${untried} not tried yet`, action: "openPracticeFiltered('new')" });
+  }
+
+  // With nothing rated yet every section is 0%, so "weakest" would mean nothing.
   const L = heroLetter();
-  const t = el('home-hero-title');
-  const sub = el('home-hero-sub');
-  if (t) t.textContent = `Section ${L} · ${sectionShortName(L)}`;
-  if (sub) sub.textContent = sectionBlurb(L);
+  const rated = Object.keys(state.rag).length > 0;
+  tasks.push({
+    title: `Section ${L} · ${sectionShortName(L)}`,
+    sub: rated ? `${sectionProgress(L)}% confident · your weakest section` : `Start here · ${sectionBlurb(L)}`,
+    action: 'openHeroSection()'
+  });
+  return tasks;
+}
+
+function renderTodayCard() {
+  const list = el('today-tasks');
+  if (!list) return;
+  const d = el('today-date');
+  if (d) d.textContent = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+  const tasks = todayTasks();
+  el('today-title').textContent = `${tasks.length} thing${tasks.length === 1 ? '' : 's'} to do today`;
+  list.innerHTML = tasks.map((t, i) => `
+    <li><button class="today-task" onclick="${t.action}">
+      <span class="today-num" aria-hidden="true">${i + 1}</span>
+      <span class="today-text"><span class="today-task-title">${t.title}</span><span class="today-task-sub">${t.sub}</span></span>
+      <span class="today-arrow" aria-hidden="true">&rarr;</span>
+    </button></li>`).join('');
+}
+
+/* A compact chip, not a big block: with no date set it used to take most of a
+   phone's first screen to say "no exam date set". */
+function renderExamChip() {
+  const chip = el('home-exam-chip');
+  if (!chip) return;
+  const u = unitDef();
+  if (!hasExamDate()) {
+    chip.className = 'exam-chip empty';
+    chip.innerHTML = '<span aria-hidden="true">+</span> Set exam date';
+    chip.title = `Set your ${u.label} exam date`;
+  } else if (examPassed()) {
+    chip.className = 'exam-chip';
+    chip.textContent = 'Exam date passed · change';
+    chip.title = `${u.label} exam was ${getExamDate()}. Click to set a new date`;
+  } else {
+    const days = daysUntilExam();
+    chip.className = 'exam-chip' + (days <= 14 ? ' soon' : '');
+    chip.innerHTML = days === 0 ? '<b>Exam today</b>' : `<b>${days}</b> day${days === 1 ? '' : 's'} to exam`;
+    chip.title = `${u.label} exam: ${getExamDate()}. Click to change`;
+  }
 }
 
 function openHeroSection() {
@@ -982,44 +1057,24 @@ function openHeroSection() {
 function renderHome() {
   loadData(unitLetters());
 
-  const days = daysUntilExam();
   const prog = overallProgress();
-  const rc = ragCounts();
-  const flashDue = getFlashcardsDueCount();
 
   const hour = new Date().getHours();
   const greet = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
   const greetEl = el('home-greeting');
   if (greetEl) greetEl.textContent = greet;
 
-  if (hasExamDate()) {
-    el('home-countdown-days').textContent = days;
-    el('home-countdown-label').textContent = examPassed() ? 'exam passed' : 'days to exam';
-    el('home-countdown-date').textContent = `Exam: ${getExamDate()} • ${unitDef().label}: ${unitDef().name}`;
-  } else {
-    el('home-countdown-days').textContent = '—';
-    el('home-countdown-label').textContent = 'no exam date set';
-    el('home-countdown-date').textContent = `${unitDef().label}: ${unitDef().name} · tap to set your exam date`;
-  }
-  const progBar = el('home-overall-progress');
-  progBar.style.width = '0%';
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    progBar.style.width = prog + '%';
-  }));
+  renderExamChip();
   el('home-overall-pct').textContent = prog + '%';
   renderConfidenceStrip();
   el('home-stat-streak').textContent = currentStreak();
-  el('home-flash-due').textContent = flashDue;
   const myRank = rankInfo(myStanding().tier);
   el('home-stat-level').textContent = myRank.icon;
   el('home-stat-level').style.color = myRank.col;
   el('home-stat-xp').textContent = `${myRank.name} · ${seasonXP()} season XP`;
-  renderHeroCard();
-
+  renderTodayCard();
   renderSectionTiles();
   renderPriorityTopics();
-  renderHeatmap();
-  renderReviseNext();
   // A refresh always lands on Home, so an interrupted paper is offered here too.
   const resume = el('home-mock-resume');
   if (resume) resume.innerHTML = mockResumeHTML();
@@ -1046,33 +1101,26 @@ function renderPriorityTopics() {
   if (!container) return;
   const reds = Object.entries(state.rag).filter(([, v]) => v === 'red').map(([k]) => k);
   const ambers = Object.entries(state.rag).filter(([, v]) => v === 'amber').map(([k]) => k);
-  const picks = [...reds, ...ambers].slice(0, 6);
-
-  if (!picks.length) {
-    container.innerHTML = '';
-    return;
-  }
-
-  const rows = picks.map(code => {
+  const rows = [...reds, ...ambers].map(code => {
     const item = findItemByCode(code);
     if (!item) return '';
-    const isRed = state.rag[code] === 'red';
+    const level = state.rag[code] === 'red' ? 'red' : 'amber';
     return `
       <div role="button" tabindex="0" class="search-result" onclick="goToResult('${item.section}', '${code}')">
         <div style="display:flex;align-items:center;gap:8px">
-          <span class="badge" style="${isRed ? 'background:#FDECEC;color:#C53030;border-color:#F7C5C5' : 'background:#FEF4E0;color:#B7791F;border-color:#F8D5B3'}">${isRed ? '🔴' : '🟡'} ${code}</span>
+          <span class="badge rag-badge ${level}"><span class="rag-dot" aria-hidden="true"></span>${code}</span>
           <h4 style="flex:1">${item.term}</h4>
-          <span class="chevron">→</span>
+          <span class="sr-only">${level === 'red' ? 'Need work' : 'Getting there'}</span>
+          <span class="chevron" aria-hidden="true">→</span>
         </div>
       </div>`;
-  }).join('');
+  }).filter(Boolean).slice(0, 5);
 
-  container.innerHTML = `
-    <h3 style="margin-bottom:12px;font-size:14px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">🎯 Priority topics — revise these first</h3>
-    <div class="search-results" style="margin-bottom:20px">${rows}</div>`;
+  container.innerHTML = rows.length ? `
+    <h3 class="home-section-title">Topics to revisit</h3>
+    <div class="search-results" style="margin-bottom:24px">${rows.join('')}</div>` : '';
 }
 
-let homeHeatmapYear = new Date().getFullYear();
 let profileHeatmapYear = new Date().getFullYear();
 
 function isLeapYear(y) {
@@ -1144,14 +1192,6 @@ function buildYearHeatmapHTML(year, callbackFn) {
     <div class="hm-legend">Less <span class="hm-cell hm-0"></span><span class="hm-cell hm-1"></span><span class="hm-cell hm-2"></span><span class="hm-cell hm-3"></span><span class="hm-cell hm-4"></span> More</div>`;
 }
 
-function renderHeatmap(year) {
-  if (year !== undefined) homeHeatmapYear = year;
-  const container = el('activity-heatmap');
-  if (!container) return;
-  container.innerHTML = buildYearHeatmapHTML(homeHeatmapYear, 'renderHeatmap');
-  scrollHeatmapToToday(container, homeHeatmapYear);
-}
-
 function renderProfileHeatmap(year) {
   if (year !== undefined) profileHeatmapYear = year;
   const container = el('profile-heatmap');
@@ -1172,53 +1212,6 @@ function scrollHeatmapToToday(container, year) {
   const col = Math.floor((startPad + dayOfYear) / 7);
   // 16px per week column, plus the day-label gutter; keep today near the right edge.
   sc.scrollLeft = Math.max(0, col * 16 + 60 - sc.clientWidth + 40);
-}
-
-function renderReviseNext() {
-  const container = el('revise-next');
-  if (!container) return;
-
-  // Today's flashcards: due reviews first, then new cards (same rule as the Flashcards page)
-  const todayCards = dueFlashcards();
-  const dueCards = todayCards.all.slice(0, 3);
-
-  // Weakest RAG topic
-  const reds = Object.entries(state.rag).filter(([, v]) => v === 'red').map(([k]) => k);
-  const weakCode = reds[0] || null;
-  const weakItem = weakCode ? findItemByCode(weakCode) : null;
-
-  if (!dueCards.length && !weakItem) { container.innerHTML = ''; return; }
-
-  const dueHTML = dueCards.length ? `
-    <div style="margin-bottom:12px">
-      <div style="font-size:12px;color:var(--text2);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px">${todayCards.reviews.length ? 'Flashcards due today' : 'New flashcards to learn today'}</div>
-      ${dueCards.map(c => `
-        <div role="button" tabindex="0" class="search-result" onclick="navigate('flashcards')" style="cursor:pointer">
-          <div style="display:flex;align-items:center;gap:8px">
-            <span class="badge">${c.code}</span>
-            <span style="flex:1;font-size:14px">${c.front}</span>
-            <span class="chevron">→</span>
-          </div>
-        </div>`).join('')}
-    </div>` : '';
-
-  const weakHTML = weakItem ? `
-    <div>
-      <div style="font-size:12px;color:var(--text2);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px">🔴 Weakest topic</div>
-      <div role="button" tabindex="0" class="search-result" onclick="goToResult('${weakItem.section}', '${weakCode}')" style="cursor:pointer">
-        <div style="display:flex;align-items:center;gap:8px">
-          <span class="badge" style="background:#FDECEC;color:#C53030;border-color:#F7C5C5">${weakCode}</span>
-          <span style="flex:1;font-size:14px">${weakItem.term}</span>
-          <span class="chevron">→</span>
-        </div>
-      </div>
-    </div>` : '';
-
-  container.innerHTML = `
-    <div class="card" style="margin-bottom:20px;padding:16px 20px">
-      <h3 style="font-size:14px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px">🎯 What to revise next</h3>
-      ${dueHTML}${weakHTML}
-    </div>`;
 }
 
 function renderSectionTiles() {
