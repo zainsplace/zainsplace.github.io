@@ -24,7 +24,7 @@ const UNITS = {
     id: 'u2', label: 'Unit 2', short: 'U2',
     name: 'Cyber Security & Incident Management',
     headerSub: 'BTEC National · Cyber Security & Incident Management',
-    examDate: '2026-05-15',
+    examDate: null,
     order: ['a', 'b', 'd', 'c'],
     keywordBanks: [
       { title: 'Section D — Forensics (fast marks)', col: '#6D5BD6', words: ['Faraday bag', 'Write-blocker', 'Forensic image (bit-for-bit copy)', 'Hash value (MD5/SHA) before & after', 'Chain of custody', 'Contemporaneous notes', 'Evidence bag + tamper-proof seal', 'Photograph the scene first'] },
@@ -80,14 +80,17 @@ function defaultUnitState() {
     },
     questions: {
       history: [],     // {qId, marks, date, selfScore}
-      mocks: []        // {paper, date, score, max, minutes}
+      mocks: [],       // {paper, date, score, max, minutes}
+      drafts: {},      // textarea id -> unmarked answer text
+      activeMock: {}   // a paper being sat or marked, so a refresh can resume it
     },
     streak: { last: null, count: 0 },
     xp: 0,
     activity: {},      // 'YYYY-MM-DD' -> action count (feeds the heatmap)
     battles: { played: 0, won: 0, modes: {} },
     extended: {
-      history: []      // {type, wordCount, date, timeTaken}
+      history: [],     // {type, wordCount, date, timeTaken}
+      drafts: {}       // prompt id -> essay text, kept until the box is emptied
     },
     examDate: null,
     planChecks: {},
@@ -155,6 +158,10 @@ function coerceLike(def, raw) {
 function coerceUnit(raw) {
   const unit = coerceLike(defaultUnitState(), raw);
   GLOBAL_KEYS.forEach(k => { delete unit[k]; });   // theme/profile never live in a unit
+  // Drafts are a free-form map, so coerceLike keeps any value. Only text is a draft.
+  [unit.questions.drafts, unit.extended.drafts].forEach(drafts => {
+    Object.keys(drafts).forEach(k => { if (typeof drafts[k] !== 'string') delete drafts[k]; });
+  });
   return unit;
 }
 
@@ -383,7 +390,11 @@ function resetTransientState() {
   flashFilter = 'all';
   qFilter = 'all';
   if (typeof flashPracticeMode !== 'undefined') flashPracticeMode = false;
-  qMode = 'browse';
+  qMode = 'practice';
+  qShow = 'all';
+  qIdx = 0;
+  qCurrentId = null;
+  quizOpts.section = 'all';
   mock = null;
   gamesMode = 'menu';
   quizQueue = [];
@@ -406,14 +417,10 @@ function stopGameTimers() {
 }
 
 /* Extended-writing timers are the student's own exam practice, not game state.
-   They are only torn down on a unit switch, never on ordinary navigation. */
-/* A unit switch abandons the essay as well as the clock, so the timer is
-   discarded outright. Merely pausing it left a stale `remaining` behind while
-   the page re-rendered from the prompt's full time, and Start jumped backwards. */
-function clearExtDrafts() {
-  Object.keys(extDrafts).forEach(k => { delete extDrafts[k]; });
-}
-
+   They are only torn down on a unit switch, never on ordinary navigation.
+   A unit switch discards the clock outright. Merely pausing it left a stale
+   `remaining` behind while the page re-rendered from the prompt's full time, and
+   Start jumped backwards. Drafts are per unit in saved state, so they survive. */
 function stopExtendedTimers() {
   if (typeof extTimers === 'object' && extTimers) {
     Object.keys(extTimers).forEach(k => {
@@ -422,7 +429,6 @@ function stopExtendedTimers() {
       delete extTimers[k];
     });
   }
-  clearExtDrafts();
 }
 
 function stopAllTimers() {
@@ -485,20 +491,24 @@ function navigate(page, opts = {}) {
   }
   currentPage = page;
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   const pageEl = document.getElementById('page-' + page);
   if (pageEl) pageEl.classList.add('active');
-  const navEl = document.querySelector(`.nav-btn[data-page="${page}"]`);
-  if (navEl) navEl.classList.add('active');
   document.querySelectorAll('.sidebar-btn').forEach(b => {
     b.classList.toggle('active', b.dataset.page === page);
   });
   const titleEl = el('top-bar-title');
   if (titleEl) titleEl.textContent = PAGE_TITLES[page] || page;
   // scroll content to top on navigation
+  scrollContentTop();
+  renderPage(page, opts);
+}
+
+/* Page content scrolls inside <main>, not the window, so window.scrollTo() on
+   its own does nothing. Reset both in case a layout ever scrolls the window. */
+function scrollContentTop() {
   const mainEl = document.querySelector('main');
   if (mainEl) mainEl.scrollTop = 0;
-  renderPage(page, opts);
+  window.scrollTo(0, 0);
 }
 
 function renderPage(page, opts) {
@@ -520,8 +530,13 @@ function renderPage(page, opts) {
 /* ---- SIDEBAR ---- */
 let sidebarOpen = null; // null = not yet initialised
 
+/* localStorage throws when storage is blocked. Everything else guards it, and an
+   unguarded read here ran inside DOMContentLoaded and stopped the app starting. */
+function lsGet(key) { try { return localStorage.getItem(key); } catch { return null; } }
+function lsSet(key, val) { try { localStorage.setItem(key, val); } catch { /* not persisted */ } }
+
 function initSidebar() {
-  const saved = localStorage.getItem('rev_sidebar') ?? localStorage.getItem('u2_sidebar');
+  const saved = lsGet('rev_sidebar') ?? lsGet('u2_sidebar');
   sidebarOpen = saved !== null ? saved === 'true' : false;
   applySidebarState();
 }
@@ -541,13 +556,13 @@ function applySidebarState() {
 
 function toggleSidebar() {
   sidebarOpen = !sidebarOpen;
-  localStorage.setItem('rev_sidebar', String(sidebarOpen));
+  lsSet('rev_sidebar', String(sidebarOpen));
   applySidebarState();
 }
 
 function closeSidebar() {
   sidebarOpen = false;
-  localStorage.setItem('rev_sidebar', 'false');
+  lsSet('rev_sidebar', 'false');
   applySidebarState();
 }
 
@@ -639,21 +654,40 @@ function daysUntilExam() {
   return Math.max(0, Math.round((exam - now) / 86400000));
 }
 
+/* A date input instead of prompt(): phones get their native date picker rather
+   than a text box asking for YYYY-MM-DD. */
 function setExamDate() {
-  const current = getExamDate() || '';
-  const input = prompt('Enter your exam date (YYYY-MM-DD):', current);
-  if (!input) return;
-  // Must use the same validator the countdown uses. A looser check here let
-  // "2026-02-31" through — JS rolls it to 3 March, so it is not NaN — and the
-  // student got "Exam date updated!" with no countdown to show for it.
-  if (!parseExamDate(input)) {
-    toast('Invalid date — use YYYY-MM-DD, e.g. 2027-05-14');
-    return;
+  const u = unitDef();
+  openModal(`
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    <h2 id="modal-title">${u.label} exam date</h2>
+    <label for="exam-date-input" style="display:block;font-size:13px;color:var(--text2);margin-bottom:6px">
+      When do you sit ${u.label}: ${u.name}?</label>
+    <input type="date" id="exam-date-input" class="search-bar" style="margin-bottom:14px" value="${escapeHTML(getExamDate() || '')}">
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="saveExamDate()">Save</button>
+      ${state.examDate ? '<button class="btn btn-secondary" onclick="saveExamDate(true)">Clear date</button>' : ''}
+      <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+    </div>`);
+  const input = el('exam-date-input');
+  if (input) input.addEventListener('keydown', e => { if (e.key === 'Enter') saveExamDate(); });
+}
+
+function saveExamDate(clear) {
+  if (clear) {
+    state.examDate = null;
+  } else {
+    const v = (el('exam-date-input') || {}).value || '';
+    // Must use the same validator the countdown uses. A looser check let
+    // "2026-02-31" through: JS rolls it to 3 March, so it is not NaN.
+    if (!parseExamDate(v)) { toast('Pick a valid date'); return; }
+    state.examDate = v.trim();
   }
-  state.examDate = input.trim();
   saveState();
-  toast('Exam date updated!');
-  renderHome();
+  closeModal();
+  toast(clear ? 'Exam date cleared' : 'Exam date updated!');
+  if (currentPage === 'home') renderHome();
+  else if (currentPage === 'plan') renderPlan();
 }
 
 function ragClass(code) {
@@ -780,8 +814,15 @@ function ragCounts() {
   };
 }
 
+/* Calendar dates are LOCAL. toISOString() is UTC, so from 00:00 to 00:59 during
+   British Summer Time it returned yesterday: late-night revision landed on the
+   wrong day for streaks and due cards, and disagreed with the heatmap's keys. */
+function localDateStr(d = new Date()) {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
 function today() {
-  return new Date().toISOString().split('T')[0];
+  return localDateStr();
 }
 
 /* Profile values normally come from a fixed picker, but an imported backup can
@@ -877,6 +918,7 @@ function bumpActivity(n = 1) {
   if (!state.activity) state.activity = {};
   const d = today();
   state.activity[d] = (state.activity[d] || 0) + n;
+  updateStreak();   // a streak day is a day you revised, not a day you opened the site
   saveState();
 }
 
@@ -926,7 +968,6 @@ function openHeroSection() {
 
 function renderHome() {
   loadData(unitLetters());
-  updateStreak();
 
   const days = daysUntilExam();
   const prog = overallProgress();
@@ -940,8 +981,7 @@ function renderHome() {
 
   if (hasExamDate()) {
     el('home-countdown-days').textContent = days;
-    const examPassed = new Date(getExamDate()) < new Date(new Date().toDateString());
-    el('home-countdown-label').textContent = examPassed ? 'exam passed' : 'days to exam';
+    el('home-countdown-label').textContent = examPassed() ? 'exam passed' : 'days to exam';
     el('home-countdown-date').textContent = `Exam: ${getExamDate()} • ${unitDef().label}: ${unitDef().name}`;
   } else {
     el('home-countdown-days').textContent = '—';
@@ -955,7 +995,7 @@ function renderHome() {
   }));
   el('home-overall-pct').textContent = prog + '%';
   renderConfidenceStrip();
-  el('home-stat-streak').textContent = state.streak.count;
+  el('home-stat-streak').textContent = currentStreak();
   el('home-flash-due').textContent = flashDue;
   const myRank = rankInfo(myStanding().tier);
   el('home-stat-level').textContent = myRank.icon;
@@ -967,6 +1007,9 @@ function renderHome() {
   renderPriorityTopics();
   renderHeatmap();
   renderReviseNext();
+  // A refresh always lands on Home, so an interrupted paper is offered here too.
+  const resume = el('home-mock-resume');
+  if (resume) resume.innerHTML = mockResumeHTML();
 }
 
 /* ---- PRIORITY TOPICS (weakest first: red, then amber) ---- */
@@ -1064,7 +1107,7 @@ function buildYearHeatmapHTML(year, callbackFn) {
   }
 
   const monthLabelHTML = monthPositions.map(m =>
-    `<span style="position:absolute;left:${m.col * 16}px;font-size:10px;color:var(--text2);font-weight:700;white-space:nowrap;line-height:1">${m.label}</span>`
+    `<span style="position:absolute;left:${m.col * 16}px;font-size:12px;color:var(--text2);font-weight:700;white-space:nowrap;line-height:1">${m.label}</span>`
   ).join('');
 
   const btnStyle = `background:var(--bg3);border:1px solid var(--border);border-radius:8px;width:28px;height:28px;cursor:pointer;font-size:15px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;color:var(--text)`;
@@ -1072,11 +1115,11 @@ function buildYearHeatmapHTML(year, callbackFn) {
 
   return `
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
-      <button onclick="${callbackFn}(${year - 1})" style="${btnStyle}">‹</button>
+      <button onclick="${callbackFn}(${year - 1})" aria-label="Previous year" style="${btnStyle}">‹</button>
       <span style="font-size:15px;font-weight:800;min-width:44px;text-align:center">${year}</span>
-      <button onclick="${callbackFn}(${year + 1})"${nextDisabled ? ' disabled' : ''} style="${btnStyle};${nextDisabled ? 'opacity:0.3;cursor:default' : ''}">›</button>
+      <button onclick="${callbackFn}(${year + 1})" aria-label="Next year"${nextDisabled ? ' disabled' : ''} style="${btnStyle};${nextDisabled ? 'opacity:0.3;cursor:default' : ''}">›</button>
     </div>
-    <div style="overflow-x:auto;padding-bottom:6px">
+    <div class="hm-scroll" style="overflow-x:auto;padding-bottom:6px">
       <div style="display:inline-flex;gap:6px;align-items:flex-start">
         <div class="hm-days" style="margin-top:20px"><span>Mon</span><span>Wed</span><span>Fri</span></div>
         <div>
@@ -1093,6 +1136,7 @@ function renderHeatmap(year) {
   const container = el('activity-heatmap');
   if (!container) return;
   container.innerHTML = buildYearHeatmapHTML(homeHeatmapYear, 'renderHeatmap');
+  scrollHeatmapToToday(container, homeHeatmapYear);
 }
 
 function renderProfileHeatmap(year) {
@@ -1100,6 +1144,21 @@ function renderProfileHeatmap(year) {
   const container = el('profile-heatmap');
   if (!container) return;
   container.innerHTML = buildYearHeatmapHTML(profileHeatmapYear, 'renderProfileHeatmap');
+  scrollHeatmapToToday(container, profileHeatmapYear);
+}
+
+/* On a phone the year is wider than the screen and opened on January, so this
+   month was off to the right. Bring the current week into view instead. */
+function scrollHeatmapToToday(container, year) {
+  const sc = container.querySelector('.hm-scroll');
+  const now = new Date();
+  if (!sc || year !== now.getFullYear() || sc.scrollWidth <= sc.clientWidth) return;
+  const jan1 = new Date(year, 0, 1);
+  const startPad = (jan1.getDay() + 6) % 7;
+  const dayOfYear = Math.floor((now - jan1) / 86400000);
+  const col = Math.floor((startPad + dayOfYear) / 7);
+  // 16px per week column, plus the day-label gutter; keep today near the right edge.
+  sc.scrollLeft = Math.max(0, col * 16 + 60 - sc.clientWidth + 40);
 }
 
 function renderReviseNext() {
@@ -1182,8 +1241,6 @@ function renderSectionTiles() {
 }
 
 /* ---- SECTIONS PAGE ---- */
-let sectionFilter = 'all';
-
 function renderSections(letter) {
   const container = el('sections-content');
 
@@ -1265,10 +1322,10 @@ function renderSpecItem(item, letter) {
 
   return `
     <div class="card" id="item-${item.code}">
-      <div role="button" tabindex="0" class="card-header" onclick="toggleCard('${item.code}')">
+      <div role="button" tabindex="0" class="card-header" aria-expanded="false" aria-controls="body-${item.code}" onclick="toggleCard('${item.code}')">
         <span class="badge" style="min-width:65px;text-align:center">${item.code}</span>
         <h3>${item.term}</h3>
-        ${isReviewed ? '<span style="color:var(--green);font-size:12px">✓</span>' : ''}
+        ${isReviewed ? '<span class="reviewed-tick" style="color:var(--green);font-size:12px">✓</span>' : ''}
         <span class="chevron" id="chev-${item.code}">▼</span>
       </div>
       <div class="card-body hidden" id="body-${item.code}">
@@ -1294,8 +1351,10 @@ function toggleCard(code) {
   const body = el('body-' + code);
   const chev = el('chev-' + code);
   if (!body) return;
-  body.classList.toggle('hidden');
-  chev.classList.toggle('open');
+  const open = body.classList.toggle('hidden') === false;
+  if (chev) chev.classList.toggle('open', open);
+  const header = body.previousElementSibling;
+  if (header && header.classList.contains('card-header')) header.setAttribute('aria-expanded', String(open));
 }
 
 function setRAG(code, val, letter) {
@@ -1314,11 +1373,20 @@ function setRAG(code, val, letter) {
   toast(val === 'green' ? '✓ Marked confident' : val === 'amber' ? 'Noted — keep practising' : 'Added to revision priority');
 }
 
+/* Updates this one card in place. Re-rendering the section (as it used to) reset
+   the scroll and closed the card, losing the student's place in a long section. */
 function markReviewed(code, letter) {
   const key = letter + '_' + code;
   state.reviewed[key] = true;
   saveState();
-  navigate('sections', { section: letter });
+  const card = el('item-' + code);
+  if (!card) return;
+  const btn = card.querySelector('button[onclick^="markReviewed"]');
+  if (btn) btn.outerHTML = '<div class="reviewed-banner">✓ Marked as reviewed</div>';
+  const h3 = card.querySelector('.card-header h3');
+  if (h3 && !card.querySelector('.reviewed-tick')) {
+    h3.insertAdjacentHTML('afterend', '<span class="reviewed-tick" style="color:var(--green);font-size:12px">✓</span>');
+  }
 }
 
 /* ---- FLASHCARDS ---- */
@@ -1448,7 +1516,7 @@ function answerFlash(correct) {
     const interval = LEITNER_INTERVALS[newBox];
     const due = new Date();
     due.setDate(due.getDate() + interval);
-    state.flashcards.nextDue[card.id] = due.toISOString().split('T')[0];
+    state.flashcards.nextDue[card.id] = localDateStr(due);
     state.xp = (state.xp || 0) + (correct ? 5 : 2);
     bumpActivity();
     saveState();
@@ -1474,12 +1542,22 @@ function getFlashcardsDueCount() {
   return count;
 }
 
-/* ---- QUESTIONS ---- */
+/* ---- QUESTIONS ----
+   Practice works like flashcards: one question on screen, Previous / Next (or
+   ← / →) to move, filtered by section and by what you still need to do. Quiz
+   mode runs a short set picked by focus; mock papers sit a whole paper. */
 let qData = null;
-let qMode = 'browse';   // 'browse' | 'quiz' | 'mock'
-let qFilter = 'all';
+let qMode = 'practice';   // 'practice' | 'quizsetup' | 'quiz' | 'mock'
+let qFilter = 'all';      // section letter, or 'all'
+let qShow = 'all';        // 'all' | 'new' (not tried) | 'weak' (last mark under WEAK_PCT)
+let qIdx = 0;             // position in the filtered practice list
+let qCurrentId = null;    // question on screen, so Next still works after it drops out of the filter
 let quizQueue = [];
 let quizIdx = 0;
+let quizOpts = { focus: 'weak', section: 'all', length: 10 };
+
+// Same cut-off as the green score badge: below this a question still needs work.
+const WEAK_PCT = 70;
 
 function renderQuestions() {
   qData = loadJSON('data/questions.json');
@@ -1493,9 +1571,217 @@ function renderQuestions() {
     renderMock(container);
   } else if (qMode === 'quiz') {
     renderQuizMode(container);
+  } else if (qMode === 'quizsetup') {
+    renderQuizSetup(container);
   } else {
-    renderBrowseMode(container);
+    renderPractice(container);
   }
+}
+
+// Most recent mark per question, as a percentage. Mock marks count too.
+function latestScores() {
+  const out = {};
+  state.questions.history.forEach(h => {
+    if (typeof h.qId === 'string' && typeof h.selfScore === 'number') out[h.qId] = h.selfScore;
+  });
+  return out;
+}
+
+function scoreBand(pct) {
+  return pct === undefined ? '' : pct >= WEAK_PCT ? 'good' : pct >= 40 ? 'mid' : 'low';
+}
+
+function scoreBadgeClass(pct) {
+  return { good: 'active-green', mid: 'active-amber', low: 'active-red' }[scoreBand(pct)] || '';
+}
+
+// "1(a)(i)" for a paper-style question, "Short question 7" for a standalone one,
+// counted among the standalone questions only (they follow the paper in Unit 2).
+function qLabel(q) {
+  const sc = qScenario(q);
+  if (sc) return `Question ${sc.number}${q.part || ''}`;
+  return `Short question ${qData.questions.filter(x => !x.scenario).indexOf(q) + 1}`;
+}
+
+function matchesShow(q, show, latest) {
+  if (show === 'new') return !(q.id in latest);
+  if (show === 'weak') return q.id in latest && latest[q.id] < WEAK_PCT;
+  return true;
+}
+
+function practiceList(latest = latestScores()) {
+  return qData.questions.filter(q =>
+    (qFilter === 'all' || q.section === qFilter) && matchesShow(q, qShow, latest));
+}
+
+function avgOf(nums) {
+  return nums.length ? Math.round(nums.reduce((a, b) => a + b, 0) / nums.length) : null;
+}
+
+/* Where you stand across the whole bank: what you have tried, how it went, and
+   which section and command word are dragging the average down. */
+function renderQSummary() {
+  const latest = latestScores();
+  const qs = qData.questions;
+  const done = qs.filter(q => q.id in latest);
+  const avg = avgOf(done.map(q => latest[q.id]));
+  const weakCount = done.filter(q => latest[q.id] < WEAK_PCT).length;
+
+  const weakestBy = key => {
+    const groups = {};
+    done.forEach(q => { (groups[q[key]] = groups[q[key]] || []).push(latest[q.id]); });
+    let worst = null;
+    Object.keys(groups).forEach(k => {
+      const a = avgOf(groups[k]);
+      if (a < WEAK_PCT && (!worst || a < worst.avg)) worst = { key: k, avg: a };
+    });
+    return worst;
+  };
+  const ws = weakestBy('section');
+  const wc = weakestBy('commandWord');
+  const focus = done.length >= 3 && (ws || wc) ? `
+    <div class="q-focus">
+      <span><strong>Focus next:</strong>
+        ${[ws && `Section ${ws.key} (${ws.avg}%)`, wc && `${wc.key} questions (${wc.avg}%)`].filter(Boolean).join(' · ')}</span>
+      ${weakCount ? `<button class="btn btn-secondary btn-sm" onclick="quickWeakQuiz()">Quiz my weak spots</button>` : ''}
+    </div>` : '';
+
+  const tiles = unitLettersUpper().map(l => {
+    const inSec = qs.filter(q => q.section === l);
+    if (!inSec.length) return '';
+    const tried = inSec.filter(q => q.id in latest);
+    const a = avgOf(tried.map(q => latest[q.id]));
+    return `
+      <button class="q-sec${qFilter === l ? ' active' : ''}" onclick="setQFilter('${qFilter === l ? 'all' : l}')"
+        aria-pressed="${qFilter === l}" title="${qFilter === l ? 'Show all sections' : 'Only show Section ' + l}">
+        <span class="q-sec-letter">${l}</span>
+        <span class="q-sec-count">${tried.length}/${inSec.length}</span>
+        <span class="q-sec-avg ${scoreBand(a === null ? undefined : a)}">${a === null ? '–' : a + '%'}</span>
+      </button>`;
+  }).join('');
+
+  return `
+    <div class="q-summary">
+      <div class="q-stats">
+        <div><strong>${done.length}<span>/${qs.length}</span></strong>tried</div>
+        <div><strong>${avg === null ? '–' : avg + '%'}</strong>average mark</div>
+        <div><strong>${weakCount}</strong>need another go</div>
+      </div>
+      <div class="q-secs">${tiles}</div>
+      ${focus}
+    </div>`;
+}
+
+function renderPractice(container) {
+  const latest = latestScores();
+  const list = practiceList(latest);
+  if (qIdx >= list.length) qIdx = Math.max(0, list.length - 1);
+  const q = list[qIdx];
+  qCurrentId = q ? q.id : null;
+
+  const showBtn = (val, label) =>
+    `<button class="tab-btn ${qShow === val ? 'active' : ''}" aria-pressed="${qShow === val}" onclick="setQShow('${val}')">${label}</button>`;
+  const emptyMsg = qShow === 'new'
+    ? `You have tried every question${qFilter === 'all' ? '' : ' in Section ' + qFilter}. Switch to <strong>Needs work</strong> to go back over the ones you dropped marks on.`
+    : qShow === 'weak'
+      ? `Nothing needs another go${qFilter === 'all' ? '' : ' in Section ' + qFilter}. Every question you have marked scored ${WEAK_PCT}% or more.`
+      : 'No questions in this section.';
+
+  container.innerHTML = `
+    <div class="q-head">
+      <h2>Practice Questions</h2>
+      <div class="q-head-btns">
+        ${qData.papers ? `<button class="btn btn-secondary btn-sm" onclick="openMockMenu()">Mock paper</button>` : ''}
+        <button class="btn btn-primary btn-sm" onclick="openQuizSetup()">Quiz</button>
+      </div>
+    </div>
+    <p class="q-intro">${qData.scenarios
+      ? 'Set out like the real paper. Read the scenario, answer the part, then mark yourself against the mark scheme, not a guess. The number in brackets is the marks, so it tells you how much to write.'
+      : 'Answer the question, then mark yourself against the mark scheme. The number in brackets is the marks, so it tells you how much to write.'}
+      Your answers are saved as you type.</p>
+    ${mockResumeHTML()}
+    <div id="q-summary">${renderQSummary()}</div>
+    <div class="q-toolbar">
+      <select class="q-select" aria-label="Section" onchange="setQFilter(this.value)">
+        <option value="all" ${qFilter === 'all' ? 'selected' : ''}>All sections</option>
+        ${unitLettersUpper().map(l => `<option value="${l}" ${qFilter === l ? 'selected' : ''}>Section ${l}</option>`).join('')}
+      </select>
+      <div class="tabs q-show" role="group" aria-label="Which questions">
+        ${showBtn('all', 'All')}${showBtn('new', 'Not tried')}${showBtn('weak', 'Needs work')}
+      </div>
+    </div>
+    ${q ? `
+      <nav class="q-nav" id="q-nav" aria-label="Jump to a question">
+        ${list.map((x, i) => {
+          const desc = `${qLabel(x)}, ${x.marks} mark${x.marks === 1 ? '' : 's'}, ${x.id in latest ? 'last ' + latest[x.id] + '%' : 'not tried'}`;
+          return `<button class="q-chip ${scoreBand(latest[x.id])}${i === qIdx ? ' current' : ''}" data-qid="${x.id}"
+            aria-current="${i === qIdx ? 'true' : 'false'}" aria-label="${desc}" title="${desc}" onclick="practiceGo(${i})">${i + 1}</button>`;
+        }).join('')}
+      </nav>
+      <div class="q-practice" id="q-stage">${renderQuestionStage(q, 'practice', latest)}</div>
+      <div class="q-pager">
+        <button class="btn btn-secondary btn-sm" onclick="practiceStep(-1)" ${qIdx === 0 ? 'disabled' : ''}>← Previous</button>
+        <span>Question ${qIdx + 1} of ${list.length}</span>
+        <button class="btn btn-secondary btn-sm" onclick="practiceStep(1)" ${qIdx >= list.length - 1 ? 'disabled' : ''}>Next →</button>
+      </div>
+      <div class="flash-keys"><kbd>←</kbd> previous · <kbd>→</kbd> next, when you are not typing</div>`
+    : `<div class="empty-state"><div class="icon">${qShow === 'all' ? '📝' : '🎉'}</div><p>${emptyMsg}</p></div>`}`;
+  bindAnswerDrafts(container);
+}
+
+function practiceGo(i) {
+  qIdx = i;
+  renderQuestions();
+  // Bring the new question's top into view if it is above the visible area.
+  const stage = el('q-stage');
+  const mainEl = document.querySelector('main');
+  const visibleTop = mainEl ? mainEl.getBoundingClientRect().top : 0;
+  if (stage && stage.getBoundingClientRect().top < visibleTop) stage.scrollIntoView({ block: 'start' });
+}
+
+// Steps from the question on screen. If marking it just dropped it out of the
+// filter (Not tried / Needs work), the next one has slid into its place.
+function practiceStep(d) {
+  const list = practiceList();
+  if (!list.length) return;
+  const i = list.findIndex(x => x.id === qCurrentId);
+  const next = i === -1 ? (d > 0 ? qIdx : qIdx - 1) : i + d;
+  if (next < 0 || next >= list.length) return;
+  practiceGo(next);
+}
+
+function setQShow(v) {
+  qShow = v;
+  qIdx = 0;
+  renderQuestions();
+}
+
+/* Drafts are kept per unit in the saved state, keyed by textarea id, until the
+   answer is marked. Moving between questions or pages does not lose them. */
+let draftTick = null;
+
+function answerIds(q) {
+  return q.slots > 1 ? Array.from({ length: q.slots }, (_, i) => `ans-${q.id}-${i}`) : [`ans-${q.id}`];
+}
+
+function bindAnswerDrafts(root) {
+  if (!state.questions.drafts) state.questions.drafts = {};
+  const drafts = state.questions.drafts;
+  root.querySelectorAll('textarea.quiz-answer-area').forEach(t => {
+    if (typeof drafts[t.id] === 'string' && !t.value) t.value = drafts[t.id];
+    t.addEventListener('input', () => {
+      if (t.value.trim()) drafts[t.id] = t.value; else delete drafts[t.id];
+      clearTimeout(draftTick);
+      draftTick = setTimeout(saveState, 400);
+    });
+  });
+}
+
+function clearDraft(q) {
+  const drafts = state.questions.drafts;
+  if (!drafts) return;
+  answerIds(q).forEach(k => { delete drafts[k]; });
+  saveState();
 }
 
 /* Unit 1 questions are written like the real paper: grouped under a numbered
@@ -1510,42 +1796,6 @@ function examText(s) {
   return String(s || '')
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .split(/\n\n+/).map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('');
-}
-
-function renderBrowseMode(container) {
-  const sections = ['all'].concat(unitLettersUpper());
-  const filtered = qFilter === 'all' ? qData.questions : qData.questions.filter(q => q.section === qFilter);
-  const grouped = qData.scenarios && qFilter === 'all';
-  const body = grouped
-    ? qData.scenarios.map(s => renderScenarioBlock(s, filtered.filter(q => q.scenario === s.id))).join('')
-    : filtered.map(q => renderQuestionCard(q, true)).join('');
-
-  container.innerHTML = `
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:16px">
-      <h2>Practice Questions</h2>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        ${qData.papers ? `<button class="btn btn-secondary btn-sm" onclick="openMockMenu()">Mock paper</button>` : ''}
-        <button class="btn btn-primary btn-sm" onclick="startQuiz()">Start Quiz Mode</button>
-      </div>
-    </div>
-    ${qData.scenarios ? `<p class="q-intro">Set out like the real paper. Read the scenario, then answer each part. The number in brackets is the marks, so it tells you how much to write. When you mark yourself, you mark against the mark scheme, not a guess.</p>` : ''}
-    <div class="tabs">
-      ${sections.map(s => `<button class="tab-btn ${qFilter === s ? 'active' : ''}" onclick="setQFilter('${s}')">${s === 'all' ? 'All' : s}</button>`).join('')}
-    </div>
-    <div style="color:var(--text2);font-size:13px;margin-bottom:12px">${filtered.length} questions</div>
-    ${body}`;
-}
-
-function renderScenarioBlock(s, qs) {
-  if (!qs.length) return '';
-  const total = qs.reduce((n, q) => n + q.marks, 0);
-  return `
-    <section class="exam-q">
-      <div class="exam-q-head"><span class="exam-q-num">${s.number}</span><h3>${s.title}</h3></div>
-      <div class="scenario-stem">${examText(s.stem)}</div>
-      ${qs.map(q => renderQuestionCard(q, false)).join('')}
-      <div class="exam-q-total">(Total for Question ${s.number} = ${total} marks)</div>
-    </section>`;
 }
 
 function renderAnswerArea(q, id) {
@@ -1570,77 +1820,123 @@ function renderExamQuestion(q, showStem) {
     ${peek}
     ${q.context ? `<div class="q-context">${examText(q.context)}</div>` : ''}
     <div class="q-text">
-      <span class="q-part">${q.part}</span>
+      ${q.part ? `<span class="q-part">${q.part}</span>` : ''}
       <div class="q-body">${examText(q.question)}</div>
       <span class="q-tariff">(${q.marks})</span>
     </div>`;
 }
 
-function renderQuestionCard(q, showStem) {
-  const hist = state.questions.history.filter(h => h.qId === q.id);
-  const lastScore = hist.length ? hist[hist.length - 1].selfScore : null;
-  const scoreClass = lastScore === null ? '' : lastScore >= 70 ? 'active-green' : lastScore >= 40 ? 'active-amber' : 'active-red';
-  const meta = `
-      <div class="question-meta">
-        <span class="badge">${q.section}</span>
-        <span class="badge">${q.marks} marks</span>
-        <span class="badge">${q.commandWord}</span>
-        <span class="q-marks">${q.code || ''}</span>
-        ${lastScore !== null ? `<span class="badge ${scoreClass}">${lastScore}%</span>` : ''}
-      </div>`;
-
-  if (q.markScheme) {
-    return `
-    <div class="question-card" id="qcard-${q.id}">
-      ${meta}
-      ${renderExamQuestion(q, showStem)}
-      ${renderAnswerArea(q, 'ans-' + q.id)}
-      <button class="btn btn-primary btn-sm" onclick="openMarker('${q.id}', 'browse')">Mark my answer</button>
-      <div class="marker" id="marker-${q.id}" hidden></div>
-    </div>`;
-  }
+/* One question, ready to answer and mark. Shared by practice and quiz so both
+   behave the same. A question with a structured mark scheme opens the marker;
+   one without falls back to the example answer and a 0..N self-mark. */
+function renderQuestionStage(q, ctx, latest = latestScores()) {
+  const last = latest[q.id];
+  const sc = qScenario(q);
+  const scheme = q.markScheme
+    ? `<button class="btn btn-primary btn-sm" id="markbtn-${q.id}" onclick="openMarker('${q.id}', '${ctx}')">Mark my answer</button>
+       <div class="marker" id="marker-${q.id}" hidden></div>`
+    : `<button class="btn btn-primary btn-sm" id="markbtn-${q.id}" onclick="openSelfMark('${q.id}')">Mark my answer</button>
+       <div class="marker" id="marker-${q.id}" hidden>
+         <div class="ms-example"><div>${examText(q.modelAnswer)}</div></div>
+         ${q.markPoints ? `<div class="ms-accept"><div class="ms-title">Mark points</div><ul>${q.markPoints.map(p => `<li>${p}</li>`).join('')}</ul></div>` : ''}
+         <p class="ms-note" style="margin-top:12px">How many marks did your answer earn?</p>
+         <div class="self-mark">${Array.from({ length: q.marks + 1 }, (_, i) =>
+           `<button class="btn btn-secondary btn-sm" onclick="recordResult('${q.id}', ${i}, '${ctx}')">${i}/${q.marks}</button>`).join('')}</div>
+       </div>`;
 
   return `
     <div class="question-card" id="qcard-${q.id}">
-      ${meta}
-      <p style="font-size:15px;line-height:1.5;margin-bottom:12px">${q.question}</p>
-      <textarea class="quiz-answer-area" id="ans-${q.id}" placeholder="Write your answer here..." rows="4"></textarea>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="btn btn-secondary btn-sm" onclick="showModelAnswer('${q.id}')">Show model answer</button>
-        <button class="btn btn-sm" style="background:var(--green);color:#fff" onclick="selfMark('${q.id}', ${q.marks})">Self-mark</button>
+      <div class="question-meta">
+        <span class="badge">${q.section}</span>
+        <span class="badge">${q.marks} mark${q.marks === 1 ? '' : 's'}</span>
+        <span class="badge">${q.commandWord}</span>
+        <span class="q-marks">${q.code || ''}</span>
+        ${last !== undefined ? `<span class="badge ${scoreBadgeClass(last)}" title="Your last mark">Last: ${last}%</span>` : ''}
       </div>
-      <div class="model-answer" id="model-${q.id}">
-        <strong>Model answer (${q.marks} marks):</strong><br>${q.modelAnswer}
-        ${q.markPoints ? `<ul class="key-facts" style="margin-top:8px">${q.markPoints.map(p => `<li>${p}</li>`).join('')}</ul>` : ''}
-      </div>
-      <div id="selfmark-${q.id}" style="display:none;margin-top:10px">
-        <p style="font-size:13px;color:var(--text2);margin-bottom:6px">How many marks do you think you earned?</p>
-        <div class="self-mark">
-          ${Array.from({length: q.marks + 1}, (_, i) => `<button class="btn btn-secondary btn-sm" onclick="recordScore('${q.id}', ${i}, ${q.marks})">${i}/${q.marks}</button>`).join('')}
-        </div>
-      </div>
+      ${sc ? `<details class="scenario-peek" open><summary>Question ${sc.number}: ${sc.title}</summary>
+        <div class="scenario-stem">${examText(sc.stem)}</div></details>` : ''}
+      ${renderExamQuestion(q, false)}
+      ${renderAnswerArea(q, 'ans-' + q.id)}
+      ${scheme}
+      <div class="q-result" id="q-result-${q.id}" hidden></div>
     </div>`;
 }
 
-function showModelAnswer(qId) {
-  const model = el('model-' + qId);
-  if (model) model.classList.toggle('show');
-}
-
-function selfMark(qId, marks) {
-  showModelAnswer(qId);
-  const sm = el('selfmark-' + qId);
-  if (sm) sm.style.display = 'block';
+function openSelfMark(qId) {
+  const box = el('marker-' + qId);
+  if (box) box.hidden = !box.hidden;
 }
 
 function recordScore(qId, score, maxMarks) {
   const pct = Math.round((score / maxMarks) * 100);
   state.questions.history.push({ qId, marks: maxMarks, date: today(), selfScore: pct });
   bumpActivity();
-  saveState();
-  toast(`Recorded: ${score}/${maxMarks} (${pct}%)`);
-  const sm = el('selfmark-' + qId);
-  if (sm) sm.style.display = 'none';
+  return pct;
+}
+
+/* Every mark, from the marker or the 0..N buttons, lands here. Practice and
+   quiz both log it to history and clear the saved draft; the quiz also banks
+   XP and moves on, as it always has. */
+function recordResult(qId, score, ctx) {
+  const q = findQuestion(qId);
+  if (!q) return;
+  if (ctx === 'mock') { recordMockMark(qId, score); return; }
+  const pct = recordScore(qId, score, q.marks);
+  clearDraft(q);
+  if (ctx === 'quiz') {
+    quizScore += score;
+    quizMax += q.marks;
+    awardXP(score * 2, true);
+    quizIdx++;
+    renderQuestions();
+    scrollContentTop();
+    return;
+  }
+  toast(`Recorded: ${score}/${q.marks} (${pct}%)`);
+  showPracticeResult(q, score, pct);
+}
+
+// The answer stays on screen to compare with the mark scheme; the draft is gone.
+function showPracticeResult(q, score, pct) {
+  const box = el('marker-' + q.id);
+  if (box) box.hidden = true;
+  const btn = el('markbtn-' + q.id);
+  if (btn) btn.hidden = true;
+  const res = el('q-result-' + q.id);
+  if (res) {
+    res.hidden = false;
+    res.className = 'q-result ' + scoreBand(pct);
+    res.innerHTML = `
+      <span>Recorded <strong>${score}/${q.marks}</strong> (${pct}%)</span>
+      <span class="q-result-btns">
+        <button class="btn btn-secondary btn-sm" onclick="retryQuestion('${q.id}')">Try again</button>
+        <button class="btn btn-primary btn-sm" onclick="practiceStep(1)">Next question →</button>
+      </span>`;
+  }
+  const chip = document.querySelector(`.q-chip[data-qid="${q.id}"]`);
+  if (chip) {
+    chip.className = `q-chip ${scoreBand(pct)} current`;
+    const desc = `${qLabel(q)}, ${q.marks} mark${q.marks === 1 ? '' : 's'}, last ${pct}%`;
+    chip.setAttribute('aria-label', desc);
+    chip.title = desc;
+  }
+  const sum = el('q-summary');
+  if (sum) sum.innerHTML = renderQSummary();
+}
+
+function retryQuestion(qId) {
+  const q = findQuestion(qId);
+  if (!q) return;
+  answerIds(q).forEach(id => { const t = el(id); if (t) t.value = ''; });
+  delete markerLevel[qId];
+  const res = el('q-result-' + qId);
+  if (res) res.hidden = true;
+  const btn = el('markbtn-' + qId);
+  if (btn) btn.hidden = false;
+  const box = el('marker-' + qId);
+  if (box && q.markScheme) { box.hidden = true; box.innerHTML = ''; }
+  const first = el(answerIds(q)[0]);
+  if (first) first.focus();
 }
 
 /* ---- Mark-scheme marker ----
@@ -1807,121 +2103,170 @@ function recordMarked(qId, ctx) {
   if (!q) return;
   const score = markerScore(q);
   if (score === null) { toast('Choose a level and a mark first'); return; }
-  if (ctx === 'quiz') { recordQuizScore(qId, score, q.marks); return; }
-  if (ctx === 'mock') { recordMockMark(qId, score); return; }
-  recordScore(qId, score, q.marks);
-  const box = el('marker-' + qId);
-  if (box) box.hidden = true;
+  recordResult(qId, score, ctx);
 }
 
 function setQFilter(f) {
   qFilter = f;
+  qIdx = 0;
   renderQuestions();
 }
 
-let quizScore = 0, quizMax = 0;
+/* ---- QUIZ ----
+   A short run of questions chosen by focus. Weak spots come lowest-mark first,
+   then get shuffled so the order is not the same every time. */
+let quizScore = 0, quizMax = 0, quizSkipped = 0;
+
+const QUIZ_FOCUS = [
+  { id: 'weak',  label: 'Weak spots',    hint: `Questions you last marked under ${WEAK_PCT}%, lowest first.` },
+  { id: 'new',   label: 'Not tried yet', hint: 'Questions you have never marked.' },
+  { id: 'mixed', label: 'Mixed',         hint: 'Anything from the bank, in a random order.' }
+];
+const QUIZ_LENGTHS = [5, 10, 20];
+
+// Fisher-Yates. sort(() => Math.random() - 0.5) is biased towards some orders.
+function shuffleInPlace(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function shuffle(arr) { return shuffleInPlace(arr.slice()); }
+
+function quizPool(o, latest = latestScores()) {
+  const inSec = qData.questions.filter(q => o.section === 'all' || q.section === o.section);
+  if (o.focus === 'weak') return inSec.filter(q => matchesShow(q, 'weak', latest)).sort((a, b) => latest[a.id] - latest[b.id]);
+  if (o.focus === 'new') return inSec.filter(q => matchesShow(q, 'new', latest));
+  return shuffle(inSec);
+}
+
+// Default to the most useful focus that actually has questions in it.
+function openQuizSetup() {
+  if (!quizPool(quizOpts).length) {
+    quizOpts.focus = ['weak', 'new', 'mixed'].find(f => quizPool({ ...quizOpts, focus: f }).length) || 'mixed';
+  }
+  qMode = 'quizsetup';
+  renderQuestions();
+}
+
+function quickWeakQuiz() {
+  quizOpts = { focus: 'weak', section: 'all', length: 10 };
+  startQuiz();
+}
+
+function setQuizOpt(key, val) {
+  quizOpts[key] = val;
+  renderQuestions();
+}
+
+function backToPractice() {
+  qMode = 'practice';
+  renderQuestions();
+}
+
+function renderQuizSetup(container) {
+  const latest = latestScores();
+  const counts = {};
+  QUIZ_FOCUS.forEach(f => { counts[f.id] = quizPool({ ...quizOpts, focus: f.id }, latest).length; });
+  const pool = counts[quizOpts.focus];
+  const n = Math.min(pool, quizOpts.length);
+  const focus = QUIZ_FOCUS.find(f => f.id === quizOpts.focus) || QUIZ_FOCUS[2];
+  const opt = (key, val, label, extra = '') =>
+    `<button class="tab-btn ${quizOpts[key] === val ? 'active' : ''}" aria-pressed="${quizOpts[key] === val}"
+       onclick="setQuizOpt('${key}', ${typeof val === 'number' ? val : `'${val}'`})" ${extra}>${label}</button>`;
+  const why = pool ? '' : quizOpts.focus === 'weak'
+    ? (Object.keys(latest).length ? `Nothing here scored under ${WEAK_PCT}% last time. Pick another focus.` : 'Mark a few questions first, then this finds the ones you struggled with.')
+    : quizOpts.focus === 'new' ? 'You have marked every question here. Try Weak spots or Mixed.' : 'No questions in this section.';
+
+  container.innerHTML = `
+    <div class="q-head">
+      <h2>Quiz</h2>
+      <button class="btn btn-secondary btn-sm" onclick="backToPractice()">Back to practice</button>
+    </div>
+    <p class="q-intro">Pick what to work on. Each answer is marked against the mark scheme and earns 2 XP per mark.</p>
+    <div class="card quiz-setup">
+      <div class="ms-title">Focus</div>
+      <div class="tabs">${QUIZ_FOCUS.map(f => opt('focus', f.id, `${f.label} <span class="tab-count">${counts[f.id]}</span>`)).join('')}</div>
+      <p class="ms-note">${focus.hint}</p>
+      <div class="ms-title">Section</div>
+      <select class="q-select" aria-label="Section" onchange="setQuizOpt('section', this.value)">
+        <option value="all" ${quizOpts.section === 'all' ? 'selected' : ''}>All sections</option>
+        ${unitLettersUpper().map(l => `<option value="${l}" ${quizOpts.section === l ? 'selected' : ''}>Section ${l}</option>`).join('')}
+      </select>
+      <div class="ms-title">Length</div>
+      <div class="tabs">${QUIZ_LENGTHS.map(l => opt('length', l, `${l} questions`)).join('')}</div>
+      ${pool
+        ? `<p class="ms-note">${n < quizOpts.length ? `Only ${n === 1 ? '1 question matches' : n + ' questions match'}, so the quiz will be ${n} long.` : `${n} questions.`}</p>
+           <button class="btn btn-primary btn-full" onclick="startQuiz()">Start quiz</button>`
+        : `<p class="ms-note">${why}</p>
+           <button class="btn btn-primary btn-full" disabled>Start quiz</button>`}
+    </div>`;
+}
 
 function startQuiz() {
+  const pool = quizPool(quizOpts);
+  const picked = pool.slice(0, quizOpts.length);
+  quizQueue = quizOpts.focus === 'weak' ? shuffle(picked) : picked;
+  if (!quizQueue.length) { openQuizSetup(); return; }
   qMode = 'quiz';
-  quizQueue = [...(qData ? qData.questions : [])].sort(() => Math.random() - 0.5).slice(0, 10);
   quizIdx = 0;
   quizScore = 0;
   quizMax = 0;
+  quizSkipped = 0;
   renderQuestions();
+}
+
+function skipQuizQuestion() {
+  quizSkipped++;
+  quizIdx++;
+  renderQuestions();
+  scrollContentTop();
 }
 
 function renderQuizMode(container) {
   if (quizIdx >= quizQueue.length) {
+    const pct = quizMax ? Math.round((quizScore / quizMax) * 100) : null;
     container.innerHTML = `
-      <div class="empty-state">
-        <h2 style="margin-bottom:8px">Quiz Complete — ${quizScore}/${quizMax} marks${quizMax ? ` (${Math.round((quizScore / quizMax) * 100)}%)` : ''}</h2>
-        <p>${quizQueue.length} questions answered · +${quizScore * 2} XP earned.</p>
-        <button class="btn btn-primary" style="margin-top:16px" onclick="qMode='browse';renderQuestions()">Back to browse</button>
+      <div class="card mock-result">
+        <div class="mock-paper-meta">Quiz complete</div>
+        <div class="mock-score">${quizScore}<span>/${quizMax}</span></div>
+        <div class="mock-paper-meta">${pct === null ? 'Nothing marked' : pct + '%'} · ${quizQueue.length - quizSkipped} marked${quizSkipped ? ` · ${quizSkipped} skipped` : ''} · +${quizScore * 2} XP</div>
+      </div>
+      <div class="q-head-btns" style="justify-content:center;margin-top:14px">
+        <button class="btn btn-primary btn-sm" onclick="openQuizSetup()">New quiz</button>
+        <button class="btn btn-secondary btn-sm" onclick="backToPractice()">Back to practice</button>
       </div>`;
     return;
   }
   const q = quizQueue[quizIdx];
-  if (q.markScheme) {
-    container.innerHTML = `
-    <div class="quiz-wrap">
-      <div class="quiz-progress">
-        <span>${quizIdx + 1}/${quizQueue.length}</span>
-        <div class="bar"><div class="bar-fill" style="width:${Math.round((quizIdx/quizQueue.length)*100)}%"></div></div>
-        <button class="btn btn-secondary btn-sm" onclick="qMode='browse';renderQuestions()">Exit</button>
-      </div>
-      <div class="card" style="margin-bottom:12px">
-        <div class="question-meta">
-          <span class="badge">${q.section}</span>
-          <span class="badge">${q.marks} marks</span>
-          <span class="badge">${q.commandWord}</span>
-        </div>
-        ${qScenario(q) ? `<div class="exam-q-head"><span class="exam-q-num">${qScenario(q).number}</span><h3>${qScenario(q).title}</h3></div>
-        <div class="scenario-stem">${examText(qScenario(q).stem)}</div>` : ''}
-        ${renderExamQuestion(q, false)}
-        ${renderAnswerArea(q, 'quiz-ans')}
-        <button class="btn btn-primary btn-full" onclick="openMarker('${q.id}', 'quiz')">Mark my answer</button>
-        <div class="marker" id="marker-${q.id}" hidden></div>
-      </div>
-    </div>`;
-    return;
-  }
   container.innerHTML = `
-    <div class="quiz-wrap">
+    <div class="q-practice">
       <div class="quiz-progress">
         <span>${quizIdx + 1}/${quizQueue.length}</span>
-        <div class="bar"><div class="bar-fill" style="width:${Math.round((quizIdx/quizQueue.length)*100)}%"></div></div>
-        <button class="btn btn-secondary btn-sm" onclick="qMode='browse';renderQuestions()">Exit</button>
+        <div class="bar"><div class="bar-fill" style="width:${Math.round((quizIdx / quizQueue.length) * 100)}%"></div></div>
+        <button class="btn btn-secondary btn-sm" onclick="skipQuizQuestion()">Skip</button>
+        <button class="btn btn-secondary btn-sm" onclick="backToPractice()">Exit</button>
       </div>
-      <div class="card" style="margin-bottom:12px">
-        <div class="question-meta">
-          <span class="badge">${q.section}</span>
-          <span class="badge">${q.marks} marks</span>
-          <span class="badge">${q.commandWord}</span>
-        </div>
-        <p class="quiz-q">${q.question}</p>
-        <textarea class="quiz-answer-area" id="quiz-ans" placeholder="Write your answer here..."></textarea>
-        <button class="btn btn-primary btn-full" onclick="showQuizAnswer()">Show model answer</button>
-      </div>
-      <div class="model-answer" id="quiz-model" style="display:none">
-        <strong>Model answer (${q.marks} marks):</strong><br>${q.modelAnswer}
-        ${q.markPoints ? `<ul class="key-facts" style="margin-top:8px">${q.markPoints.map(p => `<li>${p}</li>`).join('')}</ul>` : ''}
-        <div style="margin-top:12px">
-          <p style="font-size:13px;margin-bottom:6px">Self-mark:</p>
-          <div class="self-mark">
-            ${Array.from({length: q.marks + 1}, (_, i) => `<button class="btn btn-secondary btn-sm" onclick="recordQuizScore('${q.id}', ${i}, ${q.marks})">${i}/${q.marks}</button>`).join('')}
-          </div>
-        </div>
-      </div>
+      ${renderQuestionStage(q, 'quiz')}
     </div>`;
-}
-
-function showQuizAnswer() {
-  const m = el('quiz-model');
-  if (m) m.style.display = 'block';
-}
-
-function recordQuizScore(qId, score, maxMarks) {
-  const pct = Math.round((score / maxMarks) * 100);
-  state.questions.history.push({ qId, marks: maxMarks, date: today(), selfScore: pct });
-  quizScore += score;
-  quizMax += maxMarks;
-  state.xp = (state.xp || 0) + score * 2;
-  bumpActivity();
-  saveState();
-  quizIdx++;
-  renderQuestions();
+  bindAnswerDrafts(container);
 }
 
 /* ---- MOCK PAPER ----
    A whole paper under exam conditions: answer everything against the clock with
    no mark schemes in sight, then mark each part afterwards. The clock counts to a
    fixed end time, so leaving the page does not pause it, as in the exam hall.
-   Answers live in memory only, like extended-writing drafts. */
+   The paper in progress is saved (state.questions.activeMock) on every answer and
+   every mark, so a refresh, a closed tab or a phone killing the page can resume
+   it. The saved copy is validated before use: it comes from storage or a backup. */
 let mock = null;   // { paperId, phase: 'sit'|'mark'|'done', endAt, startedAt, answers, scores, minutesUsed }
 let mockTick = null;
 
-// The real Unit 1 paper is 90 marks in 2 hours; mocks keep that pace.
-function mockMinutes(marks) { return Math.round(marks * 4 / 3); }
+// The real Unit 1 paper is 90 marks in 2 hours; mocks keep that pace unless a
+// paper sets its own `minutes` (Unit 2 does, as its exam runs to a different clock).
+function paperMinutes(p) { return p.minutes || Math.round(paperMarks(p) * 4 / 3); }
 
 function mockPaper(id) { return (qData.papers || []).find(p => p.id === id); }
 
@@ -1935,18 +2280,117 @@ function stopMockTimer() {
   if (mockTick) { clearInterval(mockTick); mockTick = null; }
 }
 
+let mockSaveTick = null;
+
+// Points saved state at the live paper (or clears it) and writes it out.
+function persistMock(now) {
+  state.questions.activeMock = mock && mock.phase !== 'done' ? mock : {};
+  clearTimeout(mockSaveTick);
+  if (now) saveState(); else mockSaveTick = setTimeout(saveState, 400);
+}
+
+// The saved paper, checked field by field, or null.
+function savedMock() {
+  const m = state.questions.activeMock;
+  if (!isPlainObject(m) || typeof m.paperId !== 'string') return null;
+  // Always the ACTIVE unit's questions: qData can still hold the other unit's
+  // after a switch, and both units have a paper with id "p1".
+  qData = loadJSON('data/questions.json');
+  const p = qData && qData.papers ? mockPaper(m.paperId) : null;
+  if (!p || (m.phase !== 'sit' && m.phase !== 'mark')) return null;
+  if (![m.startedAt, m.endAt].every(n => typeof n === 'number' && isFinite(n))) return null;
+  const answers = {}, scores = {};
+  if (isPlainObject(m.answers)) {
+    Object.keys(m.answers).forEach(k => { if (typeof m.answers[k] === 'string') answers[k] = m.answers[k]; });
+  }
+  if (isPlainObject(m.scores)) {
+    paperQuestions(p).forEach(q => {
+      const v = m.scores[q.id];
+      if (Number.isInteger(v) && v >= 0 && v <= q.marks) scores[q.id] = v;
+    });
+  }
+  const minutesUsed = typeof m.minutesUsed === 'number' && isFinite(m.minutesUsed) ? m.minutesUsed : 0;
+  return { paperId: m.paperId, phase: m.phase, startedAt: m.startedAt, endAt: m.endAt, answers, scores, minutesUsed };
+}
+
+function fmtClock(ms) {
+  const left = Math.max(0, Math.round(ms / 1000));
+  const h = Math.floor(left / 3600), m = Math.floor(left % 3600 / 60), s = left % 60;
+  return `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+}
+
+// "Resume / Discard" card, shown wherever the student might land after a refresh.
+function mockResumeHTML() {
+  if (mock) return '';
+  const m = savedMock();
+  if (!m) return '';
+  const p = mockPaper(m.paperId);
+  const left = m.endAt - Date.now();
+  const status = m.phase === 'mark'
+    ? `Marking in progress: ${Object.keys(m.scores).length} of ${paperQuestions(p).length} parts marked.`
+    : left > 0 ? `${fmtClock(left)} left on the clock. It kept running while you were away.`
+               : 'Time ran out while you were away. You can still mark what you wrote.';
+  return `
+    <div class="card mock-resume" role="status">
+      <div><strong>${p.title} is in progress</strong><div class="mock-paper-meta">${status}</div></div>
+      <div class="q-head-btns">
+        <button class="btn btn-primary btn-sm" onclick="resumeMock()">Resume</button>
+        <button class="btn btn-secondary btn-sm" onclick="discardMock()">Discard</button>
+      </div>
+    </div>`;
+}
+
+function resumeMock() {
+  if (currentPage !== 'questions') navigate('questions');
+  const m = savedMock();
+  if (!m) {
+    state.questions.activeMock = {};
+    saveState();
+    toast('That paper can no longer be resumed');
+    renderQuestions();
+    return;
+  }
+  mock = m;
+  qMode = 'mock';
+  stopMockTimer();
+  if (mock.phase === 'sit') {
+    if (mock.endAt <= Date.now()) {
+      // As in the exam hall: the clock ran out, so it is pens down.
+      mock.minutesUsed = paperMinutes(mockPaper(mock.paperId));
+      mock.phase = 'mark';
+      toast('Time ran out while you were away. Mark what you wrote.', 3500);
+    } else {
+      mockTick = setInterval(updateMockClock, 1000);
+    }
+  }
+  persistMock(true);
+  renderQuestions();
+  scrollContentTop();
+}
+
+function discardMock() {
+  if (!confirm('Discard this paper? Your answers and any marking will be deleted.')) return;
+  stopMockTimer();
+  mock = null;
+  persistMock(true);
+  toast('Paper discarded');
+  if (currentPage === 'home') renderHome(); else renderQuestions();
+}
+
 function openMockMenu() {
   qMode = 'mock';
-  mock = null;
+  mock = null;   // the saved paper, if any, is offered as "Resume" on the menu
   renderQuestions();
 }
 
 function exitMock() {
-  if (mock && mock.phase === 'sit' && !confirm('Leave this paper? Your answers will be lost.')) return;
-  if (mock && mock.phase === 'mark' && !confirm('Leave without seeing your results? Your marking will be lost.')) return;
+  if (mock && mock.phase === 'sit' && !confirm('Leave and discard this paper? Your answers will be deleted.')) return;
+  if (mock && mock.phase === 'mark' && !confirm('Leave without seeing your results? Your answers and marking will be deleted.')) return;
   stopMockTimer();
+  const wasLive = !!mock;
   mock = null;
-  qMode = 'browse';
+  if (wasLive) persistMock(true);
+  qMode = 'practice';
   renderQuestions();
 }
 
@@ -1954,12 +2398,14 @@ function startMock(paperId) {
   const p = mockPaper(paperId);
   if (!p) return;
   const now = Date.now();
-  mock = { paperId, phase: 'sit', startedAt: now, endAt: now + mockMinutes(paperMarks(p)) * 60000,
+  if (savedMock() && !confirm('Starting a new paper discards the one in progress. Continue?')) return;
+  mock = { paperId, phase: 'sit', startedAt: now, endAt: now + paperMinutes(p) * 60000,
            answers: {}, scores: {}, minutesUsed: 0 };
+  persistMock(true);
   stopMockTimer();
   mockTick = setInterval(updateMockClock, 1000);
   renderQuestions();
-  window.scrollTo(0, 0);
+  scrollContentTop();
 }
 
 function updateMockClock() {
@@ -1967,8 +2413,7 @@ function updateMockClock() {
   const left = Math.max(0, Math.round((mock.endAt - Date.now()) / 1000));
   const t = el('mock-timer');
   if (t) {
-    const h = Math.floor(left / 3600), m = Math.floor(left % 3600 / 60), s = left % 60;
-    t.textContent = `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    t.textContent = fmtClock(left * 1000);
     t.classList.toggle('warning', left <= 600 && left > 60);
     t.classList.toggle('critical', left <= 60);
   }
@@ -1979,16 +2424,19 @@ function updateMockClock() {
 }
 
 function mockSave(input) {
-  if (mock) mock.answers[input.id] = input.value;
+  if (!mock) return;
+  mock.answers[input.id] = input.value;
+  persistMock();
 }
 
 function finishMock(timeUp) {
   if (!mock || mock.phase !== 'sit') return;
   if (!timeUp && !confirm('Finish the paper and start marking?')) return;
   stopMockTimer();
-  mock.minutesUsed = Math.min(Math.round((Date.now() - mock.startedAt) / 60000), mockMinutes(paperMarks(mockPaper(mock.paperId))));
+  mock.minutesUsed = Math.min(Math.round((Date.now() - mock.startedAt) / 60000), paperMinutes(mockPaper(mock.paperId)));
   mock.phase = 'mark';
-  if (currentPage === 'questions' && qMode === 'mock') { renderQuestions(); window.scrollTo(0, 0); }
+  persistMock(true);
+  if (currentPage === 'questions' && qMode === 'mock') { renderQuestions(); scrollContentTop(); }
 }
 
 function renderMock(container) {
@@ -2006,7 +2454,8 @@ function renderMockMenu(container) {
       <h2>Mock Paper</h2>
       <button class="btn btn-secondary btn-sm" onclick="exitMock()">Back to questions</button>
     </div>
-    <p class="q-intro">Sit a whole paper against the clock, as in the real exam: four scenarios, answer every part, no mark schemes until you finish. Then mark each answer against the mark scheme to get your total. Have paper and a pen ready for the diagram question.</p>
+    ${mockResumeHTML()}
+    <p class="q-intro">Sit a whole paper against the clock, as in the real exam: answer every part, no mark schemes until you finish. Then mark each answer against the mark scheme to get your total.${qData.questions.some(q => q.commandWord === 'Draw') ? ' Have paper and a pen ready for the diagram question.' : ''}</p>
     <div class="mock-papers">
       ${qData.papers.map(p => {
         const marks = paperMarks(p);
@@ -2015,7 +2464,7 @@ function renderMockMenu(container) {
         return `
         <div class="card mock-paper-card">
           <h3>${p.title}</h3>
-          <div class="mock-paper-meta">${marks} marks · ${mockMinutes(marks)} minutes</div>
+          <div class="mock-paper-meta">${marks} marks · ${paperMinutes(p)} minutes</div>
           <ol class="mock-paper-list">${p.scenarios.map(sid => {
             const sc = qData.scenarios.find(s => s.id === sid);
             return `<li>${sc ? sc.title : sid}</li>`;
@@ -2043,7 +2492,7 @@ function renderMockSit(container, p) {
       <button class="btn btn-primary btn-sm" onclick="finishMock(false)">Finish and mark</button>
     </div>
     <div class="mock-front">
-      <strong>Answer ALL questions.</strong> Total ${marks} marks · ${mockMinutes(marks)} minutes.
+      <strong>Answer ALL questions.</strong> Total ${marks} marks · ${paperMinutes(p)} minutes.
       The marks for each part are shown in brackets. Use them to judge how much to write.
       <button class="btn btn-secondary btn-sm" style="margin-left:auto" onclick="exitMock()">Leave paper</button>
     </div>
@@ -2125,6 +2574,7 @@ function recordMockMark(qId, score) {
   const q = findQuestion(qId);
   if (!mock || !q) return;
   mock.scores[qId] = score;
+  persistMock(true);
   const box = el('marker-' + qId);
   if (box) box.hidden = true;
   const done = el('mocked-' + qId);
@@ -2141,6 +2591,7 @@ function remarkMock(qId) {
   const box = el('marker-' + qId);
   if (!q || !box) return;
   delete mock.scores[qId];
+  persistMock(true);
   delete markerLevel[qId];
   el('mocked-' + qId).hidden = true;
   box.innerHTML = renderMarker(q, 'mock');
@@ -2166,8 +2617,9 @@ function showMockResults() {
   bumpActivity();
   saveState();
   mock.phase = 'done';
+  persistMock(true);   // the result is in state.questions.mocks; nothing left to resume
   renderQuestions();
-  window.scrollTo(0, 0);
+  scrollContentTop();
 }
 
 function renderMockResults(container, p) {
@@ -2187,14 +2639,14 @@ function renderMockResults(container, p) {
 
   container.innerHTML = `
     <div class="card mock-result">
-      <div class="mock-paper-meta">${p.title} · ${mock.minutesUsed} of ${mockMinutes(max)} minutes used</div>
+      <div class="mock-paper-meta">${p.title} · ${mock.minutesUsed} of ${paperMinutes(p)} minutes used</div>
       <div class="mock-score">${score}<span>/${max}</span></div>
       <div class="mock-paper-meta">${pct([score, max])}% · +${score * 2} XP</div>
     </div>
     <h3 style="margin:18px 0 8px">By question</h3>
     ${p.scenarios.map((sid, i) => row(`Q${i + 1} ${qData.scenarios.find(s => s.id === sid).title}`, sum(qs.filter(q => q.scenario === sid)))).join('')}
     <h3 style="margin:18px 0 8px">By type</h3>
-    ${row('Short answers (2–4 marks, plus the diagram)', short)}
+    ${row(`Short answers (up to 5 marks${qs.some(q => q.commandWord === 'Draw') ? ', plus the diagram' : ''})`, short)}
     ${row('Extended answers (6, 9, 12 marks)', extended)}
     <p class="q-intro" style="margin-top:12px">${weaker}</p>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
@@ -2204,68 +2656,15 @@ function renderMockResults(container, p) {
 }
 
 /* ---- EXTENDED RESPONSE ---- */
-let extTimer = null;
-let extTimeLeft = 0;
-let extTimerRunning = false;
-
 function renderExtended() {
   const container = el('extended-content');
-  const prompts = loadJSON('data/extended.json') || getFallbackExtended();
+  const prompts = loadJSON('data/extended.json') || [];
 
   container.innerHTML = `
     <h2 style="margin-bottom:16px">Extended Response Builder</h2>
     <p style="color:var(--text2);font-size:14px;margin-bottom:16px">Practise long answers against the clock, timed at exam pace. Plan with the structure, write, then mark yourself against the mark scheme.</p>
     ${prompts.map((p, i) => renderExtPrompt(p, i)).join('')}`;
   restoreExtDrafts();
-}
-
-function getFallbackExtended() {
-  return [
-    {
-      id: 'cloud-9',
-      title: 'Cloud Computing Suitability (9 marks)',
-      marks: 9,
-      time: 540,
-      section: 'C',
-      command: 'Discuss',
-      question: 'A small business currently stores all its customer data on local servers. The business owner is considering moving to cloud computing. Discuss the suitability of moving to cloud computing for this business. [9 marks]',
-      tips: ['Identify the cloud model (SaaS/IaaS/PaaS or public/private/hybrid)', 'Give benefits: cost, scalability, accessibility, remote working', 'Give drawbacks: internet dependency, security, vendor lock-in, GDPR', 'Link points to the scenario (small business)', 'For Level 3: evaluate — is it suitable overall? Why?'],
-      modelAnswer: 'Cloud computing could be highly suitable for the small business. Moving to the cloud would eliminate the need to purchase and maintain expensive local servers, reducing capital expenditure — important for a small business with limited resources. The business could use a public cloud model such as SaaS for applications, paying on a subscription basis, which converts a large one-off cost into a manageable ongoing expense.\n\nScalability is another key benefit: if the business grows and needs more storage, cloud resources can be increased almost instantly without purchasing additional hardware. Additionally, cloud-based systems allow employees to access customer data remotely, supporting flexible working arrangements.\n\nHowever, there are significant risks to consider. Cloud providers store data on remote servers, potentially in other countries, which raises compliance concerns under GDPR — the business must ensure its provider processes data lawfully. Security is also a risk: if the provider suffers a data breach, the business\'s customer data could be compromised, leading to financial penalties and reputational damage. Furthermore, the business becomes entirely dependent on a reliable internet connection; any outage would prevent access to customer data, causing disruption.\n\nOverall, cloud computing is suitable for this small business given the cost savings and scalability benefits, provided the business carefully selects a GDPR-compliant provider and ensures reliable internet connectivity.'
-    },
-    {
-      id: 'security-threats-8',
-      title: 'Cyber Security Threats and Impacts (8 marks)',
-      marks: 8,
-      time: 480,
-      section: 'D',
-      command: 'Discuss',
-      question: 'A retail organisation has experienced a cyber attack in which customer payment data was stolen. Discuss the impacts of this cyber attack on the organisation. [8 marks]',
-      tips: ['Cover multiple types of impact: financial, reputational, legal, operational', 'Use D1.3 codes: loss of data, financial loss, loss of customers', 'Mention GDPR penalties for data breaches', 'Link to the scenario (retail, customer payment data)', 'For Level 3: analyse — which impact is most severe and why?'],
-      modelAnswer: 'The cyber attack would have severe impacts on the retail organisation across multiple areas. The most immediate impact is financial loss: the organisation may face significant fines under GDPR for failing to protect customer payment data — the ICO can impose fines of up to £17.5 million or 4% of global annual turnover. Legal action from affected customers seeking compensation adds further financial exposure.\n\nThe organisation would also suffer reputational damage. News of the breach, particularly involving payment data, would undermine customer trust significantly. Customers who feel their financial details are at risk will stop shopping with the retailer and may publicly share their concerns on social media, amplifying the damage. This loss of customers directly reduces revenue.\n\nOperationally, the organisation would need to invest in incident response — forensic investigation, notifying affected customers (required by GDPR within 72 hours), and potentially taking systems offline to contain the breach. This downtime prevents the business from trading normally, causing further financial loss.\n\nLong-term, the business would need to spend significantly on improving its cybersecurity infrastructure — stronger encryption, multi-factor authentication, penetration testing — which adds ongoing costs.\n\nOverall, the most damaging long-term impact is likely reputational, as lost customer trust is difficult to rebuild even after technical issues are resolved.'
-    },
-    {
-      id: 'legal-ethical-10',
-      title: 'Legal and Ethical Issues (10 marks)',
-      marks: 10,
-      time: 600,
-      section: 'F',
-      command: 'Evaluate',
-      question: 'Evaluate the extent to which current legislation effectively protects individuals using IT systems. [10 marks]',
-      tips: ['Name specific legislation: Data Protection Act 2018 / GDPR, Computer Misuse Act 1990, Copyright Designs and Patents Act 1988', 'For each law: what does it protect? What are its limitations?', 'Consider enforcement challenges (cross-border, anonymous attackers)', 'Balance strengths vs weaknesses', 'Conclusion: make a judgement — are individuals well-protected overall?'],
-      modelAnswer: 'Current legislation provides a significant degree of protection for individuals using IT systems, though there are notable limitations in its effectiveness.\n\nThe Data Protection Act 2018 (incorporating GDPR) gives individuals rights over their personal data, including the right to access, correct, and request deletion of their data. Organisations must obtain consent before collecting data and report breaches within 72 hours. This is effective in that it creates accountability: the ICO can impose substantial fines on organisations that mishandle data. However, enforcement is challenging — many data breaches involve organisations based outside the UK, where the ICO has limited jurisdiction.\n\nThe Computer Misuse Act 1990 criminalises unauthorised access to computer systems and the creation of malicious software. This deters cybercrime by establishing clear legal consequences. However, the Act was written before modern cyber threats existed: it struggles to address sophisticated state-sponsored attacks, ransomware groups operating from overseas, and AI-generated attacks. Prosecuting anonymous online criminals is technically and legally complex.\n\nThe Copyright, Designs and Patents Act 1988 protects creators\' intellectual property, preventing software piracy and illegal file sharing. However, the rise of peer-to-peer file sharing and overseas piracy sites makes enforcement difficult.\n\nIn conclusion, legislation provides a strong framework and meaningful deterrents, but its effectiveness is significantly limited by the global, anonymous nature of the internet, which makes enforcement difficult. Individuals remain vulnerable to threats from overseas actors who face few real-world consequences. Legislation alone is therefore insufficient — technical measures such as encryption and security software remain essential.'
-    },
-    {
-      id: 'networks-6',
-      title: 'Network Selection for an Organisation (6 marks)',
-      marks: 6,
-      time: 360,
-      section: 'B',
-      command: 'Describe',
-      question: 'A company has offices in three different cities across the UK. Describe the factors the company should consider when choosing a network to connect its offices. [6 marks]',
-      tips: ['This is a 6-mark levels question — aim for at least 3 clear factors with explanation', 'Use B2.3 codes: security, cost, efficiency, implementation, user needs', 'Link each factor to the scenario (multiple offices, UK-wide)', 'Level 3 = factors are explained with relevance to the scenario'],
-      modelAnswer: 'The company should consider security when choosing a network to connect its three offices. Because data will travel over public infrastructure between cities, the company should consider using a WAN with VPN technology to encrypt data in transit, protecting sensitive business information from interception.\n\nCost is another key factor. A WAN connecting offices across the UK involves significant infrastructure costs, including leased lines or broadband connections at each site. The company must balance the need for a reliable, high-speed connection against the budget available. Cheaper connections may offer insufficient bandwidth for the company\'s needs.\n\nReliability and efficiency must also be considered. The company needs a network that provides consistently low latency and high bandwidth to support real-time communication such as video conferencing between offices. A slow or unreliable connection would reduce productivity.\n\nFinally, implementation timescale should be considered — setting up a multi-site WAN takes time, and the company must plan for testing and potential downtime during migration to avoid disrupting operations.'
-    }
-  ];
 }
 
 function renderExtPrompt(p, i) {
@@ -2289,7 +2688,7 @@ function renderExtPrompt(p, i) {
 
   return `
     <div class="card" style="margin-bottom:16px">
-      <div role="button" tabindex="0" class="card-header" onclick="toggleCard('ext-${i}')">
+      <div role="button" tabindex="0" class="card-header" aria-expanded="false" aria-controls="body-ext-${i}" onclick="toggleCard('ext-${i}')">
         <span class="badge">${p.section}</span>
         <span class="badge">${p.marks} marks</span>
         <h3>${p.title}</h3>
@@ -2309,7 +2708,7 @@ function renderExtPrompt(p, i) {
             <button class="btn btn-secondary btn-sm" onclick="resetTimer('${p.id}', ${p.time})">Reset</button>
           </div>
         </div>
-        <textarea class="response-area" id="${textId}" placeholder="Write your extended response here..." oninput="updateWordCount('${p.id}')"></textarea>
+        <textarea class="response-area" id="${textId}" aria-label="Your answer" placeholder="Write your extended response here..." oninput="updateWordCount('${p.id}')"></textarea>
         <div class="word-count" id="${wcId}">0 words</div>
         <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
           <button class="btn btn-secondary btn-sm" onclick="toggleMarkScheme('${p.id}')">Show mark scheme</button>
@@ -2328,7 +2727,8 @@ const extTimers = {};
 
 function startTimer(id, totalSecs) {
   if (extTimers[id] && extTimers[id].running) return;
-  const startTime = extTimers[id] ? extTimers[id].remaining : totalSecs;
+  const prev = extTimers[id];
+  const startTime = prev && prev.remaining > 0 ? prev.remaining : totalSecs;
   extTimers[id] = { remaining: startTime, running: true };
 
   const interval = setInterval(() => {
@@ -2362,23 +2762,33 @@ function updateTimerDisplay(id, secs, totalSecs) {
 }
 
 /* renderExtended rebuilds the page from innerHTML on every visit, so the draft
-   has to live outside the DOM. Kept in memory only — an exam answer is not
-   something to silently persist to the student's browser storage. */
-const extDrafts = {};
+   lives in saved state (per unit), like practice-question drafts. A refresh or a
+   closed tab used to lose a whole 9- or 12-mark essay. Emptying the box deletes it. */
+let extDraftTick = null;
 
-function updateWordCount(id) {
+function extDrafts() {
+  if (!state.extended.drafts) state.extended.drafts = {};
+  return state.extended.drafts;
+}
+
+function updateWordCount(id, restoring) {
   const textarea = el('ext-text-' + id);
   const wc = el('wc-' + id);
   if (!textarea || !wc) return;
-  extDrafts[id] = textarea.value;
+  if (!restoring) {
+    if (textarea.value.trim()) extDrafts()[id] = textarea.value; else delete extDrafts()[id];
+    clearTimeout(extDraftTick);
+    extDraftTick = setTimeout(saveState, 400);
+  }
   const words = textarea.value.trim().split(/\s+/).filter(w => w.length > 0).length;
-  wc.textContent = words + ' words';
+  wc.textContent = words + ' words' + (extDrafts()[id] ? ' · saved on this device' : '');
 }
 
 function restoreExtDrafts() {
-  Object.keys(extDrafts).forEach(id => {
+  const drafts = extDrafts();
+  Object.keys(drafts).forEach(id => {
     const ta = el('ext-text-' + id);
-    if (ta && !ta.value) { ta.value = extDrafts[id]; updateWordCount(id); }
+    if (ta && !ta.value && typeof drafts[id] === 'string') { ta.value = drafts[id]; updateWordCount(id, true); }
   });
 }
 
@@ -2501,7 +2911,7 @@ function buildFITBQuestions(count = 10) {
   const pool = specItems().filter(i => i.term && i.definition);
   if (pool.length < 4) return [];
 
-  const shuffled = [...pool].sort(() => Math.random() - 0.5).slice(0, count);
+  const shuffled = shuffle(pool).slice(0, count);
   return shuffled.map(item => {
     const re = new RegExp(escapeRe(item.term), 'gi');
     const inline = re.test(item.definition);
@@ -2512,14 +2922,14 @@ function buildFITBQuestions(count = 10) {
     // board shows two identical buttons and one correct answer scores wrong.
     const seen = new Set([item.term.toLowerCase()]);
     const distractors = [];
-    for (const cand of pool.slice().sort(() => Math.random() - 0.5)) {
+    for (const cand of shuffle(pool)) {
       const key = String(cand.term).toLowerCase();
       if (seen.has(key)) continue;
       seen.add(key);
       distractors.push(cand.term);
       if (distractors.length === 3) break;
     }
-    const options = [item.term, ...distractors].sort(() => Math.random() - 0.5);
+    const options = shuffle([item.term, ...distractors]);
     return { definition: blanked, answer: item.term, options, code: item.code };
   });
 }
@@ -2553,8 +2963,8 @@ function renderFITB(container) {
         ${q.options.map(opt => {
           let style = '';
           if (fitbState.answered) {
-            if (opt === q.answer) style = 'background:var(--green);color:#fff;border-color:var(--green)';
-            else if (opt === fitbState.selected) style = 'background:var(--red);color:#fff;border-color:var(--red)';
+            if (opt === q.answer) style = 'background:var(--green-fill);color:#fff;border-color:var(--green-fill)';
+            else if (opt === fitbState.selected) style = 'background:var(--red-fill);color:#fff;border-color:var(--red-fill)';
           }
           return `<button class="btn btn-secondary" style="padding:14px;font-size:15px;${style}" onclick="answerFITB('${opt.replace(/'/g,"\\'")}') " ${fitbState.answered ? 'disabled' : ''}>${opt}</button>`;
         }).join('')}
@@ -2592,8 +3002,6 @@ function endFITB() {
   const { correct, qs } = fitbState;
   const xpEarned = correct * 8;
   state.xp = (state.xp || 0) + xpEarned;
-  state.questions.fitb_history = state.questions.fitb_history || [];
-  state.questions.fitb_history.push({ correct, total: qs.length, date: today() });
   bumpActivity(correct);
   saveState();
 
@@ -2694,8 +3102,8 @@ function renderTrueFalse(container) {
         ${q ? q.statement : ''}
       </div>
       <div style="display:flex;gap:12px">
-        <button class="btn btn-primary" style="flex:1;padding:18px;font-size:18px;background:var(--green)" onclick="answerTF(true)" id="tf-true-btn">✅ True</button>
-        <button class="btn btn-primary" style="flex:1;padding:18px;font-size:18px;background:var(--red)" onclick="answerTF(false)" id="tf-false-btn">❌ False</button>
+        <button class="btn btn-primary" style="flex:1;padding:18px;font-size:18px;background:var(--green-fill)" onclick="answerTF(true)" id="tf-true-btn">✅ True</button>
+        <button class="btn btn-primary" style="flex:1;padding:18px;font-size:18px;background:var(--red-fill)" onclick="answerTF(false)" id="tf-false-btn">❌ False</button>
       </div>
       <p style="text-align:center;color:var(--text2);font-size:13px;margin-top:12px">Keyboard: ← False · True →</p>
       <p style="text-align:center;color:var(--text2);font-size:13px;margin-top:4px">Score: ${tfState.correct}/${tfState.total}</p>
@@ -2763,25 +3171,25 @@ function renderGames() {
     <div class="grid2">
       <div role="button" tabindex="0" class="section-tile" onclick="startMCQ()">
         <div class="tile-accent" style="background:var(--accent)"></div>
-        <div class="tile-code">⚡</div>
+        <div class="tile-code game-icon" aria-hidden="true">⚡</div>
         <h3>Quick-fire MCQ</h3>
         <p>10 multiple-choice questions generated from your flashcards. +10 XP per correct answer.</p>
       </div>
       <div role="button" tabindex="0" class="section-tile" onclick="startMatch()">
         <div class="tile-accent" style="background:var(--pink)"></div>
-        <div class="tile-code">🧩</div>
+        <div class="tile-code game-icon" aria-hidden="true">🧩</div>
         <h3>Match</h3>
         <p>Pair terms with definitions against the clock. +30 XP per clear.${best ? ` Best time: <strong>${best}s</strong>` : ''}</p>
       </div>
       <div role="button" tabindex="0" class="section-tile" onclick="startTrueFalse()">
         <div class="tile-accent" style="background:var(--green)"></div>
-        <div class="tile-code">✅</div>
+        <div class="tile-code game-icon" aria-hidden="true">✅</div>
         <h3>True or False Blitz</h3>
         <p>30 seconds. Rapid-fire true/false statements from your flashcards. +5 XP per correct.${tfBest ? ` Best: <strong>${tfBest}</strong>` : ''}</p>
       </div>
       <div role="button" tabindex="0" class="section-tile" onclick="startFITB()">
         <div class="tile-accent" style="background:var(--accent2)"></div>
-        <div class="tile-code">✏️</div>
+        <div class="tile-code game-icon" aria-hidden="true">✏️</div>
         <h3>Fill in the Blank</h3>
         <p>A definition with the key term removed — pick the right answer from 4 options. +8 XP per correct.</p>
       </div>
@@ -2791,7 +3199,7 @@ function renderGames() {
       ${Object.entries(BATTLE_MODES).map(([key, m]) => `
         <div role="button" tabindex="0" class="section-tile" onclick="startBattle('${key}')">
           <div class="tile-accent" style="background:${key === 'duel' ? 'var(--pink)' : 'var(--accent)'}"></div>
-          <div class="tile-code">${m.icon}</div>
+          <div class="tile-code game-icon" aria-hidden="true">${m.icon}</div>
           <h3>${m.name}</h3>
           <p>${m.desc}</p>
         </div>`).join('')}
@@ -2976,7 +3384,7 @@ function renderLeaderboardHTML() {
 
   return `
     <h3 style="margin:24px 0 4px;font-size:14px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">🏁 Players near you</h3>
-    <p style="color:var(--text2);font-size:13px;margin-bottom:12px">${lbMotivator(rows)}</p>
+    <p style="color:var(--text2);font-size:13px;margin-bottom:12px">${lbMotivator(rows)} <span class="sim-inline">(Simulated rivals, not real students.)</span></p>
     <div class="lb-board">${view.map(r => lbRowHTML(r, move)).join('')}</div>
     <button class="btn btn-secondary btn-sm" style="margin-top:10px" onclick="navigate('leaderboard')">View full leaderboard →</button>`;
 }
@@ -3106,6 +3514,7 @@ function renderLeaderboardPage() {
   el('leaderboard-content').innerHTML = `
     <h2 style="margin-bottom:6px">Leaderboard</h2>
     <p style="color:var(--text2);font-size:14px;margin-bottom:14px">Earn XP from flashcards, games and quizzes to climb. Rivals revise daily — fall behind and they'll pass you.</p>
+    <p class="sim-note">The other players are simulated practice rivals, not real students. Your progress stays on this device.</p>
     <div class="season-banner"><strong>${SEASON.name}</strong> · ranks reset on ${new Date(SEASON_START).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' })}. Each rank has a fixed number of places, so to move up you have to overtake someone.</div>
     <div class="tabs" style="max-width:680px">
       <button class="tab-btn ${isOverall ? 'active' : ''}" onclick="setLbView('overall')">🏁 Overall</button>
@@ -3128,12 +3537,12 @@ function renderLeaderboardPage() {
 function startMCQ() {
   stopGameTimers();
   const cards = flashcardsForUnit();
-  const qs = [...cards].sort(() => Math.random() - 0.5).slice(0, 10).map(c => {
+  const qs = shuffle(cards).slice(0, 10).map(c => {
     let pool = cards.filter(x => x.id !== c.id && x.section === c.section);
     if (pool.length < 3) pool = cards.filter(x => x.id !== c.id);
-    const opts = [...pool].sort(() => Math.random() - 0.5).slice(0, 3).map(d => ({ text: d.back, correct: false }));
+    const opts = shuffle(pool).slice(0, 3).map(d => ({ text: d.back, correct: false }));
     opts.push({ text: c.back, correct: true });
-    opts.sort(() => Math.random() - 0.5);
+    shuffleInPlace(opts);
     return { front: c.front, code: c.code, opts };
   });
   mcq = { qs, idx: 0, score: 0, answered: false };
@@ -3200,7 +3609,7 @@ function startMatch() {
   // pairing ambiguous and score a correct match as wrong.
   const usedTerms = new Set();
   const pairs = [];
-  for (const cand of [...pool].sort(() => Math.random() - 0.5)) {
+  for (const cand of shuffle(pool)) {
     const key = String(cand.term).toLowerCase();
     if (usedTerms.has(key)) continue;
     usedTerms.add(key);
@@ -3213,7 +3622,7 @@ function startMatch() {
     // Definitions are kept to about one line (validate_data.py caps them), so this only guards stray long ones.
     tiles.push({ pair: i, kind: 'def', text: p.definition.length > 120 ? p.definition.substring(0, 120) + '…' : p.definition });
   });
-  tiles.sort(() => Math.random() - 0.5);
+  shuffleInPlace(tiles);
   matchGame = { tiles, sel: null, done: new Set(), start: Date.now() };
   gamesMode = 'match';
   renderGames();
@@ -3315,12 +3724,12 @@ function showPlayerCard(name) {
   const meXp = seasonXP();
   const gap = r.xp - meXp;
 
-  el('player-modal').innerHTML = `
-    <button class="modal-close" onclick="closePlayerCard()">✕</button>
+  openModal(`
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
     <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
-      <span class="lb-av" style="background:${r.col};width:56px;height:56px;font-size:24px">${name.charAt(0)}</span>
+      <span class="lb-av" style="background:${r.col};width:56px;height:56px;font-size:24px" aria-hidden="true">${name.charAt(0)}</span>
       <div>
-        <h2 style="margin-bottom:2px;font-size:20px">${name}</h2>
+        <h2 id="modal-title" style="margin-bottom:2px;font-size:20px">${name}</h2>
         <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
           ${rankChip(r.tier)}
           <span class="badge">#${r.pos} of ${rows.length}</span>
@@ -3337,16 +3746,53 @@ function showPlayerCard(name) {
     <p style="font-size:12.5px;color:var(--text2);margin-bottom:16px">Favourite mode: <strong>${favMode}</strong> · On the ladder ${daysIn} days · ${
       gap > 0 ? `<strong>${gap.toLocaleString()} XP ahead of you</strong>` : gap < 0 ? `<strong>${(-gap).toLocaleString()} XP behind you</strong>` : 'dead level with you'
     }</p>
+    <p style="font-size:12px;color:var(--text2);margin-bottom:12px">Simulated practice rival. Not a real student.</p>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn btn-primary" onclick="closePlayerCard();challengePlayer('${name}')">🤺 Challenge to Duel</button>
-      <button class="btn btn-secondary" onclick="closePlayerCard()">Close</button>
-    </div>`;
-  el('player-modal-overlay').classList.add('show');
+      <button class="btn btn-primary" onclick="closeModal();challengePlayer('${name}')">🤺 Challenge to Duel</button>
+      <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+    </div>`);
 }
 
-function closePlayerCard() {
-  el('player-modal-overlay').classList.remove('show');
+/* ---- MODAL DIALOG ----
+   One dialog, shared by the player card and the exam-date picker. Focus moves
+   in on open, Tab stays inside, Escape closes, and focus returns to whatever
+   opened it. The content must give its heading id="modal-title". */
+let modalReturnFocus = null;
+
+function openModal(html) {
+  const overlay = el('player-modal-overlay');
+  const box = el('player-modal');
+  modalReturnFocus = document.activeElement;
+  box.innerHTML = html;
+  if (el('modal-title')) box.setAttribute('aria-labelledby', 'modal-title');
+  else box.removeAttribute('aria-labelledby');
+  overlay.classList.add('show');
+  const first = box.querySelector('input, button:not(.modal-close)') || box.querySelector('button');
+  if (first) first.focus();
 }
+
+function closeModal() {
+  el('player-modal-overlay').classList.remove('show');
+  const back = modalReturnFocus;
+  modalReturnFocus = null;
+  if (back && document.contains(back)) back.focus();
+}
+
+// Kept for any older call site.
+function closePlayerCard() { closeModal(); }
+
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Tab') return;
+  const overlay = el('player-modal-overlay');
+  if (!overlay || !overlay.classList.contains('show')) return;
+  const items = [...el('player-modal').querySelectorAll('button, input, select, textarea, [tabindex="0"]')]
+    .filter(n => !n.disabled && n.offsetParent !== null);
+  if (!items.length) return;
+  const first = items[0], last = items[items.length - 1];
+  if (!el('player-modal').contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+  else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+});
 
 function challengePlayer(name) {
   navigate('games');
@@ -3368,9 +3814,19 @@ const BATTLE_MODES = {
 function battleQuestionPool(n) {
   if (!searchBuilt) { loadData(unitLetters()); buildSearchIndex(); }
   const pool = allSearchContent.filter(x => x.definition && x.definition.length > 20);
-  return [...pool].sort(() => Math.random() - 0.5).slice(0, n).map(p => {
-    const wrong = pool.filter(x => x.term !== p.term).sort(() => Math.random() - 0.5).slice(0, 3).map(x => x.term);
-    const opts = [...wrong, p.term].sort(() => Math.random() - 0.5);
+  return shuffle(pool).slice(0, n).map(p => {
+    // Distinct from the answer AND each other: Unit 1 repeats 17 terms, which put
+    // two identical buttons on the board.
+    const seen = new Set([p.term.toLowerCase()]);
+    const wrong = [];
+    for (const x of shuffle(pool)) {
+      const k = x.term.toLowerCase();
+      if (seen.has(k)) continue;
+      seen.add(k);
+      wrong.push(x.term);
+      if (wrong.length === 3) break;
+    }
+    const opts = shuffle([...wrong, p.term]);
     return { prompt: p.definition.length > 130 ? p.definition.substring(0, 130) + '…' : p.definition, answer: p.term, opts, code: p.code };
   });
 }
@@ -3723,13 +4179,13 @@ function renderProfile() {
   let last7 = 0;
   for (let i = 0; i < 7; i++) {
     const d = new Date(); d.setDate(d.getDate() - i);
-    last7 += act[d.toISOString().split('T')[0]] || 0;
+    last7 += act[localDateStr(d)] || 0;
   }
 
   const xpByDay = [];
   for (let i = 13; i >= 0; i--) {
     const d = new Date(); d.setDate(d.getDate() - i);
-    xpByDay.push(act[d.toISOString().split('T')[0]] || 0);
+    xpByDay.push(act[localDateStr(d)] || 0);
   }
 
   const qHist = state.questions.history;
@@ -3753,12 +4209,12 @@ function renderProfile() {
           ${rankChip(me.tier)}
           <span class="badge">Level ${xpLevel()}</span>
           <span class="badge">#${me.pos} of ${rows.length}</span>
-          <span class="badge">${state.streak.count}-day streak</span>
+          <span class="badge">${currentStreak()}-day streak</span>
         </div>
       </div>
       <div style="text-align:right">
         <div style="font-family:'Fraunces',Georgia,serif;font-size:28px;font-weight:600;color:var(--accent2)">${xp.toLocaleString()}</div>
-        <div style="font-size:11px;color:var(--text2);font-weight:700">TOTAL XP</div>
+        <div style="font-size:12px;color:var(--text2);font-weight:700">TOTAL XP</div>
       </div>
     </div>
 
@@ -3905,7 +4361,7 @@ function renderSearch() {
   const container = el('search-content');
   container.innerHTML = `
     <h2 style="margin-bottom:12px">Search</h2>
-    <input type="search" class="search-bar" id="search-input" placeholder="Search spec codes, terms, definitions..." oninput="doSearch(this.value)" autofocus>
+    <input type="search" class="search-bar" id="search-input" aria-label="Search revision content" placeholder="Search spec codes, terms, definitions..." oninput="doSearch(this.value)" autofocus>
     <div id="search-results" class="search-results">
       <div class="empty-state"><p>Type to search across all content</p></div>
     </div>`;
@@ -3950,7 +4406,8 @@ function doSearch(query) {
   ).slice(0, 30);
 
   if (!results.length) {
-    container.innerHTML = `<div class="empty-state"><div class="icon">😕</div><p>No results for "${query}"</p></div>`;
+    // The query is the student's own typing and must never be parsed as HTML.
+    container.innerHTML = `<div class="empty-state"><div class="icon">😕</div><p>No results for "${escapeHTML(query)}"</p></div>`;
     return;
   }
 
@@ -3965,10 +4422,19 @@ function doSearch(query) {
     </div>`).join('');
 }
 
+/* Matches against the raw text, then escapes every piece, so neither the query
+   nor the content can inject markup, and a match never lands inside an entity. */
 function highlight(text, query) {
-  if (!query) return text;
-  const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-  return text.replace(regex, '<span class="highlight">$1</span>');
+  text = String(text);
+  if (!query) return escapeHTML(text);
+  const re = new RegExp(escapeRe(query), 'gi');
+  let out = '', last = 0, m;
+  while ((m = re.exec(text))) {
+    if (!m[0].length) { re.lastIndex++; continue; }
+    out += escapeHTML(text.slice(last, m.index)) + '<span class="highlight">' + escapeHTML(m[0]) + '</span>';
+    last = m.index + m[0].length;
+  }
+  return out + escapeHTML(text.slice(last));
 }
 
 function goToResult(section, code) {
@@ -3982,6 +4448,8 @@ function goToResult(section, code) {
       if (body && body.classList.contains('hidden')) {
         body.classList.remove('hidden');
         if (chev) chev.classList.add('open');
+        const header = body.previousElementSibling;
+        if (header) header.setAttribute('aria-expanded', 'true');
       }
     }
   }, 300);
@@ -3996,7 +4464,7 @@ function renderPlan() {
   container.innerHTML = `
     <div class="plan-header">
       <h2>Today's Study Plan</h2>
-      <div class="streak-badge">${state.streak.count}-day streak</div>
+      <div class="streak-badge">${currentStreak()}-day streak</div>
     </div>
     <p style="color:var(--text2);font-size:14px;margin-bottom:16px">${hasExamDate() && !examPassed() ? `${daysUntilExam()} days until your ${unitDef().label} exam. ` : ''}${getMotivation()}</p>
     ${plan.map(block => `
@@ -4018,7 +4486,7 @@ function renderPlan() {
     <div style="display:flex;gap:8px;flex-wrap:wrap">
       <button class="btn btn-secondary btn-sm" onclick="exportData()">Export progress</button>
       <button class="btn btn-secondary btn-sm" onclick="importData()">Import progress</button>
-      <button class="btn btn-sm" style="background:var(--red);color:#fff" onclick="confirmReset()">Reset all progress</button>
+      <button class="btn btn-sm" style="background:var(--red-fill);color:#fff" onclick="confirmReset()">Reset all progress</button>
     </div>`;
 }
 
@@ -4150,20 +4618,26 @@ function savePlanCheck(key, val) {
 }
 
 /* ---- STREAK ---- */
+/* Called from bumpActivity, so only real revision moves the streak. The caller saves. */
 function updateStreak() {
   const todayStr = today();
   const last = state.streak.last;
   if (last === todayStr) return;
-  const yesterday = new Date();
-  yesterday.setDate(yesterday.getDate() - 1);
-  const yStr = yesterday.toISOString().split('T')[0];
-  if (last === yStr) {
-    state.streak.count++;
-  } else if (last !== todayStr) {
-    state.streak.count = 1;
-  }
+  state.streak.count = last === yesterdayStr() ? state.streak.count + 1 : 1;
   state.streak.last = todayStr;
-  saveState();
+}
+
+function yesterdayStr() {
+  const d = new Date();
+  d.setDate(d.getDate() - 1);
+  return localDateStr(d);
+}
+
+// The streak to show: a run that missed yesterday is already broken, even though
+// the stored count only resets on the next revision.
+function currentStreak() {
+  const last = state.streak.last;
+  return last === today() || last === yesterdayStr() ? state.streak.count : 0;
 }
 
 /* ---- EXPORT/IMPORT/RESET ---- */
@@ -4174,7 +4648,8 @@ function exportData() {
   a.href = url;
   a.download = `btec-revision-${today()}.json`;
   a.click();
-  URL.revokeObjectURL(url);
+  // Revoking straight after click() can cancel the download in some browsers.
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
   toast('Progress exported!');
 }
 
@@ -4249,7 +4724,7 @@ function confirmReset() {
 document.addEventListener('keydown', e => {
   if (e.key !== 'Escape') return;
   const modal = el('player-modal-overlay');
-  if (modal && modal.classList.contains('visible')) { closePlayerCard(); return; }
+  if (modal && modal.classList.contains('show')) { closeModal(); return; }
   if (sidebarOpen && window.innerWidth < 900) closeSidebar();
 });
 
@@ -4274,9 +4749,6 @@ window.addEventListener('resize', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   initSidebar();
-  document.querySelectorAll('.nav-btn, .nav-avatar').forEach(btn => {
-    btn.addEventListener('click', () => navigate(btn.dataset.page));
-  });
   document.querySelectorAll('.unit-switch-btn').forEach(btn => {
     btn.addEventListener('click', () => switchUnit(btn.dataset.unit));
   });
@@ -4304,6 +4776,19 @@ document.addEventListener('keydown', e => {
     e.preventDefault();
     answerFlash(e.key === 'ArrowRight');
   }
+});
+
+/* Practice questions: ← / → step between questions, as on the flashcards. Never
+   while typing, and never from a mark-scheme tick box or level radio. */
+document.addEventListener('keydown', e => {
+  if (currentPage !== 'questions' || qMode !== 'practice' || e.repeat) return;
+  if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) return;
+  if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+  const t = e.target;
+  if (t && (/^(INPUT|SELECT|TEXTAREA)$/.test(t.tagName) || t.isContentEditable)) return;
+  if (!el('q-stage')) return;
+  e.preventDefault();
+  practiceStep(e.key === 'ArrowRight' ? 1 : -1);
 });
 
 document.addEventListener('keydown', e => {

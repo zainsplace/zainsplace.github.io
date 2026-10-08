@@ -3,6 +3,9 @@
 .superpowers/
 docs/plans/
 
+# Security audit: the repo is public and Pages serves every file, so never commit it
+AUDIT.md
+
 # OS / editor noise
 .DS_Store
 Thumbs.db
