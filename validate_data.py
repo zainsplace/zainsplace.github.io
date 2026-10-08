@@ -189,12 +189,19 @@ if before is not None and before != after:
     err('data_inline.js is not reproducible from data/: rebuilding changed it. '
         'Back-port the hand edits into data/<unit>/*.json first.')
 
-# The site must work offline from a file:// URL.
+# The site must work offline from a file:// URL, so nothing may be LOADED from
+# another site. A plain link the student chooses to open (href="...") is not a
+# load, so a short allow-list of link-only hosts is permitted: Pearson's own page,
+# which replaces hosting their copyrighted past papers.
+LINK_ONLY_HOSTS = ('qualifications.pearson.com',)
 for name in ('index.html', 'styles.css', 'app.js'):
     txt = open(os.path.join(HERE, name), encoding='utf-8').read()
     for m in re.finditer(r'https?://[^\s"\')]+', txt):
         url = m.group(0)
         if 'w3.org' in url:
+            continue
+        host = re.sub(r'^https?://', '', url).split('/')[0]
+        if host in LINK_ONLY_HOSTS and txt[max(0, m.start() - 6):m.start()] == 'href="':
             continue
         err('%s references an external URL, breaking offline use: %s' % (name, url))
 

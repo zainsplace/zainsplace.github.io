@@ -73,7 +73,9 @@ will fail if:
 - a flashcard is missing `front` or `back`
 - `data_inline.js` is not reproducible from `data/` (someone hand-edited the
   bundle instead of the source)
-- any file references an external URL, which would break offline use
+- any file references an external URL, which would break offline use (the one
+  exception is a plain link to Pearson's past-papers page, which is opened by the
+  student, not loaded by the site)
 
 Section colours, display order, short names and blurbs live in the `UNITS`
 manifest at the top of `app.js`, not in the JSON. Unit 1's display order is

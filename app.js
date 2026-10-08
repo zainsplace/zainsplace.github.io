@@ -4339,6 +4339,12 @@ function renderExamKit() {
       <div class="exam-tip" style="margin-top:8px">Read every word of the question. "Other than…", "to the customers" and "acceptable" each rule out answers that would otherwise score.</div>
     </div>
 
+    <div class="card">
+      <h3 style="margin-bottom:6px">Past papers and mark schemes</h3>
+      <p style="font-size:14px;color:var(--text2);margin-bottom:12px">Pearson publishes past papers, mark schemes and examiner reports for both units. They are Pearson's copyright, so they are not copied here. Open them from Pearson's site, then practise against the clock with the mock papers on the Questions page.</p>
+      <a class="btn btn-secondary btn-sm" href="https://qualifications.pearson.com/en/qualifications/btec-nationals/information-technology-aaq.coursematerials.html" target="_blank" rel="noopener noreferrer">Pearson course materials ↗</a>
+    </div>
+
     <h3 style="margin:22px 0 12px;font-size:14px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">Rapid-recall keyword banks</h3>
     <div class="grid2">
       ${keywordBanks.map(b => `
