@@ -1809,7 +1809,6 @@ function setQShow(v) {
 
 /* Drafts are kept per unit in the saved state, keyed by textarea id, until the
    answer is marked. Moving between questions or pages does not lose them. */
-let draftTick = null;
 
 function answerIds(q) {
   return q.slots > 1 ? Array.from({ length: q.slots }, (_, i) => `ans-${q.id}-${i}`) : [`ans-${q.id}`];
@@ -1822,8 +1821,7 @@ function bindAnswerDrafts(root) {
     if (typeof drafts[t.id] === 'string' && !t.value) t.value = drafts[t.id];
     t.addEventListener('input', () => {
       if (t.value.trim()) drafts[t.id] = t.value; else delete drafts[t.id];
-      clearTimeout(draftTick);
-      draftTick = setTimeout(saveState, 400);
+      scheduleSave();
     });
   });
 }
@@ -2331,13 +2329,11 @@ function stopMockTimer() {
   if (mockTick) { clearInterval(mockTick); mockTick = null; }
 }
 
-let mockSaveTick = null;
 
 // Points saved state at the live paper (or clears it) and writes it out.
 function persistMock(now) {
   state.questions.activeMock = mock && mock.phase !== 'done' ? mock : {};
-  clearTimeout(mockSaveTick);
-  if (now) saveState(); else mockSaveTick = setTimeout(saveState, 400);
+  if (now) { cancelPendingSave(); saveState(); } else scheduleSave();
 }
 
 // The saved paper, checked field by field, or null.
@@ -2815,7 +2811,6 @@ function updateTimerDisplay(id, secs, totalSecs) {
 /* renderExtended rebuilds the page from innerHTML on every visit, so the draft
    lives in saved state (per unit), like practice-question drafts. A refresh or a
    closed tab used to lose a whole 9- or 12-mark essay. Emptying the box deletes it. */
-let extDraftTick = null;
 
 function extDrafts() {
   if (!state.extended.drafts) state.extended.drafts = {};
@@ -2828,8 +2823,7 @@ function updateWordCount(id, restoring) {
   if (!textarea || !wc) return;
   if (!restoring) {
     if (textarea.value.trim()) extDrafts()[id] = textarea.value; else delete extDrafts()[id];
-    clearTimeout(extDraftTick);
-    extDraftTick = setTimeout(saveState, 400);
+    scheduleSave();
   }
   const words = textarea.value.trim().split(/\s+/).filter(w => w.length > 0).length;
   wc.textContent = words + ' words' + (extDrafts()[id] ? ' · saved on this device' : '');
@@ -4783,9 +4777,24 @@ function confirmReset() {
 }
 
 /* Drafts, essays and the mock save 400ms after typing stops. A phone can kill a
-   backgrounded tab, and a closed tab never fires the timer, so flush on hide. */
+   backgrounded tab, and a closed tab never fires the timer, so a PENDING save is
+   flushed on hide. Only a pending one: saving unconditionally meant that closing
+   a stale second tab wrote its old copy over newer progress from another tab. */
+let pendingSave = null;
+
+function scheduleSave() {
+  clearTimeout(pendingSave);
+  pendingSave = setTimeout(() => { pendingSave = null; saveState(); }, 400);
+}
+
+function cancelPendingSave() {
+  clearTimeout(pendingSave);
+  pendingSave = null;
+}
+
 function flushPendingSaves() {
-  [draftTick, extDraftTick, mockSaveTick].forEach(t => clearTimeout(t));
+  if (!pendingSave) return;
+  cancelPendingSave();
   saveState();
 }
 document.addEventListener('visibilitychange', () => {
