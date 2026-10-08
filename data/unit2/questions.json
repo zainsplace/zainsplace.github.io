@@ -1,5 +1,813 @@
 {
+  "papers": [
+    {
+      "id": "p1",
+      "title": "Mock Paper 1",
+      "minutes": 135,
+      "scenarios": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "s1",
+      "number": 1,
+      "title": "Fernhill Veterinary Group",
+      "stem": "Fernhill Veterinary Group runs three vet surgeries. Receptionists book appointments and take payments, and vets record each animal's treatment on a shared client records system. The records hold pet owners' names, addresses, phone numbers and payment card details.\n\nLast month a receptionist clicked a link in an email that claimed to be from a pet insurance company and typed in her login details. The IT support company also found that:\n• several staff keep their passwords on sticky notes under their keyboards\n• a PC in the back office still runs an old version of Windows that no longer gets updates\n• the server is kept in a storeroom that is not locked."
+    },
+    {
+      "id": "s2",
+      "number": 2,
+      "title": "Kestrel Logistics",
+      "stem": "Kestrel Logistics is a delivery company with 120 staff, a head office and two depots. Drivers use tablets to record deliveries, and office staff use laptops to manage customer accounts, which include customers' names, addresses and payment details.\n\nA manager recently left an unencrypted laptop holding customer data on a train. It was never found. The directors have asked the IT manager, Priya, to write proper cyber security documentation for the company."
+    },
+    {
+      "id": "s3",
+      "number": 3,
+      "title": "Lumen Design Studio",
+      "stem": "Lumen Design Studio is moving into a new two-floor office.\n\n• The first floor has 12 desktop PCs for the designers and a file server that stores large design files.\n• The ground floor has a reception desk with one PC and a printer, and a meeting room where visiting clients use guest Wi-Fi.\n• Clients log in to a client portal on Lumen's website to download their designs.\n• Three designers work from home two days a week using company laptops and need to reach the file server."
+    },
+    {
+      "id": "s4",
+      "number": 4,
+      "title": "Brightwater Insurance",
+      "stem": "Alex, a claims handler at Brightwater Insurance, resigned last week. The HR manager suspects that Alex copied customer records before leaving. Network logs show large uploads from Alex's laptop to a personal cloud storage account on Alex's last day.\n\nAlex's work laptop and company mobile phone have been handed in. Brightwater may take legal action, so any evidence must be able to stand up to scrutiny."
+    }
+  ],
   "questions": [
+    {
+      "id": "s1-a-i",
+      "scenario": "s1",
+      "part": "(a)(i)",
+      "section": "A",
+      "code": "A1.1",
+      "marks": 2,
+      "commandWord": "Give",
+      "context": "",
+      "question": "Give **two** internal threats to Fernhill's client data, other than an employee clicking a link in an email.",
+      "slots": 2,
+      "traps": [
+        "\"internal\": the threat must come from someone inside the organisation. Hackers and viruses on their own are external.",
+        "\"other than … clicking a link in an email\": the scenario's own example earns nothing."
+      ],
+      "markScheme": {
+        "type": "points",
+        "rule": "1 mark for each correct answer, up to 2 marks.",
+        "points": [
+          "Accidentally deleting or overwriting client records",
+          "Deliberate sabotage by an unhappy employee, e.g. deleting or changing records",
+          "Sharing or writing down passwords (e.g. sticky notes)",
+          "Leaving a PC logged in or unlocked where clients can see or use it",
+          "Accidental disclosure, e.g. emailing a client's details to the wrong person",
+          "Losing a laptop, phone or USB stick that holds client data",
+          "Plugging in personal USB devices or installing unauthorised software",
+          "An employee stealing client data, e.g. card details"
+        ],
+        "accept": [
+          "Any other threat that comes from a member of staff"
+        ],
+        "reject": [
+          "Clicking a link in an email (excluded by the question)",
+          "External threats with no staff involvement, e.g. \"hackers\" or \"viruses\""
+        ]
+      },
+      "modelAnswer": "1. Staff writing their passwords on sticky notes\n2. A receptionist accidentally deleting a client's records"
+    },
+    {
+      "id": "s1-a-ii",
+      "scenario": "s1",
+      "part": "(a)(ii)",
+      "section": "A",
+      "code": "A4.1.1",
+      "marks": 2,
+      "commandWord": "Give",
+      "context": "",
+      "question": "Give **two** physical security measures Fernhill could use to protect its server.",
+      "slots": 2,
+      "traps": [
+        "\"physical\": software such as a firewall or antivirus is not a physical measure."
+      ],
+      "markScheme": {
+        "type": "points",
+        "rule": "1 mark for each correct answer, up to 2 marks.",
+        "points": [
+          "Lock the storeroom / keep the server in a locked room or cabinet",
+          "Keypad or swipe-card entry to the room",
+          "Biometric lock, e.g. fingerprint",
+          "CCTV covering the storeroom door",
+          "Intruder alarm",
+          "Sign-in book / only named staff allowed in",
+          "Cable lock or locked server rack"
+        ],
+        "accept": [
+          "Any other physical measure that protects the server"
+        ],
+        "reject": [
+          "Software or logical measures: passwords, firewall, antivirus, encryption"
+        ]
+      },
+      "modelAnswer": "1. Keep the server in a locked cabinet\n2. Fit a keypad lock to the storeroom door"
+    },
+    {
+      "id": "s1-b-i",
+      "scenario": "s1",
+      "part": "(b)(i)",
+      "section": "A",
+      "code": "A1.3",
+      "marks": 4,
+      "commandWord": "Explain",
+      "context": "",
+      "question": "Explain **two** impacts on Fernhill if a ransomware attack encrypted its client records system.",
+      "slots": 2,
+      "traps": [
+        "Each impact needs a consequence for Fernhill to earn the second mark. \"They would lose money\" on its own is only an identification."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "rule": "1 mark for identifying an impact and 1 more for expanding it (a reason or consequence linked to Fernhill), up to 4 marks.",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "points": [
+          [
+            "Operational loss / surgeries cannot run normally",
+            "because vets cannot see animals' medical histories or appointments, so treatment is delayed or cancelled"
+          ],
+          [
+            "Financial loss",
+            "from cancelled appointments, paying specialists to recover the system, or paying a ransom"
+          ],
+          [
+            "Reputational loss / loss of client trust",
+            "so pet owners may move to another vet, reducing future income"
+          ],
+          [
+            "Legal consequences / GDPR breach",
+            "if personal data was accessed it must be reported to the ICO within 72 hours and Fernhill could be fined"
+          ],
+          [
+            "Permanent loss of records",
+            "if there are no working backups, vaccination and treatment histories cannot be recovered"
+          ]
+        ],
+        "accept": [
+          "Mix and match an identification with any expansion if it makes sense"
+        ],
+        "reject": [
+          "\"Hacking\" or \"data stolen\" with no impact on Fernhill"
+        ]
+      },
+      "modelAnswer": "1. Vets would not be able to open animals' records, so appointments would be delayed or cancelled and pets might not get the right treatment.\n2. Clients could lose trust in Fernhill after hearing their details were caught up in an attack, so they may take their pets to another vet."
+    },
+    {
+      "id": "s1-b-ii",
+      "scenario": "s1",
+      "part": "(b)(ii)",
+      "section": "A",
+      "code": "A2.1",
+      "marks": 4,
+      "commandWord": "Explain",
+      "context": "",
+      "question": "Explain **two** vulnerabilities in Fernhill's current set-up, other than the receptionist clicking the link.",
+      "slots": 2,
+      "traps": [
+        "Use the scenario. The question rewards spotting the weaknesses the IT support company found, not a general list."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "rule": "1 mark for identifying a vulnerability and 1 more for explaining how it could be exploited, up to 4 marks.",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "points": [
+          [
+            "Passwords written on sticky notes",
+            "so anyone at the desk, including clients or cleaners, could read them and log in as that member of staff"
+          ],
+          [
+            "The back-office PC runs an unsupported version of Windows",
+            "so known security holes are never patched and malware can exploit them"
+          ],
+          [
+            "The server is in an unlocked storeroom",
+            "so anyone could steal or damage it, or plug in a device to copy data"
+          ],
+          [
+            "Payment card details are stored in the records system",
+            "which makes Fernhill a valuable target and increases the damage from a breach"
+          ]
+        ],
+        "accept": [
+          "Any other genuine vulnerability linked to the scenario"
+        ],
+        "reject": [
+          "The receptionist clicking the link (excluded by the question)"
+        ]
+      },
+      "modelAnswer": "1. Staff keep passwords on sticky notes under their keyboards, so a client at the reception desk could read one and log in to the records system.\n2. The back-office PC runs an old version of Windows that no longer gets updates, so attackers can use known security holes to install malware."
+    },
+    {
+      "id": "s1-c",
+      "scenario": "s1",
+      "part": "(c)",
+      "section": "A",
+      "code": "A4.1.5",
+      "marks": 4,
+      "commandWord": "Describe",
+      "context": "",
+      "question": "Describe how multi-factor authentication (MFA) would protect Fernhill's client records.",
+      "slots": 0,
+      "traps": [
+        "Two passwords are not two factors. The factors must be different types."
+      ],
+      "markScheme": {
+        "type": "points",
+        "rule": "1 mark for each point, up to 4 marks.",
+        "points": [
+          "The user must give two or more different types of evidence (factors) to log in",
+          "Something you know, e.g. a password or PIN",
+          "Something you have, e.g. a code sent to a phone, an authenticator app or a smart card",
+          "Something you are, e.g. a fingerprint or face scan",
+          "A stolen or phished password on its own is no longer enough to log in",
+          "One-time codes expire after a short time, so they cannot be reused",
+          "A login attempt can alert the real user that someone has their password"
+        ],
+        "accept": [
+          "Examples linked to Fernhill, e.g. a receptionist approving a login on her phone"
+        ],
+        "reject": [
+          "Two passwords / a password and a security question (same factor type)",
+          "\"Makes it more secure\" on its own"
+        ]
+      },
+      "modelAnswer": "MFA means staff must prove who they are in two different ways before the records system lets them in. As well as something they know, such as a password, they need something they have, such as a one-time code from an authenticator app on their phone. The code changes every 30 seconds, so it cannot be reused. If a receptionist's password is phished again, the attacker still cannot log in without her phone."
+    },
+    {
+      "id": "s1-d",
+      "scenario": "s1",
+      "part": "(d)",
+      "section": "A",
+      "code": "A1.2.4",
+      "marks": 6,
+      "commandWord": "Discuss",
+      "context": "",
+      "question": "Discuss the methods, other than multi-factor authentication, that Fernhill could use to reduce the risk of further social engineering attacks.",
+      "slots": 0,
+      "traps": [
+        "\"other than multi-factor authentication\": anything about MFA earns nothing.",
+        "Discuss means consider both sides: the benefit of each method and a drawback or limitation."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "focus": "Methods other than MFA, applied to staff at a vet surgery being tricked by emails and calls.",
+        "indicative": [
+          "Staff training on spotting phishing: fake sender addresses, urgent requests, checking a link before clicking. Needs time away from clients and regular refreshers",
+          "Simulated phishing emails to test staff and target extra training. Can upset staff if handled badly",
+          "Email filtering / spam and anti-phishing filters to stop most phishing reaching inboxes. May block genuine emails from insurers",
+          "An internet and email use policy that staff sign, with clear rules. Only works if it is enforced",
+          "A procedure to check unusual requests, e.g. phone the insurance company on a known number",
+          "A no-blame reporting process so staff report a mistake straight away and damage is limited",
+          "Access controls / least privilege so a tricked receptionist's account cannot reach everything",
+          "Keeping software patched and anti-malware up to date, to limit the damage if a link is clicked",
+          "Drawbacks weighed: cost, staff time, false positives, relies on people following rules"
+        ],
+        "reject": [
+          "Multi-factor authentication (excluded by the question)"
+        ]
+      },
+      "modelAnswer": "Fernhill's biggest weakness is its staff, so training is the most important method. Receptionists could be shown how to spot phishing emails, for example by checking the real sender address and being suspicious of urgent requests to log in. This would have helped in last month's attack. However, training takes staff away from the front desk and has to be repeated, because people forget and attacks change.\n\nFernhill could also use email filtering to block known phishing emails before staff ever see them. This reduces how often staff have to make the right decision, although some phishing still gets through and genuine emails from insurers might be blocked.\n\nAn email and internet use policy would make the rules clear, such as never entering a password from a link in an email, and tell staff how to report anything suspicious. A no-blame reporting process matters, because a receptionist who reports a mistake quickly lets the IT company reset the password before data is taken. A policy only works if managers check it is being followed.\n\nFinally, access controls would limit the damage. If receptionists can only see appointments and payments, a phished receptionist account cannot reach full clinical records."
+    },
+    {
+      "id": "s2-a",
+      "scenario": "s2",
+      "part": "(a)",
+      "section": "C",
+      "code": "C1.1.1a",
+      "marks": 2,
+      "commandWord": "Give",
+      "context": "Priya is writing rules for staff who use company laptops outside the office.",
+      "question": "Give **two** rules that should be included in Kestrel's policy for staff using company laptops outside the office.",
+      "slots": 2,
+      "traps": [],
+      "markScheme": {
+        "type": "points",
+        "rule": "1 mark for each correct answer, up to 2 marks.",
+        "points": [
+          "Laptops must use full-disk encryption",
+          "Never leave a laptop unattended in public or in a vehicle",
+          "Lock the screen when away from it / use a privacy screen in public",
+          "Only connect to company systems through the VPN on public Wi-Fi",
+          "Report a lost or stolen laptop immediately, and to whom",
+          "No use by family or friends / work use only",
+          "Keep the laptop's software and security updates installed",
+          "Use a strong password and MFA to log in"
+        ],
+        "accept": [
+          "Any other sensible rule for laptops used off-site"
+        ],
+        "reject": [
+          "Rules that only apply inside the office"
+        ]
+      },
+      "modelAnswer": "1. All laptops must be encrypted.\n2. A lost or stolen laptop must be reported to the IT manager straight away."
+    },
+    {
+      "id": "s2-b-i",
+      "scenario": "s2",
+      "part": "(b)(i)",
+      "section": "C",
+      "code": "C1.1.2",
+      "marks": 4,
+      "commandWord": "Explain",
+      "context": "",
+      "question": "Explain **two** reasons why Kestrel should carry out regular security audits.",
+      "slots": 2,
+      "traps": [
+        "An audit checks what is actually happening. Reasons about writing the policy in the first place miss the point."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "rule": "1 mark for identifying a reason and 1 more for expanding it, up to 4 marks.",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "points": [
+          [
+            "To check staff are following the policies",
+            "so problems such as unencrypted laptops are found before they cause another breach"
+          ],
+          [
+            "To find new vulnerabilities, e.g. missing patches or open ports",
+            "so they can be fixed before attackers exploit them"
+          ],
+          [
+            "To review user accounts and access rights",
+            "so accounts of staff who have left are removed and insider risk is reduced"
+          ],
+          [
+            "To show compliance with GDPR",
+            "giving evidence to the ICO and customers that Kestrel takes data protection seriously"
+          ],
+          [
+            "To measure whether security is improving",
+            "as the Check stage of Plan-Do-Check-Act, so policies can be updated"
+          ]
+        ],
+        "accept": [
+          "Mix and match an identification with any expansion if it makes sense"
+        ],
+        "reject": [
+          "\"To make it more secure\" on its own"
+        ]
+      },
+      "modelAnswer": "1. An audit checks whether staff are actually following the rules, for example whether every laptop is encrypted, so gaps are found before another laptop is lost.\n2. An audit can find accounts that belong to staff who have left, so they can be disabled before they are misused."
+    },
+    {
+      "id": "s2-b-ii",
+      "scenario": "s2",
+      "part": "(b)(ii)",
+      "section": "C",
+      "code": "C1.1.4",
+      "marks": 4,
+      "commandWord": "Explain",
+      "context": "",
+      "question": "Explain **two** benefits to Kestrel of having a data protection policy.",
+      "slots": 2,
+      "traps": [
+        "Benefits to Kestrel. Make each one specific to a company holding customer addresses and payment details."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "rule": "1 mark for identifying a benefit and 1 more for expanding it, up to 4 marks.",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "points": [
+          [
+            "Helps Kestrel comply with GDPR",
+            "reducing the risk of fines or legal action after a breach like the lost laptop"
+          ],
+          [
+            "Staff know how to handle personal data",
+            "so mistakes such as carrying unencrypted customer data are less likely"
+          ],
+          [
+            "Sets out how long data is kept and when it is deleted",
+            "so less personal data is at risk if a device is lost"
+          ],
+          [
+            "Explains how and when to report a breach",
+            "so the ICO is told within 72 hours"
+          ],
+          [
+            "Builds customer trust",
+            "so businesses are more willing to use Kestrel for deliveries"
+          ]
+        ],
+        "accept": [
+          "Mix and match an identification with any expansion if it makes sense"
+        ],
+        "reject": []
+      },
+      "modelAnswer": "1. The policy tells staff exactly how customer data must be stored and carried, so mistakes like taking unencrypted data out on a laptop are less likely.\n2. It explains how to report a data breach, so Priya can tell the ICO within 72 hours and Kestrel is less likely to be fined."
+    },
+    {
+      "id": "s2-c",
+      "scenario": "s2",
+      "part": "(c)",
+      "section": "C",
+      "code": "C1.1.6",
+      "marks": 4,
+      "commandWord": "Explain",
+      "context": "",
+      "question": "Explain **two** items that should be included in Kestrel's disaster recovery policy.",
+      "slots": 2,
+      "traps": [
+        "Disaster recovery is about getting systems back after a major event (fire, flood, ransomware), not about preventing attacks."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "rule": "1 mark for identifying an item and 1 more for explaining why it is needed, up to 4 marks.",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "points": [
+          [
+            "A list of critical systems in order of priority",
+            "so the delivery tracking system is restored first and drivers can keep working"
+          ],
+          [
+            "Recovery time and recovery point targets",
+            "so everyone knows how quickly systems must be back and how much data can be lost"
+          ],
+          [
+            "Roles, responsibilities and contact details",
+            "so staff know who does what and there is no confusion during a disaster"
+          ],
+          [
+            "An alternative site or equipment, e.g. a depot or cloud service",
+            "so the business can carry on if head office cannot be used"
+          ],
+          [
+            "Where backups are kept and how to restore them",
+            "so data can be recovered quickly by anyone on the recovery team"
+          ],
+          [
+            "How and when the plan is tested",
+            "so Kestrel knows the plan works before it is needed"
+          ]
+        ],
+        "accept": [
+          "Mix and match an identification with any expansion if it makes sense"
+        ],
+        "reject": [
+          "Preventive measures such as antivirus or firewalls"
+        ]
+      },
+      "modelAnswer": "1. The plan should list which systems are restored first, such as delivery tracking, so drivers can keep delivering while less important systems wait.\n2. It should name who is on the recovery team and how to contact them, so nobody wastes time working out who is responsible."
+    },
+    {
+      "id": "s2-d",
+      "scenario": "s2",
+      "part": "(d)",
+      "section": "C",
+      "code": "C1.1.5",
+      "marks": 9,
+      "commandWord": "Evaluate",
+      "context": "Priya has written this draft incident response policy:\n\n1. Any member of staff who notices a problem emails the IT manager.\n2. The IT manager decides whether it is an incident.\n3. Affected computers are switched off immediately.\n4. Systems are restored from the latest backup.\n5. Once systems are working again, the incident is closed.",
+      "question": "Evaluate Priya's draft incident response policy.",
+      "slots": 0,
+      "traps": [
+        "Evaluate means weigh strengths against weaknesses and reach a supported judgement.",
+        "Comment on the steps Priya actually wrote. A generic list of incident response stages will not reach Level 3."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "focus": "The strengths and weaknesses of the five steps in Priya's draft, with a judgement on how effective the policy would be.",
+        "indicative": [
+          "Strength: one clear reporting route, simple for staff to follow",
+          "Strength: someone with expertise (the IT manager) decides what counts as an incident",
+          "Weakness: email may be down or compromised during an incident; there is no phone or out-of-hours route",
+          "Weakness: single point of failure, as nobody covers if the IT manager is absent",
+          "Weakness: no severity levels or definition of an incident, so staff may not report",
+          "Weakness: switching off destroys volatile evidence in memory; isolating from the network would contain it and keep evidence",
+          "Weakness: restoring the latest backup may restore the malware too; there is no containment or eradication step to find the cause",
+          "Weakness: no communication plan for directors, customers, or the ICO within 72 hours for a personal data breach",
+          "Weakness: no incident log of actions taken, so nothing to learn from or show investigators",
+          "Weakness: no review or lessons learned before closing (Plan-Do-Check-Act), and the plan is never tested",
+          "Conclusion: a reasonable start but not effective yet; judge the most important changes"
+        ]
+      },
+      "modelAnswer": "Priya's draft has some strengths. Having one clear reporting route makes it easy for staff to raise a problem, and having the IT manager decide whether something is an incident means a person with expertise makes the call.\n\nHowever, the policy has serious weaknesses. Reporting only by email will fail if the incident has taken down the email system or the attacker can read it, so staff need a phone number too. Everything depends on the IT manager, so nothing happens if she is on holiday or off sick.\n\nStep 3 could make things worse. Switching computers off destroys evidence held in memory, such as running malware. Disconnecting them from the network would contain the incident and keep the evidence. Step 4 assumes the backup is clean, but if the malware was present before the last backup, restoring it brings the problem straight back. There is no step to find and remove the cause first.\n\nThe draft also says nothing about telling the directors or customers, or reporting a personal data breach to the ICO within 72 hours, even though the lost laptop shows this is a real risk. Finally, closing the incident as soon as systems work means there is no review of what went wrong, so the same incident could happen again.\n\nOverall, the draft would help Kestrel react, but it would not contain an incident properly and could break the law on breach reporting. Adding containment, legal reporting, a deputy and a lessons-learned review would make it effective."
+    },
+    {
+      "id": "s3-a",
+      "scenario": "s3",
+      "part": "(a)",
+      "section": "B",
+      "code": "B1.1.4",
+      "marks": 6,
+      "commandWord": "Draw",
+      "context": "",
+      "question": "Draw a network diagram for Lumen's new office. Your diagram should show how the devices are connected and include the security features the network needs. Annotate your diagram.",
+      "slots": 0,
+      "traps": [
+        "The marks are for security features as well as devices. A diagram that only connects PCs to a switch will score low."
+      ],
+      "markScheme": {
+        "type": "points",
+        "rule": "1 mark for each feature your diagram shows, up to 6 marks.",
+        "points": [
+          "Router connecting the office to the internet, with a firewall between the internet and the internal network",
+          "The web server for the client portal in a DMZ, separated from the internal network by a firewall",
+          "The 12 designers' PCs on a wired connection to a switch",
+          "The reception PC and printer connected to the network",
+          "Guest Wi-Fi from a WAP on a separate VLAN / network, with WPA2 or WPA3, so guests reach the internet only",
+          "Home workers' laptops connecting over the internet through a VPN to the firewall / VPN gateway",
+          "The file server on the internal network, not reachable from guest Wi-Fi",
+          "Annotations naming devices, connection types and security features"
+        ],
+        "accept": [
+          "Wired or wireless links where either would work",
+          "A single combined router/firewall device"
+        ],
+        "reject": [
+          "Guest Wi-Fi on the same network as the file server"
+        ]
+      },
+      "modelAnswer": "Internet → router → firewall. The firewall has three zones:\n• DMZ: web server (client portal)\n• Internal LAN: switch → 12 designer PCs (wired), file server, reception PC, printer\n• Guest VLAN: WAP (WPA3) in the meeting room, internet access only\nHome workers: laptop → internet → encrypted VPN tunnel → firewall/VPN gateway → file server.\nAnnotate each device, each link (wired / wireless / VPN) and each security feature."
+    },
+    {
+      "id": "s3-b",
+      "scenario": "s3",
+      "part": "(b)",
+      "section": "B",
+      "code": "B2.1.2",
+      "marks": 2,
+      "commandWord": "Explain",
+      "context": "",
+      "question": "Explain **one** factor Lumen should consider when choosing the wireless access point for the meeting room.",
+      "slots": 0,
+      "traps": [
+        "\"Fast\" or \"secure\" on its own is not a factor. Say what feature makes it so."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "rule": "1 mark for a factor and 1 more for explaining why it matters to Lumen, up to 2 marks.",
+        "steps": [
+          "Factor",
+          "Expand"
+        ],
+        "points": [
+          [
+            "Supports WPA3 / strong encryption",
+            "so clients' traffic cannot easily be intercepted or the key cracked"
+          ],
+          [
+            "Supports multiple SSIDs / VLANs",
+            "so guest Wi-Fi can be kept separate from the staff network and file server"
+          ],
+          [
+            "Range / coverage",
+            "so the signal covers the meeting room without reaching far outside the building"
+          ],
+          [
+            "Number of users and bandwidth it supports",
+            "so several clients can download large design files at once"
+          ],
+          [
+            "Power over Ethernet",
+            "so it can be placed on the ceiling without a nearby power socket"
+          ],
+          [
+            "Cost",
+            "so it fits the budget for the office move"
+          ]
+        ],
+        "accept": [
+          "Any other sensible factor with a linked reason"
+        ],
+        "reject": [
+          "\"Fast\", \"secure\" or \"cheap\" with no reason"
+        ]
+      },
+      "modelAnswer": "The access point should support several SSIDs on separate VLANs, so guest Wi-Fi is kept apart from the staff network and clients cannot reach the file server."
+    },
+    {
+      "id": "s3-c",
+      "scenario": "s3",
+      "part": "(c)",
+      "section": "B",
+      "code": "B3.2",
+      "marks": 4,
+      "commandWord": "Explain",
+      "context": "",
+      "question": "Explain **two** benefits to Lumen of segmenting its network, for example by using VLANs.",
+      "slots": 2,
+      "traps": [],
+      "markScheme": {
+        "type": "chain",
+        "rule": "1 mark for identifying a benefit and 1 more for expanding it, up to 4 marks.",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "points": [
+          [
+            "Guest devices are kept separate",
+            "so visiting clients cannot reach the file server or designers' PCs"
+          ],
+          [
+            "Contains malware or an attack",
+            "because an infection on one segment cannot easily spread to the others"
+          ],
+          [
+            "Different security rules for each segment",
+            "e.g. stricter firewall rules for the segment holding the file server"
+          ],
+          [
+            "Better performance",
+            "because there is less broadcast traffic, so large design files transfer faster"
+          ],
+          [
+            "Easier to manage and monitor",
+            "so unusual traffic on a segment is easier to spot"
+          ]
+        ],
+        "accept": [
+          "Mix and match an identification with any expansion if it makes sense"
+        ],
+        "reject": [
+          "\"More secure\" with no explanation"
+        ]
+      },
+      "modelAnswer": "1. Guests in the meeting room would be on their own segment, so a client's laptop could not reach the file server holding other clients' designs.\n2. If malware infected a designer's PC, segmentation would stop it spreading easily to reception or the servers."
+    },
+    {
+      "id": "s3-d",
+      "scenario": "s3",
+      "part": "(d)",
+      "section": "B",
+      "code": "B1.4.2",
+      "marks": 9,
+      "commandWord": "Evaluate",
+      "context": "",
+      "question": "Evaluate whether Lumen should host the client portal on its own web server in a DMZ or use a cloud hosting provider.",
+      "slots": 0,
+      "traps": [
+        "Weigh both options for Lumen, then commit to a recommendation that follows from your points."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "focus": "Own web server in a DMZ against cloud hosting, for a small design studio's client portal.",
+        "indicative": [
+          "Own server: full control over configuration and where client data is stored",
+          "Own server: the DMZ limits the damage if the web server is compromised, keeping attackers away from the file server",
+          "Own server: no monthly fee, but the hardware has to be bought, powered and replaced",
+          "Own server: Lumen must patch and secure it itself, which needs skills a design studio may not have",
+          "Own server: a power cut or broadband fault takes the portal offline; it is exposed to DDoS",
+          "Cloud: the provider handles patching, physical security and DDoS protection",
+          "Cloud: scalable and highly available, with providers' backup and recovery",
+          "Cloud: ongoing subscription cost and less control over the platform",
+          "Cloud: client data held by a third party, so there is GDPR to consider, an external services policy / contract, and where data is stored",
+          "Cloud: shared responsibility, as Lumen still has to manage accounts and passwords",
+          "Conclusion: a justified recommendation for Lumen"
+        ]
+      },
+      "modelAnswer": "Hosting the portal on its own server in a DMZ would give Lumen full control. It would decide exactly how the server is configured and know where clients' designs are stored. The DMZ is also a sensible design: if attackers broke into the web server they would still be separated from the file server and designers' PCs by the firewall.\n\nHowever, Lumen is a small design studio and is unlikely to have staff who can patch and harden a public web server. Any missed update would leave the portal exposed. The portal would also go offline whenever the office loses power or broadband, and a DDoS attack could take it down. Lumen would also have to buy and replace the hardware.\n\nA cloud hosting provider would take on patching, physical security and DDoS protection, and the portal would stay available even if the office had problems. It can scale up when many clients download large files at once. The downsides are a monthly cost, less control, and the fact that clients' designs would be held by a third party. Lumen would need a contract and an external services policy covering how the provider protects the data and where it is stored under GDPR, and it would still be responsible for strong passwords on client accounts.\n\nOverall, cloud hosting is the better choice for Lumen. Its biggest risk is an unpatched or unavailable server, and a provider is far better placed to manage that than a small studio, as long as Lumen checks the provider's data protection terms."
+    },
+    {
+      "id": "s4-a",
+      "scenario": "s4",
+      "part": "(a)",
+      "section": "D",
+      "code": "D1.1.1b",
+      "marks": 3,
+      "commandWord": "Explain",
+      "context": "",
+      "question": "Explain **one** reason why the investigator should create a forensic image of Alex's laptop drive rather than examining the original drive.",
+      "slots": 0,
+      "traps": [
+        "Three marks for one reason: give the reason, justify it, then expand the justification."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "rule": "1 mark for a reason, 1 for justifying it, and 1 for expanding the justification, up to 3 marks.",
+        "steps": [
+          "Reason",
+          "Justify",
+          "Expand"
+        ],
+        "points": [
+          [
+            "To preserve the original evidence",
+            "because examining the original can change data such as timestamps or metadata",
+            "so the evidence could be challenged and may not be accepted in court or a tribunal"
+          ],
+          [
+            "So the analysis can be repeated",
+            "because the image can be copied and examined as many times as needed",
+            "so another examiner can check and verify the findings"
+          ],
+          [
+            "To prove the copy is exact",
+            "because hash values of the original and the image can be compared",
+            "showing nothing was altered, which makes the evidence reliable"
+          ],
+          [
+            "To recover deleted data",
+            "because a bit-for-bit image copies every sector, not just visible files",
+            "so files Alex deleted after copying could still be found"
+          ]
+        ],
+        "accept": [],
+        "reject": [
+          "\"So you don't break it\" with no link to evidence"
+        ]
+      },
+      "modelAnswer": "Working on an image preserves the original evidence, because even opening files on the original drive can change their timestamps. If the original were changed, Alex's lawyer could argue the evidence had been tampered with, so it might not be accepted."
+    },
+    {
+      "id": "s4-b",
+      "scenario": "s4",
+      "part": "(b)",
+      "section": "D",
+      "code": "D2.1",
+      "marks": 9,
+      "commandWord": "Evaluate",
+      "context": "Before calling anyone in, Brightwater's IT technician, Sam, examined the laptop himself. He switched it on, logged in with the administrator account and searched for files with \"customer\" in the name. He copied the files he found to a USB stick from his desk drawer. When he had finished, he wrote a short note of what he had found.",
+      "question": "Evaluate the way Sam examined Alex's laptop.",
+      "slots": 0,
+      "traps": [
+        "Judge Sam's actions against forensic procedure, and say what the effect is on the evidence, not just what he did wrong."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "focus": "Sam's actions measured against forensic procedure, and their effect on whether the evidence can be relied on.",
+        "indicative": [
+          "Strengths: acted quickly, found relevant files, and made some record of what he did",
+          "Switching on and logging in changes data (logs, timestamps, last-accessed dates), contaminating the evidence",
+          "No write-blocker and no forensic image: he worked on the original",
+          "No hash values, so nothing proves the files are unchanged",
+          "Copied files to an unchecked USB stick, which could alter or contaminate them",
+          "Notes written afterwards, not contemporaneous, with no times or step-by-step actions",
+          "No chain of custody record of who handled the laptop and when",
+          "No photographs of the laptop's state before he started",
+          "Searching only for \"customer\" misses renamed, compressed or deleted files and the cloud upload evidence",
+          "Not trained and not independent, so the evidence may be challenged in court or a tribunal",
+          "Conclusion: well meant but it has weakened the evidence; say what should have happened"
+        ]
+      },
+      "modelAnswer": "Sam acted quickly and did find files that may be relevant, and he made a note of his findings, so there is some record of what happened.\n\nHowever, his method has seriously weakened the evidence. Switching the laptop on and logging in changes data on the drive, including log files and last-accessed times, so it is now harder to show what Alex did rather than what Sam did. He worked on the original drive instead of using a write-blocker and taking a forensic image, and he took no hash values, so he cannot prove the files are unchanged. Copying files to a USB stick from his drawer could also have altered them.\n\nHis record-keeping is weak too. He wrote a short note afterwards rather than contemporaneous notes with times and actions, and there is no chain of custody showing who had the laptop and when. A lawyer could argue that the evidence was planted or changed.\n\nHis search was also limited. Looking only for file names containing \"customer\" would miss renamed, compressed or deleted files, and it ignores the most important evidence: the uploads to Alex's personal cloud account.\n\nOverall, although Sam meant well, his examination was not forensically sound, and the evidence may not stand up if Brightwater takes legal action. He should have isolated and bagged the laptop, recorded its handling, and passed it to a trained investigator who would image it through a write-blocker and verify the image with hash values."
+    },
+    {
+      "id": "s4-c",
+      "scenario": "s4",
+      "part": "(c)",
+      "section": "D",
+      "code": "D1.1",
+      "marks": 12,
+      "commandWord": "Evaluate",
+      "context": "",
+      "question": "Evaluate whether Brightwater should use its own IT staff or an external digital forensics company to investigate this incident.",
+      "slots": 0,
+      "traps": [
+        "12 marks: cover both options in depth, link every point to Brightwater, and end with a judgement that follows from what you argued.",
+        "Consider the seriousness of the incident as well as cost."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "focus": "In-house IT staff against an external forensics company for a suspected theft of customer data that may go to court.",
+        "indicative": [
+          "In-house: cheaper and can start immediately",
+          "In-house: knows Brightwater's systems, logs and network well",
+          "In-house: keeps confidential customer data inside the company",
+          "In-house: usually lacks forensic training and tools (write-blockers, imaging software)",
+          "In-house: may know Alex, giving a possible conflict of interest or bias",
+          "In-house: evidence may be challenged in court; the investigation takes time away from normal work",
+          "External: trained, experienced investigators who follow recognised procedures",
+          "External: proper tools, hash verification and chain of custody",
+          "External: independent, so findings are more credible and they can act as expert witnesses",
+          "External: can produce a formal security report",
+          "External: costly and may take time to arrange",
+          "External: confidential data shared with a third party, so a contract / NDA and an external services policy are needed (GDPR processor)",
+          "External: does not know Brightwater's systems as well",
+          "Wider: possible personal data breach, so the ICO must be told within 72 hours; police may be involved; Sam's actions have already weakened the evidence",
+          "Possible combination: IT staff secure and preserve evidence (isolate, record, keep logs); external specialists do the analysis",
+          "Conclusion: a justified recommendation"
+        ]
+      },
+      "modelAnswer": "Using Brightwater's own IT staff has clear advantages. They could start straight away and it would cost little, which matters if customer data is still being shared. They also know the company's systems, so they could quickly find the network logs that show the uploads to Alex's cloud account. Keeping the investigation in-house also means confidential customer data is not passed to another company.\n\nHowever, the IT staff are not forensic investigators. Sam's examination shows the risk: by switching the laptop on and copying files without a write-blocker, hash values or a chain of custody, he has already weakened the evidence. In-house staff are also likely to have worked with Alex, so a defence lawyer could argue that the investigation was biased. Running the investigation would also pull the IT team away from their normal work.\n\nAn external digital forensics company would bring trained investigators and specialist tools. They would image the phone and laptop through write-blockers, verify each image with hash values and keep a full chain of custody, so the evidence is far more likely to be accepted. Because they are independent, their findings carry more weight, and they can write a formal report and act as expert witnesses if the case goes to court.\n\nThe drawbacks are cost and the time it takes to agree a contract, and Brightwater would have to share confidential customer data with a third party. That means it needs a contract or non-disclosure agreement and must follow its external services policy so the company handles the data in line with GDPR. The external team would also need time to learn Brightwater's systems.\n\nThe seriousness of the incident is the deciding factor. Customer records may have been stolen, which is a personal data breach that must be reported to the ICO within 72 hours, and Brightwater may take legal action. Evidence that is challenged in court is worth very little.\n\nOverall, Brightwater should use an external forensics company. The IT staff still have a role: they should immediately preserve the network logs, stop using the devices and record who has handled them, then hand over to the specialists. This combines the speed and system knowledge of the in-house team with the independence and forensic rigour the case needs."
+    },
     {
       "id": "q1",
       "section": "A",
@@ -8,7 +816,22 @@
       "commandWord": "State",
       "question": "State what is meant by tailgating.",
       "modelAnswer": "Following an authorised person through a secure/controlled door to gain entry without using your own credentials.",
-      "markPoints": ["1 mark for following an authorised person through a secure door / gaining entry without authorisation"]
+      "slots": 0,
+      "traps": [],
+      "markScheme": {
+        "type": "points",
+        "rule": "1 mark for a correct definition.",
+        "points": [
+          "Following an authorised person through a secure / controlled door without using your own pass or credentials"
+        ],
+        "accept": [
+          "Piggybacking described in the same way"
+        ],
+        "reject": [
+          "\"Following someone\" with no mention of getting into a secure area"
+        ]
+      },
+      "context": ""
     },
     {
       "id": "q2",
@@ -18,7 +841,25 @@
       "commandWord": "Describe",
       "question": "Describe the difference between a DoS and a DDoS attack.",
       "modelAnswer": "A DoS attack floods a target from a single computer to make it unavailable (1). A DDoS uses many computers (a botnet) at once, so it is much harder to block (1).",
-      "markPoints": ["DoS uses a single source/machine (1)", "DDoS uses many sources/a botnet, making it harder to stop (1)"]
+      "slots": 0,
+      "traps": [
+        "\"Describe the difference\": you need something about each attack, not just a definition of one."
+      ],
+      "markScheme": {
+        "type": "points",
+        "rule": "1 mark for each correct answer, up to 2 marks.",
+        "points": [
+          "A DoS attack comes from a single computer / source",
+          "A DDoS attack comes from many computers at once, often a botnet",
+          "A DDoS is harder to block because traffic comes from many different addresses",
+          "Both flood a target with traffic / requests so it becomes unavailable to genuine users"
+        ],
+        "accept": [],
+        "reject": [
+          "Saying one is \"bigger\" with no reason"
+        ]
+      },
+      "context": ""
     },
     {
       "id": "q3",
@@ -28,7 +869,35 @@
       "commandWord": "Explain",
       "question": "Explain one way trusted computing can help secure a network against threats.",
       "modelAnswer": "Trusted computing reduces the risk of cyber-attacks (1) because it provides an extra layer of protection / verification before access is granted, increasing security (1).",
-      "markPoints": ["A way trusted computing helps (1)", "Linked expansion/justification, e.g. extra layer/verification increasing security (1)"]
+      "slots": 0,
+      "traps": [],
+      "markScheme": {
+        "type": "chain",
+        "rule": "1 mark for identifying a point and 1 more for a linked expansion, up to 2 marks.",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "points": [
+          [
+            "Checks that hardware and software have not been tampered with before they run (e.g. secure boot / TPM)",
+            "so malware such as a rootkit cannot load when the device starts"
+          ],
+          [
+            "Stores encryption keys in a TPM chip on the device",
+            "so keys cannot easily be copied off the machine by an attacker"
+          ],
+          [
+            "Verifies a device's identity / health before it can join the network",
+            "so untrusted or compromised devices are kept off the network"
+          ]
+        ],
+        "accept": [
+          "Mix and match an identification with any expansion if it makes sense"
+        ],
+        "reject": []
+      },
+      "context": ""
     },
     {
       "id": "q4",
@@ -38,7 +907,23 @@
       "commandWord": "Explain",
       "question": "Explain the difference between a full backup and an incremental backup.",
       "modelAnswer": "A full backup copies all selected data every time it runs (1). An incremental backup only copies the data that has changed since the last backup, making it faster and using less storage (1).",
-      "markPoints": ["Full backup copies all data (1)", "Incremental copies only changes since the last backup (1)"]
+      "slots": 0,
+      "traps": [
+        "Say what each backup copies. \"Incremental is faster\" alone does not explain the difference."
+      ],
+      "markScheme": {
+        "type": "points",
+        "rule": "1 mark for each correct answer, up to 2 marks.",
+        "points": [
+          "A full backup copies all the selected data every time it runs",
+          "An incremental backup only copies data that has changed since the last backup",
+          "Incremental backups are quicker and use less storage",
+          "Restoring from incrementals needs the last full backup plus every incremental since"
+        ],
+        "accept": [],
+        "reject": []
+      },
+      "context": ""
     },
     {
       "id": "q5",
@@ -48,7 +933,59 @@
       "commandWord": "Describe",
       "question": "Describe one digital threat to an organisation's network and an appropriate countermeasure for it.",
       "modelAnswer": "Phishing: an email pretending to be from a trusted source tricks staff into giving away their login (1), letting the attacker into the network (1). Countermeasure: security-awareness training plus email filtering (1), so staff recognise and report phishing and most of it never arrives (1).",
-      "markPoints": ["Identifies a valid digital threat (1)", "Describes how the threat works/affects the network (1)", "Identifies an appropriate countermeasure (1)", "Explains how the countermeasure reduces the threat (1)"]
+      "slots": 0,
+      "traps": [
+        "One threat only. Describe how it works, then a countermeasure and how it reduces that threat."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "rule": "1 mark for a threat, 1 for how it affects the network, 1 for a countermeasure, 1 for how the countermeasure reduces the threat, up to 4 marks.",
+        "steps": [
+          "Threat",
+          "How it works",
+          "Countermeasure",
+          "How it helps"
+        ],
+        "points": [
+          [
+            "Phishing",
+            "fake emails trick staff into giving away logins, letting attackers into the network",
+            "staff training / email filtering",
+            "so staff recognise and report phishing and most never reaches inboxes"
+          ],
+          [
+            "Ransomware / malware",
+            "malicious software encrypts or damages files across the network",
+            "anti-malware software kept up to date, plus offline backups",
+            "so infections are detected and blocked, and data can be restored without paying"
+          ],
+          [
+            "DoS / DDoS attack",
+            "floods servers with traffic so genuine users cannot connect",
+            "firewall rules / DDoS protection service",
+            "so attack traffic is filtered out before it reaches the server"
+          ],
+          [
+            "Brute-force password attack",
+            "tries many passwords until one works and the account is taken over",
+            "account lockout and MFA",
+            "so repeated guesses are blocked and a cracked password alone is not enough"
+          ],
+          [
+            "SQL injection",
+            "malicious SQL in a web form lets the attacker read or change the database",
+            "input validation / parameterised queries",
+            "so input is treated as data and cannot run as a command"
+          ]
+        ],
+        "accept": [
+          "Any other valid digital threat and matching countermeasure"
+        ],
+        "reject": [
+          "Physical threats such as theft (the question asks for a digital threat)"
+        ]
+      },
+      "context": ""
     },
     {
       "id": "q6",
@@ -58,7 +995,31 @@
       "commandWord": "Explain",
       "question": "Explain why MAC address filtering only provides medium-level security for a Wi-Fi network.",
       "modelAnswer": "MAC address filtering only allows listed devices onto the network (1), but a MAC address can be spoofed (faked) by an attacker who copies an allowed address, so it should not be relied on alone (1).",
-      "markPoints": ["Only listed MAC addresses are allowed (1)", "MAC addresses can be spoofed/copied, so security is limited (1)"]
+      "slots": 0,
+      "traps": [],
+      "markScheme": {
+        "type": "chain",
+        "rule": "1 mark for identifying a point and 1 more for a linked expansion, up to 2 marks.",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "points": [
+          [
+            "Only devices with a listed MAC address can connect",
+            "but MAC addresses can be spoofed by copying an allowed address, so an attacker can still get on"
+          ],
+          [
+            "MAC addresses are sent unencrypted",
+            "so an attacker can capture an allowed address with a wireless sniffer and reuse it"
+          ]
+        ],
+        "accept": [
+          "Mix and match an identification with any expansion if it makes sense"
+        ],
+        "reject": []
+      },
+      "context": ""
     },
     {
       "id": "q7",
@@ -68,7 +1029,27 @@
       "commandWord": "State",
       "question": "State two rights that individuals have over their personal data under GDPR.",
       "modelAnswer": "Any two of: the right to access their own data; to be informed how it is used; to have data corrected, removed or restricted; to object to processing; to data portability; not to be subject to a solely automated decision.",
-      "markPoints": ["1 mark per correct GDPR right (max 2)"]
+      "slots": 2,
+      "traps": [],
+      "markScheme": {
+        "type": "points",
+        "rule": "1 mark for each correct answer, up to 2 marks.",
+        "points": [
+          "Right to be informed about how their data is used",
+          "Right of access to the data held about them",
+          "Right to have inaccurate data corrected (rectification)",
+          "Right to have data deleted (erasure / to be forgotten)",
+          "Right to restrict processing",
+          "Right to data portability",
+          "Right to object to processing",
+          "Rights about automated decision-making and profiling"
+        ],
+        "accept": [],
+        "reject": [
+          "GDPR principles, e.g. \"data must be accurate\" (those are duties on the organisation, not rights)"
+        ]
+      },
+      "context": ""
     },
     {
       "id": "q8",
@@ -78,7 +1059,22 @@
       "commandWord": "Describe",
       "question": "Describe how an SQL injection attack works.",
       "modelAnswer": "An attacker enters malicious SQL code into an input field on a website, such as a login or search box (1). If the input is not properly validated or sanitised, the database executes this code as part of a query (1). This allows the attacker to view, change or delete data they should not have access to, such as user credentials (1).",
-      "markPoints": ["Malicious SQL entered into an input field (1)", "Input not validated/sanitised so it runs as a query (1)", "Attacker can read/alter/delete database data (1)"]
+      "slots": 0,
+      "traps": [],
+      "markScheme": {
+        "type": "points",
+        "rule": "1 mark for each correct answer, up to 3 marks.",
+        "points": [
+          "The attacker types malicious SQL code into an input field, e.g. a login or search box",
+          "The input is not validated / sanitised",
+          "So the database runs the attacker's code as part of a query",
+          "The attacker can read, change or delete data they should not reach, e.g. usernames and passwords",
+          "Can be used to bypass a login, e.g. ' OR '1'='1"
+        ],
+        "accept": [],
+        "reject": []
+      },
+      "context": ""
     },
     {
       "id": "q9",
@@ -88,7 +1084,35 @@
       "commandWord": "Explain",
       "question": "Explain one method of preventing SQL injection.",
       "modelAnswer": "Use input validation / parameterised queries (1) so that user input is treated only as data and cannot be executed as SQL commands, preventing malicious code from running (1).",
-      "markPoints": ["A valid prevention method, e.g. input validation/parameterised queries (1)", "Explanation of how it stops the injection (1)"]
+      "slots": 0,
+      "traps": [],
+      "markScheme": {
+        "type": "chain",
+        "rule": "1 mark for identifying a point and 1 more for a linked expansion, up to 2 marks.",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "points": [
+          [
+            "Parameterised queries / prepared statements",
+            "so user input is always treated as data and can never run as an SQL command"
+          ],
+          [
+            "Input validation / sanitisation",
+            "so characters such as quotes and SQL keywords are rejected or removed before reaching the database"
+          ],
+          [
+            "Least privilege for the database account",
+            "so even a successful injection cannot delete tables or read other data"
+          ]
+        ],
+        "accept": [
+          "Mix and match an identification with any expansion if it makes sense"
+        ],
+        "reject": []
+      },
+      "context": ""
     },
     {
       "id": "q10",
@@ -98,7 +1122,27 @@
       "commandWord": "Identify",
       "question": "A network diagram needs a device added to provide secure internet access. Identify the device and state where it should be connected.",
       "modelAnswer": "A firewall (1), connected between the router/internet connection and the internal network (1).",
-      "markPoints": ["Firewall identified (1)", "Connected to the router/between internet and internal network (1)"]
+      "slots": 0,
+      "traps": [],
+      "markScheme": {
+        "type": "chain",
+        "rule": "1 mark for the device and 1 for where it is connected, up to 2 marks.",
+        "steps": [
+          "Device",
+          "Where"
+        ],
+        "points": [
+          [
+            "Firewall",
+            "between the router / internet connection and the internal network"
+          ]
+        ],
+        "accept": [
+          "A router with a built-in firewall, placed at the internet connection"
+        ],
+        "reject": []
+      },
+      "context": ""
     },
     {
       "id": "q11",
@@ -108,7 +1152,21 @@
       "commandWord": "Describe",
       "question": "Describe how a VPN allows a remote worker to connect securely to their organisation.",
       "modelAnswer": "A VPN creates an encrypted tunnel between the worker's device and the organisation's network over the internet (1). Intercepted data cannot be read (1), so the worker can safely use internal files and systems as if on-site (1).",
-      "markPoints": ["Creates a secure tunnel over the internet (1)", "Data is encrypted so interception is useless (1)", "Allows secure access to internal resources (1)"]
+      "slots": 0,
+      "traps": [],
+      "markScheme": {
+        "type": "points",
+        "rule": "1 mark for each correct answer, up to 3 marks.",
+        "points": [
+          "Creates a secure tunnel between the worker's device and the organisation over the internet",
+          "Data in the tunnel is encrypted, so intercepted traffic cannot be read",
+          "The user is authenticated before the tunnel is set up",
+          "The worker can use internal files and systems as if they were in the office"
+        ],
+        "accept": [],
+        "reject": []
+      },
+      "context": ""
     },
     {
       "id": "q12",
@@ -118,7 +1176,27 @@
       "commandWord": "State",
       "question": "When configuring a DHCP server, the administrator enters the default gateway address. State two other pieces of configuration information that must be entered.",
       "modelAnswer": "Any two of: the range of available IP addresses; the lease length/time; reserved/fixed IP addresses; the server address.",
-      "markPoints": ["1 mark per valid DHCP configuration item (max 2)"]
+      "slots": 2,
+      "traps": [
+        "The default gateway is already given, so it earns nothing."
+      ],
+      "markScheme": {
+        "type": "points",
+        "rule": "1 mark for each correct answer, up to 2 marks.",
+        "points": [
+          "The range / pool of IP addresses to hand out",
+          "The subnet mask",
+          "The DNS server address",
+          "The lease time",
+          "Reserved / fixed addresses for particular devices",
+          "Excluded addresses"
+        ],
+        "accept": [],
+        "reject": [
+          "Default gateway (given in the question)"
+        ]
+      },
+      "context": ""
     },
     {
       "id": "q13",
@@ -128,7 +1206,34 @@
       "commandWord": "Describe",
       "question": "Describe one method of attacking a network by exploiting DHCP.",
       "modelAnswer": "The attacker sets up a rogue DHCP server (1). DHCP has no authentication, so devices may accept its settings instead of the real server's (1). It hands out a malicious gateway or DNS server, sending victims' traffic through the attacker to intercept or alter (1).",
-      "markPoints": ["Sets up a rogue/fake DHCP server (1)", "DHCP has no authentication so clients trust it (1)", "Attacker redirects/intercepts traffic via malicious settings (1)"]
+      "slots": 0,
+      "traps": [
+        "One method only. Describe it in three linked steps."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "rule": "1 mark for the method, 1 for how it works, 1 for the result, up to 3 marks.",
+        "steps": [
+          "Method",
+          "How it works",
+          "Result"
+        ],
+        "points": [
+          [
+            "A rogue / fake DHCP server is set up on the network",
+            "DHCP has no authentication, so devices may accept its settings instead of the real server's",
+            "it hands out a malicious gateway or DNS server, so the attacker can intercept or redirect traffic"
+          ],
+          [
+            "DHCP starvation",
+            "the attacker floods the server with requests using fake MAC addresses until the address pool runs out",
+            "genuine devices cannot get an IP address, a denial of service (often before a rogue server takes over)"
+          ]
+        ],
+        "accept": [],
+        "reject": []
+      },
+      "context": ""
     },
     {
       "id": "q14",
@@ -138,7 +1243,22 @@
       "commandWord": "Describe",
       "question": "Staff and guest Wi-Fi both connect to a single switch, which is a security risk. Describe how the network should be changed to reduce this risk.",
       "modelAnswer": "Separate staff and guest traffic, e.g. on different VLANs or switches (1). Give guests internet access only (1), so they cannot reach staff devices or data and an attacker cannot move across the network (1).",
-      "markPoints": ["Separate the networks (segmentation/VLANs/separate switch) (1)", "Restrict guests to internet-only / off internal network (1)", "Prevents access to internal resources / limits attack spread (1)"]
+      "slots": 0,
+      "traps": [],
+      "markScheme": {
+        "type": "points",
+        "rule": "1 mark for each correct answer, up to 3 marks.",
+        "points": [
+          "Separate staff and guest traffic, e.g. different VLANs or a separate switch",
+          "Give guests internet access only",
+          "Firewall rules between the two segments",
+          "So guests cannot reach staff devices, servers or data",
+          "And an attacker on the guest network cannot move across to the staff network"
+        ],
+        "accept": [],
+        "reject": []
+      },
+      "context": ""
     },
     {
       "id": "q15",
@@ -148,7 +1268,19 @@
       "commandWord": "Explain",
       "question": "Explain the difference between an intranet and an extranet.",
       "modelAnswer": "An intranet is a private network accessible only to an organisation's own staff (1). An extranet extends controlled access to selected external parties such as suppliers or partners (1).",
-      "markPoints": ["Intranet = internal/staff only (1)", "Extranet = controlled access for selected outsiders (1)"]
+      "slots": 0,
+      "traps": [],
+      "markScheme": {
+        "type": "points",
+        "rule": "1 mark for each correct answer, up to 2 marks.",
+        "points": [
+          "An intranet is private and can only be used by the organisation's own staff",
+          "An extranet gives controlled access to selected outsiders, e.g. suppliers, partners or customers"
+        ],
+        "accept": [],
+        "reject": []
+      },
+      "context": ""
     },
     {
       "id": "q16",
@@ -158,7 +1290,39 @@
       "commandWord": "Explain",
       "question": "Explain one vulnerability of a wireless access point (WAP).",
       "modelAnswer": "A WAP broadcasts radio signals that pass outside the building/through walls (1), so an attacker in a public area could intercept traffic or attempt to connect to the network (1).",
-      "markPoints": ["A valid WAP vulnerability, e.g. signal reaches public areas (1)", "Linked expansion of the risk it creates (1)"]
+      "slots": 0,
+      "traps": [],
+      "markScheme": {
+        "type": "chain",
+        "rule": "1 mark for identifying a point and 1 more for a linked expansion, up to 2 marks.",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "points": [
+          [
+            "The signal travels outside the building / through walls",
+            "so an attacker nearby could intercept traffic or try to connect"
+          ],
+          [
+            "Weak or outdated encryption, e.g. WEP",
+            "can be cracked quickly, letting an attacker read traffic or join the network"
+          ],
+          [
+            "Default admin password left unchanged",
+            "so anyone could log in and change its settings"
+          ],
+          [
+            "A rogue / evil-twin access point copying the real network name",
+            "tricks users into connecting so their traffic can be captured"
+          ]
+        ],
+        "accept": [
+          "Mix and match an identification with any expansion if it makes sense"
+        ],
+        "reject": []
+      },
+      "context": ""
     },
     {
       "id": "q17",
@@ -168,7 +1332,28 @@
       "commandWord": "Give",
       "question": "A password policy already covers length, sharing and uniqueness. Give two other sections a password policy should contain.",
       "modelAnswer": "Any two of: password expiry/minimum age; lockout after failed login attempts; deny list of common/weak passwords; rules on storage/use of password managers.",
-      "markPoints": ["1 mark per valid additional password policy section (max 2)"]
+      "slots": 2,
+      "traps": [
+        "Length, sharing and uniqueness are already covered, so they earn nothing."
+      ],
+      "markScheme": {
+        "type": "points",
+        "rule": "1 mark for each correct answer, up to 2 marks.",
+        "points": [
+          "How often passwords must be changed / password expiry",
+          "Account lockout after a number of failed attempts",
+          "A list of banned common or weak passwords",
+          "Rules on using a password manager / how passwords may be stored",
+          "Complexity: a mix of character types",
+          "What to do if you think a password is compromised",
+          "Use of MFA alongside passwords"
+        ],
+        "accept": [],
+        "reject": [
+          "Length, sharing or uniqueness (already in the policy)"
+        ]
+      },
+      "context": ""
     },
     {
       "id": "q18",
@@ -178,7 +1363,35 @@
       "commandWord": "Explain",
       "question": "Explain one advantage of staff using a password manager.",
       "modelAnswer": "A password manager lets staff use long, unique, random passwords for every account (1) without having to remember them, reducing the risk of weak or reused passwords being cracked (1).",
-      "markPoints": ["An advantage, e.g. allows strong unique passwords (1)", "Linked benefit, e.g. reduces weak/reused passwords / cracking risk (1)"]
+      "slots": 0,
+      "traps": [],
+      "markScheme": {
+        "type": "chain",
+        "rule": "1 mark for identifying a point and 1 more for a linked expansion, up to 2 marks.",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "points": [
+          [
+            "Staff can use long, random, unique passwords for every account",
+            "without remembering them, so weak or reused passwords are not cracked"
+          ],
+          [
+            "Fills in logins automatically only on the real website",
+            "so staff are less likely to type a password into a phishing site"
+          ],
+          [
+            "Can warn about weak, reused or breached passwords",
+            "so staff can change them before they are exploited"
+          ]
+        ],
+        "accept": [
+          "Mix and match an identification with any expansion if it makes sense"
+        ],
+        "reject": []
+      },
+      "context": ""
     },
     {
       "id": "q19",
@@ -188,7 +1401,39 @@
       "commandWord": "Explain",
       "question": "Explain one disadvantage of staff using a password manager.",
       "modelAnswer": "If the master password is compromised, an attacker gains access to ALL stored passwords at once (1), creating a single point of failure that could expose every account (1).",
-      "markPoints": ["A disadvantage, e.g. single point of failure (1)", "Linked consequence, e.g. all accounts exposed if master password compromised (1)"]
+      "slots": 0,
+      "traps": [],
+      "markScheme": {
+        "type": "chain",
+        "rule": "1 mark for identifying a point and 1 more for a linked expansion, up to 2 marks.",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "points": [
+          [
+            "Single point of failure: the master password",
+            "if it is stolen, the attacker gets every stored password at once"
+          ],
+          [
+            "If the master password is forgotten",
+            "staff may be locked out of all their accounts"
+          ],
+          [
+            "The password manager itself could be breached or have a vulnerability",
+            "putting all stored credentials at risk"
+          ],
+          [
+            "Cost and training",
+            "the company pays for licences and staff need time to learn to use it"
+          ]
+        ],
+        "accept": [
+          "Mix and match an identification with any expansion if it makes sense"
+        ],
+        "reject": []
+      },
+      "context": ""
     },
     {
       "id": "q20",
@@ -198,7 +1443,24 @@
       "commandWord": "Describe",
       "question": "Describe the main stages of a cyber security incident response.",
       "modelAnswer": "First, triage and escalation — the incident is assessed and the right people are alerted (1). Then the main response — analysis, containment to stop it spreading, mitigation and recovery of systems (1). Finally, the incident is reviewed, reported and closed so lessons can be learned (1).",
-      "markPoints": ["Triage/escalation/initial decisions (1)", "Containment, mitigation and recovery (1)", "Review, report and close (1)"]
+      "slots": 0,
+      "traps": [
+        "Describe the stages in order. A list of single words will not get full marks."
+      ],
+      "markScheme": {
+        "type": "points",
+        "rule": "1 mark for each correct answer, up to 3 marks.",
+        "points": [
+          "Triage / identify and assess the incident and escalate it to the right people",
+          "Contain it to stop it spreading, e.g. isolate affected systems",
+          "Eradicate / mitigate the cause, e.g. remove malware, close the vulnerability",
+          "Recover systems and data, e.g. restore from clean backups",
+          "Review, report and close: record what happened and learn lessons"
+        ],
+        "accept": [],
+        "reject": []
+      },
+      "context": ""
     },
     {
       "id": "q21",
@@ -208,7 +1470,31 @@
       "commandWord": "Explain",
       "question": "Explain why an investigator takes a physical image of an entire drive instead of a targeted image of specific files.",
       "modelAnswer": "A physical image copies the entire drive including deleted, temporary and system files (1), so it captures more potential evidence that a targeted image of only specific files might miss (1).",
-      "markPoints": ["Physical image copies the whole drive (incl. deleted/hidden data) (1)", "Captures more evidence / a targeted image could miss data (1)"]
+      "slots": 0,
+      "traps": [],
+      "markScheme": {
+        "type": "chain",
+        "rule": "1 mark for identifying a point and 1 more for a linked expansion, up to 2 marks.",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "points": [
+          [
+            "A physical image copies the whole drive, including deleted, hidden and unallocated space",
+            "so it captures evidence that a targeted copy of chosen files would miss"
+          ],
+          [
+            "It does not rely on the investigator guessing which files matter",
+            "so evidence in unexpected places, e.g. renamed files, is still collected"
+          ]
+        ],
+        "accept": [
+          "Mix and match an identification with any expansion if it makes sense"
+        ],
+        "reject": []
+      },
+      "context": ""
     },
     {
       "id": "q22",
@@ -218,7 +1504,22 @@
       "commandWord": "Describe",
       "question": "Describe the process for creating a forensic image of a device's drive.",
       "modelAnswer": "Connect the drive through a write-blocker so the original can't change (1). Make a bit-for-bit copy with forensic imaging software (1). Hash both the original and the copy to prove they are identical (1).",
-      "markPoints": ["Use a write-blocker / prevent changes to the original (1)", "Create a bit-for-bit copy with forensic software (1)", "Generate a hash/checksum to verify integrity (1)"]
+      "slots": 0,
+      "traps": [],
+      "markScheme": {
+        "type": "points",
+        "rule": "1 mark for each correct answer, up to 3 marks.",
+        "points": [
+          "Connect the drive through a write-blocker so the original cannot be changed",
+          "Make a bit-for-bit copy using forensic imaging software",
+          "Generate hash values of the original and the image",
+          "Compare the hashes to prove the image is identical",
+          "Record each step / keep the chain of custody"
+        ],
+        "accept": [],
+        "reject": []
+      },
+      "context": ""
     },
     {
       "id": "q23",
@@ -228,7 +1529,29 @@
       "commandWord": "Explain",
       "question": "Explain which type of log file is likely to contain evidence that a password manager has been compromised.",
       "modelAnswer": "Security/authentication logs are most likely to contain the evidence (1) because they record login attempts and access events, which would show unusual or unauthorised access to the password manager (1).",
-      "markPoints": ["Identifies security/authentication/access log (1)", "Explains it records logins/access showing the compromise (1)"]
+      "slots": 0,
+      "traps": [],
+      "markScheme": {
+        "type": "chain",
+        "rule": "1 mark for the log type and 1 for explaining why, up to 2 marks.",
+        "steps": [
+          "Log type",
+          "Why"
+        ],
+        "points": [
+          [
+            "Security / authentication log",
+            "because it records login attempts and access, so unusual or failed logins to the password manager would show up"
+          ],
+          [
+            "Application log for the password manager",
+            "because it records events in the program, such as vault exports or settings changes"
+          ]
+        ],
+        "accept": [],
+        "reject": []
+      },
+      "context": ""
     },
     {
       "id": "q24",
@@ -238,7 +1561,31 @@
       "commandWord": "Explain",
       "question": "Explain why a seized mobile device should be placed in a Faraday bag.",
       "modelAnswer": "A Faraday bag blocks all wireless signals to and from the device (1), preventing it from being remotely wiped or altered, which preserves the evidence stored on it (1).",
-      "markPoints": ["Blocks wireless signals (1)", "Prevents remote wipe/tampering, preserving evidence (1)"]
+      "slots": 0,
+      "traps": [],
+      "markScheme": {
+        "type": "chain",
+        "rule": "1 mark for identifying a point and 1 more for a linked expansion, up to 2 marks.",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "points": [
+          [
+            "It blocks all wireless signals (mobile, Wi-Fi, Bluetooth) to and from the device",
+            "so it cannot be remotely wiped, locked or changed, which preserves the evidence"
+          ],
+          [
+            "It stops new data arriving on the phone",
+            "so messages or calls received after seizure do not overwrite or alter existing evidence"
+          ]
+        ],
+        "accept": [
+          "Mix and match an identification with any expansion if it makes sense"
+        ],
+        "reject": []
+      },
+      "context": ""
     },
     {
       "id": "q25",
@@ -248,7 +1595,22 @@
       "commandWord": "State",
       "question": "State two requirements for ensuring forensic evidence is reliable.",
       "modelAnswer": "Any two of: no action should change data on the device; collection by a competent person; a full record/trail of all actions (chain of custody); documenting who is responsible for each decision.",
-      "markPoints": ["1 mark per valid reliability requirement (max 2)"]
+      "slots": 2,
+      "traps": [],
+      "markScheme": {
+        "type": "points",
+        "rule": "1 mark for each correct answer, up to 2 marks.",
+        "points": [
+          "No action should change the data on the device",
+          "Anyone who accesses original data must be competent and able to explain what they did",
+          "A full record / audit trail of every action is kept (chain of custody)",
+          "The person in charge is responsible for making sure these rules are followed",
+          "Hash values prove the evidence has not been altered"
+        ],
+        "accept": [],
+        "reject": []
+      },
+      "context": ""
     }
   ]
 }
