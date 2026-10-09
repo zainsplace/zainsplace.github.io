@@ -2754,6 +2754,14 @@ function aptPick(per) {
   return shuffleInPlace(picked);
 }
 
+// Options are shuffled every attempt, except one that refers to the others
+// ("None of these must be true"), which only reads correctly in last place.
+const APT_PINNED_LAST = /^(none|all|both|neither) of /i;
+function aptShuffleOptions(options) {
+  const pinned = options.filter(o => APT_PINNED_LAST.test(o));
+  return shuffle(options.filter(o => !APT_PINNED_LAST.test(o))).concat(pinned);
+}
+
 function stopAptTimer() {
   if (aptTick) { clearInterval(aptTick); aptTick = null; }
 }
@@ -2765,7 +2773,7 @@ function aptStart() {
   const now = Date.now();
   apt = {
     phase: 'test',
-    items: qs.map(q => ({ q, opts: shuffle(q.options) })),
+    items: qs.map(q => ({ q, opts: aptShuffleOptions(q.options) })),
     answers: qs.map(() => null),
     idx: 0,
     timed: aptOpts.timed,
@@ -2816,6 +2824,21 @@ function aptGo(i) {
   if (!apt || apt.phase !== 'test' || i < 0 || i >= apt.items.length) return;
   apt.idx = i;
   renderAptitude();
+  // The old question's buttons are gone, so move focus to the new question
+  // (screen readers then read it), and bring it back into view on a phone
+  // where Next sits below the fold.
+  // The sticky bar wraps to two rows on a phone, so measure it rather than guess.
+  const q = el('apt-q');
+  if (q) {
+    q.focus({ preventScroll: true });
+    const card = q.closest('.apt-card');
+    const bar = document.querySelector('#page-aptitude .mock-bar');
+    const mainEl = document.querySelector('main');
+    if (card && bar && mainEl) {
+      const gap = card.getBoundingClientRect().top - bar.getBoundingClientRect().bottom - 12;
+      if (gap < 0) mainEl.scrollTop += gap;
+    }
+  }
 }
 
 function aptChoose(i) {
@@ -2931,7 +2954,7 @@ function renderAptTest(container) {
     </div>
     <div class="card apt-card">
       <div class="apt-meta">${aptBadges(q)}</div>
-      <p class="quiz-q apt-q">${escapeHTML(q.question)}</p>
+      <p class="quiz-q apt-q" id="apt-q" tabindex="-1">${escapeHTML(q.question)}</p>
       ${aptFigureHTML(q.figure)}
       <div class="mcq-opts" role="group" aria-label="Answer options">
         ${opts.map((o, i) => `

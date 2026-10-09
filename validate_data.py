@@ -210,6 +210,11 @@ try:
             err('aptitude %s: two options are the same' % qid)
         elif opts.count(q['answer']) != 1:
             err('aptitude %s: answer %r must match exactly one option' % (qid, q['answer']))
+        # Options are shuffled for every attempt, so "the third option" or
+        # "option B" in an explanation points at a different answer each time.
+        if re.search(r'\b(first|second|third|fourth|fifth|last)\s+option\b|\boption\s+[A-E1-5]\b',
+                     q['explanation'], re.I):
+            err('aptitude %s: explanation refers to an option by position; quote it instead' % qid)
         fig = q.get('figure')
         if fig is not None and (not isinstance(fig, list) or not fig
                                 or len({len(r) for r in fig}) != 1):

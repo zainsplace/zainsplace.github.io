@@ -11987,7 +11987,7 @@ const INLINE_APTITUDE = {
         "Some animals are not cats."
       ],
       "answer": "Tom is an animal.",
-      "explanation": "Tom is a cat and every cat is an animal, so Tom is an animal. The statements say nothing about animals that are not cats, so the last option does not follow from them, even if it is true in real life."
+      "explanation": "Tom is a cat and every cat is an animal, so Tom is an animal. The statements say nothing about animals that are not cats, so 'some animals are not cats' does not follow from them, even if it is true in real life."
     },
     {
       "id": "syl-02",
@@ -12043,7 +12043,7 @@ const INLINE_APTITUDE = {
         "None of these must be true."
       ],
       "answer": "None of these must be true.",
-      "explanation": "The artists who are musicians might or might not include any painters, so neither 'some painters are musicians' nor 'no painters are musicians' is forced. Nothing is said about musicians who are not artists, so the third option is not forced either."
+      "explanation": "The artists who are musicians might or might not include any painters, so neither 'some painters are musicians' nor 'no painters are musicians' is forced. Nothing is said about musicians who are not artists, so 'all musicians are artists' is not forced either."
     },
     {
       "id": "syl-06",
@@ -12127,7 +12127,7 @@ const INLINE_APTITUDE = {
         "Some golfers play cards."
       ],
       "answer": "Priya is not in the chess club.",
-      "explanation": "Priya plays golf, so she does not play cards. Every chess club member plays cards, so she cannot be in the chess club."
+      "explanation": "Priya plays golf, and nobody who plays golf plays cards, so Priya does not play cards. Every chess club member plays cards, so Priya cannot be in the chess club."
     },
     {
       "id": "syl-12",
@@ -12438,7 +12438,7 @@ const INLINE_APTITUDE = {
       "id": "qua-08",
       "category": "quantitative",
       "difficulty": "medium",
-      "question": "In 6 years' time, Mia will be twice as old as she was 4 years ago. How old is Mia now?",
+      "question": "Mia's age in 6 years' time will be twice Mia's age 4 years ago. How old is Mia now?",
       "options": [
         "10",
         "12",
@@ -12446,7 +12446,7 @@ const INLINE_APTITUDE = {
         "16"
       ],
       "answer": "14",
-      "explanation": "Call her age now x. Then x + 6 = 2 × (x − 4), so x + 6 = 2x − 8, giving x = 14. Check: in 6 years she is 20, and 4 years ago she was 10."
+      "explanation": "Call Mia's age now x. Then x + 6 = 2 × (x − 4), so x + 6 = 2x − 8, giving x = 14. Check: in 6 years Mia will be 20, and 4 years ago Mia was 10."
     },
     {
       "id": "qua-09",

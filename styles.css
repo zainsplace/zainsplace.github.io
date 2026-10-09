@@ -1099,6 +1099,7 @@ textarea.response-area:focus { border-color: var(--accent); box-shadow: 0 0 0 4p
 .apt-disclaimer { font-size: 13px; color: var(--text2); line-height: 1.55; background: var(--bg3); border-radius: var(--radius-sm); padding: 10px 14px; margin: 0 0 16px; max-width: 70ch; }
 .apt-disclaimer strong { color: var(--text); }
 .apt-card, .apt-review { margin-bottom: 14px; }
+.apt-q:focus { outline: none; }
 .apt-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 12px; }
 .apt-q { white-space: pre-line; }
 .apt-review .apt-q { font-size: 15px; line-height: 1.6; margin-bottom: 10px; }
@@ -1498,7 +1499,7 @@ h3[style*="text-transform:uppercase"], p[style*="text-transform:uppercase"] {
 /* M1: finger-sized targets on touch screens (44px is the usual guidance). */
 @media (pointer: coarse) {
   .btn, .btn-sm, .tab-btn, .rag-btn, .mcq-opt, .today-task, .today-link, .exam-chip, .sidebar-btn, .card-header, select { min-height: 44px; }
-  .q-chip { min-width: 40px; height: 40px; }
+  .q-chip, .apt-dot { min-width: 40px; height: 40px; }
   /* Heatmap year arrows are sized inline at 28px; min-* wins over width/height. */
   [aria-label="Previous year"], [aria-label="Next year"] { min-width: 44px; min-height: 44px; }
   .plan-item input[type="checkbox"], .ms-row input, .ms-level input { width: 24px; height: 24px; }
