@@ -179,6 +179,54 @@ for unit, (folder, letters) in UNITS.items():
     print('%s: %d item codes, %d flashcards, %d questions'
           % (unit, len(all_codes), len(all_cards), len(all_qs)))
 
+# The reasoning test is shared by both units. A wrong or ambiguous answer key is
+# the worst thing that can happen to it, so the structure that makes "exactly one
+# right option" checkable is enforced here. Whether the key is actually RIGHT
+# still needs working out by hand when a question is added.
+APT_FIELDS = ('id', 'category', 'difficulty', 'question', 'options', 'answer', 'explanation')
+APT_LEVELS = ('easy', 'medium', 'hard')
+try:
+    with open(os.path.join(DATA, 'aptitude.json'), encoding='utf-8') as f:
+        apt = json.load(f)
+    cats = [c.get('id') for c in apt.get('categories', [])]
+    if not cats or len(cats) != len(set(cats)) or not all(c.get('label') for c in apt['categories']):
+        err('aptitude: categories need unique ids and a label each')
+    apt_ids = []
+    for q in apt.get('questions', []):
+        qid = q.get('id', '?')
+        apt_ids.append(qid)
+        missing = [f for f in APT_FIELDS if q.get(f) in (None, '', [])]
+        if missing:
+            err('aptitude %s: missing %s' % (qid, ', '.join(missing)))
+            continue
+        if q['category'] not in cats:
+            err('aptitude %s: unknown category %r' % (qid, q['category']))
+        if q['difficulty'] not in APT_LEVELS:
+            err('aptitude %s: difficulty must be one of %s' % (qid, ', '.join(APT_LEVELS)))
+        opts = q['options']
+        if not 3 <= len(opts) <= 5 or not all(isinstance(o, str) and o.strip() for o in opts):
+            err('aptitude %s: needs 3 to 5 non-empty text options' % qid)
+        elif len({o.strip().lower() for o in opts}) != len(opts):
+            err('aptitude %s: two options are the same' % qid)
+        elif opts.count(q['answer']) != 1:
+            err('aptitude %s: answer %r must match exactly one option' % (qid, q['answer']))
+        fig = q.get('figure')
+        if fig is not None and (not isinstance(fig, list) or not fig
+                                or len({len(r) for r in fig}) != 1):
+            err('aptitude %s: figure must be a list of equal-length rows' % qid)
+    if len(apt_ids) != len(set(apt_ids)):
+        err('aptitude: duplicate question ids')
+    # Every test draws evenly across categories with a mix of difficulties, so
+    # each category needs at least one question at every level.
+    for c in cats:
+        have = {q.get('difficulty') for q in apt.get('questions', []) if q.get('category') == c}
+        gaps = [lv for lv in APT_LEVELS if lv not in have]
+        if gaps:
+            err('aptitude: category %s has no %s questions' % (c, '/'.join(gaps)))
+    print('aptitude: %d questions in %d categories' % (len(apt_ids), len(cats)))
+except (FileNotFoundError, ValueError) as e:
+    err('aptitude: data/aptitude.json unreadable (%s)' % e)
+
 # The build must be reproducible, or a rebuild silently rewrites live content.
 inline_path = os.path.join(HERE, 'data_inline.js')
 before = open(inline_path, encoding='utf-8').read() if os.path.exists(inline_path) else None

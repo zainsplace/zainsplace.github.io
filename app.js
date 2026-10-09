@@ -468,14 +468,14 @@ function applyUnitChrome() {
 }
 
 /* ---- NAVIGATION ---- */
-const PAGES = ['home', 'sections', 'flashcards', 'questions', 'games', 'leaderboard', 'extended', 'examkit', 'search', 'plan', 'profile'];
+const PAGES = ['home', 'sections', 'flashcards', 'questions', 'games', 'leaderboard', 'extended', 'examkit', 'aptitude', 'search', 'plan', 'profile'];
 let currentPage = 'home';
 let currentSection = null;
 
 const PAGE_TITLES = {
   home: 'Home', sections: 'Sections', flashcards: 'Flashcards',
   questions: 'Questions', games: 'Games', leaderboard: 'Leaderboard',
-  extended: 'Extended Writing', examkit: 'Exam Kit', search: 'Search',
+  extended: 'Extended Writing', examkit: 'Exam Kit', aptitude: 'Reasoning Test', search: 'Search',
   plan: "Today's Plan", profile: 'Profile'
 };
 
@@ -523,6 +523,7 @@ function renderPage(page, opts) {
     case 'leaderboard': renderLeaderboardPage(); break;
     case 'extended': renderExtended(); break;
     case 'examkit': renderExamKit(); break;
+    case 'aptitude': renderAptitude(); break;
     case 'search': renderSearch(); break;
     case 'plan': renderPlan(); break;
     case 'profile': renderProfile(); break;
@@ -2693,6 +2694,318 @@ function renderMockResults(container, p) {
       <button class="btn btn-primary btn-sm" onclick="openMockMenu()">Back to mock papers</button>
       <button class="btn btn-secondary btn-sm" onclick="exitMock()">Back to questions</button>
     </div>`;
+}
+
+/* ---- REASONING TEST ----
+   An informal aptitude-style quiz: number and letter series, analogies,
+   syllogisms, spatial and quantitative problems. It belongs to neither unit, so
+   it reads INLINE_APTITUDE (data/aptitude.json) and touches no per-unit state:
+   no XP, no history, nothing saved. A refresh ends the attempt.
+
+   Marking is client-side because the site has no backend (GitHub Pages, and it
+   must work offline from a USB stick). The answer key is therefore readable by
+   anyone who opens dev tools. That is fine for a practice quiz; it would not be
+   for anything that mattered. */
+const APT_LEVELS = ['easy', 'medium', 'hard'];
+const APT_LENGTHS = [
+  { id: 'short',    label: 'Short',    per: 2 },
+  { id: 'standard', label: 'Standard', per: 4 },
+  { id: 'full',     label: 'Every question', per: Infinity }
+];
+const APT_SECS_PER_Q = 60;
+
+let apt = null;        // { phase: 'test'|'done', items: [{q, opts}], answers, idx, timed, startedAt, endAt, finishedAt, timeUp }
+let aptTick = null;
+let aptOpts = { length: 'short', timed: false };
+let aptReview = 'all'; // results filter: 'all' | 'missed'
+
+function aptData() {
+  return (typeof INLINE_APTITUDE === 'object' && INLINE_APTITUDE) || { categories: [], questions: [] };
+}
+
+function aptCategoryLabel(id) {
+  const c = aptData().categories.find(x => x.id === id);
+  return c ? c.label : id;
+}
+
+function aptPerCategory(id) {
+  const len = APT_LENGTHS.find(l => l.id === id) || APT_LENGTHS[0];
+  return len.per;
+}
+
+function aptTestSize(per) {
+  const d = aptData();
+  return d.categories.reduce((n, c) => n + Math.min(per, d.questions.filter(q => q.category === c.id).length), 0);
+}
+
+// The same number from every category, dealt round-robin from shuffled
+// difficulty piles so even the short test mixes easy, medium and hard.
+function aptPick(per) {
+  const d = aptData();
+  const picked = [];
+  d.categories.forEach(c => {
+    const inCat = d.questions.filter(q => q.category === c.id);
+    const piles = shuffle(APT_LEVELS.map(lv => shuffle(inCat.filter(q => q.difficulty === lv)))).filter(p => p.length);
+    let taken = 0;
+    while (taken < per && piles.some(p => p.length)) {
+      piles.forEach(p => { if (taken < per && p.length) { picked.push(p.pop()); taken++; } });
+    }
+  });
+  return shuffleInPlace(picked);
+}
+
+function stopAptTimer() {
+  if (aptTick) { clearInterval(aptTick); aptTick = null; }
+}
+
+function aptStart() {
+  stopAptTimer();
+  const qs = aptPick(aptPerCategory(aptOpts.length));
+  if (!qs.length) return;
+  const now = Date.now();
+  apt = {
+    phase: 'test',
+    items: qs.map(q => ({ q, opts: shuffle(q.options) })),
+    answers: qs.map(() => null),
+    idx: 0,
+    timed: aptOpts.timed,
+    startedAt: now,
+    endAt: aptOpts.timed ? now + qs.length * APT_SECS_PER_Q * 1000 : null,
+    finishedAt: null,
+    timeUp: false
+  };
+  aptReview = 'all';
+  renderAptitude();
+  scrollContentTop();
+}
+
+function setAptOpt(key, val) {
+  aptOpts[key] = val;
+  renderAptitude();
+}
+
+// The clock runs to a fixed end time, so it keeps counting while the student is
+// on another page. It is not stopped by a unit switch: nothing here is per unit.
+function ensureAptTick() {
+  if (!apt || apt.phase !== 'test' || !apt.timed || aptTick) return;
+  aptTick = setInterval(updateAptClock, 1000);
+  updateAptClock();
+}
+
+function fmtMinSec(secs) {
+  const s = Math.max(0, Math.round(secs));
+  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+}
+
+function updateAptClock() {
+  if (!apt || apt.phase !== 'test' || !apt.timed) { stopAptTimer(); return; }
+  const left = Math.max(0, Math.round((apt.endAt - Date.now()) / 1000));
+  const t = el('apt-timer');
+  if (t) {
+    t.textContent = fmtMinSec(left);
+    t.classList.toggle('warning', left <= 120 && left > 30);
+    t.classList.toggle('critical', left <= 30);
+  }
+  if (left === 0) {
+    toast('Reasoning test: time is up.', 3000);
+    aptFinish(true);
+  }
+}
+
+function aptGo(i) {
+  if (!apt || apt.phase !== 'test' || i < 0 || i >= apt.items.length) return;
+  apt.idx = i;
+  renderAptitude();
+}
+
+function aptChoose(i) {
+  if (!apt || apt.phase !== 'test') return;
+  const item = apt.items[apt.idx];
+  if (i < 0 || i >= item.opts.length) return;
+  apt.answers[apt.idx] = item.opts[i];
+  renderAptitude();
+  const b = el('apt-opt-' + i);
+  if (b) b.focus();
+}
+
+function aptFinishPrompt() {
+  if (!apt || apt.phase !== 'test') return;
+  const blank = apt.answers.filter(a => a === null).length;
+  if (blank && !confirm(`${blank} question${blank === 1 ? ' is' : 's are'} unanswered and will be marked wrong. Finish anyway?`)) return;
+  aptFinish(false);
+}
+
+function aptFinish(timeUp) {
+  if (!apt || apt.phase !== 'test') return;
+  stopAptTimer();
+  const now = Date.now();
+  apt.phase = 'done';
+  apt.timeUp = timeUp;
+  apt.finishedAt = apt.timed ? Math.min(now, apt.endAt) : now;
+  if (currentPage === 'aptitude') {
+    renderAptitude();
+    scrollContentTop();
+  }
+}
+
+function aptQuit() {
+  if (apt && apt.phase === 'test' && !confirm('Quit this test? Your answers will be lost.')) return;
+  stopAptTimer();
+  apt = null;
+  renderAptitude();
+  scrollContentTop();
+}
+
+function setAptReview(v) {
+  aptReview = v;
+  renderAptitude();
+}
+
+function renderAptitude() {
+  const container = el('aptitude-content');
+  if (!container) return;
+  if (apt && apt.phase === 'test') { renderAptTest(container); ensureAptTick(); return; }
+  if (apt && apt.phase === 'done') { renderAptResults(container); return; }
+  renderAptSetup(container);
+}
+
+function aptDisclaimerHTML() {
+  return `<p class="apt-disclaimer"><strong>Not an IQ test.</strong> ${escapeHTML(aptData().disclaimer || '')}</p>`;
+}
+
+// Figures are rows of single characters: '.' is a blank square, '#' a shaded
+// one, anything else is drawn as a labelled square (cube nets, letter grids).
+function aptFigureHTML(fig) {
+  if (!Array.isArray(fig) || !fig.length) return '';
+  const name = ch => ch === '.' ? 'blank' : ch === '#' ? 'shaded' : ch;
+  const label = 'Figure. ' + fig.map((row, r) => `Row ${r + 1}: ${[...row].map(name).join(', ')}.`).join(' ');
+  const cells = fig.map(row => [...row].map(ch =>
+    ch === '.' ? '<span class="apt-cell empty"></span>'
+    : ch === '#' ? '<span class="apt-cell shaded"></span>'
+    : `<span class="apt-cell">${escapeHTML(ch)}</span>`).join('')).join('');
+  return `<div class="apt-figure" style="grid-template-columns:repeat(${fig[0].length}, var(--apt-cell))" role="img" aria-label="${escapeHTML(label)}">${cells}</div>`;
+}
+
+function aptBadges(q) {
+  return `<span class="badge">${escapeHTML(aptCategoryLabel(q.category))}</span><span class="badge">${escapeHTML(q.difficulty)}</span>`;
+}
+
+function renderAptSetup(container) {
+  const d = aptData();
+  const n = aptTestSize(aptPerCategory(aptOpts.length));
+  const opt = (key, val, label) =>
+    `<button class="tab-btn ${aptOpts[key] === val ? 'active' : ''}" aria-pressed="${aptOpts[key] === val}"
+       onclick="setAptOpt('${key}', ${typeof val === 'boolean' ? val : `'${val}'`})">${label}</button>`;
+  container.innerHTML = `
+    <div class="q-head"><h2>${escapeHTML(d.title || 'Reasoning test')}</h2></div>
+    <p class="q-intro">Multiple-choice puzzles in ${d.categories.length} categories: ${d.categories.map(c => escapeHTML(c.label.toLowerCase())).join(', ')}.
+      Every question can be worked out from the information given. Questions come in a random order each time,
+      with a mix of easy, medium and hard from every category. You can change answers until you finish.</p>
+    ${aptDisclaimerHTML()}
+    <div class="card quiz-setup">
+      <div class="ms-title">Length</div>
+      <div class="tabs">${APT_LENGTHS.map(l => opt('length', l.id, `${l.label} <span class="tab-count">${aptTestSize(l.per)}</span>`)).join('')}</div>
+      <div class="ms-title">Timer</div>
+      <div class="tabs">${opt('timed', false, 'Off')}${opt('timed', true, 'On')}</div>
+      <p class="ms-note">${aptOpts.timed
+        ? `${n} questions in ${Math.round(n * APT_SECS_PER_Q / 60)} minutes (one minute each). The test ends when time runs out.`
+        : `${n} questions, no time limit.`}</p>
+      <button class="btn btn-primary btn-full" onclick="aptStart()" ${n ? '' : 'disabled'}>Start test</button>
+    </div>`;
+}
+
+function renderAptTest(container) {
+  const n = apt.items.length;
+  const { q, opts } = apt.items[apt.idx];
+  const chosen = apt.answers[apt.idx];
+  const answered = apt.answers.filter(a => a !== null).length;
+  const last = apt.idx === n - 1;
+  container.innerHTML = `
+    <div class="mock-bar">
+      <strong>Question ${apt.idx + 1} of ${n}</strong>
+      ${apt.timed
+        ? `<span class="timer-display mock-timer" id="apt-timer" role="timer" aria-label="Time remaining">${fmtMinSec((apt.endAt - Date.now()) / 1000)}</span>`
+        : `<span class="mock-progress">${answered} of ${n} answered</span>`}
+      <button class="btn btn-primary btn-sm" onclick="aptFinishPrompt()">Finish</button>
+      <button class="btn btn-secondary btn-sm" onclick="aptQuit()">Quit</button>
+    </div>
+    <div class="card apt-card">
+      <div class="apt-meta">${aptBadges(q)}</div>
+      <p class="quiz-q apt-q">${escapeHTML(q.question)}</p>
+      ${aptFigureHTML(q.figure)}
+      <div class="mcq-opts" role="group" aria-label="Answer options">
+        ${opts.map((o, i) => `
+          <button class="mcq-opt apt-opt ${chosen === o ? 'selected' : ''}" id="apt-opt-${i}" aria-pressed="${chosen === o}" onclick="aptChoose(${i})">
+            <span class="apt-key" aria-hidden="true">${i + 1}</span><span>${escapeHTML(o)}</span>
+          </button>`).join('')}
+      </div>
+      <div class="apt-steps">
+        <button class="btn btn-secondary btn-sm" onclick="aptGo(${apt.idx - 1})" ${apt.idx === 0 ? 'disabled' : ''}>&larr; Previous</button>
+        ${last
+          ? `<button class="btn btn-primary btn-sm" onclick="aptFinishPrompt()">Finish test</button>`
+          : `<button class="btn btn-primary btn-sm" onclick="aptGo(${apt.idx + 1})">Next &rarr;</button>`}
+      </div>
+    </div>
+    <nav class="apt-nav" aria-label="Jump to a question">
+      ${apt.items.map((_, i) => `<button class="apt-dot ${apt.answers[i] !== null ? 'done' : ''} ${i === apt.idx ? 'current' : ''}"
+         onclick="aptGo(${i})" aria-label="Question ${i + 1}${apt.answers[i] !== null ? ', answered' : ''}" ${i === apt.idx ? 'aria-current="step"' : ''}>${i + 1}</button>`).join('')}
+    </nav>
+    <p class="ms-note apt-keys">Keys: 1–${opts.length} to answer, &larr; / &rarr; to move.</p>`;
+}
+
+function renderAptResults(container) {
+  const d = aptData();
+  const rows = apt.items.map((it, i) => ({ q: it.q, given: apt.answers[i], right: apt.answers[i] === it.q.answer, n: i + 1 }));
+  const score = rows.filter(r => r.right).length;
+  const total = rows.length;
+  const pct = Math.round(score / total * 100);
+  const secs = (apt.finishedAt - apt.startedAt) / 1000;
+  const timing = apt.timeUp ? `Time ran out (${fmtMinSec(secs)})`
+    : apt.timed ? `${fmtMinSec(secs)} of ${fmtMinSec((apt.endAt - apt.startedAt) / 1000)} used`
+    : `${fmtMinSec(secs)} taken`;
+  const bar = (label, list) => {
+    if (!list.length) return '';
+    const g = list.filter(r => r.right).length;
+    return `<div class="mock-row"><span>${label}</span>
+      <div class="bar"><div class="bar-fill" style="width:${Math.round(g / list.length * 100)}%"></div></div>
+      <strong>${g}/${list.length}</strong></div>`;
+  };
+  const missed = rows.filter(r => !r.right);
+  const shown = aptReview === 'missed' ? missed : rows;
+  const tab = (v, label) => `<button class="tab-btn ${aptReview === v ? 'active' : ''}" aria-pressed="${aptReview === v}" onclick="setAptReview('${v}')">${label}</button>`;
+
+  container.innerHTML = `
+    <div class="card mock-result">
+      <div class="mock-paper-meta">Reasoning test · ${timing}</div>
+      <div class="mock-score">${score}<span>/${total}</span></div>
+      <div class="mock-paper-meta">${pct}% correct</div>
+    </div>
+    ${aptDisclaimerHTML()}
+    <h3 class="apt-h3">By category</h3>
+    ${d.categories.map(c => bar(escapeHTML(c.label), rows.filter(r => r.q.category === c.id))).join('')}
+    <h3 class="apt-h3">By difficulty</h3>
+    ${APT_LEVELS.map(lv => bar(lv[0].toUpperCase() + lv.slice(1), rows.filter(r => r.q.difficulty === lv))).join('')}
+    <div class="q-head-btns apt-again">
+      <button class="btn btn-primary btn-sm" onclick="aptStart()">Take another test</button>
+      <button class="btn btn-secondary btn-sm" onclick="aptQuit()">Change settings</button>
+    </div>
+    <h3 class="apt-h3">Answers and explanations</h3>
+    <div class="tabs">${tab('all', `All <span class="tab-count">${total}</span>`)}${tab('missed', `Missed <span class="tab-count">${missed.length}</span>`)}</div>
+    ${shown.length ? shown.map(r => `
+      <article class="card apt-review">
+        <div class="apt-meta">
+          <span class="apt-num">Q${r.n}</span>${aptBadges(r.q)}
+          <span class="apt-verdict ${r.right ? 'right' : 'wrong'}">${r.right ? 'Correct' : r.given === null ? 'Not answered' : 'Wrong'}</span>
+        </div>
+        <p class="apt-q">${escapeHTML(r.q.question)}</p>
+        ${aptFigureHTML(r.q.figure)}
+        <dl class="apt-answers">
+          ${r.right ? '' : `<dt>Your answer</dt><dd>${r.given === null ? '—' : escapeHTML(r.given)}</dd>`}
+          <dt>Correct answer</dt><dd><strong>${escapeHTML(r.q.answer)}</strong></dd>
+        </dl>
+        <p class="apt-expl">${escapeHTML(r.q.explanation)}</p>
+      </article>`).join('')
+      : '<p class="ms-note">Nothing missed. Every answer was right.</p>'}`;
 }
 
 /* ---- EXTENDED RESPONSE ---- */
@@ -4867,6 +5180,27 @@ document.addEventListener('keydown', e => {
   if (!el('q-stage')) return;
   e.preventDefault();
   practiceStep(e.key === 'ArrowRight' ? 1 : -1);
+});
+
+/* Reasoning test: 1-5 pick an option, arrows move between questions. Options are
+   numbered, not lettered, because many answers are themselves letters. */
+document.addEventListener('keydown', e => {
+  if (currentPage !== 'aptitude' || !apt || apt.phase !== 'test' || e.repeat) return;
+  if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) return;
+  const t = e.target;
+  if (t && (/^(INPUT|SELECT|TEXTAREA)$/.test(t.tagName) || t.isContentEditable)) return;
+  const modal = el('player-modal-overlay');
+  if (modal && modal.classList.contains('show')) return;
+  if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+    e.preventDefault();
+    aptGo(apt.idx + (e.key === 'ArrowRight' ? 1 : -1));
+    return;
+  }
+  const i = '12345'.indexOf(e.key);
+  if (e.key.length === 1 && i >= 0 && i < apt.items[apt.idx].opts.length) {
+    e.preventDefault();
+    aptChoose(i);
+  }
 });
 
 document.addEventListener('keydown', e => {

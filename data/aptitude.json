@@ -1,0 +1,514 @@
+{
+  "title": "Reasoning test",
+  "disclaimer": "This is an informal reasoning quiz for practice. The score is not an IQ score and says nothing reliable about intelligence.",
+  "categories": [
+    { "id": "number",       "label": "Number series" },
+    { "id": "letter",       "label": "Letter series" },
+    { "id": "analogy",      "label": "Verbal analogies" },
+    { "id": "syllogism",    "label": "Syllogisms" },
+    { "id": "spatial",      "label": "Spatial reasoning" },
+    { "id": "quantitative", "label": "Quantitative logic" }
+  ],
+  "questions": [
+    {
+      "id": "num-01", "category": "number", "difficulty": "easy",
+      "question": "What number comes next?\n4, 9, 14, 19, 24, ?",
+      "options": ["28", "29", "30", "34"],
+      "answer": "29",
+      "explanation": "Each term is 5 more than the one before: 24 + 5 = 29."
+    },
+    {
+      "id": "num-02", "category": "number", "difficulty": "easy",
+      "question": "What number comes next?\n3, 6, 12, 24, 48, ?",
+      "options": ["72", "94", "96", "100"],
+      "answer": "96",
+      "explanation": "Each term is double the one before: 48 × 2 = 96."
+    },
+    {
+      "id": "num-03", "category": "number", "difficulty": "easy",
+      "question": "What number comes next?\n50, 46, 42, 38, 34, ?",
+      "options": ["26", "30", "31", "32"],
+      "answer": "30",
+      "explanation": "Each term is 4 less than the one before: 34 − 4 = 30."
+    },
+    {
+      "id": "num-04", "category": "number", "difficulty": "easy",
+      "question": "What number comes next?\n1, 4, 9, 16, 25, ?",
+      "options": ["30", "34", "36", "49"],
+      "answer": "36",
+      "explanation": "The terms are 1×1, 2×2, 3×3, 4×4, 5×5, so next is 6×6 = 36. The gaps (3, 5, 7, 9, then 11) give the same answer."
+    },
+    {
+      "id": "num-05", "category": "number", "difficulty": "medium",
+      "question": "What number comes next?\n2, 5, 11, 23, 47, ?",
+      "options": ["71", "94", "95", "96"],
+      "answer": "95",
+      "explanation": "Each term is double the previous one plus 1: 47 × 2 + 1 = 95. The gaps also double each time (3, 6, 12, 24, then 48)."
+    },
+    {
+      "id": "num-06", "category": "number", "difficulty": "medium",
+      "question": "What number comes next?\n1, 1, 2, 3, 5, 8, 13, ?",
+      "options": ["18", "20", "21", "26"],
+      "answer": "21",
+      "explanation": "From the third term on, each term is the sum of the two before it: 8 + 13 = 21."
+    },
+    {
+      "id": "num-07", "category": "number", "difficulty": "medium",
+      "question": "What number comes next?\n3, 4, 7, 8, 11, 12, ?",
+      "options": ["13", "14", "15", "16"],
+      "answer": "15",
+      "explanation": "The steps alternate +1, +3, +1, +3, +1, so the next step is +3: 12 + 3 = 15."
+    },
+    {
+      "id": "num-08", "category": "number", "difficulty": "medium",
+      "question": "Which number is missing?\n7, 10, ?, 25, 37, 52",
+      "options": ["14", "15", "16", "18"],
+      "answer": "16",
+      "explanation": "The gaps grow by 3 each time: +3, +6, +9, +12, +15. So 10 + 6 = 16, then 16 + 9 = 25, which fits the rest of the series."
+    },
+    {
+      "id": "num-09", "category": "number", "difficulty": "hard",
+      "question": "What number comes next?\n2, 6, 12, 20, 30, 42, ?",
+      "options": ["52", "54", "56", "58"],
+      "answer": "56",
+      "explanation": "The gaps are 4, 6, 8, 10, 12, so the next gap is 14: 42 + 14 = 56. Each term is also n × (n + 1): 1×2, 2×3, … 7×8 = 56."
+    },
+    {
+      "id": "num-10", "category": "number", "difficulty": "hard",
+      "question": "What number comes next?\n5, 20, 8, 17, 11, 14, 14, ?",
+      "options": ["10", "11", "13", "17"],
+      "answer": "11",
+      "explanation": "Two series are woven together. The 1st, 3rd, 5th and 7th terms go 5, 8, 11, 14 (+3). The 2nd, 4th and 6th go 20, 17, 14 (−3). The next term is the 8th, which belongs to the second series: 14 − 3 = 11."
+    },
+    {
+      "id": "num-11", "category": "number", "difficulty": "hard",
+      "question": "What number comes next?\n1, 2, 6, 24, 120, ?",
+      "options": ["240", "600", "720", "840"],
+      "answer": "720",
+      "explanation": "The multiplier goes up by one each time: ×2, ×3, ×4, ×5, so next is ×6: 120 × 6 = 720."
+    },
+
+    {
+      "id": "let-01", "category": "letter", "difficulty": "easy",
+      "question": "What letter comes next?\nA, C, E, G, I, ?",
+      "options": ["J", "K", "L", "M"],
+      "answer": "K",
+      "explanation": "Each letter skips one letter of the alphabet: I, (J), K."
+    },
+    {
+      "id": "let-02", "category": "letter", "difficulty": "easy",
+      "question": "What letter comes next?\nZ, Y, X, W, V, ?",
+      "options": ["S", "T", "U", "W"],
+      "answer": "U",
+      "explanation": "The alphabet is running backwards one letter at a time: V, then U."
+    },
+    {
+      "id": "let-03", "category": "letter", "difficulty": "easy",
+      "question": "What letter comes next?\nB, E, H, K, N, ?",
+      "options": ["O", "P", "Q", "R"],
+      "answer": "Q",
+      "explanation": "Each letter is 3 places after the one before. As positions: 2, 5, 8, 11, 14, then 17, which is Q."
+    },
+    {
+      "id": "let-04", "category": "letter", "difficulty": "easy",
+      "question": "What comes next?\nAB, CD, EF, GH, ?",
+      "options": ["HI", "IJ", "IK", "JK"],
+      "answer": "IJ",
+      "explanation": "The pairs take the alphabet two letters at a time without overlap: GH is followed by IJ."
+    },
+    {
+      "id": "let-05", "category": "letter", "difficulty": "medium",
+      "question": "What letter comes next?\nA, B, D, G, K, ?",
+      "options": ["N", "O", "P", "Q"],
+      "answer": "P",
+      "explanation": "The gaps grow by one each time: +1, +2, +3, +4, then +5. K is the 11th letter and 11 + 5 = 16, which is P."
+    },
+    {
+      "id": "let-06", "category": "letter", "difficulty": "medium",
+      "question": "What comes next?\nAZ, BY, CX, DW, ?",
+      "options": ["EU", "EV", "EW", "FV"],
+      "answer": "EV",
+      "explanation": "The first letter moves forward through the alphabet (A, B, C, D, E) while the second moves backward from the end (Z, Y, X, W, V)."
+    },
+    {
+      "id": "let-07", "category": "letter", "difficulty": "medium",
+      "question": "What letter comes next?\nA, Z, C, X, E, V, ?",
+      "options": ["F", "G", "T", "U"],
+      "answer": "G",
+      "explanation": "Two series alternate. The 1st, 3rd and 5th letters go A, C, E (forward, skipping one). The 2nd, 4th and 6th go Z, X, V (backward, skipping one). The 7th letter continues the first series: G."
+    },
+    {
+      "id": "let-08", "category": "letter", "difficulty": "medium",
+      "question": "In a code, CAT is written as DBU. Using the same rule, how is DOG written?",
+      "options": ["CNF", "EOH", "EPH", "FQI"],
+      "answer": "EPH",
+      "explanation": "Each letter moves one place forward in the alphabet (C→D, A→B, T→U). So D→E, O→P, G→H: EPH."
+    },
+    {
+      "id": "let-09", "category": "letter", "difficulty": "hard",
+      "question": "What letter comes next?\nZ, X, U, Q, L, ?",
+      "options": ["E", "F", "G", "H"],
+      "answer": "F",
+      "explanation": "The series goes backwards with growing gaps: −2, −3, −4, −5, then −6. As positions: 26, 24, 21, 17, 12, then 6, which is F."
+    },
+    {
+      "id": "let-10", "category": "letter", "difficulty": "hard",
+      "question": "What comes next?\nAZ, CX, FU, JQ, ?",
+      "options": ["NL", "OK", "OL", "PL"],
+      "answer": "OL",
+      "explanation": "First letters move forward by +2, +3, +4, then +5: A, C, F, J, O. Second letters move backward by −2, −3, −4, then −5: Z, X, U, Q, L. So the next pair is OL."
+    },
+    {
+      "id": "let-11", "category": "letter", "difficulty": "hard",
+      "question": "In a code, LAMP is written as OXPM. Using the same rule, how is DESK written?",
+      "options": ["AHPN", "GBVH", "GBVN", "GHVN"],
+      "answer": "GBVH",
+      "explanation": "The shifts alternate: the 1st and 3rd letters move 3 forward, the 2nd and 4th move 3 back, wrapping round the alphabet (L→O, A→X, M→P, P→M). So D→G, E→B, S→V, K→H: GBVH."
+    },
+
+    {
+      "id": "ana-01", "category": "analogy", "difficulty": "easy",
+      "question": "Glove is to hand as sock is to …",
+      "options": ["foot", "leg", "shoe", "wool"],
+      "answer": "foot",
+      "explanation": "A glove is worn on the hand, so a sock is worn on the foot. A shoe is also worn on the foot, but it is another item of clothing, not the body part."
+    },
+    {
+      "id": "ana-02", "category": "analogy", "difficulty": "easy",
+      "question": "Hot is to cold as up is to …",
+      "options": ["down", "high", "over", "top"],
+      "answer": "down",
+      "explanation": "Hot and cold are opposites, so the pair needs the opposite of up: down."
+    },
+    {
+      "id": "ana-03", "category": "analogy", "difficulty": "easy",
+      "question": "Bee is to hive as bird is to …",
+      "options": ["egg", "nest", "tree", "wing"],
+      "answer": "nest",
+      "explanation": "A hive is the home a bee lives in, so the matching word is the home a bird builds: a nest."
+    },
+    {
+      "id": "ana-04", "category": "analogy", "difficulty": "easy",
+      "question": "Kitten is to cat as puppy is to …",
+      "options": ["bark", "dog", "kennel", "kitten"],
+      "answer": "dog",
+      "explanation": "A kitten is a young cat, so a puppy is a young dog."
+    },
+    {
+      "id": "ana-05", "category": "analogy", "difficulty": "medium",
+      "question": "Thermometer is to temperature as ruler is to …",
+      "options": ["length", "school", "straight", "weight"],
+      "answer": "length",
+      "explanation": "A thermometer measures temperature, so the pair needs what a ruler measures: length."
+    },
+    {
+      "id": "ana-06", "category": "analogy", "difficulty": "medium",
+      "question": "Author is to book as composer is to …",
+      "options": ["music", "piano", "singer", "stage"],
+      "answer": "music",
+      "explanation": "An author creates a book, so the pair needs what a composer creates: music. A piano is a tool and a singer is a performer, not the thing made."
+    },
+    {
+      "id": "ana-07", "category": "analogy", "difficulty": "medium",
+      "question": "Warm is to hot as cool is to …",
+      "options": ["cold", "ice", "mild", "warm"],
+      "answer": "cold",
+      "explanation": "Hot is a stronger degree of warm, so the pair needs a stronger degree of cool: cold. Ice is a thing, not a degree of temperature."
+    },
+    {
+      "id": "ana-08", "category": "analogy", "difficulty": "medium",
+      "question": "Ice is to water as water is to …",
+      "options": ["ice", "rain", "sea", "steam"],
+      "answer": "steam",
+      "explanation": "Heating ice turns it into water, the next state. Heating water turns it into steam."
+    },
+    {
+      "id": "ana-09", "category": "analogy", "difficulty": "hard",
+      "question": "Earth is to heart as night is to …",
+      "options": ["dark", "day", "light", "thing"],
+      "answer": "thing",
+      "explanation": "HEART uses exactly the letters of EARTH, rearranged. THING uses exactly the letters of NIGHT. None of the other options does."
+    },
+    {
+      "id": "ana-10", "category": "analogy", "difficulty": "hard",
+      "question": "Tap is to pat as gum is to …",
+      "options": ["gem", "gun", "mug", "rum"],
+      "answer": "mug",
+      "explanation": "PAT is TAP spelt backwards, so the answer is GUM spelt backwards: MUG."
+    },
+    {
+      "id": "ana-11", "category": "analogy", "difficulty": "hard",
+      "question": "Planet is to plane as start is to …",
+      "options": ["art", "star", "stat", "tart"],
+      "answer": "star",
+      "explanation": "PLANE is PLANET with its last letter removed. Removing the last letter of START gives STAR. TART removes the first letter instead, and STAT removes a middle letter."
+    },
+
+    {
+      "id": "syl-01", "category": "syllogism", "difficulty": "easy",
+      "question": "All cats are animals.\nTom is a cat.\n\nUsing only these statements, which must be true?",
+      "options": ["Tom is an animal.", "All animals are cats.", "Tom is not an animal.", "Some animals are not cats."],
+      "answer": "Tom is an animal.",
+      "explanation": "Tom is a cat and every cat is an animal, so Tom is an animal. The statements say nothing about animals that are not cats, so the last option does not follow from them, even if it is true in real life."
+    },
+    {
+      "id": "syl-02", "category": "syllogism", "difficulty": "easy",
+      "question": "All the roses in this garden are red.\nThis flower is in the garden and is not red.\n\nWhich must be true?",
+      "options": ["It is a rose.", "It is not a rose.", "It might be a rose.", "The garden has no roses."],
+      "answer": "It is not a rose.",
+      "explanation": "Any rose in the garden would be red. This flower is in the garden and is not red, so it cannot be a rose. Nothing says the garden has no roses at all."
+    },
+    {
+      "id": "syl-03", "category": "syllogism", "difficulty": "easy",
+      "question": "No fish in the tank can climb.\nGoldie is a fish in the tank.\n\nWhich must be true?",
+      "options": ["Goldie can climb.", "Goldie cannot climb.", "Some fish in the tank can climb.", "It cannot be worked out."],
+      "answer": "Goldie cannot climb.",
+      "explanation": "No fish in the tank can climb, and Goldie is a fish in the tank, so Goldie cannot climb."
+    },
+    {
+      "id": "syl-04", "category": "syllogism", "difficulty": "easy",
+      "question": "All zibs are mops.\nAll mops are tals.\n\nWhich must be true?",
+      "options": ["All tals are zibs.", "All zibs are tals.", "No zibs are tals.", "Some tals are not mops."],
+      "answer": "All zibs are tals.",
+      "explanation": "Every zib is a mop and every mop is a tal, so every zib is a tal. It does not work backwards: nothing says every tal is a zib."
+    },
+    {
+      "id": "syl-05", "category": "syllogism", "difficulty": "medium",
+      "question": "All painters are artists.\nSome artists are musicians.\n\nWhich must be true?",
+      "options": ["Some painters are musicians.", "No painters are musicians.", "All musicians are artists.", "None of these must be true."],
+      "answer": "None of these must be true.",
+      "explanation": "The artists who are musicians might or might not include any painters, so neither 'some painters are musicians' nor 'no painters are musicians' is forced. Nothing is said about musicians who are not artists, so the third option is not forced either."
+    },
+    {
+      "id": "syl-06", "category": "syllogism", "difficulty": "medium",
+      "question": "No squares are circles.\nAll circles are shapes.\nX is a circle.\n\nWhich must be true?",
+      "options": ["X is a square.", "X is a shape and not a square.", "X is not a shape.", "X is a square and a shape."],
+      "answer": "X is a shape and not a square.",
+      "explanation": "X is a circle, so it is a shape (all circles are shapes). No square is a circle, so X, being a circle, is not a square."
+    },
+    {
+      "id": "syl-07", "category": "syllogism", "difficulty": "medium",
+      "question": "Some blarks are fims.\nAll fims are glops.\n\nWhich must be true?",
+      "options": ["All blarks are glops.", "Some blarks are glops.", "No blarks are glops.", "All glops are blarks."],
+      "answer": "Some blarks are glops.",
+      "explanation": "Take the blarks that are fims. Every fim is a glop, so those blarks are glops. That proves some blarks are glops, but says nothing about the other blarks."
+    },
+    {
+      "id": "syl-08", "category": "syllogism", "difficulty": "medium",
+      "question": "If it rains, the match is cancelled.\nThe match was not cancelled.\n\nWhich must be true?",
+      "options": ["It rained.", "It did not rain.", "The match was moved indoors.", "It cannot be worked out."],
+      "answer": "It did not rain.",
+      "explanation": "Rain would have meant a cancellation. There was no cancellation, so it cannot have rained."
+    },
+    {
+      "id": "syl-09", "category": "syllogism", "difficulty": "hard",
+      "question": "If a shape is a square, it has four sides.\nShape Q has four sides.\n\nWhat can you conclude?",
+      "options": ["Q is a square.", "Q is not a square.", "You cannot tell whether Q is a square.", "Q has fewer than four sides."],
+      "answer": "You cannot tell whether Q is a square.",
+      "explanation": "The rule only says squares have four sides. It does not say only squares have four sides, so a four-sided shape might be a square or might be something else."
+    },
+    {
+      "id": "syl-10", "category": "syllogism", "difficulty": "hard",
+      "question": "All vorns are tegs.\nNo tegs are plims.\nSome quibs are plims.\n\nWhich must be true?",
+      "options": ["Some quibs are not vorns.", "No quibs are vorns.", "Some vorns are quibs.", "All quibs are plims."],
+      "answer": "Some quibs are not vorns.",
+      "explanation": "Take the quibs that are plims. A plim is never a teg, and every vorn is a teg, so a plim is never a vorn. Those quibs are therefore not vorns. Other quibs might still be vorns, so 'no quibs are vorns' is not forced."
+    },
+    {
+      "id": "syl-11", "category": "syllogism", "difficulty": "hard",
+      "question": "Everyone in the chess club also plays cards.\nNobody who plays cards plays golf.\nPriya plays golf.\n\nWhich must be true?",
+      "options": ["Priya is in the chess club.", "Priya is not in the chess club.", "Priya plays cards.", "Some golfers play cards."],
+      "answer": "Priya is not in the chess club.",
+      "explanation": "Priya plays golf, so she does not play cards. Every chess club member plays cards, so she cannot be in the chess club."
+    },
+    {
+      "id": "syl-12", "category": "syllogism", "difficulty": "hard",
+      "question": "Only members can enter the lounge.\nSam entered the lounge.\n\nWhich must be true?",
+      "options": ["Sam is a member.", "Sam is not a member.", "Every member entered the lounge.", "You cannot tell whether Sam is a member."],
+      "answer": "Sam is a member.",
+      "explanation": "'Only members can enter' means anyone who enters is a member. Sam entered, so Sam is a member. It does not mean every member did enter."
+    },
+
+    {
+      "id": "spa-01", "category": "spatial", "difficulty": "easy",
+      "question": "You are facing north. You turn 90° clockwise, then turn 180°. Which way are you facing now?",
+      "options": ["North", "East", "South", "West"],
+      "answer": "West",
+      "explanation": "A 90° clockwise turn from north faces east. A 180° turn from east faces west."
+    },
+    {
+      "id": "spa-02", "category": "spatial", "difficulty": "easy",
+      "question": "A square sheet of paper is folded in half once. A single hole is punched through both layers, away from the fold and the edges. When the sheet is unfolded, how many holes does it have?",
+      "options": ["1", "2", "3", "4"],
+      "answer": "2",
+      "explanation": "The punch goes through two layers, making one hole in each half. Unfolded, that is 2 holes, mirror images of each other across the fold."
+    },
+    {
+      "id": "spa-03", "category": "spatial", "difficulty": "easy",
+      "question": "The grid below is rotated 90° clockwise as a whole. Which letter ends up in the top-left corner?",
+      "figure": ["ABC", "DEF", "GHI"],
+      "options": ["A", "C", "G", "I"],
+      "answer": "G",
+      "explanation": "Turning the grid 90° clockwise moves the left column (A, D, G) to the top row, read from the bottom up: G, D, A. So G is now top-left."
+    },
+    {
+      "id": "spa-04", "category": "spatial", "difficulty": "easy",
+      "question": "The net below is folded into a cube. Which face is opposite A?",
+      "figure": [".A..", "BCDE", ".F.."],
+      "options": ["B", "C", "E", "F"],
+      "answer": "F",
+      "explanation": "Fold with C as the base. A and F are attached to opposite edges of C, so they fold up as opposite walls. (B is opposite D, and E folds over as the lid, opposite C.)"
+    },
+    {
+      "id": "spa-05", "category": "spatial", "difficulty": "medium",
+      "question": "The net below is folded into a cube. Which face is opposite B?",
+      "figure": ["A...", "BCDE", "...F"],
+      "options": ["A", "D", "E", "F"],
+      "answer": "D",
+      "explanation": "Fold with C as the base. B and D are attached to opposite edges of C, so they become opposite walls. E folds over as the lid (opposite C). A wraps round from B and F wraps down from the lid to make the last two walls, opposite each other."
+    },
+    {
+      "id": "spa-06", "category": "spatial", "difficulty": "medium",
+      "question": "A square sheet of paper is folded in half, then folded in half again to make a smaller square four layers thick. A single hole is punched through all the layers, away from any fold or edge. When the sheet is unfolded, how many holes does it have?",
+      "options": ["2", "3", "4", "8"],
+      "answer": "4",
+      "explanation": "The punch goes through four layers, and each layer becomes its own quarter of the sheet when unfolded: 4 holes."
+    },
+    {
+      "id": "spa-07", "category": "spatial", "difficulty": "medium",
+      "question": "You start facing north. You walk 4 m forward, turn right and walk 3 m, then turn right again and walk 4 m. Where are you compared with your starting point?",
+      "options": ["3 m east", "3 m west", "4 m north", "5 m east"],
+      "answer": "3 m east",
+      "explanation": "4 m north, then right (east) 3 m, then right again (south) 4 m. The north and south walks cancel out, leaving you 3 m east of where you started."
+    },
+    {
+      "id": "spa-08", "category": "spatial", "difficulty": "medium",
+      "question": "You are facing east. You turn 135° anticlockwise, then 90° clockwise, then 180°. Which way are you facing now?",
+      "options": ["North-east", "North-west", "South-east", "South-west"],
+      "answer": "South-west",
+      "explanation": "135° anticlockwise from east is north-west. 90° clockwise from north-west is north-east. 180° from north-east is south-west."
+    },
+    {
+      "id": "spa-09", "category": "spatial", "difficulty": "hard",
+      "question": "The net below is folded into a cube. Which face is opposite A?",
+      "figure": ["AB..", ".CD.", "..EF"],
+      "options": ["C", "D", "E", "F"],
+      "answer": "D",
+      "explanation": "Fold with C as the base. B and D fold up as two neighbouring walls. A hangs off B and wraps round to become the wall opposite D. E hangs off D and becomes the wall opposite B, and F folds over as the lid, opposite C. So the pairs are A–D, B–E and C–F."
+    },
+    {
+      "id": "spa-10", "category": "spatial", "difficulty": "hard",
+      "question": "An ordinary clock with hands is seen in a mirror, and appears to show 3:40. What time is it really?",
+      "options": ["3:20", "8:20", "8:40", "9:20"],
+      "answer": "8:20",
+      "explanation": "A mirror swaps left and right, so each hand appears the same distance from 12 but on the other side. The apparent minute hand at the 40-minute mark is really at 20 minutes. The apparent hour hand, just past two-thirds of the way from 3 to 4, is really two-thirds of the way from 8 to 9. Quick check: real time = 11:60 − 3:40 = 8:20."
+    },
+    {
+      "id": "spa-11", "category": "spatial", "difficulty": "hard",
+      "question": "A 3 × 3 × 3 cube is painted on every outside face, then cut into 27 equal small cubes. How many of the small cubes have paint on exactly two faces?",
+      "options": ["6", "8", "12", "24"],
+      "answer": "12",
+      "explanation": "Cubes with exactly two painted faces sit along the edges of the big cube, but not on the corners (corners have three). A cube has 12 edges, each with 3 small cubes, 1 of which is not a corner: 12 × 1 = 12."
+    },
+    {
+      "id": "spa-12", "category": "spatial", "difficulty": "hard",
+      "question": "The grid below is first flipped left-to-right (as in a mirror held along its right edge), then rotated 90° clockwise. Which letter ends up in the top-left corner?",
+      "figure": ["ABC", "DEF", "GHI"],
+      "options": ["A", "C", "G", "I"],
+      "answer": "I",
+      "explanation": "The flip gives the rows CBA, FED, IHG. Rotating 90° clockwise moves the left column (C, F, I) to the top row, read from the bottom up: I, F, C. So I is top-left."
+    },
+
+    {
+      "id": "qua-01", "category": "quantitative", "difficulty": "easy",
+      "question": "Pens are sold at 3 for £1.20. How much do 5 pens cost?",
+      "options": ["£1.80", "£2.00", "£2.20", "£2.40"],
+      "answer": "£2.00",
+      "explanation": "One pen costs £1.20 ÷ 3 = 40p, so 5 pens cost 5 × 40p = £2.00."
+    },
+    {
+      "id": "qua-02", "category": "quantitative", "difficulty": "easy",
+      "question": "Sam is 4 years older than Ali. Ali is 9. How old will Sam be in 3 years' time?",
+      "options": ["13", "15", "16", "17"],
+      "answer": "16",
+      "explanation": "Sam is 9 + 4 = 13 now, so in 3 years Sam will be 16."
+    },
+    {
+      "id": "qua-03", "category": "quantitative", "difficulty": "easy",
+      "question": "A train leaves at 09:45 and the journey takes 1 hour 35 minutes. What time does it arrive?",
+      "options": ["10:20", "11:10", "11:20", "11:30"],
+      "answer": "11:20",
+      "explanation": "09:45 + 1 hour = 10:45. Then 15 minutes takes it to 11:00, and the remaining 20 minutes to 11:20."
+    },
+    {
+      "id": "qua-04", "category": "quantitative", "difficulty": "easy",
+      "question": "There are 30 students in a class and 2/5 of them walk to school. How many do not walk to school?",
+      "options": ["12", "15", "18", "20"],
+      "answer": "18",
+      "explanation": "2/5 of 30 is 12, so 12 walk. The other 30 − 12 = 18 do not."
+    },
+    {
+      "id": "qua-05", "category": "quantitative", "difficulty": "medium",
+      "question": "A price of £80 goes up by 25%. The new price then goes down by 20%. What is the final price?",
+      "options": ["£76", "£80", "£84", "£85"],
+      "answer": "£80",
+      "explanation": "25% of £80 is £20, so the price rises to £100. 20% of £100 is £20, so it falls back to £80. The percentages do not simply cancel to +5%, because the 20% is taken from a bigger amount."
+    },
+    {
+      "id": "qua-06", "category": "quantitative", "difficulty": "medium",
+      "question": "Three people share £120 in the ratio 1 : 2 : 3. How much is the largest share?",
+      "options": ["£40", "£50", "£60", "£72"],
+      "answer": "£60",
+      "explanation": "There are 1 + 2 + 3 = 6 parts, so each part is £120 ÷ 6 = £20. The largest share is 3 parts: £60."
+    },
+    {
+      "id": "qua-07", "category": "quantitative", "difficulty": "medium",
+      "question": "A car travels 150 km in 2.5 hours. At the same speed, how far does it travel in 4 hours?",
+      "options": ["200 km", "225 km", "240 km", "260 km"],
+      "answer": "240 km",
+      "explanation": "The speed is 150 ÷ 2.5 = 60 km per hour, so in 4 hours it travels 4 × 60 = 240 km."
+    },
+    {
+      "id": "qua-08", "category": "quantitative", "difficulty": "medium",
+      "question": "In 6 years' time, Mia will be twice as old as she was 4 years ago. How old is Mia now?",
+      "options": ["10", "12", "14", "16"],
+      "answer": "14",
+      "explanation": "Call her age now x. Then x + 6 = 2 × (x − 4), so x + 6 = 2x − 8, giving x = 14. Check: in 6 years she is 20, and 4 years ago she was 10."
+    },
+    {
+      "id": "qua-09", "category": "quantitative", "difficulty": "medium",
+      "question": "In a group of 40 students, 25 study French, 18 study Spanish and 7 study both. How many study neither language?",
+      "options": ["0", "3", "4", "11"],
+      "answer": "4",
+      "explanation": "Adding 25 + 18 counts the 7 who study both twice, so the number studying at least one language is 25 + 18 − 7 = 36. That leaves 40 − 36 = 4 who study neither."
+    },
+    {
+      "id": "qua-10", "category": "quantitative", "difficulty": "hard",
+      "question": "One tap fills a tank in 6 hours. A second tap fills the same tank in 3 hours. With both taps on together, how long does the tank take to fill?",
+      "options": ["1.5 hours", "2 hours", "4.5 hours", "9 hours"],
+      "answer": "2 hours",
+      "explanation": "In one hour the first tap fills 1/6 of the tank and the second fills 1/3 (= 2/6). Together they fill 3/6 = 1/2 an hour, so the whole tank takes 2 hours."
+    },
+    {
+      "id": "qua-11", "category": "quantitative", "difficulty": "hard",
+      "question": "Eight people meet, and every person shakes hands with every other person exactly once. How many handshakes take place?",
+      "options": ["16", "28", "56", "64"],
+      "answer": "28",
+      "explanation": "Each of the 8 people shakes 7 hands, which gives 8 × 7 = 56, but that counts every handshake twice (once for each person in it). So there are 56 ÷ 2 = 28."
+    },
+    {
+      "id": "qua-12", "category": "quantitative", "difficulty": "hard",
+      "question": "A notebook and a pen cost £3.40 together. The notebook costs £2.80 more than the pen. How much does the pen cost?",
+      "options": ["30p", "40p", "60p", "70p"],
+      "answer": "30p",
+      "explanation": "Take away the £2.80 difference and what is left, 60p, is two pens' worth, so the pen costs 30p and the notebook £3.10. Check: £3.10 + 30p = £3.40, and £3.10 − 30p = £2.80. 60p is the tempting wrong answer, but it would make the notebook only £2.20 more."
+    },
+    {
+      "id": "qua-13", "category": "quantitative", "difficulty": "hard",
+      "question": "The mean of five numbers is 12. When a sixth number is added, the mean becomes 13. What is the sixth number?",
+      "options": ["13", "14", "18", "25"],
+      "answer": "18",
+      "explanation": "The five numbers total 5 × 12 = 60. The six numbers total 6 × 13 = 78. So the sixth number is 78 − 60 = 18."
+    }
+  ]
+}

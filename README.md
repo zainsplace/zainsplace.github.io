@@ -29,6 +29,9 @@ for anyone in the years below who wants it.
 - Match, True/False Blitz, Fill in the Blank and Battle revision games
 - Extended-writing practice with timers and model answers
 - Leaderboard with daily-progressing rivals
+- A reasoning test shared by both units: number and letter series, verbal analogies, syllogisms,
+  spatial and quantitative problems, with an optional timer and a per-category breakdown. It is an
+  informal practice quiz, not an IQ test
 - Progress, XP and streaks tracked **separately per unit**
 
 ## Works offline
@@ -76,6 +79,22 @@ will fail if:
 - any file references an external URL, which would break offline use (the one
   exception is a plain link to Pearson's past-papers page, which is opened by the
   student, not loaded by the site)
+
+### Reasoning test questions
+
+The reasoning test reads `data/aptitude.json`, which belongs to neither unit. Each question needs an
+`id`, `category` (one of the ids in `categories`), `difficulty` (`easy`, `medium` or `hard`),
+`question`, `options` (3 to 5), `answer` (copied exactly from one option) and a short
+`explanation`. An optional `figure` is a list of equal-length rows drawn as a grid: `.` is a blank
+square, `#` a shaded one and any other character a labelled square, which is how the cube nets are
+drawn. Options are shuffled for every attempt, so explanations must never say "option B".
+
+The validator checks the structure (the answer matches exactly one option, no duplicate options,
+every category has easy, medium and hard questions). It cannot check that the answer is actually
+right, so work each new question through by hand.
+
+Marking happens in the browser, because the site has no backend. Anyone can read the answer key in
+dev tools. That is fine for a practice quiz.
 
 Section colours, display order, short names and blurbs live in the `UNITS`
 manifest at the top of `app.js`, not in the JSON. Unit 1's display order is
