@@ -30,8 +30,9 @@ for anyone in the years below who wants it.
 - Extended-writing practice with timers and model answers
 - Leaderboard with daily-progressing rivals
 - A reasoning test shared by both units: number and letter series, verbal analogies, syllogisms,
-  spatial and quantitative problems, with an optional timer and a per-category breakdown. It is an
-  informal practice quiz, not an IQ test
+  spatial and quantitative problems, with an optional timer and a per-category breakdown. Questions
+  can be skipped and returned to; the score counts only the questions answered, so finishing early
+  does not count unreached questions as wrong. It is an informal practice quiz, not an IQ test
 - Progress, XP and streaks tracked **separately per unit**
 
 ## Works offline
