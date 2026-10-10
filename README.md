@@ -45,7 +45,9 @@ school laptop with no internet or from a USB stick.
 ## How it works
 
 Everything runs client-side. Progress is saved in `localStorage` under
-`rev_state`, so there is no account and no backend.
+`rev_state`, so there is no account and no backend. With the site open in
+two tabs, each tab picks up the other's saves as they happen, so neither can
+overwrite the other's progress with an old copy.
 
 Progress is namespaced per unit, which matters more than it sounds: topic codes,
 flashcard ids and question ids all repeat between the two units. `A1.1` is
@@ -75,7 +77,11 @@ will fail if:
 - a unit in the manifest is missing a colour, short name, blurb or display order
 - item codes, flashcard ids or question ids repeat **within** a unit
 - a flashcard is missing `front` or `back`
-- `data_inline.js` is not reproducible from `data/` (someone hand-edited the
+- an item has a `term` but no `code` (it could not be rated or tracked)
+- any text contains `<`, or an id or code uses anything other than letters, digits,
+  `.`, `_` and `-`. Pages are built as HTML, so either could turn content into
+  markup. Write "less than" or use ≤ instead
+- `build_inline.py` fails, or `data_inline.js` is not reproducible from `data/` (someone hand-edited the
   bundle instead of the source)
 - any file references an external URL, which would break offline use (the one
   exception is a plain link to Pearson's past-papers page, which is opened by the

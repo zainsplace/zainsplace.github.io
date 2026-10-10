@@ -1814,6 +1814,9 @@ function bindAnswerDrafts(root) {
   root.querySelectorAll('textarea.quiz-answer-area').forEach(t => {
     if (typeof drafts[t.id] === 'string' && !t.value) t.value = drafts[t.id];
     t.addEventListener('input', () => {
+      // Looked up on every keystroke, not captured above: another tab's save
+      // replaces the store, and a captured object would no longer be saved.
+      const drafts = state.questions.drafts;
       if (t.value.trim()) drafts[t.id] = t.value; else delete drafts[t.id];
       scheduleSave();
     });
@@ -5185,6 +5188,50 @@ document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'hidden') flushPendingSaves();
 });
 window.addEventListener('pagehide', flushPendingSaves);
+
+/* Every save writes the whole store, so two open tabs used to overwrite each
+   other: tab B, holding an old copy, would save a theme change over the flashcard
+   progress tab A had just saved. The browser tells every OTHER tab when the store
+   is written, so each tab takes the new copy as its own the moment it changes.
+   Two things stay this tab's: which unit it is showing (the page on screen
+   belongs to it) and typing that has not been saved yet, which goes out with the
+   next save as usual. */
+let staleView = false;
+
+function adoptStoreFrom(raw) {
+  let next;
+  try { next = coerceStore(JSON.parse(raw)); } catch { return; }
+  const id = store.activeUnit;
+  next.activeUnit = id;
+  if (pendingSave) {
+    const mine = store.units[id], theirs = next.units[id];
+    theirs.questions.drafts = mine.questions.drafts;
+    theirs.questions.activeMock = mine.questions.activeMock;
+    theirs.extended.drafts = mine.extended.drafts;
+  }
+  store = next;
+  document.body.setAttribute('data-theme', store.theme || 'light');
+  syncThemeButtons();
+  updateNavAvatar();
+  staleView = true;
+  if (document.visibilityState === 'visible') refreshStaleView();
+}
+
+// Only pages that just show progress are redrawn. Redrawing one mid-game, mid-
+// mock or mid-answer would throw away what is on screen; those catch up on the
+// next visit.
+function refreshStaleView() {
+  if (!staleView) return;
+  staleView = false;
+  if (['home', 'plan', 'leaderboard'].includes(currentPage)) renderPage(currentPage, {});
+}
+
+window.addEventListener('storage', e => {
+  if (e.key === STATE_KEY && e.newValue) adoptStoreFrom(e.newValue);
+});
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') refreshStaleView();
+});
 
 /* ---- INIT ---- */
 /* Backdrops are dismiss targets, so they stay out of the tab order. Escape is

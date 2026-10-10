@@ -15,6 +15,7 @@ objects carrying both a `code` and a `term`.
 import json
 import os
 import re
+import subprocess
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -39,16 +40,60 @@ def load(folder, name):
         return json.load(f)
 
 
-def items_of(obj, out):
+def dicts_of(obj, out):
     if isinstance(obj, dict):
-        if obj.get('code') and obj.get('term'):
-            out.append(obj)
+        out.append(obj)
         for v in obj.values():
-            items_of(v, out)
+            dicts_of(v, out)
     elif isinstance(obj, list):
         for v in obj:
-            items_of(v, out)
+            dicts_of(v, out)
     return out
+
+
+def items_of(obj):
+    return [d for d in dicts_of(obj, []) if d.get('code') and d.get('term')]
+
+
+def terms_without_code(obj):
+    """A term with no code cannot be rated, searched or tracked. This has to walk
+    every object: items_of() only returns objects that HAVE a code, so asking it
+    for codeless items can never find one."""
+    return [d['term'] for d in dicts_of(obj, []) if d.get('term') and not d.get('code')]
+
+
+# app.js builds most pages with innerHTML and puts ids and codes inside onclick
+# attributes, so content is trusted as markup. Rather than trust every future
+# edit, the characters that would let text become markup are kept out of it: no
+# '<' anywhere (write "less than", or use the ≤ sign), and ids/codes limited to
+# characters that cannot close a quoted attribute.
+SAFE_ID = re.compile(r'[A-Za-z0-9._-]+')
+ID_FIELDS = ('id', 'code', 'scenario', 'paperId', 'category', 'section')
+
+
+def unsafe_strings(obj, key=None, out=None):
+    out = [] if out is None else out
+    if isinstance(obj, dict):
+        for k, v in obj.items():
+            unsafe_strings(v, k, out)
+    elif isinstance(obj, list):
+        for v in obj:
+            unsafe_strings(v, key, out)
+    elif isinstance(obj, str):
+        if '<' in obj:
+            out.append('%s contains "<": %r' % (key, obj[:60]))
+        elif key in ID_FIELDS and not SAFE_ID.fullmatch(obj):
+            out.append('%s %r may only use letters, digits, ".", "_" and "-"' % (key, obj))
+    return out
+
+
+# The checks above guard the live content, so they are run against known-bad
+# input first. A check that cannot fail would pass broken content silently.
+_bad = {'items': [{'code': 'A1.1', 'term': 'ok'}, {'term': 'no code'}]}
+if terms_without_code(_bad) != ['no code'] or len(items_of(_bad)) != 1:
+    err('self-test: the term-without-code check no longer detects a missing code')
+if len(unsafe_strings({'id': "a'b", 'term': '<img>', 'definition': 'x > y'})) != 2:
+    err('self-test: the markup check no longer detects unsafe content')
 
 
 def manifest_sections():
@@ -106,7 +151,7 @@ for unit, (folder, letters) in UNITS.items():
             if not meta.get(field):
                 err('%s manifest section %s: missing "%s"' % (unit, letter, field))
 
-        items = items_of(d, [])
+        items = items_of(d)
         for it in items:
             all_codes.append(it['code'])
 
@@ -116,11 +161,10 @@ for unit, (folder, letters) in UNITS.items():
         if long_defs:
             err('%s/%s.json: definitions over 120 characters: %s' % (unit, letter, ', '.join(long_defs[:5])))
 
-        # A term with no code cannot be rated or tracked.
-        missing = [t.get('title') or t.get('term')
-                   for t in items_of(d, []) if not t.get('code')]
+        missing = terms_without_code(d)
         if missing:
-            err('%s/%s.json: %d item(s) with a term but no code' % (unit, letter, len(missing)))
+            err('%s/%s.json: %d item(s) with a term but no code: %s'
+                % (unit, letter, len(missing), ', '.join(missing[:5])))
 
     dupes = {c for c in all_codes if all_codes.count(c) > 1}
     if dupes:
@@ -232,13 +276,33 @@ try:
 except (FileNotFoundError, ValueError) as e:
     err('aptitude: data/aptitude.json unreadable (%s)' % e)
 
+for root, _, files in os.walk(DATA):
+    for name in sorted(files):
+        if not name.endswith('.json'):
+            continue
+        path = os.path.join(root, name)
+        try:
+            with open(path, encoding='utf-8') as f:
+                problems = unsafe_strings(json.load(f))
+        except ValueError as e:
+            err('%s: not valid JSON (%s)' % (os.path.relpath(path, HERE).replace(os.sep, '/'), e))
+            continue
+        for p in problems[:5]:
+            err('%s: %s' % (os.path.relpath(path, HERE).replace(os.sep, '/'), p))
+
 # The build must be reproducible, or a rebuild silently rewrites live content.
+# A failed build leaves the old bundle in place, which would compare equal and
+# pass, so the build's own exit status is checked first.
 inline_path = os.path.join(HERE, 'data_inline.js')
 before = open(inline_path, encoding='utf-8').read() if os.path.exists(inline_path) else None
-os.system('%s "%s" > %s' % (sys.executable, os.path.join(HERE, 'build_inline.py'),
-                            os.devnull))
-after = open(inline_path, encoding='utf-8').read()
-if before is not None and before != after:
+build = subprocess.run([sys.executable, os.path.join(HERE, 'build_inline.py')],
+                       capture_output=True, text=True)
+if build.returncode != 0:
+    tail = (build.stderr or build.stdout).strip().splitlines()[-1:] or ['no output']
+    err('build_inline.py failed (exit %d): %s' % (build.returncode, tail[0]))
+elif not os.path.exists(inline_path):
+    err('build_inline.py did not write data_inline.js')
+elif before is not None and before != open(inline_path, encoding='utf-8').read():
     err('data_inline.js is not reproducible from data/: rebuilding changed it. '
         'Back-port the hand edits into data/<unit>/*.json first.')
 
