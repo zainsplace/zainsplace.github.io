@@ -35,29 +35,34 @@
 <h1 class="page-h1">Write-ups</h1>
 <p class="lede">Real findings from live bug-bounty programs, plus a lab I built. Several came back as duplicates — which is the clearest proof a finding is sound: an independent researcher and the vendor's own team agreed it was a genuine bug. Each entry says what kind of work it was, and targets are withheld where the report was handled privately and never publicly disclosed.</p>
 
+<!-- Grouped by kind; newest first within each group. The kind line reads: type · status · date. -->
 <section>
-<!-- Newest first. The kind line reads: type · public / lab / CTF · date. -->
+<h2 class="group">Bug bounty</h2>
 <article class="entry">
-<p class="kind">Bug bounty · independently confirmed (duplicate) · target withheld · 2026</p>
-<h2 class="entry-h"><a href="/writeups/graphql-ownership-idor/">One missing check, other people's private AI sessions</a></h2>
+<p class="kind">Independently confirmed (duplicate) · target withheld · 2026</p>
+<h3 class="entry-h"><a href="/writeups/graphql-ownership-idor/">One missing check, other people's private AI sessions</a></h3>
 <p>A developer platform's AI-agent feature served one user's private sessions to any low-privilege member, because the query behind them never checked record ownership. Found by reading the authorization code, proven live on production with two accounts, and independently confirmed.</p>
 <p class="shows">Source-audit find, clean production PoC, confirmed real by the duplicate.</p>
 </article>
 <article class="entry">
-<p class="kind">Bug bounty · independently confirmed (duplicate) · target withheld · Aug 2026</p>
-<h2 class="entry-h"><a href="/writeups/snapshot-ssrf/">An SSRF the docs said couldn't happen</a></h2>
+<p class="kind">Independently confirmed (duplicate) · target withheld · Aug 2026</p>
+<h3 class="entry-h"><a href="/writeups/snapshot-ssrf/">An SSRF the docs said couldn't happen</a></h3>
 <p>A managed cloud database's snapshot-restore feature could be made to fetch attacker URLs with an ordinary API key — despite documentation saying it was blocked in the cloud. Confirmed with 22 out-of-band callbacks, with honest impact bounds.</p>
 <p class="shows">Source-found, OOB-confirmed, severity called honestly; confirmed real by the duplicate.</p>
 </article>
 <article class="entry">
-<p class="kind">Bug bounty · independently confirmed (duplicate) · target withheld · Jul 2026</p>
-<h2 class="entry-h"><a href="/writeups/api-schema-leak/">A public API schema that gave away the back office</a></h2>
+<p class="kind">Independently confirmed (duplicate) · target withheld · Jul 2026</p>
+<h3 class="entry-h"><a href="/writeups/api-schema-leak/">A public API schema that gave away the back office</a></h3>
 <p>An unauthenticated schema endpoint on a fintech platform served its whole API spec — internal order-workflow and settlement counterparty names included. A real exposure, closed duplicate because another researcher filed it nine days earlier. A disclosure-discipline story.</p>
 <p class="shows">Confirmed real by the duplicate; target unnamed because it was never publicly disclosed.</p>
 </article>
+</section>
+
+<section>
+<h2 class="group">Security reviews</h2>
 <article class="entry">
-<p class="kind">Security review · lab, not client work · 12 Oct 2026</p>
-<h2 class="entry-h"><a href="/roblox-security/">Remote trust lab: five Roblox remotes that believed the client</a></h2>
+<p class="kind">Lab, not client work · 12 Oct 2026</p>
+<h3 class="entry-h"><a href="/roblox-security/">Remote trust lab: five Roblox remotes that believed the client</a></h3>
 <p>A server script with five RemoteEvents, attacked with the same calls an exploiter would fire: client-chosen coin amounts, negative prices, a race-condition double spend and a self-granted admin rank. Four Critical, one High.</p>
 <p class="shows">All five fixed, then re-tested against the same attacks.</p>
 </article>

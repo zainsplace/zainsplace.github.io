@@ -103,6 +103,10 @@ dl { margin: 0; display: grid; grid-template-columns: 11rem 1fr; gap: 0.6rem 1.5
 dt { color: var(--muted); }
 dd { margin: 0; }
 
+/* Group label above a set of write-ups (Bug bounty, Security reviews). */
+.group { font-family: "JetBrains Mono", ui-monospace, Consolas, monospace; font-size: 0.8125rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 0 0 0.25rem; }
+section + section .group { margin-top: 1rem; }
+
 /* A write-up: what kind of work it is first, so a lab never reads as client work. */
 .entry { border-top: 1px solid var(--rule); padding: 1.25rem 0; }
 .entry:last-of-type { border-bottom: 1px solid var(--rule); }
