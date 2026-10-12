@@ -25,7 +25,7 @@ MUTED = '#9AA5AE'
 RULE = '#2C343B'
 ACCENT = '#8EA2FF'
 
-LINE = 'zainsplace // cyber student. ctfs, bug bounties, cloud.'
+LINE = 'zainsplace // cybersecurity student. ctfs, bug bounties, cloud.'
 
 
 def font(name, size, axes):
