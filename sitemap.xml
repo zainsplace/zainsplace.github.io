@@ -4,5 +4,7 @@
   <url><loc>https://zainsplace.github.io/roblox-security/</loc><lastmod>2026-10-12</lastmod></url>
   <url><loc>https://zainsplace.github.io/writeups/</loc><lastmod>2026-10-12</lastmod></url>
   <url><loc>https://zainsplace.github.io/writeups/api-schema-leak/</loc><lastmod>2026-10-12</lastmod></url>
+  <url><loc>https://zainsplace.github.io/writeups/graphql-ownership-idor/</loc><lastmod>2026-10-12</lastmod></url>
+  <url><loc>https://zainsplace.github.io/writeups/snapshot-ssrf/</loc><lastmod>2026-10-12</lastmod></url>
   <url><loc>https://zainsplace.github.io/revision/</loc><lastmod>2026-10-12</lastmod></url>
 </urlset>

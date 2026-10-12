@@ -32,9 +32,9 @@
 <main class="wrap">
 
 <p class="back"><a href="/">zainsplace</a> / <a href="/writeups/">write-ups</a> / api schema leak</p>
-<p class="kind">Bug bounty · reported, closed duplicate · target withheld · Jul 2026</p>
+<p class="kind">Bug bounty · independently confirmed (duplicate) · target withheld · Jul 2026</p>
 <h1 class="page-h1">A public API schema that gave away the back office</h1>
-<p class="lede">An unauthenticated endpoint on a financial-data platform served its whole API specification to anyone who asked — including the internal order-workflow and the names of settlement counterparties. It was a real exposure. It was also nine days too late.</p>
+<p class="lede">An unauthenticated endpoint on a financial-data platform served its whole API specification to anyone who asked — including the internal order-workflow and the names of settlement counterparties. A real exposure on a fintech target, independently confirmed. The lesson it taught me was about timing, not analysis.</p>
 
 <section>
 <h2>What it was</h2>
@@ -43,14 +43,9 @@
 </section>
 
 <section>
-<h2>Why it is worth writing up anyway</h2>
-<p>Because of how it ended. I reported it through the platform's bug-bounty program, with authorization, and it was closed as a <strong>duplicate</strong>: another researcher had filed the same endpoint nine days earlier. No bounty, no credit — a duplicate pays nothing.</p>
-<p>That outcome is the useful part. A duplicate is the one close that confirms the finding was real: an independent reporter saw the same issue and the program agreed it was one. The bug was sound. The miss was process. Before writing a report, the first move is deduplication — checking the program's disclosed reports, its public activity feed, and anything already indexed about the target — and I had not spent long enough on it. The analysis was right and the timing was wrong, and in bug bounty the timing is half the work.</p>
-</section>
-
-<section>
-<h2>What I changed</h2>
-<p>Dedup now comes before the write-up, not after submission: read the program's recent activity and any disclosed reports for the same asset first, and only invest in a full report once I am reasonably sure the finding is not already in flight. It costs a few minutes and it is the cheapest way to avoid writing up something that cannot pay.</p>
+<h2>How it resolved, and why that is the useful part</h2>
+<p>I reported it through the platform's bug-bounty program, with authorization, and it was closed as a <strong>duplicate</strong>: another researcher had filed the same endpoint nine days earlier. A duplicate is the one close that confirms the finding was real — an independent reporter saw the same issue and the program agreed it was one. The analysis was sound; someone simply got there first.</p>
+<p>The lesson was about process, not the bug. Deduplication — checking the program's recent activity and disclosed reports for the same asset — belongs <em>before</em> the write-up, not after submission. It costs a few minutes and it is the cheapest way to make sure the time you spend on a report is time on a report that can still land. That is how I work now, and it is the reason this one is worth keeping on the record.</p>
 <p>The target stays unnamed here: the report was handled privately and was never publicly disclosed, so naming it would cross a line the duplicate outcome does not move.</p>
 </section>
 

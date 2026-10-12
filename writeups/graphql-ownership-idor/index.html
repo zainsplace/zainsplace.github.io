@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+<title>One missing check, other people's private AI sessions | zainsplace</title>
+<meta name="description" content="A GraphQL query on a developer platform's AI-agent feature let any low-privilege member read other users' private sessions. Found by source audit, proven live, independently confirmed.">
+<meta name="theme-color" content="#F3F5F6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#12161A" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://zainsplace.github.io/writeups/graphql-ownership-idor/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="zainsplace">
+<meta property="og:url" content="https://zainsplace.github.io/writeups/graphql-ownership-idor/">
+<meta property="og:title" content="One missing check, other people's private AI sessions">
+<meta property="og:description" content="A GraphQL query on a developer platform's AI-agent feature let any low-privilege member read other users' private sessions. Found by source audit, proven live, independently confirmed.">
+<meta property="og:image" content="https://zainsplace.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="zainsplace: cybersecurity student. Security tooling, reviews and write-ups.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="One missing check, other people's private AI sessions">
+<meta name="twitter:description" content="A GraphQL query on a developer platform's AI-agent feature let any low-privilege member read other users' private sessions. Found by source audit, proven live, independently confirmed.">
+<meta name="twitter:image" content="https://zainsplace.github.io/og.png">
+<link rel="preload" href="/fonts/newsreader-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/jetbrains-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<main class="wrap">
+
+<p class="back"><a href="/">zainsplace</a> / <a href="/writeups/">write-ups</a> / graphql ownership idor</p>
+<p class="kind">Bug bounty · independently confirmed (duplicate) · target withheld · 2026</p>
+<h1 class="page-h1">One missing check, other people's private AI sessions</h1>
+<p class="lede">A developer platform's AI-agent feature exposed one user's private sessions to another. The query that served them never checked who owned the record. I found it by reading the authorization code, then proved it against live production with two separate accounts — and an independent reporter and the vendor's own team confirmed it was real.</p>
+
+<section>
+<h2>What it was</h2>
+<p>The feature lets a team run AI agent workflows, and each workflow session is meant to be private to the user who created it. A GraphQL query returned those sessions, and the policy object behind it validated that the caller was a member of the right context — but never that the caller actually owned, or had been granted access to, the specific records it returned. The ownership predicate simply was not there.</p>
+<p>The practical effect: a low-privilege member of a workspace — the Developer role, not an admin — could read other users' private agent sessions through a normal API call. For a platform where those sessions can carry source code, prompts and internal context, that is a straightforward confidentiality breach across a trust boundary that is supposed to hold.</p>
+</section>
+
+<section>
+<h2>How I found it, and how I proved it</h2>
+<p>This started in the source. I read the policy and the resolver for the query and saw the gap directly: the authorization layer checked membership but not record ownership, so the row filter an attacker needed to clear was never applied to them. That is the kind of bug you cannot find by fuzzing — you have to read the code and understand what the check is and is not doing.</p>
+<p>Finding it in the source is only half the job; the part that counts is proving it. My first write-up was closed because the proof was not strong enough — I had reproduced it on a self-managed instance rather than the live target. So I rebuilt the whole thing: two independently controlled accounts on live production, each verified as a real user of the feature, no modification to the platform's source of any kind, and two screen recordings covering the full chain end to end. One account's private sessions, read in full from the other. That is the version that stands.</p>
+</section>
+
+<section>
+<h2>How it resolved</h2>
+<p>It was closed as a <strong>duplicate</strong>: another researcher had reported the same missing check. No bounty — duplicates pay nothing — but that outcome is the clearest external confirmation a finding can get. An independent reporter saw the same bug, and the vendor's triage team agreed it was one. The analysis was right and the proof held; someone else simply got there first.</p>
+<p>The target stays unnamed here: the report was handled privately and was never publicly disclosed.</p>
+</section>
+
+<section>
+<h2>What it shows</h2>
+<p>Reading real authorization code to find a gap a scanner never would, then backing it with a clean, reproducible proof on the live system — and rebuilding that proof to a higher standard when the first one fell short. That is the work.</p>
+</section>
+
+</main>
+</body>
+</html>
