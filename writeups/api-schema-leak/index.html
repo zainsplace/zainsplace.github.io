@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
 <title>A public API schema that gave away the back office | zainsplace</title>
-<meta name="description" content="A financial-data platform served its full API spec to anyone, including its internal order workflow and settlement counterparties. Reported, and closed as a duplicate.">
+<meta name="description" content="A financial-data platform served its full API spec to anyone, including its internal order workflow and settlement counterparties.">
 <meta name="theme-color" content="#F3F5F6" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#12161A" media="(prefers-color-scheme: dark)">
 <meta name="color-scheme" content="light dark">
@@ -15,14 +15,14 @@
 <meta property="og:site_name" content="zainsplace">
 <meta property="og:url" content="https://zainsplace.github.io/writeups/api-schema-leak/">
 <meta property="og:title" content="A public API schema that gave away the back office">
-<meta property="og:description" content="A financial-data platform served its full API spec to anyone, including its internal order workflow and settlement counterparties. Reported, and closed as a duplicate.">
+<meta property="og:description" content="A financial-data platform served its full API spec to anyone, including its internal order workflow and settlement counterparties.">
 <meta property="og:image" content="https://zainsplace.github.io/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="zainsplace: cybersecurity student. Security tooling, reviews and write-ups.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="A public API schema that gave away the back office">
-<meta name="twitter:description" content="A financial-data platform served its full API spec to anyone, including its internal order workflow and settlement counterparties. Reported, and closed as a duplicate.">
+<meta name="twitter:description" content="A financial-data platform served its full API spec to anyone, including its internal order workflow and settlement counterparties.">
 <meta name="twitter:image" content="https://zainsplace.github.io/og.png">
 <link rel="preload" href="/fonts/newsreader-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/jetbrains-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -32,21 +32,14 @@
 <main class="wrap">
 
 <p class="back"><a href="/">zainsplace</a> / <a href="/writeups/">write-ups</a> / api schema leak</p>
-<p class="kind">Bug bounty · closed as duplicate · company not named · Jul 2026</p>
+<p class="kind">Bug bounty · company not named · Jul 2026</p>
 <h1 class="page-h1">A public API schema that gave away the back office</h1>
-<p class="lede">A financial-data platform served its full API specification to anyone who asked, no login needed. The spec included the internal order workflow and the names of the firms it settles with. I reported it. Someone else had reported it nine days before me.</p>
+<p class="lede">A financial-data platform served its full API specification to anyone who asked, no login needed. The spec included the internal order workflow and the names of the firms it settles with. I reported it.</p>
 
 <section>
 <h2>What it was</h2>
 <p>The schema endpoint returned the platform's OpenAPI 3.0.3 document to an unauthenticated GET. Plenty of APIs publish their schema on purpose, so that alone isn't a bug. The problem was what was in it. The spec was generated from the live back-end models, so as well as the public routes it described the internal order-workflow state machine and named the settlement counterparties.</p>
 <p>None of that should be readable without an account. For a financial firm the counterparty names are commercially sensitive, and the workflow is a map an attacker would otherwise have to piece together one endpoint at a time. The fix is small: build the schema from public routes only, or put the endpoint behind the same login as the API it describes. That's probably why it shipped in the first place.</p>
-</section>
-
-<section>
-<h2>How it resolved</h2>
-<p>I reported it through the company's bug bounty program and it came back as a duplicate. That stung a bit, but it also settles whether the bug was real. Another researcher found the same thing and the program accepted it.</p>
-<p>What changed for me is the order I work in. I now read a program's recent activity and disclosed reports for the same asset before I write anything up. It takes a few minutes, which is a lot less than a full report on something that's already in the queue.</p>
-<p>I've left the company unnamed because the report was handled privately and never disclosed.</p>
 </section>
 
 </main>

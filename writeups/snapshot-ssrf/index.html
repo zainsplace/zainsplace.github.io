@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
 <title>An SSRF the docs said couldn't happen | zainsplace</title>
-<meta name="description" content="A managed cloud database's snapshot-restore feature could be made to fetch attacker URLs with an ordinary API key, even though the docs said it was blocked in the cloud. Confirmed out-of-band. Closed as a duplicate.">
+<meta name="description" content="A managed cloud database's snapshot-restore feature could be made to fetch attacker URLs with an ordinary API key, even though the docs said it was blocked in the cloud. Confirmed out-of-band.">
 <meta name="theme-color" content="#F3F5F6" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#12161A" media="(prefers-color-scheme: dark)">
 <meta name="color-scheme" content="light dark">
@@ -15,14 +15,14 @@
 <meta property="og:site_name" content="zainsplace">
 <meta property="og:url" content="https://zainsplace.github.io/writeups/snapshot-ssrf/">
 <meta property="og:title" content="An SSRF the docs said couldn't happen">
-<meta property="og:description" content="A managed cloud database's snapshot-restore feature could be made to fetch attacker URLs with an ordinary API key, even though the docs said it was blocked in the cloud. Confirmed out-of-band. Closed as a duplicate.">
+<meta property="og:description" content="A managed cloud database's snapshot-restore feature could be made to fetch attacker URLs with an ordinary API key, even though the docs said it was blocked in the cloud. Confirmed out-of-band.">
 <meta property="og:image" content="https://zainsplace.github.io/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="zainsplace: cybersecurity student. Security tooling, reviews and write-ups.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="An SSRF the docs said couldn't happen">
-<meta name="twitter:description" content="A managed cloud database's snapshot-restore feature could be made to fetch attacker URLs with an ordinary API key, even though the docs said it was blocked in the cloud. Confirmed out-of-band. Closed as a duplicate.">
+<meta name="twitter:description" content="A managed cloud database's snapshot-restore feature could be made to fetch attacker URLs with an ordinary API key, even though the docs said it was blocked in the cloud. Confirmed out-of-band.">
 <meta name="twitter:image" content="https://zainsplace.github.io/og.png">
 <link rel="preload" href="/fonts/newsreader-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/jetbrains-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -32,7 +32,7 @@
 <main class="wrap">
 
 <p class="back"><a href="/">zainsplace</a> / <a href="/writeups/">write-ups</a> / snapshot ssrf</p>
-<p class="kind">Bug bounty · closed as duplicate · company not named · Aug 2026</p>
+<p class="kind">Bug bounty · company not named · Aug 2026</p>
 <h1 class="page-h1">An SSRF the docs said couldn't happen</h1>
 <p class="lede">A managed cloud database let me point its snapshot-restore feature at any URL I liked, with nothing but a normal API key, and the backend would go and fetch it. The product's own docs said this was blocked in the cloud. The source said otherwise, and so did twenty-two out-of-band callbacks.</p>
 
@@ -45,12 +45,6 @@
 <h2>How I confirmed it</h2>
 <p>Reading source is a claim, not proof, so I made the request actually leave the building. Pointed at an out-of-band listener, the service fired back twenty-two DNS callbacks from the provider's own cloud IP ranges: blind SSRF, confirmed on the wire. Then I showed loopback reach. The backend could hit services bound to <code>127.0.0.1</code> on the host, and the HTTP status code told me what was and was not listening.</p>
 <p>Where it stopped mattered just as much. External HTTP egress was filtered, the cloud metadata endpoint gave up no credentials, and private-range and <code>file://</code> destinations were blocked. Real and reachable, then, but bounded: Low to Medium, not an internal-network compromise. I reported it at that severity rather than talking it up.</p>
-</section>
-
-<section>
-<h2>How it resolved</h2>
-<p>The security team closed it as already reported, a duplicate. No bounty, but it confirms the finding: another researcher had found the same SSRF and the vendor agreed it was real. It was just already on their desk.</p>
-<p>I have left the company unnamed because the report was handled privately and never disclosed.</p>
 </section>
 
 </main>

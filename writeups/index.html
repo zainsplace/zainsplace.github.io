@@ -33,28 +33,27 @@
 
 <p class="back"><a href="/">zainsplace</a> / write-ups</p>
 <h1 class="page-h1">Write-ups</h1>
-<p class="lede">Real findings from live bug-bounty programs, plus a lab I built. Several came back as duplicates. That is actually the clearest proof a finding was real: another researcher found the same thing and the program accepted it. Each entry says what kind of work it was. Company names are withheld where the report was handled privately and never disclosed.</p>
+<p class="lede">Real findings from live bug-bounty programs, plus a lab I built. Each entry says what kind of work it was. Company names are withheld where the report was handled privately and never disclosed.</p>
 
 <!-- Grouped by kind; newest first within each group. The kind line reads: type · status · date. -->
 <section>
 <h2 class="group">Bug bounty</h2>
 <article class="entry">
-<p class="kind">Closed as duplicate · company not named · Jul 2026</p>
+<p class="kind">Company not named · Jul 2026</p>
 <h3 class="entry-h"><a href="/writeups/graphql-ownership-idor/">One missing check, other people's private AI sessions</a></h3>
 <p>A developer platform's AI-agent feature let any low-privilege member read other users' private sessions, because the query behind them never checked who owned the record. Found by reading the authorisation code, proved live on production with two accounts.</p>
-<p class="shows">Read from source, proved on the live site, confirmed real by the duplicate.</p>
+<p class="shows">Read from source, proved on the live site.</p>
 </article>
 <article class="entry">
-<p class="kind">Closed as duplicate · company not named · Aug 2026</p>
+<p class="kind">Company not named · Aug 2026</p>
 <h3 class="entry-h"><a href="/writeups/snapshot-ssrf/">An SSRF the docs said couldn't happen</a></h3>
 <p>A managed cloud database's snapshot-restore feature could be made to fetch attacker URLs with an ordinary API key, even though the docs said it was blocked in the cloud. Confirmed with 22 out-of-band callbacks, reported with honest bounds.</p>
-<p class="shows">Found in source, confirmed out-of-band, severity called honestly; confirmed real by the duplicate.</p>
+<p class="shows">Found in source, confirmed out-of-band, severity called honestly.</p>
 </article>
 <article class="entry">
-<p class="kind">Closed as duplicate · company not named · Jul 2026</p>
+<p class="kind">Company not named · Jul 2026</p>
 <h3 class="entry-h"><a href="/writeups/api-schema-leak/">A public API schema that gave away the back office</a></h3>
-<p>An unauthenticated schema endpoint on a fintech platform served its whole API spec, internal order workflow and settlement counterparty names included. Real exposure, closed duplicate because another researcher filed it nine days before me.</p>
-<p class="shows">Confirmed real by the duplicate; company unnamed because it was never disclosed.</p>
+<p>An unauthenticated schema endpoint on a fintech platform served its whole API spec, internal order workflow and settlement counterparty names included.</p>
 </article>
 </section>
 
