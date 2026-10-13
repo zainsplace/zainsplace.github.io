@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+<title>Trailsight: explainable threat detection for AWS CloudTrail | zainsplace</title>
+<meta name="description" content="How Trailsight turns a CloudTrail export into findings: six deterministic rules, a local model that only explains, what the tests prove, and what it still misses.">
+<meta name="theme-color" content="#F3F5F6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#12161A" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://zainsplace.github.io/projects/trailsight/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="zainsplace">
+<meta property="og:url" content="https://zainsplace.github.io/projects/trailsight/">
+<meta property="og:title" content="Trailsight: explainable threat detection for AWS CloudTrail">
+<meta property="og:description" content="How Trailsight turns a CloudTrail export into findings: six deterministic rules, a local model that only explains, what the tests prove, and what it still misses.">
+<meta property="og:image" content="https://zainsplace.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="zainsplace: cybersecurity student. Security tooling, reviews and write-ups.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Trailsight: explainable threat detection for AWS CloudTrail">
+<meta name="twitter:description" content="How Trailsight turns a CloudTrail export into findings: six deterministic rules, a local model that only explains, what the tests prove, and what it still misses.">
+<meta name="twitter:image" content="https://zainsplace.github.io/og.png">
+<link rel="preload" href="/fonts/newsreader-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/jetbrains-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<main class="wrap">
+
+<p class="back"><a href="/">zainsplace</a> / projects / trailsight</p>
+<p class="kind">Project · case study · Oct 2026</p>
+<h1 class="page-h1">Trailsight</h1>
+<p class="lede">A self-hostable tool that reads AWS CloudTrail logs and flags identity and API attacks on small accounts. Rules decide what is a threat. An optional local model explains the finding, and nothing else.</p>
+
+<section>
+<h2>The problem</h2>
+<p>GuardDuty tells you a severity, not the reasoning, and it can't be self-hosted or extended. Wiz and Datadog are priced for companies. Panther and Falco are strong but heavy to run. A solo developer or a three-person startup on AWS usually ends up running nothing, or running GuardDuty and ignoring alerts they can't interpret.</p>
+<p>Trailsight is aimed at that user. It covers one data source, CloudTrail, and one threat class, identity and API abuse. It is free, runs on your own machine, and every finding carries the events that caused it.</p>
+</section>
+
+<section>
+<h2>How it works</h2>
+<pre class="diagram" aria-label="Pipeline: a CloudTrail export goes through the loader, then six rules, producing findings. Findings can optionally be explained by a local model, and are shown in the command line or the dashboard.">CloudTrail JSON export
+        |
+        v
+Loader       one Event per record
+        |
+        v
+Six rules    each runs over every event
+        |
+        v
+Findings     severity, identity, evidence
+        |
+        +-- optional --> Ollama (local)
+        |                explains a finding
+        v
+CLI: text, JSON, exit code
+Dashboard: local Flask app</pre>
+<p>The loader takes a CloudTrail export, either <code>{"Records": [...]}</code> or a bare list, and normalises each record into one event: time, API call, service, region, identity ARN and type, access key, source IP, error code, whether MFA was used, and the request parameters. Nothing after the loader knows where the logs came from.</p>
+<p>Each rule is a plain function over the full list of events that returns findings. A finding holds the rule, a severity, the identity, a one-line summary, and the exact events that triggered it. The CLI prints findings as text or JSON and exits with status 1 if there are any, so a scan can fail a CI job. The dashboard shows the same findings as cards, sorted by severity, with the evidence one click away.</p>
+<figure>
+<img src="/projects/trailsight/dashboard-demo.png" width="1200" height="860" loading="lazy" alt="The Trailsight dashboard after loading the demo data: six findings, two critical, two high and two medium. The top cards read Administrator policy attached and Security control disabled, each with an Explain button and a Show evidence toggle.">
+<figcaption>The dashboard running locally on the built-in demo data.</figcaption>
+</figure>
+</section>
+
+<section>
+<h2>The six rules</h2>
+<table class="rules">
+<thead><tr><th>Rule</th><th>Fires when</th><th>Severity</th></tr></thead>
+<tbody>
+<tr><td>Leaked credentials</td><td>One access key is used from two or more different source IPs inside any one-hour window. Reports only the burst, once per key.</td><td>High</td></tr>
+<tr><td>Privilege escalation</td><td><code>AttachUserPolicy</code>, <code>AttachRolePolicy</code> or <code>AttachGroupPolicy</code> with a policy ARN containing <code>AdministratorAccess</code>.</td><td>Critical</td></tr>
+<tr><td>Reconnaissance</td><td>One identity makes 15 or more calls starting <code>Describe</code>, <code>List</code> or <code>Get</code> within 30 minutes. Once per identity.</td><td>Medium</td></tr>
+<tr><td>Security controls disabled</td><td><code>StopLogging</code>, <code>DeleteTrail</code>, <code>DeleteDetector</code> or <code>DisassociateFromMasterAccount</code>.</td><td>Critical</td></tr>
+<tr><td>Root activity</td><td>Any event by the root identity, except <code>ConsoleLogin</code>.</td><td>High</td></tr>
+<tr><td>Console login without MFA</td><td>A <code>ConsoleLogin</code> where CloudTrail does not record MFA as used.</td><td>Medium</td></tr>
+</tbody>
+</table>
+</section>
+
+<section>
+<h2>Rules detect, the model explains</h2>
+<p>The language model sits at the end of the pipeline. It is only ever handed a finding the rules have already made, with that finding's evidence, and asked what happened, why it is suspicious and how to respond. It is never asked whether something is malicious, and the prompt tells it to use only the evidence given.</p>
+<p>That split is deliberate. Detection is code, so it can be tested and gives the same answer every time. A model can be wrong or make things up, so it never gets a vote on what counts as a threat. Turn explanations off and the findings are identical. They are off by default and run through Ollama on localhost, so logs never leave the machine.</p>
+</section>
+
+<section>
+<h2>Testing, and what I measured</h2>
+<p>The repo has 93 tests: 18 for the rules, each with a case where it fires and a case where it stays silent, plus the loader, the CLI, the dashboard, the launcher and the explanation layer. The explanation tests swap the model for a fake and check what it is sent, so they run without Ollama. GitHub Actions runs ruff and the full suite on Python 3.12 on every push and pull request, and CodeQL scans the code.</p>
+<p>I ran the generator and the scanner myself on 13 October 2026:</p>
+<dl>
+<dt>Tests</dt><dd>93 passed, ruff clean (Python 3.14.6)</dd>
+<dt>Synthetic dataset</dt><dd>43 events, 6 planted attacks, one per rule</dd>
+<dt>Caught</dt><dd>6 of 6, each against the right identity</dd>
+<dt>False positives</dt><dd>0, and no duplicate findings</dd>
+</dl>
+<p>Read that result for what it is. The dataset is small and each attack was written to trip its rule, so it shows the rules are wired up correctly, not how well they do on real logs. The end-to-end test also only checks that every planted rule fires, so a false positive would not fail it.</p>
+</section>
+
+<section>
+<h2>What it misses</h2>
+<p>I fed the rules hand-built events to find the edges. Each of these went through without a finding:</p>
+<ul class="notes">
+<li>Admin rights granted any other way: an inline policy with <code>PutUserPolicy</code>, a new policy version with <code>CreatePolicyVersion</code>, or adding a user to an admin group.</li>
+<li>A root console login. Root activity skips <code>ConsoleLogin</code>, and the MFA rule only fires when MFA is missing.</li>
+<li>Enumeration that stays under 15 calls in 30 minutes, or is split across two identities.</li>
+<li>Quieter ways to blind logging: <code>UpdateDetector</code> to disable GuardDuty, <code>PutEventSelectors</code> to narrow a trail, deleting the log bucket, or stopping the AWS Config recorder.</li>
+</ul>
+<p>And these fired when they arguably shouldn't:</p>
+<ul class="notes">
+<li>A denied <code>AttachUserPolicy</code> still raises a critical finding, because no rule looks at the error code.</li>
+<li>A federated sign-in, where MFA happens at the identity provider and CloudTrail records it as not used, is reported as a login without MFA. So is a failed login.</li>
+<li>A role whose key appears from two AWS service addresses within an hour is flagged as leaked.</li>
+<li>An application role making 20 <code>GetObject</code> calls in ten minutes counts as a reconnaissance burst, because <code>Get</code> covers normal data reads too.</li>
+</ul>
+<p>Beyond the rules, it reads one uncompressed JSON file at a time. It can't pull from S3 or CloudWatch yet, and the per-identity baseline and the correlator in the design doc aren't built.</p>
+</section>
+
+<section>
+<h2>Roadmap</h2>
+<dl>
+<dt>v0.1, done</dt><dd>Loader, synthetic dataset, the six rules, the CLI, optional explanations, and the dashboard, which arrived early</dd>
+<dt>v0.2</dt><dd>Per-identity anomaly detection for behaviour the rules don't cover</dd>
+<dt>v0.3</dt><dd>Reading CloudTrail directly from S3 and CloudWatch</dd>
+<dt>v0.4</dt><dd>Continuous monitoring in the dashboard, which today scans one file at a time</dd>
+</dl>
+</section>
+
+<section>
+<h2>Links</h2>
+<ul class="links">
+<li><a href="https://github.com/zainsplace/trailsight">Source on GitHub</a></li>
+<li><a href="https://github.com/zainsplace/trailsight/blob/main/docs/design.md">Design document</a></li>
+</ul>
+</section>
+
+</main>
+</body>
+</html>

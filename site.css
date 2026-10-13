@@ -122,6 +122,19 @@ section + section .group { margin-top: 1rem; }
 .back { font-family: "JetBrains Mono", ui-monospace, Consolas, monospace; font-size: 0.875rem; margin: 0 0 2.5rem; }
 .page-h1 { font-size: clamp(2.6rem, 8vw, 4.5rem); }
 
+/* Project case studies: a plain-text diagram, inline code and a screenshot. */
+code, pre { font-family: "JetBrains Mono", ui-monospace, Consolas, monospace; font-variant-ligatures: none; }
+code { font-size: 0.85em; overflow-wrap: anywhere; }
+/* Diagram lines stay under 40 characters so they fit a 375px screen without scrolling. */
+pre.diagram { font-size: 0.8125rem; line-height: 1.5; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 1rem 0; margin: 0 0 1.5rem; overflow-x: auto; }
+figure { margin: 2rem 0 0; }
+figure img { display: block; width: 100%; height: auto; border: 1px solid var(--rule); }
+figcaption { color: var(--muted); font-size: 0.9375rem; margin-top: 0.5rem; }
+.rules td:last-child { white-space: nowrap; }
+.rules td:first-child { white-space: normal; }
+ul.notes { padding-left: 1.25rem; }
+.notes li { margin-bottom: 0.4rem; }
+
 .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
 .pair p { margin: 0.25rem 0 0; color: var(--muted); }
 .pair a { font-weight: 500; }
@@ -137,6 +150,13 @@ section + section .group { margin-top: 1rem; }
   .dump .off { margin-right: 1ch; }
   #dump { min-height: calc(6 * 1.9em + 2rem); }
   th:nth-child(2), td:nth-child(2) { padding-right: 0; }
+  /* Three columns are too tight for API names on a phone, so each rule becomes a short stacked block. */
+  .rules thead { display: none; }
+  .rules tr { display: block; padding: 0.8rem 0; border-bottom: 1px solid var(--rule); }
+  .rules td { display: block; padding: 0 0 0.25rem; border: 0; }
+  .rules td:last-child { color: var(--muted); font-size: 0.9375rem; }
+  .rules td:last-child::before { content: "Severity: "; }
+  .rules tbody tr:hover td { background: none; }
 }
 /* Below 384px the 10-byte rows need 10px type to fit without scrolling. */
 @media (max-width: 24rem) { .dump { font-size: 0.625rem; } }
