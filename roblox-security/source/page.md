@@ -14,4 +14,4 @@ This is a controlled lab case study, not a client engagement: the game is a test
 
 ## Contact
 
-Want a review of your game? Message **lce_te** on Roblox, or find me on [GitHub](https://github.com/zainsplace).
+Want a review of your game? Email me at [acmanzain@gmail.com](mailto:acmanzain@gmail.com).

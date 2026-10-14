@@ -12,7 +12,7 @@ Sources (the source of truth; never edit index.html by hand):
     tools/roblox_page.html                 the HTML and CSS around them
 
 Markdown supported: paragraphs, - lists, 1. lists, | tables |, `code`, **bold**
-and [links](https://...). Anything else stops the build with a message rather
+and [links](https://... or mailto:...). Anything else stops the build with a message rather
 than guessing. Standard library only.
 """
 
@@ -44,10 +44,10 @@ def esc(text):
 
 
 def inline(text):
-    """`code`, **bold** and [label](https://url); everything else is escaped text."""
+    """`code`, **bold** and [label](https://url or mailto:address); everything else is escaped text."""
     out = []
     pos = 0
-    pattern = re.compile(r'`([^`]+)`|\*\*(.+?)\*\*|\[([^\]]+)\]\((https?://[^)\s]+)\)')
+    pattern = re.compile(r'`([^`]+)`|\*\*(.+?)\*\*|\[([^\]]+)\]\(((?:https?://|mailto:)[^)\s]+)\)')
     for m in pattern.finditer(text):
         out.append(esc(text[pos:m.start()]))
         if m.group(1) is not None:

@@ -137,7 +137,7 @@ ul.notes { padding-left: 1.25rem; }
 
 .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
 .pair p { margin: 0.25rem 0 0; color: var(--muted); }
-.pair a { font-weight: 500; }
+.pair div > a { font-weight: 500; }
 
 @media (max-width: 40rem) {
   body { font-size: 1.0625rem; }
