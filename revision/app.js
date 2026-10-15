@@ -83,7 +83,8 @@ function defaultUnitState() {
       history: [],     // {qId, marks, date, selfScore}
       mocks: [],       // {paper, date, score, max, minutes}
       drafts: {},      // textarea id -> unmarked answer text
-      activeMock: {}   // a paper being sat or marked, so a refresh can resume it
+      activeMock: {},  // a paper being sat or marked, so a refresh can resume it
+      ppp: PPP.defaultState()   // Pure Past Papers: phase, finished sittings, the live sitting
     },
     streak: { last: null, count: 0 },
     xp: 0,
@@ -187,6 +188,7 @@ function coerceUnit(raw) {
   Object.keys(unit.battles.modes).forEach(k => {
     unit.battles.modes[k] = coerceLike({ played: 0, won: 0, best: 0 }, unit.battles.modes[k]);
   });
+  unit.questions.ppp = PPP.coerceState(unit.questions.ppp);
   return unit;
 }
 
@@ -427,6 +429,7 @@ function resetTransientState() {
   qCurrentId = null;
   quizOpts.section = 'all';
   mock = null;
+  ppp = null;
   gamesMode = 'menu';
   quizQueue = [];
   quizIdx = 0;
@@ -466,6 +469,7 @@ function stopAllTimers() {
   stopGameTimers();
   stopExtendedTimers();
   stopMockTimer();
+  stopPPPTimer();
 }
 
 function switchUnit(id) {
@@ -945,7 +949,7 @@ function todayTasks() {
     });
   }
 
-  const qs = (loadJSON('data/questions.json') || {}).questions || [];
+  const qs = PPP.bankQuestions(loadJSON('data/questions.json'));
   const latest = latestScores();
   const weak = qs.filter(q => q.id in latest && latest[q.id] < WEAK_PCT).length;
   const untried = qs.filter(q => !(q.id in latest)).length;
@@ -1584,7 +1588,7 @@ function matchesShow(q, show, latest) {
 }
 
 function practiceList(latest = latestScores()) {
-  return qData.questions.filter(q =>
+  return PPP.bankQuestions(qData).filter(q =>
     (qFilter === 'all' || q.section === qFilter) && matchesShow(q, qShow, latest));
 }
 
@@ -1596,7 +1600,7 @@ function avgOf(nums) {
    which section and command word are dragging the average down. */
 function renderQSummary() {
   const latest = latestScores();
-  const qs = qData.questions;
+  const qs = PPP.bankQuestions(qData);   // sealed PPP parts stay out of practice and its tiles
   const done = qs.filter(q => q.id in latest);
   const avg = avgOf(done.map(q => latest[q.id]));
   const weakCount = done.filter(q => latest[q.id] < WEAK_PCT).length;
@@ -2111,7 +2115,7 @@ function shuffleInPlace(a) {
 function shuffle(arr) { return shuffleInPlace(arr.slice()); }
 
 function quizPool(o, latest = latestScores()) {
-  const inSec = qData.questions.filter(q => o.section === 'all' || q.section === o.section);
+  const inSec = PPP.bankQuestions(qData).filter(q => o.section === 'all' || q.section === o.section);
   if (o.focus === 'weak') return inSec.filter(q => matchesShow(q, 'weak', latest)).sort((a, b) => latest[a.id] - latest[b.id]);
   if (o.focus === 'new') return inSec.filter(q => matchesShow(q, 'new', latest));
   return shuffle(inSec);
@@ -2238,6 +2242,12 @@ function renderQuizMode(container) {
    it. The saved copy is validated before use: it comes from storage or a backup. */
 let mock = null;   // { paperId, phase: 'sit'|'mark'|'done', endAt, startedAt, answers, scores, minutesUsed }
 let mockTick = null;
+let ppp = null;      // the live PPP sitting; mirrored to state.questions.ppp.active
+let pppTick = null;
+
+function stopPPPTimer() {
+  if (pppTick) { clearInterval(pppTick); pppTick = null; }
+}
 
 // The real Unit 1 paper is 90 marks in 2 hours; mocks keep that pace unless a
 // paper sets its own `minutes` (Unit 2 does, as its exam runs to a different clock).
@@ -2430,7 +2440,7 @@ function renderMockMenu(container) {
     ${mockResumeHTML()}
     <p class="q-intro">Sit a whole paper against the clock, as in the real exam: answer every part, no mark schemes until you finish. Then mark each answer against the mark scheme to get your total.${qData.questions.some(q => q.commandWord === 'Draw') ? ' Have paper and a pen ready for the diagram question.' : ''}</p>
     <div class="mock-papers">
-      ${qData.papers.map(p => {
+      ${qData.papers.filter(p => !p.sealed).map(p => {
         const marks = paperMarks(p);
         const mine = past.filter(m => m.paper === p.id);
         const best = mine.length ? Math.max(...mine.map(m => Math.round(m.score / m.max * 100))) : null;
