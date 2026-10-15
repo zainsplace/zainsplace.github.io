@@ -8365,7 +8365,7 @@ const INLINE_UNITS = {
           "question": "Describe how Just U Games can use **one** cloud computing model.",
           "slots": 0,
           "traps": [
-            "**one** model only: the examiner marks the first one you write.",
+            "ONE model only: the examiner marks the first one you write.",
             "Name the model, say what it is, then link it to Just U Games backing up its data."
           ],
           "markScheme": {
@@ -9080,7 +9080,7 @@ const INLINE_UNITS = {
           "question": "Explain **one** factor that affects the quality of a streamed lesson.",
           "slots": 1,
           "traps": [
-            "**one** factor only: the examiner marks the first one.",
+            "ONE factor only: the examiner marks the first one.",
             "\"Bad Wi-Fi\" on its own scores nothing."
           ],
           "markScheme": {
@@ -9213,7 +9213,7 @@ const INLINE_UNITS = {
           "question": "Describe how Paws Rescue could use **one** type of online community.",
           "slots": 0,
           "traps": [
-            "**one** type only: the examiner marks the first one you write.",
+            "ONE type only: the examiner marks the first one you write.",
             "Name the type, say what it is, then link it to the charity's volunteers."
           ],
           "markScheme": {
@@ -9796,7 +9796,7 @@ const INLINE_UNITS = {
           "question": "Explain **one** factor that affects the use of online systems by the carers.",
           "slots": 1,
           "traps": [
-            "**one** factor only: the examiner marks the first one.",
+            "ONE factor only: the examiner marks the first one.",
             "\"Fast\" or \"safe\" on their own score nothing."
           ],
           "markScheme": {
@@ -9928,7 +9928,7 @@ const INLINE_UNITS = {
           "question": "Describe **one** way the library could use an IT system.",
           "slots": 0,
           "traps": [
-            "**one** use only: the examiner marks the first one you write.",
+            "ONE use only: the examiner marks the first one you write.",
             "Name the use, say what the system does, then link it to the library."
           ],
           "markScheme": {
@@ -10053,16 +10053,15 @@ const INLINE_UNITS = {
             "rule": "One mark for each correct answer, up to 2 marks.",
             "points": [
               "Speakers / headphones (e.g. a beep when an item scans)",
-              "Projector",
-              "Braille display",
-              "Plotter"
+              "Braille display"
             ],
             "accept": [
               "Any other output device that fits a till, other than a monitor or printer"
             ],
             "reject": [
               "Monitor or printer, including a receipt printer (excluded by the question)",
-              "Input devices such as a barcode scanner or card reader"
+              "Input devices such as a barcode scanner or card reader",
+              "Plotters (a type of printer) and projectors (not used with a till)"
             ]
           },
           "modelAnswer": "1. Speakers\n2. Braille display"
@@ -10328,10 +10327,6 @@ const INLINE_UNITS = {
                 "so audio and video stutter during the call"
               ],
               [
-                "Latency rises with distance and hops",
-                "so directors further away get more delay"
-              ],
-              [
                 "Congestion at busy times adds delay",
                 "so calls may need to be scheduled outside peak hours"
               ]
@@ -10524,7 +10519,7 @@ const INLINE_UNITS = {
           "question": "Explain **one** protocol used when customers view the website.",
           "slots": 1,
           "traps": [
-            "**one** protocol only, and what it does on the website."
+            "ONE protocol only, and what it does on the website."
           ],
           "markScheme": {
             "type": "chain",
@@ -10642,7 +10637,7 @@ const INLINE_UNITS = {
           "question": "Describe **one** form of notation ArenaPlay could use to design its new booking system.",
           "slots": 0,
           "traps": [
-            "**one** form only: the examiner marks the first one you write.",
+            "ONE form only: the examiner marks the first one you write.",
             "Name it, say what it shows, then link it to designing the booking system."
           ],
           "markScheme": {

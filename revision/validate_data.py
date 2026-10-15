@@ -201,6 +201,10 @@ for unit, (folder, letters) in UNITS.items():
         for q in qs:
             if q.get('scenario') and q['scenario'] not in scen_ids:
                 err('%s: question %s points at unknown scenario %s' % (unit, q['id'], q['scenario']))
+            # Traps are shown as plain text (marker list and PPP tips), so
+            # **bold** markup would appear as literal asterisks.
+            if any('**' in t for t in q.get('traps', [])):
+                err('%s: question %s has ** in a trap; traps are plain text' % (unit, q['id']))
             ms = q.get('markScheme')
             if not ms:
                 continue
