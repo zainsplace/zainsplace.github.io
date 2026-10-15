@@ -44,6 +44,17 @@
         "p3s4"
       ],
       "sealed": true
+    },
+    {
+      "id": "p4",
+      "title": "Paper 4",
+      "scenarios": [
+        "p4s1",
+        "p4s2",
+        "p4s3",
+        "p4s4"
+      ],
+      "sealed": true
     }
   ],
   "scenarios": [
@@ -150,6 +161,34 @@
       "title": "Paws Rescue",
       "total": 24,
       "stem": "Paws Rescue is an animal-welfare charity with 200 volunteers across the North West.\n\nVolunteers organise themselves by email. The charity wants an online community where volunteers can share news, arrange shifts and post photos of animals waiting for adoption.\n\nThe charity has a small budget and one part-time IT volunteer."
+    },
+    {
+      "id": "p4s1",
+      "number": 1,
+      "title": "FitZone gyms",
+      "total": 22,
+      "stem": "FitZone runs six gyms in the West Midlands.\n\nIt is launching a member app. Members will use it to book classes, pay for sessions and watch exercise videos.\n\nThe app will record what each member books and buys. FitZone wants to use this data to send members personalised offers.\n\nEach gym has a reception computer that runs the booking system."
+    },
+    {
+      "id": "p4s2",
+      "number": 2,
+      "title": "Bell & Okafor Architects",
+      "total": 23,
+      "stem": "Bell & Okafor Architects is a practice of 15 architects in Leeds.\n\nArchitects create large, detailed building drawings and send them to clients and builders by email and file-sharing links. They often work on building sites, using the site's public Wi-Fi.\n\nThe practice is moving to a new office and is choosing new IT systems."
+    },
+    {
+      "id": "p4s3",
+      "number": 3,
+      "title": "CareWell Home Support",
+      "total": 21,
+      "stem": "CareWell Home Support sends carers to visit elderly clients in their own homes across rural Shropshire.\n\n**The agency has an office with two rooms.**\n\nServer room\nOne server that stores every client's care plan\n\nMain office\nThree desktop computers for office staff\nOne printer\n\n**Carers**\n\nEach carer has a smartphone to view care plans and record each visit.\nSome office staff also work from home on laptops."
+    },
+    {
+      "id": "p4s4",
+      "number": 4,
+      "title": "Ashford Town Library",
+      "total": 24,
+      "stem": "Ashford Town Library lends books and offers free public computers.\n\nThe library records every book a member borrows and logs which websites are visited on its public computers.\n\nThe council is considering new technology for the library, including AI tools and faster networking."
     }
   ],
   "questions": [
@@ -3320,6 +3359,720 @@
         ]
       },
       "modelAnswer": "DPA / UK GDPR: adopters' contact details are personal data, so they need consent and must not be posted publicly; this limits what volunteers share but protects the charity from ICO fines.\nComputer Misuse Act: hacking volunteer accounts is illegal, which deters attackers; but the charity still needs strong passwords and MFA.\nCopyright: volunteers can only post photos they took or have permission to use, which adds checks but avoids legal claims.\nDSE regulations: little impact, since volunteers are not employees at workstations.\nConclusion: the DPA matters most; compliance costs time on a small budget, but it protects trust with adopters and donors."
+    },
+    {
+      "id": "p4-1-a-i",
+      "scenario": "p4s1",
+      "part": "(a)(i)",
+      "section": "A",
+      "code": "A3.1",
+      "marks": 2,
+      "commandWord": "Give",
+      "context": "The member app will run on mobile operating systems.",
+      "question": "Give **two** other types of operating system FitZone's IT systems could use.",
+      "slots": 2,
+      "traps": [
+        "\"other types\": mobile operating systems are given, so they score nothing.",
+        "TYPES of operating system, not brand names like Windows or Android."
+      ],
+      "markScheme": {
+        "type": "points",
+        "rule": "One mark for each correct answer, up to 2 marks.",
+        "points": [
+          "Network operating system (e.g. a server managing member logins)",
+          "Multitasking operating system",
+          "Multi-user operating system",
+          "Real-time operating system (e.g. in gym equipment)",
+          "Single-use operating system (e.g. an entry turnstile)",
+          "Batch operating system (e.g. monthly billing)",
+          "Distributed operating system"
+        ],
+        "accept": [],
+        "reject": [
+          "Mobile operating system (given in the question)",
+          "Brand names such as Windows, iOS or Android"
+        ]
+      },
+      "modelAnswer": "1. Network operating system\n2. Real-time operating system"
+    },
+    {
+      "id": "p4-1-a-ii",
+      "scenario": "p4s1",
+      "part": "(a)(ii)",
+      "section": "A",
+      "code": "A3.7",
+      "marks": 2,
+      "commandWord": "Give",
+      "context": "The app will include exercise videos.",
+      "question": "Give **two** file formats suitable for the exercise videos.",
+      "slots": 2,
+      "traps": [
+        "VIDEO formats only: image and audio formats score nothing."
+      ],
+      "markScheme": {
+        "type": "points",
+        "rule": "One mark for each correct answer, up to 2 marks.",
+        "points": [
+          "MP4 with H.264",
+          "MP4 with H.265 (HEVC)",
+          "MKV"
+        ],
+        "accept": [
+          "Any other video format, e.g. MOV, WebM or AVI"
+        ],
+        "reject": [
+          "Image formats (JPEG, PNG, GIF)",
+          "Audio formats (MP3, WAV)"
+        ]
+      },
+      "modelAnswer": "1. MP4 (H.264)\n2. MKV"
+    },
+    {
+      "id": "p4-1-b-i",
+      "scenario": "p4s1",
+      "part": "(b)(i)",
+      "section": "E",
+      "code": "E1.2",
+      "marks": 4,
+      "commandWord": "Explain",
+      "context": "",
+      "question": "Explain **two** benefits to FitZone of using members' booking and purchase data.",
+      "slots": 2,
+      "traps": [
+        "Benefits to FITZONE, each linked to the booking and purchase data."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+        "points": [
+          [
+            "Forecasting demand",
+            "so popular classes get more sessions and staff are rostered for busy times"
+          ],
+          [
+            "Targeted marketing / personalised offers",
+            "which is cheaper and more effective than sending the same advert to everyone"
+          ],
+          [
+            "Recommendations",
+            "so members are shown classes like ones they already book, increasing bookings"
+          ],
+          [
+            "Loyalty schemes linked to named members",
+            "so regular members are rewarded and more likely to stay"
+          ],
+          [
+            "Spotting members who stop attending",
+            "so the gym can contact them before they cancel"
+          ]
+        ],
+        "accept": [],
+        "reject": [
+          "Benefits to members rather than FitZone, unless linked back to the business"
+        ]
+      },
+      "modelAnswer": "1. Forecasting: booking data shows which classes are full, so FitZone adds sessions at busy times.\n2. Targeted offers: a member who books yoga gets yoga offers, which is cheaper than mass adverts."
+    },
+    {
+      "id": "p4-1-b-ii",
+      "scenario": "p4s1",
+      "part": "(b)(ii)",
+      "section": "E",
+      "code": "E1.2",
+      "marks": 4,
+      "commandWord": "Explain",
+      "context": "",
+      "question": "Explain **two** drawbacks to FitZone of using members' data to send personalised offers.",
+      "slots": 2,
+      "traps": [
+        "Drawbacks to FITZONE: setting up the app is not the question."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+        "points": [
+          [
+            "Can feel intrusive",
+            "so some members may stop using the app or cancel their membership"
+          ],
+          [
+            "GDPR: consent and opt-out are required",
+            "so FitZone needs consent records and must honour opt-outs"
+          ],
+          [
+            "Data must be stored securely",
+            "so a breach could bring ICO fines and damage FitZone's reputation"
+          ],
+          [
+            "Cookie consent is needed",
+            "so FitZone must ask before tracking members in the app"
+          ],
+          [
+            "Cost of managing and protecting the data",
+            "because staff time and security systems cost money"
+          ]
+        ],
+        "accept": [],
+        "reject": [
+          "Costs of building the app"
+        ]
+      },
+      "modelAnswer": "1. Intrusive: members may dislike being tracked and stop using the app.\n2. GDPR: FitZone must get consent and let members opt out, which takes admin time."
+    },
+    {
+      "id": "p4-1-c",
+      "scenario": "p4s1",
+      "part": "(c)",
+      "section": "A",
+      "code": "A3.2",
+      "marks": 4,
+      "commandWord": "Describe",
+      "context": "The reception computer runs the booking system, a card reader program and a music player at the same time.",
+      "question": "Describe how the operating system manages memory on the reception computer.",
+      "slots": 0,
+      "traps": [
+        "MEMORY management only: scheduling the CPU is a different OS role."
+      ],
+      "markScheme": {
+        "type": "points",
+        "rule": "One mark for each point, up to 4 marks.",
+        "points": [
+          "Allocates RAM to each program when it starts",
+          "Frees the RAM when a program closes",
+          "Keeps each program's memory separate, so one cannot overwrite another",
+          "Uses virtual memory: part of the disk acts as extra RAM when RAM is full",
+          "Virtual memory is slower than RAM",
+          "Paging swaps small blocks between RAM and disk"
+        ],
+        "accept": [],
+        "reject": [
+          "Scheduling CPU time between programs (multi-tasking)"
+        ]
+      },
+      "modelAnswer": "When the booking system starts, the OS gives it a block of RAM, and frees it when it closes. It keeps each program's memory separate so the music player cannot overwrite the booking system. If RAM runs out, it uses disk space as virtual memory, swapping pages between RAM and disk, which is slower."
+    },
+    {
+      "id": "p4-1-d",
+      "scenario": "p4s1",
+      "part": "(d)",
+      "section": "E",
+      "code": "E2.3",
+      "marks": 6,
+      "commandWord": "Discuss",
+      "context": "FitZone wants to find out what members think of the new app.",
+      "question": "Discuss methods, other than questionnaires, FitZone could use to collect members' opinions.",
+      "slots": 0,
+      "traps": [
+        "\"other than questionnaires\": anything about questionnaires earns nothing.",
+        "Discuss means both sides: what each method is good for AND its drawbacks, applied to FitZone."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "focus": "Methods other than questionnaires for collecting gym members' opinions.",
+        "indicative": [
+          "Online survey in the app: cheap and fast to reach every member; closed questions easy to analyse",
+          "Survey drawbacks: low response rates; leading questions skew results",
+          "Focus groups: 6-10 members discuss the app in depth; a facilitator can follow up",
+          "Focus group drawbacks: expensive to run; strong personalities can sway the group",
+          "Interviews: one-to-one, so staff can probe and ask follow-up questions",
+          "Interview drawbacks: time-consuming, so only a small sample; the interviewer can influence answers"
+        ],
+        "reject": [
+          "Questionnaires (excluded by the question)"
+        ]
+      },
+      "modelAnswer": "In-app survey: reaches every member cheaply and the results are easy to analyse; but few members respond.\nFocus group: a small group of members discuss the app in depth, so staff learn why features annoy people; but it is costly and one loud member can sway the rest.\nInterviews: staff can ask follow-up questions; but they take time, so only a few members are asked."
+    },
+    {
+      "id": "p4-2-a",
+      "scenario": "p4s2",
+      "part": "(a)",
+      "section": "B",
+      "code": "B3.1",
+      "marks": 2,
+      "commandWord": "Give",
+      "context": "",
+      "question": "Give **two** protocols used when architects send and receive email.",
+      "slots": 2,
+      "traps": [
+        "EMAIL protocols only: HTTP, HTTPS and VoIP score nothing."
+      ],
+      "markScheme": {
+        "type": "points",
+        "rule": "One mark for each correct answer, up to 2 marks.",
+        "points": [
+          "SMTP",
+          "POP3",
+          "IMAP"
+        ],
+        "accept": [],
+        "reject": [
+          "HTTP / HTTPS",
+          "VoIP"
+        ]
+      },
+      "modelAnswer": "1. SMTP\n2. IMAP"
+    },
+    {
+      "id": "p4-2-b-i",
+      "scenario": "p4s2",
+      "part": "(b)(i)",
+      "section": "B",
+      "code": "B3.2",
+      "marks": 4,
+      "commandWord": "Explain",
+      "context": "",
+      "question": "Explain **two** security issues when architects send drawings over a building site's public Wi-Fi.",
+      "slots": 2,
+      "traps": [
+        "Issues while the data is BEING SENT: viruses already on a laptop are a different question."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+        "points": [
+          [
+            "Packet sniffing",
+            "because unencrypted data can be read by anyone on the same network"
+          ],
+          [
+            "Man-in-the-middle attack",
+            "because an attacker can intercept, read or change drawings in transit"
+          ],
+          [
+            "Evil twin hotspot",
+            "because a fake Wi-Fi network with the site's name can capture everything sent"
+          ],
+          [
+            "Data can be altered in transit",
+            "so a builder could receive a tampered drawing"
+          ]
+        ],
+        "accept": [
+          "Answers that add the fix (HTTPS / a VPN) as the expansion"
+        ],
+        "reject": [
+          "Malware already on the laptop"
+        ]
+      },
+      "modelAnswer": "1. Packet sniffing: on public Wi-Fi, unencrypted drawings can be read by anyone on the network.\n2. Evil twin: a fake hotspot named after the site captures everything the architect sends."
+    },
+    {
+      "id": "p4-2-b-ii",
+      "scenario": "p4s2",
+      "part": "(b)(ii)",
+      "section": "B",
+      "code": "B3.5",
+      "marks": 4,
+      "commandWord": "Explain",
+      "context": "",
+      "question": "Explain **two** benefits of using lossless compression for the drawings.",
+      "slots": 2,
+      "traps": [
+        "LOSSLESS: \"smaller files\" alone also fits lossy, so link it to what lossless keeps."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+        "points": [
+          [
+            "The original is restored exactly",
+            "so no measurements or fine lines are lost from the drawings"
+          ],
+          [
+            "Smaller files",
+            "so drawings send faster and take less storage, with no loss of detail"
+          ],
+          [
+            "Works on any file type",
+            "so it can compress CAD files and documents, not just images"
+          ],
+          [
+            "Quality does not drop when the file is re-saved",
+            "so a drawing can be compressed many times safely"
+          ]
+        ],
+        "accept": [],
+        "reject": [
+          "Benefits of lossy compression, e.g. much smaller files with some detail removed"
+        ]
+      },
+      "modelAnswer": "1. Exact restore: every line and measurement survives, which matters for building plans.\n2. Smaller files: drawings email faster without losing any detail."
+    },
+    {
+      "id": "p4-2-c",
+      "scenario": "p4s2",
+      "part": "(c)",
+      "section": "D",
+      "code": "D1.2",
+      "marks": 4,
+      "commandWord": "Explain",
+      "context": "",
+      "question": "Explain **two** internal threats to the practice's data.",
+      "slots": 2,
+      "traps": [
+        "INTERNAL threats come from staff or devices inside the practice, not outside hackers."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+        "points": [
+          [
+            "Accidental disclosure",
+            "e.g. emailing a client's plans to the wrong person, which counts as a data breach"
+          ],
+          [
+            "Stealing / leaking information",
+            "because staff already have access, e.g. taking designs to a rival"
+          ],
+          [
+            "Portable devices",
+            "because a lost unencrypted USB stick or laptop exposes drawings"
+          ],
+          [
+            "Visiting inappropriate websites",
+            "which can bring malware onto the practice's network"
+          ]
+        ],
+        "accept": [],
+        "reject": [
+          "External threats such as hackers or natural disasters"
+        ]
+      },
+      "modelAnswer": "1. Accidental disclosure: an architect emails a client's plans to the wrong builder.\n2. Portable devices: a lost, unencrypted laptop from a site visit exposes client drawings."
+    },
+    {
+      "id": "p4-2-d",
+      "scenario": "p4s2",
+      "part": "(d)",
+      "section": "A",
+      "code": "A4.1",
+      "marks": 9,
+      "commandWord": "Evaluate",
+      "context": "",
+      "question": "Evaluate the factors the practice should consider when choosing IT systems for its new office.",
+      "slots": 0,
+      "traps": [
+        "Factors for an ARCHITECTS' practice: large drawings, site work, 15 staff. Weigh them up and conclude."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "focus": "Factors affecting an architecture practice's choice of IT systems.",
+        "indicative": [
+          "User needs: architects' tasks (detailed drawings), skills, accessibility, and working on sites",
+          "Specifications: powerful CPUs/GPUs and large, fast storage for big drawing files",
+          "Compatibility: works with existing drawing software, files and peripherals such as large-format printers",
+          "Connectivity: fast Ethernet/Wi-Fi in the office, 4G/5G and VPN access from sites",
+          "Cost: upfront purchase or lease, licences, support, training and replacement",
+          "Efficiency: faster processing saves architects' time; lower energy use cuts bills",
+          "Implementation: timescales, testing, moving existing drawings safely, avoiding downtime during the move",
+          "Productivity: a short dip while staff learn, then long-term gains",
+          "Security: updates, MFA and GDPR compliance for client data",
+          "Conclusion: specifications and compatibility matter most, because drawings are the practice's core work; cost must be balanced against them"
+        ]
+      },
+      "modelAnswer": "Specifications: drawing software needs powerful graphics and large storage, so cheap PCs would slow every architect down.\nCompatibility: new systems must open existing drawings and drive the large-format printer, or old projects become unusable.\nConnectivity: architects work on sites, so they need VPN access and 4G/5G as well as fast office networking.\nCost and implementation: powerful systems cost more, and moving files risks loss, so a phased move with backups reduces risk.\nConclusion: specification and compatibility come first, since drawings are the business; cost matters but should not cut performance."
+    },
+    {
+      "id": "p4-3-a",
+      "scenario": "p4s3",
+      "part": "(a)",
+      "section": "B",
+      "code": "B2.2",
+      "marks": 6,
+      "commandWord": "Draw",
+      "context": "",
+      "question": "Draw a diagram to show how the agency's network is set up and how carers and home workers connect to it.\n\nThe diagram must include:\n• devices and systems that are used\n• connection types and annotations.",
+      "slots": 0,
+      "traps": [
+        "Both rooms AND the carers and home workers must appear, each device and connection labelled."
+      ],
+      "markScheme": {
+        "type": "points",
+        "rule": "One mark for each, up to 6. Draw it on paper, then tick what your diagram shows.",
+        "points": [
+          "Server room: server connected to a switch / router using a wired / wireless connection",
+          "Main office: three desktops AND a printer connected to a switch / WAP / router",
+          "Router / firewall connecting the office network to the internet",
+          "Carers: smartphones connected over 4G / 5G mobile data (via a cell tower) to the internet",
+          "Home workers: laptops on home broadband / Wi-Fi connecting through a VPN",
+          "Remote devices reach the server through the internet AND the router / firewall",
+          "Fully functioning system with all devices AND connection types included (with annotations)"
+        ],
+        "accept": [],
+        "reject": []
+      },
+      "modelAnswer": "Server room: server, Ethernet to a switch.\nMain office: 3 desktops + printer, Ethernet to the switch.\nSwitch to router / firewall to the internet.\nCarers: smartphones on 4G / 5G via a cell tower to the internet, then the firewall to the server.\nHome workers: laptops on home Wi-Fi with a VPN tunnel to the office."
+    },
+    {
+      "id": "p4-3-b",
+      "scenario": "p4s3",
+      "part": "(b)",
+      "section": "C",
+      "code": "C1.4",
+      "marks": 2,
+      "commandWord": "Explain",
+      "context": "Carers use an online system on their smartphones to view care plans during visits.",
+      "question": "Explain **one** factor that affects the use of online systems by the carers.",
+      "slots": 1,
+      "traps": [
+        "**one** factor only: the examiner marks the first one.",
+        "\"Fast\" or \"safe\" on their own score nothing."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "rule": "One mark for a correct point and one for an appropriate expansion, up to 2 marks.",
+        "points": [
+          [
+            "Connectivity",
+            "because rural Shropshire may have poor mobile coverage, so care plans may not load"
+          ],
+          [
+            "Ease of use",
+            "because carers need a simple app they can use quickly during a visit"
+          ],
+          [
+            "Security",
+            "because care plans hold sensitive health data, so the system needs encryption and MFA"
+          ],
+          [
+            "Cost",
+            "because each carer's phone and data plan adds ongoing fees"
+          ],
+          [
+            "Features",
+            "because the system must let carers record each visit as well as view plans"
+          ]
+        ],
+        "accept": [],
+        "reject": [
+          "\"Fast\", \"safe\" or \"efficient\" on their own"
+        ]
+      },
+      "modelAnswer": "Connectivity: rural areas have patchy mobile signal, so a carer may not be able to open a care plan at a client's home."
+    },
+    {
+      "id": "p4-3-c",
+      "scenario": "p4s3",
+      "part": "(c)",
+      "section": "D",
+      "code": "D1.3",
+      "marks": 4,
+      "commandWord": "Explain",
+      "context": "Care plans contain clients' health information. A fine from the ICO is one impact on the agency if this data is breached.",
+      "question": "Explain **two** other impacts on the agency of a data breach.",
+      "slots": 2,
+      "traps": [
+        "\"other impacts\": the ICO fine is given, so it scores nothing."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+        "points": [
+          [
+            "Loss of clients due to damaged public image",
+            "because families stop trusting the agency with their relatives' data"
+          ],
+          [
+            "Lawsuits / compensation claims",
+            "because clients whose health data was exposed can sue the agency"
+          ],
+          [
+            "Costs of investigating and recovering",
+            "because the agency must pay to find the cause and restore systems"
+          ],
+          [
+            "Loss of data / care plans unavailable",
+            "so carers cannot see what care each client needs"
+          ],
+          [
+            "Bad news spreads on social media",
+            "so trust is slow to rebuild and new clients go elsewhere"
+          ]
+        ],
+        "accept": [],
+        "reject": [
+          "A fine from the ICO (given in the question)"
+        ]
+      },
+      "modelAnswer": "1. Lost clients: families stop trusting the agency, so they move their relatives to another provider.\n2. Compensation claims: clients whose health data leaked can sue the agency."
+    },
+    {
+      "id": "p4-3-d",
+      "scenario": "p4s3",
+      "part": "(d)",
+      "section": "C",
+      "code": "C1.3",
+      "marks": 9,
+      "commandWord": "Evaluate",
+      "context": "",
+      "question": "Evaluate the use of remote-working systems, such as VPNs and remote desktop, for the agency's staff.",
+      "slots": 0,
+      "traps": [
+        "Systems that enable REMOTE working, judged for this agency: home workers and carers on the road."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "focus": "Remote-working systems for a home-care agency.",
+        "indicative": [
+          "VPN: encrypted tunnel to the office network, so care plans stay protected, even on public Wi-Fi",
+          "VPN: lets home workers and carers reach internal systems; encryption can slow the connection",
+          "Remote desktop: staff run office software and open files on an office PC from home",
+          "Remote desktop: needs a stable connection; a security risk if not protected, so often used with a VPN",
+          "Benefits for the organisation: less office space, a wider pool of staff",
+          "Benefits for staff: no commute, flexible hours",
+          "Risks: insecure home networks, harder to manage staff, isolation and blurred boundaries",
+          "Rural connectivity may make remote systems unreliable for carers",
+          "Conclusion: a VPN is essential for protecting health data remotely; remote desktop suits office staff more than carers"
+        ]
+      },
+      "modelAnswer": "VPN: encrypts everything between a home laptop and the office, so care plans stay protected; but it can slow the connection.\nRemote desktop: office staff at home can run the care-planning software on their office PC; but it needs a stable connection, which rural homes may lack.\nStaff: no commute and flexible hours, but working alone can feel isolating.\nConclusion: a VPN is essential because the data is health data; remote desktop suits office staff, while carers need a simple app over the VPN."
+    },
+    {
+      "id": "p4-4-a",
+      "scenario": "p4s4",
+      "part": "(a)",
+      "section": "A",
+      "code": "A4.2",
+      "marks": 3,
+      "commandWord": "Describe",
+      "context": "",
+      "question": "Describe **one** way the library could use an IT system.",
+      "slots": 0,
+      "traps": [
+        "**one** use only: the examiner marks the first one you write.",
+        "Name the use, say what the system does, then link it to the library."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "steps": [
+          "Use",
+          "What it does",
+          "Expansion"
+        ],
+        "rule": "One mark for the item, one for a justification, one for expanding it, up to 3 marks.",
+        "points": [
+          [
+            "Stock control",
+            "barcodes / RFID track every loan and return in real time",
+            "so the library knows which books are on the shelves and reorders popular titles"
+          ],
+          [
+            "Data analysis",
+            "finds patterns in borrowing data",
+            "so the library buys more of the genres members borrow most"
+          ],
+          [
+            "Data logging",
+            "door sensors record time-stamped visitor numbers",
+            "so staff are rostered for the busiest hours"
+          ],
+          [
+            "Automation",
+            "self-service machines issue and return books",
+            "so staff are freed to help visitors"
+          ],
+          [
+            "Security",
+            "CCTV and swipe-card access",
+            "so the building and equipment are protected"
+          ]
+        ],
+        "accept": [],
+        "reject": []
+      },
+      "modelAnswer": "Stock control: RFID tags log each loan and return automatically, so staff can see which books are in and reorder the popular ones."
+    },
+    {
+      "id": "p4-4-b",
+      "scenario": "p4s4",
+      "part": "(b)",
+      "section": "F",
+      "code": "F1.1",
+      "marks": 9,
+      "commandWord": "Evaluate",
+      "context": "",
+      "question": "Evaluate the moral and ethical issues of the library recording members' borrowing and website visits.",
+      "slots": 0,
+      "traps": [
+        "MORAL and ETHICAL issues: privacy, consent, fairness and access, weighed up for a public library."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "focus": "Moral and ethical issues of a library recording borrowing and web use.",
+        "indicative": [
+          "Privacy: members have the right to control how their personal information is collected and used",
+          "Collect only the data needed: borrowing records are needed for loans; logging every website goes further",
+          "Consent: GDPR requires consent, and cookies need consent on the public computers",
+          "Right to have data deleted: members can ask for their history to be removed",
+          "AUP: users should be told activity may be monitored, and must accept the rules",
+          "Monitoring can protect users and the library, e.g. stopping illegal content",
+          "Unequal access: the library serves people without devices at home, who have no choice but to be monitored",
+          "Online behaviour: monitoring can deter cyberbullying and abuse on public computers",
+          "Conclusion: some recording is justified for loans and safety, but logging every website needs consent, a clear AUP and minimal data"
+        ]
+      },
+      "modelAnswer": "Privacy: members expect what they read to stay private; logging every website goes beyond what lending needs.\nConsent and AUP: if the AUP tells users activity is monitored and they accept it, the monitoring is open and fairer.\nUnequal access: people without internet at home must use the library, so they cannot avoid being tracked.\nSafety: logging can deter illegal use and abuse on public computers.\nConclusion: borrowing records are justified for loans, but website logging should be minimal, explained in the AUP and deleted quickly."
+    },
+    {
+      "id": "p4-4-c",
+      "scenario": "p4s4",
+      "part": "(c)",
+      "section": "A",
+      "code": "A5.1",
+      "marks": 12,
+      "commandWord": "Evaluate",
+      "context": "",
+      "question": "Evaluate how emerging technologies and AI could affect the performance of the library's IT systems.",
+      "slots": 0,
+      "traps": [
+        "PERFORMANCE of the library's systems: speed, responsiveness and capability, both sides, then conclude."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "focus": "How emerging technologies and AI affect the performance of a library's IT systems.",
+        "indicative": [
+          "AI chips run AI tasks much faster, e.g. instant search and book recommendations",
+          "AI learns from use to tune systems, e.g. predicting busy times and adjusting resources",
+          "AI chatbots answer common enquiries at any time, freeing staff",
+          "Edge computing processes data near its source, so self-service kiosks respond with less delay",
+          "5G gives very fast, low-latency connections for visitors and mobile devices",
+          "Drawbacks: new hardware is expensive for a council budget",
+          "Drawbacks: may not be compatible with older library systems",
+          "Drawbacks: staff need training; systems depend on reliable connectivity",
+          "Drawbacks: AI can make mistakes, and it processes members' personal data",
+          "Conclusion: performance gains are real, but they must justify the cost; start with the systems members use most"
+        ]
+      },
+      "modelAnswer": "AI search and recommendations: AI chips make catalogue search fast and suggest books members will like; but the hardware is expensive.\nAI chatbots: answer common questions around the clock, freeing staff; but wrong answers frustrate members.\nEdge computing: self-service kiosks process loans locally, so they respond instantly even when the network is busy.\n5G: very low latency for visitors' devices; but coverage and cost vary.\nCompatibility and training: new systems may not work with the old catalogue, and staff need training.\nConclusion: worth adopting where members feel the speed (search, kiosks), phased in to spread the cost."
     }
   ]
 }
