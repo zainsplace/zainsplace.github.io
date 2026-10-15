@@ -2685,6 +2685,7 @@ function pppDay(d) {
   return new Date(y, m - 1, dd).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
 }
 function pppQ() { return findQuestion(ppp.qIds[ppp.idx]); }
+function pppTime(sec) { return `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, '0')}`; }
 function pppMarksOf(ids) { return ids.reduce((n, id) => n + ((findQuestion(id) || {}).marks || 0), 0); }
 
 function persistPPP(now) {
@@ -3054,7 +3055,7 @@ function pppStepHtml(q) {
     case 'next': {
       const redo = ppp.redoScores[q.id];
       const last = ppp.idx === ppp.qIds.length - 1;
-      return `<div class="mock-marked"><span>${s >= q.marks ? 'Full marks' : `First attempt <strong>${s}</strong>/${q.marks}`}${redo !== undefined ? ` · redo <strong>${redo}</strong>/${q.marks}` : ''}</span> ${remark}</div>
+      return `<div class="mock-marked"><span>${s >= q.marks ? 'Full marks' : `First attempt <strong>${s}</strong>/${q.marks}`}${redo !== undefined ? ` · redo <strong>${redo}</strong>/${q.marks}` : ''}${q.id in ppp.seconds ? ` · answered in ${pppTime(ppp.seconds[q.id])}` : ''}</span> ${remark}</div>
         <button class="btn btn-primary" onclick="pppNextPart()">${last ? 'Finish and see results' : 'Next question →'}</button>`;
     }
   }
@@ -3259,10 +3260,11 @@ function renderPPPDone(container) {
   const rows = paper
     ? paper.scenarios.map((sid, i) => {
         const ids = ppp.qIds.filter(id => findQuestion(id).scenario === sid);
-        return row(`Q${i + 1} ${qData.scenarios.find(s => s.id === sid).title}`,
+        const secs = ids.reduce((n, id) => n + r.parts[id].seconds, 0);
+        return row(`Q${i + 1} ${qData.scenarios.find(s => s.id === sid).title} · ${pppTime(secs)}`,
                    ids.reduce((n, id) => n + r.parts[id].score, 0), pppMarksOf(ids));
       }).join('')
-    : ppp.qIds.map(id => row(pppPartLabel(findQuestion(id)), r.parts[id].score, findQuestion(id).marks)).join('');
+    : ppp.qIds.map(id => row(`${pppPartLabel(findQuestion(id))} · ${pppTime(r.parts[id].seconds)}`, r.parts[id].score, findQuestion(id).marks)).join('');
   container.innerHTML = `
     <div class="card mock-result">
       <div class="mock-paper-meta">${escapeHTML(pppActiveName(ppp))} · ${r.minutesUsed} minutes answering</div>
