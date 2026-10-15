@@ -2438,6 +2438,117 @@
         ]
       },
       "modelAnswer": "Web server: built for many small, frequent requests, so player moves and chat update with low latency; event-driven, so thousands of players connect at once.\nFile server: built for large transfers, so it delivers downloads and patches efficiently, but small real-time updates queue behind input / output waits and add lag.\nScalability: web servers spread across regions; a file server is storage-bound and harder to scale.\nConclusion: host live games on the web server and keep the file server for assets and updates."
+    },
+    {
+      "id": "f-extra-1",
+      "part": "",
+      "section": "F",
+      "code": "F2.1",
+      "marks": 4,
+      "commandWord": "Explain",
+      "slots": 2,
+      "context": "A dental practice stores patient names, addresses, medical histories and X-ray images on its computer system.",
+      "question": "Explain **two** ways the Data Protection Act 2018 affects how the practice handles patient data.",
+      "traps": [
+        "Name the duty AND what it means for THIS practice. \"It protects data\" on its own scores nothing."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+        "points": [
+          [
+            "Data must be kept secure (integrity and confidentiality)",
+            "so records need access controls / encryption, or the ICO can fine the practice"
+          ],
+          [
+            "Data can only be used for the purpose it was collected for",
+            "so patient details cannot be used for marketing without consent"
+          ],
+          [
+            "Data must be accurate and up to date",
+            "so the practice must correct records, e.g. a changed address or a new allergy"
+          ],
+          [
+            "Data must not be kept longer than necessary",
+            "so old records must be deleted or archived under a retention policy"
+          ],
+          [
+            "Only the data needed may be collected (minimisation)",
+            "so the practice cannot ask for details unrelated to treatment"
+          ],
+          [
+            "Patients have rights to access, correct and erase their data",
+            "so the practice must respond when a patient asks to see or correct their records"
+          ],
+          [
+            "Serious breaches must be reported to the ICO within 72 hours",
+            "so the practice needs a plan for spotting and reporting a breach"
+          ]
+        ],
+        "accept": [
+          "Any other DPA / UK GDPR principle or right applied to the practice"
+        ],
+        "reject": [
+          "Computer Misuse Act or copyright points",
+          "\"It keeps data safe\" with no duty named"
+        ]
+      },
+      "modelAnswer": "1. Secure storage: patient records must be encrypted / access-controlled, or the ICO can fine the practice.\n2. Right of access: a patient can ask to see their records and the practice must provide them."
+    },
+    {
+      "id": "f-extra-2",
+      "part": "",
+      "section": "F",
+      "code": "F1.1",
+      "marks": 4,
+      "commandWord": "Explain",
+      "slots": 2,
+      "context": "A supermarket plans to use CCTV cameras with facial recognition to identify known shoplifters as they enter the store.",
+      "question": "Explain **two** moral or ethical issues of the supermarket using facial recognition.",
+      "traps": [
+        "Moral or ethical, not technical: name the issue for customers, not \"the cameras might break\"."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+        "points": [
+          [
+            "Privacy",
+            "because every customer is scanned and identified, not just shoplifters"
+          ],
+          [
+            "Consent",
+            "because shoppers cannot realistically opt out if they need to buy food there"
+          ],
+          [
+            "Collecting more data than needed",
+            "because innocent shoppers' faces are captured to catch a few known shoplifters"
+          ],
+          [
+            "Right to have data deleted",
+            "because innocent customers may not know their face data is stored, so cannot ask for it to be removed"
+          ],
+          [
+            "Security of biometric data",
+            "because a face cannot be changed if the stored data is stolen"
+          ]
+        ],
+        "accept": [
+          "Any other moral or ethical issue applied to customers or staff, e.g. innocent shoppers being wrongly identified"
+        ],
+        "reject": [
+          "Cost or technical problems with no moral or ethical angle"
+        ]
+      },
+      "modelAnswer": "1. Consent: shoppers are scanned without a real choice, since they still need to buy food.\n2. Privacy: every shopper's face is recorded to catch a few shoplifters, more data than the store needs."
     }
   ]
 }
