@@ -3008,7 +3008,7 @@ function pppStepHtml(q) {
         <div class="marker" id="marker-${q.id}">${pppMarkerHtml(q)}</div>`;
     case 'diagnose':
       return `<div class="mock-answer">${pppAnswerHtml(q, false)}</div>
-        <div class="mock-marked">Marked <strong>${s}</strong>/${q.marks} ${remark}</div>
+        <div class="mock-marked"><span>Marked <strong>${s}</strong>/${q.marks}</span> ${remark}</div>
         ${pppSchemeSummary(q, false)}
         <p class="q-intro">You dropped ${pppPlural(lost, 'mark')}. Give every one a reason. Be honest: the reasons decide what you fix.</p>
         <div class="ppp-reason-key">${PPP.REASONS.map(r => `<div><strong>${PPP_REASON_LABELS[r]}:</strong> ${PPP_REASON_HINTS[r]}</div>`).join('')}</div>
@@ -3046,7 +3046,7 @@ function pppStepHtml(q) {
     case 'next': {
       const redo = ppp.redoScores[q.id];
       const last = ppp.idx === ppp.qIds.length - 1;
-      return `<div class="mock-marked">${s >= q.marks ? 'Full marks' : `First attempt <strong>${s}</strong>/${q.marks}`}${redo !== undefined ? ` · redo <strong>${redo}</strong>/${q.marks}` : ''} ${remark}</div>
+      return `<div class="mock-marked"><span>${s >= q.marks ? 'Full marks' : `First attempt <strong>${s}</strong>/${q.marks}`}${redo !== undefined ? ` · redo <strong>${redo}</strong>/${q.marks}` : ''}</span> ${remark}</div>
         <button class="btn btn-primary" onclick="pppNextPart()">${last ? 'Finish and see results' : 'Next question →'}</button>`;
     }
   }

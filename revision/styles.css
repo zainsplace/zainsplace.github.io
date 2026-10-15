@@ -1600,6 +1600,9 @@ main { scrollbar-gutter: stable; }
 .ppp-reason-key { display: grid; gap: 4px; font-size: 13px; line-height: 1.5; color: var(--text2); background: var(--bg3); border-radius: var(--radius-sm); padding: 10px 12px; margin-bottom: 12px; }
 .ppp-reasons { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin: 8px 0; }
 .ppp-mark-n { font-size: 12.5px; font-weight: 700; color: var(--text2); min-width: 56px; }
+/* Reason chips: .tab-btn outside a .tabs bar would stretch and wrap word by word. */
+.ppp-reasons .tab-btn { flex: 0 0 auto; padding: 7px 12px; border: 1px solid var(--border); border-radius: var(--radius-pill); background: var(--bg2); white-space: nowrap; }
+.ppp-reasons .tab-btn.active { border-color: var(--accent); background: var(--accent-light); color: var(--accent2); }
 .ppp-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 12px; }
 .ppp-fix-links { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0; }
 .ppp-reason-counts { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
