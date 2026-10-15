@@ -1516,7 +1516,7 @@ h3[style*="text-transform:uppercase"], p[style*="text-transform:uppercase"] {
 /* ─── AUDIT FIXES ─── */
 /* M1: finger-sized targets on touch screens (44px is the usual guidance). */
 @media (pointer: coarse) {
-  .btn, .btn-sm, .tab-btn, .rag-btn, .mcq-opt, .today-task, .today-link, .exam-chip, .sidebar-btn, .card-header, select { min-height: 44px; }
+  .btn, .btn-sm, .tab-btn, .rag-btn, .mcq-opt, .today-task, .today-link, .sidebar-btn, .card-header, select { min-height: 44px; }
   .q-chip, .apt-dot { min-width: 40px; height: 40px; }
   /* Heatmap year arrows are sized inline at 28px; min-* wins over width/height. */
   [aria-label="Previous year"], [aria-label="Next year"] { min-width: 44px; min-height: 44px; }
@@ -1539,15 +1539,6 @@ h3[style*="text-transform:uppercase"], p[style*="text-transform:uppercase"] {
 main > .page { max-width: 960px; margin-inline: auto; }
 /* Reserve the scrollbar's space so short and long pages are the same width. */
 main { scrollbar-gutter: stable; }
-
-/* Exam date: a compact chip, so a phone's first screen is the Today card. */
-.exam-chip { display: inline-flex; align-items: baseline; gap: 6px; padding: 8px 16px; min-height: 40px;
-  border-radius: var(--radius-pill); border: 1px solid var(--border); background: var(--bg2); color: var(--text);
-  font: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer; box-shadow: var(--shadow-sm); }
-.exam-chip b { font-size: 18px; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; }
-.exam-chip.empty { border-style: dashed; border-color: var(--border-strong); color: var(--accent2); }
-.exam-chip.soon b { color: var(--red); }
-.exam-chip:hover { border-color: var(--accent); }
 
 /* Today card: what to do now, in one place. */
 /* Its own darker teal: white text on the lighter end of --accent-grad was 4.2:1. */

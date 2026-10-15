@@ -9,7 +9,6 @@ const UNITS = {
     id: 'u1', label: 'Unit 1', short: 'U1',
     name: 'Information Technology Systems',
     headerSub: 'BTEC National · Information Technology Systems',
-    examDate: null,
     order: ['c', 'd', 'b', 'e', 'a', 'f'],
     sections: {
       a: { colour: '#3182ce', shortName: 'IT Systems & Devices', blurb: 'Devices, OS, Software, Interfaces' },
@@ -24,7 +23,6 @@ const UNITS = {
     id: 'u2', label: 'Unit 2', short: 'U2',
     name: 'Cyber Security & Incident Management',
     headerSub: 'BTEC National · Cyber Security & Incident Management',
-    examDate: null,
     order: ['a', 'b', 'd', 'c'],
     keywordBanks: [
       { title: 'Section D — Forensics (fast marks)', col: '#6D5BD6', words: ['Faraday bag', 'Write-blocker', 'Forensic image (bit-for-bit copy)', 'Hash value (MD5/SHA) before & after', 'Chain of custody', 'Contemporaneous notes', 'Evidence bag + tamper-proof seal', 'Photograph the scene first'] },
@@ -95,7 +93,6 @@ function defaultUnitState() {
       history: [],     // {type, wordCount, date, timeTaken}
       drafts: {}       // prompt id -> essay text, kept until the box is emptied
     },
-    examDate: null,
     planChecks: {},
     bests: { tf: 0, match: 0 },
     season: { id: 0, startXP: 0 },   // XP banked before the current season began
@@ -155,7 +152,7 @@ function coerceLike(def, raw) {
   if (typeof def === 'number') return typeof raw === 'number' && isFinite(raw) ? raw : def;
   if (typeof def === 'string') return typeof raw === 'string' ? raw : def;
   if (typeof def === 'boolean') return typeof raw === 'boolean' ? raw : def;
-  // def is null: accept a string (examDate, streak.last) or keep null
+  // def is null: accept a string (streak.last) or keep null
   return typeof raw === 'string' || typeof raw === 'number' ? raw : def;
 }
 
@@ -241,7 +238,6 @@ function migrateLegacy() {
     const unitOnly = Object.assign({}, blob);
     GLOBAL_KEYS.forEach(k => delete unitOnly[k]);
     s.units[id] = deepMerge(defaultUnitState(), unitOnly);
-    if (blob.examDate) s.units[id].examDate = blob.examDate;
     const checks = readLegacy(id === 'u1' ? 'u1_plan_checks' : 'u2_plan_checks');
     if (checks) s.units[id].planChecks = checks;
     migrated = migrated || id;
@@ -660,84 +656,6 @@ function syncThemeButtons() {
   });
 }
 
-/* ---- EXAM DATE (per unit, editable — click the countdown box to change) ----
-   Each unit sits a different paper. A unit with no date set shows no countdown
-   rather than a wrong one. */
-function getExamDate() {
-  return state.examDate || unitDef().examDate || null;
-}
-
-function hasExamDate() {
-  return !!getExamDate();
-}
-
-/* daysUntilExam() clamps at 0, so a date in the past looks identical to "today".
-   Without this the plan tells a student the exam is tomorrow months after it sat. */
-/* new Date('2026-08-29') is UTC midnight, which floors to the PREVIOUS local day
-   anywhere west of Greenwich and fired 'Exam is today' a day early. Build the
-   date from its parts so it is local midnight everywhere. */
-function parseExamDate(v) {
-  if (typeof v !== 'string') return null;
-  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v.trim());
-  if (!m) return null;
-  const d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
-  if (isNaN(d.getTime())) return null;
-  if (d.getFullYear() !== Number(m[1]) || d.getMonth() !== Number(m[2]) - 1
-      || d.getDate() !== Number(m[3])) return null;   // rejects 2026-02-31
-  d.setHours(0, 0, 0, 0);
-  return d;
-}
-
-function examPassed() {
-  const exam = parseExamDate(getExamDate());
-  if (!exam) return false;
-  const now = new Date(); now.setHours(0, 0, 0, 0);
-  return exam < now;
-}
-
-function daysUntilExam() {
-  const exam = parseExamDate(getExamDate());
-  if (!exam) return null;
-  const now = new Date(); now.setHours(0, 0, 0, 0);
-  return Math.max(0, Math.round((exam - now) / 86400000));
-}
-
-/* A date input instead of prompt(): phones get their native date picker rather
-   than a text box asking for YYYY-MM-DD. */
-function setExamDate() {
-  const u = unitDef();
-  openModal(`
-    <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
-    <h2 id="modal-title">${u.label} exam date</h2>
-    <label for="exam-date-input" style="display:block;font-size:13px;color:var(--text2);margin-bottom:6px">
-      When do you sit ${u.label}: ${u.name}?</label>
-    <input type="date" id="exam-date-input" class="search-bar" style="margin-bottom:14px" value="${escapeHTML(getExamDate() || '')}">
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn btn-primary" onclick="saveExamDate()">Save</button>
-      ${state.examDate ? '<button class="btn btn-secondary" onclick="saveExamDate(true)">Clear date</button>' : ''}
-      <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
-    </div>`);
-  const input = el('exam-date-input');
-  if (input) input.addEventListener('keydown', e => { if (e.key === 'Enter') saveExamDate(); });
-}
-
-function saveExamDate(clear) {
-  if (clear) {
-    state.examDate = null;
-  } else {
-    const v = (el('exam-date-input') || {}).value || '';
-    // Must use the same validator the countdown uses. A looser check let
-    // "2026-02-31" through: JS rolls it to 3 March, so it is not NaN.
-    if (!parseExamDate(v)) { toast('Pick a valid date'); return; }
-    state.examDate = v.trim();
-  }
-  saveState();
-  closeModal();
-  toast(clear ? 'Exam date cleared' : 'Exam date updated!');
-  if (currentPage === 'home') renderHome();
-  else if (currentPage === 'plan') renderPlan();
-}
-
 function ragClass(code) {
   const r = state.rag[code];
   if (r === 'green') return 'active-green';
@@ -1063,28 +981,6 @@ function renderTodayCard() {
     </button></li>`).join('');
 }
 
-/* A compact chip, not a big block: with no date set it used to take most of a
-   phone's first screen to say "no exam date set". */
-function renderExamChip() {
-  const chip = el('home-exam-chip');
-  if (!chip) return;
-  const u = unitDef();
-  if (!hasExamDate()) {
-    chip.className = 'exam-chip empty';
-    chip.innerHTML = '<span aria-hidden="true">+</span> Set exam date';
-    chip.title = `Set your ${u.label} exam date`;
-  } else if (examPassed()) {
-    chip.className = 'exam-chip';
-    chip.textContent = 'Exam date passed · change';
-    chip.title = `${u.label} exam was ${getExamDate()}. Click to set a new date`;
-  } else {
-    const days = daysUntilExam();
-    chip.className = 'exam-chip' + (days <= 14 ? ' soon' : '');
-    chip.innerHTML = days === 0 ? '<b>Exam today</b>' : `<b>${days}</b> day${days === 1 ? '' : 's'} to exam`;
-    chip.title = `${u.label} exam: ${getExamDate()}. Click to change`;
-  }
-}
-
 function openHeroSection() {
   navigate('sections', { section: heroLetter() });
 }
@@ -1099,7 +995,6 @@ function renderHome() {
   const greetEl = el('home-greeting');
   if (greetEl) greetEl.textContent = greet;
 
-  renderExamChip();
   el('home-overall-pct').textContent = prog + '%';
   renderConfidenceStrip();
   el('home-stat-streak').textContent = currentStreak();
@@ -4938,7 +4833,7 @@ function renderPlan() {
       <h2>Today's Study Plan</h2>
       <div class="streak-badge">${currentStreak()}-day streak</div>
     </div>
-    <p style="color:var(--text2);font-size:14px;margin-bottom:16px">${hasExamDate() && !examPassed() ? `${daysUntilExam()} days until your ${unitDef().label} exam. ` : ''}${getMotivation()}</p>
+    <p style="color:var(--text2);font-size:14px;margin-bottom:16px">Keep building your knowledge. Consistency now makes the difference.</p>
     ${plan.map(block => `
       <div class="plan-day">
         <h3>${block.title}</h3>
@@ -4963,8 +4858,6 @@ function renderPlan() {
 }
 
 function buildDailyPlan() {
-  const days = daysUntilExam();
-  const rc = ragCounts();
   const flashDue = getFlashcardsDueCount();
 
   const weakCodes = Object.entries(state.rag)
@@ -4988,40 +4881,14 @@ function buildDailyPlan() {
     });
   }
 
-  // No date set, or the exam already sat: give the general plan, never "Final Week".
-  const undated = !hasExamDate() || examPassed();
-
-  if (undated || days > 14) {
-    blocks.push({
-      id: 'content',
-      title: '📖 Content Review',
-      items: [
-        ...tier1Letters().slice(0, 2).map(L => `Work through Section ${L} (${sectionShortName(L)}) — ${sectionBlurb(L)}`),
-        weakCodes.length ? `Revisit these red codes: ${weakCodes.join(', ')}` : 'Mark any uncertain codes as Amber or Red for tracking'
-      ]
-    });
-  } else if (days > 7) {
-    blocks.push({
-      id: 'content',
-      title: '📖 Focused Review',
-      items: [
-        'Complete any remaining Amber/Red codes',
-        `Focus on Tier 1 topics: ${tier1Letters().map(L => `${L} (${sectionShortName(L)})`).join(', ')}`,
-        weakCodes.length ? `Priority: ${weakCodes.join(', ')}` : 'Try to clear all Red codes this week'
-      ]
-    });
-  } else {
-    blocks.push({
-      id: 'final',
-      title: '🚨 Final Week — Exam Mode',
-      items: [
-        'Practise 1 nine-mark Evaluate question under timed conditions',
-        'Review command words: State vs Explain vs Describe vs Evaluate',
-        'Check mark scheme patterns: 1-mark state, 2-mark explain (point + linked expansion), 9-mark levels-based evaluate',
-        'Flashcard rapid fire: all sections'
-      ]
-    });
-  }
+  blocks.push({
+    id: 'content',
+    title: '📖 Content Review',
+    items: [
+      ...tier1Letters().slice(0, 2).map(L => `Work through Section ${L} (${sectionShortName(L)}) — ${sectionBlurb(L)}`),
+      weakCodes.length ? `Revisit these red codes: ${weakCodes.join(', ')}` : 'Mark any uncertain codes as Amber or Red for tracking'
+    ]
+  });
 
   blocks.push({
     id: 'practice',
@@ -5029,36 +4896,11 @@ function buildDailyPlan() {
     items: [
       'Answer 2–3 practice questions on your weakest topic',
       'Mark yourself against the mark scheme',
-      (days !== null && !examPassed() && days <= 14) ? 'Try at least 1 extended response (9–12 marks) per session' : 'Attempt a 4-mark "explain" question for any red-coded topic'
+      'Attempt a 4-mark "explain" question for any red-coded topic'
     ]
   });
 
-  if (days !== null && !examPassed() && days <= 7) {
-    blocks.push({
-      id: 'technique',
-      title: '🎯 Exam Technique',
-      items: [
-        'Read every question twice before writing',
-        'For "discuss" questions: always give both benefits AND drawbacks',
-        'Use the scenario — always link your answer back to the business/organisation in the question',
-        'Leave 10 minutes at the end to check Q4 extended responses'
-      ]
-    });
-  }
-
   return blocks;
-}
-
-function getMotivation() {
-  const days = daysUntilExam();
-  if (days === null) return 'Set your exam date to get a countdown and a sharper daily plan.';
-  if (examPassed()) return 'That exam has been and gone — set a new date, or switch unit from the sidebar.';
-  if (days > 30) return 'Keep building your knowledge — consistency now makes the difference.';
-  if (days > 14) return 'Final stretch! Focus on your weak areas and practise past paper questions.';
-  if (days > 7) return 'One week to go — prioritise Tier 1 topics and exam technique.';
-  if (days > 1) return 'Exam is almost here! Flashcards, key facts, extended response practice.';
-  if (days === 1) return 'Exam is tomorrow! Rest, eat well, and trust your preparation.';
-  return 'Exam is today. Skim your red topics, then go in calm — you have done the work.';
 }
 
 function renderRAGSummary() {
