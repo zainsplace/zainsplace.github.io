@@ -188,7 +188,9 @@ function coerceUnit(raw) {
   Object.keys(unit.battles.modes).forEach(k => {
     unit.battles.modes[k] = coerceLike({ played: 0, won: 0, best: 0 }, unit.battles.modes[k]);
   });
-  unit.questions.ppp = PPP.coerceState(unit.questions.ppp);
+  // From the raw save, not the coerceLike copy: coerceLike drops null map
+  // values, and a live sitting's partEndAt is null when it is untimed.
+  unit.questions.ppp = PPP.coerceState(isPlainObject(raw) && isPlainObject(raw.questions) ? raw.questions.ppp : null);
   return unit;
 }
 
@@ -1525,7 +1527,7 @@ function getFlashcardsDueCount() {
    ← / →) to move, filtered by section and by what you still need to do. Quiz
    mode runs a short set picked by focus; mock papers sit a whole paper. */
 let qData = null;
-let qMode = 'practice';   // 'practice' | 'quizsetup' | 'quiz' | 'mock'
+let qMode = 'practice';   // 'practice' | 'quizsetup' | 'quiz' | 'mock' | 'ppp'
 let qFilter = 'all';      // section letter, or 'all'
 let qShow = 'all';        // 'all' | 'new' (not tried) | 'weak' (last mark under WEAK_PCT)
 let qIdx = 0;             // position in the filtered practice list
@@ -1545,7 +1547,9 @@ function renderQuestions() {
     return;
   }
 
-  if (qMode === 'mock') {
+  if (qMode === 'ppp') {
+    renderPPP(container);
+  } else if (qMode === 'mock') {
     renderMock(container);
   } else if (qMode === 'quiz') {
     renderQuizMode(container);
@@ -1669,6 +1673,7 @@ function renderPractice(container) {
     <div class="q-head">
       <h2>Practice Questions</h2>
       <div class="q-head-btns">
+        ${PPP.hasPPP(qData) ? `<button class="btn btn-secondary btn-sm" onclick="openPPP()">PPP</button>` : ''}
         ${qData.papers ? `<button class="btn btn-secondary btn-sm" onclick="openMockMenu()">Mock paper</button>` : ''}
         <button class="btn btn-primary btn-sm" onclick="openQuizSetup()">Quiz</button>
       </div>
@@ -1860,6 +1865,7 @@ function recordResult(qId, score, ctx) {
   const q = findQuestion(qId);
   if (!q) return;
   if (ctx === 'mock') { recordMockMark(qId, score); return; }
+  if (ctx === 'ppp') { recordPPPMark(qId, score); return; }
   const pct = recordScore(qId, score, q.marks);
   clearDraft(q);
   if (ctx === 'quiz') {
@@ -2635,6 +2641,635 @@ function renderMockResults(container, p) {
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
       <button class="btn btn-primary btn-sm" onclick="openMockMenu()">Back to mock papers</button>
       <button class="btn btn-secondary btn-sm" onclick="exitMock()">Back to questions</button>
+    </div>`;
+}
+
+/* ---- PPP: PURE PAST PAPERS ----
+   One part at a time: answer it cold, mark it strictly, give every lost mark a
+   reason, fix the gap, redo it from memory, then move on. The rules live in
+   ppp.js; this is the screens. `ppp` is the live sitting, mirrored to
+   state.questions.ppp.active so a refresh resumes it at the same part and step. */
+const PPP_REASON_LABELS = {
+  knowledge: "Didn't know it", technique: 'Technique', misread: 'Misread the question',
+  time: 'Ran out of time', careless: 'Careless'
+};
+const PPP_REASON_HINTS = {
+  knowledge: 'The fact or idea was missing.',
+  technique: 'You knew it, but did not expand, gave a definition instead of a benefit, did not apply it to the scenario, or had no conclusion.',
+  misread: 'You answered a slightly different question: missed "other than…", "one" or "other", or wrote about setting up when it asked about using.',
+  time: 'You did not get to it, or had to rush it.',
+  careless: 'You knew it and wrote it badly: a slip, a missing word, the wrong term.'
+};
+const PPP_STEP_LABELS = {
+  answer: 'answering', mark: 'marking', diagnose: 'diagnosing lost marks', fix: 'fixing the gap',
+  redo: 'redoing the part', redomark: 'marking the redo', next: 'about to move on'
+};
+const PPP_PHASES = [
+  { n: 1, name: 'Topic sets', blurb: 'Up to 8 parts from one section, untimed. Every section once, then move on.' },
+  { n: 2, name: 'Full papers', blurb: 'A whole paper, one part at a time, untimed. Two papers, then move on.' },
+  { n: 3, name: 'Timed papers', blurb: 'A whole paper, one part at a time, each on an exam-pace clock: 1 minute 20 seconds a mark.' }
+];
+const PPP_TECHNIQUE_TIPS = {
+  Give: 'Give: one short, specific answer per line. It must fit the scenario and the exact thing asked for.',
+  Explain: 'Explain: make the point, then expand it with "because" or "which means". The expansion is the second mark.',
+  Describe: 'Describe: say what it does and how, one creditworthy point per mark.',
+  Discuss: 'Discuss: weigh both sides, and apply every point to the scenario.',
+  Evaluate: 'Evaluate: both sides, every point applied to the scenario, and a conclusion your points support.',
+  Draw: 'Draw: every device and connection from the scenario, each one labelled.'
+};
+
+function pppState() { return state.questions.ppp; }
+function pppPlural(n, w) { return `${n} ${w}${n === 1 ? '' : 's'}`; }
+function pppDay(d) {
+  const [y, m, dd] = d.split('-').map(Number);
+  return new Date(y, m - 1, dd).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+}
+function pppQ() { return findQuestion(ppp.qIds[ppp.idx]); }
+function pppMarksOf(ids) { return ids.reduce((n, id) => n + ((findQuestion(id) || {}).marks || 0), 0); }
+
+function persistPPP(now) {
+  pppState().active = ppp && ppp.step !== 'done' ? ppp : {};
+  if (now) { cancelPendingSave(); saveState(); } else scheduleSave();
+}
+
+function pppActiveName(a) {
+  if (a.kind === 'topic') return `Topic set: Section ${a.ref}`;
+  const p = mockPaper(a.ref);
+  return p ? p.title : 'Paper';
+}
+
+function pppPaperOf(q) { return (qData.papers || []).find(p => p.scenarios.includes(q.scenario)); }
+function pppPartLabel(q) {
+  const p = pppPaperOf(q);
+  if (!p) return qLabel(q);
+  return `${p.title}, Question ${p.scenarios.indexOf(q.scenario) + 1}${q.part || ''}`;
+}
+
+function openPPP() {
+  qMode = 'ppp';
+  renderQuestions();
+  scrollContentTop();
+}
+
+function renderPPP(container) {
+  PPP.pruneUnknown(pppState(), new Set(qData.questions.map(q => q.id)));
+  if (!ppp) return renderPPPHome(container);
+  if (ppp.step === 'done') return renderPPPDone(container);
+  renderPPPPart(container);
+}
+
+/* ---- PPP home ---- */
+function renderPPPHome(container) {
+  const st = pppState();
+  const t = today();
+  const letters = unitLettersUpper();
+  const papers = qData.papers || [];
+  const next = PPP.doNext({ phase: st.phase, letters, papers, sittings: st.sittings, today: t });
+  const suggest = PPP.suggestPhase(st.phase, letters, st.sittings);
+  container.innerHTML = `
+    <div class="q-head">
+      <h2>PPP: Pure Past Papers</h2>
+      <div class="q-head-btns"><button class="btn btn-secondary btn-sm" onclick="backToPractice()">Back to practice</button></div>
+    </div>
+    <p class="q-intro">One part at a time: answer it cold, with no notes. Mark it strictly. Give every lost mark a reason, fix the gap, redo it from memory, then move on to the next part.</p>
+    ${pppResumeHTML()}
+    <div class="card ppp-next">
+      <div><div class="ms-title">Do next</div><strong>${pppNextLabel(next)}</strong></div>
+      ${pppNextButton(next)}
+    </div>
+    ${suggest ? `
+      <div class="q-focus ppp-suggest">
+        <span>You have met the goal for Phase ${st.phase}. Ready for Phase ${suggest}: ${PPP_PHASES[suggest - 1].name}?</span>
+        <button class="btn btn-secondary btn-sm" onclick="setPPPPhase(${suggest})">Move to Phase ${suggest}</button>
+      </div>` : ''}
+    <div class="ms-title" style="margin-top:16px">Phase</div>
+    <div class="tabs" role="group" aria-label="PPP phase">${PPP_PHASES.map(p => `
+      <button class="tab-btn ${st.phase === p.n ? 'active' : ''}" aria-pressed="${st.phase === p.n}" onclick="setPPPPhase(${p.n})">${p.n}. ${p.name}</button>`).join('')}
+    </div>
+    <p class="ms-note">${PPP_PHASES[st.phase - 1].blurb}</p>
+    ${st.phase === 1 ? pppTopicGrid(letters, st) : pppPaperList(papers, st, t)}
+    ${pppHistoryHTML(st.sittings)}`;
+}
+
+function pppNextLabel(n) {
+  if (n.kind === 'topic') return `Topic set: Section ${n.section} (${sectionShortName(n.section)})`;
+  if (n.kind === 'paper') return `${mockPaper(n.paperId).title}, ${n.timed ? 'timed' : 'untimed'}`;
+  return 'Every paper is resting. Do a topic set while you wait.';
+}
+
+function pppNextButton(n) {
+  if (n.kind === 'topic') return `<button class="btn btn-primary btn-sm" onclick="startPPPTopic('${n.section}')">Start</button>`;
+  if (n.kind === 'paper') return `<button class="btn btn-primary btn-sm" onclick="startPPPPaper('${n.paperId}')">Start</button>`;
+  return '';
+}
+
+function setPPPPhase(n) {
+  pppState().phase = n;
+  saveState();
+  renderQuestions();
+}
+
+function pppTopicGrid(letters, st) {
+  const bank = PPP.bankQuestions(qData);
+  const counts = PPP.topicCounts(letters, st.sittings);
+  return `<div class="ppp-grid">${letters.map(L => {
+    const n = bank.filter(q => q.section === L).length;
+    return `
+      <div class="card ppp-tile">
+        <div class="ppp-tile-head"><span class="ppp-letter">${L}</span><strong>${sectionShortName(L)}</strong></div>
+        <div class="mock-paper-meta">${pppPlural(n, 'part')} · ${pppPlural(counts[L], 'set')} done</div>
+        <button class="btn btn-secondary btn-sm" onclick="startPPPTopic('${L}')" ${n ? '' : 'disabled'}>Start set</button>
+      </div>`;
+  }).join('')}</div>`;
+}
+
+function pppPaperList(papers, st, t) {
+  return `<div class="mock-papers">${papers.map(p => {
+    const last = PPP.lastSat(st.sittings, p.id);
+    const resting = PPP.isResting(st.sittings, p.id, t);
+    return `
+      <div class="card mock-paper-card">
+        <h3>${p.title}</h3>
+        ${p.source === 'pearson' ? `<div class="ppp-tag">Real Pearson paper ${escapeHTML(p.ref || '')}</div>` : ''}
+        <div class="mock-paper-meta">${paperMarks(p)} marks · ${pppPlural(paperQuestions(p).length, 'part')}</div>
+        <div class="mock-paper-meta">${last ? `Last sat ${pppDay(last)}` : 'Not sat yet'}${resting ? ` · rests until ${pppDay(PPP.restUntil(st.sittings, p.id))}` : ''}</div>
+        <button class="btn ${resting ? 'btn-secondary' : 'btn-primary'} btn-full" onclick="startPPPPaper('${p.id}')">Sit ${st.phase === 3 ? 'timed' : 'untimed'}</button>
+      </div>`;
+  }).join('')}</div>`;
+}
+
+function pppHistoryHTML(sittings) {
+  const done = sittings.filter(s => s.status === 'done');
+  if (!done.length) return '';
+  return `
+    <h3 style="margin:18px 0 8px">Recent sittings</h3>
+    <div class="mock-history">${done.slice(-8).reverse().map(s => `
+      <div><span>${escapeHTML(s.kind === 'topic' ? `Topic set: Section ${s.ref}` : (mockPaper(s.ref) || { title: 'Paper' }).title)}</span>
+        <span>${pppDay(s.date)}</span><strong>${s.score}/${s.max}</strong></div>`).join('')}
+    </div>`;
+}
+
+/* ---- Start, resume, abandon ---- */
+function pppSaved() {
+  const a = PPP.coerceState({ active: pppState().active }).active;
+  return a && a.id ? a : null;
+}
+
+function pppResumeHTML() {
+  if (ppp) return '';
+  const a = pppSaved();
+  if (!a) return '';
+  return `
+    <div class="card mock-resume" role="status">
+      <div><strong>${escapeHTML(pppActiveName(a))} is in progress</strong>
+        <div class="mock-paper-meta">Part ${a.idx + 1} of ${a.qIds.length}, ${PPP_STEP_LABELS[a.step]}.</div></div>
+      <div class="q-head-btns">
+        <button class="btn btn-primary btn-sm" onclick="resumePPP()">Resume</button>
+        <button class="btn btn-secondary btn-sm" onclick="abandonPPP()">Abandon</button>
+      </div>
+    </div>`;
+}
+
+function resumePPP() {
+  const a = pppSaved();
+  if (!a) {
+    pppState().active = {};
+    saveState();
+    toast('That sitting can no longer be resumed');
+    renderQuestions();
+    return;
+  }
+  ppp = a;
+  qMode = 'ppp';
+  stopPPPTimer();
+  if (ppp.step === 'answer' && ppp.partEndAt !== null) {
+    if (ppp.partEndAt <= Date.now()) {
+      toast('Time ran out on this part while you were away. Mark what you wrote.', 3500);
+      pppSubmitAnswer(true);
+      return;
+    }
+    pppTick = setInterval(updatePPPClock, 1000);
+  }
+  renderQuestions();
+  scrollContentTop();
+}
+
+function abandonPPP() {
+  if (!confirm('Abandon this sitting? Parts you have not finished are lost, and the paper will not go on rest.')) return;
+  const a = ppp || pppSaved();
+  stopPPPTimer();
+  if (a) {
+    PPP.recordSitting(pppState(), { id: a.id, kind: a.kind, ref: a.ref, date: today(), status: 'abandoned',
+                                    score: 0, max: 0, minutesUsed: 0, parts: {} });
+  }
+  ppp = null;
+  persistPPP(true);
+  renderQuestions();
+}
+
+// The clock for the part on screen: a fixed end time in Phase 3, none otherwise.
+function pppStartPart() {
+  stopPPPTimer();
+  const now = Date.now();
+  ppp.step = 'answer';
+  ppp.partStartedAt = now;
+  ppp.partEndAt = ppp.timed ? now + PPP.partSeconds(pppQ().marks) * 1000 : null;
+  if (ppp.timed) pppTick = setInterval(updatePPPClock, 1000);
+}
+
+function pppBegin(kind, ref, qIds, timed) {
+  if ((ppp || pppSaved()) && !confirm('Starting this discards the sitting in progress. Continue?')) return;
+  ppp = {
+    id: 's' + Date.now().toString(36), kind, ref, timed, step: 'answer',
+    startedAt: Date.now(), qIds, idx: 0, partStartedAt: 0, partEndAt: null,
+    answers: {}, scores: {}, reasons: {}, fixes: {}, redoAnswers: {}, redoScores: {}, seconds: {}
+  };
+  pppStartPart();
+  persistPPP(true);
+  renderQuestions();
+  scrollContentTop();
+}
+
+function startPPPTopic(L) {
+  const ids = PPP.buildTopicSet(PPP.bankQuestions(qData), L, latestScores());
+  if (!ids.length) { toast('No parts in this section yet'); return; }
+  pppBegin('topic', L, ids, false);
+}
+
+function startPPPPaper(paperId) {
+  const p = mockPaper(paperId);
+  if (!p) return;
+  const st = pppState();
+  if (PPP.isResting(st.sittings, paperId, today())
+      && !confirm(`${p.title} is resting until ${pppDay(PPP.restUntil(st.sittings, paperId))}. PPP works best once you have forgotten the answers. Sit it anyway?`)) return;
+  pppBegin('paper', paperId, paperQuestions(p).map(q => q.id), st.phase === 3);
+}
+
+function pppHome() {
+  stopPPPTimer();
+  ppp = null;
+  renderQuestions();
+  scrollContentTop();
+}
+
+/* ---- The part screen ---- */
+function pppAnswerHtml(q, redo) {
+  if (q.commandWord === 'Draw') return '<em>Drawn on paper. Look at your diagram while you tick.</em>';
+  const a = redo ? ppp.redoAnswers : ppp.answers;
+  const base = (redo ? 'pppr-' : 'ppp-') + q.id;
+  const parts = q.slots > 1
+    ? Array.from({ length: q.slots }, (_, i) => a[`${base}-${i}`] || '').map((x, i) => x.trim() ? `${i + 1}. ${x}` : '')
+    : [a[base] || ''];
+  const text = parts.filter(x => x.trim()).join('\n');
+  return text ? escapeHTML(text) : '<em>Left blank.</em>';
+}
+
+function pppMarkerHtml(q) {
+  if (q.markScheme) return renderMarker(q, 'ppp');
+  return `
+    <div class="ms-example"><div>${examText(q.modelAnswer)}</div></div>
+    <p class="ms-note" style="margin-top:12px">How many marks did your answer earn?</p>
+    <div class="self-mark">${Array.from({ length: q.marks + 1 }, (_, i) =>
+      `<button class="btn btn-secondary btn-sm" onclick="recordResult('${q.id}', ${i}, 'ppp')">${i}/${q.marks}</button>`).join('')}</div>`;
+}
+
+// What the scheme wanted, read-only, for diagnosing and fixing.
+function pppSchemeSummary(q, open) {
+  const ms = q.markScheme;
+  const example = `<div class="ms-title" style="margin-top:10px">Example answer</div><div>${examText(q.modelAnswer)}</div>`;
+  if (!ms) return `<details class="ms-example" ${open ? 'open' : ''}><summary>What the mark scheme wanted</summary>${example}</details>`;
+  const items = ms.type === 'levels' ? ms.indicative : ms.type === 'chain' ? ms.points.map(p => p.join(' → ')) : ms.points;
+  const list = (title, arr, cls) => arr && arr.length
+    ? `<div class="${cls}"><div class="ms-title">${title}</div><ul>${arr.map(t => `<li>${t}</li>`).join('')}</ul></div>` : '';
+  return `
+    <details class="ms-example" ${open ? 'open' : ''}><summary>What the mark scheme wanted</summary>
+      ${list(ms.type === 'levels' ? 'Indicative content' : 'Creditworthy points', items, 'ms-accept')}
+      ${list('Do not credit', ms.reject, 'ms-reject')}
+      ${example}
+    </details>`;
+}
+
+// "· 12/16 marks so far", or nothing before the first part is marked.
+function pppScoreSoFar() {
+  const done = ppp.qIds.slice(0, ppp.idx + 1).filter(id => id in ppp.scores);
+  return done.length ? ` · ${done.reduce((n, id) => n + ppp.scores[id], 0)}/${pppMarksOf(done)} marks so far` : '';
+}
+
+function renderPPPPart(container) {
+  const q = pppQ();
+  const n = ppp.qIds.length;
+  const first = ppp.idx === 0 || findQuestion(ppp.qIds[ppp.idx - 1]).scenario !== q.scenario;
+  const sc = qScenario(q);
+  const paper = ppp.kind === 'paper' ? mockPaper(ppp.ref) : null;
+  const num = paper && sc ? `<span class="exam-q-num">${paper.scenarios.indexOf(sc.id) + 1}</span>` : '';
+  const stem = !sc ? '' : (first && ppp.step === 'answer')
+    ? `<div class="exam-q-head">${num}<h3>${sc.title}</h3></div><div class="scenario-stem">${examText(sc.stem)}</div>`
+    : `<div class="exam-q-head">${num}<h3>${sc.title}</h3></div>
+       <details class="scenario-peek"><summary>Re-read the scenario</summary><div class="scenario-stem">${examText(sc.stem)}</div></details>`;
+  const timed = ppp.step === 'answer' && ppp.partEndAt !== null;
+  container.innerHTML = `
+    <div class="mock-bar">
+      <strong>${escapeHTML(pppActiveName(ppp))}</strong>
+      <span class="mock-progress">Part ${ppp.idx + 1} of ${n}${pppScoreSoFar()}</span>
+      ${timed ? '<span class="timer-display mock-timer" id="ppp-timer" role="timer" aria-label="Time left for this part">–</span>' : ''}
+      <button class="btn btn-secondary btn-sm" onclick="abandonPPP()">Abandon</button>
+    </div>
+    <div class="ppp-progress" aria-hidden="true"><div style="width:${Math.round(ppp.idx / n * 100)}%"></div></div>
+    ${paper && paper.copyright && ppp.idx === 0 && ppp.step === 'answer' ? `<p class="ms-note">${escapeHTML(paper.copyright)}</p>` : ''}
+    <section class="exam-q">
+      ${stem}
+      <div class="question-card" id="pppq-${q.id}">
+        <div class="question-meta">
+          <span class="badge">${escapeHTML(pppPartLabel(q))}</span>
+          <span class="badge">${q.commandWord}</span>
+          ${q.code ? `<span class="q-marks">${q.code}</span>` : ''}
+        </div>
+        ${renderExamQuestion(q, false)}
+        ${pppStepHtml(q)}
+      </div>
+    </section>`;
+  pppBindStep(container, q);
+  if (timed) updatePPPClock();
+}
+
+function pppStepHtml(q) {
+  const s = ppp.scores[q.id];
+  const lost = s === undefined ? 0 : PPP.lostMarks(s, q.marks);
+  const remark = ppp.step === 'diagnose' || (ppp.step === 'next' && !(q.id in ppp.redoScores))
+    ? `<button class="btn btn-secondary btn-sm" onclick="pppRemark()">Re-mark</button>` : '';
+  switch (ppp.step) {
+    case 'answer':
+      return `${renderAnswerArea(q, 'ppp-' + q.id)}
+        <p class="ms-note">Pure attempt: no notes. If you cannot answer it, leave it blank. The blank shows you exactly what to revise.</p>
+        <button class="btn btn-primary" onclick="pppSubmitAnswer(false)">Done, mark it</button>`;
+    case 'mark':
+      return `<div class="mock-answer">${pppAnswerHtml(q, false)}</div>
+        <p class="q-intro">Mark strictly. Give yourself no benefit of the doubt, and read the "Do not credit" list before you tick.</p>
+        <div class="marker" id="marker-${q.id}">${pppMarkerHtml(q)}</div>`;
+    case 'diagnose':
+      return `<div class="mock-answer">${pppAnswerHtml(q, false)}</div>
+        <div class="mock-marked">Marked <strong>${s}</strong>/${q.marks} ${remark}</div>
+        ${pppSchemeSummary(q, false)}
+        <p class="q-intro">You dropped ${pppPlural(lost, 'mark')}. Give every one a reason. Be honest: the reasons decide what you fix.</p>
+        <div class="ppp-reason-key">${PPP.REASONS.map(r => `<div><strong>${PPP_REASON_LABELS[r]}:</strong> ${PPP_REASON_HINTS[r]}</div>`).join('')}</div>
+        ${ppp.reasons[q.id].map((r, i) => `
+          <div class="ppp-reasons" role="group" aria-label="Reason for lost mark ${i + 1}" data-reasons="${i}">
+            <span class="ppp-mark-n">Mark ${i + 1}</span>
+            ${PPP.REASONS.map(x => `<button class="tab-btn ${r === x ? 'active' : ''}" data-r="${x}" aria-pressed="${r === x}" onclick="pppSetReason(${i}, '${x}')">${PPP_REASON_LABELS[x]}</button>`).join('')}
+          </div>`).join('')}
+        <div class="ppp-actions">
+          ${lost > 1 ? `<button class="btn btn-secondary btn-sm" onclick="pppSameReason()">Same reason for every mark</button>` : ''}
+          <button class="btn btn-primary" onclick="pppToFix()">Next: fix it</button>
+        </div>`;
+    case 'fix': {
+      const rs = ppp.reasons[q.id].filter((r, i, a) => a.indexOf(r) === i);
+      const need = PPP.needsWrittenFix(rs);
+      return `<div class="question-meta">${rs.map(r => `<span class="badge">${PPP_REASON_LABELS[r]}</span>`).join('')}</div>
+        <div class="ppp-fix-links">
+          <button class="btn btn-secondary btn-sm" onclick="pppOpenNotes('${q.section}')">Section ${q.section} notes</button>
+          <button class="btn btn-secondary btn-sm" onclick="pppOpenCards('${q.section}')">Section ${q.section} flashcards</button>
+        </div>
+        ${pppSchemeSummary(q, true)}
+        ${rs.filter(r => r !== 'knowledge').map(r => `<p class="ms-note"><strong>${PPP_REASON_LABELS[r]}:</strong> ${escapeHTML(pppTip(q, r))}</p>`).join('')}
+        <label class="ms-title" for="pppfix-${q.id}">What the answer should have said${need ? ' (required)' : ' (optional)'}</label>
+        <textarea class="quiz-answer-area" id="pppfix-${q.id}" rows="3"></textarea>
+        <button class="btn btn-primary" onclick="pppToRedo()">Next: redo it from memory</button>`;
+    }
+    case 'redo':
+      return `<p class="ms-note">Answer it again from memory. Your first answer and your correction are hidden.</p>
+        ${renderAnswerArea(q, 'pppr-' + q.id)}
+        <button class="btn btn-primary" onclick="pppSubmitRedo()">Done, mark the redo</button>`;
+    case 'redomark':
+      return `<div class="mock-answer">${pppAnswerHtml(q, true)}</div>
+        <p class="q-intro">Mark the redo as strictly as the first attempt.</p>
+        <div class="marker" id="marker-${q.id}">${pppMarkerHtml(q)}</div>`;
+    case 'next': {
+      const redo = ppp.redoScores[q.id];
+      const last = ppp.idx === ppp.qIds.length - 1;
+      return `<div class="mock-marked">${s >= q.marks ? 'Full marks' : `First attempt <strong>${s}</strong>/${q.marks}`}${redo !== undefined ? ` · redo <strong>${redo}</strong>/${q.marks}` : ''} ${remark}</div>
+        <button class="btn btn-primary" onclick="pppNextPart()">${last ? 'Finish and see results' : 'Next question →'}</button>`;
+    }
+  }
+  return '';
+}
+
+function pppBindStep(container, q) {
+  if (ppp.step === 'answer' || ppp.step === 'redo') {
+    const map = ppp.step === 'answer' ? ppp.answers : ppp.redoAnswers;
+    container.querySelectorAll('textarea.quiz-answer-area').forEach(t => {
+      t.value = map[t.id] || '';
+      t.addEventListener('input', () => { map[t.id] = t.value; persistPPP(); });
+    });
+  } else if (ppp.step === 'fix') {
+    const t = el('pppfix-' + q.id);
+    if (t) {
+      t.value = ppp.fixes[q.id] || '';
+      t.addEventListener('input', () => { ppp.fixes[q.id] = t.value; persistPPP(); });
+    }
+  } else if ((ppp.step === 'mark' || ppp.step === 'redomark') && q.markScheme) {
+    updateMarker(q.id);
+  }
+}
+
+function pppGo(step) {
+  ppp.step = step;
+  persistPPP(true);
+  renderQuestions();
+}
+
+/* ---- Moving through a part ---- */
+function updatePPPClock() {
+  if (!ppp || ppp.step !== 'answer' || ppp.partEndAt === null) { stopPPPTimer(); return; }
+  const left = Math.max(0, Math.round((ppp.partEndAt - Date.now()) / 1000));
+  const t = el('ppp-timer');
+  if (t) {
+    t.textContent = fmtClock(left * 1000);
+    t.classList.toggle('warning', left <= 60 && left > 15);
+    t.classList.toggle('critical', left <= 15);
+  }
+  if (left === 0) {
+    toast('Time is up for this part. Pens down.', 3000);
+    pppSubmitAnswer(true);
+  }
+}
+
+function pppSubmitAnswer(timeUp) {
+  if (!ppp || ppp.step !== 'answer') return;
+  stopPPPTimer();
+  const q = pppQ();
+  const used = Math.round((Date.now() - ppp.partStartedAt) / 1000);
+  ppp.seconds[q.id] = ppp.partEndAt !== null ? Math.min(used, PPP.partSeconds(q.marks)) : Math.min(used, 86400);
+  ppp.step = 'mark';
+  delete markerLevel[q.id];
+  persistPPP(true);
+  if (currentPage === 'questions' && qMode === 'ppp') renderQuestions();
+}
+
+function recordPPPMark(qId, score) {
+  if (!ppp || qId !== ppp.qIds[ppp.idx]) return;
+  const q = pppQ();
+  if (ppp.step === 'mark') {
+    ppp.scores[qId] = score;
+    const lost = PPP.lostMarks(score, q.marks);
+    if (!lost) return pppGo('next');
+    if (!Array.isArray(ppp.reasons[qId]) || ppp.reasons[qId].length !== lost) ppp.reasons[qId] = Array(lost).fill(null);
+    pppGo('diagnose');
+  } else if (ppp.step === 'redomark') {
+    ppp.redoScores[qId] = score;
+    pppGo('next');
+  }
+}
+
+function pppRemark() {
+  const q = pppQ();
+  delete ppp.scores[q.id];
+  delete ppp.reasons[q.id];
+  delete markerLevel[q.id];
+  pppGo('mark');
+}
+
+function pppSetReason(i, r) {
+  const q = pppQ();
+  if (!ppp || ppp.step !== 'diagnose' || !Array.isArray(ppp.reasons[q.id])) return;
+  ppp.reasons[q.id][i] = r;
+  persistPPP();
+  const group = document.querySelector(`[data-reasons="${i}"]`);
+  if (group) group.querySelectorAll('button').forEach(b => {
+    const on = b.dataset.r === r;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-pressed', String(on));
+  });
+}
+
+function pppSameReason() {
+  const reasons = ppp.reasons[pppQ().id] || [];
+  const r = reasons.find(Boolean);
+  if (!r) { toast('Pick a reason for Mark 1 first'); return; }
+  reasons.forEach((_, i) => pppSetReason(i, r));
+}
+
+function pppToFix() {
+  const q = pppQ();
+  if (!PPP.partDiagnosed(ppp.reasons[q.id], PPP.lostMarks(ppp.scores[q.id], q.marks))) {
+    toast('Give every lost mark a reason first');
+    return;
+  }
+  pppGo('fix');
+  scrollContentTop();
+}
+
+function pppTip(q, r) {
+  if (r === 'misread') return (q.traps && q.traps.length) ? q.traps.join(' ')
+    : 'Underline the command word, the number asked for, and any "other than", "one" or "other" before you write.';
+  if (r === 'technique') return PPP_TECHNIQUE_TIPS[q.commandWord] || PPP_TECHNIQUE_TIPS.Explain;
+  if (r === 'time') return 'Use the marks as a clock: about 1 minute 20 seconds a mark. Move on and come back.';
+  return 'Leave five minutes at the end to re-read every answer against its question.';
+}
+
+function pppOpenNotes(L) { navigate('sections', { section: L }); }
+function pppOpenCards(L) {
+  flashPracticeMode = true;
+  flashFilter = L;
+  navigate('flashcards');
+}
+
+function pppToRedo() {
+  const q = pppQ();
+  if (PPP.needsWrittenFix(ppp.reasons[q.id]) && !(ppp.fixes[q.id] || '').trim()) {
+    toast("Write a correction first: you didn't know this one");
+    const t = el('pppfix-' + q.id);
+    if (t) t.focus();
+    return;
+  }
+  delete markerLevel[q.id];
+  pppGo('redo');
+}
+
+function pppSubmitRedo() {
+  if (!ppp || ppp.step !== 'redo') return;
+  delete markerLevel[pppQ().id];
+  pppGo('redomark');
+}
+
+function pppNextPart() {
+  if (!ppp || ppp.step !== 'next') return;
+  if (ppp.idx >= ppp.qIds.length - 1) return pppFinish();
+  ppp.idx += 1;
+  pppStartPart();
+  persistPPP(true);
+  renderQuestions();
+  scrollContentTop();
+}
+
+/* ---- Finishing ----
+   The cold attempt is the honest measure, so it is the LAST history entry for
+   each part (latestScores reads the last one). A redo straight after seeing the
+   scheme is logged first, and earns no XP. */
+function pppFinish() {
+  const d = today();
+  const st = pppState();
+  const parts = {};
+  const push = (id, score) => {
+    const marks = findQuestion(id).marks;
+    state.questions.history.push({ qId: id, marks, date: d, selfScore: Math.round(score / marks * 100) });
+  };
+  ppp.qIds.forEach(id => { if (id in ppp.redoScores) push(id, ppp.redoScores[id]); });
+  ppp.qIds.forEach(id => {
+    parts[id] = {
+      score: ppp.scores[id],
+      reasons: (ppp.reasons[id] || []).filter(Boolean),
+      fix: ppp.fixes[id] || '',
+      redo: id in ppp.redoScores ? ppp.redoScores[id] : null,
+      seconds: ppp.seconds[id] || 0
+    };
+    push(id, ppp.scores[id]);
+  });
+  const score = ppp.qIds.reduce((n, id) => n + ppp.scores[id], 0);
+  const max = pppMarksOf(ppp.qIds);
+  const minutesUsed = Math.round(Object.values(ppp.seconds).reduce((a, b) => a + b, 0) / 60);
+  PPP.recordSitting(st, { id: ppp.id, kind: ppp.kind, ref: ppp.ref, date: d, status: 'done',
+                          score, max, minutesUsed, parts });
+  state.xp = (state.xp || 0) + score * 2;
+  ppp.result = { score, max, parts, minutesUsed, xp: score * 2 };
+  ppp.step = 'done';
+  persistPPP(true);
+  bumpActivity();
+  renderQuestions();
+  scrollContentTop();
+}
+
+function renderPPPDone(container) {
+  const r = ppp.result;
+  const pct = r.max ? Math.round(r.score / r.max * 100) : 0;
+  const counts = PPP.reasonCounts(r.parts);
+  const lostTotal = Object.values(counts).reduce((a, b) => a + b, 0);
+  const row = (label, g, m) => `
+    <div class="mock-row"><span>${escapeHTML(label)}</span>
+      <div class="bar"><div class="bar-fill" style="width:${m ? Math.round(g / m * 100) : 0}%"></div></div>
+      <strong>${g}/${m}</strong></div>`;
+  const paper = ppp.kind === 'paper' ? mockPaper(ppp.ref) : null;
+  const rows = paper
+    ? paper.scenarios.map((sid, i) => {
+        const ids = ppp.qIds.filter(id => findQuestion(id).scenario === sid);
+        return row(`Q${i + 1} ${qData.scenarios.find(s => s.id === sid).title}`,
+                   ids.reduce((n, id) => n + r.parts[id].score, 0), pppMarksOf(ids));
+      }).join('')
+    : ppp.qIds.map(id => row(pppPartLabel(findQuestion(id)), r.parts[id].score, findQuestion(id).marks)).join('');
+  container.innerHTML = `
+    <div class="card mock-result">
+      <div class="mock-paper-meta">${escapeHTML(pppActiveName(ppp))} · ${r.minutesUsed} minutes answering</div>
+      <div class="mock-score">${r.score}<span>/${r.max}</span></div>
+      <div class="mock-paper-meta">${pct}% · +${r.xp} XP</div>
+    </div>
+    <h3 style="margin:18px 0 8px">${paper ? 'By question' : 'By part'}</h3>
+    ${rows}
+    <h3 style="margin:18px 0 8px">Where the marks went</h3>
+    ${lostTotal ? `<div class="ppp-reason-counts">${PPP.REASONS.filter(k => counts[k]).map(k => `
+      <div><strong>${counts[k]}</strong><span>${PPP_REASON_LABELS[k]}</span></div>`).join('')}</div>`
+      : '<p class="q-intro">Full marks. Nothing lost.</p>'}
+    ${paper ? `<p class="ms-note" style="margin-top:12px">This paper now rests for ${PPP.REST_DAYS} days, so you forget the answers before you sit it again.</p>` : ''}
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+      <button class="btn btn-primary btn-sm" onclick="pppHome()">Back to PPP</button>
     </div>`;
 }
 
