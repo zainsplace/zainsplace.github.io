@@ -1,14 +1,14 @@
 # PPP mode (Pure Past Papers) for Unit 1
 
-Date: 2026-10-15
+Date: 2026-10-15 (revised the same day: one question at a time, no mistake log)
 
 ## Goal
 
 Add the Pure Past Papers revision method to the Questions tab of the revision
 app (`revision/`, served at zainsplace.github.io/revision/). In PPP, past papers
 and their mark schemes drive all revision: attempt cold, mark strictly, diagnose
-every lost mark, fix only those gaps, redo from memory, and re-test mistakes on a
-spaced schedule.
+every lost mark, fix only those gaps, and redo from memory. Here that loop runs
+one question at a time.
 
 Unit 1 (Information Technology Systems) is built first. Unit 2 gets its own short
 design afterwards, reusing this engine.
@@ -31,44 +31,57 @@ design afterwards, reusing this engine.
   **6 full papers**: June 2026, Mock 1, Mock 2, Paper 3, Paper 4, Paper 5.
 - **No exam dates anywhere.** The countdown was removed (commit 675ba2c). PPP's
   "final week" phase needs a date, so it is dropped.
+- **One question at a time, and no mistake log** (the user's revision after the
+  first plan). Each part runs answer, mark, diagnose, fix, redo before the next
+  part opens. Nothing is re-tested later.
 
-## The loop (one sitting)
+## The loop (one part at a time)
 
-1. **Attempt cold.** A full paper or a topic set. Scenario stem, then parts,
-   typed answers. No notes, no "Watch the wording" traps, no mark scheme.
-   Full papers are timed at the paper's tariff (90 marks, 120 minutes) in
-   Phase 3 and untimed (time used shown) in Phase 2. Topic sets are untimed.
-   The front of the paper says blanks are fine.
-2. **Mark strictly.** The existing marker (`renderMarker`: points, chain,
-   levels), answer above the scheme. Traps show here, never while answering.
-3. **Diagnose every lost mark.** For each part with lost marks, one chip row per
-   lost mark, each set to one reason:
+A sitting is a topic set or a full paper, worked through **one part at a
+time**. A bar at the top shows the sitting's name, "Part 3 of 18" and the marks
+so far. For each part:
+
+1. **Answer.** Only this part is on screen. The scenario stem shows in full on
+   the first part of each scenario, then folds into "Re-read the scenario".
+   No notes, no "Watch the wording" traps, no mark scheme. Blanks are fine.
+2. **Mark.** The existing marker (`renderMarker`: points, chain, levels) opens
+   under the answer. Traps show here. Re-mark stays available until the redo
+   starts.
+3. **Full marks** goes straight to **Next question**. Otherwise:
+4. **Diagnose.** One chip row per lost mark, each set to one reason:
    - `knowledge`: Didn't know it
    - `technique`: Knew it, but didn't expand / gave a definition not a benefit /
      didn't apply to the scenario / no conclusion
    - `misread`: Misread the question ("other than...", using vs setting up)
    - `time`: Ran out of time
    - `careless`: Careless
-   The student cannot continue until every lost mark has a reason.
-4. **Fix the gaps.** Only the parts that lost marks, each with links to its
-   topic code's notes (Sections page) and flashcards, and a short box for "what
-   the answer should have said". The box is required when any reason is
-   `knowledge`; otherwise a one-line tip is shown (the part's traps for
-   `misread`, the command-word pattern for `technique`).
-5. **Redo from memory.** The missed parts again, blank: no old answer, no
-   correction. Marked with the same marker. Full marks clears the part;
-   anything less adds it to the mistake log.
-6. **Mistake log.** Spaced re-tests after 2, 3, 5, then 7 days. A part leaves
-   after two full-mark redos in a row. The PPP screen opens with "Mistakes due
-   today".
+   Every lost mark needs a reason before moving on.
+5. **Fix.** Links to the part's section notes and flashcards, what the mark
+   scheme wanted, a one-line tip per non-knowledge reason (traps for
+   `misread`, the command-word pattern for `technique`), and a correction box,
+   required when any reason is `knowledge`.
+6. **Redo.** The same part, blank (no old answer, no correction), then marked
+   again. Then **Next question**.
+
+No going back: a part is final once Next is pressed. The redo mark is recorded
+but nothing is re-tested later.
+
+**End of sitting:** total, marks by question (papers) or by part (topic sets),
+lost marks counted by reason, and XP. The cold attempt is what counts.
 
 ## Phases (date-free)
 
 | Phase | Sits | Timing | Suggest moving on when |
 |---|---|---|---|
 | 1. Topic sets | 5-8 parts from one section (A-F) | Untimed | every section has a completed set |
-| 2. Full papers | a whole paper | Untimed, time used shown | 2 full papers completed |
-| 3. Timed papers | a whole paper | 120 min, fixed end time | (stays) |
+| 2. Full papers | a whole paper | Untimed, time used per part shown | 2 full papers completed |
+| 3. Timed papers | a whole paper | Each part on its own exam-pace clock | (stays) |
+
+**Timing in Phase 3.** Each part's answering time is marks x 80 seconds (exam
+pace, 90 marks in 120 minutes): 2:40 for a 2-marker, 12:00 for a 9-marker,
+16:00 for the 12-marker. At zero it is pens down and the part goes to marking.
+Marking, diagnosing, fixing and the redo are untimed. The clock uses a fixed
+end time, so a refresh does not reset it.
 
 The PPP screen shows the current phase and a **Do next** button. The student
 can pick any phase; the app only suggests. Moving phase is the student's click.
@@ -81,17 +94,15 @@ scenarios. Up to 8, at least 5. Each part shows its scenario stem.
 - Phase 1: a topic set for the section with the fewest completed sets
   (ties broken by the unit's `order` in the `UNITS` manifest).
 - Phases 2-3: a paper never sat in PPP, else the one sat longest ago that is not
-  resting. If every paper is resting, suggest the mistake log or a topic set.
-- If mistakes are due, they come first.
+  resting. If every paper is resting, suggest a topic set.
 
 ## Paper rotation and sealed papers
 
 - After a completed sitting a paper **rests for 21 days** ("rests until
   5 Nov"). Sitting a resting paper is allowed after a confirm.
   Abandoned sittings do not start a rest.
-- June 2026 and Papers 3-5 are **sealed**: they appear only in PPP (and as
-  single parts in the mistake log). Never in Practice, Quiz, the Mock paper
-  menu or battles.
+- June 2026 and Papers 3-5 are **sealed**: they appear only in PPP. Never in
+  Practice, Quiz, the Mock paper menu, battles, or the Practice summary tiles.
 - Mocks 1 and 2 stay unsealed (already in the practice bank). Phase 1 topic
   sets draw only from unsealed parts, so they do not spend the sealed papers.
 - Section F has only 3 unsealed parts. **2 extra Section F parts** (standalone,
@@ -169,36 +180,31 @@ ppp: {
   phase: 1 | 2 | 3,
   sittings: [ { id, kind: 'paper' | 'topic', ref, date, status: 'done' | 'abandoned',
                 score, max, minutesUsed,
-                parts: { qId: { score, reasons: [..], fix, redo } } } ],
-  active: {} | { id, kind, ref, step: 'sit' | 'mark' | 'diagnose' | 'fix' | 'redo',
-                 startedAt, endAt | null, qIds, answers, scores, reasons,
-                 fixes, redoAnswers, redoScores },
-  log: { qId: { stage: 0-3, due: 'YYYY-MM-DD', clean: 0 | 1, reasons: [..] } }
+                parts: { qId: { score, reasons: [..], fix, redo, seconds } } } ],
+  active: {} | { id, kind: 'paper' | 'topic', ref, timed, startedAt, qIds, idx,
+                 step: 'answer' | 'mark' | 'diagnose' | 'fix' | 'redo' | 'redomark' | 'next',
+                 partStartedAt, partEndAt | null,
+                 answers, scores, reasons, fixes, redoAnswers, redoScores, seconds }
 }
 ```
 
-Completed sittings keep scores, reasons, fixes and redo marks, not answer text,
-to keep localStorage small. `sittings` is capped at the latest 100.
-
-**Log schedule.** Intervals `[2, 3, 5, 7]` days. Entering the log: stage 0,
-due today + 2. Log redo at full marks: `clean + 1`; at 2, the part leaves;
-otherwise stage = min(stage + 1, 3), due today + interval. Below full marks:
-`clean = 0`, stage 0, due today + 2.
+Completed sittings keep scores, reasons, fixes, redo marks and seconds used,
+not answer text. `sittings` is capped at the latest 100.
 
 ## Code layout
 
-- **`revision/ppp.js` (new):** the pure logic: log scheduling, rest/due dates,
-  Do next, phase suggestion, topic set builder, and coercion of saved `ppp`
-  state. Plain functions, no DOM. It ends with
+- **`revision/ppp.js` (new):** the pure logic: part clocks, paper rest, Do
+  next, phase suggestion, topic set builder, diagnosis checks, reason counts,
+  and coercion of saved `ppp` state. Plain functions, no DOM. It ends with
   `if (typeof module !== 'undefined') module.exports = {...}` so Node tests can
   load it. Loaded before `app.js` with its own `?v=N`.
-- **`revision/app.js`:** PPP screens (home, sit, mark, diagnose, fix, redo,
-  log), dispatch from `renderQuestions`, and sealed filtering in
+- **`revision/app.js`:** PPP screens (home, the part screen and its steps,
+  results), dispatch from `renderQuestions`, and sealed filtering in
   `practiceList`, `quizPool`, `battleQuestionPool` and the mock menu.
   `defaultUnitState` and `coerceUnit` gain `ppp`. Timers join `stopAllTimers`.
   PPP marks are added to `state.questions.history` and earn 2 XP per mark,
-  as mocks do. Redos and log re-tests add history but earn no XP, so
-  re-marking the same part can't farm XP.
+  as mocks do. Redos add history (before the cold attempt, so the cold mark
+  stays the latest) but earn no XP.
 - **`revision/styles.css`:** PPP screen styles using existing tokens. Red,
   amber and green stay reserved for RAG.
 - **`revision/tests/ppp.test.js` (new):** `node:test` + `node:assert`, no
@@ -210,22 +216,22 @@ The app stays offline-only: no external requests, inline SVG icons, no fonts.
 
 ## Problems and edge cases
 
-- **Refresh, closed tab or unit switch** resumes the active sitting at its
-  step. Timed papers use a fixed end time, as the mocks do.
-- **Time runs out:** the paper goes straight to marking, and blank parts score 0.
-- **Leaving mid-sitting:** the PPP screen offers Resume or Abandon.
-- **Saved data referring to a part that no longer exists** is dropped on load.
-  Coercion checks every field (as `savedMock` does), so a damaged or edited
-  save cannot break the page. Export and Import include `ppp` automatically.
-- **Draw parts** keep the existing "draw on paper, then tick" handling in
-  sitting, marking and redo.
+- **Refresh, closed tab or unit switch** resumes the active sitting at the same
+  part and step. A timed part uses a fixed end time.
+- **A part's time runs out** (even on another page): pens down, the part goes
+  to marking.
+- **Leaving mid-sitting:** the PPP screen offers Resume or Abandon. Abandoned
+  sittings do not start a rest.
+- **Saved data referring to a part that no longer exists** is dropped on load;
+  coercion checks every field (as `savedMock` does). Export and Import include
+  `ppp` automatically.
+- **Draw parts** keep the existing "draw on paper, then tick" handling.
 
 ## Testing
 
-- **Unit tests first (TDD)** for `ppp.js`: log schedule (each stage, clearing
-  after two clean redos, reset on a miss), 21-day rest and override, Do next
-  in each phase, phase suggestion, topic set builder (min/max, spread,
-  sealed excluded), and coercion of bad data.
+- **Unit tests first (TDD)** for `ppp.js`: part clock lengths, 21-day rest,
+  Do next in each phase, phase suggestion, topic set builder (max, spread,
+  sealed excluded), diagnosis checks, reason counts, and coercion of bad data.
 - **`validate_data.py`** fails when:
   - a paper is not exactly 90 marks, or a scenario's parts don't match its stated total;
   - a part has no section, or its code isn't in the notes;
@@ -236,8 +242,8 @@ The app stays offline-only: no external requests, inline SVG icons, no fonts.
   sealed part is in it.
 - **Browser walkthrough** in the local preview:
   - a topic set, an untimed paper and a timed paper through every step;
-  - a mistake-log redo;
-  - refreshing mid-sit and mid-diagnose, a unit switch, and the rest warning;
+  - refreshing mid-answer and mid-diagnose, a timed part running out, a unit
+    switch, and the rest warning;
   - phone width and dark mode;
   - no console errors.
 
@@ -254,5 +260,6 @@ The app stays offline-only: no external requests, inline SVG icons, no fonts.
 
 - Unit 2 PPP (separate design afterwards).
 - Exam dates, countdowns, and the "final week" phase.
+- A mistake log or any later re-testing.
 - A print view or handwritten sittings.
 - Old-course (2016 spec) papers.
