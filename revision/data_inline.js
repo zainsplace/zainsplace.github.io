@@ -5976,6 +5976,17 @@ const INLINE_UNITS = {
             "p4s4"
           ],
           "sealed": true
+        },
+        {
+          "id": "p5",
+          "title": "Paper 5",
+          "scenarios": [
+            "p5s1",
+            "p5s2",
+            "p5s3",
+            "p5s4"
+          ],
+          "sealed": true
         }
       ],
       "scenarios": [
@@ -6110,6 +6121,34 @@ const INLINE_UNITS = {
           "title": "Ashford Town Library",
           "total": 24,
           "stem": "Ashford Town Library lends books and offers free public computers.\n\nThe library records every book a member borrows and logs which websites are visited on its public computers.\n\nThe council is considering new technology for the library, including AI tools and faster networking."
+        },
+        {
+          "id": "p5s1",
+          "number": 1,
+          "title": "Crumbs & Co bakeries",
+          "total": 22,
+          "stem": "Crumbs & Co has eight bakeries in Kent.\n\nEach shop has two EPOS tills that record every sale and update stock levels.\n\nCustomers will soon be able to order cakes online and collect them in store.\n\nThe tills and the online shop store customers' names, phone numbers and payment details."
+        },
+        {
+          "id": "p5s2",
+          "number": 2,
+          "title": "Northlight Films",
+          "total": 23,
+          "stem": "Northlight Films is a small production company in Manchester.\n\nEditors work in an editing suite at the office. Camera crews film on location, and raw footage files are very large.\n\nDirectors often watch edits remotely over a live video link and give feedback as the editor works."
+        },
+        {
+          "id": "p5s3",
+          "number": 3,
+          "title": "Keystone Estates",
+          "total": 21,
+          "stem": "Keystone Estates is an estate agent with two branches.\n\n**Exeter branch**\nThree desktop computers\nOne printer\nOne server that stores property listings and photos\n\n**Plymouth branch**\nTwo desktop computers\nOne printer\n\n**Agents**\nEach agent has a tablet to photograph properties and upload listings while out on valuations.\n\nThe company website shows every property with its photos."
+        },
+        {
+          "id": "p5s4",
+          "number": 4,
+          "title": "ArenaPlay Esports",
+          "total": 24,
+          "stem": "ArenaPlay runs esports tournaments in hired venues across the UK.\n\nUp to 200 players compete on the venue's network while matches are streamed live online.\n\nArenaPlay is replacing its spreadsheets and email with a new online booking and tournament-management system."
         }
       ],
       "questions": [
@@ -9994,6 +10033,706 @@ const INLINE_UNITS = {
             ]
           },
           "modelAnswer": "AI search and recommendations: AI chips make catalogue search fast and suggest books members will like; but the hardware is expensive.\nAI chatbots: answer common questions around the clock, freeing staff; but wrong answers frustrate members.\nEdge computing: self-service kiosks process loans locally, so they respond instantly even when the network is busy.\n5G: very low latency for visitors' devices; but coverage and cost vary.\nCompatibility and training: new systems may not work with the old catalogue, and staff need training.\nConclusion: worth adopting where members feel the speed (search, kiosks), phased in to spread the cost."
+        },
+        {
+          "id": "p5-1-a-i",
+          "scenario": "p5s1",
+          "part": "(a)(i)",
+          "section": "A",
+          "code": "A2.1",
+          "marks": 2,
+          "commandWord": "Give",
+          "context": "",
+          "question": "Give **two** output devices, other than a monitor and a printer, that could be used with the tills.",
+          "slots": 2,
+          "traps": [
+            "\"other than a monitor and a printer\": those two, including a receipt printer, score nothing."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "One mark for each correct answer, up to 2 marks.",
+            "points": [
+              "Speakers / headphones (e.g. a beep when an item scans)",
+              "Projector",
+              "Braille display",
+              "Plotter"
+            ],
+            "accept": [
+              "Any other output device that fits a till, other than a monitor or printer"
+            ],
+            "reject": [
+              "Monitor or printer, including a receipt printer (excluded by the question)",
+              "Input devices such as a barcode scanner or card reader"
+            ]
+          },
+          "modelAnswer": "1. Speakers\n2. Braille display"
+        },
+        {
+          "id": "p5-1-a-ii",
+          "scenario": "p5s1",
+          "part": "(a)(ii)",
+          "section": "A",
+          "code": "A2.4",
+          "marks": 2,
+          "commandWord": "Give",
+          "context": "",
+          "question": "Give **two** benefits of the tills processing sales automatically rather than staff recording them by hand.",
+          "slots": 2,
+          "traps": [
+            "Benefits of AUTOMATIC processing over manual recording."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "One mark for each correct answer, up to 2 marks.",
+            "points": [
+              "Faster",
+              "Fewer errors",
+              "Stock levels update in real time",
+              "Sales can be batch-processed at set times, e.g. overnight reports",
+              "Saves staff time"
+            ],
+            "accept": [],
+            "reject": [
+              "Benefits of manual processing, e.g. humans can handle unusual cases"
+            ]
+          },
+          "modelAnswer": "1. Fewer errors\n2. Stock updates in real time"
+        },
+        {
+          "id": "p5-1-b-i",
+          "scenario": "p5s1",
+          "part": "(b)(i)",
+          "section": "E",
+          "code": "E1.1",
+          "marks": 4,
+          "commandWord": "Explain",
+          "context": "",
+          "question": "Explain **two** benefits to Crumbs & Co of letting customers order online.",
+          "slots": 2,
+          "traps": [
+            "Benefits to the BAKERY, linked to ordering cakes online and collecting in store."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "Orders taken 24/7",
+                "so customers can order outside opening hours and sales are not missed"
+              ],
+              [
+                "Live availability and instant confirmation",
+                "so customers know their cake is booked without phoning"
+              ],
+              [
+                "Lower costs",
+                "because staff spend less time taking orders by phone or in person"
+              ],
+              [
+                "Wider reach",
+                "so customers from further away can find and order from the shops"
+              ],
+              [
+                "Order data is collected",
+                "so the bakery can plan how much to bake for each shop"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Benefits to customers only, unless linked back to the bakery"
+            ]
+          },
+          "modelAnswer": "1. 24/7 ordering: customers order at night, so the bakery does not miss sales.\n2. Fewer phone calls: staff spend less time taking orders and more time serving."
+        },
+        {
+          "id": "p5-1-b-ii",
+          "scenario": "p5s1",
+          "part": "(b)(ii)",
+          "section": "E",
+          "code": "E2.4",
+          "marks": 4,
+          "commandWord": "Explain",
+          "context": "",
+          "question": "Explain **two** reasons why Crumbs & Co must make sure its customer and stock data is accurate.",
+          "slots": 2,
+          "traps": [
+            "REASONS for accuracy: what goes wrong if the data is wrong, not how to check it."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "GDPR requires personal data to be accurate",
+                "so wrong customer details could breach the law"
+              ],
+              [
+                "Wrong data leads to wrong decisions",
+                "e.g. baking the wrong amounts for each shop"
+              ],
+              [
+                "Wrong stock data causes over- or under-ordering",
+                "so ingredients are wasted or run out"
+              ],
+              [
+                "Errors damage customer trust",
+                "e.g. a wrong phone number means the shop cannot call about an order"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Methods of checking accuracy, e.g. validation or verification"
+            ]
+          },
+          "modelAnswer": "1. Stock: wrong stock figures mean ingredients are over-ordered and wasted, or run out.\n2. Trust: a wrong phone number means the shop cannot contact a customer about their order."
+        },
+        {
+          "id": "p5-1-c",
+          "scenario": "p5s1",
+          "part": "(c)",
+          "section": "D",
+          "code": "D2.2",
+          "marks": 4,
+          "commandWord": "Describe",
+          "context": "",
+          "question": "Describe how antivirus software protects the tills.",
+          "slots": 0,
+          "traps": [
+            "Describe HOW antivirus works: one step per mark. Firewalls are a different tool."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "One mark for each point, up to 4 marks.",
+            "points": [
+              "Scans files and programs for malware",
+              "Signatures: matches files against known malware",
+              "Heuristics: spots suspicious behaviour from new or unknown malware",
+              "Real-time scanning as files are opened or downloaded",
+              "Quarantines infected files so they cannot spread",
+              "Removes / deletes the malware",
+              "Needs regular updates to catch new threats"
+            ],
+            "accept": [],
+            "reject": [
+              "Blocking network traffic (a firewall)"
+            ]
+          },
+          "modelAnswer": "It scans the till's files in real time. It compares them with signatures of known malware, and uses heuristics to spot suspicious behaviour. Infected files are quarantined so they cannot spread, then removed. Updates keep the signatures current."
+        },
+        {
+          "id": "p5-1-d",
+          "scenario": "p5s1",
+          "part": "(d)",
+          "section": "D",
+          "code": "D2.1",
+          "marks": 6,
+          "commandWord": "Discuss",
+          "context": "",
+          "question": "Discuss techniques, other than passwords and firewalls, that Crumbs & Co could use to protect customer data.",
+          "slots": 0,
+          "traps": [
+            "\"other than passwords and firewalls\": anything about those two earns nothing.",
+            "Discuss means both sides: what each technique does AND a drawback, applied to the bakery."
+          ],
+          "markScheme": {
+            "type": "levels",
+            "focus": "Techniques other than passwords and firewalls for protecting a bakery chain's customer data.",
+            "indicative": [
+              "Access levels: shop staff see orders, only managers see payment details; based on job role; must be reviewed when staff leave",
+              "File permissions: read-only for most staff, write for managers",
+              "Backups: full, incremental or differential; 3-2-1 rule (3 copies, 2 media, 1 off-site); must be tested",
+              "Encryption: customer and payment data unreadable without the key, even if a till is stolen",
+              "Antivirus software: finds and removes malware that could steal customer data; needs updates",
+              "Biometrics: fingerprint login on tills; fast and cannot be shared, but cannot be reset if stolen",
+              "Physical access control: locked office, CCTV, clear desk policy",
+              "Drawbacks weighed: cost, staff time, training"
+            ],
+            "reject": [
+              "Passwords or firewalls (excluded by the question)"
+            ]
+          },
+          "modelAnswer": "Access levels: shop staff see collection orders but not card details, which limits damage from one hacked account; but levels need updating when staff leave.\nEncryption: stored payment data is unreadable without the key, so a stolen till exposes nothing; but a lost key locks the bakery out.\nBackups: nightly off-site backups mean orders survive a till failure; but they cost money and must be tested.\nBiometric login: staff cannot share fingerprints, so every sale is traceable; but the scanners cost money and fingerprints cannot be reset."
+        },
+        {
+          "id": "p5-2-a",
+          "scenario": "p5s2",
+          "part": "(a)",
+          "section": "B",
+          "code": "B3.4",
+          "marks": 2,
+          "commandWord": "Give",
+          "context": "Northlight Films sends finished videos to clients.",
+          "question": "Give **two** file formats suitable for the finished videos.",
+          "slots": 2,
+          "traps": [
+            "VIDEO formats only: image and audio formats score nothing."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "One mark for each correct answer, up to 2 marks.",
+            "points": [
+              "MP4",
+              "MKV",
+              "MOV"
+            ],
+            "accept": [
+              "Any other video container, e.g. AVI or WebM"
+            ],
+            "reject": [
+              "Image formats (JPEG, PNG, RAW)",
+              "Audio formats (MP3, WAV)"
+            ]
+          },
+          "modelAnswer": "1. MP4\n2. MOV"
+        },
+        {
+          "id": "p5-2-b-i",
+          "scenario": "p5s2",
+          "part": "(b)(i)",
+          "section": "B",
+          "code": "B3.3",
+          "marks": 4,
+          "commandWord": "Explain",
+          "context": "",
+          "question": "Explain **two** implications of latency when directors watch edits over the live video link.",
+          "slots": 2,
+          "traps": [
+            "LATENCY is delay, not bandwidth: \"the picture is blurry\" is a bandwidth point."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "The director sees the edit late",
+                "so feedback lags behind what the editor is doing"
+              ],
+              [
+                "Delay in conversation",
+                "so the director and editor talk over each other"
+              ],
+              [
+                "Jitter (varying latency)",
+                "so audio and video stutter during the call"
+              ],
+              [
+                "Latency rises with distance and hops",
+                "so directors further away get more delay"
+              ],
+              [
+                "Congestion at busy times adds delay",
+                "so calls may need to be scheduled outside peak hours"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Picture quality / blurriness (bandwidth, not latency)"
+            ]
+          },
+          "modelAnswer": "1. Late feedback: the director sees each cut a moment after it is made, so comments refer to the wrong frame.\n2. Talking over each other: delay makes the conversation awkward."
+        },
+        {
+          "id": "p5-2-b-ii",
+          "scenario": "p5s2",
+          "part": "(b)(ii)",
+          "section": "C",
+          "code": "C1.2",
+          "marks": 4,
+          "commandWord": "Explain",
+          "context": "",
+          "question": "Explain **two** benefits to Northlight Films of storing footage in the cloud.",
+          "slots": 2,
+          "traps": [
+            "Benefits to THIS company: crews on location, editors in the office, very large files."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "Access from anywhere",
+                "so crews upload on location and editors start work straight away"
+              ],
+              [
+                "Automatic backups",
+                "so footage is not lost if a drive fails"
+              ],
+              [
+                "Less capital spending",
+                "because the company does not buy its own storage servers"
+              ],
+              [
+                "Scalable storage",
+                "so space grows with large projects and shrinks afterwards"
+              ],
+              [
+                "Always up to date",
+                "so everyone works from the latest version of the footage"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "\"It saves space\" with no link to the company"
+            ]
+          },
+          "modelAnswer": "1. Access anywhere: crews upload footage from location, so editors start the same day.\n2. Scalable: storage grows for a big project and shrinks after, so they only pay for what they use."
+        },
+        {
+          "id": "p5-2-c",
+          "scenario": "p5s2",
+          "part": "(c)",
+          "section": "A",
+          "code": "A3.4",
+          "marks": 4,
+          "commandWord": "Explain",
+          "context": "",
+          "question": "Explain **two** factors Northlight Films should consider when choosing video-editing software.",
+          "slots": 2,
+          "traps": [
+            "Factors affecting the CHOICE of software, each linked to editing large video files."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "Cost: one-off licence or subscription",
+                "so the software fits a small company's budget"
+              ],
+              [
+                "Hardware compatibility",
+                "so it runs on the editing suite's computers and graphics cards"
+              ],
+              [
+                "Opens existing file formats",
+                "so footage from the crews' cameras can be edited directly"
+              ],
+              [
+                "Features",
+                "so it has the specialist tools the editors need"
+              ],
+              [
+                "User needs and skills",
+                "so editors can use industry-standard software they already know"
+              ],
+              [
+                "Performance",
+                "so it handles large files without crashing or slowing down"
+              ],
+              [
+                "Security updates",
+                "so the software is patched against new threats"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "\"It's good\" or \"it's fast\" with no factor named"
+            ]
+          },
+          "modelAnswer": "1. Compatibility: it must open the crews' camera formats, or footage has to be converted first.\n2. Performance: it must handle huge raw files without crashing."
+        },
+        {
+          "id": "p5-2-d",
+          "scenario": "p5s2",
+          "part": "(d)",
+          "section": "B",
+          "code": "B1.4",
+          "marks": 9,
+          "commandWord": "Evaluate",
+          "context": "",
+          "question": "Evaluate the use of wired and wireless connections in the editing suite.",
+          "slots": 0,
+          "traps": [
+            "BOTH connection types, judged for editing very large video files, then a conclusion."
+          ],
+          "markScheme": {
+            "type": "levels",
+            "focus": "Wired and wireless connections for a video editing suite.",
+            "indicative": [
+              "Wired (Ethernet): high speed, so huge footage files move quickly",
+              "Wired: lower latency and more reliable, with no radio interference",
+              "Wired: harder to intercept, so unreleased footage is more secure",
+              "Wired: cabling costs money and makes it less flexible to move equipment",
+              "Wireless (Wi-Fi): easy to install and flexible; laptops can move around the office",
+              "Wireless: bandwidth shared between users, so it slows when many devices transfer at once",
+              "Wireless: interference and jitter; signal reduced by walls; less secure, so it needs WPA3",
+              "Conclusion: wired for editing workstations moving large files; Wi-Fi for laptops, visitors and light use"
+            ]
+          },
+          "modelAnswer": "Wired: Gigabit Ethernet moves huge raw footage quickly and reliably, with no interference; but cabling costs money and fixes desks in place.\nWi-Fi: easy and flexible for laptops in meetings; but bandwidth is shared, so several editors pulling large files would slow each other down.\nSecurity: cables are harder to intercept, which matters for unreleased films.\nConclusion: wire the editing workstations and keep Wi-Fi for laptops and visitors."
+        },
+        {
+          "id": "p5-3-a",
+          "scenario": "p5s3",
+          "part": "(a)",
+          "section": "B",
+          "code": "B2.2",
+          "marks": 6,
+          "commandWord": "Draw",
+          "context": "",
+          "question": "Draw a diagram to show how the two branches are connected and how agents upload listings.\n\nThe diagram must include:\n• devices and systems that are used\n• connection types and annotations.",
+          "slots": 0,
+          "traps": [
+            "Both branches, the link between them AND the agents' tablets must appear, each labelled."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "One mark for each, up to 6. Draw it on paper, then tick what your diagram shows.",
+            "points": [
+              "Exeter: three desktops AND a printer connected to a switch / WAP / router",
+              "Exeter: server connected to the switch / router",
+              "Plymouth: two desktops AND a printer connected to a switch / WAP / router",
+              "Branches connected by a WAN / VPN over the internet",
+              "Router / firewall at each branch connecting to the internet",
+              "Agents' tablets connected over 4G / 5G to the internet, reaching the Exeter server",
+              "Fully functioning system with all devices AND connection types included (with annotations)"
+            ],
+            "accept": [],
+            "reject": []
+          },
+          "modelAnswer": "Exeter: 3 desktops + printer + server, Ethernet to a switch, then router / firewall to the internet.\nPlymouth: 2 desktops + printer, Ethernet to a switch, then router / firewall to the internet.\nVPN tunnel between the two routers (WAN).\nAgents: tablets on 4G / 5G to the internet, then through Exeter's firewall to the server."
+        },
+        {
+          "id": "p5-3-b",
+          "scenario": "p5s3",
+          "part": "(b)",
+          "section": "B",
+          "code": "B3.1",
+          "marks": 2,
+          "commandWord": "Explain",
+          "context": "Customers view property photos on the company website.",
+          "question": "Explain **one** protocol used when customers view the website.",
+          "slots": 1,
+          "traps": [
+            "**one** protocol only, and what it does on the website."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for a correct point and one for an appropriate expansion, up to 2 marks.",
+            "points": [
+              [
+                "HTTP",
+                "which the browser uses to request the web pages and photos from the server"
+              ],
+              [
+                "HTTPS",
+                "which encrypts the pages with TLS, so data such as enquiry forms cannot be read in transit"
+              ],
+              [
+                "TCP/IP",
+                "which splits the pages and photos into packets and reassembles them"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Email protocols (SMTP, POP3, IMAP)"
+            ]
+          },
+          "modelAnswer": "HTTPS: encrypts the connection with TLS, so a customer's enquiry details cannot be read in transit."
+        },
+        {
+          "id": "p5-3-c",
+          "scenario": "p5s3",
+          "part": "(c)",
+          "section": "E",
+          "code": "E2.2",
+          "marks": 4,
+          "commandWord": "Explain",
+          "context": "Agents use house-price information from websites to value homes. Checking who published it is one way to check it is reliable.",
+          "question": "Explain **two** other ways Keystone Estates can check that the house-price information is reliable.",
+          "slots": 2,
+          "traps": [
+            "\"other ways\": checking who published it is given, so it scores nothing."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "Cross-reference several independent sources",
+                "so one site's error does not skew a valuation"
+              ],
+              [
+                "Check the date",
+                "so prices reflect the current market, not last year's"
+              ],
+              [
+                "Prefer official sources (e.g. the Land Registry)",
+                "because they record actual sale prices"
+              ],
+              [
+                "Compare with past data",
+                "so unusual figures stand out as possible errors"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Checking who wrote or published it (given in the question)"
+            ]
+          },
+          "modelAnswer": "1. Cross-reference: compare prices on several independent sites, so one wrong figure is spotted.\n2. Check the date: old figures would value homes at last year's prices."
+        },
+        {
+          "id": "p5-3-d",
+          "scenario": "p5s3",
+          "part": "(d)",
+          "section": "E",
+          "code": "E2.1",
+          "marks": 9,
+          "commandWord": "Evaluate",
+          "context": "",
+          "question": "Evaluate the use of primary and secondary data by Keystone Estates when valuing houses.",
+          "slots": 0,
+          "traps": [
+            "BOTH types of data, judged for valuing houses, then a conclusion."
+          ],
+          "markScheme": {
+            "type": "levels",
+            "focus": "Primary and secondary data for valuing houses.",
+            "indicative": [
+              "Primary: collected first-hand, e.g. the agent's own inspection, measurements and photos",
+              "Primary: fits exactly what the agent needs and is up to date",
+              "Primary: methods include surveys of buyers, interviews and observation",
+              "Primary: expensive and time-consuming to collect",
+              "Secondary: already exists, e.g. Land Registry sale prices and property websites",
+              "Secondary: cheaper and quicker; no collection needed",
+              "Secondary: may be out of date or not fit the exact property; the source's credibility must be checked",
+              "Conclusion: combine them; secondary data sets the price range, primary data adjusts it for the actual house"
+            ]
+          },
+          "modelAnswer": "Primary: the agent's own inspection shows the house's real condition and size, so the valuation fits this house; but each visit takes time.\nSecondary: Land Registry and property sites give recent sale prices nearby quickly and cheaply; but they may be months old and do not show condition.\nReliability: secondary sources must be checked, while primary data depends on the agent's judgement.\nConclusion: use secondary data for the local price range and primary data to adjust for the particular house."
+        },
+        {
+          "id": "p5-4-a",
+          "scenario": "p5s4",
+          "part": "(a)",
+          "section": "A",
+          "code": "A1.3",
+          "marks": 3,
+          "commandWord": "Describe",
+          "context": "",
+          "question": "Describe **one** form of notation ArenaPlay could use to design its new booking system.",
+          "slots": 0,
+          "traps": [
+            "**one** form only: the examiner marks the first one you write.",
+            "Name it, say what it shows, then link it to designing the booking system."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Notation",
+              "What it shows",
+              "Expansion"
+            ],
+            "rule": "One mark for the item, one for a justification, one for expanding it, up to 3 marks.",
+            "points": [
+              [
+                "Flowchart",
+                "shows each step of the booking process with standard symbols, e.g. diamonds for decisions",
+                "so designers can check every route, such as a tournament being full"
+              ],
+              [
+                "System diagram",
+                "shows the system's components and the connections between them, labelled",
+                "so the team can see how bookings, payments and the database link together"
+              ]
+            ],
+            "accept": [],
+            "reject": []
+          },
+          "modelAnswer": "Flowchart: shows each booking step with standard symbols, e.g. a decision diamond for \"tournament full?\", so designers can check every route before building it."
+        },
+        {
+          "id": "p5-4-b",
+          "scenario": "p5s4",
+          "part": "(b)",
+          "section": "A",
+          "code": "A4.3",
+          "marks": 9,
+          "commandWord": "Evaluate",
+          "context": "",
+          "question": "Evaluate the impact of the new booking and tournament-management system on ArenaPlay.",
+          "slots": 0,
+          "traps": [
+            "Impact on the ORGANISATION: staff, players, costs and rollout, both sides, then conclude."
+          ],
+          "markScheme": {
+            "type": "levels",
+            "focus": "The impact of a new booking and tournament-management system on an esports organiser.",
+            "indicative": [
+              "User experience: easier for players to book and pay; must be fast, available and accessible",
+              "Employee and customer needs: staff get the features they need without extra work",
+              "Cost: hardware, licences and installation upfront; support, maintenance and training ongoing",
+              "Implementation: testing with real users; moving data from spreadsheets risks loss; downtime",
+              "Replacement or integration: a full replacement of spreadsheets and email is higher risk; APIs can link to streaming or payment systems",
+              "Productivity: a dip while staff learn, then gains as bookings are automated",
+              "Working practices: less manual admin; remote working; some staff may resist the change",
+              "Training (initial and ongoing) and user support from a helpdesk or the vendor",
+              "Security: a new online system adds vulnerabilities and holds players' personal and payment data",
+              "Conclusion: long-term gains outweigh the short-term cost and disruption if the rollout is tested and staff are trained"
+            ]
+          },
+          "modelAnswer": "Players: online booking and payment is easier than emailing, so more teams enter; but downtime before a big event would lose entries.\nStaff: automation removes spreadsheet admin, but there is a productivity dip while they learn.\nCost and rollout: licences, training and moving old data cost money, and data could be lost in the move.\nSecurity: the system holds players' payment data, so it must be patched and access-controlled.\nConclusion: worth it in the long run if it is tested before a tournament and staff are trained first."
+        },
+        {
+          "id": "p5-4-c",
+          "scenario": "p5s4",
+          "part": "(c)",
+          "section": "B",
+          "code": "B2.4",
+          "marks": 12,
+          "commandWord": "Evaluate",
+          "context": "",
+          "question": "Evaluate how the features and components of the venue's network affect performance during a live tournament.",
+          "slots": 0,
+          "traps": [
+            "FEATURES and COMPONENTS of the network, linked to a live tournament with 200 players and a live stream."
+          ],
+          "markScheme": {
+            "type": "levels",
+            "focus": "How network features and components affect performance at a live esports tournament.",
+            "indicative": [
+              "Switches: faster switches increase throughput for 200 players at once",
+              "Cable type: fibre > Cat6 > Cat5e; better cable carries more data with less loss",
+              "More users means less bandwidth each, so 200 players plus the stream need enough capacity",
+              "Wired connections have lower latency and no interference, which is vital for competitive play",
+              "Wi-Fi: access point placement affects coverage; bandwidth shared; jitter hurts gameplay",
+              "QoS can prioritise game traffic and the live stream over other traffic",
+              "Segmenting the network (e.g. players, stream, spectators) reduces congestion",
+              "Monitoring finds bottlenecks during the event",
+              "A single switch or the internet link is a single point of failure; backups (e.g. 4G/5G) reduce risk",
+              "Conclusion: wired Cat6 / fibre with fast switches, QoS and separate segments gives low latency; Wi-Fi only for spectators"
+            ]
+          },
+          "modelAnswer": "Wired vs Wi-Fi: players need wired Cat6 connections for low latency and no interference; Wi-Fi jitter would make matches unfair.\nSwitches and cables: 200 players at once need fast switches and fibre between them, or throughput becomes a bottleneck.\nBandwidth: players and the live stream share the venue's capacity, so QoS should put game traffic and the stream first.\nSegmentation: separating players, stream and spectator Wi-Fi stops spectators slowing the matches.\nReliability: one failed switch could stop a match, so backup kit and monitoring are needed.\nConclusion: wired, segmented and QoS-controlled network for players and the stream; spectators on separate Wi-Fi."
         }
       ]
     },
