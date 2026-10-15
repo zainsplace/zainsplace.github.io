@@ -217,6 +217,43 @@ for unit, (folder, letters) in UNITS.items():
                         % (unit, q['id']))
             elif kind not in ('points', 'chain'):
                 err('%s: question %s has unknown mark scheme type %r' % (unit, q['id'], kind))
+        # PPP: sealed papers copy the real exam's shape and stay out of the
+        # practice bank, and every section needs enough unsealed parts for a
+        # topic set (5). Units with no sealed paper skip these checks.
+        sealed_scen = set()
+        for p in qfile.get('papers', []):
+            if p.get('sealed'):
+                sealed_scen.update(p.get('scenarios', []))
+                total = sum(q['marks'] for q in qs if q.get('scenario') in p.get('scenarios', []))
+                if total != 90:
+                    err('%s: sealed paper %s totals %d marks, not 90' % (unit, p.get('id'), total))
+        for s in qfile.get('scenarios', []):
+            got = sum(q['marks'] for q in qs if q.get('scenario') == s['id'])
+            if 'total' in s and got != s['total']:
+                err('%s: scenario %s says %d marks but its parts add up to %d'
+                    % (unit, s['id'], s['total'], got))
+            elif 'total' not in s and s['id'] in sealed_scen:
+                err('%s: sealed scenario %s needs a "total"' % (unit, s['id']))
+        if sealed_scen:
+            note_codes = set()
+            for letter in letters:
+                try:
+                    note_codes.update(d['code'] for d in dicts_of(load(folder, letter), []) if 'code' in d)
+                except FileNotFoundError:
+                    pass
+            for q in qs:
+                if not q.get('section') or q.get('code') not in note_codes:
+                    err('%s: question %s has no section or a code that is not in the notes (%r)'
+                        % (unit, q['id'], q.get('code')))
+                if q.get('section') and q.get('code') and not q['code'].startswith(q['section']):
+                    err('%s: question %s code %s is not in section %s'
+                        % (unit, q['id'], q['code'], q['section']))
+            bank = [q for q in qs if q.get('scenario') not in sealed_scen]
+            for letter in letters:
+                n = sum(1 for q in bank if q.get('section') == letter.upper())
+                if n < 5:
+                    err('%s: Section %s has %d unsealed parts; a topic set needs 5'
+                        % (unit, letter.upper(), n))
     except (FileNotFoundError, KeyError) as e:
         err('%s: questions.json unreadable (%s)' % (unit, e))
 
@@ -313,7 +350,7 @@ elif before is not None and before != open(inline_path, encoding='utf-8').read()
 LINK_ONLY_HOSTS = ('qualifications.pearson.com',)
 # The page's own address, named for search engines and link previews. Never fetched.
 SELF_URL_TAG = re.compile(r'<(link rel="canonical"|meta property="og:url") ')
-for name in ('index.html', 'styles.css', 'app.js'):
+for name in ('index.html', 'styles.css', 'app.js', 'ppp.js'):
     txt = open(os.path.join(HERE, name), encoding='utf-8').read()
     for m in re.finditer(r'https?://[^\s"\')]+', txt):
         url = m.group(0)
