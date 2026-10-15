@@ -1784,7 +1784,7 @@ function examText(s) {
 
 function renderAnswerArea(q, id) {
   if (q.commandWord === 'Draw') {
-    return `<p class="q-draw-note">Draw this on paper, then use <strong>Mark my answer</strong> to tick what your diagram shows.</p>`;
+    return `<p class="q-draw-note">Draw this on paper, then mark it and tick what your diagram shows.</p>`;
   }
   if (q.slots > 1) {
     return Array.from({ length: q.slots }, (_, i) => `
@@ -2713,6 +2713,7 @@ function openPPP() {
 }
 
 function renderPPP(container) {
+  if (pppCardsOpened) { flashPracticeMode = false; flashFilter = 'all'; pppCardsOpened = false; }
   PPP.pruneUnknown(pppState(), new Set(qData.questions.map(q => q.id)));
   if (!ppp) return renderPPPHome(container);
   if (ppp.step === 'done') return renderPPPDone(container);
@@ -2761,7 +2762,8 @@ function pppNextLabel(n) {
 function pppNextButton(n) {
   if (n.kind === 'topic') return `<button class="btn btn-primary btn-sm" onclick="startPPPTopic('${n.section}')">Start</button>`;
   if (n.kind === 'paper') return `<button class="btn btn-primary btn-sm" onclick="startPPPPaper('${n.paperId}')">Start</button>`;
-  return '';
+  const L = PPP.nextTopicSection(unitLettersUpper(), pppState().sittings);
+  return `<button class="btn btn-primary btn-sm" onclick="startPPPTopic('${L}')">Start a Section ${L} set</button>`;
 }
 
 function setPPPPhase(n) {
@@ -3004,7 +3006,7 @@ function renderPPPPart(container) {
 function pppStepHtml(q) {
   const s = ppp.scores[q.id];
   const lost = s === undefined ? 0 : PPP.lostMarks(s, q.marks);
-  const remark = ppp.step === 'diagnose' || (ppp.step === 'next' && !(q.id in ppp.redoScores))
+  const remark = ppp.step === 'diagnose' || ppp.step === 'fix' || (ppp.step === 'next' && !(q.id in ppp.redoScores))
     ? `<button class="btn btn-secondary btn-sm" onclick="pppRemark()">Re-mark</button>` : '';
   switch (ppp.step) {
     case 'answer':
@@ -3021,19 +3023,25 @@ function pppStepHtml(q) {
         ${pppSchemeSummary(q, false)}
         <p class="q-intro">You dropped ${pppPlural(lost, 'mark')}. Give every one a reason. Be honest: the reasons decide what you fix.</p>
         <div class="ppp-reason-key">${PPP.REASONS.map(r => `<div><strong>${PPP_REASON_LABELS[r]}:</strong> ${PPP_REASON_HINTS[r]}</div>`).join('')}</div>
+        ${lost > 1 ? `
+          <div class="ppp-reasons ppp-all" role="group" aria-label="One reason for every lost mark">
+            <span class="ppp-mark-n">All ${lost}</span>
+            ${PPP.REASONS.map(x => `<button class="tab-btn" data-r="${x}" aria-pressed="false" onclick="pppAllReasons('${x}')">${PPP_REASON_LABELS[x]}</button>`).join('')}
+          </div>
+          <p class="ms-note">Or give each mark its own reason:</p>` : ''}
         ${ppp.reasons[q.id].map((r, i) => `
           <div class="ppp-reasons" role="group" aria-label="Reason for lost mark ${i + 1}" data-reasons="${i}">
             <span class="ppp-mark-n">Mark ${i + 1}</span>
             ${PPP.REASONS.map(x => `<button class="tab-btn ${r === x ? 'active' : ''}" data-r="${x}" aria-pressed="${r === x}" onclick="pppSetReason(${i}, '${x}')">${PPP_REASON_LABELS[x]}</button>`).join('')}
           </div>`).join('')}
         <div class="ppp-actions">
-          ${lost > 1 ? `<button class="btn btn-secondary btn-sm" onclick="pppSameReason()">Same reason for every mark</button>` : ''}
           <button class="btn btn-primary" onclick="pppToFix()">Next: fix it</button>
         </div>`;
     case 'fix': {
       const rs = ppp.reasons[q.id].filter((r, i, a) => a.indexOf(r) === i);
       const need = PPP.needsWrittenFix(rs);
-      return `<div class="question-meta">${rs.map(r => `<span class="badge">${PPP_REASON_LABELS[r]}</span>`).join('')}</div>
+      return `<div class="mock-marked"><span>Marked <strong>${s}</strong>/${q.marks}</span> ${remark}</div>
+        <div class="question-meta">${rs.map(r => `<span class="badge">${PPP_REASON_LABELS[r]}</span>`).join('')}</div>
         <div class="ppp-fix-links">
           <button class="btn btn-secondary btn-sm" onclick="pppOpenNotes('${q.section}')">Section ${q.section} notes</button>
           <button class="btn btn-secondary btn-sm" onclick="pppOpenCards('${q.section}')">Section ${q.section} flashcards</button>
@@ -3084,6 +3092,7 @@ function pppGo(step) {
   ppp.step = step;
   persistPPP(true);
   renderQuestions();
+  scrollContentTop();
 }
 
 /* ---- Moving through a part ---- */
@@ -3106,8 +3115,7 @@ function pppSubmitAnswer(timeUp) {
   if (!ppp || ppp.step !== 'answer') return;
   stopPPPTimer();
   const q = pppQ();
-  const used = Math.round((Date.now() - ppp.partStartedAt) / 1000);
-  ppp.seconds[q.id] = ppp.partEndAt !== null ? Math.min(used, PPP.partSeconds(q.marks)) : Math.min(used, 86400);
+  ppp.seconds[q.id] = PPP.answerSeconds(ppp.partStartedAt, Date.now(), q.marks, ppp.partEndAt !== null);
   ppp.step = 'mark';
   delete markerLevel[q.id];
   persistPPP(true);
@@ -3150,11 +3158,13 @@ function pppSetReason(i, r) {
   });
 }
 
-function pppSameReason() {
-  const reasons = ppp.reasons[pppQ().id] || [];
-  const r = reasons.find(Boolean);
-  if (!r) { toast('Pick a reason for Mark 1 first'); return; }
-  reasons.forEach((_, i) => pppSetReason(i, r));
+function pppAllReasons(r) {
+  (ppp.reasons[pppQ().id] || []).forEach((_, i) => pppSetReason(i, r));
+  document.querySelectorAll('.ppp-all button').forEach(btn => {
+    const on = btn.dataset.r === r;
+    btn.classList.toggle('active', on);
+    btn.setAttribute('aria-pressed', String(on));
+  });
 }
 
 function pppToFix() {
@@ -3176,9 +3186,12 @@ function pppTip(q, r) {
 }
 
 function pppOpenNotes(L) { navigate('sections', { section: L }); }
+let pppCardsOpened = false;   // Fix opened flashcards on one section; undone on return
+
 function pppOpenCards(L) {
   flashPracticeMode = true;
   flashFilter = L;
+  pppCardsOpened = true;
   navigate('flashcards');
 }
 
@@ -5743,6 +5756,7 @@ function adoptStoreFrom(raw) {
     const mine = store.units[id], theirs = next.units[id];
     theirs.questions.drafts = mine.questions.drafts;
     theirs.questions.activeMock = mine.questions.activeMock;
+    theirs.questions.ppp.active = mine.questions.ppp.active;
     theirs.extended.drafts = mine.extended.drafts;
   }
   store = next;

@@ -9991,7 +9991,7 @@ const INLINE_UNITS = {
             "indicative": [
               "Privacy: members have the right to control how their personal information is collected and used",
               "Collect only the data needed: borrowing records are needed for loans; logging every website goes further",
-              "Consent: GDPR requires consent, and cookies need consent on the public computers",
+              "Lawful basis: loans rest on a contract or public task, but extra tracking such as website logs may need consent; cookies need consent",
               "Right to have data deleted: members can ask for their history to be removed",
               "AUP: users should be told activity may be monitored, and must accept the rules",
               "Monitoring can protect users and the library, e.g. stopping illegal content",

@@ -160,22 +160,22 @@ test('coerceState keeps good sittings and drops bad ones and bad parts', () => {
 
 const active = () => ({
   id: 's1', kind: 'paper', ref: 'jun26', timed: true, step: 'diagnose',
-  startedAt: 1, qIds: ['a', 'b'], idx: 1, partStartedAt: 5, partEndAt: 9,
-  answers: { 'ppp-a': 'text', 'evil': 'x', 'ppp-b': 5 }, scores: { a: 1, b: -1, zz: 2 },
-  reasons: { a: ['knowledge', null], b: ['nope'] }, fixes: { a: 'fix', zz: 'x' },
+  startedAt: 1, qIds: ['a', 'b', 'c'], idx: 1, partStartedAt: 5, partEndAt: 9,
+  answers: { 'ppp-a': 'text', 'evil': 'x', 'ppp-b': 5 }, scores: { a: 1, b: 2, c: -1, zz: 2 },
+  reasons: { a: ['knowledge', null], b: ['time', 'time'], c: ['nope'] }, fixes: { a: 'fix', zz: 'x' },
   redoAnswers: { 'pppr-a-0': 'again' }, redoScores: { a: 3 }, seconds: { a: 40, b: -5 }
 });
 
 test('coerceState keeps a valid active sitting and filters its maps', () => {
   const a = PPP.coerceState({ active: active() }).active;
-  assert.deepEqual(a.qIds, ['a', 'b']);
+  assert.deepEqual(a.qIds, ['a', 'b', 'c']);
   assert.equal(a.idx, 1);
   assert.equal(a.step, 'diagnose');
   assert.equal(a.timed, true);
   assert.equal(a.partEndAt, 9);
   assert.deepEqual(a.answers, { 'ppp-a': 'text' });
-  assert.deepEqual(a.scores, { a: 1 });
-  assert.deepEqual(a.reasons, { a: ['knowledge', null] });
+  assert.deepEqual(a.scores, { a: 1, b: 2 });
+  assert.deepEqual(a.reasons, { a: ['knowledge', null], b: ['time', 'time'] });
   assert.deepEqual(a.fixes, { a: 'fix' });
   assert.deepEqual(a.redoAnswers, { 'pppr-a-0': 'again' });
   assert.deepEqual(a.redoScores, { a: 3 });
@@ -184,7 +184,7 @@ test('coerceState keeps a valid active sitting and filters its maps', () => {
 
 test('coerceState drops an active sitting with a bad step, kind, index or no parts', () => {
   assert.equal(PPP.coerceState({ active: active() }).active.id, 's1');
-  for (const bad of [{ step: 'party' }, { kind: 'log' }, { qIds: [] }, { idx: 2 }, { idx: -1 },
+  for (const bad of [{ step: 'party' }, { kind: 'log' }, { qIds: [] }, { idx: 3 }, { idx: -1 },
                      { startedAt: 'x' }, { partEndAt: 'soon' }]) {
     assert.deepEqual(PPP.coerceState({ active: { ...active(), ...bad } }).active, {}, JSON.stringify(bad));
   }
@@ -198,4 +198,29 @@ test('pruneUnknown drops sitting parts and an active sitting that reference miss
   PPP.pruneUnknown(st, new Set(['a']));
   assert.deepEqual(Object.keys(st.sittings[0].parts), ['a']);
   assert.deepEqual(st.active, {});
+});
+
+test('answerSeconds: timed parts are capped at their clock', () => {
+  assert.equal(PPP.answerSeconds(0, 500000, 2, true), 160);
+  assert.equal(PPP.answerSeconds(0, 60000, 2, true), 60);
+});
+
+test('answerSeconds: untimed parts are capped at three times exam pace, so time away does not count', () => {
+  assert.equal(PPP.answerSeconds(0, 90000, 4, false), 90);
+  assert.equal(PPP.answerSeconds(0, 86400000, 4, false), 960);
+  assert.equal(PPP.answerSeconds(5000, 1000, 4, false), 0);
+});
+
+test('coerceState drops a live sitting whose step does not match its marks', () => {
+  const base = { id: 's1', kind: 'topic', ref: 'A', timed: false, startedAt: 1, partStartedAt: 1, partEndAt: null, qIds: ['a', 'b'] };
+  // Past the mark step, the current part must have a score.
+  assert.deepEqual(PPP.coerceState({ active: { ...base, idx: 0, step: 'next', scores: {} } }).active, {});
+  // Every earlier part must have been marked.
+  assert.deepEqual(PPP.coerceState({ active: { ...base, idx: 1, step: 'answer', scores: {} } }).active, {});
+  // Diagnose and fix need a reason list for the current part.
+  assert.deepEqual(PPP.coerceState({ active: { ...base, idx: 0, step: 'fix', scores: { a: 1 } } }).active, {});
+  // Consistent sittings survive.
+  assert.equal(PPP.coerceState({ active: { ...base, idx: 1, step: 'answer', scores: { a: 2 } } }).active.id, 's1');
+  assert.equal(PPP.coerceState({ active: { ...base, idx: 0, step: 'diagnose', scores: { a: 1 }, reasons: { a: [null] } } }).active.id, 's1');
+  assert.equal(PPP.coerceState({ active: { ...base, idx: 0, step: 'redomark', scores: { a: 1 }, reasons: { a: ['time'] } } }).active.id, 's1');
 });

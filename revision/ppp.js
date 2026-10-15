@@ -38,6 +38,14 @@ const PPP = (() => {
     return marks * SECONDS_PER_MARK;
   }
 
+  // Seconds spent answering a part. A timed part stops at its clock; an untimed
+  // one is capped at three times exam pace, so a part left open overnight does
+  // not count the time away.
+  function answerSeconds(startedAt, now, marks, timed) {
+    const used = Math.max(0, Math.round((now - startedAt) / 1000));
+    return Math.min(used, partSeconds(marks) * (timed ? 1 : 3));
+  }
+
   /* ---- Sealed papers: their parts appear only in PPP, so they stay cold ---- */
   function sealedScenarios(qfile) {
     const ids = new Set();
@@ -208,7 +216,7 @@ const PPP = (() => {
     if (!isNum(a.startedAt) || !isNum(a.partStartedAt) || !(a.partEndAt === null || isNum(a.partEndAt))) return null;
     const ids = new Set(a.qIds);
     const inSit = k => ids.has(k);
-    return {
+    const out = {
       id: a.id, kind: a.kind, ref: a.ref, timed: a.timed === true, step: a.step,
       startedAt: a.startedAt, qIds: a.qIds.slice(), idx: a.idx,
       partStartedAt: a.partStartedAt, partEndAt: a.partEndAt,
@@ -220,6 +228,14 @@ const PPP = (() => {
       fixes: cleanMap(a.fixes, inSit, isStr),
       seconds: cleanMap(a.seconds, inSit, seconds)
     };
+    // The step must match the marks: every earlier part marked, the current
+    // part marked once past 'mark', and reasons present once past 'diagnose'.
+    // Otherwise finishing would add up missing scores as NaN.
+    const cur = out.qIds[out.idx];
+    if (out.qIds.slice(0, out.idx).some(id => !(id in out.scores))) return null;
+    if (out.step !== 'answer' && out.step !== 'mark' && !(cur in out.scores)) return null;
+    if (['diagnose', 'fix', 'redo', 'redomark'].includes(out.step) && !Array.isArray(out.reasons[cur])) return null;
+    return out;
   }
 
   function coerceState(raw) {
@@ -240,7 +256,7 @@ const PPP = (() => {
 
   const api = {
     REST_DAYS, SECONDS_PER_MARK, REASONS, TOPIC_MAX, MAX_SITTINGS,
-    addDays, defaultState, partSeconds, isSealed, bankQuestions, hasPPP,
+    addDays, defaultState, partSeconds, answerSeconds, isSealed, bankQuestions, hasPPP,
     lastSat, restUntil, isResting, nextPaper,
     topicCounts, nextTopicSection, suggestPhase, doNext, buildTopicSet,
     lostMarks, partDiagnosed, needsWrittenFix, reasonCounts, recordSitting, coerceState, pruneUnknown
