@@ -9,5 +9,6 @@ exclude:
   - design-system
   - revision/build_inline.py
   - revision/validate_data.py
+  - revision/tests
   - tools
   - roblox-security/source
