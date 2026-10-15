@@ -19,6 +19,20 @@
         "s7",
         "s8"
       ]
+    },
+    {
+      "id": "jun26",
+      "title": "June 2026 (real paper)",
+      "scenarios": [
+        "j1",
+        "j2",
+        "j3",
+        "j4"
+      ],
+      "sealed": true,
+      "source": "pearson",
+      "ref": "60297T",
+      "copyright": "Pearson BTEC National (AAQ) Unit 1, June 2026, paper 60297T. © 2026 Pearson Education Ltd. Questions and mark scheme reproduced for personal revision."
     }
   ],
   "scenarios": [
@@ -69,6 +83,34 @@
       "number": 8,
       "title": "Coastline Logistics",
       "stem": "Coastline Logistics delivers parcels for online shops from a warehouse in Felixstowe. It has 60 delivery vans.\n\nStaff record stock arriving at the warehouse using handheld barcode scanners."
+    },
+    {
+      "id": "j1",
+      "number": 1,
+      "title": "Hotel online booking",
+      "total": 22,
+      "stem": "A hotel in England takes accommodation reservations and restaurant bookings over the telephone and enters the details in a paper diary.\n\nThe owners are considering using an online booking system.\n\nThe information from the online booking form will be stored on a new computer system that will be set up in the office."
+    },
+    {
+      "id": "j2",
+      "number": 2,
+      "title": "Travel agency",
+      "total": 23,
+      "stem": "A travel agency has its main office in Carlisle with several branches around the UK.\n\nSuitable application software has been installed on the travel agency's computer system so that staff can perform their day-to-day tasks."
+    },
+    {
+      "id": "j3",
+      "number": 3,
+      "title": "James, financial adviser",
+      "total": 21,
+      "stem": "James is a financial adviser and works for a company based in Leicester. James often works remotely when visiting clients to discuss financial plans.\n\nWhen James visits clients he uses a laptop with suitable software to capture data and information about the client and their financial plans.\n\nAt the end of each visit, James creates a personal area network (PAN) between his laptop and his smartphone to connect to the company server.\n\n**The company has an office with three rooms.**\n\nServer room\nA central server that stores all the financial data and information\n\nManager's office\nOne desktop computer\nOne printer\n\nMain office\nFour desktop computers for staff to use when working in the office\nOne Printer\n\n**Client visits**\n\nJames' equipment\nA laptop\nA smartphone"
+    },
+    {
+      "id": "j4",
+      "number": 4,
+      "title": "Just U Games",
+      "total": 24,
+      "stem": "Just U Games is an online gaming platform.\n\nJust U Games currently stores all the data it collects on a file server on site.\n\nJust U Games is considering how it can use cloud computing to backup this data."
     }
   ],
   "questions": [
@@ -680,7 +722,7 @@
       "scenario": "s4",
       "part": "(a)",
       "section": "B",
-      "code": "A1.3",
+      "code": "B2.2",
       "marks": 6,
       "commandWord": "Draw",
       "context": "",
@@ -1567,6 +1609,835 @@
         "reject": []
       },
       "modelAnswer": "Coastline’s IT systems could reduce its environmental impact in several ways. The AI system plans more efficient routes, so 60 vans drive fewer miles and burn less fuel, which cuts carbon emissions. GPS tracking and accurate delivery slots mean fewer failed deliveries and fewer repeat journeys. Engine sensors allow predictive maintenance, keeping vans efficient and extending their life. Digital proof of delivery also removes paper.\n\nHowever, the technology has its own costs. Every sensor, scanner and tablet must be manufactured, which uses raw materials and energy. When they are replaced they become e-waste, which can contain toxic materials if not recycled properly. The AI system and cloud services run in data centres that use large amounts of electricity for processing and cooling.\n\nOn balance, the effect is likely to be positive. Fuel from 60 vans driving every day is a much bigger source of emissions than a few hundred small devices, so even a small cut in mileage outweighs the impact of the technology. Coastline can improve this further by recycling old devices, keeping them for longer and choosing a cloud provider that uses renewable energy."
+    },
+    {
+      "id": "jun26-1-a-i",
+      "scenario": "j1",
+      "part": "(a)(i)",
+      "section": "A",
+      "code": "A2.1",
+      "marks": 2,
+      "commandWord": "Give",
+      "context": "The owners will need to purchase a computer system.",
+      "question": "Give **two** input devices the owners will need to purchase.",
+      "slots": 2,
+      "traps": [
+        "Input devices only: a printer or monitor scores nothing here."
+      ],
+      "markScheme": {
+        "type": "points",
+        "rule": "Award one mark for each correct response up to a maximum of two marks.",
+        "points": [
+          "Keyboard",
+          "Mouse",
+          "Touch screen",
+          "Stylus",
+          "Microphone",
+          "Scanner / barcode scanner",
+          "Card reader",
+          "Camera / webcam"
+        ],
+        "accept": [
+          "Any other relevant input device for the hotel booking system"
+        ],
+        "reject": []
+      },
+      "modelAnswer": "1. Keyboard\n2. Card reader"
+    },
+    {
+      "id": "jun26-1-a-ii",
+      "scenario": "j1",
+      "part": "(a)(ii)",
+      "section": "A",
+      "code": "A2.1",
+      "marks": 2,
+      "commandWord": "Give",
+      "context": "",
+      "question": "Give **two** output devices the owners will need to purchase.",
+      "slots": 2,
+      "traps": [
+        "Output devices only: anything used to enter data scores nothing."
+      ],
+      "markScheme": {
+        "type": "points",
+        "rule": "Award one mark for each correct response up to a maximum of two marks.",
+        "points": [
+          "Printer",
+          "Monitor",
+          "Speakers / headphones"
+        ],
+        "accept": [
+          "Any other relevant output device for the hotel booking system"
+        ],
+        "reject": []
+      },
+      "modelAnswer": "1. Monitor\n2. Printer"
+    },
+    {
+      "id": "jun26-1-b-i",
+      "scenario": "j1",
+      "part": "(b)(i)",
+      "section": "E",
+      "code": "E1.1",
+      "marks": 4,
+      "commandWord": "Explain",
+      "context": "Before introducing the new computer system, the owners consider the benefits and drawbacks of an online booking system.",
+      "question": "Explain **two** benefits of using an online booking system.",
+      "slots": 2,
+      "traps": [
+        "\"Quicker\" or \"faster\" on its own scores nothing: say what is faster and why.",
+        "Benefits of the online system compared with phone bookings and a paper diary."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+        "points": [
+          [
+            "Convenience",
+            "because guests can check availability / book / modify / cancel bookings from anywhere with an internet connection"
+          ],
+          [
+            "Accessible 24/7",
+            "which allows guests to book outside the hotel's opening hours / at a time that suits them"
+          ],
+          [
+            "Error reduction / more accurate",
+            "because guests make their own bookings / enter their own details"
+          ],
+          [
+            "Faster confirmation",
+            "because the system is automated and guests receive immediate booking confirmation"
+          ],
+          [
+            "Improved organisation",
+            "because booking details are stored in a database / system"
+          ],
+          [
+            "Improved reliability / reduces double bookings",
+            "because the system updates in real time"
+          ],
+          [
+            "Improved efficiency / time saving",
+            "because staff do not have to spend time answering phone calls"
+          ],
+          [
+            "Can reach a global / wider audience",
+            "because the online system could be linked with external booking platforms (Booking.com, Expedia)"
+          ],
+          [
+            "Improved data management",
+            "because the system collects guest data to improve services / targeted marketing / loyalty schemes"
+          ]
+        ],
+        "accept": [
+          "Mix and match an identification and an expansion only if it makes sense",
+          "Any other appropriate response"
+        ],
+        "reject": [
+          "Quicker / faster on its own"
+        ]
+      },
+      "modelAnswer": "1. Available 24/7: guests can book at any time, even when reception is closed.\n2. Fewer double bookings: availability updates in real time, unlike the paper diary."
+    },
+    {
+      "id": "jun26-1-b-ii",
+      "scenario": "j1",
+      "part": "(b)(ii)",
+      "section": "E",
+      "code": "E1.1",
+      "marks": 4,
+      "commandWord": "Explain",
+      "context": "",
+      "question": "Explain **two** drawbacks of using an online booking system.",
+      "slots": 2,
+      "traps": [
+        "About USING the system: setup costs score nothing, and neither does hacking for the security point."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+        "points": [
+          [
+            "Disruption to bookings / poor experience",
+            "because of system failure / technical issues (internet) / downtime / slow performance / power outages"
+          ],
+          [
+            "Poor customer IT literacy / lack of technology",
+            "which will prevent some customers booking online"
+          ],
+          [
+            "Security concerns",
+            "because the online booking system stores personal / payment details"
+          ],
+          [
+            "Lack of human interaction",
+            "which could deter customers from booking if they run into difficulties"
+          ],
+          [
+            "Cost implications",
+            "because the system will need technical support staff to maintain it / staff training"
+          ]
+        ],
+        "accept": [
+          "Any other appropriate response"
+        ],
+        "reject": [
+          "Costs of setting up the system (the question is about using it)",
+          "Hacking (for the security point)"
+        ]
+      },
+      "modelAnswer": "1. Downtime: if the internet or system fails, guests cannot book and the hotel loses bookings.\n2. No human contact: guests who get stuck have no one to ask, so they may book elsewhere."
+    },
+    {
+      "id": "jun26-1-c",
+      "scenario": "j1",
+      "part": "(c)",
+      "section": "D",
+      "code": "D2.3",
+      "marks": 4,
+      "commandWord": "Describe",
+      "context": "The online booking system will collect sensitive guest data and needs to make sure sufficient security methods are in place to protect guest data.\n\nA firewall will help to protect the data stored on the computer system.",
+      "question": "Describe how a firewall protects the data stored on a computer system.",
+      "slots": 0,
+      "traps": [
+        "Describe HOW it protects: one creditworthy step per mark, not four ways of saying \"it blocks hackers\"."
+      ],
+      "markScheme": {
+        "type": "points",
+        "rule": "Award one mark for each point up to a maximum of four marks.",
+        "points": [
+          "Forms a barrier between a device and a network",
+          "Uses hardware and/or software",
+          "Monitors / filters incoming and outgoing traffic",
+          "Compares traffic to a blacklist / whitelist / set of rules",
+          "Closes designated ports",
+          "Blocks / restricts connections / stops unauthorised access to the system or data / stops the user accessing anything harmful",
+          "Alerts the user to anything suspicious / harmful"
+        ],
+        "accept": [
+          "The reverse of the blocking point (allows authorised traffic)",
+          "Examples of rules for the ports point (IP addresses, port numbers)"
+        ],
+        "reject": [
+          "Controls for monitors / filters"
+        ]
+      },
+      "modelAnswer": "A barrier between the computer and the internet. Filters incoming and outgoing traffic. Checks it against a set of rules, e.g. allowed IP addresses and ports. Blocks anything that breaks the rules and alerts the user."
+    },
+    {
+      "id": "jun26-1-d",
+      "scenario": "j1",
+      "part": "(d)",
+      "section": "D",
+      "code": "D2.1",
+      "marks": 6,
+      "commandWord": "Discuss",
+      "context": "The online booking system will be on the hotel's website.\n\nThe website will have a digital certificate.\n\nThe online booking system will be managed by the hotel owners and staff. All users will have unique usernames and passwords.",
+      "question": "Discuss techniques, other than digital certificates and usernames and passwords, that can be used to protect guest data.",
+      "slots": 0,
+      "traps": [
+        "\"other than digital certificates and usernames and passwords\": anything about those two earns nothing.",
+        "Discuss means both sides: what each technique does for guest data AND a drawback or limit, applied to the hotel."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "focus": "Learners discuss techniques other than digital certificates and usernames/passwords that can be used to protect guest data.",
+        "indicative": [
+          "Access levels: control which users reach which parts of the system; owners and staff only see the guest bookings and sensitive data their job needs",
+          "File permissions: read only (view), read/write (add, edit, delete), full control (read, write, change and delete) matched to each job role",
+          "Backup: multiple copies of guest and hotel data stored securely elsewhere (off-site hard drive, another part of the hotel, cloud storage)",
+          "Backup types: full (complete copy), incremental (changes since the last backup), differential (changes since the last full backup)",
+          "Recovery: restores backed-up data after loss or corruption so the hotel can keep operating after a disaster",
+          "Encryption: data is unreadable without the correct key, so it stays safe even if a computer is stolen",
+          "Anti-virus: detects, blocks and removes malware that could delete or corrupt data; scans continuously and alerts the user",
+          "Firewall: controls what traffic enters and leaves; blocks unauthorised access to systems holding sensitive data",
+          "Physical access controls: keypad / electronic lock on the office door with a code per staff member, CCTV outside the office",
+          "Biometric reader on the office door: records which staff member entered when; reliable, but might be expensive for the hotel"
+        ],
+        "reject": [
+          "Digital certificates or usernames and passwords (excluded by the question)"
+        ]
+      },
+      "modelAnswer": "Access levels: reception staff see bookings but not payment details, so one careless login cannot leak card data; but levels need updating as roles change.\nEncryption: guest records are unreadable without the key, even if the office PC is stolen; but a lost key locks the hotel out of its own data.\nBackups: a nightly backup to the cloud means bookings survive a disk failure; but it costs money and must be tested.\nPhysical security: a keypad lock stops guests walking into the office; but codes get shared, so they need changing."
+    },
+    {
+      "id": "jun26-2-a",
+      "scenario": "j2",
+      "part": "(a)",
+      "section": "A",
+      "code": "A3.3",
+      "marks": 2,
+      "commandWord": "Give",
+      "context": "",
+      "question": "Give **two** types of application software the travel agency might have installed on their computer system.",
+      "slots": 2,
+      "traps": [
+        "APPLICATION software: utilities, operating systems and VPNs score nothing.",
+        "\"Microsoft Office\" only counts once: name two different types."
+      ],
+      "markScheme": {
+        "type": "points",
+        "rule": "Award one mark for each point up to a maximum of two marks.",
+        "points": [
+          "Word processing software",
+          "Spreadsheet software",
+          "Presentation software",
+          "Graphics software",
+          "Multimedia software",
+          "Database software",
+          "Email communications software",
+          "Video conferencing software",
+          "Messaging software",
+          "Web browser",
+          "Booking / reservation software",
+          "Accounting software",
+          "Payroll software"
+        ],
+        "accept": [
+          "Brand names (such as Word, Excel, PowerPoint, Mail)",
+          "Microsoft Office once only"
+        ],
+        "reject": []
+      },
+      "modelAnswer": "1. Booking / reservation software\n2. Spreadsheet software"
+    },
+    {
+      "id": "jun26-2-b-i",
+      "scenario": "j2",
+      "part": "(b)(i)",
+      "section": "B",
+      "code": "B2.2",
+      "marks": 4,
+      "commandWord": "Explain",
+      "context": "The travel agency has installed Local Area Networks (LANs) in each branch around the UK. Each LAN connects to a wide area network (WAN) to communicate with the main office in Carlisle.",
+      "question": "Explain **two** benefits to the travel agency of using a LAN.",
+      "slots": 2,
+      "traps": [
+        "Remote working and \"faster internet\" are rejected: a LAN is about the devices inside one branch.",
+        "\"Faster\" on its own scores nothing: say what is faster and why."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+        "points": [
+          [
+            "Access to shared files / documents",
+            "from multiple devices on the network / without needing to email attachments"
+          ],
+          [
+            "Shared booking system",
+            "so agents can access the same reservation system / customer database at the same time"
+          ],
+          [
+            "Faster work processes",
+            "because data transfers / file access / software performance happen locally rather than over external links"
+          ],
+          [
+            "Cost savings",
+            "because agents can share the same peripheral devices (printers)"
+          ],
+          [
+            "Improved collaboration",
+            "because agents communicate internally through email / instant messaging / shared calendars / files"
+          ],
+          [
+            "Shared internet connection",
+            "so the branch uses a single connection, which simplifies setup"
+          ],
+          [
+            "Improved data security",
+            "because usernames / passwords and user access permissions protect customer data"
+          ]
+        ],
+        "accept": [],
+        "reject": [
+          "Faster / quicker on its own",
+          "Faster internet speed",
+          "Remote working (not relevant to a LAN)"
+        ]
+      },
+      "modelAnswer": "1. Shared files: agents at the branch open the same customer documents without emailing attachments.\n2. Shared printers: one printer serves every agent, cutting costs."
+    },
+    {
+      "id": "jun26-2-b-ii",
+      "scenario": "j2",
+      "part": "(b)(ii)",
+      "section": "B",
+      "code": "B2.2",
+      "marks": 4,
+      "commandWord": "Explain",
+      "context": "",
+      "question": "Explain **two** benefits to the travel agency of using a WAN.",
+      "slots": 2,
+      "traps": [
+        "Definitions score nothing: \"covers a large geographical area\" is what a WAN is, not a benefit.",
+        "Collaboration is rejected here: agents in different branches would not work on the same task."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+        "points": [
+          [
+            "Access to central booking systems",
+            "which lets each branch / the main office connect to airline / hotel reservation systems in real time"
+          ],
+          [
+            "Improved customer service",
+            "because agents reach customer details / travel information on the central server from any branch"
+          ],
+          [
+            "Software updates / maintenance carried out centrally",
+            "which keeps every branch on the same version"
+          ],
+          [
+            "Access to real-time data",
+            "because agents see live flight schedules / exchange rates / travel alerts"
+          ],
+          [
+            "Improved data backup",
+            "because automatic backups are set up centrally at the main office"
+          ],
+          [
+            "Improved security",
+            "because user access permissions / firewalls are set up centrally by the main office"
+          ],
+          [
+            "Improved communication",
+            "because branches use email / VoIP / video conferencing / messaging to co-ordinate with airlines, hotels and customers"
+          ]
+        ],
+        "accept": [
+          "Brand names"
+        ],
+        "reject": [
+          "Definitions such as covers a large geographical area",
+          "Collaboration: in this scenario travel agents in different locations would not work on the same task"
+        ]
+      },
+      "modelAnswer": "1. Central booking system: every branch books from the same live airline / hotel availability.\n2. Central backups: the main office backs up every branch automatically, so no branch loses bookings."
+    },
+    {
+      "id": "jun26-2-c",
+      "scenario": "j2",
+      "part": "(c)",
+      "section": "F",
+      "code": "F1.1",
+      "marks": 4,
+      "commandWord": "Explain",
+      "context": "The travel agency has an Acceptable Use Policy (AUP). The policy is used to inform staff of their responsibilities when using the agency's computer system.",
+      "question": "Explain **two** acceptable behaviours that should be included in the policy.",
+      "slots": 2,
+      "traps": [
+        "ACCEPTABLE behaviours: say what staff should do (or must not do) AND why it matters to the agency.",
+        "A rule with no reason only earns the first mark."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+        "points": [
+          [
+            "Use the system / software / websites for work purposes only",
+            "to increase productivity / stop agents being distracted"
+          ],
+          [
+            "Do not click on email links / download files / use USB sticks",
+            "to prevent malware being introduced to the system"
+          ],
+          [
+            "Identify / report phishing or spam emails",
+            "which could otherwise attack the agency's systems"
+          ],
+          [
+            "Only access customer data within your job role",
+            "so confidential customer data is protected against loss / theft / corruption"
+          ],
+          [
+            "Comply with the Data Protection Act",
+            "which prevents legal action / fines"
+          ],
+          [
+            "Log in with your own authorised username and password, never shared",
+            "to prevent unauthorised access to the system"
+          ],
+          [
+            "Lock / log out of devices when away from the desk",
+            "so other people (customers) cannot see sensitive data on the screen"
+          ],
+          [
+            "Communicate professionally",
+            "so emails do not cause offence to customers / other agents"
+          ],
+          [
+            "Report damage to / theft of computer equipment",
+            "so the agency can repair or replace it"
+          ],
+          [
+            "No cyberbullying",
+            "which could upset other staff and affect their well-being"
+          ]
+        ],
+        "accept": [],
+        "reject": []
+      },
+      "modelAnswer": "1. Lock the screen when leaving the desk, so customers at the counter cannot see other customers' details.\n2. Report phishing emails instead of clicking links, so malware does not get onto the agency's network."
+    },
+    {
+      "id": "jun26-2-d",
+      "scenario": "j2",
+      "part": "(d)",
+      "section": "A",
+      "code": "A3.3",
+      "marks": 9,
+      "commandWord": "Evaluate",
+      "context": "Suitable utility software has been installed to maintain, manage and optimise the travel agency's computer system.",
+      "question": "Evaluate the features of utility software that can be used to maintain, manage and optimise the computer system.",
+      "slots": 0,
+      "traps": [
+        "Evaluate the FEATURES of utility software: what each does to maintain, manage or optimise the system, weighed up, with a conclusion.",
+        "Application software (Word, booking systems) is not utility software."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "focus": "Learners evaluate the features of utility software that can be used to maintain, manage and optimise the computer system.",
+        "indicative": [
+          "File management: organise files and folders by creating, copying, moving, renaming and deleting",
+          "Antivirus: real-time protection, scheduled background scans, quarantines or removes infected files, heuristic analysis for new threats, automatic definition updates",
+          "Disk defragmenter: rearranges fragmented files so data is stored contiguously, cutting access, boot and load times; consolidates free space",
+          "Backup and recovery: scheduled full / incremental / differential backups, multiple versions kept, encrypted, quick restore if the OS fails",
+          "File compression: files take less disk space and upload / download faster; can be compressed and encrypted together",
+          "Disk cleanup: deletes temporary files, cache, cookies and history so boot and load times improve; runs on a schedule; makes restore points first",
+          "Firewall: monitors and controls incoming and outgoing traffic against rules; rules and threat databases update automatically",
+          "Password manager: generates unique encrypted passwords; flags weak, reused, old or compromised passwords",
+          "Encryption software: makes data unreadable to unauthorised users; authenticates users and devices; detects unauthorised changes",
+          "Conclusion: utility software improves the performance, security and efficiency of the system and keeps it reliable and easy to use"
+        ]
+      },
+      "modelAnswer": "Defragmenter: reorders fragmented files so booking records load faster, but it does little for SSDs.\nAntivirus: scheduled scans and real-time protection quarantine malware before it corrupts customer data, but it needs constant updates and can slow the PC during scans.\nBackup utility: scheduled incremental backups keep every branch's data recoverable, but they need storage and testing.\nDisk cleanup: removes temporary files to free space and speed up start-up, though the gain is small on a well-kept system.\nConclusion: antivirus and backup matter most because they protect customer data; defrag and cleanup help, but less."
+    },
+    {
+      "id": "jun26-3-a",
+      "scenario": "j3",
+      "part": "(a)",
+      "section": "B",
+      "code": "B2.2",
+      "marks": 6,
+      "commandWord": "Draw",
+      "context": "",
+      "question": "Draw a diagram to show how the company network is set up and how James connects when working remotely.\n\nThe diagram must include:\n• devices and systems that are used\n• connection types and annotations.",
+      "slots": 0,
+      "traps": [
+        "Every room AND James's remote link must appear, each device and connection labelled.",
+        "Show HOW James reaches the server: PAN, mobile data, the internet, then through the firewall / router into the office."
+      ],
+      "markScheme": {
+        "type": "points",
+        "rule": "One mark for each, up to 6. Draw it on paper, then tick what your diagram shows.",
+        "points": [
+          "PAN: smartphone AND laptop connected using a wired / wireless connection",
+          "PAN: connection to the server via the internet AND a 3G / 4G / 5G mobile (wireless) connection",
+          "PAN: connected to the file server via the internet AND a firewall / router / WAP",
+          "Main office: four desktop PCs AND a printer connected to a switch / WAP / router using wired / wireless connections",
+          "Manager's office: desktop PC AND printer connected to a switch / WAP / router using wired / wireless connections",
+          "Server room: server connected to a switch / WAP / router using wired / wireless connections",
+          "Fully functioning system with all appropriate devices AND connection types included (with annotations)"
+        ],
+        "accept": [
+          "A wired or wireless connection between the cell tower and the internet",
+          "Devices may include one server, five desktop computers, two printers, a laptop, a smartphone, a router, a switch, a cell tower and a wireless access point"
+        ],
+        "reject": []
+      },
+      "modelAnswer": "Main office: 4 desktops + printer, Ethernet to a switch.\nManager's office: desktop + printer, Ethernet to the switch.\nServer room: server, Ethernet to the switch.\nSwitch to router / firewall to the internet.\nJames: laptop and smartphone linked by Bluetooth (PAN); the phone's 4G / 5G reaches a cell tower, then the internet, the office router and the server."
+    },
+    {
+      "id": "jun26-3-b",
+      "scenario": "j3",
+      "part": "(b)",
+      "section": "C",
+      "code": "C1.4",
+      "marks": 2,
+      "commandWord": "Explain",
+      "context": "James uses online systems to assist him when he works remotely visiting clients.",
+      "question": "Explain **one** factor that affects the use and selection of online systems.",
+      "slots": 1,
+      "traps": [
+        "Compatibility scores nothing: James already uses the system.",
+        "\"Fast\", \"efficient\" or \"safe\" on their own score nothing."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "rule": "One mark for a correct factor and one for an appropriate expansion, up to 2 marks.",
+        "points": [
+          [
+            "Strong security measures",
+            "to provide data protection for client data"
+          ],
+          [
+            "Cost",
+            "because the company has to pay to subscribe to the online system"
+          ],
+          [
+            "Ease of use",
+            "so the system has an easy layout / familiar menus and icons"
+          ],
+          [
+            "Features",
+            "so James can customise the system to suit his needs"
+          ],
+          [
+            "Type of connection",
+            "so the system can manage high data transfer speeds / needs encrypted networks"
+          ],
+          [
+            "Scalability",
+            "so storage can be increased or decreased when required"
+          ],
+          [
+            "Internet access is required",
+            "to enable James to use the online resources"
+          ]
+        ],
+        "accept": [],
+        "reject": [
+          "Wi-Fi for internet",
+          "Safe for security",
+          "Fast / efficient on its own",
+          "Compatibility: James is already using the system, so assume it is compatible"
+        ]
+      },
+      "modelAnswer": "Cost: the company pays a subscription for each online system, so it has to fit the budget."
+    },
+    {
+      "id": "jun26-3-c",
+      "scenario": "j3",
+      "part": "(c)",
+      "section": "D",
+      "code": "D1.3",
+      "marks": 4,
+      "commandWord": "Explain",
+      "context": "The company stores financial information and client data. It must make sure these are stored safely and securely against threats.\n\nLoss of data is one impact to the company of storing financial information and client data.",
+      "question": "Explain **two** other impacts on the company of the **loss of data**.",
+      "slots": 2,
+      "traps": [
+        "\"other impacts\": loss of data is given in the question, so it scores nothing.",
+        "Impacts ON THE COMPANY of losing the data, not how the data was lost."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+        "points": [
+          [
+            "Financial loss",
+            "because the company pays for data recovery / compensation to clients / ransomware payments / new security infrastructure"
+          ],
+          [
+            "Loss of revenue",
+            "because the loss of data disrupts operations and transactions"
+          ],
+          [
+            "Legal fees / fines",
+            "due to a breach of the DPA / GDPR / a security breach"
+          ],
+          [
+            "Damage to reputation / loss of trust",
+            "which could lose existing clients / put off new clients"
+          ],
+          [
+            "Reduced productivity",
+            "because financial advisers cannot do their jobs properly without the information and data"
+          ]
+        ],
+        "accept": [
+          "Mix and match the financial loss and loss of revenue points if the response makes sense"
+        ],
+        "reject": [
+          "Loss of data itself: it is given in the question"
+        ]
+      },
+      "modelAnswer": "1. Fines: losing client data breaches the DPA / GDPR, so the ICO can fine the company.\n2. Loss of trust: clients move their financial plans to another adviser."
+    },
+    {
+      "id": "jun26-3-d",
+      "scenario": "j3",
+      "part": "(d)",
+      "section": "F",
+      "code": "F1.1",
+      "marks": 9,
+      "commandWord": "Evaluate",
+      "context": "Staff working for the company must consider moral and ethical factors when they are working with client data.",
+      "question": "Evaluate the privacy implications for the company when working with client data.",
+      "slots": 0,
+      "traps": [
+        "Privacy implications FOR THE COMPANY: trust, fines, legal action and reputation, applied to a financial adviser's client data.",
+        "Evaluate needs both sides and a conclusion that follows from your points."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "focus": "Learners evaluate the privacy implications for the company when working with client data.",
+        "indicative": [
+          "Consent: failing to get clients' consent to store their data damages trust and reputation; clients have the right to know what is collected and to control how it is used",
+          "Using client data without permission brings legal consequences: clients control their personal information, so the company could face fines and lawsuits",
+          "Transparency: the company is accountable for any misuse or loss of client data caused by weak security measures",
+          "Secure storage prevents breaches and penalties under the Data Protection Act; poor security risks theft or misuse, upset clients and damage to the company's image, making it harder to attract customers, investors and partners",
+          "Using data only for the purpose it was collected; otherwise large ICO fines, legal action from clients and closer regulatory monitoring",
+          "Deleting client data when asked: failing to is a breach of contract and professional negligence, with GDPR penalties, large fines and mandatory audits",
+          "Clients' rights under the DPA / GDPR: access to their data at any time, and data kept accurate and up to date",
+          "Conclusion: privacy management is essential for business success and client confidence; strong data protection, legal compliance and transparency build trust and reduce legal and financial risk"
+        ]
+      },
+      "modelAnswer": "Consent: James must get clients' consent before storing their financial details; it builds trust, but the paperwork slows visits.\nSecure storage: encrypting the laptop and server prevents a breach that would bring ICO fines and lost clients, but it costs money and staff training.\nAccess and deletion rights: the company must hand over or delete a client's data on request, which takes admin time but avoids GDPR penalties.\nPurpose: data collected for a financial plan cannot be reused for marketing without permission, which limits sales but protects the company's reputation.\nConclusion: privacy costs time and money, but for a financial adviser trust is the business, so the benefits outweigh the costs."
+    },
+    {
+      "id": "jun26-4-a",
+      "scenario": "j4",
+      "part": "(a)",
+      "section": "C",
+      "code": "C1.1",
+      "marks": 3,
+      "commandWord": "Describe",
+      "context": "",
+      "question": "Describe how Just U Games can use **one** cloud computing model.",
+      "slots": 0,
+      "traps": [
+        "**one** model only: the examiner marks the first one you write.",
+        "Name the model, say what it is, then link it to Just U Games backing up its data."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "steps": [
+          "Model",
+          "Justification",
+          "Expansion"
+        ],
+        "rule": "One mark for the model, one for a justification, one for expanding it, up to 3 marks.",
+        "points": [
+          [
+            "Private cloud",
+            "which is dedicated to one organisation",
+            "and can be set up within the organisation or by a third-party service provider"
+          ],
+          [
+            "Public cloud",
+            "available to several organisations on a pay-as-you-go / subscription basis",
+            "and set up and managed by a third-party service provider"
+          ],
+          [
+            "Hybrid cloud",
+            "integrates private and public cloud systems",
+            "which gives the company flexibility / the ability to share applications and data"
+          ],
+          [
+            "Infrastructure as a Service (IaaS)",
+            "gives Just U Games a virtual system over the internet",
+            "which lets the company pay for what it uses"
+          ],
+          [
+            "Software as a Service (SaaS)",
+            "software applications are hosted and managed by a third-party provider",
+            "which reduces purchase costs for Just U Games"
+          ],
+          [
+            "Platform as a Service (PaaS)",
+            "the provider is responsible for managing the infrastructure",
+            "and applications can be increased or decreased when required"
+          ]
+        ],
+        "accept": [],
+        "reject": []
+      },
+      "modelAnswer": "Public cloud: a third-party provider stores Just U Games' backups on its servers, paid as they go, so the company buys and maintains no extra backup hardware."
+    },
+    {
+      "id": "jun26-4-b",
+      "scenario": "j4",
+      "part": "(b)",
+      "section": "C",
+      "code": "C1.1",
+      "marks": 9,
+      "commandWord": "Evaluate",
+      "context": "",
+      "question": "Evaluate how different cloud computing models could fit the needs of Just U Games.",
+      "slots": 0,
+      "traps": [
+        "Cloud computing MODELS: deployment (public, private, hybrid) and / or service (IaaS, PaaS, SaaS), each judged against Just U Games' needs.",
+        "End with a recommendation your points support."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "focus": "Learners evaluate how different cloud computing models fit the needs of Just U Games.",
+        "indicative": [
+          "IaaS: servers, storage and networking the company configures itself; full control and high performance without buying expensive hardware; scales up or down quickly",
+          "IaaS: suits hosting multiplayer games, with powerful virtual machines (CPUs / GPUs) maintained by the provider",
+          "PaaS: the provider manages the environment; built-in tools speed up development and updates; scales with player numbers; less control and customisation",
+          "SaaS: lower upfront costs and subscription pricing; ready-made software maintained by the vendor; analytics on player retention and behaviour; limited customisation, and player data held on third-party servers",
+          "SaaS: the provider supplies security and backup: encryption, disaster recovery, automatic backup and DDoS protection",
+          "Private cloud: self-hosted or dedicated; full control over performance, data and costs; lower latency and stronger security for player data and payments",
+          "Public cloud: pay only for the resources used; add or remove servers with demand; global reach; provider handles DDoS protection, backup and recovery",
+          "Hybrid cloud: in-house infrastructure plus rented cloud capacity when needed; flexible and reliable, keeps sensitive data in-house, but more complex to manage and needs networking expertise",
+          "Conclusion: each model offers different control, flexibility, cost and responsibility; Just U Games should choose on scalability, security, performance and budget"
+        ]
+      },
+      "modelAnswer": "Public cloud: cheap pay-as-you-go storage that scales as the player base grows, but player data sits on a third party's servers.\nPrivate cloud: full control and stronger security for accounts and payments, but expensive to build and run.\nHybrid: passwords and payment data stay private while bulk game data backs up to the public cloud; flexible, but harder to manage.\nIaaS: rents servers and storage on demand, good for backup and scaling, but the company still configures and secures them.\nConclusion: hybrid fits best, cheap scalable backup for bulk data with sensitive player data kept private."
+    },
+    {
+      "id": "jun26-4-c",
+      "scenario": "j4",
+      "part": "(c)",
+      "section": "B",
+      "code": "B2.4",
+      "marks": 12,
+      "commandWord": "Evaluate",
+      "context": "Just U Games uses a file server to store gaming data and is considering installing a web server to host games.",
+      "question": "Evaluate the performance and efficiency of a web server compared to a file server to support online multiplayer gaming.",
+      "slots": 0,
+      "traps": [
+        "Compare BOTH servers on performance AND efficiency for live multiplayer, then conclude.",
+        "\"Use both\" only works if you say what each one is for: file server for downloads, web server for live play."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "focus": "Learners evaluate performance and efficiency of a web server compared to a file server to support online multiplayer gaming.",
+        "indicative": [
+          "Web server: handles HTTP requests, session management and game back-end services; optimised for many small requests at once",
+          "Web server: low latency, continuous state updates and two-way communication (HTTP/2, WebSockets); event-driven, so it handles thousands or millions of connections",
+          "Web server: resource efficient, with efficient memory per connection and small, frequent packets; near-instant responses for movement, chat and synchronisation",
+          "Web server: easily scalable; REST APIs or sockets keep gaming sessions reliable; outperforms a file server for real-time play",
+          "File server: stores and delivers static files (game assets, downloads, updates, patches); optimised for large file throughput and sequential reads / writes",
+          "File server: high latency for frequent small reads / writes; inefficient for small real-time packets because of connection setup and input / output waits",
+          "File server: concurrency limited by input / output and locks; requests queue; needs heavy caching; no live updates",
+          "File server: harder to scale globally because it is storage-bound; reliability focuses on file integrity; unsuitable for live multiplayer",
+          "Conclusion: a web server is much better for multiplayer (real-time communication, low latency, many players, synchronisation); a file server suits storing and sharing files, backups and asset downloads"
+        ]
+      },
+      "modelAnswer": "Web server: built for many small, frequent requests, so player moves and chat update with low latency; event-driven, so thousands of players connect at once.\nFile server: built for large transfers, so it delivers downloads and patches efficiently, but small real-time updates queue behind input / output waits and add lag.\nScalability: web servers spread across regions; a file server is storage-bound and harder to scale.\nConclusion: host live games on the web server and keep the file server for assets and updates."
     }
   ]
 }
