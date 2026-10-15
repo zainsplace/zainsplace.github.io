@@ -1013,7 +1013,7 @@ function renderHome() {
   renderPriorityTopics();
   // A refresh always lands on Home, so an interrupted paper is offered here too.
   const resume = el('home-mock-resume');
-  if (resume) resume.innerHTML = mockResumeHTML();
+  if (resume) resume.innerHTML = mockResumeHTML() + pppResumeHTML();
 }
 
 /* ---- PRIORITY TOPICS (weakest first: red, then amber) ---- */
@@ -1682,7 +1682,7 @@ function renderPractice(container) {
       ? 'Set out like the real paper. Read the scenario, answer the part, then mark yourself against the mark scheme, not a guess. The number in brackets is the marks, so it tells you how much to write.'
       : 'Answer the question, then mark yourself against the mark scheme. The number in brackets is the marks, so it tells you how much to write.'}
       Your answers are saved as you type.</p>
-    ${mockResumeHTML()}
+    ${mockResumeHTML()}${pppResumeHTML()}
     <div id="q-summary">${renderQSummary()}</div>
     <div class="q-toolbar">
       <select class="q-select" aria-label="Section" onchange="setQFilter(this.value)">
@@ -2707,7 +2707,7 @@ function pppPartLabel(q) {
 
 function openPPP() {
   qMode = 'ppp';
-  renderQuestions();
+  if (currentPage !== 'questions') navigate('questions'); else renderQuestions();
   scrollContentTop();
 }
 
@@ -2810,27 +2810,35 @@ function pppHistoryHTML(sittings) {
 }
 
 /* ---- Start, resume, abandon ---- */
+// The saved sitting, checked and pruned against the ACTIVE unit's questions.
+// Home can call this before the Questions page has loaded qData.
 function pppSaved() {
+  qData = loadJSON('data/questions.json');
+  if (!qData) return null;
+  PPP.pruneUnknown(pppState(), new Set(qData.questions.map(q => q.id)));
   const a = PPP.coerceState({ active: pppState().active }).active;
   return a && a.id ? a : null;
 }
 
+// Shown on PPP home, Practice and Home. A sitting still live in memory (the
+// student just went to another page) continues; a saved one resumes.
 function pppResumeHTML() {
-  if (ppp) return '';
-  const a = pppSaved();
-  if (!a) return '';
+  const live = !!ppp;
+  const a = ppp || pppSaved();
+  if (!a || a.step === 'done') return '';
   return `
     <div class="card mock-resume" role="status">
       <div><strong>${escapeHTML(pppActiveName(a))} is in progress</strong>
         <div class="mock-paper-meta">Part ${a.idx + 1} of ${a.qIds.length}, ${PPP_STEP_LABELS[a.step]}.</div></div>
       <div class="q-head-btns">
-        <button class="btn btn-primary btn-sm" onclick="resumePPP()">Resume</button>
+        <button class="btn btn-primary btn-sm" onclick="${live ? 'openPPP()' : 'resumePPP()'}">${live ? 'Continue' : 'Resume'}</button>
         <button class="btn btn-secondary btn-sm" onclick="abandonPPP()">Abandon</button>
       </div>
     </div>`;
 }
 
 function resumePPP() {
+  if (currentPage !== 'questions') navigate('questions');
   const a = pppSaved();
   if (!a) {
     pppState().active = {};
@@ -2855,7 +2863,7 @@ function resumePPP() {
 }
 
 function abandonPPP() {
-  if (!confirm('Abandon this sitting? Parts you have not finished are lost, and the paper will not go on rest.')) return;
+  if (!confirm('Abandon this sitting? Everything in it is lost, including parts you have already marked, and the paper will not go on rest.')) return;
   const a = ppp || pppSaved();
   stopPPPTimer();
   if (a) {
@@ -2864,7 +2872,7 @@ function abandonPPP() {
   }
   ppp = null;
   persistPPP(true);
-  renderQuestions();
+  if (currentPage === 'home') renderHome(); else renderQuestions();
 }
 
 // The clock for the part on screen: a fixed end time in Phase 3, none otherwise.
