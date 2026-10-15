@@ -5954,6 +5954,17 @@ const INLINE_UNITS = {
           "source": "pearson",
           "ref": "60297T",
           "copyright": "Pearson BTEC National (AAQ) Unit 1, June 2026, paper 60297T. © 2026 Pearson Education Ltd. Questions and mark scheme reproduced for personal revision."
+        },
+        {
+          "id": "p3",
+          "title": "Paper 3",
+          "scenarios": [
+            "p3s1",
+            "p3s2",
+            "p3s3",
+            "p3s4"
+          ],
+          "sealed": true
         }
       ],
       "scenarios": [
@@ -6032,6 +6043,34 @@ const INLINE_UNITS = {
           "title": "Just U Games",
           "total": 24,
           "stem": "Just U Games is an online gaming platform.\n\nJust U Games currently stores all the data it collects on a file server on site.\n\nJust U Games is considering how it can use cloud computing to backup this data."
+        },
+        {
+          "id": "p3s1",
+          "number": 1,
+          "title": "Riverside Veterinary Clinic",
+          "total": 22,
+          "stem": "Riverside Veterinary Clinic in Norwich has three vets, four nurses and two receptionists.\n\nVets write consultation notes on paper and type them up at the end of the day. The clinic plans to give each vet a tablet to record notes during consultations.\n\nOne of the receptionists, Priya, is partially sighted.\n\nThe clinic is also choosing new practice-management software to store pet and owner records."
+        },
+        {
+          "id": "p3s2",
+          "number": 2,
+          "title": "Swift Parcels depot",
+          "total": 23,
+          "stem": "Swift Parcels runs a delivery depot in Doncaster.\n\nOffice staff use desktop computers. Warehouse staff use handheld scanners to log parcels as they arrive. Drivers use smartphones to record each delivery.\n\nThe depot is replacing its old network."
+        },
+        {
+          "id": "p3s3",
+          "number": 3,
+          "title": "Harmony Music School",
+          "total": 21,
+          "stem": "Harmony Music School in Bristol teaches lessons in its building and streams live lessons to students at home.\n\n**The school has two rooms.**\n\nStudio\nOne desktop computer\nOne webcam\nOne microphone\n\nOffice\nTwo desktop computers\nOne printer\nOne server that stores recorded lessons\n\n**Remote lessons**\n\nEach teacher has a laptop to teach from home.\nStudents join lessons on their own devices over their home broadband."
+        },
+        {
+          "id": "p3s4",
+          "number": 4,
+          "title": "Paws Rescue",
+          "total": 24,
+          "stem": "Paws Rescue is an animal-welfare charity with 200 volunteers across the North West.\n\nVolunteers organise themselves by email. The charity wants an online community where volunteers can share news, arrange shifts and post photos of animals waiting for adoption.\n\nThe charity has a small budget and one part-time IT volunteer."
         }
       ],
       "questions": [
@@ -8470,6 +8509,738 @@ const INLINE_UNITS = {
             ]
           },
           "modelAnswer": "1. Consent: shoppers are scanned without a real choice, since they still need to buy food.\n2. Privacy: every shopper's face is recorded to catch a few shoplifters, more data than the store needs."
+        },
+        {
+          "id": "p3-1-a-i",
+          "scenario": "p3s1",
+          "part": "(a)(i)",
+          "section": "A",
+          "code": "A1.1",
+          "marks": 2,
+          "commandWord": "Give",
+          "context": "",
+          "question": "Give **two** features of a tablet that make it suitable for recording notes during consultations.",
+          "slots": 2,
+          "traps": [
+            "Features of the TABLET that suit a consultation room, not general benefits of going paperless."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "One mark for each correct answer, up to 2 marks.",
+            "points": [
+              "Touch screen / touch interface",
+              "Portable / lightweight",
+              "Battery powered",
+              "Wi-Fi / 4G / 5G connectivity",
+              "Built-in camera (e.g. photographing an injury)",
+              "Runs apps on a mobile operating system",
+              "Built-in microphone (voice notes)"
+            ],
+            "accept": [
+              "Any other tablet feature that fits a consultation room"
+            ],
+            "reject": [
+              "Features of a desktop PC, e.g. a large monitor or full-size keyboard"
+            ]
+          },
+          "modelAnswer": "1. Touch screen\n2. Built-in camera"
+        },
+        {
+          "id": "p3-1-a-ii",
+          "scenario": "p3s1",
+          "part": "(a)(ii)",
+          "section": "A",
+          "code": "A2.2",
+          "marks": 2,
+          "commandWord": "Give",
+          "context": "",
+          "question": "Give **two** assistive technologies the clinic could provide for Priya.",
+          "slots": 2,
+          "traps": [
+            "Priya is partially sighted: the technology must help with VISION, not movement."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "One mark for each correct answer, up to 2 marks.",
+            "points": [
+              "Screen reader",
+              "Screen magnifier",
+              "Braille display",
+              "Text-to-speech software",
+              "Adaptive keyboard with large keys"
+            ],
+            "accept": [],
+            "reject": [
+              "Technologies for movement difficulties, e.g. sip-and-puff switch or head pointer"
+            ]
+          },
+          "modelAnswer": "1. Screen magnifier\n2. Screen reader"
+        },
+        {
+          "id": "p3-1-b-i",
+          "scenario": "p3s1",
+          "part": "(b)(i)",
+          "section": "A",
+          "code": "A3.6",
+          "marks": 4,
+          "commandWord": "Explain",
+          "context": "The clinic is considering open-source practice-management software.",
+          "question": "Explain **two** benefits to the clinic of using open-source software.",
+          "slots": 2,
+          "traps": [
+            "\"It's free\" is only the first mark: say what that means for the clinic."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "Free to use / no licence fees",
+                "so the clinic saves money it can spend on equipment"
+              ],
+              [
+                "The code can be viewed and changed (customised)",
+                "so the software can be adapted to how the clinic works"
+              ],
+              [
+                "Community support and updates",
+                "so problems can be fixed by a large community of users"
+              ],
+              [
+                "Not locked to one vendor",
+                "so the clinic can keep using it, or change supplier, if a company closes"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Benefits of proprietary software, e.g. guaranteed vendor support"
+            ]
+          },
+          "modelAnswer": "1. No licence fees: the clinic saves money it can spend on equipment.\n2. Customisable: the software can be changed to fit how the clinic records consultations."
+        },
+        {
+          "id": "p3-1-b-ii",
+          "scenario": "p3s1",
+          "part": "(b)(ii)",
+          "section": "A",
+          "code": "A3.6",
+          "marks": 4,
+          "commandWord": "Explain",
+          "context": "",
+          "question": "Explain **two** drawbacks to the clinic of using open-source software.",
+          "slots": 2,
+          "traps": [
+            "Drawbacks of OPEN-SOURCE software: licence costs are a drawback of proprietary software."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "Less polished interface",
+                "so staff may need more training before using it"
+              ],
+              [
+                "No guaranteed vendor support",
+                "so problems may take longer to fix during surgery hours"
+              ],
+              [
+                "May lack advanced or specialist features",
+                "so the clinic may need extra software for vet-specific tasks"
+              ],
+              [
+                "Support can cost more than the licence saved",
+                "because the clinic may have to pay an IT company to maintain it"
+              ],
+              [
+                "Patchy driver / device support",
+                "so some printers or medical devices may not work with it"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Licence fees or vendor lock-in (drawbacks of proprietary software)"
+            ]
+          },
+          "modelAnswer": "1. No guaranteed support: if it breaks mid-surgery, there is no vendor to call.\n2. Missing features: it may not have vet-specific tools, so the clinic needs extra software."
+        },
+        {
+          "id": "p3-1-c",
+          "scenario": "p3s1",
+          "part": "(c)",
+          "section": "D",
+          "code": "D2.4",
+          "marks": 4,
+          "commandWord": "Describe",
+          "context": "The tablets will store pet and owner records.",
+          "question": "Describe how encrypting the stored records protects them if a tablet is stolen.",
+          "slots": 0,
+          "traps": [
+            "STORED records on a stolen tablet: data sent over the internet (HTTPS) is a different question."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "One mark for each point, up to 4 marks.",
+            "points": [
+              "Data is scrambled using an algorithm and a key",
+              "Stored data is unreadable (ciphertext) without the key",
+              "Full disk encryption (e.g. BitLocker) encrypts the whole drive",
+              "A thief cannot read the records, even by removing the storage",
+              "Only authorised users with the key / password can decrypt the records",
+              "The key is kept separately and securely from the tablet"
+            ],
+            "accept": [],
+            "reject": [
+              "Encryption stops the tablet being stolen",
+              "Encryption in transit / HTTPS"
+            ]
+          },
+          "modelAnswer": "The records are scrambled with an algorithm and a key. Without the key they are unreadable ciphertext. Full disk encryption covers the whole drive, so a thief cannot read them even by removing the storage. Only staff who know the key / password can decrypt them."
+        },
+        {
+          "id": "p3-1-d",
+          "scenario": "p3s1",
+          "part": "(d)",
+          "section": "E",
+          "code": "E2.5",
+          "marks": 6,
+          "commandWord": "Discuss",
+          "context": "Nurses will type weights, medicine doses and owner contact details into the new system.",
+          "question": "Discuss methods, other than double entry, the clinic could use to make sure the data entered is accurate.",
+          "slots": 0,
+          "traps": [
+            "\"other than double entry\": typing data twice earns nothing.",
+            "Discuss means both sides: what each method catches AND what it cannot catch, applied to the clinic."
+          ],
+          "markScheme": {
+            "type": "levels",
+            "focus": "Methods other than double entry for keeping the clinic's data accurate, with their limits.",
+            "indicative": [
+              "Proofreading: checking the entry against the original notes; catches typing mistakes, but is slow and relies on the reader",
+              "Range check: e.g. a dose or weight must fall between sensible limits; stops impossible values, but a wrong value inside the range still gets through",
+              "Presence check: e.g. an owner's phone number cannot be left blank; makes sure essential data exists",
+              "Format check: e.g. postcode or phone number must match a pattern; stops badly typed contact details",
+              "Type and length checks: e.g. weight must be a number; catches obvious errors",
+              "Validation only checks data is sensible, not that it is correct: a valid but wrong dose is still accepted",
+              "Accuracy matters most for medicine doses and contact details, so the clinic may combine validation with proofreading"
+            ],
+            "reject": [
+              "Double entry (excluded by the question)"
+            ]
+          },
+          "modelAnswer": "Range check: a dose must fall within safe limits, which blocks a slip like 500 instead of 50; but a wrong dose inside the range still gets through.\nPresence check: owner phone numbers cannot be left blank, so the clinic can always call; but a mistyped number still passes.\nFormat check: postcodes must match the UK pattern; but it cannot tell if it is the right postcode.\nProofreading: a nurse checks the screen against the vet's notes, which catches wrong but valid data; but it is slow at busy times."
+        },
+        {
+          "id": "p3-2-a",
+          "scenario": "p3s2",
+          "part": "(a)",
+          "section": "B",
+          "code": "B1.1",
+          "marks": 2,
+          "commandWord": "Give",
+          "context": "",
+          "question": "Give **two** wireless connection methods the depot could use.",
+          "slots": 2,
+          "traps": [
+            "WIRELESS only: Ethernet, USB and fibre score nothing."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "One mark for each correct answer, up to 2 marks.",
+            "points": [
+              "Wi-Fi",
+              "Bluetooth",
+              "4G / 5G mobile data",
+              "NFC"
+            ],
+            "accept": [],
+            "reject": [
+              "Ethernet, USB or fibre (wired)"
+            ]
+          },
+          "modelAnswer": "1. Wi-Fi\n2. Bluetooth"
+        },
+        {
+          "id": "p3-2-b-i",
+          "scenario": "p3s2",
+          "part": "(b)(i)",
+          "section": "B",
+          "code": "B1.3",
+          "marks": 4,
+          "commandWord": "Explain",
+          "context": "The office computers will be connected using wired Ethernet.",
+          "question": "Explain **two** benefits to the depot of using wired Ethernet for the office computers.",
+          "slots": 2,
+          "traps": [
+            "\"Faster\" on its own scores nothing: say what is faster and why it matters to the depot."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "Reliable / no radio interference",
+                "so the parcel system does not drop out while staff are working"
+              ],
+              [
+                "High speed (typically 1 Gbps)",
+                "so large delivery manifests transfer quickly"
+              ],
+              [
+                "Low latency",
+                "so calls and live tracking updates arrive without delay"
+              ],
+              [
+                "Harder to intercept",
+                "so customer addresses are better protected than over Wi-Fi"
+              ],
+              [
+                "Bandwidth is not shared over the air",
+                "so performance stays steady when the warehouse is busy"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "\"Faster\" on its own",
+              "Benefits of wireless, e.g. mobility"
+            ]
+          },
+          "modelAnswer": "1. Reliable: no interference, so the office's parcel system does not drop out.\n2. Low latency: tracking updates and calls arrive without delay."
+        },
+        {
+          "id": "p3-2-b-ii",
+          "scenario": "p3s2",
+          "part": "(b)(ii)",
+          "section": "B",
+          "code": "B1.4",
+          "marks": 4,
+          "commandWord": "Explain",
+          "context": "The handheld scanners will connect using Wi-Fi.",
+          "question": "Explain **two** drawbacks of using Wi-Fi for the handheld scanners.",
+          "slots": 2,
+          "traps": [
+            "Drawbacks of Wi-Fi, not of wired: cabling costs score nothing here."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "Signal reduced by walls / metal racking",
+                "so scanners in far corners of the warehouse lose connection"
+              ],
+              [
+                "Bandwidth is shared between devices",
+                "so scans slow down when many staff work at once"
+              ],
+              [
+                "Interference / jitter",
+                "so scans may be delayed or need resending"
+              ],
+              [
+                "Less secure than wired",
+                "so the network needs WPA3 to stop parcel data being intercepted"
+              ],
+              [
+                "Limited range (about 30-50 m indoors)",
+                "so extra access points are needed to cover the warehouse"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Cost of cabling (a drawback of wired connections)"
+            ]
+          },
+          "modelAnswer": "1. Metal racking blocks the signal, so scanners at the back of the warehouse drop out.\n2. Shared bandwidth: at busy times many scanners slow each other down."
+        },
+        {
+          "id": "p3-2-c",
+          "scenario": "p3s2",
+          "part": "(c)",
+          "section": "B",
+          "code": "B2.3",
+          "marks": 4,
+          "commandWord": "Explain",
+          "context": "",
+          "question": "Explain **two** factors the depot should consider when choosing its new network.",
+          "slots": 2,
+          "traps": [
+            "Factors affecting the CHOICE of network, each linked to the depot."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "User needs: how many staff and devices connect at once",
+                "so there is enough bandwidth for every scanner and PC"
+              ],
+              [
+                "Cost: hardware, cabling, ISP fees and support",
+                "so the network fits the depot's budget"
+              ],
+              [
+                "Security: firewall, WPA3, separate guest Wi-Fi",
+                "so customer data on the network is protected"
+              ],
+              [
+                "Implementation and downtime",
+                "so installation happens out of hours and the depot keeps running"
+              ],
+              [
+                "Compatibility with existing devices",
+                "so the current scanners still work on the new network"
+              ],
+              [
+                "Specifications: speed, latency, uptime",
+                "so the parcel system is available whenever the depot is open"
+              ],
+              [
+                "Connectivity: every device can connect, with 4G/5G backup",
+                "so deliveries can still be logged if the broadband fails"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "\"Speed\" with no link to the depot"
+            ]
+          },
+          "modelAnswer": "1. Downtime: install it overnight so parcels can still be logged during the day.\n2. Compatibility: the new network must work with the existing handheld scanners."
+        },
+        {
+          "id": "p3-2-d",
+          "scenario": "p3s2",
+          "part": "(d)",
+          "section": "B",
+          "code": "B2.1",
+          "marks": 9,
+          "commandWord": "Evaluate",
+          "context": "",
+          "question": "Evaluate the suitability of a star topology and a bus topology for the depot's network.",
+          "slots": 0,
+          "traps": [
+            "Both topologies, judged against the DEPOT's needs, with a conclusion."
+          ],
+          "markScheme": {
+            "type": "levels",
+            "focus": "The suitability of star and bus topologies for a busy depot network.",
+            "indicative": [
+              "Star: every device has its own cable to a central switch; the most common topology",
+              "Star: easy to add devices and find faults; one cable failing only affects one device",
+              "Star: the switch is a single point of failure; uses more cable, so costs more to install",
+              "Bus: all devices share one backbone cable; cheap, with minimal cabling",
+              "Bus: only one device can transmit at a time, so it slows down as devices are added",
+              "Bus: a break in the backbone takes the whole network down; needs terminators at each end",
+              "Depot needs: many scanners and PCs, busy periods, growth, and little tolerance for downtime",
+              "Conclusion: star suits the depot because it handles many devices and isolates faults, despite the higher cabling cost"
+            ]
+          },
+          "modelAnswer": "Star: each PC has its own cable to a switch, so one broken cable stops one device, not the depot; but the switch is a single point of failure and more cable costs more.\nBus: one shared backbone is cheap to install; but only one device can send at a time, so it slows as scanners are added, and one break stops everything.\nThe depot runs many devices at busy times and cannot afford downtime.\nConclusion: star is more suitable; the extra cabling cost is worth the reliability."
+        },
+        {
+          "id": "p3-3-a",
+          "scenario": "p3s3",
+          "part": "(a)",
+          "section": "B",
+          "code": "B2.2",
+          "marks": 6,
+          "commandWord": "Draw",
+          "context": "",
+          "question": "Draw a diagram to show how the school's network is set up and how teachers and students connect to live lessons.\n\nThe diagram must include:\n• devices and systems that are used\n• connection types and annotations.",
+          "slots": 0,
+          "traps": [
+            "Both rooms AND the remote teachers and students must appear, each device and connection labelled."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "One mark for each, up to 6. Draw it on paper, then tick what your diagram shows.",
+            "points": [
+              "Studio: desktop with webcam AND microphone attached (e.g. USB)",
+              "Studio desktop connected to a switch / WAP / router using a wired / wireless connection",
+              "Office: two desktops AND a printer connected to a switch / WAP / router",
+              "Server connected to the switch / router",
+              "Router / firewall connecting the school network to the internet",
+              "Teachers' laptops AND students' devices connecting over home broadband / the internet",
+              "Fully functioning system with all devices AND connection types included (with annotations)"
+            ],
+            "accept": [
+              "A VPN shown for teachers reaching the server from home"
+            ],
+            "reject": []
+          },
+          "modelAnswer": "Studio: desktop + webcam + mic (USB), Ethernet to a switch.\nOffice: 2 desktops + printer + server, Ethernet to the switch.\nSwitch to router / firewall to the internet.\nTeachers: laptops on home Wi-Fi / broadband to the internet (VPN to the server).\nStudents: own devices on home broadband join the stream over the internet."
+        },
+        {
+          "id": "p3-3-b",
+          "scenario": "p3s3",
+          "part": "(b)",
+          "section": "B",
+          "code": "B3.3",
+          "marks": 2,
+          "commandWord": "Explain",
+          "context": "Students sometimes complain that live lessons freeze or the sound lags.",
+          "question": "Explain **one** factor that affects the quality of a streamed lesson.",
+          "slots": 1,
+          "traps": [
+            "**one** factor only: the examiner marks the first one.",
+            "\"Bad Wi-Fi\" on its own scores nothing."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for a correct point and one for an appropriate expansion, up to 2 marks.",
+            "points": [
+              [
+                "Bandwidth",
+                "because a video stream needs a lot of data per second, so too little makes it freeze"
+              ],
+              [
+                "Latency",
+                "because a delay before data arrives makes the sound lag behind the teacher"
+              ],
+              [
+                "Jitter (varying latency)",
+                "because uneven delays make audio stutter"
+              ],
+              [
+                "Number of users sharing the connection",
+                "because bandwidth is shared, so other users at home slow the stream"
+              ],
+              [
+                "Distance / number of hops",
+                "because data passing through more networks takes longer to arrive"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "\"Bad Wi-Fi\" or \"slow internet\" with no explanation"
+            ]
+          },
+          "modelAnswer": "Bandwidth: a live video needs lots of data per second, so a slow home connection makes the lesson freeze."
+        },
+        {
+          "id": "p3-3-c",
+          "scenario": "p3s3",
+          "part": "(c)",
+          "section": "B",
+          "code": "B3.6",
+          "marks": 4,
+          "commandWord": "Explain",
+          "context": "The school uses a codec to compress the video and sound before it is sent.",
+          "question": "Explain **two** other features of codecs that affect the school's streamed lessons.",
+          "slots": 2,
+          "traps": [
+            "\"other features\": compressing the video before sending is given, so it scores nothing."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "The decoder decompresses the stream at the student's end",
+                "so the student's device must do work to play the lesson"
+              ],
+              [
+                "Sender and receiver need the same codec",
+                "so students may need compatible software to join"
+              ],
+              [
+                "More compression needs more processing",
+                "so older laptops may struggle to encode or decode the lesson"
+              ],
+              [
+                "Newer codecs (e.g. H.265) make files about half the size of H.264",
+                "so streams need less bandwidth"
+              ],
+              [
+                "Lossy compression removes some detail",
+                "so fine detail, like finger positions, may blur"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Compressing the video before it is sent (given in the question)"
+            ]
+          },
+          "modelAnswer": "1. Same codec at both ends: students need software that supports the school's codec, or they cannot join.\n2. Processing: heavier compression needs more processing, so an old laptop may stutter."
+        },
+        {
+          "id": "p3-3-d",
+          "scenario": "p3s3",
+          "part": "(d)",
+          "section": "A",
+          "code": "A5.3",
+          "marks": 9,
+          "commandWord": "Evaluate",
+          "context": "The school is considering AI tools, such as automatic transcripts of lessons and AI feedback on students' practice recordings.",
+          "question": "Evaluate the use of AI tools for the school.",
+          "slots": 0,
+          "traps": [
+            "Implications for the SCHOOL as an organisation: both sides, then a conclusion."
+          ],
+          "markScheme": {
+            "type": "levels",
+            "focus": "The implications of AI tools for a music school.",
+            "indicative": [
+              "Automates tasks such as transcripts and scheduling, saving teachers' time",
+              "Faster, better decisions from data: tracking each student's progress",
+              "Personalised practice feedback between lessons, keeping students engaged",
+              "Roles may change, and some admin work may no longer need people",
+              "Bias in training data: may judge some accents, instruments or styles unfairly",
+              "Attackers use AI too: more convincing phishing aimed at staff",
+              "Cost of subscriptions and staff training",
+              "Recordings of students are personal data: consent and secure storage under GDPR",
+              "AI feedback can be wrong, so teachers still need to check it",
+              "Conclusion: useful for saving time and supporting practice, if teachers stay in control and student data is protected"
+            ]
+          },
+          "modelAnswer": "Transcripts: AI writes up each lesson automatically, saving teachers time; but it may mishear musical terms.\nPractice feedback: students get instant feedback between lessons; but AI can judge unfamiliar styles unfairly, so teachers must check it.\nData: recordings of students are personal data, so the school needs consent and secure storage.\nCost: subscriptions and training cost money from a small budget.\nConclusion: worth using for transcripts and practice support, with teachers checking the AI and student data protected."
+        },
+        {
+          "id": "p3-4-a",
+          "scenario": "p3s4",
+          "part": "(a)",
+          "section": "C",
+          "code": "C2.1",
+          "marks": 3,
+          "commandWord": "Describe",
+          "context": "",
+          "question": "Describe how Paws Rescue could use **one** type of online community.",
+          "slots": 0,
+          "traps": [
+            "**one** type only: the examiner marks the first one you write.",
+            "Name the type, say what it is, then link it to the charity's volunteers."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Type",
+              "Justification",
+              "Expansion"
+            ],
+            "rule": "One mark for the item, one for a justification, one for expanding it, up to 3 marks.",
+            "points": [
+              [
+                "Social media",
+                "shares content with a large audience instantly",
+                "so adoption photos reach more people and more animals are rehomed"
+              ],
+              [
+                "Forum",
+                "volunteers post and reply in threads in their own time",
+                "so shift questions stay searchable for everyone"
+              ],
+              [
+                "Instant messaging group",
+                "quick real-time chat between volunteers",
+                "so cover for a missed shift can be found fast"
+              ],
+              [
+                "Wiki",
+                "volunteers create and edit shared pages together",
+                "so animal-care guides stay up to date"
+              ],
+              [
+                "Blog / vlog",
+                "regular posts build an audience over time",
+                "so supporters keep following and donating"
+              ]
+            ],
+            "accept": [],
+            "reject": []
+          },
+          "modelAnswer": "Instant messaging group: volunteers chat in real time, so if someone cannot make a shift, cover can be found within minutes."
+        },
+        {
+          "id": "p3-4-b",
+          "scenario": "p3s4",
+          "part": "(b)",
+          "section": "C",
+          "code": "C2.2",
+          "marks": 9,
+          "commandWord": "Evaluate",
+          "context": "",
+          "question": "Evaluate the considerations for Paws Rescue when running an online community for its volunteers.",
+          "slots": 0,
+          "traps": [
+            "Considerations for THIS charity: small budget, one part-time IT volunteer, 200 volunteers."
+          ],
+          "markScheme": {
+            "type": "levels",
+            "focus": "Considerations for a small charity running an online community.",
+            "indicative": [
+              "User experience: easy to use and accessible, or volunteers drift back to email",
+              "Meeting user needs: shift rotas, news and photo sharing in one place",
+              "Cost: free platforms mean less control; moderation and premium features cost money",
+              "Privacy: volunteers' personal data; GDPR consent; some platforms sell data to advertisers",
+              "Security: strong passwords and MFA; malicious links can spread through the community",
+              "Downtime: if the platform is down, shifts cannot be arranged",
+              "Training: volunteers and the part-time IT volunteer need time to learn and moderate it",
+              "Integration with the charity's current email and systems",
+              "Productivity: faster organising, but constant notifications distract",
+              "Policies: an AUP setting what volunteers may post, since they represent the charity",
+              "Conclusion: worth doing on a free, easy platform with clear rules and simple moderation"
+            ]
+          },
+          "modelAnswer": "Cost: a free platform suits the small budget, but gives less control over data and adverts.\nPrivacy: volunteers' contact details must be protected under GDPR, so the charity needs consent and privacy settings.\nModeration and training: one part-time IT volunteer cannot moderate 200 people alone, so volunteers need simple rules and training.\nPolicies: an AUP stops volunteers posting anything that harms the charity's reputation.\nConclusion: worthwhile if it is free, easy to use and has clear rules; the main risk is the moderation workload."
+        },
+        {
+          "id": "p3-4-c",
+          "scenario": "p3s4",
+          "part": "(c)",
+          "section": "F",
+          "code": "F2.1",
+          "marks": 12,
+          "commandWord": "Evaluate",
+          "context": "Volunteers will post photos, upload documents and share contact details of people adopting animals.",
+          "question": "Evaluate the impact of current legislation on how Paws Rescue runs its online community.",
+          "slots": 0,
+          "traps": [
+            "Name each law AND what it means for the charity's online community, both benefits and burdens, then conclude."
+          ],
+          "markScheme": {
+            "type": "levels",
+            "focus": "The impact of current legislation on a charity running an online community.",
+            "indicative": [
+              "Data Protection Act 2018 / UK GDPR: adopters' and volunteers' details must be collected with consent, used only for their purpose, kept accurate and secure",
+              "DPA rights: people can access, correct and ask to erase their data; the charity must respond",
+              "DPA: serious breaches reported to the ICO within 72 hours; fines up to £17.5m or 4% of turnover",
+              "Computer Misuse Act 1990: unauthorised access to accounts is illegal; protects the community from hackers, but the charity must still secure accounts",
+              "Copyright, Designs and Patents Act 1988: only post photos, music or documents the charity owns or has permission to use",
+              "Copyright (Computer Programs) Regulations 1992: software used must be properly licensed",
+              "Health and safety / DSE regulations: apply mainly to employees using screens; limited impact on volunteers",
+              "Compliance takes time, training and money from a small budget, but builds trust with adopters and donors",
+              "Conclusion: data protection has the biggest impact; following the laws costs time but protects the charity's reputation and avoids fines"
+            ]
+          },
+          "modelAnswer": "DPA / UK GDPR: adopters' contact details are personal data, so they need consent and must not be posted publicly; this limits what volunteers share but protects the charity from ICO fines.\nComputer Misuse Act: hacking volunteer accounts is illegal, which deters attackers; but the charity still needs strong passwords and MFA.\nCopyright: volunteers can only post photos they took or have permission to use, which adds checks but avoids legal claims.\nDSE regulations: little impact, since volunteers are not employees at workstations.\nConclusion: the DPA matters most; compliance costs time on a small budget, but it protects trust with adopters and donors."
         }
       ]
     },
