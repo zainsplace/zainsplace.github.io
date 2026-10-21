@@ -19,10 +19,10 @@
               "examples": "Wireless earbuds; a Bluetooth keyboard; a smartwatch.",
               "examTip": "Short range, low power, pairing. Slower than Wi-Fi.",
               "keyFacts": [
-                "Range about 10 m (up to 100 m on newer versions)",
-                "Low power: suits wearables and peripherals",
-                "Devices must pair first",
-                "Risks: bluejacking, bluesnarfing"
+                "Range about 10 m (up to 100 m on newer versions), so it suits devices kept close to the user",
+                "Low power, so it suits wearables and peripherals that run on small batteries",
+                "Devices must pair first, so random devices can't connect without the user agreeing",
+                "Risks include bluejacking (unwanted messages) and bluesnarfing (data theft), so turn it off when not in use"
               ]
             },
             {
@@ -32,10 +32,10 @@
               "examples": "A flash drive; charging a phone over USB-C; a printer.",
               "examTip": "Wired, direct, fast, no network needed. Newer versions are much faster.",
               "keyFacts": [
-                "USB 2.0: 480 Mbps; USB 3.x: 5–10 Gbps",
-                "Also charges devices",
-                "Plug and play",
-                "Infected sticks can bring in malware"
+                "USB 2.0 runs at 480 Mbps and USB 3.x at 5–10 Gbps, so newer ports move large files much faster",
+                "Also charges devices, so one cable carries both power and data",
+                "Plug and play, so devices work as soon as they're connected without manual set-up",
+                "Infected sticks can bring in malware, which is why some organisations block USB ports"
               ]
             },
             {
@@ -45,10 +45,10 @@
               "examples": "Office or school Wi-Fi; a café hotspot.",
               "examTip": "Mobility vs Ethernet's speed, reliability and security. Public Wi-Fi is a risk.",
               "keyFacts": [
-                "Range about 30–50 m indoors, reduced by walls",
-                "2.4 GHz: further, slower; 5 GHz: faster, shorter",
-                "Use WPA3; WEP is insecure",
-                "Speed shared between all devices"
+                "Range about 30–50 m indoors, reduced by walls, so large buildings need several access points",
+                "2.4 GHz reaches further but is slower; 5 GHz is faster but shorter range, so the choice depends on the room",
+                "Use WPA3, because WEP is insecure and can be cracked in minutes",
+                "Speed is shared between all devices, so the network slows down as more people connect"
               ]
             },
             {
@@ -58,10 +58,10 @@
               "examples": "Office PCs cabled to a switch; fibre between buildings.",
               "examTip": "For fixed devices it is faster, more reliable and more secure than Wi-Fi.",
               "keyFacts": [
-                "Typically 1 Gbps; fibre much faster over long distances",
-                "Low latency: good for calls and gaming",
-                "Hard to intercept, no radio interference",
-                "Needs cabling: less flexible"
+                "Typically 1 Gbps, and fibre is much faster over long distances, so it suits busy networks and servers",
+                "Low latency, so it is good for video calls and gaming where delay is noticeable",
+                "Hard to intercept and free of radio interference, so it is more secure and reliable than wireless",
+                "Needs cabling, so it is less flexible: devices are tied to where the sockets are"
               ],
               "comparisonTable": {
                 "title": "Connection Methods Compared: Bluetooth vs USB vs Wi-Fi vs Ethernet",
@@ -92,10 +92,10 @@
               "examples": "Ethernet for hospital equipment; Wi-Fi in a café; Bluetooth handheld scanners.",
               "examTip": "Justify the choice by linking a technical feature to the scenario's need.",
               "keyFacts": [
-                "Mobile workers → Wi-Fi",
-                "Fixed, reliable workstations → Ethernet",
-                "Short-range peripherals → Bluetooth",
-                "Servers and backbone → fibre"
+                "Mobile workers need Wi-Fi, so they can move around the building and stay connected",
+                "Fixed, reliable workstations suit Ethernet, because a cable gives steady speed with no interference",
+                "Short-range peripherals suit Bluetooth, because it is low power and needs no cables",
+                "Servers and the backbone suit fibre, because they carry the most traffic and need the highest speed"
               ]
             }
           ]
@@ -111,10 +111,10 @@
               "examples": "All-Wi-Fi saves cabling but adds risk; blocking USB stops theft but complicates printing.",
               "examTip": "For \"implications\" questions cover security, cost, performance and users.",
               "keyFacts": [
-                "Wi-Fi: easy to install, less secure",
-                "Ethernet: costly cabling, reliable",
-                "USB: may need blocking to stop malware",
-                "Wireless depends on signal quality"
+                "Wi-Fi is easy to install but less secure, because signals reach beyond the building and can be picked up",
+                "Ethernet needs costly cabling but is reliable, so it costs more up front but gives fewer problems",
+                "USB may need blocking to stop malware, which can inconvenience staff who rely on memory sticks",
+                "Wireless depends on signal quality, so walls and distance can cause slow or dropped connections"
               ]
             }
           ]
@@ -130,10 +130,10 @@
               "examples": "Switching video editors from Wi-Fi to Ethernet cuts transfer times.",
               "examTip": "Link a metric to the connection: Ethernet low latency; Wi-Fi varies; Bluetooth low bandwidth.",
               "keyFacts": [
-                "Wired has lower latency",
-                "Wired is more reliable: no interference",
-                "Wi-Fi bandwidth is shared between users",
-                "Jitter on Wi-Fi hurts calls"
+                "Wired has lower latency, because there is no radio signal to process or retransmit",
+                "Wired is more reliable because there is no interference, so connections don't drop",
+                "Wi-Fi bandwidth is shared between users, so each person gets less speed as more people connect",
+                "Jitter on Wi-Fi hurts calls, because uneven delay makes voices break up"
               ]
             }
           ]
@@ -155,10 +155,10 @@
               "examples": "An office where each PC and printer connects to one switch.",
               "examTip": "One cable fails → one device down. Central switch fails → everything down.",
               "keyFacts": [
-                "Most common topology",
-                "Easy to add devices and find faults",
-                "Switch is a single point of failure",
-                "More cable than bus"
+                "Most common topology, because it is reliable and easy to manage",
+                "Easy to add devices and find faults, because each device has its own cable to the switch",
+                "The switch is a single point of failure: if it fails, every device loses the network",
+                "Uses more cable than bus, so it costs more to install"
               ]
             },
             {
@@ -168,10 +168,10 @@
               "examples": "Old token ring networks.",
               "examTip": "One break can stop the whole ring. Largely obsolete.",
               "keyFacts": [
-                "Each device links to two neighbours",
-                "Token passing prevents collisions",
-                "Adding devices disrupts the ring",
-                "A dual ring adds backup"
+                "Each device links to two neighbours, so data passes through every device on the way round",
+                "Token passing prevents collisions, because only the device holding the token can send",
+                "Adding devices disrupts the ring, because the loop must be broken to connect them",
+                "A dual ring adds backup, so data can go the other way if one cable breaks"
               ]
             },
             {
@@ -181,10 +181,10 @@
               "examples": "Early coaxial Ethernet networks.",
               "examTip": "Cheap, but a cable break takes down the whole network.",
               "keyFacts": [
-                "Cheap: minimal cabling",
-                "Only one device can transmit at a time",
-                "Slows down as devices are added",
-                "Needs terminators at each end"
+                "Cheap because it needs minimal cabling, so it suits small, temporary networks",
+                "Only one device can transmit at a time, otherwise signals collide on the shared cable",
+                "Slows down as devices are added, because more devices compete for the same cable",
+                "Needs terminators at each end, so signals don't bounce back and corrupt data"
               ],
               "comparisonTable": {
                 "title": "Network Topologies Compared",
@@ -215,9 +215,9 @@
               "examples": "A phone linked to earbuds and a smartwatch.",
               "examTip": "The smallest network: just your own devices.",
               "keyFacts": [
-                "Range about 10 m",
-                "Mainly Bluetooth or USB",
-                "No infrastructure needed"
+                "Range about 10 m, so it only links devices one person carries or uses nearby",
+                "Mainly Bluetooth or USB, connecting things like phones, earbuds and smartwatches",
+                "No infrastructure needed, so there are no switches or routers to buy"
               ]
             },
             {
@@ -227,10 +227,10 @@
               "examples": "A school network; an office network.",
               "examTip": "One site, owned hardware, fast.",
               "keyFacts": [
-                "Organisation owns switches, cables and access points",
-                "Fast (about 1 Gbps wired), low latency",
-                "Wired and/or wireless",
-                "Connects to the internet through a router"
+                "The organisation owns the switches, cables and access points, so it controls security and set-up",
+                "Fast (about 1 Gbps wired) with low latency, so files and apps on the network open quickly",
+                "Wired and/or wireless, so it can mix fixed desktops with mobile devices",
+                "Connects to the internet through a router, which links the private LAN to the outside world"
               ]
             },
             {
@@ -240,10 +240,10 @@
               "examples": "A bank linking all its branches; the internet.",
               "examTip": "Unlike a LAN, the organisation does not own the infrastructure.",
               "keyFacts": [
-                "Covers cities, countries or continents",
-                "Uses leased lines from telecoms providers",
-                "Slower and higher latency than a LAN",
-                "Ongoing rental costs"
+                "Covers cities, countries or continents, so an organisation's sites can share systems and data",
+                "Uses leased lines from telecoms providers, because organisations can't lay cables that far themselves",
+                "Slower and higher latency than a LAN, because data travels long distances through many devices",
+                "Ongoing rental costs, because the lines are leased, not owned"
               ]
             },
             {
@@ -253,10 +253,10 @@
               "examples": "Remote staff on the intranet; linking offices without leased lines.",
               "examTip": "Not a physical network: it runs over the internet, so it is cheaper than a leased WAN.",
               "keyFacts": [
-                "Data inside the tunnel is encrypted",
-                "Users must authenticate",
-                "Cheaper than leased WAN lines",
-                "Encryption adds some delay"
+                "Data inside the tunnel is encrypted, so it can't be read if intercepted on the internet",
+                "Users must authenticate, so only authorised people can reach the private network",
+                "Cheaper than leased WAN lines, because it uses the ordinary internet connection",
+                "Encryption adds some delay, because every packet must be encrypted and decrypted"
               ],
               "comparisonTable": {
                 "title": "Network Types Compared: PAN vs LAN vs WAN vs VPN",
@@ -284,10 +284,10 @@
               "definition": "What users need: mobility, the applications they run, and how many connect at once.",
               "examTip": "The starting point for any network choice: what do users actually need to do?",
               "keyFacts": [
-                "More users need more bandwidth",
-                "Mobile users → wireless",
-                "Real-time apps need low latency",
-                "Remote access needs a VPN"
+                "More users need more bandwidth, otherwise everyone's connection slows down",
+                "Mobile users need wireless, so they can work from anywhere in the building",
+                "Real-time apps need low latency, so video calls and VoIP don't lag",
+                "Remote access needs a VPN, so staff outside the office connect securely"
               ]
             },
             {
@@ -296,10 +296,10 @@
               "definition": "Technical requirements the network must meet, e.g. speed, latency and uptime.",
               "examTip": "Turn user needs into numbers: bandwidth, latency, uptime.",
               "keyFacts": [
-                "Minimum bandwidth for all users",
-                "Low latency for real-time apps",
-                "Uptime targets, e.g. 99.99%",
-                "Room to grow in 3–5 years"
+                "Minimum bandwidth for all users, so the network stays usable at its busiest",
+                "Low latency for real-time apps, so calls and live systems respond without delay",
+                "Uptime targets (e.g. 99.99%), so critical services are almost never unavailable",
+                "Room to grow in 3–5 years, so the network doesn't need replacing as the organisation expands"
               ]
             },
             {
@@ -308,9 +308,9 @@
               "definition": "Whether every device and site that needs to connect can do so reliably.",
               "examTip": "Can everything that needs to connect, connect?",
               "keyFacts": [
-                "Must support PCs, phones, printers and IoT",
-                "Multiple sites need a WAN or VPN",
-                "4G/5G as backup if broadband fails"
+                "Must support PCs, phones, printers and IoT, so every device staff rely on can connect",
+                "Multiple sites need a WAN or VPN, so branches can share systems and data",
+                "4G/5G as backup if broadband fails, so the organisation can keep working during an outage"
               ]
             },
             {
@@ -319,10 +319,10 @@
               "definition": "The full cost of building and running a network: hardware, cabling, fees and support.",
               "examTip": "Split into one-off capital costs and ongoing running costs.",
               "keyFacts": [
-                "One-off: switches, routers, cabling",
-                "Ongoing: ISP fees, leased lines, support",
-                "VPN is cheaper than leased lines",
-                "Wireless saves cabling"
+                "One-off costs: switches, routers and cabling, paid up front when the network is built",
+                "Ongoing costs: ISP fees, leased lines and support, paid for as long as the network runs",
+                "VPN is cheaper than leased lines, because it uses the existing internet connection",
+                "Wireless saves cabling, so it is cheaper to install, especially in older buildings"
               ]
             },
             {
@@ -331,9 +331,9 @@
               "definition": "How well the network uses its bandwidth to avoid congestion and delays.",
               "examTip": "QoS prioritises important traffic such as calls.",
               "keyFacts": [
-                "QoS puts calls and video first",
-                "Segmenting the network reduces congestion",
-                "Monitoring finds bottlenecks"
+                "QoS puts calls and video first, so they stay smooth even when the network is busy",
+                "Segmenting the network reduces congestion, because traffic stays within its own section",
+                "Monitoring finds bottlenecks, so problems are fixed before users notice them"
               ]
             },
             {
@@ -342,9 +342,9 @@
               "definition": "Whether the network works with the hardware, software and protocols already in use.",
               "examTip": "An incompatible network is useless however fast it is.",
               "keyFacts": [
-                "Older systems may need old protocols",
-                "New switches must suit existing devices",
-                "Management tools must work on all systems"
+                "Older systems may need old protocols, so a new network must still support them or they stop working",
+                "New switches must suit existing devices, otherwise hardware already owned may need replacing",
+                "Management tools must work on all systems, so IT staff can monitor everything from one place"
               ]
             },
             {
@@ -353,10 +353,10 @@
               "definition": "Practicalities of rollout: how long it takes, how it is tested and how much disruption it causes.",
               "examTip": "Cover all three: timescales, testing and downtime.",
               "keyFacts": [
-                "Large installs take weeks or months",
-                "Test before switching over",
-                "Reduce downtime with out-of-hours or phased rollout",
-                "Have a fallback plan"
+                "Large installs take weeks or months, so they must be planned around the organisation's busy times",
+                "Test before switching over, so faults are found before staff depend on the new network",
+                "Reduce downtime with out-of-hours or phased rollout, so work carries on during the change",
+                "Have a fallback plan, so the old network can be restored if the new one fails"
               ]
             },
             {
@@ -365,9 +365,9 @@
               "definition": "How the network affects how much staff can get done.",
               "examTip": "Link slow networks to real costs: missed deadlines, complaints, lost revenue.",
               "keyFacts": [
-                "A fast, reliable network boosts output",
-                "Downtime wastes paid time",
-                "Remote work depends on VPN and internet quality"
+                "A fast, reliable network boosts output, because staff aren't waiting for files or systems",
+                "Downtime wastes paid time, because staff are paid but can't do their work",
+                "Remote work depends on VPN and internet quality, so a poor connection makes home workers less productive"
               ]
             },
             {
@@ -376,10 +376,10 @@
               "definition": "Protecting the network from unauthorised access, interception and attack.",
               "examTip": "Wireless is more vulnerable than wired. Key needs: WPA3, firewall, VPN.",
               "keyFacts": [
-                "Wi-Fi: WPA3 (WEP is obsolete)",
-                "Separate guest Wi-Fi from staff network",
-                "Firewall at the edge",
-                "VPN for remote access"
+                "Use WPA3 on Wi-Fi, because WEP is obsolete and easily cracked",
+                "Separate guest Wi-Fi from the staff network, so visitors can't reach internal systems",
+                "Firewall at the edge, so traffic from the internet is filtered before it reaches the network",
+                "VPN for remote access, so staff working away from the office connect securely"
               ]
             }
           ]
@@ -395,10 +395,10 @@
               "examples": "Upgrading a 100 Mbps switch to 1 Gbps; adding access points to ease Wi-Fi congestion.",
               "examTip": "Cover speed, latency, reliability and how the number of users affects them.",
               "keyFacts": [
-                "Faster switches increase throughput",
-                "Cable type: fibre > Cat6 > Cat5e",
-                "More users = less bandwidth each",
-                "Access point placement affects Wi-Fi coverage"
+                "Faster switches increase throughput, so more data moves across the network at once",
+                "Cable type matters: fibre > Cat6 > Cat5e, so better cable gives higher speeds over longer runs",
+                "More users means less bandwidth each, so a network that is fine for 10 may struggle with 100",
+                "Access point placement affects Wi-Fi coverage, so badly placed APs leave dead spots"
               ]
             }
           ]
@@ -420,9 +420,9 @@
               "examples": "Outlook sending with SMTP; a phone syncing with IMAP.",
               "examTip": "IMAP keeps mail on the server (syncs all devices); POP3 downloads it to one device.",
               "keyFacts": [
-                "SMTP: sends email",
-                "POP3: downloads to one device, usually deletes from server",
-                "IMAP: keeps mail on server, syncs everywhere"
+                "SMTP sends email from the sender's device to the mail server and on to the recipient's server",
+                "POP3 downloads to one device and usually deletes from the server, so mail isn't available elsewhere",
+                "IMAP keeps mail on the server and syncs it, so the same inbox shows on every device"
               ],
               "comparisonTable": {
                 "title": "Email Protocols Compared: SMTP vs POP3 vs IMAP",
@@ -446,10 +446,10 @@
               "examples": "Teams, Zoom and WhatsApp calls.",
               "examTip": "Needs enough bandwidth AND low latency, or calls lag and break up.",
               "keyFacts": [
-                "Much cheaper than phone calls, especially abroad",
-                "High latency causes delays in conversation",
-                "Packet loss causes dropouts",
-                "QoS prioritises voice traffic"
+                "Much cheaper than phone calls, especially abroad, because calls travel as ordinary internet data",
+                "High latency causes delays, so people talk over each other",
+                "Packet loss causes dropouts, so words or video frames go missing",
+                "QoS prioritises voice traffic, so calls stay clear even when the network is busy"
               ]
             },
             {
@@ -459,9 +459,9 @@
               "examples": "A news site over HTTP; online banking over HTTPS.",
               "examTip": "HTTPS adds encryption, integrity and authentication.",
               "keyFacts": [
-                "HTTP port 80; HTTPS port 443",
-                "HTTPS needs a digital certificate",
-                "Browsers mark HTTP sites \"Not Secure\""
+                "HTTP uses port 80 and HTTPS uses port 443, so firewalls can tell the two kinds of traffic apart",
+                "HTTPS needs a digital certificate, which proves the site is genuine and enables encryption",
+                "Browsers mark HTTP sites 'Not Secure', which warns users not to enter personal details"
               ],
               "comparisonTable": {
                 "title": "HTTP vs HTTPS",
@@ -486,10 +486,10 @@
               "examples": "Apple Pay tokens; 3D Secure codes at checkout.",
               "examTip": "Layers: HTTPS, tokenisation, extra authentication and PCI DSS rules.",
               "keyFacts": [
-                "HTTPS encrypts card details in transit",
-                "Tokenisation: merchant never sees the real card number",
-                "PCI DSS: rules for handling card data",
-                "3D Secure adds an extra check"
+                "HTTPS encrypts card details in transit, so they can't be read if intercepted",
+                "Tokenisation means the merchant never sees the real card number, so a breach can't leak it",
+                "PCI DSS sets rules for handling card data, so businesses that take cards must follow them",
+                "3D Secure adds an extra check (e.g. a code from the bank), so a stolen card number alone isn't enough"
               ]
             }
           ]
@@ -505,10 +505,10 @@
               "examples": "Sniffing logins on open public Wi-Fi.",
               "examTip": "The fix for most transmission risks is encryption: TLS, HTTPS or a VPN.",
               "keyFacts": [
-                "Packet sniffing reads unencrypted data",
-                "Man-in-the-middle intercepts and relays traffic",
-                "Evil twin: fake Wi-Fi hotspot",
-                "Fix: HTTPS and a VPN on public Wi-Fi"
+                "Packet sniffing reads unencrypted data, so passwords sent in plain text can be captured",
+                "Man-in-the-middle intercepts and relays traffic, so the attacker can read or change it unnoticed",
+                "Evil twin is a fake Wi-Fi hotspot, so users who connect send all their traffic through the attacker",
+                "Fix with HTTPS and a VPN on public Wi-Fi, so intercepted data is encrypted and useless"
               ]
             }
           ]
@@ -524,10 +524,10 @@
               "examples": "Fast broadband that still lags in games; school Wi-Fi slowing at lunch.",
               "examTip": "They are different. High bandwidth doesn't help if latency is high. Explain the effect on users.",
               "keyFacts": [
-                "Bandwidth is shared between users",
-                "Latency comes from distance, hops and congestion",
-                "Low latency matters for calls and gaming",
-                "Jitter = varying latency, bad for calls"
+                "Bandwidth is shared between users, so each person's speed drops as more people use the network",
+                "Latency comes from distance, hops and congestion, so far-away servers respond more slowly",
+                "Low latency matters for calls and gaming, because delay makes them hard to use",
+                "Jitter is varying latency, which makes calls choppy because packets arrive unevenly"
               ]
             }
           ]
@@ -543,10 +543,10 @@
               "examples": "JPEG photos; PNG logos; GIF animations.",
               "examTip": "Choose for the scenario: JPEG for photos, PNG for transparency, SVG for scalable logos.",
               "keyFacts": [
-                "JPEG: lossy, small, photos",
-                "PNG: lossless, transparency",
-                "GIF: 256 colours, simple animation",
-                "RAW: huge, maximum quality"
+                "JPEG is lossy and small, so it suits photos on websites where fast loading matters",
+                "PNG is lossless with transparency, so it suits logos and graphics that need sharp edges",
+                "GIF has only 256 colours but supports simple animation, so it suits small animated images",
+                "RAW is huge but keeps maximum quality, so photographers use it for editing"
               ]
             },
             {
@@ -556,10 +556,10 @@
               "examples": "MP3 streaming; WAV in a recording studio.",
               "examTip": "MP3 = small, for streaming. WAV/FLAC = full quality, for production.",
               "keyFacts": [
-                "MP3: lossy, small, widely supported",
-                "AAC: lossy, better than MP3",
-                "WAV: uncompressed, large",
-                "FLAC: lossless, smaller than WAV"
+                "MP3 is lossy, small and widely supported, so it plays on almost any device",
+                "AAC is lossy but sounds better than MP3 at the same size, so streaming services use it",
+                "WAV is uncompressed and large, so it suits editing where full quality is needed",
+                "FLAC is lossless but smaller than WAV, so it suits storing music at full quality"
               ]
             },
             {
@@ -569,10 +569,10 @@
               "examples": "MP4 on YouTube; MOV from an iPhone.",
               "examTip": "Container holds the streams; the codec compresses them.",
               "keyFacts": [
-                "MP4: most compatible",
-                "MKV: multiple audio/subtitle tracks",
-                "MOV: Apple, high quality",
-                "Higher bitrate = better quality, more bandwidth"
+                "MP4 is the most compatible, so it plays on almost every device and website",
+                "MKV holds multiple audio and subtitle tracks, so it suits films in several languages",
+                "MOV is Apple's high-quality format, so it suits editing on Apple devices",
+                "Higher bitrate gives better quality but needs more bandwidth and storage"
               ]
             },
             {
@@ -582,10 +582,10 @@
               "examples": ".exe on Windows; .apk on Android; .dmg on macOS.",
               "examTip": "Large downloads; malware is often disguised as software.",
               "keyFacts": [
-                "EXE/MSI: Windows",
-                "APK: Android",
-                "DMG: macOS",
-                "Check the source and digital signature before running"
+                "EXE/MSI are Windows installers, so they won't run on other operating systems",
+                "APK installs Android apps, usually from the Play Store",
+                "DMG is used for macOS apps, so Mac users can install software",
+                "Check the source and digital signature before running, because installers can contain malware"
               ],
               "comparisonTable": {
                 "title": "File Formats Summary by Media Type",
@@ -611,10 +611,10 @@
               "examples": "JPEG photos; MP3 music; streamed video.",
               "examTip": "Smaller but lower quality, and irreversible. Never for text, code or medical images.",
               "keyFacts": [
-                "Original cannot be rebuilt",
-                "Much smaller files than lossless",
-                "Quality drops each re-save",
-                "Uses: web images, streaming"
+                "The original cannot be rebuilt, because the removed data is gone for good",
+                "Much smaller files than lossless, so they download and stream quickly",
+                "Quality drops each re-save, because more data is removed every time",
+                "Used for web images and streaming, where small size matters more than perfect quality"
               ]
             },
             {
@@ -624,9 +624,9 @@
               "examples": "ZIP archives; PNG images; FLAC audio.",
               "examTip": "Needed wherever accuracy matters: text, code, spreadsheets, medical images.",
               "keyFacts": [
-                "Original restored perfectly",
-                "Less compression than lossy",
-                "Works on any file type"
+                "Original restored perfectly, so it suits text, code and data where every bit matters",
+                "Less compression than lossy, so files stay larger",
+                "Works on any file type, e.g. ZIP files, because nothing is thrown away"
               ],
               "comparisonTable": {
                 "title": "Lossy vs Lossless Compression",
@@ -657,10 +657,10 @@
               "examples": "H.264 for video; MP3 and AAC for audio.",
               "examTip": "Codec = coder + decoder. Without the right codec, a file won't play.",
               "keyFacts": [
-                "Encoder compresses, decoder decompresses",
-                "Sender and receiver need the same codec",
-                "More compression needs more processing",
-                "H.265 is half the size of H.264"
+                "The encoder compresses and the decoder decompresses, so video can be sent and then played back",
+                "Sender and receiver need the same codec, otherwise the file won't play",
+                "More compression needs more processing, so older devices may struggle to play newer codecs",
+                "H.265 files are about half the size of H.264 at the same quality, so they save bandwidth and storage"
               ]
             }
           ]

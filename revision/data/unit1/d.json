@@ -19,11 +19,11 @@
               "examples": "Ransomware locking hospital records; spyware logging banking passwords.",
               "examTip": "Describe how the specific type works, not just \"malware\".",
               "keyFacts": [
-                "Virus: attaches to files, spreads when they are run",
-                "Worm: spreads across networks by itself",
-                "Ransomware: encrypts files, demands payment",
-                "Spyware: secretly records activity, e.g. keystrokes",
-                "Trojan: disguised as legitimate software"
+                "Virus: attaches to files and spreads when they are run, so sharing one infected file can infect many PCs",
+                "Worm: spreads across networks by itself, so it can infect a whole organisation without anyone opening a file",
+                "Ransomware: encrypts files and demands payment, so the organisation cannot work until files are restored",
+                "Spyware: secretly records activity such as keystrokes, so passwords and bank details can be stolen",
+                "Trojan: disguised as legitimate software, so users install it themselves and let the attacker in"
               ],
               "comparisonTable": {
                 "title": "Types of Malware Compared",
@@ -45,10 +45,10 @@
               "examples": "Exploiting an unpatched web server to steal customer data.",
               "examTip": "Use the term \"unauthorised access\". Black-hat = malicious, white-hat = authorised testing.",
               "keyFacts": [
-                "Unpatched software is a key target",
-                "Brute force: tries every password combination",
-                "Credential stuffing: reuses leaked passwords",
-                "Motives: money, data theft, disruption"
+                "Unpatched software is a key target, because attackers use known flaws that updates would have fixed",
+                "Brute force tries every password combination, so short, simple passwords are cracked quickly",
+                "Credential stuffing reuses leaked passwords, so one breach can unlock a person's other accounts",
+                "Motives include money, data theft and disruption, which is why valuable or high-profile targets are hit most"
               ]
             },
             {
@@ -58,9 +58,9 @@
               "examples": "Deleting a database by mistake; spilling a drink on a server.",
               "examTip": "Separate accidental threats from deliberate ones when asked.",
               "keyFacts": [
-                "Human error is a top cause of data loss",
-                "Protect with backups and file permissions",
-                "Training reduces mistakes"
+                "Human error is a top cause of data loss, e.g. deleting or overwriting files, or spilling drinks on kit",
+                "Protect with backups and file permissions, so mistakes can be undone and staff can't delete what they shouldn't",
+                "Training reduces mistakes, because staff learn safe ways to handle files and equipment"
               ]
             },
             {
@@ -70,11 +70,11 @@
               "examples": "A fake bank email asking you to \"verify\" your login.",
               "examTip": "It attacks the human. Phishing scenarios are common in exams.",
               "keyFacts": [
-                "Phishing: fake emails",
-                "Vishing: phone calls; smishing: texts",
-                "Pretexting: a made-up story to get information",
-                "Baiting: infected USB sticks left lying around",
-                "Defend with training, email filtering and MFA"
+                "Phishing: fake emails that look genuine, so users click links or enter passwords on fake sites",
+                "Vishing uses phone calls and smishing uses texts, so attackers reach people away from email filters",
+                "Pretexting: a made-up story to get information, e.g. posing as IT support to get a password",
+                "Baiting: infected USB sticks left lying around, so a curious finder plugs one in and installs malware",
+                "Defend with training, email filtering and MFA, so fewer attacks arrive and stolen passwords are useless alone"
               ],
               "comparisonTable": {
                 "title": "Social Engineering Techniques Compared",
@@ -96,9 +96,9 @@
               "examples": "A flooded server room wiping out all on-site storage.",
               "examTip": "Link to off-site backups and disaster recovery plans.",
               "keyFacts": [
-                "Cannot be prevented, only prepared for",
-                "Off-site or cloud backups protect data",
-                "A disaster recovery plan sets out how to restore systems"
+                "Cannot be prevented, only prepared for, so organisations plan how to keep working after one",
+                "Off-site or cloud backups protect data, because a fire or flood at one site cannot destroy every copy",
+                "A disaster recovery plan sets out how to restore systems, so recovery is quick and downtime is short"
               ]
             }
           ]
@@ -114,9 +114,9 @@
               "examples": "A piracy site that silently installs malware.",
               "examTip": "Internal because it comes from an authorised user. Link to AUPs and web filtering.",
               "keyFacts": [
-                "Can bring in malware",
-                "Legal liability for illegal content",
-                "Controlled by web filtering and AUPs"
+                "Can bring in malware, because malicious sites may download harmful software onto work PCs",
+                "Legal liability for illegal content, because the organisation may be responsible for what is accessed on its systems",
+                "Controlled by web filtering and AUPs, so harmful sites are blocked and staff know the rules"
               ]
             },
             {
@@ -126,9 +126,9 @@
               "examples": "Emailing customer data to the wrong person.",
               "examTip": "Still a GDPR breach even though it was accidental.",
               "keyFacts": [
-                "Serious breaches must be reported to the ICO within 72 hours",
-                "Causes: wrong recipient, unencrypted files, lost devices",
-                "Reduce with training and encryption"
+                "Serious breaches must be reported to the ICO within 72 hours, or the organisation can be fined",
+                "Causes include the wrong recipient, unencrypted files and lost devices, which are everyday slip-ups",
+                "Reduce with training and encryption, so mistakes are rarer and leaked files can't be read"
               ]
             },
             {
@@ -138,10 +138,10 @@
               "examples": "A leaving employee copying the customer database to a USB stick.",
               "examTip": "The difference from accidental disclosure is intent.",
               "keyFacts": [
-                "Dangerous because they already have access",
-                "Motives: money, grudges",
-                "Hard to spot among normal work",
-                "Reduce with least privilege and removing access promptly"
+                "Dangerous because insiders already have access, so they get past firewalls and passwords without hacking",
+                "Motives include money and grudges, e.g. selling customer data or getting revenge after being disciplined",
+                "Hard to spot among normal work, because copying files looks like the person doing their job",
+                "Reduce with least privilege and removing access promptly, so leavers and staff can't reach data they don't need"
               ]
             },
             {
@@ -151,10 +151,10 @@
               "examples": "An unencrypted USB of patient records left on a train.",
               "examTip": "Two risks: malware coming in, and data lost if the device goes missing.",
               "keyFacts": [
-                "A lost unencrypted device is a GDPR breach",
-                "Encrypt portable devices",
-                "Many organisations block USB ports",
-                "BYOD policies control personal devices"
+                "A lost unencrypted device is a GDPR breach, because anyone who finds it can read the personal data",
+                "Encrypt portable devices, so a lost or stolen laptop or USB stick is unreadable",
+                "Many organisations block USB ports, so malware can't come in and data can't be copied out",
+                "BYOD policies control personal devices, setting rules such as passcodes and remote wipe for work data"
               ],
               "comparisonTable": {
                 "title": "Internal Threats Compared",
@@ -180,9 +180,9 @@
               "examples": "Ransomware with no backup; a flood destroying the only copy.",
               "examTip": "Link it to what follows: disruption, customers not served, lost revenue.",
               "keyFacts": [
-                "Without backups the loss may be permanent",
-                "Organisation cannot operate normally",
-                "Prevent with off-site backups"
+                "Without backups the loss may be permanent, so customer records or work may never be recovered",
+                "Organisation cannot operate normally, because orders, accounts and records may be missing",
+                "Prevent with off-site backups, so data can be restored even if the main site is destroyed"
               ]
             },
             {
@@ -192,9 +192,9 @@
               "examples": "An ICO fine for failing to secure customer data.",
               "examTip": "Quote it: up to £17.5 million or 4% of global turnover, whichever is higher.",
               "keyFacts": [
-                "The ICO enforces UK data protection law",
-                "Report breaches within 72 hours",
-                "Extra costs: investigation, recovery, compensation"
+                "The ICO enforces UK data protection law, so it can investigate breaches and issue large fines",
+                "Breaches must be reported within 72 hours, and reporting late can increase the penalty",
+                "Extra costs (investigation, recovery, compensation) add to the fine and can cost more than it"
               ]
             },
             {
@@ -204,9 +204,9 @@
               "examples": "A retailer losing customers to rivals after a card data breach.",
               "examTip": "Explain the chain: breach → bad publicity → lost trust → fewer customers → less revenue.",
               "keyFacts": [
-                "Trust is slow to rebuild",
-                "Social media spreads bad news fast",
-                "Long-term losses can exceed the breach's direct cost"
+                "Trust is slow to rebuild, so customers may stay away long after the breach is fixed",
+                "Social media spreads bad news fast, so a breach becomes widely known within hours",
+                "Long-term losses can exceed the breach's direct cost, because lost customers mean lost future sales"
               ]
             }
           ]
@@ -228,10 +228,10 @@
               "examples": "Only HR can open the payroll file; everyone else is read-only.",
               "examTip": "WHO can do WHAT with which files. Link to least privilege.",
               "keyFacts": [
-                "Read: view only",
-                "Write: change or create",
-                "Execute: run programs",
-                "Set for individuals or groups"
+                "Read: view only, so staff can see information without being able to change it",
+                "Write: change or create, given only to people who need to update the files",
+                "Execute: run programs, so users can't run unknown software that could be malware",
+                "Set for individuals or groups, so a whole department can be given the right access in one step"
               ]
             },
             {
@@ -241,10 +241,10 @@
               "examples": "Staff see their department's files; admins see everything.",
               "examTip": "Least privilege: each user gets only the access their job needs.",
               "keyFacts": [
-                "Guest → user → manager → administrator",
-                "Based on job role",
-                "Limits damage if an account is hacked",
-                "Review when staff change roles or leave"
+                "Guest → user → manager → administrator, with each level able to reach more systems and data",
+                "Based on job role, so staff only reach the data they need to do their work (least privilege)",
+                "Limits damage if an account is hacked, because the attacker only gets that user's level of access",
+                "Review when staff change roles or leave, so old access is removed before it can be misused"
               ],
               "comparisonTable": {
                 "title": "File Permissions vs Access Levels",
@@ -266,11 +266,11 @@
               "examples": "Nightly incremental backups plus a weekly full backup off-site.",
               "examTip": "Know full, incremental and differential, and why backups go off-site (fire, flood).",
               "keyFacts": [
-                "Full: everything; slowest, quickest to restore",
-                "Incremental: changes since the last backup",
-                "Differential: changes since the last full backup",
-                "3-2-1: 3 copies, 2 media, 1 off-site",
-                "Test backups, or they may not restore"
+                "Full backup copies everything: slowest to make, but quickest to restore because only one set is needed",
+                "Incremental copies changes since the last backup: fast to make, but restoring needs every increment",
+                "Differential copies changes since the last full backup: restore needs only the full plus the latest differential",
+                "3-2-1 rule: 3 copies, 2 media, 1 off-site, so one fire, flood or failure can't destroy every copy",
+                "Test backups, because a backup that has never been restored may turn out to be corrupt or incomplete"
               ],
               "comparisonTable": {
                 "title": "Backup Types Compared",
@@ -289,10 +289,10 @@
               "examples": "A password plus a code from an authenticator app.",
               "examTip": "Name the factors: something you know, have and are.",
               "keyFacts": [
-                "Strong: 12+ characters, mixed types, not a word",
-                "A stolen password alone is not enough with MFA",
-                "Methods: SMS code, app, hardware token, biometric",
-                "Password managers stop reuse"
+                "Strong: 12+ characters, mixed types, not a word, so it takes far longer to guess or brute force",
+                "A stolen password alone is not enough with MFA, because the attacker also needs the second factor",
+                "Methods include an SMS code, app, hardware token or biometric, each something only the user has or is",
+                "Password managers stop reuse, so one leaked password doesn't unlock the user's other accounts"
               ]
             },
             {
@@ -302,10 +302,10 @@
               "examples": "Face unlock on a phone; fingerprint entry to an office.",
               "examTip": "\"Something you are\": cannot be forgotten, but cannot be changed if stolen.",
               "keyFacts": [
-                "Unique and cannot be shared",
-                "Faster than typing a password",
-                "Cannot be reset if the data is stolen",
-                "Privacy concerns under GDPR"
+                "Unique and cannot be shared, so access can't be passed on like a password or swipe card",
+                "Faster than typing a password, so staff log in quickly without writing passwords down",
+                "Cannot be reset if the data is stolen, because you can't change your fingerprint like a password",
+                "Privacy concerns under GDPR, because biometric data is sensitive and must be stored securely"
               ]
             },
             {
@@ -315,10 +315,10 @@
               "examples": "Swipe cards for the server room; CCTV at entrances.",
               "examTip": "Physical security matters as much as cyber security.",
               "keyFacts": [
-                "Swipe cards and key fobs log who enters",
-                "Biometric locks on secure rooms",
-                "CCTV and guards deter intruders",
-                "Clear desk policy"
+                "Swipe cards and key fobs log who enters, so access is limited and there is a record if something goes wrong",
+                "Biometric locks on secure rooms, so only authorised people can reach servers or sensitive data",
+                "CCTV and guards deter intruders, and footage gives evidence if equipment is stolen",
+                "Clear desk policy, so papers and unlocked screens can't be read or photographed by visitors"
               ]
             },
             {
@@ -328,9 +328,9 @@
               "examples": "The padlock icon in a browser.",
               "examTip": "Certificate = proof of identity + enables encryption. Expired ones trigger warnings.",
               "keyFacts": [
-                "Issued by a trusted Certificate Authority",
-                "Contains the owner's public key and an expiry date",
-                "Stops attackers impersonating a site"
+                "Issued by a trusted Certificate Authority, which checks the owner's identity first",
+                "Contains the owner's public key and an expiry date, so browsers can encrypt traffic and reject old certificates",
+                "Stops attackers impersonating a site, because a fake site cannot show a valid certificate for that domain"
               ]
             }
           ]
@@ -346,11 +346,11 @@
               "examples": "Windows Defender blocking a downloaded trojan.",
               "examTip": "Must be updated. Heuristics catch new, unknown threats.",
               "keyFacts": [
-                "Signatures: matches known malware",
-                "Heuristics: spots suspicious behaviour",
-                "Real-time scanning",
-                "Quarantine isolates infected files",
-                "Useless against new threats without updates"
+                "Signatures match known malware, so recognised threats are detected reliably",
+                "Heuristics spot suspicious behaviour, so new malware with no signature yet can still be caught",
+                "Real-time scanning checks files as they open or download, so threats are stopped before they run",
+                "Quarantine isolates infected files, so they can't spread while the user decides what to do",
+                "Useless against new threats without updates, because its signature list goes out of date"
               ]
             }
           ]
@@ -366,11 +366,11 @@
               "examples": "Blocking incoming traffic on ports the business doesn't use.",
               "examTip": "Describe it: monitors traffic, applies rules, forms a barrier between networks.",
               "keyFacts": [
-                "Checks addresses and ports against rules",
-                "Can block sites, apps and IP ranges",
-                "Hardware: protects the whole network",
-                "Software: protects one device",
-                "Cannot stop insider threats"
+                "Checks addresses and ports against rules, so only permitted traffic gets in or out",
+                "Can block sites, apps and IP ranges, so known malicious sources can't reach the network",
+                "Hardware firewall protects the whole network, guarding every device behind it at once",
+                "Software firewall protects one device, so a laptop stays protected on other networks too",
+                "Cannot stop insider threats, because staff are already inside the network the firewall guards"
               ],
               "comparisonTable": {
                 "title": "Hardware Firewall vs Software Firewall",
@@ -399,9 +399,9 @@
               "examples": "BitLocker on a laptop; an encrypted customer database.",
               "examTip": "If the key is lost, the data is lost too.",
               "keyFacts": [
-                "Full disk encryption, e.g. BitLocker",
-                "Protects stolen laptops, USBs and backups",
-                "Keep the key separate and secure"
+                "Full disk encryption (e.g. BitLocker) encrypts the whole drive, so nothing on it is readable without the key",
+                "Protects stolen laptops, USBs and backups, so a theft does not become a data breach",
+                "Keep the key separate and secure, because anyone with the key can decrypt the data"
               ]
             },
             {
@@ -411,10 +411,10 @@
               "examples": "VPN traffic; end-to-end encrypted WhatsApp messages.",
               "examTip": "Key methods: TLS (HTTPS, email) and VPNs.",
               "keyFacts": [
-                "End-to-end: only sender and recipient can read it",
-                "Symmetric: one shared key, fast",
-                "Asymmetric: public key encrypts, private key decrypts",
-                "Public Wi-Fi is risky without it"
+                "End-to-end: only sender and recipient can read it, so not even the service provider can see messages",
+                "Symmetric uses one shared key, so it is fast, but the key must be shared safely first",
+                "Asymmetric: the public key encrypts and the private key decrypts, so no secret key needs sharing",
+                "Public Wi-Fi is risky without it, because others on the network can intercept unencrypted traffic"
               ]
             },
             {
@@ -424,9 +424,9 @@
               "examples": "Online banking and checkout pages.",
               "examTip": "HTTPS gives encryption, integrity and authentication.",
               "keyFacts": [
-                "Padlock = valid certificate",
-                "Certificate proves the server's identity",
-                "Over plain HTTP, logins can be sniffed"
+                "Padlock means a valid certificate, so users can check the connection is encrypted before entering details",
+                "Certificate proves the server's identity, so users know they're on the genuine site, not a fake",
+                "Over plain HTTP, logins can be sniffed, because usernames and passwords travel as readable text"
               ],
               "comparisonTable": {
                 "title": "Encryption Contexts Compared",

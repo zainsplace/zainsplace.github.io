@@ -19,10 +19,10 @@
               "examples": "Photograph the screen, put the phone in a Faraday bag, record the chain of custody.",
               "examTip": "A Faraday bag blocks all signals, so the device can't be remotely wiped.",
               "keyFacts": [
-                "Collect passwords, chargers and cables",
-                "Keep its power state if possible",
-                "Isolate: airplane mode or Faraday bag",
-                "Package it and record chain of custody"
+                "Collect passwords, chargers and cables, so the device can be accessed and kept powered",
+                "Keep its power state if possible, because turning it off loses data held in RAM",
+                "Isolate it with airplane mode or a Faraday bag, so it can't be remotely wiped or altered",
+                "Package it and record chain of custody, so the evidence is admissible in court"
               ]
             },
             {
@@ -32,10 +32,10 @@
               "examples": "Imaging a drive, then reviewing logs and user activity.",
               "examTip": "Always analyse the COPY, never the original.",
               "keyFacts": [
-                "Take an exact image",
-                "Use forensic tools",
-                "Review files, logs and user activity",
-                "Look for malware activity"
+                "Take an exact (bit-for-bit) image, so analysis never touches the original evidence",
+                "Use forensic tools, which are tested and accepted in court",
+                "Review files, logs and user activity to build a timeline of what happened",
+                "Look for malware activity, to find out how the attacker got in and what they did"
               ]
             },
             {
@@ -45,9 +45,9 @@
               "examples": "Capturing RAM before it is lost at power-off.",
               "examTip": "RAM and temporary files are lost when the device is switched off.",
               "keyFacts": [
-                "Data keeps changing while it runs",
-                "Risk of corrupting data",
-                "RAM and remote data are hard to capture"
+                "Data keeps changing while the system runs, so evidence can be overwritten as you collect it",
+                "Risk of corrupting data, because the investigator's actions alter the live system",
+                "RAM and remote data are hard to capture, but may hold vital evidence such as encryption keys"
               ]
             },
             {
@@ -57,10 +57,10 @@
               "examples": "Reviewing firewall and router logs to trace an attacker.",
               "examTip": "Agree a method, get permission, and don't disrupt the live system.",
               "keyFacts": [
-                "Agree methodology with authorities",
-                "Get permission first",
-                "Passive and active tools",
-                "Check firewall, switch, router and server logs"
+                "Agree the methodology with the authorities, so the evidence is collected in an accepted way",
+                "Get permission first, because monitoring a network without authority can itself be illegal",
+                "Use passive and active tools: passive only watches traffic, active probes devices",
+                "Check firewall, switch, router and server logs, which record who connected and when"
               ]
             },
             {
@@ -70,10 +70,10 @@
               "examples": "Photos, diagrams, notes made on the spot, witness statements.",
               "examTip": "Contemporaneous notes = made at the time. They make evidence more reliable.",
               "keyFacts": [
-                "Secure the scene",
-                "Photos and diagrams",
-                "Contemporaneous notes",
-                "Witness statements"
+                "Secure the scene, so nobody can tamper with the evidence",
+                "Photos and diagrams record exactly how devices and cables were set up",
+                "Contemporaneous notes are written at the time, so they are accurate and trusted in court",
+                "Witness statements capture what people saw before memories fade"
               ]
             }
           ]
@@ -95,10 +95,10 @@
               "examples": "Imaging a whole drive and hashing it to prove it hasn't changed.",
               "examTip": "Physical image = the whole drive, including deleted files. Targeted image = selected files only.",
               "keyFacts": [
-                "Keep a clean original for comparison",
-                "Hash copies to prove they're unchanged",
-                "Capture disk, files and memory",
-                "Include deleted and temporary files"
+                "Keep a clean original for comparison, so changes made by an attacker can be spotted",
+                "Hash copies to prove they're unchanged, because matching hashes show nothing was altered",
+                "Capture disk, files and memory, so no evidence is missed",
+                "Include deleted and temporary files, which often hold evidence the attacker tried to hide"
               ]
             },
             {
@@ -108,10 +108,10 @@
               "examples": "Logging every action, by whom, with timestamps.",
               "examTip": "Nothing should change the data; a competent person collects it; keep a chain of custody.",
               "keyFacts": [
-                "No action should change the data",
-                "Collected by a competent person",
-                "Chain of custody for every action",
-                "Record who made each decision"
+                "No action should change the data, so the evidence stays reliable",
+                "Collected by a competent person, so the methods can stand up in court",
+                "Chain of custody for every action, showing who had the evidence at all times",
+                "Record who made each decision, so every step can be explained later"
               ]
             },
             {
@@ -121,9 +121,9 @@
               "examples": "Working only from a copy so the original is untouched.",
               "examTip": "Altered originals can be thrown out of court, so investigators use copies.",
               "keyFacts": [
-                "Record every action from seizure",
-                "Altered data may be inadmissible",
-                "Work from copies, not the original"
+                "Record every action from seizure, so any change can be explained",
+                "Altered data may be inadmissible, because the court can't trust it",
+                "Work from copies, not the original, so the original evidence stays untouched"
               ]
             },
             {
@@ -133,9 +133,9 @@
               "examples": "Time-stamped screenshots; manually checking alerts.",
               "examTip": "Too many false positives cause alert fatigue.",
               "keyFacts": [
-                "Photos, video and time-stamped screenshots",
-                "Know your tools' error rates",
-                "Manually review positives"
+                "Photos, video and time-stamped screenshots show exactly what was found and when",
+                "Know your tools' error rates, so you can judge how far to trust their results",
+                "Manually review positives, so innocent files aren't wrongly flagged as evidence"
               ]
             }
           ]
@@ -151,10 +151,10 @@
               "examples": "Findings showing a hack, a GDPR breach or staff negligence.",
               "examTip": "Could be crime, a regulatory or contract breach, a policy breach, an attack or negligence.",
               "keyFacts": [
-                "Crime or regulatory breach",
-                "Contract breach",
-                "Internal policy breach",
-                "Attack, negligence or mismanagement"
+                "Crime or regulatory breach, e.g. hacking under the Computer Misuse Act or a GDPR breach",
+                "Contract breach, e.g. a supplier failing to protect data as agreed",
+                "Internal policy breach, e.g. staff breaking the AUP, dealt with by disciplinary action",
+                "Attack, negligence or mismanagement, which decides who is responsible and what happens next"
               ]
             },
             {
@@ -164,10 +164,10 @@
               "examples": "Unusual traffic abroad; spikes in failed logins; odd DNS requests.",
               "examTip": "Indicators: unusual traffic, logins, DNS or port use, suspicious file changes.",
               "keyFacts": [
-                "Unusual traffic or destinations",
-                "Unusual logins and DNS requests",
-                "Spikes in file reads; odd ports",
-                "Suspicious file changes"
+                "Unusual traffic or destinations can mean data is being sent to an attacker",
+                "Unusual logins and DNS requests suggest stolen accounts or malware contacting its controller",
+                "Spikes in file reads and odd ports can mean data is being copied out",
+                "Suspicious file changes can mean malware has altered system files"
               ]
             },
             {
@@ -177,10 +177,10 @@
               "examples": "A report analysing what went wrong and recommending policy and training changes.",
               "examTip": "Structure: title, contents, intro, headings, conclusions, citations.",
               "keyFacts": [
-                "Clear structure",
-                "What went wrong and why detection was slow",
-                "Improve policies",
-                "Improve physical, software, hardware and training measures"
+                "Clear structure, so managers can quickly find what happened and what to do",
+                "Explain what went wrong and why detection was slow, so the same gaps aren't left open",
+                "Recommend improved policies, so procedures stop it happening again",
+                "Improve physical, software, hardware and training measures, so every weak area is addressed"
               ]
             }
           ]

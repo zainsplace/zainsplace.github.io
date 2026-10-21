@@ -19,10 +19,10 @@
               "examples": "Amazon; ASOS; Tesco online groceries.",
               "examTip": "Cover both sides: convenience for customers AND the decline of the high street.",
               "keyFacts": [
-                "Customers: 24/7, more choice, easy price comparison",
-                "Retailers: lower costs, global reach",
-                "Risks: fraud, data breaches, can't inspect items",
-                "Society: high-street closures, more warehouse jobs"
+                "Customers get 24/7 shopping, more choice and easy price comparison, so they can find the best deal",
+                "Retailers get lower costs and global reach, because they need fewer shops and can sell anywhere",
+                "Risks include fraud, data breaches and not being able to inspect items before buying",
+                "Society sees high-street closures but more warehouse and delivery jobs"
               ]
             },
             {
@@ -32,10 +32,10 @@
               "examples": "Banking apps; PayPal; Monzo.",
               "examTip": "Benefits: 24/7, instant transfers. Risks: fraud, phishing, excluding less digital customers.",
               "keyFacts": [
-                "Check balances, pay and transfer any time",
-                "Near-instant payments",
-                "App-only banks have lower costs",
-                "Elderly or offline customers can be excluded"
+                "Check balances, pay and transfer any time, so customers don't need to visit a branch",
+                "Near-instant payments, so money reaches people and businesses straight away",
+                "App-only banks have lower costs, because they don't run branches, so they can offer better rates",
+                "Elderly or offline customers can be excluded as branches close"
               ]
             },
             {
@@ -45,10 +45,10 @@
               "examples": "Google Classroom; BBC Bitesize; Coursera.",
               "examTip": "Benefits: anywhere, self-paced, cheaper. Drawbacks: needs internet, less contact, self-discipline.",
               "keyFacts": [
-                "VLEs hold resources, homework and feedback",
-                "Reaches rural and remote learners",
-                "Learners without devices are disadvantaged",
-                "Less face-to-face interaction"
+                "VLEs hold resources, homework and feedback, so learners can study and catch up anywhere",
+                "Reaches rural and remote learners who can't easily travel to a college",
+                "Learners without devices are disadvantaged, widening the digital divide",
+                "Less face-to-face interaction, so some learners feel isolated or lose motivation"
               ]
             },
             {
@@ -58,10 +58,10 @@
               "examples": "BBC News online; Wikipedia; news on X.",
               "examTip": "Key issues: fake news, filter bubbles, speed vs accuracy.",
               "keyFacts": [
-                "Published within minutes",
-                "Anyone can publish, so misinformation spreads",
-                "Filter bubbles show only agreeable views",
-                "Paywalls replace print advertising"
+                "Published within minutes, so people hear about events as they happen",
+                "Anyone can publish, so misinformation spreads quickly",
+                "Filter bubbles show only agreeable views, because algorithms recommend what users already like",
+                "Paywalls replace print advertising, because newspapers need a new way to earn money"
               ]
             },
             {
@@ -71,10 +71,10 @@
               "examples": "Netflix; Spotify; Steam.",
               "examTip": "Streaming has disrupted DVDs, CDs and broadcast TV. Watch for piracy and age checks.",
               "keyFacts": [
-                "Streaming needs internet; downloads work offline",
-                "Subscriptions replaced buying",
-                "4K streaming needs about 25 Mbps",
-                "Piracy breaks copyright law"
+                "Streaming needs internet, but downloads work offline, e.g. for watching on a flight",
+                "Subscriptions replaced buying, so users get large libraries for a monthly fee but own nothing",
+                "4K streaming needs about 25 Mbps, so homes with slow broadband get lower quality",
+                "Piracy breaks copyright law and takes income away from creators"
               ]
             },
             {
@@ -84,10 +84,10 @@
               "examples": "Booking.com; Trainline; NHS GP appointments.",
               "examTip": "Benefits: 24/7, instant confirmation, less admin. Risks: double booking, downtime, data security.",
               "keyFacts": [
-                "Live availability and instant confirmation",
-                "Bookings outside opening hours",
-                "Must sync with internal systems or double-book",
-                "Collects personal and payment data (GDPR)"
+                "Live availability and instant confirmation, so customers know straight away that they're booked",
+                "Bookings outside opening hours, so the business takes bookings without staff on duty",
+                "Must sync with internal systems or it will double-book the same slot",
+                "Collects personal and payment data, so it must be kept secure under GDPR"
               ],
               "comparisonTable": {
                 "title": "Online Services: Benefits and Risks by Sector",
@@ -115,10 +115,10 @@
               "examples": "Supermarket till records; bank card transactions; order history.",
               "examTip": "Raw data becomes valuable once analysed. Link to targeted marketing and stock control.",
               "keyFacts": [
-                "Used for forecasting and restocking",
-                "Powers recommendations and targeted adverts",
-                "Loyalty cards link it to named people",
-                "Must be stored securely under GDPR"
+                "Used for forecasting and restocking, so shops hold the right stock at the right time",
+                "Powers recommendations and targeted adverts, which increase sales",
+                "Loyalty cards link it to named people, so the organisation learns each customer's habits",
+                "Must be stored securely under GDPR, because it is personal data"
               ]
             },
             {
@@ -128,10 +128,10 @@
               "examples": "Amazon recommendations; adverts that follow you across websites.",
               "examTip": "Businesses get more sales; users get relevant ads. But privacy and consent are concerns.",
               "keyFacts": [
-                "Uses cookies, purchase and browsing history",
-                "Cheaper and more effective than blanket adverts",
-                "Can feel intrusive",
-                "GDPR: cookie consent and opt-out required"
+                "Uses cookies, purchase and browsing history to work out what each person is interested in",
+                "Cheaper and more effective than blanket adverts, because adverts only reach likely buyers",
+                "Can feel intrusive, so some customers are put off when adverts seem to know too much",
+                "GDPR requires cookie consent and an opt-out, so users can refuse tracking"
               ]
             },
             {
@@ -141,10 +141,10 @@
               "examples": "Google Docs; Microsoft Teams; Trello.",
               "examTip": "Link to productivity, remote working and always-on work culture.",
               "keyFacts": [
-                "Several people edit at once",
-                "Version history tracks changes",
-                "Chat, video and files in one place",
-                "Needs internet; can blur work and home"
+                "Several people edit at once, so work is finished faster without emailing copies around",
+                "Version history tracks changes, so mistakes can be undone and everyone sees who changed what",
+                "Chat, video and files in one place, so teams don't switch between tools",
+                "Needs internet and can blur work and home, because staff can be reached at any time"
               ]
             },
             {
@@ -154,10 +154,10 @@
               "examples": "Staff working from home over a VPN.",
               "examTip": "Link the technology (VPN, cloud, collaboration tools) to impacts on the business and staff.",
               "keyFacts": [
-                "Organisation: less office space, wider talent pool",
-                "Staff: no commute, flexible hours",
-                "Risks: insecure home networks, harder to manage",
-                "Staff risks: isolation, blurred boundaries"
+                "Organisation needs less office space and can hire from a wider talent pool, not just locally",
+                "Staff save the commute and get flexible hours, which can improve work-life balance",
+                "Risks include insecure home networks, and teams are harder to manage when no one is in the office",
+                "Staff risk isolation and blurred boundaries, because home becomes the workplace"
               ],
               "comparisonTable": {
                 "title": "Transactional Data vs Targeted Marketing",
@@ -193,10 +193,10 @@
               "examples": "A customer satisfaction survey; running a focus group.",
               "examTip": "Collected by you, for your purpose, now. Relevant but slow and costly.",
               "keyFacts": [
-                "Exactly fits your needs",
-                "Up to date",
-                "Methods: surveys, interviews, focus groups, observation",
-                "Expensive and time-consuming"
+                "Exactly fits your needs, because you choose the questions and who to ask",
+                "Up to date, because it is collected now for this purpose",
+                "Methods include surveys, interviews, focus groups and observation, chosen to suit the question",
+                "Expensive and time-consuming, because the data has to be gathered from scratch"
               ]
             },
             {
@@ -206,10 +206,10 @@
               "examples": "Census data; published market research.",
               "examTip": "Collected by someone else, earlier. Cheap and quick, but may be out of date or not fit.",
               "keyFacts": [
-                "No collection needed",
-                "Cheaper and quicker",
-                "May be outdated or not fit your needs",
-                "Check how credible the source is"
+                "No collection needed, because the data already exists in reports, databases or websites",
+                "Cheaper and quicker than primary data, so it suits early research",
+                "May be outdated or not fit your needs, because it was collected for another purpose",
+                "Check how credible the source is, because you don't control how it was collected"
               ],
               "comparisonTable": {
                 "title": "Primary vs Secondary Data",
@@ -240,10 +240,10 @@
               "examples": "Checking a story against several reputable sources.",
               "examTip": "Say how an organisation checks information before using it to make decisions.",
               "keyFacts": [
-                "Cross-reference several independent sources",
-                "Check author, date and publisher",
-                "Prefer peer-reviewed or official sources",
-                "Compare with past data to spot anomalies"
+                "Cross-reference several independent sources, so one wrong source doesn't mislead you",
+                "Check the author, date and publisher, so you know the information is current and from an expert",
+                "Prefer peer-reviewed or official sources, because experts have checked them",
+                "Compare with past data to spot anomalies, so unusual figures are questioned before being used"
               ]
             }
           ]
@@ -259,10 +259,10 @@
               "examples": "An email survey after a purchase.",
               "examTip": "Best for large numbers and statistics. Watch for bias in who replies.",
               "keyFacts": [
-                "Online surveys are cheap and fast",
-                "Closed questions are easy to analyse",
-                "Response rates are often low",
-                "Leading questions skew results"
+                "Online surveys are cheap and fast, so they reach many people with little effort",
+                "Closed questions are easy to analyse, because answers can be counted and graphed",
+                "Response rates are often low, so results may not represent everyone",
+                "Leading questions skew results, because they push people towards a particular answer"
               ]
             },
             {
@@ -272,10 +272,10 @@
               "examples": "A feedback form handed to shoppers.",
               "examTip": "Very close to a survey: the questionnaire is the document itself.",
               "keyFacts": [
-                "Cheap to send to many people",
-                "Rating scales measure opinions",
-                "Cannot follow up answers",
-                "Low response rates"
+                "Cheap to send to many people, by post or online",
+                "Rating scales measure opinions, so feelings can be turned into numbers and compared",
+                "Cannot follow up answers, so unclear or interesting replies can't be explored",
+                "Low response rates, because many people ignore questionnaires"
               ]
             },
             {
@@ -285,10 +285,10 @@
               "examples": "Testing a prototype app with potential users.",
               "examTip": "Shows WHY people think something; surveys show HOW MANY.",
               "keyFacts": [
-                "Rich, detailed opinions",
-                "Facilitator can follow up",
-                "Expensive to run",
-                "Strong personalities can sway the group"
+                "Rich, detailed opinions, because people discuss and build on each other's ideas",
+                "Facilitator can follow up, so interesting points can be explored further",
+                "Expensive to run, because of venue, facilitator and participants' time",
+                "Strong personalities can sway the group, so quieter views may be lost"
               ]
             },
             {
@@ -298,9 +298,9 @@
               "examples": "Interviewing customers about a new product.",
               "examTip": "Structured = fixed questions; unstructured = flexible conversation.",
               "keyFacts": [
-                "Can probe and ask follow-ups",
-                "Time-consuming, so small samples",
-                "Interviewer can influence answers"
+                "Can probe and ask follow-ups, so the interviewer gets detailed, in-depth answers",
+                "Time-consuming, so only small samples are possible",
+                "Interviewer can influence answers through tone or wording, which biases results"
               ],
               "comparisonTable": {
                 "title": "Data Collection Methods Compared",
@@ -326,10 +326,10 @@
               "examples": "A hospital giving the wrong drug because of an incorrect record.",
               "examTip": "Give a specific consequence from the scenario.",
               "keyFacts": [
-                "GDPR requires accurate personal data",
-                "Wrong data → wrong decisions",
-                "Errors damage customer trust",
-                "Wrong stock data → over- or under-ordering"
+                "GDPR requires accurate personal data, so inaccurate records break the law",
+                "Wrong data leads to wrong decisions, e.g. targeting the wrong customers",
+                "Errors damage customer trust, e.g. wrong bills or orders sent to the wrong address",
+                "Wrong stock data leads to over- or under-ordering, wasting money or losing sales"
               ]
             }
           ]
@@ -345,9 +345,9 @@
               "examples": "Typing a password twice to confirm it.",
               "examTip": "Checks it was copied correctly, not that it is actually right.",
               "keyFacts": [
-                "Double entry: typed twice, must match",
-                "Proofreading against the original",
-                "Catches typing mistakes only"
+                "Double entry: data is typed twice and must match, so a typing slip is spotted",
+                "Proofreading against the original, so the copy matches the source document",
+                "Catches typing mistakes only, because it can't tell if the original data was wrong"
               ]
             },
             {
@@ -357,11 +357,11 @@
               "examples": "Rejecting an age of 200; a required email field.",
               "examTip": "Know the checks: range, presence, format, length, type, lookup.",
               "keyFacts": [
-                "Range: within limits",
-                "Presence: not left empty",
-                "Format: matches a pattern, e.g. postcode",
-                "Type and length checks",
-                "Valid data can still be wrong"
+                "Range check keeps values within limits, e.g. an age between 0 and 120",
+                "Presence check stops a field being left empty, so required data is always entered",
+                "Format check matches a pattern (e.g. postcode), so data is entered in the right shape",
+                "Type and length checks stop text in number fields and over-long entries",
+                "Valid data can still be wrong, because a sensible-looking value may still be incorrect"
               ],
               "comparisonTable": {
                 "title": "Verification vs Validation",
@@ -390,9 +390,9 @@
               "definition": "How easily users can find their way around and enter data without training.",
               "examTip": "Easy interfaces mean fewer errors and faster entry.",
               "keyFacts": [
-                "Fields in a logical order",
-                "Clear labels",
-                "Drop-downs and autocomplete reduce typing"
+                "Fields in a logical order, so users fill the form in naturally without jumping around",
+                "Clear labels, so users know exactly what to enter in each field",
+                "Drop-downs and autocomplete reduce typing, which saves time and cuts errors"
               ]
             },
             {
@@ -401,10 +401,10 @@
               "definition": "Designing interfaces so people with disabilities can use them.",
               "examTip": "An ethical and legal duty (Equality Act 2010). Link to assistive technology.",
               "keyFacts": [
-                "Works with screen readers",
-                "Strong colour contrast",
-                "Usable by keyboard alone",
-                "Works when text is enlarged"
+                "Works with screen readers, so blind and partially sighted users can use it",
+                "Strong colour contrast, so text is readable for people with visual impairments",
+                "Usable by keyboard alone, so people who can't use a mouse aren't excluded",
+                "Works when text is enlarged, so users who need bigger text can still use every feature"
               ]
             },
             {
@@ -413,10 +413,10 @@
               "definition": "Design features that stop users entering wrong data in the first place.",
               "examTip": "Preventing errors beats catching them afterwards.",
               "keyFacts": [
-                "Error messages as you type",
-                "Date pickers and drop-downs limit input",
-                "Messages say how to fix the error",
-                "\"Are you sure?\" before irreversible actions"
+                "Error messages as you type, so mistakes are fixed straight away",
+                "Date pickers and drop-downs limit input, so users can only choose valid options",
+                "Messages say how to fix the error, so users aren't left guessing",
+                "'Are you sure?' before irreversible actions, so data isn't deleted by accident"
               ]
             },
             {
@@ -425,9 +425,9 @@
               "definition": "Whether the interface has every feature users need to complete their tasks.",
               "examTip": "Too few features block tasks; too many confuse users.",
               "keyFacts": [
-                "All required fields present",
-                "Search to avoid duplicate records",
-                "Links to other systems to avoid re-typing"
+                "All required fields present, so users can complete the task without workarounds",
+                "Search to avoid duplicate records, so the same customer isn't entered twice",
+                "Links to other systems to avoid re-typing, which saves time and cuts errors"
               ]
             },
             {
@@ -436,9 +436,9 @@
               "definition": "How quickly the interface responds, including at busy times.",
               "examTip": "Slow interfaces make users rush and make mistakes.",
               "keyFacts": [
-                "Slow pages make users give up",
-                "Must cope with peak use",
-                "Show progress for long tasks"
+                "Slow pages make users give up, so the organisation loses customers or sales",
+                "Must cope with peak use, so it doesn't slow down or crash when busiest",
+                "Show progress for long tasks, so users know it is still working and don't give up"
               ]
             },
             {
@@ -447,9 +447,9 @@
               "definition": "Whether the interface works on all devices, browsers and screen sizes.",
               "examTip": "Compatibility = works everywhere, including phones and assistive technology.",
               "keyFacts": [
-                "Works in all major browsers",
-                "Works on Windows, macOS, Android and iOS",
-                "Responsive design fits every screen size"
+                "Works in all major browsers, so no user is locked out by their choice of browser",
+                "Works on Windows, macOS, Android and iOS, so it reaches users on any device",
+                "Responsive design fits every screen size, so it is usable on phones as well as PCs"
               ]
             }
           ]

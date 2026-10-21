@@ -19,10 +19,10 @@
               "examples": "A LAN in one office; a WAN linking offices nationally; a PAN of phone and earbuds.",
               "examTip": "LAN = one site; WAN = wide area; SAN = storage; PAN = personal.",
               "keyFacts": [
-                "LAN / WLAN: one site, wired or wireless",
-                "WAN: large area",
-                "SAN: storage; PAN: personal",
-                "The internet: the global WAN"
+                "LAN / WLAN covers one site, wired or wireless, so the organisation owns and controls it",
+                "WAN covers a large area, linking sites in different cities or countries",
+                "SAN is a network just for storage, and PAN links one person's devices nearby",
+                "The internet is the global WAN, so anything connected to it is exposed to attackers worldwide"
               ]
             },
             {
@@ -32,9 +32,9 @@
               "examples": "A staff intranet; an extranet for suppliers.",
               "examTip": "Intranet = staff only. Extranet = selected outsiders too.",
               "keyFacts": [
-                "Intranet: private, for staff",
-                "Extranet: controlled access for partners",
-                "Cloud network: private networking in the cloud"
+                "Intranet is private and for staff only, so internal information isn't on the public internet",
+                "Extranet gives partners controlled access, so suppliers can use some systems without seeing everything",
+                "Cloud network provides private networking in the cloud, so systems can be added without new hardware"
               ]
             },
             {
@@ -44,10 +44,10 @@
               "examples": "Wi-Fi access points connected to a wired backbone.",
               "examTip": "Issues: compatibility, admin (channels, IPs) and technical (signal, interference).",
               "keyFacts": [
-                "802 family of standards",
-                "Compatibility between protocols and access points",
-                "Admin: channels and IP addresses",
-                "Signal strength and interference"
+                "The 802 family of standards (e.g. 802.3 Ethernet, 802.11 Wi-Fi) lets wired and wireless kit work together",
+                "Protocols and access points must be compatible, or some devices can't connect",
+                "Admin of channels and IP addresses prevents clashes and interference between devices",
+                "Signal strength and interference affect wireless reliability, so access points must be placed carefully"
               ]
             },
             {
@@ -57,9 +57,9 @@
               "examples": "Adding a firewall between the router and the switch.",
               "examTip": "Practise reading and changing diagrams, e.g. adding a firewall and labelling links.",
               "keyFacts": [
-                "Logical: how data flows",
-                "Physical: real devices and cabling",
-                "May show ports or addresses"
+                "Logical diagrams show how data flows, which helps plan security and troubleshoot",
+                "Physical diagrams show the real devices and cabling, so technicians can find equipment",
+                "May show ports or addresses, which helps configuration but should be kept confidential from attackers"
               ]
             },
             {
@@ -69,9 +69,9 @@
               "examples": "Designing for growth and to survive failures.",
               "examTip": "Security-related needs: security settings, reliability, fault tolerance, backups.",
               "keyFacts": [
-                "Scalability and performance",
-                "Reliability and fault tolerance",
-                "Backup management and security settings"
+                "Scalability and performance, so the network copes as users and data grow",
+                "Reliability and fault tolerance, so one failure doesn't stop the whole network",
+                "Backup management and security settings, so data can be restored and the network is protected"
               ]
             }
           ]
@@ -87,9 +87,9 @@
               "examples": "A star network around a switch; a wireless mesh.",
               "examTip": "Physical = cable and device layout; logical = how data flows.",
               "keyFacts": [
-                "Physical: star, extended star, hierarchical, mesh",
-                "Logical: bus or ring",
-                "In a star, one broken cable doesn't stop the network"
+                "Physical topologies (star, extended star, hierarchical, mesh) decide how devices are cabled together",
+                "Logical topology (bus or ring) is how data actually travels, which can differ from the cabling",
+                "In a star, one broken cable doesn't stop the network, because each device has its own link"
               ]
             },
             {
@@ -99,9 +99,9 @@
               "examples": "Client/server with central control; peer-to-peer file sharing.",
               "examTip": "Client/server = central control and security; P2P = no server; thin client = processing on the server.",
               "keyFacts": [
-                "Peer-to-peer: devices share directly",
-                "Client/server: central control",
-                "Thin client: the server does the processing"
+                "Peer-to-peer devices share directly, so it is cheap but hard to secure and back up centrally",
+                "Client/server gives central control, so security, accounts and backups are managed in one place",
+                "Thin client: the server does the processing, so data stays on the server and devices are cheap"
               ]
             }
           ]
@@ -117,9 +117,9 @@
               "examples": "Testing a suspicious program in an isolated virtual machine.",
               "examTip": "Security benefit: isolation contains threats and shrinks the attack surface.",
               "keyFacts": [
-                "Segments systems",
-                "Sandboxing and containers",
-                "Smaller attack surface"
+                "Segments systems, so a problem in one virtual machine doesn't affect the others",
+                "Sandboxing and containers let suspicious software run safely in isolation",
+                "Smaller attack surface, because each service runs separately with only what it needs"
               ]
             },
             {
@@ -129,10 +129,10 @@
               "examples": "Storage left open by default settings; hijacked accounts.",
               "examTip": "Risks: misconfiguration, reliance on the provider, insecure APIs, hijacking.",
               "keyFacts": [
-                "Wrong or default settings",
-                "Reliance on the provider",
-                "Insecure APIs",
-                "Account hijacking"
+                "Wrong or default settings can leave data publicly exposed, e.g. open storage buckets",
+                "Reliance on the provider means an outage or breach at their end hits the organisation too",
+                "Insecure APIs give attackers a way into cloud data and services",
+                "Account hijacking gives an attacker full control of cloud resources, so MFA is essential"
               ]
             },
             {
@@ -142,10 +142,10 @@
               "examples": "Company email on a personal phone.",
               "examTip": "Issues: passwords, privacy, patching, wiping data when staff leave.",
               "keyFacts": [
-                "Company data on a private device",
-                "Enforcing password policy",
-                "Keeping it patched",
-                "Wiping company data when no longer needed"
+                "Company data on a private device can leak if the device is lost or shared with family",
+                "Enforcing password policy is harder on devices the organisation doesn't own",
+                "Keeping it patched depends on the owner, so devices may run with known flaws",
+                "Wiping company data when no longer needed (e.g. when staff leave) stops data leaving with them"
               ]
             },
             {
@@ -155,10 +155,10 @@
               "examples": "A home worker needing a VPN on insecure home Wi-Fi.",
               "examTip": "Remote working risks: shared devices, home Wi-Fi, third-party tools. Needs a VPN.",
               "keyFacts": [
-                "SDN: central management and segmentation",
-                "SAN: redundancy, access control, encryption",
-                "IoT: default passwords, no patches, botnets",
-                "Remote working: shared devices, home Wi-Fi"
+                "SDN gives central management and segmentation, so the whole network can be controlled from one place",
+                "SAN needs redundancy, access control and encryption, because it holds the organisation's key data",
+                "IoT has default passwords and no patches, so devices can be hijacked into botnets",
+                "Remote working brings shared devices and home Wi-Fi, which are less secure than the office"
               ]
             }
           ]
@@ -180,9 +180,9 @@
               "examples": "Phones, laptops, tablets; servers, PCs, networked printers.",
               "examTip": "Split into mobile devices and fixed networked devices.",
               "keyFacts": [
-                "Mobile: phone, laptop, tablet, smartwatch",
-                "Fixed: server, PC, printer, NAS",
-                "Multifunction devices combine several"
+                "Mobile devices (phone, laptop, tablet, smartwatch) are easily lost, so they need encryption and remote wipe",
+                "Fixed devices (server, PC, printer, NAS) stay on site, so physical security protects them",
+                "Multifunction devices combine several functions, so one compromised device exposes several services"
               ]
             },
             {
@@ -192,10 +192,10 @@
               "examples": "A switch in a LAN; a router joining networks.",
               "examTip": "Switch: connects devices in a LAN. Router: joins networks. Gateway: translates protocols.",
               "keyFacts": [
-                "Switch (managed or unmanaged)",
-                "Router and gateway",
-                "Bridge, repeater, access point",
-                "Modem: DSL, fibre, wireless"
+                "Switch (managed or unmanaged) connects devices in a LAN; managed switches can be configured for security",
+                "Router and gateway connect different networks, deciding where traffic goes",
+                "Bridge, repeater and access point extend or join networks, including wireless access",
+                "Modem (DSL, fibre, wireless) connects the network to the internet provider"
               ]
             },
             {
@@ -205,9 +205,9 @@
               "examples": "Ethernet cable; fibre; Wi-Fi; Bluetooth.",
               "examTip": "Fibre is fast and hard to tap; wireless is easier to intercept.",
               "keyFacts": [
-                "Cable: Ethernet, USB",
-                "Wireless: Wi-Fi, Bluetooth, NFC, 5G",
-                "Fibre and Li-Fi"
+                "Cable (Ethernet, USB) is hard to intercept without physical access, so it is more secure",
+                "Wireless (Wi-Fi, Bluetooth, NFC, 5G) is convenient but signals can be picked up by attackers nearby",
+                "Fibre is very fast and hard to tap, and Li-Fi uses light, so it doesn't pass through walls"
               ]
             }
           ]
@@ -223,10 +223,10 @@
               "examples": "A lost USB stick; an external drive spreading malware.",
               "examTip": "Risks: loss/theft, copying, malware, failure. Fix with encryption and secure disposal.",
               "keyFacts": [
-                "Loss, theft and copying",
-                "Can carry malware",
-                "Media fails over time",
-                "Encrypt and dispose of securely"
+                "Loss, theft and copying are easy because media is small and portable",
+                "Can carry malware onto the network when plugged in",
+                "Media fails over time, so data on it can be lost",
+                "Encrypt and dispose of securely, so lost or thrown-away media can't be read"
               ]
             },
             {
@@ -236,9 +236,9 @@
               "examples": "A packet sniffer; a log viewer; remote admin tools.",
               "examTip": "Monitoring tools help spot incidents: link to forensics.",
               "keyFacts": [
-                "Configured through GUI, CLI or web interface",
-                "Monitoring: performance, logs, vulnerability scans, packet sniffing",
-                "Remote working and document tools"
+                "Configured through a GUI, CLI or web interface, so admin access must be protected",
+                "Monitoring (performance, logs, vulnerability scans, packet sniffing) spots problems and attacks early",
+                "Remote working and document tools let staff collaborate, but must be secured"
               ]
             }
           ]
@@ -260,10 +260,10 @@
               "examples": "TCP splits a file into packets, IP addresses them, TLS secures the link.",
               "examTip": "Four-layer model; TLS adds security; error correction ensures delivery.",
               "keyFacts": [
-                "Four-layer model",
-                "TLS for secure connections",
-                "Packets with headers",
-                "Error correction"
+                "Four-layer model (application, transport, internet, link), so each layer handles one job",
+                "TLS gives secure connections, encrypting data such as HTTPS traffic",
+                "Packets with headers carry addresses, so each packet can find its own way to the destination",
+                "Error correction resends lost or damaged packets, so data arrives complete"
               ]
             },
             {
@@ -273,9 +273,9 @@
               "examples": "Port 443 for HTTPS.",
               "examTip": "Packet = header (addresses), payload (data), trailer (error check). Know TCP vs UDP.",
               "keyFacts": [
-                "Hardware ports vs software ports",
-                "Header, payload, trailer",
-                "TCP: reliable; UDP: fast, no guarantee"
+                "Hardware ports are physical sockets, while software ports are numbers that identify services, e.g. 443",
+                "Header, payload and trailer: addresses, the data itself, and an error check",
+                "TCP is reliable because it checks delivery; UDP is fast but gives no guarantee, so it suits streaming"
               ]
             },
             {
@@ -285,10 +285,10 @@
               "examples": "Many home devices sharing one public IP.",
               "examTip": "Private ranges: 10.x, 172.16–31.x, 192.168.x. APIPA 169.254.x; loopback 127.0.0.1.",
               "keyFacts": [
-                "NAT types: static, dynamic, PAT",
-                "IPv4 and IPv6",
-                "APIPA 169.254.x = DHCP failed",
-                "127.0.0.1 = loopback"
+                "NAT types (static, dynamic, PAT) let many private devices share public addresses, which hides them",
+                "IPv4 is running out of addresses, so IPv6 provides vastly more",
+                "APIPA 169.254.x means DHCP failed, so the device can't reach the wider network",
+                "127.0.0.1 is the loopback address, used to test the device's own network software"
               ]
             }
           ]
@@ -304,10 +304,10 @@
               "examples": "Putting guest Wi-Fi on a separate segment from staff systems.",
               "examTip": "Benefits: limits access, stops lateral movement, smaller attack surface.",
               "keyFacts": [
-                "Limits access to devices and data",
-                "Stops attackers moving sideways",
-                "Smaller attack surface",
-                "Easier to contain damage"
+                "Limits access to devices and data, so users only reach their own segment",
+                "Stops attackers moving sideways from one compromised device to the rest of the network",
+                "Smaller attack surface, because each segment exposes less",
+                "Easier to contain damage, because an infected segment can be cut off"
               ]
             },
             {
@@ -317,9 +317,9 @@
               "examples": "A firewall filtering traffic; a router directing packets.",
               "examTip": "For \"secure internet access\" the expected answer is a FIREWALL.",
               "keyFacts": [
-                "Server, router, switch",
-                "Wireless access point",
-                "Firewall, bridge, gateway"
+                "Server, router and switch form the core, so they must be configured and locked down securely",
+                "Wireless access point lets devices join the network, so it needs strong encryption",
+                "Firewall, bridge and gateway control and join traffic between networks"
               ]
             }
           ]
@@ -335,9 +335,9 @@
               "examples": "www.example.com → its IP address.",
               "examTip": "DNS can be attacked by spoofing or poisoning.",
               "keyFacts": [
-                "Name → IP (and reverse)",
-                "Results are cached",
-                "Supports IPv6"
+                "Turns names into IP addresses (and back), so users can type names, not numbers",
+                "Results are cached, so lookups are faster, but a poisoned cache sends users to fake sites",
+                "Supports IPv6, so it works with the newer, larger address system"
               ]
             },
             {
@@ -347,9 +347,9 @@
               "examples": "Active Directory accounts; single sign-on.",
               "examTip": "Types: single-factor, two-factor, multi-factor, SSO.",
               "keyFacts": [
-                "Active Directory, OpenLDAP",
-                "Single-factor, 2FA, MFA, SSO",
-                "Protocols: PAP, CHAP, EAP"
+                "Active Directory and OpenLDAP store user accounts centrally, so access is managed in one place",
+                "Single-factor, 2FA, MFA and SSO, where SSO means one login gives access to many systems",
+                "Protocols PAP, CHAP and EAP: PAP sends passwords in plain text, so CHAP and EAP are more secure"
               ]
             },
             {
@@ -359,10 +359,10 @@
               "examples": "A laptop joining Wi-Fi and getting its settings automatically.",
               "examTip": "DHCP has no built-in security, so a rogue DHCP server can be set up.",
               "keyFacts": [
-                "Assigns IP, gateway and lease",
-                "Config: address range, lease, reservations",
-                "No built-in security",
-                "Open to spoofing"
+                "Assigns IP, gateway and lease automatically, so devices join the network without manual set-up",
+                "Config sets the address range, lease time and reservations, so key devices keep fixed addresses",
+                "No built-in security, so any device can request an address",
+                "Open to spoofing: a rogue DHCP server can send traffic through an attacker"
               ]
             },
             {
@@ -372,9 +372,9 @@
               "examples": "A VPN giving a home worker secure access.",
               "examTip": "A VPN is an encrypted tunnel, so intercepted data can't be read.",
               "keyFacts": [
-                "Static or dynamic routing",
-                "BGP routes traffic across the internet",
-                "Remote access via VPN"
+                "Static routing is set by hand and dynamic routing adapts automatically to changes and failures",
+                "BGP routes traffic across the internet between large networks",
+                "Remote access via VPN, so off-site users connect over an encrypted tunnel"
               ]
             }
           ]
@@ -390,9 +390,9 @@
               "examples": "A file server for shared documents; a print server queuing jobs.",
               "examTip": "File server = central storage; print server = manages shared printers.",
               "keyFacts": [
-                "File server: storage and sharing",
-                "Print server: queues and prioritises",
-                "Manages printer drivers"
+                "File server gives central storage and sharing, so files are backed up and permissions controlled in one place",
+                "Print server queues and prioritises jobs, so many users can share printers",
+                "Manages printer drivers, so devices get the right driver automatically"
               ]
             },
             {
@@ -402,9 +402,9 @@
               "examples": "A website over HTTPS; email via SMTP; a VoIP call.",
               "examTip": "SMTP and POP have no built-in encryption: a security weakness.",
               "keyFacts": [
-                "Web: HTTP/HTTPS",
-                "Mail: SMTP, POP, MIME, unencrypted by default",
-                "Email, VoIP, SMS, video calls"
+                "Web uses HTTP/HTTPS, and only HTTPS encrypts the traffic",
+                "Mail (SMTP, POP, MIME) is unencrypted by default, so emails can be read if intercepted",
+                "Email, VoIP, SMS and video calls all need securing, because they carry sensitive conversations"
               ]
             }
           ]

@@ -30,10 +30,10 @@
               "examples": "Apps tracking your location for adverts; employers monitoring staff emails.",
               "examTip": "Weigh individual rights against organisations' interests, and cite GDPR/DPA 2018.",
               "keyFacts": [
-                "Collect only the data you need",
-                "Consent required under GDPR",
-                "Right to have data deleted",
-                "Cookies need consent"
+                "Collect only the data you need, so less personal data is at risk if there is a breach",
+                "Consent required under GDPR (or another lawful basis), so people know and agree to how their data is used",
+                "Right to have data deleted, so people can ask an organisation to erase what it holds about them",
+                "Cookies need consent, so websites must ask before tracking what users do"
               ]
             },
             {
@@ -43,10 +43,10 @@
               "examples": "Data centres using 1–2% of the world's electricity; toxic e-waste.",
               "examTip": "Give both sides: energy and e-waste vs less travel, paperless offices and smart grids.",
               "keyFacts": [
-                "E-waste is the fastest-growing waste stream",
-                "Devices need rare metals mined at a high cost",
-                "Cloud can be more efficient than many small servers",
-                "Remote working cuts commuting emissions"
+                "E-waste is the fastest-growing waste stream, and dumped devices leak toxic chemicals into soil and water",
+                "Devices need rare metals mined at a high cost, damaging habitats and using lots of energy",
+                "Cloud can be more efficient than many small servers, because large data centres share and cool hardware better",
+                "Remote working cuts commuting emissions, because fewer people drive to the office"
               ]
             },
             {
@@ -56,9 +56,9 @@
               "examples": "Rural areas without fast broadband; elderly people shut out of online services.",
               "examTip": "Three gaps: access (no device or internet), skills, and usage.",
               "keyFacts": [
-                "Linked to income, location, age and education",
-                "Pupils without devices fall behind",
-                "Millions of UK adults lack basic digital skills"
+                "Linked to income, location, age and education, so the people already disadvantaged are most likely to miss out",
+                "Pupils without devices fall behind, because homework and resources are increasingly online",
+                "Millions of UK adults lack basic digital skills, so they struggle with online banking, jobs and services"
               ]
             },
             {
@@ -68,9 +68,9 @@
               "examples": "An employer not providing a screen reader; a website that fails accessibility standards.",
               "examTip": "Ethical AND legal: the Equality Act 2010 requires reasonable adjustments.",
               "keyFacts": [
-                "Employers must make reasonable adjustments",
-                "WCAG: the web accessibility standard",
-                "Specialist kit is expensive"
+                "Employers must make reasonable adjustments, such as providing screen readers, so disabled staff can work",
+                "WCAG is the web accessibility standard, so sites that follow it work with assistive technology",
+                "Specialist kit is expensive, so some disabled people can't afford the technology they need"
               ]
             },
             {
@@ -80,10 +80,10 @@
               "examples": "Cyberbullying on social media; spreading false rumours about a business.",
               "examTip": "Netiquette is informal; an AUP is the formal version. Cover anonymity and impact on victims.",
               "keyFacts": [
-                "Netiquette: be polite, no ALL CAPS, cite sources",
-                "Cyberbullying can be a crime",
-                "Anonymity makes people behave worse",
-                "Your digital footprint is permanent"
+                "Netiquette: be polite, no ALL CAPS, cite sources, so online discussion stays respectful and clear",
+                "Cyberbullying can be a crime, so harassment online can lead to prosecution",
+                "Anonymity makes people behave worse, because they feel there are no consequences for what they post",
+                "Your digital footprint is permanent, so old posts can affect job and university applications"
               ]
             },
             {
@@ -93,10 +93,10 @@
               "examples": "A school banning gaming on its laptops; a company banning shared logins.",
               "examTip": "Contents: allowed uses, banned activities, monitoring, and consequences of breaking it.",
               "keyFacts": [
-                "Users cannot claim they didn't know the rules",
-                "Must be signed or accepted",
-                "Should say that activity may be monitored",
-                "Review as technology changes"
+                "Users cannot claim they didn't know the rules, so the organisation can take action if they break them",
+                "Must be signed or accepted, which gives a record that the user agreed to the rules",
+                "Should say that activity may be monitored, so monitoring is lawful and acts as a deterrent",
+                "Review as technology changes, so new risks (e.g. AI tools, personal devices) are covered"
               ]
             }
           ]
@@ -138,10 +138,10 @@
                 ]
               },
               "keyFacts": [
-                "S1: unauthorised access (up to 2 years)",
-                "S2: with intent to commit further crime (up to 5 years)",
-                "S3: unauthorised modification, e.g. malware or DDoS (up to 10 years)",
-                "Covers any computer, including phones"
+                "S1: unauthorised access (up to 2 years), e.g. logging in with someone else's password",
+                "S2: access with intent to commit further crime (up to 5 years), e.g. hacking in to steal money",
+                "S3: unauthorised modification (up to 10 years), e.g. spreading malware or launching a DDoS",
+                "Covers any computer, including phones, so the law applies to modern devices too"
               ]
             },
             {
@@ -151,10 +151,10 @@
               "examples": "Copying software without a licence; sharing pirated films.",
               "examTip": "Software counts as a literary work; piracy is a crime, and employers can be liable.",
               "keyFacts": [
-                "Copyright is automatic in the UK",
-                "Lasts the creator's life + 70 years",
-                "Licences (EULAs) set how software may be used",
-                "Limited exceptions for study and review"
+                "Copyright is automatic in the UK, so creators are protected without needing to register",
+                "Lasts the creator's life + 70 years, so work can't be freely copied for a long time",
+                "Licences (EULAs) set how software may be used, so installing it on extra PCs can break the law",
+                "Limited exceptions for study and review, so small extracts can be used fairly, e.g. in coursework"
               ]
             },
             {
@@ -164,9 +164,9 @@
               "examples": "Copying another company's source code and selling it as your own.",
               "examTip": "Adds to the 1988 Act for software: a backup copy is allowed; decompiling only for compatibility.",
               "keyFacts": [
-                "Programs are literary works",
-                "Decompiling only allowed for compatibility",
-                "Owners may make one backup copy"
+                "Programs are literary works, so code is protected by copyright just like a book",
+                "Decompiling only allowed for compatibility, so rivals can't reverse-engineer code to copy it",
+                "Owners may make one backup copy, so a legitimate user can protect against loss without breaking the law"
               ]
             },
             {
@@ -188,10 +188,10 @@
                 ]
               },
               "keyFacts": [
-                "Assess every workstation",
-                "Regular breaks from the screen",
-                "Free eye tests on request",
-                "Prevents back pain, eye strain and RSI"
+                "Assess every workstation, so problems like poor seating or screen glare are found and fixed",
+                "Regular breaks from the screen, to reduce eye strain and repetitive strain injury",
+                "Free eye tests on request, paid for by the employer, for staff who use screens regularly",
+                "Prevents back pain, eye strain and RSI, so fewer staff are off sick"
               ]
             },
             {
@@ -214,10 +214,10 @@
                 ]
               },
               "keyFacts": [
-                "Principles: lawful, set purpose, minimal, accurate, not kept too long, secure",
-                "Rights: access, correct, erase, object",
-                "Report serious breaches to the ICO within 72 hours",
-                "Fines up to £17.5m or 4% of global turnover"
+                "Principles: lawful, set purpose, minimal, accurate, not kept too long, secure: every organisation must follow them",
+                "Rights: access, correct, erase, object, so people stay in control of their own data",
+                "Report serious breaches to the ICO within 72 hours, so affected people can be warned quickly",
+                "Fines up to £17.5m or 4% of global turnover, so ignoring the law can be very costly"
               ]
             }
           ]

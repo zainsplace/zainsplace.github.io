@@ -19,9 +19,9 @@
               "examples": "Reviewing and improving security measures every quarter.",
               "examTip": "PDCA = continuous improvement. Security is never finished because threats change.",
               "keyFacts": [
-                "Plan-Do-Check-Act loop from ISO 27001",
-                "Security as a repeating cycle",
-                "Covers internet use, passwords, staff duties, training"
+                "Plan-Do-Check-Act loop from ISO 27001, so security keeps improving rather than standing still",
+                "Security as a repeating cycle, because threats change and the policy must keep up",
+                "Covers internet use, passwords, staff duties and training, so every area has clear rules"
               ]
             },
             {
@@ -31,10 +31,10 @@
               "examples": "Banning downloads of executable files; warning that email may be monitored.",
               "examTip": "Covers offensive material, confidential info, copyright, risky sites and monitoring.",
               "keyFacts": [
-                "No offensive or illegal material",
-                "Rules on sending confidential information",
-                "No copyrighted or risky downloads",
-                "The organisation may scan traffic and keep emails"
+                "No offensive or illegal material, which protects staff and the organisation's reputation",
+                "Rules on sending confidential information, so data isn't leaked by email",
+                "No copyrighted or risky downloads, which avoids malware and legal action",
+                "The organisation may scan traffic and keep emails, so staff know they can be monitored"
               ]
             },
             {
@@ -44,10 +44,10 @@
               "examples": "Blocking common passwords; locking accounts after failed logins.",
               "examTip": "Include: length/strength, no sharing, no reuse, lockout, minimum age, expiry.",
               "keyFacts": [
-                "Length and strength rules",
-                "Deny list of common passwords",
-                "Log attempts and lock out",
-                "Use technology to rely less on passwords"
+                "Length and strength rules make passwords harder to crack",
+                "A deny list of common passwords stops easily guessed choices like 'Password1'",
+                "Log attempts and lock out, so brute-force attacks are stopped and noticed",
+                "Use technology (e.g. MFA, password managers) to rely less on passwords alone"
               ]
             },
             {
@@ -57,10 +57,10 @@
               "examples": "Annual security training; reporting suspicious emails.",
               "examTip": "Good training is funded, flexible, varied, tracked, rewarding and ongoing.",
               "keyFacts": [
-                "Staff: train, follow procedures, report suspicious activity",
-                "Training is ongoing and flexible",
-                "Incentives, not punishment",
-                "Refreshed for new threats"
+                "Staff must train, follow procedures and report suspicious activity, so threats are caught early",
+                "Training is ongoing and flexible, so it fits around work and keeps up with threats",
+                "Incentives, not punishment, so staff report mistakes instead of hiding them",
+                "Refreshed for new threats, because attackers keep changing their methods"
               ]
             },
             {
@@ -70,10 +70,10 @@
               "examples": "Finding accounts that still belong to ex-employees.",
               "examTip": "Finds gaps and checks against internal policy AND external law.",
               "keyFacts": [
-                "Set goals and scope",
-                "Find gaps and weaknesses",
-                "Check against policy and law",
-                "Report required improvements"
+                "Set goals and scope, so the audit checks the right systems and areas",
+                "Find gaps and weaknesses before attackers do",
+                "Check against policy and law, so the organisation knows it is compliant",
+                "Report required improvements, so managers know what to fix and in what order"
               ]
             },
             {
@@ -83,10 +83,10 @@
               "examples": "Nightly incrementals, weekly fulls, quarterly restore tests.",
               "examTip": "A good policy includes testing restores and legal compliance.",
               "keyFacts": [
-                "What data, which method and type",
-                "How often, where stored",
-                "Who is responsible",
-                "Test backups regularly"
+                "Sets which data, method and type (full, incremental, differential), so everything important is covered",
+                "Sets how often and where copies are stored, so recent data survives a site disaster",
+                "Names who is responsible, so backups aren't skipped or forgotten",
+                "Test backups regularly, so they are known to restore when needed"
               ]
             },
             {
@@ -96,10 +96,10 @@
               "examples": "Appointing a Data Protection Officer; covering contractors too.",
               "examTip": "Links to GDPR. Key parts: DPO, principles, rights, training, accountability.",
               "keyFacts": [
-                "Appoint a Data Protection Officer",
-                "Follow GDPR principles and rights",
-                "Train staff",
-                "Applies to contractors"
+                "Appoint a Data Protection Officer, so one person oversees GDPR compliance",
+                "Follow GDPR principles and rights, so personal data is handled lawfully",
+                "Train staff, so everyone knows how to handle personal data correctly",
+                "Applies to contractors too, because they may also handle the organisation's data"
               ]
             },
             {
@@ -109,10 +109,10 @@
               "examples": "A triage flowchart and contact list including legal, PR, HR and insurance.",
               "examTip": "Stages: triage/escalate → contain, mitigate, recover → review and close.",
               "keyFacts": [
-                "Contacts: response lead, IT, management, legal, PR, HR, insurance",
-                "Triage and escalation",
-                "Contain, mitigate, recover",
-                "Review, report, close"
+                "Contacts list (response lead, IT, management, legal, PR, HR, insurance), so the right people act fast",
+                "Triage and escalation rate the incident's severity, so serious ones reach senior staff quickly",
+                "Contain, mitigate, recover: stop the spread, reduce the damage, then restore normal service",
+                "Review, report and close, so lessons are learned and the plan is improved"
               ]
             },
             {
@@ -122,10 +122,10 @@
               "examples": "Deciding whether to trigger incident response, business continuity or full recovery.",
               "examTip": "Includes triage (rating severity), roles, contact lists and monitoring.",
               "keyFacts": [
-                "Clear purpose and scope",
-                "Triage: list events and rate severity",
-                "Choose which plan to activate",
-                "Clear roles and contacts"
+                "Clear purpose and scope, so everyone knows what the plan covers",
+                "Triage lists possible events and rates their severity, so the response matches the disaster",
+                "Choose which plan to activate, so staff follow the right steps for that event",
+                "Clear roles and contacts, so no time is wasted working out who does what"
               ]
             },
             {
@@ -135,10 +135,10 @@
               "examples": "A service level agreement setting response and fix times.",
               "examTip": "Covers authorisation, accountability, SLAs and incident handling.",
               "keyFacts": [
-                "Who authorises and who is accountable",
-                "Cloud: what's protected, data protection",
-                "Vendors, licences, support agreements",
-                "SLAs: response and fix times"
+                "Who authorises and who is accountable, so outside services aren't taken on without approval",
+                "Cloud: what's protected and how data protection is met, so GDPR still applies to data held by others",
+                "Vendors, licences and support agreements are recorded, so the organisation knows what it relies on",
+                "SLAs set response and fix times, so the provider can be held to account if service fails"
               ]
             }
           ]

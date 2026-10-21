@@ -19,9 +19,9 @@
               "examples": "A designer's desktop; a student's laptop.",
               "examTip": "Desktop: more power for the price, upgradeable. Laptop: portable, battery, less upgradeable.",
               "keyFacts": [
-                "Key parts: CPU, RAM, storage, GPU",
-                "Run a full OS (Windows, macOS, Linux)",
-                "Used for office work, gaming, creative work"
+                "Key parts are the CPU, RAM, storage and GPU, and their specification decides how fast tasks run",
+                "Run a full OS (Windows, macOS, Linux), so they can run almost any software the user needs",
+                "Used for office work, gaming and creative work, because they have the power and screen space for long tasks"
               ]
             },
             {
@@ -31,9 +31,9 @@
               "examples": "An office printer/scanner/copier.",
               "examTip": "Saves space and money, but if it breaks, every function is lost.",
               "keyFacts": [
-                "Cheaper than separate machines",
-                "Single point of failure",
-                "Often networked: scan straight to email"
+                "Cheaper than separate machines, and take up less space in the office",
+                "Single point of failure: if it breaks, printing, scanning and copying all stop at once",
+                "Often networked, so staff can scan straight to email or a shared folder"
               ]
             },
             {
@@ -43,10 +43,10 @@
               "examples": "iPhone; iPad; Apple Watch.",
               "examTip": "Always connected, but smaller screens, limited battery and easily lost.",
               "keyFacts": [
-                "Wi-Fi and 4G/5G",
-                "Touch interface; iOS or Android",
-                "Sensors: GPS, camera, NFC",
-                "Apps from app stores"
+                "Connect by Wi-Fi and 4G/5G, so users stay online away from home or the office",
+                "Touch interface running iOS or Android, so they are easy to use without a keyboard or mouse",
+                "Sensors (GPS, camera, NFC) enable maps, photos and contactless payments",
+                "Apps come from app stores, which check them, so users are less likely to install malware"
               ]
             },
             {
@@ -56,10 +56,10 @@
               "examples": "A file server for shared documents; a web server hosting a website.",
               "examTip": "Know the three: file (stores files), application (runs software), web (serves pages).",
               "keyFacts": [
-                "File server: central shared storage",
-                "Application server: runs apps for clients",
-                "Web server: delivers pages over HTTP/HTTPS",
-                "Built to run 24/7"
+                "File server gives central shared storage, so staff work from one copy and backups are easier",
+                "Application server runs apps for clients, so software is managed and updated in one place",
+                "Web server delivers pages over HTTP/HTTPS, so users anywhere can reach the organisation's website",
+                "Built to run 24/7, with features like spare power supplies, so services stay available"
               ],
               "comparisonTable": {
                 "title": "Server Types Compared",
@@ -78,9 +78,9 @@
               "examples": "PlayStation 5; a smart TV; Fire TV Stick.",
               "examTip": "Now internet-connected: link to streaming and online entertainment.",
               "keyFacts": [
-                "Consoles: online multiplayer",
-                "Smart TVs run streaming apps",
-                "Connected devices raise privacy concerns"
+                "Consoles offer online multiplayer, so friends can play together from different homes",
+                "Smart TVs run streaming apps, so users watch on demand without extra boxes",
+                "Connected devices raise privacy concerns, because they can collect viewing habits and voice data"
               ]
             },
             {
@@ -90,9 +90,9 @@
               "examples": "DSLR; GoPro; CCTV; phone camera.",
               "examTip": "High-resolution photos and video need lots of storage and bandwidth.",
               "keyFacts": [
-                "More megapixels = better quality, bigger files",
-                "4K video needs large storage",
-                "CCTV records continuously"
+                "More megapixels gives better quality but bigger files, so more storage is needed",
+                "4K video needs large storage, so users need big memory cards or cloud space",
+                "CCTV records continuously, so it needs a lot of storage and footage is often overwritten after a set time"
               ]
             },
             {
@@ -102,10 +102,10 @@
               "examples": "A sat nav; Google Maps; tracking delivery vans.",
               "examTip": "GPS gives position; live traffic needs an internet connection.",
               "keyFacts": [
-                "GPS works without mobile data",
-                "Phone apps add live traffic",
-                "Fleet tracking for deliveries",
-                "Location data is personal data (GDPR)"
+                "GPS works without mobile data, because it uses satellite signals, so it works in remote areas",
+                "Phone apps add live traffic, so routes avoid jams and journeys are quicker",
+                "Fleet tracking for deliveries, so companies know where vehicles are and can give accurate arrival times",
+                "Location data is personal data under GDPR, so it must be collected with consent and kept secure"
               ]
             },
             {
@@ -115,9 +115,9 @@
               "examples": "Mobile phones; VoIP phones; routers.",
               "examTip": "The hardware layer of networks: link to Section B.",
               "keyFacts": [
-                "Modem: converts signals for phone or cable lines",
-                "Router: connects the LAN to the internet",
-                "VoIP phones: calls over the internet"
+                "Modem converts signals for phone or cable lines, so digital data can travel over them",
+                "Router connects the LAN to the internet, sending data between the two networks",
+                "VoIP phones make calls over the internet, which is cheaper than traditional phone lines"
               ]
             },
             {
@@ -127,9 +127,9 @@
               "examples": "A washing machine controller; a smart thermostat; a smart meter.",
               "examTip": "Embedded = one fixed job. IoT = embedded + internet. IoT security is often weak.",
               "keyFacts": [
-                "Single purpose, little or no interface",
-                "IoT devices send data to the cloud",
-                "Weak default passwords and rare updates"
+                "Single purpose with little or no interface, so they are cheap, reliable and use little power",
+                "IoT devices send data to the cloud, so they can be monitored and controlled remotely",
+                "Weak default passwords and rare updates make them easy to hack, e.g. to recruit them into a botnet"
               ]
             }
           ]
@@ -144,9 +144,9 @@
               "definition": "Using devices for everyday tasks: communication, entertainment, shopping and banking.",
               "examTip": "Consider privacy when discussing personal use.",
               "keyFacts": [
-                "Phones for messaging, maps and media",
-                "Laptops for shopping and banking",
-                "Smart speakers and thermostats at home"
+                "Phones for messaging, maps and media, so people stay connected and entertained on the move",
+                "Laptops for shopping and banking, because a bigger screen makes forms and comparisons easier",
+                "Smart speakers and thermostats at home, so devices can be controlled by voice or remotely"
               ]
             },
             {
@@ -155,9 +155,9 @@
               "definition": "Using devices to support teaching, learning and assessment.",
               "examTip": "Link to online education and the digital divide.",
               "keyFacts": [
-                "Interactive whiteboards",
-                "Laptops and tablets for research",
-                "VLEs such as Google Classroom"
+                "Interactive whiteboards let teachers show and annotate content, so lessons are more engaging",
+                "Laptops and tablets for research, so learners can find information and work independently",
+                "VLEs such as Google Classroom hold work and feedback, so learners can access them from home"
               ]
             },
             {
@@ -166,9 +166,9 @@
               "definition": "Using devices to communicate and interact with others online.",
               "examTip": "Give both sides: connection and support vs cyberbullying and addiction.",
               "keyFacts": [
-                "Social media and messaging apps",
-                "Online gaming communities",
-                "Risks: cyberbullying, privacy, addiction"
+                "Social media and messaging apps let people stay in touch, wherever friends and family are",
+                "Online gaming communities connect people with shared interests across the world",
+                "Risks include cyberbullying, loss of privacy and addiction, which can harm wellbeing"
               ]
             },
             {
@@ -177,10 +177,10 @@
               "definition": "Using devices to support buying, selling and managing stock.",
               "examTip": "Link to online retail and stock control.",
               "keyFacts": [
-                "EPOS tills update stock automatically",
-                "Barcode and RFID scanners",
-                "Self-checkouts cut staff costs",
-                "Contactless card readers"
+                "EPOS tills update stock automatically, so shops know when to reorder",
+                "Barcode and RFID scanners read product details quickly, so checkout and stocktaking are faster and accurate",
+                "Self-checkouts cut staff costs, because one worker can supervise several tills",
+                "Contactless card readers make payments faster, so queues move quicker"
               ]
             },
             {
@@ -189,9 +189,9 @@
               "definition": "Using computer-controlled machines, robots and sensors to automate manufacturing.",
               "examTip": "Key themes: CNC machines, robots, sensors for quality control.",
               "keyFacts": [
-                "CNC machines cut parts precisely",
-                "Robots assemble, weld and paint",
-                "Sensors monitor machines in real time"
+                "CNC machines cut parts precisely, so every part is identical and waste is reduced",
+                "Robots assemble, weld and paint, so production runs faster and staff avoid dangerous jobs",
+                "Sensors monitor machines in real time, so faults are spotted before they cause breakdowns"
               ]
             },
             {
@@ -200,10 +200,10 @@
               "definition": "Using devices for diagnosis, treatment, monitoring and admin in healthcare.",
               "examTip": "Must be highly reliable; patient data is very sensitive.",
               "keyFacts": [
-                "Scanners produce large image files",
-                "Patient monitors track vital signs",
-                "Electronic records shared by clinicians",
-                "Video GP appointments"
+                "Scanners (MRI, CT) produce large image files, so hospitals need lots of fast storage",
+                "Patient monitors track vital signs, so staff are alerted at once if a patient's condition changes",
+                "Electronic records are shared by clinicians, so any doctor treating a patient sees their full history",
+                "Video GP appointments save patients travelling, so they suit people who are less mobile"
               ]
             },
             {
@@ -212,9 +212,9 @@
               "definition": "Using devices for design, music, video, animation and photography.",
               "examTip": "Creative work needs powerful hardware and lots of fast storage.",
               "keyFacts": [
-                "Powerful CPU, GPU and RAM",
-                "Graphics tablets for drawing",
-                "Large files (RAW, 4K video)"
+                "Need a powerful CPU, GPU and RAM, because editing video and 3D work is very demanding",
+                "Graphics tablets for drawing, so artists get precise, natural pen control",
+                "Large files (RAW, 4K video) need lots of storage and fast drives"
               ]
             },
             {
@@ -224,10 +224,10 @@
               "examples": "Warehouse robots; car assembly lines; chatbots.",
               "examTip": "Efficiency vs job losses and retraining needs.",
               "keyFacts": [
-                "Works 24/7 with consistent quality",
-                "Takes on dangerous tasks",
-                "Can replace jobs",
-                "Needs new skills"
+                "Works 24/7 with consistent quality, so output rises and mistakes fall",
+                "Takes on dangerous tasks, so workers are kept away from harm",
+                "Can replace jobs, especially repetitive manual work, which can increase unemployment",
+                "Needs new skills, so staff must be retrained to program and maintain the machines"
               ]
             }
           ]
@@ -243,10 +243,10 @@
               "examples": "A network diagram of PCs, switch, router, server and internet.",
               "examTip": "Exam diagrams (6 marks): include every device from the scenario and label each connection type.",
               "keyFacts": [
-                "Show every device and connection",
-                "Label connection types (Ethernet, Wi-Fi, 4G)",
-                "Cloud shape for the internet",
-                "Annotate what each part does"
+                "Show every device and connection, so anyone can see how the whole system fits together",
+                "Label connection types (Ethernet, Wi-Fi, 4G), so it is clear how data travels between devices",
+                "Use a cloud shape for the internet, which is the standard way to show it",
+                "Annotate what each part does, so the reader understands each part's role"
               ]
             },
             {
@@ -256,11 +256,11 @@
               "examples": "A login process checking a password.",
               "examTip": "Learn the symbols: oval start/end, rectangle process, diamond decision, parallelogram input/output.",
               "keyFacts": [
-                "Oval: start and end",
-                "Rectangle: process",
-                "Diamond: yes/no decision",
-                "Parallelogram: input/output",
-                "Arrows show the flow"
+                "Oval shows the start and end, so the reader knows where the process begins and finishes",
+                "Rectangle shows a process: an action or step that happens",
+                "Diamond shows a yes/no decision, with one arrow out for each answer",
+                "Parallelogram shows input or output, e.g. entering data or printing a receipt",
+                "Arrows show the flow, so the steps are followed in the right order"
               ],
               "comparisonTable": {
                 "title": "System Diagram vs Flowchart",
@@ -293,9 +293,9 @@
               "examples": "Keyboard; mouse; microphone; barcode scanner; touchscreen.",
               "examTip": "Input = data going IN. Manual (keyboard) or automatic (sensor, scanner).",
               "keyFacts": [
-                "Manual: keyboard, mouse, touchscreen",
-                "Optical: scanner, barcode and QR readers, camera",
-                "Automatic: sensors, RFID, biometrics"
+                "Manual input (keyboard, mouse, touchscreen) is controlled by a person, so it suits entering varied data",
+                "Optical input (scanner, barcode and QR readers, camera) reads data by light, so it is quick and accurate",
+                "Automatic input (sensors, RFID, biometrics) collects data with no human effort, so it can run 24/7"
               ]
             },
             {
@@ -305,10 +305,10 @@
               "examples": "Monitor; printer; speakers; projector; braille display.",
               "examTip": "Output = data coming OUT. Printers make hard copy; screens make soft copy.",
               "keyFacts": [
-                "Visual: monitor, printer, projector",
-                "Audio: speakers, headphones",
-                "Tactile: braille display",
-                "Plotters for large drawings"
+                "Visual output (monitor, printer, projector) shows results to read on screen or paper",
+                "Audio output (speakers, headphones) gives sound, e.g. alerts, music or screen-reader speech",
+                "Tactile output (braille display) lets blind users read by touch",
+                "Plotters produce large drawings, so they suit architects and engineers"
               ]
             },
             {
@@ -318,10 +318,10 @@
               "examples": "Laptop SSD; external backup drive; USB stick.",
               "examTip": "Compare HDD and SSD on speed, cost and reliability.",
               "keyFacts": [
-                "HDD: spinning disk, cheap per GB",
-                "SSD: flash, faster, no moving parts",
-                "USB sticks and external drives for transfer",
-                "NAS: shared storage on a network"
+                "HDD is a spinning disk that is cheap per GB, so it suits storing large amounts of data",
+                "SSD uses flash with no moving parts, so it is faster and less likely to break if dropped",
+                "USB sticks and external drives are portable, so they suit moving files between computers",
+                "NAS gives shared storage on a network, so a team can save to one place"
               ]
             }
           ]
@@ -337,10 +337,10 @@
               "examples": "Large-key keyboards; one-handed keyboards.",
               "examTip": "For users who cannot use a standard keyboard.",
               "keyFacts": [
-                "Large keys for low vision or motor difficulties",
-                "Key guards stop accidental presses",
-                "One-handed layouts",
-                "On-screen keyboards"
+                "Large keys help users with low vision or motor difficulties hit the right key",
+                "Key guards stop accidental presses, so users with tremors make fewer mistakes",
+                "One-handed layouts let users with the use of one hand type more quickly",
+                "On-screen keyboards can be used with a mouse, switch or eye tracker instead of physical keys"
               ]
             },
             {
@@ -350,9 +350,9 @@
               "examples": "JAWS; NVDA; VoiceOver.",
               "examTip": "Only works well if sites and apps are built accessibly.",
               "keyFacts": [
-                "Reads text, menus and buttons aloud",
-                "Used with the keyboard, not a mouse",
-                "Needs accessible design (WCAG)"
+                "Reads text, menus and buttons aloud, so blind users can use a computer independently",
+                "Used with the keyboard, not a mouse, because users can't see the pointer",
+                "Needs accessible design (WCAG), otherwise unlabelled buttons and images can't be read out"
               ]
             },
             {
@@ -362,9 +362,9 @@
               "examples": "A refreshable braille display connected by USB.",
               "examTip": "Tactile output that updates as the screen changes.",
               "keyFacts": [
-                "Updates in real time",
-                "Used with a screen reader",
-                "Expensive"
+                "Updates in real time as the user moves through the screen, so they can read as they go",
+                "Used with a screen reader, so the user can read by touch as well as listen",
+                "Expensive, so many blind users can't afford one without support"
               ]
             },
             {
@@ -374,8 +374,8 @@
               "examples": "Windows Magnifier; zoom on macOS.",
               "examTip": "Makes things bigger, rather than reading them aloud.",
               "keyFacts": [
-                "Built into most operating systems",
-                "Typically 2× to 16× zoom"
+                "Built into most operating systems, so users with low vision get it free without extra software",
+                "Typically 2× to 16× zoom, so the user can enlarge text and images as much as they need"
               ]
             },
             {
@@ -385,8 +385,8 @@
               "examples": "A head stick used by someone with paralysis.",
               "examTip": "For users with little or no arm or hand movement.",
               "keyFacts": [
-                "Presses keys or touchscreens",
-                "Head-tracking cameras are the electronic version"
+                "Presses keys or touchscreens, so users who can't use their hands can still type",
+                "Head-tracking cameras are the electronic version, moving the cursor as the head moves"
               ]
             },
             {
@@ -396,9 +396,9 @@
               "examples": "A large button switch; a cheek switch.",
               "examTip": "The computer cycles through options; the user presses to select.",
               "keyFacts": [
-                "Scanning highlights each option in turn",
-                "Any reliable movement can work the switch",
-                "Slow, but gives access"
+                "Scanning highlights each option in turn, and the user presses the switch when the right one lights up",
+                "Any reliable movement can work the switch, e.g. a hand, chin or knee, so it suits very limited movement",
+                "Slow, but gives access to users who could not otherwise use a computer at all"
               ]
             },
             {
@@ -408,8 +408,8 @@
               "examples": "A pedal to pause audio while typing.",
               "examTip": "Assistive for users who can't use their hands, and a productivity tool.",
               "keyFacts": [
-                "One or several pedals",
-                "Helps users with arm or hand impairments"
+                "One or several pedals, so different actions can be mapped to each foot press",
+                "Helps users with arm or hand impairments, because they can trigger actions with their feet"
               ]
             },
             {
@@ -419,8 +419,8 @@
               "examples": "Controlling a wheelchair and computer by breath.",
               "examTip": "For users who can only reliably control their breathing.",
               "keyFacts": [
-                "Sip and puff act as different inputs",
-                "Often used with scanning"
+                "Sip and puff act as different inputs, so the user can make choices using breath alone",
+                "Often used with scanning, so the user selects options as they are highlighted"
               ]
             },
             {
@@ -430,9 +430,9 @@
               "examples": "Tobii eye trackers for people with motor neurone disease.",
               "examTip": "Looking at a target for a moment (dwell) acts as a click.",
               "keyFacts": [
-                "Cursor follows your gaze",
-                "Hands-free control",
-                "Affected by lighting and glasses"
+                "Cursor follows your gaze, so looking at an item selects or points to it",
+                "Hands-free control, so it suits users with severe physical disabilities",
+                "Affected by lighting and glasses, which can make tracking less accurate"
               ]
             },
             {
@@ -442,9 +442,9 @@
               "examples": "Read Aloud in Word; communication apps for non-verbal users.",
               "examTip": "Helps people who can't read easily, and lets non-verbal users speak.",
               "keyFacts": [
-                "Helps with dyslexia and visual impairment",
-                "Built into all major operating systems",
-                "AI voices sound increasingly natural"
+                "Helps with dyslexia and visual impairment, because users can listen instead of reading",
+                "Built into all major operating systems, so it is free and easy to turn on",
+                "AI voices sound increasingly natural, so listening for long periods is less tiring"
               ]
             }
           ]
@@ -459,10 +459,10 @@
               "definition": "How much data a storage medium can hold, measured in GB or TB.",
               "examTip": "Match capacity to the use: video editing needs TBs; documents need GBs.",
               "keyFacts": [
-                "USB sticks: tens to hundreds of GB",
-                "HDDs: up to about 20 TB",
-                "SSDs: up to about 8 TB",
-                "HDDs are cheapest per GB"
+                "USB sticks hold tens to hundreds of GB, so they suit moving documents and small media files",
+                "HDDs hold up to about 20 TB, so they suit large archives and backups",
+                "SSDs hold up to about 8 TB, so very large stores usually still use HDDs",
+                "HDDs are cheapest per GB, so they are chosen when lots of storage is needed on a budget"
               ]
             },
             {
@@ -471,10 +471,10 @@
               "definition": "The price of storage, especially the cost per gigabyte.",
               "examTip": "HDD is cheapest per GB; SSD costs more but is falling; cloud is an ongoing fee.",
               "keyFacts": [
-                "HDD: best for bulk storage",
-                "SSD: worth it for the OS drive",
-                "Cloud: cost grows with usage",
-                "Consider lifespan, not just price"
+                "HDD is best for bulk storage, because it gives the most space for the money",
+                "SSD is worth it for the OS drive, because the computer starts and loads programs much faster",
+                "Cloud cost grows with usage, so it can become expensive as data builds up",
+                "Consider lifespan, not just price, because a cheap drive that fails early costs more overall"
               ],
               "comparisonTable": {
                 "title": "Storage Media Compared: HDD vs SSD vs USB vs Optical",
@@ -497,10 +497,10 @@
               "definition": "How fast data is read from and written to storage.",
               "examTip": "Moving from HDD to SSD is the biggest speed upgrade for most computers.",
               "keyFacts": [
-                "HDD: slow, has moving parts",
-                "SSD: several times faster",
-                "NVMe SSD: fastest",
-                "Optical discs: very slow"
+                "HDD is slow because it has moving parts that must spin and seek to the data",
+                "SSD is several times faster, so programs open and files save much more quickly",
+                "NVMe SSD is fastest, because it connects directly to the motherboard's fast lanes",
+                "Optical discs are very slow, so they are now mainly used for archiving or distribution"
               ]
             },
             {
@@ -509,9 +509,9 @@
               "definition": "Whether the storage works with the device's connections, OS and hardware.",
               "examTip": "Check the connector, the file system and OS support.",
               "keyFacts": [
-                "Connectors: USB-A vs USB-C, SATA vs NVMe",
-                "File systems: NTFS, APFS, exFAT",
-                "Older devices may not support new drives"
+                "Connectors (USB-A vs USB-C, SATA vs NVMe) must match, or the drive can't be plugged in",
+                "File systems (NTFS, APFS, exFAT) must be readable, or the OS can't open the files",
+                "Older devices may not support new drives, so upgrades can need adapters or new hardware"
               ]
             }
           ]
@@ -527,9 +527,9 @@
               "examples": "Writing appointments in a paper diary; counting stock by hand.",
               "examTip": "Slower and more error-prone, but flexible where judgement is needed.",
               "keyFacts": [
-                "More errors",
-                "Slower",
-                "Humans can handle unusual cases"
+                "More errors, because people make typing and copying mistakes",
+                "Slower, because each record is handled by hand",
+                "Humans can handle unusual cases that don't fit the rules a computer follows"
               ]
             },
             {
@@ -539,10 +539,10 @@
               "examples": "EPOS updating stock at each sale; overnight bank processing.",
               "examTip": "Faster and more consistent. But a system error affects every record.",
               "keyFacts": [
-                "Faster, fewer errors",
-                "Batch: processed together at set times",
-                "Real-time: processed immediately",
-                "Data logging records sensor readings"
+                "Faster with fewer errors, because computers process data without tiring or mistyping",
+                "Batch processing handles data together at set times, e.g. payroll run once a month",
+                "Real-time processing handles data immediately, e.g. booking a seat so it can't be sold twice",
+                "Data logging records sensor readings automatically, so data is collected 24/7 without staff"
               ],
               "comparisonTable": {
                 "title": "Manual vs Automatic Data Processing",
@@ -577,9 +577,9 @@
               "examples": "Overnight bank payments; monthly payroll.",
               "examTip": "No interaction, runs in groups, often overnight. Results are not instant.",
               "keyFacts": [
-                "Efficient for large volumes",
-                "No real-time output",
-                "Used in banking, payroll, billing"
+                "Efficient for large volumes, because jobs run together without waiting for a user",
+                "No real-time output, so results only appear when the whole batch has finished",
+                "Used in banking, payroll and billing, where the same job is done for thousands of records at once"
               ]
             },
             {
@@ -589,9 +589,9 @@
               "examples": "Google spreading searches across thousands of servers.",
               "examTip": "Many computers acting as one: fault tolerant and scalable.",
               "keyFacts": [
-                "Spreads work across machines",
-                "One machine failing doesn't stop the system",
-                "Add machines to grow"
+                "Spreads work across machines, so large tasks finish faster",
+                "One machine failing doesn't stop the system, because others take over its work",
+                "Add machines to grow, so capacity increases without replacing the system"
               ]
             },
             {
@@ -601,9 +601,9 @@
               "examples": "Browsing while music plays and a file downloads.",
               "examTip": "The CPU switches so fast it seems simultaneous.",
               "keyFacts": [
-                "Rapid switching between processes",
-                "Needs enough RAM for all open programs",
-                "Most modern OSs multitask"
+                "Switches rapidly between processes, so several programs appear to run at the same time",
+                "Needs enough RAM for all open programs, otherwise the computer slows down",
+                "Most modern OSs multitask, so users can e.g. browse while music plays"
               ]
             },
             {
@@ -613,9 +613,9 @@
               "examples": "Windows Server.",
               "examTip": "Runs on servers; clients connect for files, printers and logins.",
               "keyFacts": [
-                "Central user accounts and logins",
-                "Shared files and printers",
-                "Handles many clients at once"
+                "Central user accounts and logins, so staff can log in from any computer on the network",
+                "Shares files and printers, so resources don't need to be duplicated on every machine",
+                "Handles many clients at once, so a whole organisation can use the network together"
               ]
             },
             {
@@ -625,9 +625,9 @@
               "examples": "ABS brakes; aircraft controls; a pacemaker.",
               "examTip": "About being predictable, not just fast. Used where delay is dangerous.",
               "keyFacts": [
-                "Guaranteed response time",
-                "Used in medical, transport and industrial systems",
-                "Reliability over features"
+                "Guaranteed response time, so the system reacts instantly when a delay could be dangerous",
+                "Used in medical, transport and industrial systems, e.g. pacemakers and car airbags",
+                "Reliability over features, because a crash or slow response could cost lives"
               ]
             },
             {
@@ -637,10 +637,10 @@
               "examples": "iOS; Android.",
               "examTip": "Built for touch, battery life and apps from app stores.",
               "keyFacts": [
-                "Touch-first interface",
-                "Manages battery and sensors",
-                "Apps run separately for security",
-                "App-store distribution"
+                "Touch-first interface, so it is easy to use on a small screen without a keyboard",
+                "Manages battery and sensors, so the device lasts all day",
+                "Apps run separately (sandboxed) for security, so one bad app can't access another's data",
+                "App-store distribution, so apps are checked before users can install them"
               ]
             },
             {
@@ -650,9 +650,9 @@
               "examples": "An ATM; a self-service kiosk.",
               "examTip": "Reliable and secure, but can't be used for anything else.",
               "keyFacts": [
-                "One function only",
-                "Fewer vulnerabilities",
-                "Can't run other software"
+                "One function only, e.g. a smart TV or cash machine, so it is simple and reliable",
+                "Fewer vulnerabilities, because there is less software for attackers to exploit",
+                "Can't run other software, so it can't be repurposed if needs change"
               ]
             },
             {
@@ -662,9 +662,9 @@
               "examples": "A Linux server with many remote users.",
               "examTip": "Must keep each user's files and sessions separate.",
               "keyFacts": [
-                "Each user has a private session",
-                "Login required",
-                "OS shares resources between users"
+                "Each user has a private session, so their files and settings are kept separate",
+                "Login required, so the system knows who each user is and what they may access",
+                "The OS shares resources between users, so one user can't hog the CPU or memory"
               ],
               "comparisonTable": {
                 "title": "Operating System Types Compared",
@@ -693,10 +693,10 @@
               "definition": "The OS handles network protocols, connections, sending and receiving data, and bandwidth.",
               "examTip": "Four parts: protocols, connections, transmission, resource monitoring.",
               "keyFacts": [
-                "Runs protocols such as TCP/IP",
-                "Sets up and ends connections",
-                "Splits data into packets and reassembles them",
-                "Assigns IP settings, e.g. via DHCP"
+                "Runs protocols such as TCP/IP, so the computer can communicate with any other device on the network",
+                "Sets up and ends connections, so data reaches the right program on the right device",
+                "Splits data into packets and reassembles them, so large files can travel across the network reliably",
+                "Assigns IP settings (e.g. via DHCP), so devices join the network without manual set-up"
               ]
             },
             {
@@ -705,10 +705,10 @@
               "definition": "The OS protects the system through access control, malware protection, encryption and a firewall.",
               "examTip": "Know the four areas and what each does.",
               "keyFacts": [
-                "Access control: logins and permissions",
-                "Malware protection, e.g. Windows Defender",
-                "Drive encryption, e.g. BitLocker",
-                "Built-in firewall"
+                "Access control through logins and permissions, so users only reach what they're allowed to",
+                "Malware protection (e.g. Windows Defender) is built in, so the device is protected without extra software",
+                "Drive encryption (e.g. BitLocker), so data on a lost or stolen device can't be read",
+                "Built-in firewall blocks unwanted network traffic, protecting the device on any network"
               ]
             },
             {
@@ -717,10 +717,10 @@
               "definition": "The OS gives RAM to programs, keeps them apart, and uses virtual memory when RAM runs out.",
               "examTip": "Name the parts: allocation, protection, virtual memory, swapping and paging.",
               "keyFacts": [
-                "Allocates RAM when a program starts and frees it when it ends",
-                "Programs can't touch each other's memory",
-                "Virtual memory: disk used as extra RAM (slower)",
-                "Paging swaps small blocks between RAM and disk"
+                "Allocates RAM when a program starts and frees it when it ends, so memory isn't wasted",
+                "Programs can't touch each other's memory, so one crashing program doesn't bring down the others",
+                "Virtual memory uses disk as extra RAM, so more programs can run, but it is slower",
+                "Paging swaps small blocks between RAM and disk, so only the parts in use need to be in RAM"
               ]
             },
             {
@@ -729,10 +729,10 @@
               "definition": "The OS shares CPU time between running programs by scheduling and switching between them.",
               "examTip": "Name the parts: scheduling, CPU time management, context switching.",
               "keyFacts": [
-                "Scheduling decides which process runs next",
-                "Round robin: equal time slices in turn",
-                "Priority: important tasks go first",
-                "Context switching saves and restores each process"
+                "Scheduling decides which process runs next, so the CPU is shared fairly",
+                "Round robin gives equal time slices in turn, so no program is left waiting forever",
+                "Priority lets important tasks go first, so urgent work isn't held up",
+                "Context switching saves and restores each process, so it carries on exactly where it stopped"
               ]
             },
             {
@@ -741,9 +741,9 @@
               "definition": "Software that lets the OS talk to a hardware device.",
               "examTip": "Without the right driver, the OS can't use the device.",
               "keyFacts": [
-                "Translates OS commands for the device",
-                "Reports device errors",
-                "Outdated drivers cause crashes and security holes"
+                "Translates OS commands for the device, so the OS doesn't need to know how every device works",
+                "Reports device errors back to the OS, so problems like a paper jam can be shown to the user",
+                "Outdated drivers cause crashes and security holes, so they should be kept up to date"
               ],
               "examples": "A printer driver; a graphics card driver."
             },
@@ -753,9 +753,9 @@
               "definition": "The OS checks who users are, stores their settings, and lets admins manage accounts.",
               "examTip": "Name the parts: authentication, profiles, account management tools.",
               "keyFacts": [
-                "Log in with password, PIN, biometric or MFA",
-                "Each user has their own profile and files",
-                "Account types: administrator, standard, guest"
+                "Log in with a password, PIN, biometric or MFA, so the OS knows who is using the computer",
+                "Each user has their own profile and files, so people sharing a computer keep their work private",
+                "Account types (administrator, standard, guest) limit what each user can change, protecting the system"
               ]
             }
           ]
@@ -771,10 +771,10 @@
               "examples": "Antivirus; backup; disk defragmenter; file compression.",
               "examTip": "Utility software maintains the system. It is not application software.",
               "keyFacts": [
-                "Antivirus removes malware",
-                "Defragmenter speeds up HDDs",
-                "Backup software automates copies",
-                "Compression shrinks files"
+                "Antivirus removes malware, keeping the computer and its data safe",
+                "Defragmenter speeds up HDDs by putting each file's pieces back together (SSDs don't need it)",
+                "Backup software automates copies, so backups happen even if people forget",
+                "Compression shrinks files, so they take up less storage and send faster"
               ]
             },
             {
@@ -784,9 +784,9 @@
               "examples": "Word; Excel; Photoshop; a web browser.",
               "examTip": "Application software is for doing work, not maintaining the system.",
               "keyFacts": [
-                "Word processors, spreadsheets, databases",
-                "Browsers and email",
-                "Can be general or specialist, e.g. CAD"
+                "Word processors, spreadsheets and databases let users create documents, do calculations and store records",
+                "Browsers and email let users find information and communicate",
+                "Can be general or specialist (e.g. CAD), with specialist software built for one job"
               ]
             }
           ]
@@ -801,9 +801,9 @@
               "definition": "The cost of buying, licensing and running software.",
               "examTip": "Open source is often free; proprietary has licence fees but vendor support.",
               "keyFacts": [
-                "One-off licence vs subscription",
-                "Free alternatives, e.g. LibreOffice",
-                "Hidden costs: training and migration"
+                "One-off licence vs subscription: a licence costs more up front, a subscription costs more over time",
+                "Free alternatives (e.g. LibreOffice) cut licence costs, though they may lack some features",
+                "Hidden costs such as training and migration can make cheap software expensive overall"
               ]
             },
             {
@@ -812,9 +812,9 @@
               "definition": "How well software protects data, including how often it gets security updates.",
               "examTip": "Especially important when choosing an OS.",
               "keyFacts": [
-                "Patches must be installed promptly",
-                "Windows is targeted most because it's most used",
-                "Open-source code can be checked by anyone"
+                "Patches must be installed promptly, because attackers target known flaws",
+                "Windows is targeted most because it's most used, so attackers get the most victims",
+                "Open-source code can be checked by anyone, so flaws may be found and fixed quickly"
               ]
             },
             {
@@ -823,9 +823,9 @@
               "definition": "Whether software works with the hardware and other software already in use.",
               "examTip": "Incompatible software is useless however good it is.",
               "keyFacts": [
-                "Meets minimum hardware requirements",
-                "Drivers exist for existing printers and devices",
-                "Opens existing file formats"
+                "Must meet the minimum hardware requirements, or it will run slowly or not at all",
+                "Drivers must exist for existing printers and devices, or that hardware stops working",
+                "Must open existing file formats, so old documents and data can still be used"
               ]
             },
             {
@@ -834,8 +834,8 @@
               "definition": "Whether the software has the functions the organisation needs.",
               "examTip": "Features must match the job; extras add cost and complexity.",
               "keyFacts": [
-                "Must meet specific requirements",
-                "Specialist tools may only be proprietary"
+                "Must meet specific requirements, otherwise staff can't do their jobs with it",
+                "Specialist tools may only be proprietary, so organisations may have to pay for them"
               ]
             },
             {
@@ -844,9 +844,9 @@
               "definition": "Whether the software fits the organisation's tasks and its users' skills.",
               "examTip": "Start here in scenarios: what must it do, and who will use it?",
               "keyFacts": [
-                "Must do every required task",
-                "Interface should suit users' skills",
-                "Industry-standard software may be needed"
+                "Must do every required task, or staff will need extra software or workarounds",
+                "Interface should suit users' skills, so staff can use it without lots of training",
+                "Industry-standard software may be needed, so files can be shared with clients and partners"
               ]
             },
             {
@@ -855,9 +855,9 @@
               "definition": "How well the software runs on the available hardware.",
               "examTip": "Heavy software on weak hardware = slow and unproductive.",
               "keyFacts": [
-                "Quick response to input",
-                "Doesn't hog RAM or CPU",
-                "Stable under heavy use"
+                "Quick response to input, so staff aren't kept waiting",
+                "Doesn't hog RAM or CPU, so other programs keep running smoothly",
+                "Stable under heavy use, so it doesn't crash and lose work at busy times"
               ]
             }
           ]
@@ -873,10 +873,10 @@
               "examples": "Command Prompt; Linux Terminal.",
               "examTip": "Fast and powerful for experts, but commands must be memorised.",
               "keyFacts": [
-                "No mouse needed",
-                "Tasks can be scripted",
-                "Uses few resources",
-                "Hard for beginners"
+                "No mouse needed, so commands can be typed quickly by experienced users",
+                "Tasks can be scripted, so repetitive jobs are automated and run the same way each time",
+                "Uses few resources, so it suits servers and older hardware",
+                "Hard for beginners, because commands must be remembered and typed exactly"
               ]
             },
             {
@@ -886,9 +886,9 @@
               "examples": "ATM screens; \"press 1 for sales\" phone menus.",
               "examTip": "Simple and guided, but limited to the options shown.",
               "keyFacts": [
-                "No prior knowledge needed",
-                "Can't do anything not on the menu",
-                "Slow for experts"
+                "No prior knowledge needed, because users just pick from the options shown",
+                "Can't do anything not on the menu, so it is limited but hard to get wrong",
+                "Slow for experts, because they must go through several menus to reach an option"
               ]
             },
             {
@@ -898,10 +898,10 @@
               "examples": "The Windows desktop; macOS.",
               "examTip": "Easiest for non-technical users, but uses more resources than a CLI.",
               "keyFacts": [
-                "Windows, Icons, Menus, Pointer",
-                "Intuitive visual design",
-                "Needs more processing power",
-                "Slower than CLI for repetitive tasks"
+                "Windows, Icons, Menus, Pointer (WIMP) let users point and click instead of typing commands",
+                "Intuitive visual design, so new users learn it quickly",
+                "Needs more processing power, because it must draw graphics on screen",
+                "Slower than CLI for repetitive tasks, because each step needs clicking through"
               ]
             },
             {
@@ -911,9 +911,9 @@
               "examples": "Smartphones; self-checkouts.",
               "examTip": "Needs bigger buttons; ideal for phones and kiosks.",
               "keyFacts": [
-                "Tap, swipe and pinch",
-                "Larger touch targets",
-                "Used on phones, tablets and kiosks"
+                "Tap, swipe and pinch gestures are natural, so even young children can use it",
+                "Larger touch targets, because fingers are less precise than a mouse pointer",
+                "Used on phones, tablets and kiosks, where there is no room for a keyboard or mouse"
               ]
             }
           ]
@@ -929,10 +929,10 @@
               "examples": "Linux vs Windows; Android vs iOS.",
               "examTip": "Give advantages AND disadvantages of both.",
               "keyFacts": [
-                "Open source: free, customisable, community-supported",
-                "Open source: less polished, patchy driver support",
-                "Proprietary: consistent, vendor support",
-                "Proprietary: licence costs, locked to one vendor"
+                "Open source is free, customisable and community-supported, so organisations save on licences",
+                "Open source can be less polished with patchy driver support, so some hardware may not work",
+                "Proprietary is consistent with vendor support, so problems are fixed by the company",
+                "Proprietary has licence costs and locks you to one vendor, making switching expensive"
               ],
               "comparisonTable": {
                 "title": "Open Source vs Proprietary Software",
@@ -958,9 +958,9 @@
               "examples": "LibreOffice vs Microsoft 365; GIMP vs Photoshop.",
               "examTip": "Also consider file compatibility: proprietary formats may not open correctly.",
               "keyFacts": [
-                "Free alternatives may lack advanced features",
-                "Some industries require specific proprietary tools",
-                "Saving licence fees can cost more in support"
+                "Free alternatives may lack advanced features, so power users may still need paid software",
+                "Some industries require specific proprietary tools, so files can be shared with clients",
+                "Saving licence fees can cost more in support, because staff need training and help"
               ]
             }
           ]
@@ -976,10 +976,10 @@
               "examples": "JPEG photos; PNG logos; SVG icons.",
               "examTip": "JPEG lossy (photos); PNG lossless (transparency); SVG scalable; RAW largest.",
               "keyFacts": [
-                "JPEG: lossy, small",
-                "PNG: lossless, transparency",
-                "GIF: 256 colours, animation",
-                "SVG: scales without losing quality"
+                "JPEG is lossy and small, so it suits photos on websites",
+                "PNG is lossless with transparency, so it suits logos and screenshots",
+                "GIF has 256 colours and animation, so it suits simple animated images",
+                "SVG scales without losing quality, because it stores shapes, not pixels, so it suits icons and logos"
               ]
             },
             {
@@ -989,10 +989,10 @@
               "examples": "MP3 streaming; WAV recording.",
               "examTip": "MP3/AAC for streaming; WAV/FLAC for production. Higher bit rate = better and bigger.",
               "keyFacts": [
-                "MP3: lossy, small",
-                "AAC: lossy, better than MP3",
-                "WAV: uncompressed",
-                "FLAC: lossless, smaller than WAV"
+                "MP3 is lossy and small, so it suits music on phones and streaming",
+                "AAC is lossy but sounds better than MP3 at the same size, so many streaming services use it",
+                "WAV is uncompressed, so it keeps full quality for editing but files are large",
+                "FLAC is lossless but smaller than WAV, so it suits storing music at full quality"
               ]
             },
             {
@@ -1002,9 +1002,9 @@
               "examples": "MP4 online; MOV from Apple devices.",
               "examTip": "H.265 is half the size of H.264 at the same quality.",
               "keyFacts": [
-                "MP4 + H.264: most compatible",
-                "MP4 + H.265: smaller, for 4K",
-                "MKV: several audio/subtitle tracks"
+                "MP4 with H.264 is the most compatible, so it plays almost everywhere",
+                "MP4 with H.265 is smaller at the same quality, so it suits 4K video",
+                "MKV holds several audio and subtitle tracks, so it suits films in more than one language"
               ]
             },
             {
@@ -1014,10 +1014,10 @@
               "examples": "EXE/MSI on Windows; DMG on macOS; APK on Android.",
               "examTip": "Only install from trusted sources and check digital signatures.",
               "keyFacts": [
-                "EXE runs programs; MSI installs them",
-                "APK: Android apps",
-                "DMG: macOS apps",
-                "ZIP must be extracted first"
+                "EXE runs programs and MSI installs them on Windows, so they won't run on other OSs",
+                "APK installs Android apps, usually from the Play Store",
+                "DMG installs macOS apps, so it is used only on Macs",
+                "ZIP must be extracted first, because it is a compressed folder, not a program"
               ]
             }
           ]
@@ -1038,10 +1038,10 @@
               "definition": "What the people using the system need: their tasks, skills, mobility and accessibility needs.",
               "examTip": "Always start with user needs: who will use it and what for?",
               "keyFacts": [
-                "Identify the users first",
-                "Skill level shapes the interface",
-                "Accessibility needs",
-                "Mobile or fixed?"
+                "Identify the users first, because the right system depends on who will use it",
+                "Skill level shapes the interface, so beginners get a simpler design and experts more control",
+                "Accessibility needs must be met, so disabled users aren't excluded",
+                "Mobile or fixed? Decides whether laptops and tablets or desktops are needed"
               ]
             },
             {
@@ -1049,9 +1049,9 @@
               "term": "Specifications",
               "definition": "The technical requirements the system must meet, e.g. performance, storage and ports.",
               "keyFacts": [
-                "Sets minimum performance",
-                "Based on real needs",
-                "Used to compare options fairly"
+                "Sets minimum performance, so the system can handle the workload",
+                "Based on real needs, so money isn't wasted on power nobody uses",
+                "Used to compare options fairly, by checking each against the same requirements"
               ]
             },
             {
@@ -1059,9 +1059,9 @@
               "term": "Compatibility",
               "definition": "Whether the system works with existing hardware, software, data and networks.",
               "keyFacts": [
-                "Works with existing devices and software",
-                "Existing data can be moved across",
-                "Suits the current network"
+                "Works with existing devices and software, so nothing already owned has to be replaced",
+                "Existing data can be moved across, so records aren't lost or re-typed",
+                "Suits the current network, so no expensive network upgrade is needed"
               ]
             },
             {
@@ -1069,10 +1069,10 @@
               "term": "Connectivity",
               "definition": "The network and device connections the system supports.",
               "keyFacts": [
-                "Ethernet, Wi-Fi, Bluetooth",
-                "Ports to match peripherals: USB, HDMI",
-                "4G/5G for use on the move",
-                "Supports VPN or remote access"
+                "Ethernet, Wi-Fi and Bluetooth support, so it connects to the network and nearby devices",
+                "Ports must match peripherals (USB, HDMI), so existing screens and devices can be plugged in",
+                "4G/5G for use on the move, so staff can work away from Wi-Fi",
+                "Supports VPN or remote access, so staff can reach internal systems securely from outside"
               ]
             },
             {
@@ -1081,10 +1081,10 @@
               "definition": "The total cost of buying, setting up, running and replacing the system.",
               "examTip": "Consider total cost of ownership, not just the purchase price.",
               "keyFacts": [
-                "Upfront purchase or lease",
-                "Running costs: support, licences, power",
-                "Training costs",
-                "Is it worth the money?"
+                "Upfront purchase or lease: buying costs more at the start, leasing spreads the cost",
+                "Running costs (support, licences, power) continue for the system's whole life",
+                "Training costs, because staff need time to learn the new system",
+                "Is it worth the money? The benefits must outweigh the total cost"
               ]
             },
             {
@@ -1092,9 +1092,9 @@
               "term": "Efficiency",
               "definition": "How well the system uses time, money and resources to do its job.",
               "keyFacts": [
-                "Lower energy use cuts costs",
-                "Faster processing saves time",
-                "Automates manual steps"
+                "Lower energy use cuts costs, especially when systems run all day",
+                "Faster processing saves time, so staff get more done",
+                "Automates manual steps, so fewer staff hours are needed"
               ]
             },
             {
@@ -1103,10 +1103,10 @@
               "definition": "Practicalities of rollout: timescales, testing, moving data and downtime.",
               "examTip": "Cover all four: timescales, testing, migration, downtime.",
               "keyFacts": [
-                "Rollout can take weeks or months",
-                "Test with real users before go-live",
-                "Moving data risks loss or corruption",
-                "Phased rollout or running old and new side by side reduces risk"
+                "Rollout can take weeks or months, so it must be planned around busy periods",
+                "Test with real users before go-live, so problems are found before they disrupt work",
+                "Moving data risks loss or corruption, so it must be backed up and checked",
+                "Phased rollout or running old and new side by side reduces risk, because the old system is a fallback"
               ]
             },
             {
@@ -1114,9 +1114,9 @@
               "term": "Productivity",
               "definition": "How the system affects how much work staff can get done.",
               "keyFacts": [
-                "Short dip while staff learn",
-                "Long-term gains once adopted",
-                "Automates manual tasks"
+                "Short dip while staff learn, because they are slower at first",
+                "Long-term gains once adopted, as staff become faster than with the old system",
+                "Automates manual tasks, freeing staff for more valuable work"
               ]
             },
             {
@@ -1124,9 +1124,9 @@
               "term": "Security",
               "definition": "The security features of the system and how it fits existing security measures.",
               "keyFacts": [
-                "Regular updates from the vendor",
-                "Supports MFA",
-                "Meets standards and GDPR"
+                "Regular updates from the vendor, so new security flaws are patched",
+                "Supports MFA, so a stolen password alone can't get into accounts",
+                "Meets standards and GDPR, so the organisation stays within the law"
               ]
             }
           ]
@@ -1142,10 +1142,10 @@
               "examples": "Supermarket tills reducing stock counts at each sale.",
               "examTip": "Benefits: fewer stockouts, less overstock. Risk: if it fails, stock levels are unknown.",
               "keyFacts": [
-                "Barcodes/RFID update stock at the till",
-                "Low stock triggers reorders",
-                "Less manual counting",
-                "Managers see stock from anywhere"
+                "Barcodes/RFID update stock at the till, so stock levels are always accurate",
+                "Low stock triggers reorders, so shelves are never empty",
+                "Less manual counting, which saves staff time and cuts errors",
+                "Managers see stock from anywhere, so they can make decisions without visiting each shop"
               ]
             },
             {
@@ -1155,10 +1155,10 @@
               "examples": "A weather station; factory temperature sensors.",
               "examTip": "Automatic, continuous and time-stamped. Link to IoT sensors.",
               "keyFacts": [
-                "No human needed",
-                "Each reading is time-stamped",
-                "Produces large amounts of data",
-                "Analysed later for trends"
+                "No human needed, so data is collected 24/7, even in dangerous or remote places",
+                "Each reading is time-stamped, so changes can be tracked over time",
+                "Produces large amounts of data, so storage and analysis tools are needed",
+                "Analysed later for trends, e.g. finding when a machine tends to overheat"
               ]
             },
             {
@@ -1168,9 +1168,9 @@
               "examples": "Choosing which products to promote from sales data; spotting fraud.",
               "examTip": "Turns raw data into decisions.",
               "keyFacts": [
-                "Dashboards and reports",
-                "Forecasts from past data",
-                "Decisions based on evidence, not guesswork"
+                "Dashboards and reports show key figures clearly, so managers see problems quickly",
+                "Forecasts from past data predict future demand, so stock and staff can be planned",
+                "Decisions based on evidence, not guesswork, so they are more likely to succeed"
               ]
             },
             {
@@ -1179,9 +1179,9 @@
               "definition": "IT for everyday admin: documents, spreadsheets, email and scheduling.",
               "examples": "Microsoft 365; Teams; Zoom.",
               "keyFacts": [
-                "Office suites are standard",
-                "Cloud versions allow collaboration",
-                "Document systems control versions"
+                "Office suites are standard, so staff already know them and files are easy to share",
+                "Cloud versions allow collaboration, so several people can edit a document at once",
+                "Document systems control versions, so everyone works on the latest copy"
               ]
             },
             {
@@ -1190,9 +1190,9 @@
               "definition": "IT for design, media production and animation.",
               "examples": "Photoshop; AutoCAD; Blender.",
               "keyFacts": [
-                "Needs powerful hardware",
-                "Large files need fast, big storage",
-                "Often subscription software"
+                "Needs powerful hardware, because editing video and 3D models is demanding",
+                "Large files need fast, big storage, so work loads and saves quickly",
+                "Often subscription software (e.g. Adobe), so costs continue every month"
               ]
             },
             {
@@ -1201,9 +1201,9 @@
               "definition": "IT for creating, targeting and measuring adverts.",
               "examples": "Google Ads; Facebook ad targeting.",
               "keyFacts": [
-                "Targeted using personal data",
-                "Results measured in real time",
-                "Link to targeted marketing and ethics"
+                "Targeted using personal data, so adverts reach the people most likely to buy",
+                "Results measured in real time, so poorly performing adverts can be changed quickly",
+                "Links to targeted marketing and ethics, because using personal data raises privacy concerns"
               ]
             },
             {
@@ -1212,10 +1212,10 @@
               "definition": "IT that designs, controls and checks manufacturing, from CAD to quality control.",
               "examples": "CAD designs sent to CNC machines.",
               "keyFacts": [
-                "CAD: design",
-                "CAM: turns designs into machine instructions",
-                "CNC: precise automated machining",
-                "Sensors spot defects"
+                "CAD is used to design products on screen, so changes are quick and cheap to make",
+                "CAM turns designs into machine instructions, so there is no manual programming step",
+                "CNC gives precise automated machining, so every part comes out identical",
+                "Sensors spot defects, so faulty products are caught before they reach customers"
               ]
             },
             {
@@ -1224,10 +1224,10 @@
               "definition": "IT for physical and cyber security, e.g. CCTV and access control.",
               "examples": "Networked CCTV; biometric locks on a server room.",
               "keyFacts": [
-                "CCTV with remote viewing",
-                "Swipe cards and biometrics",
-                "Security monitoring software",
-                "Creates lots of data to store"
+                "CCTV with remote viewing, so sites can be watched from anywhere",
+                "Swipe cards and biometrics control who enters, and log every entry",
+                "Security monitoring software spots attacks on the network quickly",
+                "Creates lots of data to store, e.g. CCTV footage and access logs"
               ]
             },
             {
@@ -1236,9 +1236,9 @@
               "definition": "IT performing tasks with little or no human input.",
               "examples": "Automated payroll; chatbots; robot arms.",
               "keyFacts": [
-                "Cuts labour costs",
-                "Consistent every time",
-                "Can replace jobs"
+                "Cuts labour costs, because machines do work people used to be paid for",
+                "Consistent every time, so quality doesn't drop with tiredness",
+                "Can replace jobs, especially repetitive roles, which affects staff and the local community"
               ]
             }
           ]
@@ -1253,10 +1253,10 @@
               "definition": "How easy, fast, available and accessible a system is for staff and customers.",
               "examTip": "Cover all four: ease of use, performance, availability, accessibility.",
               "keyFacts": [
-                "Easy to use: fewer errors, less training",
-                "Slow systems cut productivity",
-                "Downtime costs sales",
-                "Usable by people with disabilities"
+                "Easy to use means fewer errors and less training, so staff are productive sooner",
+                "Slow systems cut productivity, because staff spend time waiting",
+                "Downtime costs sales, because customers can't buy while the system is down",
+                "Usable by people with disabilities, so no staff or customers are excluded"
               ]
             },
             {
@@ -1264,9 +1264,9 @@
               "term": "Employee and Customer Needs",
               "definition": "Whether the system meets the needs of both staff and customers.",
               "keyFacts": [
-                "Staff need the right features without extra work",
-                "Customers need reliable and easy systems",
-                "Collect feedback to improve"
+                "Staff need the right features without extra work, or they'll find workarounds",
+                "Customers need reliable, easy systems, or they'll go to a competitor",
+                "Collect feedback to improve, so problems are found and fixed"
               ]
             },
             {
@@ -1274,9 +1274,9 @@
               "term": "Cost",
               "definition": "The cost of the system to the organisation, now and over time.",
               "keyFacts": [
-                "Upfront: hardware, licences, installation",
-                "Ongoing: support, maintenance, training",
-                "Hidden: data migration, integration"
+                "Upfront costs: hardware, licences and installation, paid before any benefit is seen",
+                "Ongoing costs: support, maintenance and training, which continue for years",
+                "Hidden costs such as data migration and integration are often underestimated"
               ]
             },
             {
@@ -1285,10 +1285,10 @@
               "definition": "How the rollout affects the organisation: timescales, testing, data migration and downtime.",
               "examTip": "Focus on the impact during and after rollout.",
               "keyFacts": [
-                "Rushed rollouts cause problems",
-                "Test with real users",
-                "Data can be lost when moving",
-                "Downtime stops normal work"
+                "Rushed rollouts cause problems, because bugs and training gaps aren't dealt with first",
+                "Test with real users, so problems are found before go-live",
+                "Data can be lost when moving it, so it must be backed up first",
+                "Downtime stops normal work, so switch-over should happen at quiet times"
               ]
             },
             {
@@ -1297,9 +1297,9 @@
               "definition": "Whether the new system replaces the old one entirely or works alongside it.",
               "examTip": "Replace: clean break but risky and costly. Integrate: lower risk but more complex.",
               "keyFacts": [
-                "Full replacement: higher risk and cost",
-                "Integration: works alongside, more complex",
-                "APIs let systems share data"
+                "Full replacement has higher risk and cost, because everything changes at once",
+                "Integration works alongside the old system but is more complex to set up and maintain",
+                "APIs let systems share data, so old and new systems can work together"
               ]
             },
             {
@@ -1307,9 +1307,9 @@
               "term": "Productivity",
               "definition": "How the system affects staff output during and after the change.",
               "keyFacts": [
-                "Dip while staff learn",
-                "Long-term gains",
-                "Automation frees staff for other work"
+                "Dip while staff learn, because they are slower with an unfamiliar system",
+                "Long-term gains once staff are confident with it",
+                "Automation frees staff for other work, such as customer service"
               ]
             },
             {
@@ -1317,10 +1317,10 @@
               "term": "Working Practices",
               "definition": "How the system changes the way staff work.",
               "keyFacts": [
-                "Enables remote and flexible working",
-                "Messaging replaces some email",
-                "Some roles change or disappear",
-                "Staff may resist change"
+                "Enables remote and flexible working, so staff can work from home",
+                "Messaging replaces some email, so communication is quicker and less formal",
+                "Some roles change or disappear, as tasks are automated",
+                "Staff may resist change, so managers need to explain the benefits and involve them"
               ]
             },
             {
@@ -1329,9 +1329,9 @@
               "definition": "Training staff need to use the system, at launch and as it changes.",
               "examTip": "Training costs time and money, but too little leads to errors and poor adoption.",
               "keyFacts": [
-                "Train everyone before go-live",
-                "Refresher training after updates",
-                "Different users need different training"
+                "Train everyone before go-live, so staff can use the system from day one",
+                "Refresher training after updates, so staff keep up with new features",
+                "Different users need different training, e.g. admins need more than everyday users"
               ]
             },
             {
@@ -1339,9 +1339,9 @@
               "term": "User Support",
               "definition": "Ongoing help for staff using the system.",
               "keyFacts": [
-                "Internal IT helpdesk",
-                "Vendor support contracts",
-                "FAQs and guides reduce helpdesk load"
+                "Internal IT helpdesk, so staff get quick help from people who know the organisation",
+                "Vendor support contracts, so complex problems are fixed by the experts who made the system",
+                "FAQs and guides reduce helpdesk load, because staff can solve simple problems themselves"
               ]
             },
             {
@@ -1349,10 +1349,10 @@
               "term": "Security",
               "definition": "The new security risks a system brings and how it must be protected.",
               "keyFacts": [
-                "Every new system adds vulnerabilities",
-                "Change insecure default settings",
-                "Keep it patched",
-                "Set permissions carefully from day one"
+                "Every new system adds vulnerabilities, so it increases the ways attackers could get in",
+                "Change insecure default settings, because attackers know common default passwords",
+                "Keep it patched, so known security flaws are fixed",
+                "Set permissions carefully from day one, so staff only access what they need"
               ]
             }
           ]
@@ -1373,10 +1373,10 @@
               "examples": "AI chips in phones; 5G for real-time applications.",
               "examTip": "Performance gains, but they need new infrastructure and lots of computing power.",
               "keyFacts": [
-                "AI chips run AI tasks much faster",
-                "Edge computing processes data near its source, cutting delay",
-                "5G: very fast with very low latency",
-                "AI tunes systems by learning from use"
+                "AI chips run AI tasks much faster, so features like voice recognition work on the device itself",
+                "Edge computing processes data near its source, cutting delay because it doesn't travel to a far-off server",
+                "5G is very fast with very low latency, so it suits live video and self-driving cars",
+                "AI tunes systems by learning from use, e.g. adjusting performance to save battery"
               ]
             },
             {
@@ -1386,10 +1386,10 @@
               "examples": "Siri and Alexa; Netflix recommendations; deepfakes.",
               "examTip": "Give both sides: convenience and accessibility vs privacy, misinformation and over-reliance.",
               "keyFacts": [
-                "Voice assistants help accessibility",
-                "Personalised recommendations",
-                "Deepfakes spread misinformation",
-                "Needs lots of personal data"
+                "Voice assistants help accessibility, so people with disabilities can control devices by speaking",
+                "Personalised recommendations save time, but can trap users in filter bubbles",
+                "Deepfakes spread misinformation, because fake video and audio look and sound real",
+                "Needs lots of personal data, which raises privacy concerns about how it is used and stored"
               ]
             },
             {
@@ -1399,10 +1399,10 @@
               "examples": "AI fraud detection in banks; AI screening job applications.",
               "examTip": "Both sides for Level 3: efficiency and better decisions vs job losses, bias and security.",
               "keyFacts": [
-                "Automates tasks that needed people",
-                "Better, faster decisions from data",
-                "Jobs lost, including office roles",
-                "Bias in training data; attackers use AI too"
+                "Automates tasks that needed people, so organisations cut costs and work faster",
+                "Better, faster decisions from data, because AI spots patterns humans miss",
+                "Jobs lost, including office roles, so staff may need retraining",
+                "Bias in training data leads to unfair decisions, and attackers use AI too, e.g. for convincing phishing"
               ]
             }
           ]

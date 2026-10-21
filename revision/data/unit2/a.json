@@ -19,9 +19,9 @@
               "examples": "Copying the customer database to a USB before resigning; installing pirated software.",
               "examTip": "Insiders have legitimate access, so they are harder to detect. Say WHO did WHAT.",
               "keyFacts": [
-                "Deliberate (revenge, theft) or accidental",
-                "Theft of equipment, data or licences",
-                "Unauthorised software brings legal and malware risks"
+                "Deliberate (revenge, theft) or accidental, so an organisation must guard against honest mistakes as well as malice",
+                "Theft of equipment, data or licences, which insiders find easy because they already have access",
+                "Unauthorised software brings legal and malware risks: unlicensed copies break copyright and may hide malware"
               ]
             },
             {
@@ -31,9 +31,9 @@
               "examples": "A burst pipe flooding a server room; arson; a power cut.",
               "examTip": "Justifies off-site backups and disaster recovery plans.",
               "keyFacts": [
-                "Fire, flood, power loss, terrorism",
-                "Destroys hardware and the data on it",
-                "Reduce with off-site backups, UPS, fire suppression"
+                "Fire, flood, power loss or terrorism can strike without warning, so they must be planned for",
+                "Destroys hardware and the data on it, so systems are down until both are replaced",
+                "Reduce with off-site backups, UPS and fire suppression, so data survives and systems keep running"
               ]
             },
             {
@@ -43,9 +43,9 @@
               "examples": "An unlocked server room; unescorted visitors; staff on dodgy download sites.",
               "examTip": "A human weakness: fix it with training and policy, not just technology.",
               "keyFacts": [
-                "Equipment not physically secured",
-                "Visitors not vetted",
-                "Visiting untrustworthy websites"
+                "Equipment not physically secured, so devices and data can simply be picked up and taken",
+                "Visitors not vetted, so an attacker can walk in posing as a contractor or delivery driver",
+                "Visiting untrustworthy websites can download malware onto work systems"
               ]
             },
             {
@@ -55,9 +55,9 @@
               "examples": "Emailing customer data to the wrong person; a password on a sticky note.",
               "examTip": "Root causes: negligence, poor training, not following procedures.",
               "keyFacts": [
-                "Human factors: negligence, poor training",
-                "Worse with weak monitoring",
-                "Usually a weak security culture"
+                "Human factors such as negligence and poor training cause it, e.g. emailing data to the wrong person",
+                "Worse with weak monitoring, because leaks go unnoticed and can't be stopped or reported in time",
+                "Usually a sign of a weak security culture, where staff don't see security as their responsibility"
               ]
             }
           ]
@@ -73,10 +73,10 @@
               "examples": "A macro virus in a Word document.",
               "examTip": "Know the types: boot sector, web script, macro, worm, rootkit, trojan, browser hijack, polymorphic.",
               "keyFacts": [
-                "Macro: hidden in document macros",
-                "Worm: spreads across networks by itself",
-                "Rootkit: hides deep in the OS",
-                "Polymorphic: changes its code to avoid detection"
+                "Macro viruses hide in document macros, so opening an infected Word or Excel file runs them",
+                "Worm spreads across networks by itself, so it can infect many machines with no user action",
+                "Rootkit hides deep in the OS, so it is very hard for antivirus to detect or remove",
+                "Polymorphic viruses change their code to avoid detection, so signature-based antivirus misses them"
               ]
             },
             {
@@ -86,10 +86,10 @@
               "examples": "A keylogger recording passwords.",
               "examTip": "Keylogger = records keystrokes to steal logins. A favourite exam term.",
               "keyFacts": [
-                "Keylogger: records keystrokes",
-                "System monitor: captures all activity",
-                "Stalkerware: tracks a phone's location",
-                "Tracking cookies follow browsing"
+                "Keylogger records keystrokes, so passwords and card numbers can be stolen as they are typed",
+                "System monitor captures all activity, e.g. screenshots, emails and chats",
+                "Stalkerware tracks a phone's location, letting someone secretly follow a victim's movements",
+                "Tracking cookies follow browsing, building a profile of the user's interests for advertisers"
               ]
             },
             {
@@ -99,9 +99,9 @@
               "examples": "A free app showing pop-ups; unwanted software bundled with a download.",
               "examTip": "Not all adware is illegal: tell legitimate adware from abusive adware.",
               "keyFacts": [
-                "PUP: installed alongside other software",
-                "Legitimate adware funds free apps with consent",
-                "Deceptive adware can be illegal"
+                "PUP (potentially unwanted program) is installed alongside other software, often without the user noticing",
+                "Legitimate adware funds free apps with the user's consent, so users get the app without paying",
+                "Deceptive adware can be illegal, because it installs without consent or tricks users into clicking"
               ]
             },
             {
@@ -111,10 +111,10 @@
               "examples": "An encryptor scrambling all company files.",
               "examTip": "Best defence: tested OFFLINE backups, so you can restore without paying.",
               "keyFacts": [
-                "Encryptors: files can't be opened",
-                "Lockers: whole screen locked",
-                "Leakware: threatens to publish data",
-                "Defend with offline backups, patching, training"
+                "Encryptors scramble files so they can't be opened until a ransom is paid for the key",
+                "Lockers lock the whole screen, so the device can't be used at all",
+                "Leakware threatens to publish data, so even organisations with backups are pressured to pay",
+                "Defend with offline backups, patching and training, so data can be restored and fewer attacks get in"
               ]
             },
             {
@@ -124,9 +124,9 @@
               "examples": "Thousands of infected IoT devices flooding a website.",
               "examTip": "Botnets link malware to DDoS attacks: a common exam link.",
               "keyFacts": [
-                "Controlled remotely by the attacker",
-                "Many bots = a botnet",
-                "Used for spam and DDoS"
+                "Controlled remotely by the attacker, usually without the owner knowing their device is infected",
+                "Many bots together form a botnet, giving the attacker the power of thousands of devices",
+                "Used for spam and DDoS, because huge numbers of devices can send mail or flood a target at once"
               ]
             },
             {
@@ -136,10 +136,10 @@
               "examples": "A DDoS taking a website offline; changing records in a database.",
               "examTip": "DoS = one source; DDoS = many (a botnet).",
               "keyFacts": [
-                "DoS: one machine floods a target",
-                "DDoS: a botnet floods it",
-                "Data theft and data tampering",
-                "Cyberwarfare by states"
+                "DoS: one machine floods a target with traffic, so genuine users can't get through",
+                "DDoS: a botnet floods it from thousands of devices, so it is much harder to block than one source",
+                "Data theft and data tampering, so information is stolen or changed without anyone noticing",
+                "Cyberwarfare by states targets other countries' systems, e.g. to spy or disrupt"
               ]
             },
             {
@@ -149,10 +149,10 @@
               "examples": "Poisoning AI training data; hijacking connected machinery.",
               "examTip": "\"Fakes\" includes AI-generated images, video and audio.",
               "keyFacts": [
-                "Data poisoning, tampering, destruction",
-                "AI-generated fakes",
-                "Hijacking machinery, vehicles, IoT",
-                "Can target national infrastructure"
+                "Data poisoning, tampering and destruction, so the organisation can no longer trust or use its data",
+                "AI-generated fakes (e.g. deepfakes) can spread false information or trick staff",
+                "Hijacking machinery, vehicles or IoT devices, which can cause physical harm",
+                "Can target national infrastructure (power, water, transport), affecting whole populations"
               ]
             },
             {
@@ -162,10 +162,10 @@
               "examples": "A fake bank email; a call pretending to be IT support.",
               "examTip": "Know the variants: phishing, vishing, smishing, whaling, spear phishing.",
               "keyFacts": [
-                "Phishing (email), vishing (phone), smishing (text)",
-                "Whaling: senior staff; spear phishing: one person",
-                "Pretexting: a made-up story",
-                "Best defence: training"
+                "Phishing (email), vishing (phone) and smishing (text) all trick people into giving details or clicking links",
+                "Whaling targets senior staff and spear phishing targets one person, using research to seem convincing",
+                "Pretexting uses a made-up story (e.g. posing as IT support) to get information",
+                "Best defence is training, because these attacks target people, not technology"
               ]
             },
             {
@@ -175,9 +175,9 @@
               "examples": "Tailgating through a door; shoulder surfing a password.",
               "examTip": "Tailgating = following someone through a secure door. Learn this definition.",
               "keyFacts": [
-                "Area access: tailgating, forced entry, impersonation",
-                "Device access: unattended devices, shoulder surfing, theft",
-                "Devices in public places are most exposed"
+                "Area access by tailgating, forced entry or impersonation gets an attacker into restricted spaces",
+                "Device access through unattended devices, shoulder surfing or theft exposes data without any hacking",
+                "Devices in public places are most exposed, because anyone can watch or grab them"
               ]
             }
           ]
@@ -193,9 +193,9 @@
               "examples": "A production line stopped by ransomware; a website down so no orders.",
               "examTip": "Operational = the business can't function.",
               "keyFacts": [
-                "Lost production",
-                "Services unavailable",
-                "Data unavailable"
+                "Lost production, because systems needed to make products or deliver services are down",
+                "Services unavailable, so customers can't buy, book or get support",
+                "Data unavailable, so staff can't do their jobs even if systems are running"
               ]
             },
             {
@@ -205,9 +205,9 @@
               "examples": "GDPR fines; refunds to affected customers.",
               "examTip": "Split it into organisational costs, compensation and legal liability.",
               "keyFacts": [
-                "Lost profits, higher insurance",
-                "Compensation and refunds",
-                "Fines and legal fees"
+                "Lost profits and higher insurance, because sales stop and insurers see the organisation as riskier",
+                "Compensation and refunds to customers whose data or service was affected",
+                "Fines and legal fees, e.g. from the ICO under GDPR or from customers suing"
               ]
             },
             {
@@ -217,9 +217,9 @@
               "examples": "Angry reviews on social media after a breach.",
               "examTip": "Often the longest-lasting impact: lost trust is hard to rebuild.",
               "keyFacts": [
-                "Loss of customer trust",
-                "Poor reviews online",
-                "Lower reputation scores"
+                "Loss of customer trust, so customers move to competitors",
+                "Poor reviews online, which put off new customers",
+                "Lower reputation scores, which can lose contracts with partners and investors"
               ]
             },
             {
@@ -229,9 +229,9 @@
               "examples": "A rival stealing a new product design.",
               "examTip": "Destroys competitive advantage even with no personal data involved.",
               "keyFacts": [
-                "Product designs",
-                "Testing and development data",
-                "Strategy and trade secrets"
+                "Product designs stolen, so competitors can copy them without the development cost",
+                "Testing and development data exposed, losing years of research",
+                "Strategy and trade secrets leaked, so the organisation loses its competitive advantage"
               ]
             }
           ]
@@ -247,9 +247,9 @@
               "examples": "Checking the NCSC site for the latest ransomware advisory.",
               "examTip": "NCSC = UK. Use it because threats keep changing.",
               "keyFacts": [
-                "UK government body",
-                "Threat reports and malware analysis",
-                "Advisories and guidance"
+                "UK government body, so its advice is authoritative for UK organisations",
+                "Publishes threat reports and malware analysis, so organisations know what attacks to expect",
+                "Advisories and guidance give practical steps to protect systems"
               ]
             },
             {
@@ -259,9 +259,9 @@
               "examples": "Following NIST guidance on password policy.",
               "examTip": "NIST = the US equivalent of the NCSC.",
               "keyFacts": [
-                "US standards body",
-                "News and advisories",
-                "Widely used security frameworks"
+                "US standards body whose security standards are used worldwide",
+                "News and advisories warn organisations about new vulnerabilities",
+                "Widely used security frameworks give organisations a structured way to manage risk"
               ]
             },
             {
@@ -271,9 +271,9 @@
               "examples": "Checking a website for SQL injection using the OWASP Top 10.",
               "examTip": "Used in penetration testing: link the two.",
               "keyFacts": [
-                "Focus: web application security",
-                "Top 10 is updated regularly",
-                "A checklist for pen testing"
+                "Focuses on web application security, the risks to websites and online services",
+                "Top 10 is updated regularly, so it reflects the latest attack trends",
+                "Used as a checklist for pen testing, so testers check the most common weaknesses first"
               ]
             }
           ]
@@ -295,9 +295,9 @@
               "examples": "An exposed open port; malware arriving on a USB stick.",
               "examTip": "Port types: well-known (e.g. 80 for HTTP), registered, dynamic/private. Open ports = risk.",
               "keyFacts": [
-                "Three port categories",
-                "Risks: open ports, spoofing, DoS",
-                "External storage can bring in malware"
+                "Three port categories: well-known (0–1023), registered and dynamic, so admins know which should be open",
+                "Risks include open ports, spoofing and DoS, because every open port is a way in for attackers",
+                "External storage can bring in malware, e.g. an infected USB stick plugged into a network PC"
               ]
             },
             {
@@ -307,10 +307,10 @@
               "examples": "Everyone having admin rights; not disabling a leaver's account.",
               "examTip": "Password policy points (length, characters, reuse, age) are easy marks.",
               "keyFacts": [
-                "Permissions: read, write, execute, modify",
-                "Password policy: length, characters, reuse, age",
-                "Lock unused accounts; remove leavers",
-                "Browser auto-fill is a risk"
+                "Permissions (read, write, execute, modify) set too widely let staff change data they shouldn't",
+                "Password policy (length, characters, reuse, age) makes passwords harder to guess or crack",
+                "Lock unused accounts and remove leavers, so old logins can't be used by attackers or ex-staff",
+                "Browser auto-fill is a risk, because anyone using the device can log in with saved passwords"
               ]
             },
             {
@@ -320,10 +320,10 @@
               "examples": "Pirated software with a backdoor; an unpatched web app open to SQL injection.",
               "examTip": "Zero-day = a new flaw with no patch yet.",
               "keyFacts": [
-                "Safe downloads: trusted source, HTTPS, malware scan, hash check",
-                "Illegal copies get no updates",
-                "Zero-day exploits",
-                "SQL injection and missing patches"
+                "Safe downloads: trusted source, HTTPS, malware scan and hash check, so the file hasn't been tampered with",
+                "Illegal copies get no updates, so their security flaws are never fixed",
+                "Zero-day exploits attack flaws the vendor doesn't know about yet, so no patch exists",
+                "SQL injection and missing patches let attackers read or change databases through badly written code"
               ]
             },
             {
@@ -333,9 +333,9 @@
               "examples": "An unsupported version of Windows.",
               "examTip": "Unsupported software no longer gets security patches.",
               "keyFacts": [
-                "Unsupported versions",
-                "Missing patches",
-                "Wrong security settings"
+                "Unsupported versions no longer get security updates, so new flaws stay open forever",
+                "Missing patches leave known flaws open, which attackers actively scan for",
+                "Wrong security settings (e.g. default admin passwords) make systems easy to break into"
               ]
             },
             {
@@ -345,9 +345,9 @@
               "examples": "An old Android phone that no longer gets updates.",
               "examTip": "Updates may be slow or stop entirely, leaving known flaws open.",
               "keyFacts": [
-                "Updates come from the manufacturer",
-                "Older devices stop getting them",
-                "Known flaws stay unpatched"
+                "Updates come from the manufacturer (OEM), not just the OS maker, so patches can arrive late",
+                "Older devices stop getting updates, even though people keep using them for years",
+                "Known flaws stay unpatched, so attackers can exploit them on those devices"
               ]
             },
             {
@@ -357,8 +357,8 @@
               "examples": "A stolen laptop; a badly secured restricted area.",
               "examTip": "Link to physical security measures.",
               "keyFacts": [
-                "Theft of devices holding data",
-                "Poor security for restricted areas"
+                "Theft of devices holding data, so unencrypted data can be read by whoever takes them",
+                "Poor security for restricted areas, so intruders can reach servers and network equipment"
               ]
             },
             {
@@ -368,9 +368,9 @@
               "examples": "Sharing a login; a process that lets data leave unchecked.",
               "examTip": "Human weaknesses: fixed by training, policy and better processes.",
               "keyFacts": [
-                "Leaks, deliberate or accidental",
-                "Sharing security details",
-                "Flawed processes"
+                "Leaks, deliberate or accidental, expose data even when the technology is secure",
+                "Sharing security details (e.g. passwords) means anyone could be using that account",
+                "Flawed processes (e.g. no check before sending data) make mistakes likely"
               ]
             },
             {
@@ -380,9 +380,9 @@
               "examples": "A misconfigured cloud store exposing data; a hijacked IoT camera.",
               "examTip": "Learn several IoT risks: default passwords, no encryption, no patches, always listening.",
               "keyFacts": [
-                "Cloud: wrong settings, third-party access, reliance on provider",
-                "IoT: weak encryption, default passwords, no patches",
-                "IoT: set up by non-IT staff, always listening"
+                "Cloud: wrong settings, third-party access and reliance on the provider can expose data or cut off access",
+                "IoT: weak encryption, default passwords and no patches make devices easy to hack",
+                "IoT: set up by non-IT staff and always listening, so insecure devices can join the network unnoticed"
               ]
             }
           ]
@@ -398,9 +398,9 @@
               "examples": "A manufacturer's website; a professional security forum.",
               "examTip": "Three sources: manufacturer, professional forums, specialist third-party sites.",
               "keyFacts": [
-                "Manufacturer's website",
-                "IT and security forums",
-                "Specialist third-party sites"
+                "Manufacturer's website lists patches and known issues for its own products",
+                "IT and security forums share experiences and fixes from other professionals",
+                "Specialist third-party sites (e.g. CVE databases) track vulnerabilities across many products"
               ]
             },
             {
@@ -410,9 +410,9 @@
               "examples": "Attacking over Wi-Fi or Bluetooth; exploiting a router.",
               "examTip": "An attack vector is the \"way in\".",
               "keyFacts": [
-                "Wireless: Wi-Fi, Bluetooth, cellular, NFC, RFID",
-                "Internet connections",
-                "Internal devices: router, switch, access point"
+                "Wireless (Wi-Fi, Bluetooth, cellular, NFC, RFID) can be attacked from outside the building",
+                "Internet connections expose systems to attackers anywhere in the world",
+                "Internal devices (router, switch, access point) give control of traffic if compromised"
               ]
             }
           ]
@@ -428,10 +428,10 @@
               "examples": "A port scanner; a website vulnerability scanner.",
               "examTip": "Know the named tools.",
               "keyFacts": [
-                "Port scanner and network mapper",
-                "Registry checker",
-                "Website vulnerability scanner",
-                "Phishing simulations test users"
+                "Port scanner and network mapper show which devices and open ports exist, revealing ways in",
+                "Registry checker finds suspicious or wrong settings in Windows that malware may have changed",
+                "Website vulnerability scanner tests sites for common flaws like SQL injection",
+                "Phishing simulations test users, showing who needs more training"
               ]
             },
             {
@@ -441,9 +441,9 @@
               "examples": "A consultancy reviewing and certifying a new network design.",
               "examTip": "Shows due diligence and gives independent certification.",
               "keyFacts": [
-                "Done before implementation",
-                "Shows due diligence",
-                "Third-party certification"
+                "Done before implementation, so design flaws are fixed before they cost money to change",
+                "Shows due diligence, proving the organisation took reasonable care over security",
+                "Third-party certification gives customers and partners confidence the system is secure"
               ]
             },
             {
@@ -453,9 +453,9 @@
               "examples": "A pen tester trying to break into a network.",
               "examTip": "Real attack techniques used with permission. Links to OWASP.",
               "keyFacts": [
-                "Uses a range of attack techniques",
-                "Checks against known lists (OWASP Top 10)",
-                "Produces a report"
+                "Uses a range of attack techniques, so it finds weaknesses a real attacker would use",
+                "Checks against known lists (OWASP Top 10), so the most common weaknesses are covered",
+                "Produces a report listing weaknesses and fixes, so the organisation knows what to do next"
               ]
             },
             {
@@ -465,9 +465,9 @@
               "examples": "Buying cyber insurance; stopping a risky activity.",
               "examTip": "Three options: transfer, avoid, accept.",
               "keyFacts": [
-                "Transfer: pass it on, e.g. insurance",
-                "Avoid: stop the activity",
-                "Accept: tolerate a small risk"
+                "Transfer the risk to someone else, e.g. insurance, so they bear the cost if it happens",
+                "Avoid it by stopping the activity, so the risk no longer exists",
+                "Accept a small risk when protecting against it would cost more than the likely loss"
               ]
             }
           ]
@@ -489,9 +489,9 @@
               "examples": "Getting consent before collecting data; reporting a breach within 72 hours.",
               "examTip": "GDPR = personal data and privacy. Don't mix it up with the Computer Misuse Act.",
               "keyFacts": [
-                "Protects personal data and privacy",
-                "Applies to stored and transferred data",
-                "Covers anything that identifies a person"
+                "Protects personal data and privacy, giving people control over their information",
+                "Applies to stored and transferred data, so data must be protected at rest and in transit",
+                "Covers anything that identifies a person, e.g. name, email, IP address or photo"
               ]
             },
             {
@@ -501,9 +501,9 @@
               "examples": "Hacking into a system you have no permission to use.",
               "examTip": "Computer Misuse Act = unauthorised access and modification.",
               "keyFacts": [
-                "Unauthorised access is an offence",
-                "Changing data without permission is an offence",
-                "Covers hacking and creating malware"
+                "Unauthorised access is an offence, even if nothing is changed or stolen",
+                "Changing data without permission is an offence, e.g. altering or deleting records",
+                "Covers hacking and creating malware, so writing or spreading viruses is a crime"
               ]
             }
           ]
@@ -519,10 +519,10 @@
               "examples": "Collecting the minimum data, keeping it accurate, deleting it when done.",
               "examTip": "Lawful/fair/transparent, set purpose, accurate, minimal, minimum time, secure.",
               "keyFacts": [
-                "Lawful, fair and transparent",
-                "Limited purpose; accurate",
-                "Minimum data for minimum time",
-                "Kept confidential and intact"
+                "Lawful, fair and transparent, so people know how their data is used",
+                "Limited purpose and accurate, so data is only used for the reason it was collected and kept correct",
+                "Minimum data for the minimum time, so less is at risk if there is a breach",
+                "Kept confidential and intact, so data is secured against loss, theft and damage"
               ]
             },
             {
@@ -532,9 +532,9 @@
               "examples": "Payroll under \"contract\"; medical data under \"vital interest\".",
               "examTip": "Six bases: consent, contract, legitimate interest, vital interest, legal requirement, public interest.",
               "keyFacts": [
-                "Consent; contract",
-                "Legitimate interest; vital interest",
-                "Legal requirement; public interest"
+                "Consent or a contract, e.g. a customer agrees, or the data is needed to deliver their order",
+                "Legitimate interest or vital interest, e.g. fraud prevention, or protecting someone's life",
+                "Legal requirement or public interest, e.g. sharing data with HMRC, or tasks for the public good"
               ]
             },
             {
@@ -544,10 +544,10 @@
               "examples": "Asking for a copy of your data or for it to be deleted.",
               "examTip": "Access, be informed, correct/erase/restrict, object, portability, no solely automated decisions.",
               "keyFacts": [
-                "Access and be informed",
-                "Correct, erase or restrict",
-                "Object; portability",
-                "Not subject to solely automated decisions"
+                "Right to access and be informed, so people can see what is held and why",
+                "Right to correct, erase or restrict, so wrong data is fixed and unwanted data removed",
+                "Right to object and to portability, so people can stop some uses and take their data elsewhere",
+                "Not subject to solely automated decisions, so a person can ask for a human to review the decision"
               ]
             }
           ]
@@ -569,10 +569,10 @@
               "examples": "Card entry; fingerprint scanners; CCTV; locked server cabinets.",
               "examTip": "Group them: locks, card entry, biometrics, surveillance, training.",
               "keyFacts": [
-                "Locks: mechanical or electronic",
-                "Card entry: NFC, RFID, QR, chip",
-                "Biometrics: fingerprint, iris, face, voice",
-                "CCTV, guards, alarms"
+                "Locks, mechanical or electronic, stop unauthorised people entering rooms",
+                "Card entry (NFC, RFID, QR, chip) controls and logs who goes where",
+                "Biometrics (fingerprint, iris, face, voice) can't be lent or lost like a card",
+                "CCTV, guards and alarms deter intruders and provide evidence"
               ]
             },
             {
@@ -582,10 +582,10 @@
               "examples": "A weekly full backup plus daily incrementals stored off-site.",
               "examTip": "Full, incremental (since last backup), differential (since last full). RAID is NOT a backup.",
               "keyFacts": [
-                "Types: full, differential, incremental",
-                "On-site, off-site, cloud",
-                "RAID and archiving are not backups",
-                "Restore a file, an image or the whole system"
+                "Types: full, differential and incremental, which trade backup speed against restore speed",
+                "On-site, off-site and cloud: off-site and cloud copies survive a fire or flood at the main site",
+                "RAID and archiving are not backups, because RAID copies deletions and corruption instantly",
+                "Restore a file, an image or the whole system, depending on how much was lost"
               ]
             },
             {
@@ -595,10 +595,10 @@
               "examples": "Quarantining a suspicious file.",
               "examTip": "Signatures catch known malware; heuristics catch new behaviour.",
               "keyFacts": [
-                "Signature scanning: known threats",
-                "Heuristics: suspicious behaviour",
-                "File integrity checks",
-                "Responses: warn, block, quarantine, delete"
+                "Signature scanning finds known threats by matching them against a database",
+                "Heuristics spot suspicious behaviour, so new malware without a signature can still be caught",
+                "File integrity checks spot changed system files, which can be a sign of infection",
+                "Responses (warn, block, quarantine, delete) stop the threat spreading"
               ]
             },
             {
@@ -608,10 +608,10 @@
               "examples": "Blocking inbound traffic on every port except those needed.",
               "examTip": "Inbound and outbound rules; packet filtering; application awareness.",
               "keyFacts": [
-                "Packet filtering and inspection",
-                "Application-layer awareness",
-                "Inbound and outbound rules",
-                "Filtering by address"
+                "Packet filtering and inspection check each packet against rules, blocking anything not allowed",
+                "Application-layer awareness lets it understand traffic from specific apps, so it can block risky ones",
+                "Inbound and outbound rules stop attacks coming in and data leaking out",
+                "Filtering by address blocks known malicious IP addresses"
               ]
             },
             {
@@ -621,10 +621,10 @@
               "examples": "Password + USB security key; an authenticator app code.",
               "examTip": "Factors: knowledge, possession, inherence, plus location and behaviour. A USB key = possession.",
               "keyFacts": [
-                "Single-factor vs multi-factor",
-                "Knowledge, possession, inherence",
-                "Tokens: USB key, contactless, code generator",
-                "Certificate-based authentication"
+                "Single-factor uses one check, while multi-factor needs two or more, so a stolen password isn't enough",
+                "Factors are knowledge (password), possession (phone or token) and inherence (fingerprint)",
+                "Tokens (USB key, contactless card, code generator) prove the user has a physical item",
+                "Certificate-based authentication uses a digital certificate on the device, so no password is needed"
               ]
             },
             {
@@ -634,10 +634,10 @@
               "examples": "Finance can open accounts but not HR files.",
               "examTip": "DAC: owners control files. Role-based: by job. Rule-based: rules per user.",
               "keyFacts": [
-                "DAC: users control their own resources",
-                "Role-based: by job role",
-                "Rule-based: rules for each user",
-                "Applies to apps, files and devices"
+                "DAC lets users control their own resources, which is flexible but less secure",
+                "Role-based access is set by job role, so new staff get the right access automatically",
+                "Rule-based access applies rules to each user, e.g. only during working hours",
+                "Applies to apps, files and devices, so every resource is protected"
               ]
             },
             {
@@ -647,8 +647,8 @@
               "examples": "A TPM checking the system is trusted before start-up.",
               "examTip": "Benefit: more security. Drawback: less user control and privacy.",
               "keyFacts": [
-                "Adds another layer of protection",
-                "Less user control, privacy and anonymity"
+                "Adds another layer of protection, e.g. a TPM chip storing encryption keys in hardware",
+                "Less user control, privacy and anonymity, because the hardware enforces what can run"
               ]
             },
             {
@@ -658,10 +658,10 @@
               "examples": "\"Find my device\"; remotely wiping a stolen phone.",
               "examTip": "Remote lock/wipe and timed lockout are strong answers.",
               "keyFacts": [
-                "GPS and tracking software",
-                "Screen locks after time or failed logins",
-                "Wipe after too many failed attempts",
-                "Remote lock and wipe"
+                "GPS and tracking software help locate lost or stolen devices",
+                "Screen locks after time or failed logins, so an unattended device can't be used",
+                "Wipe after too many failed attempts, so a thief can't keep guessing the passcode",
+                "Remote lock and wipe, so data on a lost device is protected even if it isn't found"
               ]
             }
           ]
@@ -677,9 +677,9 @@
               "examples": "Full-disk encryption on a laptop.",
               "examTip": "Protects data \"at rest\": vital for lost or stolen devices.",
               "keyFacts": [
-                "Safe password storage",
-                "Digital Rights Management (DRM)",
-                "File, folder, disk and device encryption"
+                "Safe password storage (hashed, not plain text), so stolen password files are useless",
+                "Digital Rights Management (DRM) stops copyrighted content being copied or shared",
+                "File, folder, disk and device encryption make stolen data unreadable"
               ]
             },
             {
@@ -689,10 +689,10 @@
               "examples": "HTTPS; VPNs; end-to-end encrypted messaging.",
               "examTip": "Symmetric = one shared key (AES, fast). Asymmetric = public/private pair (RSA).",
               "keyFacts": [
-                "Symmetric: one secret key, e.g. AES",
-                "Asymmetric: public + private keys, e.g. RSA",
-                "Used in VPNs, HTTPS, TOR",
-                "End-to-end encryption in messaging"
+                "Symmetric uses one secret key (e.g. AES), so it is fast, but the key must be shared securely",
+                "Asymmetric uses public and private keys (e.g. RSA), so no secret key has to be shared",
+                "Used in VPNs, HTTPS and TOR, so traffic can't be read as it crosses the internet",
+                "End-to-end encryption in messaging means only sender and recipient can read messages"
               ]
             }
           ]
@@ -708,10 +708,10 @@
               "examples": "WPA3; hiding the SSID; MAC filtering; changing default passwords.",
               "examTip": "MAC addresses can be spoofed, so MAC filtering is only medium security.",
               "keyFacts": [
-                "MAC filtering; hide the SSID",
-                "Use WPA2/WPA3",
-                "Attacks: Evil Twin, piggybacking, sniffing",
-                "Change defaults; use VPNs and firewalls"
+                "MAC filtering and hiding the SSID add small obstacles, but both are easily bypassed by spoofing or scanning",
+                "Use WPA2/WPA3, so traffic is strongly encrypted",
+                "Attacks include Evil Twin, piggybacking and sniffing, which steal access or data",
+                "Change defaults and use VPNs and firewalls, so known default passwords can't be used"
               ]
             },
             {
@@ -721,10 +721,10 @@
               "examples": "Designing with least privilege and assuming attackers will try.",
               "examTip": "Expect attacks, least privilege, don't rely on secrecy, follow standards (ISO 27000).",
               "keyFacts": [
-                "Expect attacks",
-                "Least privilege",
-                "Don't rely on secrecy",
-                "Follow ISO 27000"
+                "Expect attacks, so defences are designed in from the start, not added after a breach",
+                "Least privilege gives users only the access they need, limiting damage if an account is compromised",
+                "Don't rely on secrecy: a system should stay secure even if attackers know how it works",
+                "Follow ISO 27000 standards, so security meets a recognised international benchmark"
               ]
             }
           ]

@@ -19,10 +19,10 @@
               "examples": "A hospital storing patient records; a bank's own cloud for financial data.",
               "examTip": "More control and security, but higher cost than public cloud.",
               "keyFacts": [
-                "Full control over data and security",
-                "Higher set-up and running costs",
-                "Suits sensitive data (medical, financial)",
-                "Not shared with other organisations"
+                "Full control over data and security, so the organisation sets its own access rules and can meet GDPR for sensitive records",
+                "Higher set-up and running costs, because it must buy, house and maintain its own servers and pay staff to run them",
+                "Suits sensitive data (medical, financial), as nothing sits on hardware shared with other customers",
+                "Not shared with other organisations, so performance is predictable and never slowed by someone else's demand"
               ]
             },
             {
@@ -32,10 +32,10 @@
               "examples": "A school using Microsoft 365; a start-up hosting its app on AWS.",
               "examTip": "Low cost and scalable, but less control over where data is stored.",
               "keyFacts": [
-                "Pay-as-you-go: cheap for small organisations",
-                "Scales up or down instantly",
-                "Provider maintains and secures the hardware",
-                "Data sits on shared infrastructure"
+                "Pay-as-you-go, so small organisations avoid buying servers and only pay for what they actually use",
+                "Scales up or down instantly, so a business can cope with a busy period without buying extra hardware",
+                "Provider maintains and secures the hardware, so the organisation needs fewer IT staff of its own",
+                "Data sits on shared infrastructure, so the organisation has less control and must trust the provider's security"
               ]
             },
             {
@@ -45,10 +45,10 @@
               "examples": "A retailer keeps payment data on private cloud and runs its website on public cloud.",
               "examTip": "\"Best of both\" in suitability questions: mention flexibility and cost savings.",
               "keyFacts": [
-                "Sensitive data kept private for security/compliance",
-                "Cheaper public cloud for everything else",
-                "Can burst to public cloud when demand spikes",
-                "More complex to manage"
+                "Sensitive data kept private, so the organisation can meet security and legal (GDPR) requirements",
+                "Cheaper public cloud for everything else, so it avoids paying private-cloud costs for non-sensitive work",
+                "Can burst to public cloud when demand spikes, so busy periods are handled without buying extra servers",
+                "More complex to manage, because staff must run two systems and keep data moving securely between them"
               ]
             },
             {
@@ -58,9 +58,9 @@
               "examples": "Amazon EC2; Azure Virtual Machines.",
               "examTip": "IaaS = most control, most responsibility.",
               "keyFacts": [
-                "Full control over OS and installed software",
-                "No hardware to buy: pay for what you use",
-                "Suits custom infrastructure needs"
+                "Full control over the OS and installed software, so it can be set up exactly as the organisation needs",
+                "No hardware to buy, so there is no large upfront cost: the organisation pays only for what it uses",
+                "Suits custom infrastructure needs, but needs skilled IT staff because the organisation still manages the OS"
               ]
             },
             {
@@ -70,10 +70,10 @@
               "examples": "Microsoft 365; Google Workspace; Salesforce.",
               "examTip": "SaaS = no installation, access anywhere. Link it to productivity and remote working.",
               "keyFacts": [
-                "Nothing to install on devices",
-                "Works on any device with internet",
-                "Provider handles updates",
-                "Monthly or annual subscription"
+                "Nothing to install on devices, so it can be rolled out to staff quickly with little IT support",
+                "Works on any device with internet, so staff can work from home or on the move",
+                "Provider handles updates, so everyone is always on the latest, patched version without IT staff doing it",
+                "Monthly or annual subscription, so costs are spread out but keep going for as long as the software is used"
               ]
             },
             {
@@ -83,10 +83,10 @@
               "examples": "Google App Engine; Heroku.",
               "examTip": "PaaS sits between IaaS (most control) and SaaS (least control).",
               "keyFacts": [
-                "Developers focus on code, not servers",
-                "Provider handles OS, patches and scaling",
-                "Faster development with built-in tools",
-                "Less flexible than IaaS"
+                "Developers focus on code, not servers, so apps are built faster and with fewer infrastructure skills",
+                "Provider handles the OS, patches and scaling, so the organisation needs fewer system administrators",
+                "Faster development with built-in tools (databases, testing), so products reach users sooner",
+                "Less flexible than IaaS, because developers must work within the tools and settings the provider offers"
               ],
               "comparisonTable": {
                 "title": "Cloud Service Models Compared (IaaS vs PaaS vs SaaS)",
@@ -137,10 +137,10 @@
               "examples": "Backing up photos to iCloud; a business replacing its servers with AWS.",
               "examTip": "Discuss both sides. Benefits: cost, scalability, access. Drawbacks: security, internet dependency, lock-in.",
               "keyFacts": [
-                "Individuals: access anywhere, automatic backups",
-                "Organisations: less capital spending, scalable, always up to date",
-                "Drawbacks: needs internet; data held by a third party",
-                "Vendor lock-in and data stored abroad (legal issues)"
+                "Individuals can access files anywhere, and automatic backups mean losing a device does not lose their data",
+                "Organisations spend less upfront on hardware, scale as they grow, and always have up-to-date software",
+                "Drawbacks: no internet means no access, and data is held by a third party the organisation must trust",
+                "Vendor lock-in makes switching provider hard, and data stored abroad may fall under other countries' laws"
               ],
               "extendedAnswer": "Cloud computing offers significant benefits for organisations, including reduced capital expenditure on hardware and the ability to scale resources up or down based on demand. Employees can access data and applications from any location, supporting remote working and improving productivity. However, organisations face risks: if internet connectivity is lost, access to cloud systems is unavailable, causing disruption. Security concerns arise as data is stored on third-party servers, potentially in different countries, raising data protection compliance issues under GDPR. There is also risk of vendor lock-in, where migrating data away from one provider is costly and complex."
             }
@@ -157,10 +157,10 @@
               "examples": "Staff working from home reaching the company intranet.",
               "examTip": "VPN = encryption + tunnel + remote access.",
               "keyFacts": [
-                "Encrypts everything sent between device and network",
-                "Safe to use on public Wi-Fi",
-                "Remote staff can reach internal systems",
-                "Encryption can slow the connection"
+                "Encrypts everything sent between the device and the network, so intercepted data cannot be read",
+                "Safe to use on public Wi-Fi, because anyone snooping on the hotspot only sees encrypted traffic",
+                "Remote staff can reach internal systems, so they can work from home as if they were in the office",
+                "Encryption can slow the connection, because every packet has to be encrypted and decrypted"
               ]
             },
             {
@@ -170,10 +170,10 @@
               "examples": "IT support fixing a PC with TeamViewer; staff using their office PC from home.",
               "examTip": "Remote desktop = see and control another machine.",
               "keyFacts": [
-                "Run apps and open files on the remote PC",
-                "Needs a stable connection",
-                "Security risk if not protected",
-                "Often used with a VPN"
+                "Run apps and open files on the remote PC, so IT staff can fix problems without visiting the user",
+                "Needs a stable connection, because a slow or dropped link makes the remote desktop lag or disconnect",
+                "Security risk if not protected, as an attacker who gets in has full control of that computer",
+                "Often used with a VPN, so the remote session is encrypted and not exposed directly to the internet"
               ],
               "comparisonTable": {
                 "title": "VPN vs Remote Desktop Technology",
@@ -200,10 +200,10 @@
               "definition": "How well an online system protects data and accounts: encryption, access control, legal compliance.",
               "examTip": "Always link security to how sensitive the data is and to GDPR.",
               "keyFacts": [
-                "Provider must be GDPR-compliant",
-                "Encrypt data at rest and in transit",
-                "MFA adds a layer",
-                "Breaches bring fines and reputational damage"
+                "Provider must be GDPR-compliant, because the organisation is still legally responsible for its customers' data",
+                "Encrypt data at rest and in transit, so stolen or intercepted data cannot be read",
+                "MFA adds a layer, so a stolen password alone is not enough to get into an account",
+                "Breaches bring fines and reputational damage, so customers may leave and the organisation loses income"
               ]
             },
             {
@@ -212,10 +212,10 @@
               "definition": "The full cost of an online system: subscriptions, data transfer, training and migration.",
               "examTip": "Compare ongoing subscription costs with one-off capital costs.",
               "keyFacts": [
-                "Cloud: low upfront cost, ongoing fees",
-                "On-premise: high upfront cost, lower running cost",
-                "Pay only for what you use",
-                "Hidden costs: data transfer, support, training"
+                "Cloud has a low upfront cost but ongoing fees, so it suits organisations without money to buy servers",
+                "On-premise has a high upfront cost but lower running costs, so it can work out cheaper over many years",
+                "Pay only for what you use, so the organisation does not waste money on spare capacity",
+                "Hidden costs (data transfer, support, training) can push the total well above the advertised price"
               ]
             },
             {
@@ -224,9 +224,9 @@
               "definition": "How easy the system is for staff and customers to learn and use.",
               "examTip": "Link ease of use to training needs and productivity.",
               "keyFacts": [
-                "Complex systems need more training",
-                "Good design reduces errors",
-                "Affects whether staff adopt it"
+                "Complex systems need more training, which costs time and money before staff are productive",
+                "Good design reduces errors, so staff waste less time fixing mistakes and data stays accurate",
+                "Affects whether staff adopt it: a system people avoid using wastes the money spent on it"
               ]
             },
             {
@@ -235,8 +235,8 @@
               "definition": "Whether the system's functions match what the organisation actually needs.",
               "examTip": "Match features to the scenario: does it do what the business needs?",
               "keyFacts": [
-                "Must meet user and organisation needs",
-                "Extra features add complexity and cost"
+                "Must meet user and organisation needs, otherwise staff fall back on old methods and the system is wasted",
+                "Extra features add complexity and cost, so paying for functions nobody uses gives poor value"
               ]
             },
             {
@@ -245,9 +245,9 @@
               "definition": "The quality and reliability of the internet connection the system depends on.",
               "examTip": "Cloud is useless without internet: use this as a drawback.",
               "keyFacts": [
-                "Unreliable connection = downtime and lost work",
-                "Video and large files need high bandwidth",
-                "Rural areas may have poor coverage"
+                "Unreliable connection means downtime and lost work, because a cloud system cannot be reached offline",
+                "Video and large files need high bandwidth, so a slow link makes calls drop and uploads crawl",
+                "Rural areas may have poor coverage, so staff there cannot rely on online systems"
               ]
             },
             {
@@ -256,9 +256,9 @@
               "definition": "The ability to increase or reduce capacity as demand changes, without major cost or disruption.",
               "examTip": "Scalability is a key cloud benefit in any suitability question.",
               "keyFacts": [
-                "Scale up at peak times (e.g. Christmas)",
-                "Scale down to stop paying for unused capacity",
-                "On-premise is slower and costlier to scale"
+                "Scale up at peak times (e.g. Christmas), so the website stays fast when most customers are buying",
+                "Scale down afterwards, so the organisation stops paying for capacity it no longer needs",
+                "On-premise is slower and costlier to scale, because new servers must be bought, delivered and set up"
               ]
             }
           ]
@@ -280,10 +280,10 @@
               "examples": "A business marketing on Instagram; a school updating parents on X.",
               "examTip": "Social media = marketing, communication and community building.",
               "keyFacts": [
-                "Reaches large audiences instantly",
-                "Marketing, customer service, brand building",
-                "Negative comments spread fast",
-                "Platforms collect personal data"
+                "Reaches large audiences instantly, so a business can promote products to thousands at low cost",
+                "Used for marketing, customer service and brand building, because customers can talk to the business directly",
+                "Negative comments spread fast, so one bad experience can damage the brand's reputation publicly",
+                "Platforms collect personal data, which raises privacy concerns about how it is used and shared"
               ]
             },
             {
@@ -293,10 +293,10 @@
               "examples": "A tech reviewer's blog; YouTube tutorials.",
               "examTip": "One-to-many communication for sharing information.",
               "keyFacts": [
-                "Builds an audience over time",
-                "Can earn advertising revenue",
-                "Comments allow interaction",
-                "Used for content marketing"
+                "Builds an audience over time, so regular posts create loyal followers who trust the author",
+                "Can earn advertising revenue, so a popular blog or vlog can become a source of income",
+                "Comments allow interaction, so the author gets feedback and readers feel part of a community",
+                "Used for content marketing: useful posts draw in customers who may then buy the product"
               ]
             },
             {
@@ -306,10 +306,10 @@
               "examples": "Wikipedia; a company's internal knowledge wiki.",
               "examTip": "Anyone can edit, so accuracy can be a problem.",
               "keyFacts": [
-                "Built and updated by the community",
-                "Free to access",
-                "Edits may be unverified",
-                "Used internally for documentation"
+                "Built and updated by the community, so information can be added and corrected quickly",
+                "Free to access, so anyone can use it to look up information",
+                "Edits may be unverified, so information can be wrong or deliberately vandalised and needs checking",
+                "Used internally for documentation, so staff share know-how in one place everyone can update"
               ]
             },
             {
@@ -319,9 +319,9 @@
               "examples": "Discord servers; live-chat customer support.",
               "examTip": "Chatrooms are real-time (synchronous); forums are not.",
               "keyFacts": [
-                "Real-time group conversation",
-                "Public or invite-only",
-                "Risks: cyberbullying, grooming, inappropriate content"
+                "Real-time group conversation, so several people can discuss and get answers immediately",
+                "Public or invite-only, so organisations can keep private discussions limited to chosen members",
+                "Risks include cyberbullying, grooming and inappropriate content, so chatrooms need moderation"
               ]
             },
             {
@@ -331,10 +331,10 @@
               "examples": "WhatsApp with friends; Teams at work.",
               "examTip": "Faster and less formal than email.",
               "keyFacts": [
-                "Quicker than email for short queries",
-                "Supports files, voice and video",
-                "Can blur work and personal time",
-                "Often end-to-end encrypted"
+                "Quicker than email for short queries, so problems are sorted in seconds rather than hours",
+                "Supports files, voice and video, so a quick chat can turn into a call without switching app",
+                "Can blur work and personal time, because staff feel they must reply to messages out of hours",
+                "Often end-to-end encrypted, so only the sender and recipient can read the messages"
               ]
             },
             {
@@ -344,9 +344,9 @@
               "examples": "BBC podcasts; exam revision podcasts.",
               "examTip": "On-demand, one-way, one-to-many.",
               "keyFacts": [
-                "Listener chooses when to listen",
-                "Cheap to produce",
-                "No live interaction"
+                "Listener chooses when to listen, so people fit episodes around commuting, exercise or chores",
+                "Cheap to produce, as it only needs a microphone and editing software, so small creators can start easily",
+                "No live interaction, so listeners cannot ask questions or get answers during the episode"
               ]
             },
             {
@@ -356,9 +356,9 @@
               "examples": "Reddit; Stack Overflow; product support forums.",
               "examTip": "Forums are asynchronous and searchable; chatrooms are real-time.",
               "keyFacts": [
-                "Posts stay up and are searchable",
-                "No need to be online together",
-                "Quality depends on moderation"
+                "Posts stay up and are searchable, so answers to common problems can be found again later",
+                "No need to be online together, so people in different time zones can still take part",
+                "Quality depends on moderation, because without it threads fill with spam, wrong answers or abuse"
               ],
               "comparisonTable": {
                 "title": "Online Community Types Compared",
@@ -386,10 +386,10 @@
               "definition": "How easy, fast, available and accessible the platform is to use.",
               "examTip": "Ask: is it fast, always available, and usable by people with disabilities?",
               "keyFacts": [
-                "Poor usability drives users away",
-                "Slow performance frustrates users",
-                "Downtime loses revenue",
-                "Must work with assistive technology"
+                "Poor usability drives users away, because people give up on platforms that are confusing to use",
+                "Slow performance frustrates users, so they leave and engagement drops",
+                "Downtime loses revenue, because users cannot buy, post or communicate while the platform is down",
+                "Must work with assistive technology, so disabled users are not excluded (and the law is met)"
               ]
             },
             {
@@ -398,8 +398,8 @@
               "definition": "Whether the platform's features match what its users actually need.",
               "examTip": "Tie the platform choice back to the users in the scenario.",
               "keyFacts": [
-                "Missing features reduce engagement",
-                "Feedback reveals unmet needs"
+                "Missing features reduce engagement, because users move to a platform that does what they need",
+                "Feedback reveals unmet needs, so the organisation knows which improvements to make first"
               ]
             },
             {
@@ -407,9 +407,9 @@
               "term": "Cost",
               "definition": "The cost of setting up and running a platform: subscriptions, hosting, moderation, staff.",
               "keyFacts": [
-                "Free platforms mean less control",
-                "Moderation costs money",
-                "Hidden costs: premium features, advertising"
+                "Free platforms mean less control, because the provider decides the features, rules and adverts",
+                "Moderation costs money, because staff or tools are needed to keep content safe",
+                "Hidden costs (premium features, advertising) can make a 'free' platform expensive to use properly"
               ]
             },
             {
@@ -418,10 +418,10 @@
               "definition": "How well users' personal data is protected and whether it is shared with third parties.",
               "examTip": "Link privacy to GDPR: data must be handled lawfully.",
               "keyFacts": [
-                "GDPR requires consent",
-                "Platforms may sell data to advertisers",
-                "Users may not know what is collected",
-                "Needs a clear privacy policy"
+                "GDPR requires consent, so platforms must ask before collecting and using personal data",
+                "Platforms may sell data to advertisers, so users get targeted adverts and lose control of their data",
+                "Users may not know what is collected, so they cannot make an informed choice about using the platform",
+                "Needs a clear privacy policy, so users can see what data is held, why, and who it is shared with"
               ]
             },
             {
@@ -429,9 +429,9 @@
               "term": "Security",
               "definition": "Protecting accounts and data on the platform from hacking and malicious content.",
               "keyFacts": [
-                "Strong passwords and MFA",
-                "Malicious links spread through communities",
-                "HTTPS encrypts data in transit"
+                "Strong passwords and MFA, so accounts are much harder to take over even if a password leaks",
+                "Malicious links spread through communities, because users trust messages that seem to come from friends",
+                "HTTPS encrypts data in transit, so logins and messages cannot be read if intercepted"
               ]
             },
             {
@@ -439,9 +439,9 @@
               "term": "Downtime",
               "definition": "Time when the platform is unavailable, so users cannot access or communicate.",
               "keyFacts": [
-                "Planned maintenance vs unexpected outages",
-                "Critical systems need high uptime (99.9%)",
-                "Loses revenue and trust"
+                "Planned maintenance can be scheduled for quiet times and announced, unlike unexpected outages",
+                "Critical systems need high uptime (99.9%), because even short outages stop essential services",
+                "Loses revenue and trust, because users cannot buy or communicate and may move to a rival"
               ]
             },
             {
@@ -449,9 +449,9 @@
               "term": "Training",
               "definition": "The training staff and users need to use and manage the platform well.",
               "keyFacts": [
-                "Staff need training to moderate",
-                "Costs time and money",
-                "Needed again when the platform updates"
+                "Staff need training to moderate, so they know how to deal with abuse and harmful posts correctly",
+                "Costs time and money, because staff are away from their normal work while they learn",
+                "Needed again when the platform updates, because new features and layouts change how it works"
               ]
             },
             {
@@ -459,9 +459,9 @@
               "term": "Integration with Current Systems",
               "definition": "How easily the platform connects to systems the organisation already uses.",
               "keyFacts": [
-                "Should link to email, CRM and analytics",
-                "Poor integration = duplicate work",
-                "APIs make integration possible"
+                "Should link to email, CRM and analytics, so customer data flows between systems automatically",
+                "Poor integration means duplicate work, because staff re-type the same data into several systems",
+                "APIs make integration possible, by letting different systems send data to each other directly"
               ]
             },
             {
@@ -469,9 +469,9 @@
               "term": "Productivity",
               "definition": "The effect of the platform on how much staff get done.",
               "keyFacts": [
-                "Speeds up collaboration and problem-solving",
-                "Constant notifications and social media distract",
-                "AUPs help manage use"
+                "Speeds up collaboration and problem-solving, because staff can share files and get answers quickly",
+                "Constant notifications and social media distract, so staff lose focus and get less done",
+                "AUPs help manage use, by setting clear rules on when and how platforms should be used at work"
               ]
             },
             {
@@ -480,9 +480,9 @@
               "definition": "The rules organisations set for how staff behave on online communities, e.g. an AUP.",
               "examTip": "Link to AUPs (F1.1.6): rules protect reputation and keep the organisation within the law.",
               "keyFacts": [
-                "AUPs set what is and isn't allowed",
-                "Staff represent the company online",
-                "Policies must follow GDPR and employment law"
+                "AUPs set what is and isn't allowed, so staff know the rules and can be disciplined if they break them",
+                "Staff represent the company online, so a careless post can damage the organisation's reputation",
+                "Policies must follow GDPR and employment law, otherwise the organisation can face fines or claims"
               ]
             }
           ]

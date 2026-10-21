@@ -24,9 +24,9 @@ const INLINE_UNITS = {
                     "examples": "A designer's desktop; a student's laptop.",
                     "examTip": "Desktop: more power for the price, upgradeable. Laptop: portable, battery, less upgradeable.",
                     "keyFacts": [
-                      "Key parts: CPU, RAM, storage, GPU",
-                      "Run a full OS (Windows, macOS, Linux)",
-                      "Used for office work, gaming, creative work"
+                      "Key parts are the CPU, RAM, storage and GPU, and their specification decides how fast tasks run",
+                      "Run a full OS (Windows, macOS, Linux), so they can run almost any software the user needs",
+                      "Used for office work, gaming and creative work, because they have the power and screen space for long tasks"
                     ]
                   },
                   {
@@ -36,9 +36,9 @@ const INLINE_UNITS = {
                     "examples": "An office printer/scanner/copier.",
                     "examTip": "Saves space and money, but if it breaks, every function is lost.",
                     "keyFacts": [
-                      "Cheaper than separate machines",
-                      "Single point of failure",
-                      "Often networked: scan straight to email"
+                      "Cheaper than separate machines, and take up less space in the office",
+                      "Single point of failure: if it breaks, printing, scanning and copying all stop at once",
+                      "Often networked, so staff can scan straight to email or a shared folder"
                     ]
                   },
                   {
@@ -48,10 +48,10 @@ const INLINE_UNITS = {
                     "examples": "iPhone; iPad; Apple Watch.",
                     "examTip": "Always connected, but smaller screens, limited battery and easily lost.",
                     "keyFacts": [
-                      "Wi-Fi and 4G/5G",
-                      "Touch interface; iOS or Android",
-                      "Sensors: GPS, camera, NFC",
-                      "Apps from app stores"
+                      "Connect by Wi-Fi and 4G/5G, so users stay online away from home or the office",
+                      "Touch interface running iOS or Android, so they are easy to use without a keyboard or mouse",
+                      "Sensors (GPS, camera, NFC) enable maps, photos and contactless payments",
+                      "Apps come from app stores, which check them, so users are less likely to install malware"
                     ]
                   },
                   {
@@ -61,10 +61,10 @@ const INLINE_UNITS = {
                     "examples": "A file server for shared documents; a web server hosting a website.",
                     "examTip": "Know the three: file (stores files), application (runs software), web (serves pages).",
                     "keyFacts": [
-                      "File server: central shared storage",
-                      "Application server: runs apps for clients",
-                      "Web server: delivers pages over HTTP/HTTPS",
-                      "Built to run 24/7"
+                      "File server gives central shared storage, so staff work from one copy and backups are easier",
+                      "Application server runs apps for clients, so software is managed and updated in one place",
+                      "Web server delivers pages over HTTP/HTTPS, so users anywhere can reach the organisation's website",
+                      "Built to run 24/7, with features like spare power supplies, so services stay available"
                     ],
                     "comparisonTable": {
                       "title": "Server Types Compared",
@@ -103,9 +103,9 @@ const INLINE_UNITS = {
                     "examples": "PlayStation 5; a smart TV; Fire TV Stick.",
                     "examTip": "Now internet-connected: link to streaming and online entertainment.",
                     "keyFacts": [
-                      "Consoles: online multiplayer",
-                      "Smart TVs run streaming apps",
-                      "Connected devices raise privacy concerns"
+                      "Consoles offer online multiplayer, so friends can play together from different homes",
+                      "Smart TVs run streaming apps, so users watch on demand without extra boxes",
+                      "Connected devices raise privacy concerns, because they can collect viewing habits and voice data"
                     ]
                   },
                   {
@@ -115,9 +115,9 @@ const INLINE_UNITS = {
                     "examples": "DSLR; GoPro; CCTV; phone camera.",
                     "examTip": "High-resolution photos and video need lots of storage and bandwidth.",
                     "keyFacts": [
-                      "More megapixels = better quality, bigger files",
-                      "4K video needs large storage",
-                      "CCTV records continuously"
+                      "More megapixels gives better quality but bigger files, so more storage is needed",
+                      "4K video needs large storage, so users need big memory cards or cloud space",
+                      "CCTV records continuously, so it needs a lot of storage and footage is often overwritten after a set time"
                     ]
                   },
                   {
@@ -127,10 +127,10 @@ const INLINE_UNITS = {
                     "examples": "A sat nav; Google Maps; tracking delivery vans.",
                     "examTip": "GPS gives position; live traffic needs an internet connection.",
                     "keyFacts": [
-                      "GPS works without mobile data",
-                      "Phone apps add live traffic",
-                      "Fleet tracking for deliveries",
-                      "Location data is personal data (GDPR)"
+                      "GPS works without mobile data, because it uses satellite signals, so it works in remote areas",
+                      "Phone apps add live traffic, so routes avoid jams and journeys are quicker",
+                      "Fleet tracking for deliveries, so companies know where vehicles are and can give accurate arrival times",
+                      "Location data is personal data under GDPR, so it must be collected with consent and kept secure"
                     ]
                   },
                   {
@@ -140,9 +140,9 @@ const INLINE_UNITS = {
                     "examples": "Mobile phones; VoIP phones; routers.",
                     "examTip": "The hardware layer of networks: link to Section B.",
                     "keyFacts": [
-                      "Modem: converts signals for phone or cable lines",
-                      "Router: connects the LAN to the internet",
-                      "VoIP phones: calls over the internet"
+                      "Modem converts signals for phone or cable lines, so digital data can travel over them",
+                      "Router connects the LAN to the internet, sending data between the two networks",
+                      "VoIP phones make calls over the internet, which is cheaper than traditional phone lines"
                     ]
                   },
                   {
@@ -152,9 +152,9 @@ const INLINE_UNITS = {
                     "examples": "A washing machine controller; a smart thermostat; a smart meter.",
                     "examTip": "Embedded = one fixed job. IoT = embedded + internet. IoT security is often weak.",
                     "keyFacts": [
-                      "Single purpose, little or no interface",
-                      "IoT devices send data to the cloud",
-                      "Weak default passwords and rare updates"
+                      "Single purpose with little or no interface, so they are cheap, reliable and use little power",
+                      "IoT devices send data to the cloud, so they can be monitored and controlled remotely",
+                      "Weak default passwords and rare updates make them easy to hack, e.g. to recruit them into a botnet"
                     ]
                   }
                 ]
@@ -169,9 +169,9 @@ const INLINE_UNITS = {
                     "definition": "Using devices for everyday tasks: communication, entertainment, shopping and banking.",
                     "examTip": "Consider privacy when discussing personal use.",
                     "keyFacts": [
-                      "Phones for messaging, maps and media",
-                      "Laptops for shopping and banking",
-                      "Smart speakers and thermostats at home"
+                      "Phones for messaging, maps and media, so people stay connected and entertained on the move",
+                      "Laptops for shopping and banking, because a bigger screen makes forms and comparisons easier",
+                      "Smart speakers and thermostats at home, so devices can be controlled by voice or remotely"
                     ]
                   },
                   {
@@ -180,9 +180,9 @@ const INLINE_UNITS = {
                     "definition": "Using devices to support teaching, learning and assessment.",
                     "examTip": "Link to online education and the digital divide.",
                     "keyFacts": [
-                      "Interactive whiteboards",
-                      "Laptops and tablets for research",
-                      "VLEs such as Google Classroom"
+                      "Interactive whiteboards let teachers show and annotate content, so lessons are more engaging",
+                      "Laptops and tablets for research, so learners can find information and work independently",
+                      "VLEs such as Google Classroom hold work and feedback, so learners can access them from home"
                     ]
                   },
                   {
@@ -191,9 +191,9 @@ const INLINE_UNITS = {
                     "definition": "Using devices to communicate and interact with others online.",
                     "examTip": "Give both sides: connection and support vs cyberbullying and addiction.",
                     "keyFacts": [
-                      "Social media and messaging apps",
-                      "Online gaming communities",
-                      "Risks: cyberbullying, privacy, addiction"
+                      "Social media and messaging apps let people stay in touch, wherever friends and family are",
+                      "Online gaming communities connect people with shared interests across the world",
+                      "Risks include cyberbullying, loss of privacy and addiction, which can harm wellbeing"
                     ]
                   },
                   {
@@ -202,10 +202,10 @@ const INLINE_UNITS = {
                     "definition": "Using devices to support buying, selling and managing stock.",
                     "examTip": "Link to online retail and stock control.",
                     "keyFacts": [
-                      "EPOS tills update stock automatically",
-                      "Barcode and RFID scanners",
-                      "Self-checkouts cut staff costs",
-                      "Contactless card readers"
+                      "EPOS tills update stock automatically, so shops know when to reorder",
+                      "Barcode and RFID scanners read product details quickly, so checkout and stocktaking are faster and accurate",
+                      "Self-checkouts cut staff costs, because one worker can supervise several tills",
+                      "Contactless card readers make payments faster, so queues move quicker"
                     ]
                   },
                   {
@@ -214,9 +214,9 @@ const INLINE_UNITS = {
                     "definition": "Using computer-controlled machines, robots and sensors to automate manufacturing.",
                     "examTip": "Key themes: CNC machines, robots, sensors for quality control.",
                     "keyFacts": [
-                      "CNC machines cut parts precisely",
-                      "Robots assemble, weld and paint",
-                      "Sensors monitor machines in real time"
+                      "CNC machines cut parts precisely, so every part is identical and waste is reduced",
+                      "Robots assemble, weld and paint, so production runs faster and staff avoid dangerous jobs",
+                      "Sensors monitor machines in real time, so faults are spotted before they cause breakdowns"
                     ]
                   },
                   {
@@ -225,10 +225,10 @@ const INLINE_UNITS = {
                     "definition": "Using devices for diagnosis, treatment, monitoring and admin in healthcare.",
                     "examTip": "Must be highly reliable; patient data is very sensitive.",
                     "keyFacts": [
-                      "Scanners produce large image files",
-                      "Patient monitors track vital signs",
-                      "Electronic records shared by clinicians",
-                      "Video GP appointments"
+                      "Scanners (MRI, CT) produce large image files, so hospitals need lots of fast storage",
+                      "Patient monitors track vital signs, so staff are alerted at once if a patient's condition changes",
+                      "Electronic records are shared by clinicians, so any doctor treating a patient sees their full history",
+                      "Video GP appointments save patients travelling, so they suit people who are less mobile"
                     ]
                   },
                   {
@@ -237,9 +237,9 @@ const INLINE_UNITS = {
                     "definition": "Using devices for design, music, video, animation and photography.",
                     "examTip": "Creative work needs powerful hardware and lots of fast storage.",
                     "keyFacts": [
-                      "Powerful CPU, GPU and RAM",
-                      "Graphics tablets for drawing",
-                      "Large files (RAW, 4K video)"
+                      "Need a powerful CPU, GPU and RAM, because editing video and 3D work is very demanding",
+                      "Graphics tablets for drawing, so artists get precise, natural pen control",
+                      "Large files (RAW, 4K video) need lots of storage and fast drives"
                     ]
                   },
                   {
@@ -249,10 +249,10 @@ const INLINE_UNITS = {
                     "examples": "Warehouse robots; car assembly lines; chatbots.",
                     "examTip": "Efficiency vs job losses and retraining needs.",
                     "keyFacts": [
-                      "Works 24/7 with consistent quality",
-                      "Takes on dangerous tasks",
-                      "Can replace jobs",
-                      "Needs new skills"
+                      "Works 24/7 with consistent quality, so output rises and mistakes fall",
+                      "Takes on dangerous tasks, so workers are kept away from harm",
+                      "Can replace jobs, especially repetitive manual work, which can increase unemployment",
+                      "Needs new skills, so staff must be retrained to program and maintain the machines"
                     ]
                   }
                 ]
@@ -268,10 +268,10 @@ const INLINE_UNITS = {
                     "examples": "A network diagram of PCs, switch, router, server and internet.",
                     "examTip": "Exam diagrams (6 marks): include every device from the scenario and label each connection type.",
                     "keyFacts": [
-                      "Show every device and connection",
-                      "Label connection types (Ethernet, Wi-Fi, 4G)",
-                      "Cloud shape for the internet",
-                      "Annotate what each part does"
+                      "Show every device and connection, so anyone can see how the whole system fits together",
+                      "Label connection types (Ethernet, Wi-Fi, 4G), so it is clear how data travels between devices",
+                      "Use a cloud shape for the internet, which is the standard way to show it",
+                      "Annotate what each part does, so the reader understands each part's role"
                     ]
                   },
                   {
@@ -281,11 +281,11 @@ const INLINE_UNITS = {
                     "examples": "A login process checking a password.",
                     "examTip": "Learn the symbols: oval start/end, rectangle process, diamond decision, parallelogram input/output.",
                     "keyFacts": [
-                      "Oval: start and end",
-                      "Rectangle: process",
-                      "Diamond: yes/no decision",
-                      "Parallelogram: input/output",
-                      "Arrows show the flow"
+                      "Oval shows the start and end, so the reader knows where the process begins and finishes",
+                      "Rectangle shows a process: an action or step that happens",
+                      "Diamond shows a yes/no decision, with one arrow out for each answer",
+                      "Parallelogram shows input or output, e.g. entering data or printing a receipt",
+                      "Arrows show the flow, so the steps are followed in the right order"
                     ],
                     "comparisonTable": {
                       "title": "System Diagram vs Flowchart",
@@ -342,9 +342,9 @@ const INLINE_UNITS = {
                     "examples": "Keyboard; mouse; microphone; barcode scanner; touchscreen.",
                     "examTip": "Input = data going IN. Manual (keyboard) or automatic (sensor, scanner).",
                     "keyFacts": [
-                      "Manual: keyboard, mouse, touchscreen",
-                      "Optical: scanner, barcode and QR readers, camera",
-                      "Automatic: sensors, RFID, biometrics"
+                      "Manual input (keyboard, mouse, touchscreen) is controlled by a person, so it suits entering varied data",
+                      "Optical input (scanner, barcode and QR readers, camera) reads data by light, so it is quick and accurate",
+                      "Automatic input (sensors, RFID, biometrics) collects data with no human effort, so it can run 24/7"
                     ]
                   },
                   {
@@ -354,10 +354,10 @@ const INLINE_UNITS = {
                     "examples": "Monitor; printer; speakers; projector; braille display.",
                     "examTip": "Output = data coming OUT. Printers make hard copy; screens make soft copy.",
                     "keyFacts": [
-                      "Visual: monitor, printer, projector",
-                      "Audio: speakers, headphones",
-                      "Tactile: braille display",
-                      "Plotters for large drawings"
+                      "Visual output (monitor, printer, projector) shows results to read on screen or paper",
+                      "Audio output (speakers, headphones) gives sound, e.g. alerts, music or screen-reader speech",
+                      "Tactile output (braille display) lets blind users read by touch",
+                      "Plotters produce large drawings, so they suit architects and engineers"
                     ]
                   },
                   {
@@ -367,10 +367,10 @@ const INLINE_UNITS = {
                     "examples": "Laptop SSD; external backup drive; USB stick.",
                     "examTip": "Compare HDD and SSD on speed, cost and reliability.",
                     "keyFacts": [
-                      "HDD: spinning disk, cheap per GB",
-                      "SSD: flash, faster, no moving parts",
-                      "USB sticks and external drives for transfer",
-                      "NAS: shared storage on a network"
+                      "HDD is a spinning disk that is cheap per GB, so it suits storing large amounts of data",
+                      "SSD uses flash with no moving parts, so it is faster and less likely to break if dropped",
+                      "USB sticks and external drives are portable, so they suit moving files between computers",
+                      "NAS gives shared storage on a network, so a team can save to one place"
                     ]
                   }
                 ]
@@ -386,10 +386,10 @@ const INLINE_UNITS = {
                     "examples": "Large-key keyboards; one-handed keyboards.",
                     "examTip": "For users who cannot use a standard keyboard.",
                     "keyFacts": [
-                      "Large keys for low vision or motor difficulties",
-                      "Key guards stop accidental presses",
-                      "One-handed layouts",
-                      "On-screen keyboards"
+                      "Large keys help users with low vision or motor difficulties hit the right key",
+                      "Key guards stop accidental presses, so users with tremors make fewer mistakes",
+                      "One-handed layouts let users with the use of one hand type more quickly",
+                      "On-screen keyboards can be used with a mouse, switch or eye tracker instead of physical keys"
                     ]
                   },
                   {
@@ -399,9 +399,9 @@ const INLINE_UNITS = {
                     "examples": "JAWS; NVDA; VoiceOver.",
                     "examTip": "Only works well if sites and apps are built accessibly.",
                     "keyFacts": [
-                      "Reads text, menus and buttons aloud",
-                      "Used with the keyboard, not a mouse",
-                      "Needs accessible design (WCAG)"
+                      "Reads text, menus and buttons aloud, so blind users can use a computer independently",
+                      "Used with the keyboard, not a mouse, because users can't see the pointer",
+                      "Needs accessible design (WCAG), otherwise unlabelled buttons and images can't be read out"
                     ]
                   },
                   {
@@ -411,9 +411,9 @@ const INLINE_UNITS = {
                     "examples": "A refreshable braille display connected by USB.",
                     "examTip": "Tactile output that updates as the screen changes.",
                     "keyFacts": [
-                      "Updates in real time",
-                      "Used with a screen reader",
-                      "Expensive"
+                      "Updates in real time as the user moves through the screen, so they can read as they go",
+                      "Used with a screen reader, so the user can read by touch as well as listen",
+                      "Expensive, so many blind users can't afford one without support"
                     ]
                   },
                   {
@@ -423,8 +423,8 @@ const INLINE_UNITS = {
                     "examples": "Windows Magnifier; zoom on macOS.",
                     "examTip": "Makes things bigger, rather than reading them aloud.",
                     "keyFacts": [
-                      "Built into most operating systems",
-                      "Typically 2× to 16× zoom"
+                      "Built into most operating systems, so users with low vision get it free without extra software",
+                      "Typically 2× to 16× zoom, so the user can enlarge text and images as much as they need"
                     ]
                   },
                   {
@@ -434,8 +434,8 @@ const INLINE_UNITS = {
                     "examples": "A head stick used by someone with paralysis.",
                     "examTip": "For users with little or no arm or hand movement.",
                     "keyFacts": [
-                      "Presses keys or touchscreens",
-                      "Head-tracking cameras are the electronic version"
+                      "Presses keys or touchscreens, so users who can't use their hands can still type",
+                      "Head-tracking cameras are the electronic version, moving the cursor as the head moves"
                     ]
                   },
                   {
@@ -445,9 +445,9 @@ const INLINE_UNITS = {
                     "examples": "A large button switch; a cheek switch.",
                     "examTip": "The computer cycles through options; the user presses to select.",
                     "keyFacts": [
-                      "Scanning highlights each option in turn",
-                      "Any reliable movement can work the switch",
-                      "Slow, but gives access"
+                      "Scanning highlights each option in turn, and the user presses the switch when the right one lights up",
+                      "Any reliable movement can work the switch, e.g. a hand, chin or knee, so it suits very limited movement",
+                      "Slow, but gives access to users who could not otherwise use a computer at all"
                     ]
                   },
                   {
@@ -457,8 +457,8 @@ const INLINE_UNITS = {
                     "examples": "A pedal to pause audio while typing.",
                     "examTip": "Assistive for users who can't use their hands, and a productivity tool.",
                     "keyFacts": [
-                      "One or several pedals",
-                      "Helps users with arm or hand impairments"
+                      "One or several pedals, so different actions can be mapped to each foot press",
+                      "Helps users with arm or hand impairments, because they can trigger actions with their feet"
                     ]
                   },
                   {
@@ -468,8 +468,8 @@ const INLINE_UNITS = {
                     "examples": "Controlling a wheelchair and computer by breath.",
                     "examTip": "For users who can only reliably control their breathing.",
                     "keyFacts": [
-                      "Sip and puff act as different inputs",
-                      "Often used with scanning"
+                      "Sip and puff act as different inputs, so the user can make choices using breath alone",
+                      "Often used with scanning, so the user selects options as they are highlighted"
                     ]
                   },
                   {
@@ -479,9 +479,9 @@ const INLINE_UNITS = {
                     "examples": "Tobii eye trackers for people with motor neurone disease.",
                     "examTip": "Looking at a target for a moment (dwell) acts as a click.",
                     "keyFacts": [
-                      "Cursor follows your gaze",
-                      "Hands-free control",
-                      "Affected by lighting and glasses"
+                      "Cursor follows your gaze, so looking at an item selects or points to it",
+                      "Hands-free control, so it suits users with severe physical disabilities",
+                      "Affected by lighting and glasses, which can make tracking less accurate"
                     ]
                   },
                   {
@@ -491,9 +491,9 @@ const INLINE_UNITS = {
                     "examples": "Read Aloud in Word; communication apps for non-verbal users.",
                     "examTip": "Helps people who can't read easily, and lets non-verbal users speak.",
                     "keyFacts": [
-                      "Helps with dyslexia and visual impairment",
-                      "Built into all major operating systems",
-                      "AI voices sound increasingly natural"
+                      "Helps with dyslexia and visual impairment, because users can listen instead of reading",
+                      "Built into all major operating systems, so it is free and easy to turn on",
+                      "AI voices sound increasingly natural, so listening for long periods is less tiring"
                     ]
                   }
                 ]
@@ -508,10 +508,10 @@ const INLINE_UNITS = {
                     "definition": "How much data a storage medium can hold, measured in GB or TB.",
                     "examTip": "Match capacity to the use: video editing needs TBs; documents need GBs.",
                     "keyFacts": [
-                      "USB sticks: tens to hundreds of GB",
-                      "HDDs: up to about 20 TB",
-                      "SSDs: up to about 8 TB",
-                      "HDDs are cheapest per GB"
+                      "USB sticks hold tens to hundreds of GB, so they suit moving documents and small media files",
+                      "HDDs hold up to about 20 TB, so they suit large archives and backups",
+                      "SSDs hold up to about 8 TB, so very large stores usually still use HDDs",
+                      "HDDs are cheapest per GB, so they are chosen when lots of storage is needed on a budget"
                     ]
                   },
                   {
@@ -520,10 +520,10 @@ const INLINE_UNITS = {
                     "definition": "The price of storage, especially the cost per gigabyte.",
                     "examTip": "HDD is cheapest per GB; SSD costs more but is falling; cloud is an ongoing fee.",
                     "keyFacts": [
-                      "HDD: best for bulk storage",
-                      "SSD: worth it for the OS drive",
-                      "Cloud: cost grows with usage",
-                      "Consider lifespan, not just price"
+                      "HDD is best for bulk storage, because it gives the most space for the money",
+                      "SSD is worth it for the OS drive, because the computer starts and loads programs much faster",
+                      "Cloud cost grows with usage, so it can become expensive as data builds up",
+                      "Consider lifespan, not just price, because a cheap drive that fails early costs more overall"
                     ],
                     "comparisonTable": {
                       "title": "Storage Media Compared: HDD vs SSD vs USB vs Optical",
@@ -600,10 +600,10 @@ const INLINE_UNITS = {
                     "definition": "How fast data is read from and written to storage.",
                     "examTip": "Moving from HDD to SSD is the biggest speed upgrade for most computers.",
                     "keyFacts": [
-                      "HDD: slow, has moving parts",
-                      "SSD: several times faster",
-                      "NVMe SSD: fastest",
-                      "Optical discs: very slow"
+                      "HDD is slow because it has moving parts that must spin and seek to the data",
+                      "SSD is several times faster, so programs open and files save much more quickly",
+                      "NVMe SSD is fastest, because it connects directly to the motherboard's fast lanes",
+                      "Optical discs are very slow, so they are now mainly used for archiving or distribution"
                     ]
                   },
                   {
@@ -612,9 +612,9 @@ const INLINE_UNITS = {
                     "definition": "Whether the storage works with the device's connections, OS and hardware.",
                     "examTip": "Check the connector, the file system and OS support.",
                     "keyFacts": [
-                      "Connectors: USB-A vs USB-C, SATA vs NVMe",
-                      "File systems: NTFS, APFS, exFAT",
-                      "Older devices may not support new drives"
+                      "Connectors (USB-A vs USB-C, SATA vs NVMe) must match, or the drive can't be plugged in",
+                      "File systems (NTFS, APFS, exFAT) must be readable, or the OS can't open the files",
+                      "Older devices may not support new drives, so upgrades can need adapters or new hardware"
                     ]
                   }
                 ]
@@ -630,9 +630,9 @@ const INLINE_UNITS = {
                     "examples": "Writing appointments in a paper diary; counting stock by hand.",
                     "examTip": "Slower and more error-prone, but flexible where judgement is needed.",
                     "keyFacts": [
-                      "More errors",
-                      "Slower",
-                      "Humans can handle unusual cases"
+                      "More errors, because people make typing and copying mistakes",
+                      "Slower, because each record is handled by hand",
+                      "Humans can handle unusual cases that don't fit the rules a computer follows"
                     ]
                   },
                   {
@@ -642,10 +642,10 @@ const INLINE_UNITS = {
                     "examples": "EPOS updating stock at each sale; overnight bank processing.",
                     "examTip": "Faster and more consistent. But a system error affects every record.",
                     "keyFacts": [
-                      "Faster, fewer errors",
-                      "Batch: processed together at set times",
-                      "Real-time: processed immediately",
-                      "Data logging records sensor readings"
+                      "Faster with fewer errors, because computers process data without tiring or mistyping",
+                      "Batch processing handles data together at set times, e.g. payroll run once a month",
+                      "Real-time processing handles data immediately, e.g. booking a seat so it can't be sold twice",
+                      "Data logging records sensor readings automatically, so data is collected 24/7 without staff"
                     ],
                     "comparisonTable": {
                       "title": "Manual vs Automatic Data Processing",
@@ -712,9 +712,9 @@ const INLINE_UNITS = {
                     "examples": "Overnight bank payments; monthly payroll.",
                     "examTip": "No interaction, runs in groups, often overnight. Results are not instant.",
                     "keyFacts": [
-                      "Efficient for large volumes",
-                      "No real-time output",
-                      "Used in banking, payroll, billing"
+                      "Efficient for large volumes, because jobs run together without waiting for a user",
+                      "No real-time output, so results only appear when the whole batch has finished",
+                      "Used in banking, payroll and billing, where the same job is done for thousands of records at once"
                     ]
                   },
                   {
@@ -724,9 +724,9 @@ const INLINE_UNITS = {
                     "examples": "Google spreading searches across thousands of servers.",
                     "examTip": "Many computers acting as one: fault tolerant and scalable.",
                     "keyFacts": [
-                      "Spreads work across machines",
-                      "One machine failing doesn't stop the system",
-                      "Add machines to grow"
+                      "Spreads work across machines, so large tasks finish faster",
+                      "One machine failing doesn't stop the system, because others take over its work",
+                      "Add machines to grow, so capacity increases without replacing the system"
                     ]
                   },
                   {
@@ -736,9 +736,9 @@ const INLINE_UNITS = {
                     "examples": "Browsing while music plays and a file downloads.",
                     "examTip": "The CPU switches so fast it seems simultaneous.",
                     "keyFacts": [
-                      "Rapid switching between processes",
-                      "Needs enough RAM for all open programs",
-                      "Most modern OSs multitask"
+                      "Switches rapidly between processes, so several programs appear to run at the same time",
+                      "Needs enough RAM for all open programs, otherwise the computer slows down",
+                      "Most modern OSs multitask, so users can e.g. browse while music plays"
                     ]
                   },
                   {
@@ -748,9 +748,9 @@ const INLINE_UNITS = {
                     "examples": "Windows Server.",
                     "examTip": "Runs on servers; clients connect for files, printers and logins.",
                     "keyFacts": [
-                      "Central user accounts and logins",
-                      "Shared files and printers",
-                      "Handles many clients at once"
+                      "Central user accounts and logins, so staff can log in from any computer on the network",
+                      "Shares files and printers, so resources don't need to be duplicated on every machine",
+                      "Handles many clients at once, so a whole organisation can use the network together"
                     ]
                   },
                   {
@@ -760,9 +760,9 @@ const INLINE_UNITS = {
                     "examples": "ABS brakes; aircraft controls; a pacemaker.",
                     "examTip": "About being predictable, not just fast. Used where delay is dangerous.",
                     "keyFacts": [
-                      "Guaranteed response time",
-                      "Used in medical, transport and industrial systems",
-                      "Reliability over features"
+                      "Guaranteed response time, so the system reacts instantly when a delay could be dangerous",
+                      "Used in medical, transport and industrial systems, e.g. pacemakers and car airbags",
+                      "Reliability over features, because a crash or slow response could cost lives"
                     ]
                   },
                   {
@@ -772,10 +772,10 @@ const INLINE_UNITS = {
                     "examples": "iOS; Android.",
                     "examTip": "Built for touch, battery life and apps from app stores.",
                     "keyFacts": [
-                      "Touch-first interface",
-                      "Manages battery and sensors",
-                      "Apps run separately for security",
-                      "App-store distribution"
+                      "Touch-first interface, so it is easy to use on a small screen without a keyboard",
+                      "Manages battery and sensors, so the device lasts all day",
+                      "Apps run separately (sandboxed) for security, so one bad app can't access another's data",
+                      "App-store distribution, so apps are checked before users can install them"
                     ]
                   },
                   {
@@ -785,9 +785,9 @@ const INLINE_UNITS = {
                     "examples": "An ATM; a self-service kiosk.",
                     "examTip": "Reliable and secure, but can't be used for anything else.",
                     "keyFacts": [
-                      "One function only",
-                      "Fewer vulnerabilities",
-                      "Can't run other software"
+                      "One function only, e.g. a smart TV or cash machine, so it is simple and reliable",
+                      "Fewer vulnerabilities, because there is less software for attackers to exploit",
+                      "Can't run other software, so it can't be repurposed if needs change"
                     ]
                   },
                   {
@@ -797,9 +797,9 @@ const INLINE_UNITS = {
                     "examples": "A Linux server with many remote users.",
                     "examTip": "Must keep each user's files and sessions separate.",
                     "keyFacts": [
-                      "Each user has a private session",
-                      "Login required",
-                      "OS shares resources between users"
+                      "Each user has a private session, so their files and settings are kept separate",
+                      "Login required, so the system knows who each user is and what they may access",
+                      "The OS shares resources between users, so one user can't hog the CPU or memory"
                     ],
                     "comparisonTable": {
                       "title": "Operating System Types Compared",
@@ -873,10 +873,10 @@ const INLINE_UNITS = {
                     "definition": "The OS handles network protocols, connections, sending and receiving data, and bandwidth.",
                     "examTip": "Four parts: protocols, connections, transmission, resource monitoring.",
                     "keyFacts": [
-                      "Runs protocols such as TCP/IP",
-                      "Sets up and ends connections",
-                      "Splits data into packets and reassembles them",
-                      "Assigns IP settings, e.g. via DHCP"
+                      "Runs protocols such as TCP/IP, so the computer can communicate with any other device on the network",
+                      "Sets up and ends connections, so data reaches the right program on the right device",
+                      "Splits data into packets and reassembles them, so large files can travel across the network reliably",
+                      "Assigns IP settings (e.g. via DHCP), so devices join the network without manual set-up"
                     ]
                   },
                   {
@@ -885,10 +885,10 @@ const INLINE_UNITS = {
                     "definition": "The OS protects the system through access control, malware protection, encryption and a firewall.",
                     "examTip": "Know the four areas and what each does.",
                     "keyFacts": [
-                      "Access control: logins and permissions",
-                      "Malware protection, e.g. Windows Defender",
-                      "Drive encryption, e.g. BitLocker",
-                      "Built-in firewall"
+                      "Access control through logins and permissions, so users only reach what they're allowed to",
+                      "Malware protection (e.g. Windows Defender) is built in, so the device is protected without extra software",
+                      "Drive encryption (e.g. BitLocker), so data on a lost or stolen device can't be read",
+                      "Built-in firewall blocks unwanted network traffic, protecting the device on any network"
                     ]
                   },
                   {
@@ -897,10 +897,10 @@ const INLINE_UNITS = {
                     "definition": "The OS gives RAM to programs, keeps them apart, and uses virtual memory when RAM runs out.",
                     "examTip": "Name the parts: allocation, protection, virtual memory, swapping and paging.",
                     "keyFacts": [
-                      "Allocates RAM when a program starts and frees it when it ends",
-                      "Programs can't touch each other's memory",
-                      "Virtual memory: disk used as extra RAM (slower)",
-                      "Paging swaps small blocks between RAM and disk"
+                      "Allocates RAM when a program starts and frees it when it ends, so memory isn't wasted",
+                      "Programs can't touch each other's memory, so one crashing program doesn't bring down the others",
+                      "Virtual memory uses disk as extra RAM, so more programs can run, but it is slower",
+                      "Paging swaps small blocks between RAM and disk, so only the parts in use need to be in RAM"
                     ]
                   },
                   {
@@ -909,10 +909,10 @@ const INLINE_UNITS = {
                     "definition": "The OS shares CPU time between running programs by scheduling and switching between them.",
                     "examTip": "Name the parts: scheduling, CPU time management, context switching.",
                     "keyFacts": [
-                      "Scheduling decides which process runs next",
-                      "Round robin: equal time slices in turn",
-                      "Priority: important tasks go first",
-                      "Context switching saves and restores each process"
+                      "Scheduling decides which process runs next, so the CPU is shared fairly",
+                      "Round robin gives equal time slices in turn, so no program is left waiting forever",
+                      "Priority lets important tasks go first, so urgent work isn't held up",
+                      "Context switching saves and restores each process, so it carries on exactly where it stopped"
                     ]
                   },
                   {
@@ -921,9 +921,9 @@ const INLINE_UNITS = {
                     "definition": "Software that lets the OS talk to a hardware device.",
                     "examTip": "Without the right driver, the OS can't use the device.",
                     "keyFacts": [
-                      "Translates OS commands for the device",
-                      "Reports device errors",
-                      "Outdated drivers cause crashes and security holes"
+                      "Translates OS commands for the device, so the OS doesn't need to know how every device works",
+                      "Reports device errors back to the OS, so problems like a paper jam can be shown to the user",
+                      "Outdated drivers cause crashes and security holes, so they should be kept up to date"
                     ],
                     "examples": "A printer driver; a graphics card driver."
                   },
@@ -933,9 +933,9 @@ const INLINE_UNITS = {
                     "definition": "The OS checks who users are, stores their settings, and lets admins manage accounts.",
                     "examTip": "Name the parts: authentication, profiles, account management tools.",
                     "keyFacts": [
-                      "Log in with password, PIN, biometric or MFA",
-                      "Each user has their own profile and files",
-                      "Account types: administrator, standard, guest"
+                      "Log in with a password, PIN, biometric or MFA, so the OS knows who is using the computer",
+                      "Each user has their own profile and files, so people sharing a computer keep their work private",
+                      "Account types (administrator, standard, guest) limit what each user can change, protecting the system"
                     ]
                   }
                 ]
@@ -951,10 +951,10 @@ const INLINE_UNITS = {
                     "examples": "Antivirus; backup; disk defragmenter; file compression.",
                     "examTip": "Utility software maintains the system. It is not application software.",
                     "keyFacts": [
-                      "Antivirus removes malware",
-                      "Defragmenter speeds up HDDs",
-                      "Backup software automates copies",
-                      "Compression shrinks files"
+                      "Antivirus removes malware, keeping the computer and its data safe",
+                      "Defragmenter speeds up HDDs by putting each file's pieces back together (SSDs don't need it)",
+                      "Backup software automates copies, so backups happen even if people forget",
+                      "Compression shrinks files, so they take up less storage and send faster"
                     ]
                   },
                   {
@@ -964,9 +964,9 @@ const INLINE_UNITS = {
                     "examples": "Word; Excel; Photoshop; a web browser.",
                     "examTip": "Application software is for doing work, not maintaining the system.",
                     "keyFacts": [
-                      "Word processors, spreadsheets, databases",
-                      "Browsers and email",
-                      "Can be general or specialist, e.g. CAD"
+                      "Word processors, spreadsheets and databases let users create documents, do calculations and store records",
+                      "Browsers and email let users find information and communicate",
+                      "Can be general or specialist (e.g. CAD), with specialist software built for one job"
                     ]
                   }
                 ]
@@ -981,9 +981,9 @@ const INLINE_UNITS = {
                     "definition": "The cost of buying, licensing and running software.",
                     "examTip": "Open source is often free; proprietary has licence fees but vendor support.",
                     "keyFacts": [
-                      "One-off licence vs subscription",
-                      "Free alternatives, e.g. LibreOffice",
-                      "Hidden costs: training and migration"
+                      "One-off licence vs subscription: a licence costs more up front, a subscription costs more over time",
+                      "Free alternatives (e.g. LibreOffice) cut licence costs, though they may lack some features",
+                      "Hidden costs such as training and migration can make cheap software expensive overall"
                     ]
                   },
                   {
@@ -992,9 +992,9 @@ const INLINE_UNITS = {
                     "definition": "How well software protects data, including how often it gets security updates.",
                     "examTip": "Especially important when choosing an OS.",
                     "keyFacts": [
-                      "Patches must be installed promptly",
-                      "Windows is targeted most because it's most used",
-                      "Open-source code can be checked by anyone"
+                      "Patches must be installed promptly, because attackers target known flaws",
+                      "Windows is targeted most because it's most used, so attackers get the most victims",
+                      "Open-source code can be checked by anyone, so flaws may be found and fixed quickly"
                     ]
                   },
                   {
@@ -1003,9 +1003,9 @@ const INLINE_UNITS = {
                     "definition": "Whether software works with the hardware and other software already in use.",
                     "examTip": "Incompatible software is useless however good it is.",
                     "keyFacts": [
-                      "Meets minimum hardware requirements",
-                      "Drivers exist for existing printers and devices",
-                      "Opens existing file formats"
+                      "Must meet the minimum hardware requirements, or it will run slowly or not at all",
+                      "Drivers must exist for existing printers and devices, or that hardware stops working",
+                      "Must open existing file formats, so old documents and data can still be used"
                     ]
                   },
                   {
@@ -1014,8 +1014,8 @@ const INLINE_UNITS = {
                     "definition": "Whether the software has the functions the organisation needs.",
                     "examTip": "Features must match the job; extras add cost and complexity.",
                     "keyFacts": [
-                      "Must meet specific requirements",
-                      "Specialist tools may only be proprietary"
+                      "Must meet specific requirements, otherwise staff can't do their jobs with it",
+                      "Specialist tools may only be proprietary, so organisations may have to pay for them"
                     ]
                   },
                   {
@@ -1024,9 +1024,9 @@ const INLINE_UNITS = {
                     "definition": "Whether the software fits the organisation's tasks and its users' skills.",
                     "examTip": "Start here in scenarios: what must it do, and who will use it?",
                     "keyFacts": [
-                      "Must do every required task",
-                      "Interface should suit users' skills",
-                      "Industry-standard software may be needed"
+                      "Must do every required task, or staff will need extra software or workarounds",
+                      "Interface should suit users' skills, so staff can use it without lots of training",
+                      "Industry-standard software may be needed, so files can be shared with clients and partners"
                     ]
                   },
                   {
@@ -1035,9 +1035,9 @@ const INLINE_UNITS = {
                     "definition": "How well the software runs on the available hardware.",
                     "examTip": "Heavy software on weak hardware = slow and unproductive.",
                     "keyFacts": [
-                      "Quick response to input",
-                      "Doesn't hog RAM or CPU",
-                      "Stable under heavy use"
+                      "Quick response to input, so staff aren't kept waiting",
+                      "Doesn't hog RAM or CPU, so other programs keep running smoothly",
+                      "Stable under heavy use, so it doesn't crash and lose work at busy times"
                     ]
                   }
                 ]
@@ -1053,10 +1053,10 @@ const INLINE_UNITS = {
                     "examples": "Command Prompt; Linux Terminal.",
                     "examTip": "Fast and powerful for experts, but commands must be memorised.",
                     "keyFacts": [
-                      "No mouse needed",
-                      "Tasks can be scripted",
-                      "Uses few resources",
-                      "Hard for beginners"
+                      "No mouse needed, so commands can be typed quickly by experienced users",
+                      "Tasks can be scripted, so repetitive jobs are automated and run the same way each time",
+                      "Uses few resources, so it suits servers and older hardware",
+                      "Hard for beginners, because commands must be remembered and typed exactly"
                     ]
                   },
                   {
@@ -1066,9 +1066,9 @@ const INLINE_UNITS = {
                     "examples": "ATM screens; \"press 1 for sales\" phone menus.",
                     "examTip": "Simple and guided, but limited to the options shown.",
                     "keyFacts": [
-                      "No prior knowledge needed",
-                      "Can't do anything not on the menu",
-                      "Slow for experts"
+                      "No prior knowledge needed, because users just pick from the options shown",
+                      "Can't do anything not on the menu, so it is limited but hard to get wrong",
+                      "Slow for experts, because they must go through several menus to reach an option"
                     ]
                   },
                   {
@@ -1078,10 +1078,10 @@ const INLINE_UNITS = {
                     "examples": "The Windows desktop; macOS.",
                     "examTip": "Easiest for non-technical users, but uses more resources than a CLI.",
                     "keyFacts": [
-                      "Windows, Icons, Menus, Pointer",
-                      "Intuitive visual design",
-                      "Needs more processing power",
-                      "Slower than CLI for repetitive tasks"
+                      "Windows, Icons, Menus, Pointer (WIMP) let users point and click instead of typing commands",
+                      "Intuitive visual design, so new users learn it quickly",
+                      "Needs more processing power, because it must draw graphics on screen",
+                      "Slower than CLI for repetitive tasks, because each step needs clicking through"
                     ]
                   },
                   {
@@ -1091,9 +1091,9 @@ const INLINE_UNITS = {
                     "examples": "Smartphones; self-checkouts.",
                     "examTip": "Needs bigger buttons; ideal for phones and kiosks.",
                     "keyFacts": [
-                      "Tap, swipe and pinch",
-                      "Larger touch targets",
-                      "Used on phones, tablets and kiosks"
+                      "Tap, swipe and pinch gestures are natural, so even young children can use it",
+                      "Larger touch targets, because fingers are less precise than a mouse pointer",
+                      "Used on phones, tablets and kiosks, where there is no room for a keyboard or mouse"
                     ]
                   }
                 ]
@@ -1109,10 +1109,10 @@ const INLINE_UNITS = {
                     "examples": "Linux vs Windows; Android vs iOS.",
                     "examTip": "Give advantages AND disadvantages of both.",
                     "keyFacts": [
-                      "Open source: free, customisable, community-supported",
-                      "Open source: less polished, patchy driver support",
-                      "Proprietary: consistent, vendor support",
-                      "Proprietary: licence costs, locked to one vendor"
+                      "Open source is free, customisable and community-supported, so organisations save on licences",
+                      "Open source can be less polished with patchy driver support, so some hardware may not work",
+                      "Proprietary is consistent with vendor support, so problems are fixed by the company",
+                      "Proprietary has licence costs and locks you to one vendor, making switching expensive"
                     ],
                     "comparisonTable": {
                       "title": "Open Source vs Proprietary Software",
@@ -1182,9 +1182,9 @@ const INLINE_UNITS = {
                     "examples": "LibreOffice vs Microsoft 365; GIMP vs Photoshop.",
                     "examTip": "Also consider file compatibility: proprietary formats may not open correctly.",
                     "keyFacts": [
-                      "Free alternatives may lack advanced features",
-                      "Some industries require specific proprietary tools",
-                      "Saving licence fees can cost more in support"
+                      "Free alternatives may lack advanced features, so power users may still need paid software",
+                      "Some industries require specific proprietary tools, so files can be shared with clients",
+                      "Saving licence fees can cost more in support, because staff need training and help"
                     ]
                   }
                 ]
@@ -1200,10 +1200,10 @@ const INLINE_UNITS = {
                     "examples": "JPEG photos; PNG logos; SVG icons.",
                     "examTip": "JPEG lossy (photos); PNG lossless (transparency); SVG scalable; RAW largest.",
                     "keyFacts": [
-                      "JPEG: lossy, small",
-                      "PNG: lossless, transparency",
-                      "GIF: 256 colours, animation",
-                      "SVG: scales without losing quality"
+                      "JPEG is lossy and small, so it suits photos on websites",
+                      "PNG is lossless with transparency, so it suits logos and screenshots",
+                      "GIF has 256 colours and animation, so it suits simple animated images",
+                      "SVG scales without losing quality, because it stores shapes, not pixels, so it suits icons and logos"
                     ]
                   },
                   {
@@ -1213,10 +1213,10 @@ const INLINE_UNITS = {
                     "examples": "MP3 streaming; WAV recording.",
                     "examTip": "MP3/AAC for streaming; WAV/FLAC for production. Higher bit rate = better and bigger.",
                     "keyFacts": [
-                      "MP3: lossy, small",
-                      "AAC: lossy, better than MP3",
-                      "WAV: uncompressed",
-                      "FLAC: lossless, smaller than WAV"
+                      "MP3 is lossy and small, so it suits music on phones and streaming",
+                      "AAC is lossy but sounds better than MP3 at the same size, so many streaming services use it",
+                      "WAV is uncompressed, so it keeps full quality for editing but files are large",
+                      "FLAC is lossless but smaller than WAV, so it suits storing music at full quality"
                     ]
                   },
                   {
@@ -1226,9 +1226,9 @@ const INLINE_UNITS = {
                     "examples": "MP4 online; MOV from Apple devices.",
                     "examTip": "H.265 is half the size of H.264 at the same quality.",
                     "keyFacts": [
-                      "MP4 + H.264: most compatible",
-                      "MP4 + H.265: smaller, for 4K",
-                      "MKV: several audio/subtitle tracks"
+                      "MP4 with H.264 is the most compatible, so it plays almost everywhere",
+                      "MP4 with H.265 is smaller at the same quality, so it suits 4K video",
+                      "MKV holds several audio and subtitle tracks, so it suits films in more than one language"
                     ]
                   },
                   {
@@ -1238,10 +1238,10 @@ const INLINE_UNITS = {
                     "examples": "EXE/MSI on Windows; DMG on macOS; APK on Android.",
                     "examTip": "Only install from trusted sources and check digital signatures.",
                     "keyFacts": [
-                      "EXE runs programs; MSI installs them",
-                      "APK: Android apps",
-                      "DMG: macOS apps",
-                      "ZIP must be extracted first"
+                      "EXE runs programs and MSI installs them on Windows, so they won't run on other OSs",
+                      "APK installs Android apps, usually from the Play Store",
+                      "DMG installs macOS apps, so it is used only on Macs",
+                      "ZIP must be extracted first, because it is a compressed folder, not a program"
                     ]
                   }
                 ]
@@ -1262,10 +1262,10 @@ const INLINE_UNITS = {
                     "definition": "What the people using the system need: their tasks, skills, mobility and accessibility needs.",
                     "examTip": "Always start with user needs: who will use it and what for?",
                     "keyFacts": [
-                      "Identify the users first",
-                      "Skill level shapes the interface",
-                      "Accessibility needs",
-                      "Mobile or fixed?"
+                      "Identify the users first, because the right system depends on who will use it",
+                      "Skill level shapes the interface, so beginners get a simpler design and experts more control",
+                      "Accessibility needs must be met, so disabled users aren't excluded",
+                      "Mobile or fixed? Decides whether laptops and tablets or desktops are needed"
                     ]
                   },
                   {
@@ -1273,9 +1273,9 @@ const INLINE_UNITS = {
                     "term": "Specifications",
                     "definition": "The technical requirements the system must meet, e.g. performance, storage and ports.",
                     "keyFacts": [
-                      "Sets minimum performance",
-                      "Based on real needs",
-                      "Used to compare options fairly"
+                      "Sets minimum performance, so the system can handle the workload",
+                      "Based on real needs, so money isn't wasted on power nobody uses",
+                      "Used to compare options fairly, by checking each against the same requirements"
                     ]
                   },
                   {
@@ -1283,9 +1283,9 @@ const INLINE_UNITS = {
                     "term": "Compatibility",
                     "definition": "Whether the system works with existing hardware, software, data and networks.",
                     "keyFacts": [
-                      "Works with existing devices and software",
-                      "Existing data can be moved across",
-                      "Suits the current network"
+                      "Works with existing devices and software, so nothing already owned has to be replaced",
+                      "Existing data can be moved across, so records aren't lost or re-typed",
+                      "Suits the current network, so no expensive network upgrade is needed"
                     ]
                   },
                   {
@@ -1293,10 +1293,10 @@ const INLINE_UNITS = {
                     "term": "Connectivity",
                     "definition": "The network and device connections the system supports.",
                     "keyFacts": [
-                      "Ethernet, Wi-Fi, Bluetooth",
-                      "Ports to match peripherals: USB, HDMI",
-                      "4G/5G for use on the move",
-                      "Supports VPN or remote access"
+                      "Ethernet, Wi-Fi and Bluetooth support, so it connects to the network and nearby devices",
+                      "Ports must match peripherals (USB, HDMI), so existing screens and devices can be plugged in",
+                      "4G/5G for use on the move, so staff can work away from Wi-Fi",
+                      "Supports VPN or remote access, so staff can reach internal systems securely from outside"
                     ]
                   },
                   {
@@ -1305,10 +1305,10 @@ const INLINE_UNITS = {
                     "definition": "The total cost of buying, setting up, running and replacing the system.",
                     "examTip": "Consider total cost of ownership, not just the purchase price.",
                     "keyFacts": [
-                      "Upfront purchase or lease",
-                      "Running costs: support, licences, power",
-                      "Training costs",
-                      "Is it worth the money?"
+                      "Upfront purchase or lease: buying costs more at the start, leasing spreads the cost",
+                      "Running costs (support, licences, power) continue for the system's whole life",
+                      "Training costs, because staff need time to learn the new system",
+                      "Is it worth the money? The benefits must outweigh the total cost"
                     ]
                   },
                   {
@@ -1316,9 +1316,9 @@ const INLINE_UNITS = {
                     "term": "Efficiency",
                     "definition": "How well the system uses time, money and resources to do its job.",
                     "keyFacts": [
-                      "Lower energy use cuts costs",
-                      "Faster processing saves time",
-                      "Automates manual steps"
+                      "Lower energy use cuts costs, especially when systems run all day",
+                      "Faster processing saves time, so staff get more done",
+                      "Automates manual steps, so fewer staff hours are needed"
                     ]
                   },
                   {
@@ -1327,10 +1327,10 @@ const INLINE_UNITS = {
                     "definition": "Practicalities of rollout: timescales, testing, moving data and downtime.",
                     "examTip": "Cover all four: timescales, testing, migration, downtime.",
                     "keyFacts": [
-                      "Rollout can take weeks or months",
-                      "Test with real users before go-live",
-                      "Moving data risks loss or corruption",
-                      "Phased rollout or running old and new side by side reduces risk"
+                      "Rollout can take weeks or months, so it must be planned around busy periods",
+                      "Test with real users before go-live, so problems are found before they disrupt work",
+                      "Moving data risks loss or corruption, so it must be backed up and checked",
+                      "Phased rollout or running old and new side by side reduces risk, because the old system is a fallback"
                     ]
                   },
                   {
@@ -1338,9 +1338,9 @@ const INLINE_UNITS = {
                     "term": "Productivity",
                     "definition": "How the system affects how much work staff can get done.",
                     "keyFacts": [
-                      "Short dip while staff learn",
-                      "Long-term gains once adopted",
-                      "Automates manual tasks"
+                      "Short dip while staff learn, because they are slower at first",
+                      "Long-term gains once adopted, as staff become faster than with the old system",
+                      "Automates manual tasks, freeing staff for more valuable work"
                     ]
                   },
                   {
@@ -1348,9 +1348,9 @@ const INLINE_UNITS = {
                     "term": "Security",
                     "definition": "The security features of the system and how it fits existing security measures.",
                     "keyFacts": [
-                      "Regular updates from the vendor",
-                      "Supports MFA",
-                      "Meets standards and GDPR"
+                      "Regular updates from the vendor, so new security flaws are patched",
+                      "Supports MFA, so a stolen password alone can't get into accounts",
+                      "Meets standards and GDPR, so the organisation stays within the law"
                     ]
                   }
                 ]
@@ -1366,10 +1366,10 @@ const INLINE_UNITS = {
                     "examples": "Supermarket tills reducing stock counts at each sale.",
                     "examTip": "Benefits: fewer stockouts, less overstock. Risk: if it fails, stock levels are unknown.",
                     "keyFacts": [
-                      "Barcodes/RFID update stock at the till",
-                      "Low stock triggers reorders",
-                      "Less manual counting",
-                      "Managers see stock from anywhere"
+                      "Barcodes/RFID update stock at the till, so stock levels are always accurate",
+                      "Low stock triggers reorders, so shelves are never empty",
+                      "Less manual counting, which saves staff time and cuts errors",
+                      "Managers see stock from anywhere, so they can make decisions without visiting each shop"
                     ]
                   },
                   {
@@ -1379,10 +1379,10 @@ const INLINE_UNITS = {
                     "examples": "A weather station; factory temperature sensors.",
                     "examTip": "Automatic, continuous and time-stamped. Link to IoT sensors.",
                     "keyFacts": [
-                      "No human needed",
-                      "Each reading is time-stamped",
-                      "Produces large amounts of data",
-                      "Analysed later for trends"
+                      "No human needed, so data is collected 24/7, even in dangerous or remote places",
+                      "Each reading is time-stamped, so changes can be tracked over time",
+                      "Produces large amounts of data, so storage and analysis tools are needed",
+                      "Analysed later for trends, e.g. finding when a machine tends to overheat"
                     ]
                   },
                   {
@@ -1392,9 +1392,9 @@ const INLINE_UNITS = {
                     "examples": "Choosing which products to promote from sales data; spotting fraud.",
                     "examTip": "Turns raw data into decisions.",
                     "keyFacts": [
-                      "Dashboards and reports",
-                      "Forecasts from past data",
-                      "Decisions based on evidence, not guesswork"
+                      "Dashboards and reports show key figures clearly, so managers see problems quickly",
+                      "Forecasts from past data predict future demand, so stock and staff can be planned",
+                      "Decisions based on evidence, not guesswork, so they are more likely to succeed"
                     ]
                   },
                   {
@@ -1403,9 +1403,9 @@ const INLINE_UNITS = {
                     "definition": "IT for everyday admin: documents, spreadsheets, email and scheduling.",
                     "examples": "Microsoft 365; Teams; Zoom.",
                     "keyFacts": [
-                      "Office suites are standard",
-                      "Cloud versions allow collaboration",
-                      "Document systems control versions"
+                      "Office suites are standard, so staff already know them and files are easy to share",
+                      "Cloud versions allow collaboration, so several people can edit a document at once",
+                      "Document systems control versions, so everyone works on the latest copy"
                     ]
                   },
                   {
@@ -1414,9 +1414,9 @@ const INLINE_UNITS = {
                     "definition": "IT for design, media production and animation.",
                     "examples": "Photoshop; AutoCAD; Blender.",
                     "keyFacts": [
-                      "Needs powerful hardware",
-                      "Large files need fast, big storage",
-                      "Often subscription software"
+                      "Needs powerful hardware, because editing video and 3D models is demanding",
+                      "Large files need fast, big storage, so work loads and saves quickly",
+                      "Often subscription software (e.g. Adobe), so costs continue every month"
                     ]
                   },
                   {
@@ -1425,9 +1425,9 @@ const INLINE_UNITS = {
                     "definition": "IT for creating, targeting and measuring adverts.",
                     "examples": "Google Ads; Facebook ad targeting.",
                     "keyFacts": [
-                      "Targeted using personal data",
-                      "Results measured in real time",
-                      "Link to targeted marketing and ethics"
+                      "Targeted using personal data, so adverts reach the people most likely to buy",
+                      "Results measured in real time, so poorly performing adverts can be changed quickly",
+                      "Links to targeted marketing and ethics, because using personal data raises privacy concerns"
                     ]
                   },
                   {
@@ -1436,10 +1436,10 @@ const INLINE_UNITS = {
                     "definition": "IT that designs, controls and checks manufacturing, from CAD to quality control.",
                     "examples": "CAD designs sent to CNC machines.",
                     "keyFacts": [
-                      "CAD: design",
-                      "CAM: turns designs into machine instructions",
-                      "CNC: precise automated machining",
-                      "Sensors spot defects"
+                      "CAD is used to design products on screen, so changes are quick and cheap to make",
+                      "CAM turns designs into machine instructions, so there is no manual programming step",
+                      "CNC gives precise automated machining, so every part comes out identical",
+                      "Sensors spot defects, so faulty products are caught before they reach customers"
                     ]
                   },
                   {
@@ -1448,10 +1448,10 @@ const INLINE_UNITS = {
                     "definition": "IT for physical and cyber security, e.g. CCTV and access control.",
                     "examples": "Networked CCTV; biometric locks on a server room.",
                     "keyFacts": [
-                      "CCTV with remote viewing",
-                      "Swipe cards and biometrics",
-                      "Security monitoring software",
-                      "Creates lots of data to store"
+                      "CCTV with remote viewing, so sites can be watched from anywhere",
+                      "Swipe cards and biometrics control who enters, and log every entry",
+                      "Security monitoring software spots attacks on the network quickly",
+                      "Creates lots of data to store, e.g. CCTV footage and access logs"
                     ]
                   },
                   {
@@ -1460,9 +1460,9 @@ const INLINE_UNITS = {
                     "definition": "IT performing tasks with little or no human input.",
                     "examples": "Automated payroll; chatbots; robot arms.",
                     "keyFacts": [
-                      "Cuts labour costs",
-                      "Consistent every time",
-                      "Can replace jobs"
+                      "Cuts labour costs, because machines do work people used to be paid for",
+                      "Consistent every time, so quality doesn't drop with tiredness",
+                      "Can replace jobs, especially repetitive roles, which affects staff and the local community"
                     ]
                   }
                 ]
@@ -1477,10 +1477,10 @@ const INLINE_UNITS = {
                     "definition": "How easy, fast, available and accessible a system is for staff and customers.",
                     "examTip": "Cover all four: ease of use, performance, availability, accessibility.",
                     "keyFacts": [
-                      "Easy to use: fewer errors, less training",
-                      "Slow systems cut productivity",
-                      "Downtime costs sales",
-                      "Usable by people with disabilities"
+                      "Easy to use means fewer errors and less training, so staff are productive sooner",
+                      "Slow systems cut productivity, because staff spend time waiting",
+                      "Downtime costs sales, because customers can't buy while the system is down",
+                      "Usable by people with disabilities, so no staff or customers are excluded"
                     ]
                   },
                   {
@@ -1488,9 +1488,9 @@ const INLINE_UNITS = {
                     "term": "Employee and Customer Needs",
                     "definition": "Whether the system meets the needs of both staff and customers.",
                     "keyFacts": [
-                      "Staff need the right features without extra work",
-                      "Customers need reliable and easy systems",
-                      "Collect feedback to improve"
+                      "Staff need the right features without extra work, or they'll find workarounds",
+                      "Customers need reliable, easy systems, or they'll go to a competitor",
+                      "Collect feedback to improve, so problems are found and fixed"
                     ]
                   },
                   {
@@ -1498,9 +1498,9 @@ const INLINE_UNITS = {
                     "term": "Cost",
                     "definition": "The cost of the system to the organisation, now and over time.",
                     "keyFacts": [
-                      "Upfront: hardware, licences, installation",
-                      "Ongoing: support, maintenance, training",
-                      "Hidden: data migration, integration"
+                      "Upfront costs: hardware, licences and installation, paid before any benefit is seen",
+                      "Ongoing costs: support, maintenance and training, which continue for years",
+                      "Hidden costs such as data migration and integration are often underestimated"
                     ]
                   },
                   {
@@ -1509,10 +1509,10 @@ const INLINE_UNITS = {
                     "definition": "How the rollout affects the organisation: timescales, testing, data migration and downtime.",
                     "examTip": "Focus on the impact during and after rollout.",
                     "keyFacts": [
-                      "Rushed rollouts cause problems",
-                      "Test with real users",
-                      "Data can be lost when moving",
-                      "Downtime stops normal work"
+                      "Rushed rollouts cause problems, because bugs and training gaps aren't dealt with first",
+                      "Test with real users, so problems are found before go-live",
+                      "Data can be lost when moving it, so it must be backed up first",
+                      "Downtime stops normal work, so switch-over should happen at quiet times"
                     ]
                   },
                   {
@@ -1521,9 +1521,9 @@ const INLINE_UNITS = {
                     "definition": "Whether the new system replaces the old one entirely or works alongside it.",
                     "examTip": "Replace: clean break but risky and costly. Integrate: lower risk but more complex.",
                     "keyFacts": [
-                      "Full replacement: higher risk and cost",
-                      "Integration: works alongside, more complex",
-                      "APIs let systems share data"
+                      "Full replacement has higher risk and cost, because everything changes at once",
+                      "Integration works alongside the old system but is more complex to set up and maintain",
+                      "APIs let systems share data, so old and new systems can work together"
                     ]
                   },
                   {
@@ -1531,9 +1531,9 @@ const INLINE_UNITS = {
                     "term": "Productivity",
                     "definition": "How the system affects staff output during and after the change.",
                     "keyFacts": [
-                      "Dip while staff learn",
-                      "Long-term gains",
-                      "Automation frees staff for other work"
+                      "Dip while staff learn, because they are slower with an unfamiliar system",
+                      "Long-term gains once staff are confident with it",
+                      "Automation frees staff for other work, such as customer service"
                     ]
                   },
                   {
@@ -1541,10 +1541,10 @@ const INLINE_UNITS = {
                     "term": "Working Practices",
                     "definition": "How the system changes the way staff work.",
                     "keyFacts": [
-                      "Enables remote and flexible working",
-                      "Messaging replaces some email",
-                      "Some roles change or disappear",
-                      "Staff may resist change"
+                      "Enables remote and flexible working, so staff can work from home",
+                      "Messaging replaces some email, so communication is quicker and less formal",
+                      "Some roles change or disappear, as tasks are automated",
+                      "Staff may resist change, so managers need to explain the benefits and involve them"
                     ]
                   },
                   {
@@ -1553,9 +1553,9 @@ const INLINE_UNITS = {
                     "definition": "Training staff need to use the system, at launch and as it changes.",
                     "examTip": "Training costs time and money, but too little leads to errors and poor adoption.",
                     "keyFacts": [
-                      "Train everyone before go-live",
-                      "Refresher training after updates",
-                      "Different users need different training"
+                      "Train everyone before go-live, so staff can use the system from day one",
+                      "Refresher training after updates, so staff keep up with new features",
+                      "Different users need different training, e.g. admins need more than everyday users"
                     ]
                   },
                   {
@@ -1563,9 +1563,9 @@ const INLINE_UNITS = {
                     "term": "User Support",
                     "definition": "Ongoing help for staff using the system.",
                     "keyFacts": [
-                      "Internal IT helpdesk",
-                      "Vendor support contracts",
-                      "FAQs and guides reduce helpdesk load"
+                      "Internal IT helpdesk, so staff get quick help from people who know the organisation",
+                      "Vendor support contracts, so complex problems are fixed by the experts who made the system",
+                      "FAQs and guides reduce helpdesk load, because staff can solve simple problems themselves"
                     ]
                   },
                   {
@@ -1573,10 +1573,10 @@ const INLINE_UNITS = {
                     "term": "Security",
                     "definition": "The new security risks a system brings and how it must be protected.",
                     "keyFacts": [
-                      "Every new system adds vulnerabilities",
-                      "Change insecure default settings",
-                      "Keep it patched",
-                      "Set permissions carefully from day one"
+                      "Every new system adds vulnerabilities, so it increases the ways attackers could get in",
+                      "Change insecure default settings, because attackers know common default passwords",
+                      "Keep it patched, so known security flaws are fixed",
+                      "Set permissions carefully from day one, so staff only access what they need"
                     ]
                   }
                 ]
@@ -1597,10 +1597,10 @@ const INLINE_UNITS = {
                     "examples": "AI chips in phones; 5G for real-time applications.",
                     "examTip": "Performance gains, but they need new infrastructure and lots of computing power.",
                     "keyFacts": [
-                      "AI chips run AI tasks much faster",
-                      "Edge computing processes data near its source, cutting delay",
-                      "5G: very fast with very low latency",
-                      "AI tunes systems by learning from use"
+                      "AI chips run AI tasks much faster, so features like voice recognition work on the device itself",
+                      "Edge computing processes data near its source, cutting delay because it doesn't travel to a far-off server",
+                      "5G is very fast with very low latency, so it suits live video and self-driving cars",
+                      "AI tunes systems by learning from use, e.g. adjusting performance to save battery"
                     ]
                   },
                   {
@@ -1610,10 +1610,10 @@ const INLINE_UNITS = {
                     "examples": "Siri and Alexa; Netflix recommendations; deepfakes.",
                     "examTip": "Give both sides: convenience and accessibility vs privacy, misinformation and over-reliance.",
                     "keyFacts": [
-                      "Voice assistants help accessibility",
-                      "Personalised recommendations",
-                      "Deepfakes spread misinformation",
-                      "Needs lots of personal data"
+                      "Voice assistants help accessibility, so people with disabilities can control devices by speaking",
+                      "Personalised recommendations save time, but can trap users in filter bubbles",
+                      "Deepfakes spread misinformation, because fake video and audio look and sound real",
+                      "Needs lots of personal data, which raises privacy concerns about how it is used and stored"
                     ]
                   },
                   {
@@ -1623,10 +1623,10 @@ const INLINE_UNITS = {
                     "examples": "AI fraud detection in banks; AI screening job applications.",
                     "examTip": "Both sides for Level 3: efficiency and better decisions vs job losses, bias and security.",
                     "keyFacts": [
-                      "Automates tasks that needed people",
-                      "Better, faster decisions from data",
-                      "Jobs lost, including office roles",
-                      "Bias in training data; attackers use AI too"
+                      "Automates tasks that needed people, so organisations cut costs and work faster",
+                      "Better, faster decisions from data, because AI spots patterns humans miss",
+                      "Jobs lost, including office roles, so staff may need retraining",
+                      "Bias in training data leads to unfair decisions, and attackers use AI too, e.g. for convincing phishing"
                     ]
                   }
                 ]
@@ -1656,10 +1656,10 @@ const INLINE_UNITS = {
                     "examples": "Wireless earbuds; a Bluetooth keyboard; a smartwatch.",
                     "examTip": "Short range, low power, pairing. Slower than Wi-Fi.",
                     "keyFacts": [
-                      "Range about 10 m (up to 100 m on newer versions)",
-                      "Low power: suits wearables and peripherals",
-                      "Devices must pair first",
-                      "Risks: bluejacking, bluesnarfing"
+                      "Range about 10 m (up to 100 m on newer versions), so it suits devices kept close to the user",
+                      "Low power, so it suits wearables and peripherals that run on small batteries",
+                      "Devices must pair first, so random devices can't connect without the user agreeing",
+                      "Risks include bluejacking (unwanted messages) and bluesnarfing (data theft), so turn it off when not in use"
                     ]
                   },
                   {
@@ -1669,10 +1669,10 @@ const INLINE_UNITS = {
                     "examples": "A flash drive; charging a phone over USB-C; a printer.",
                     "examTip": "Wired, direct, fast, no network needed. Newer versions are much faster.",
                     "keyFacts": [
-                      "USB 2.0: 480 Mbps; USB 3.x: 5–10 Gbps",
-                      "Also charges devices",
-                      "Plug and play",
-                      "Infected sticks can bring in malware"
+                      "USB 2.0 runs at 480 Mbps and USB 3.x at 5–10 Gbps, so newer ports move large files much faster",
+                      "Also charges devices, so one cable carries both power and data",
+                      "Plug and play, so devices work as soon as they're connected without manual set-up",
+                      "Infected sticks can bring in malware, which is why some organisations block USB ports"
                     ]
                   },
                   {
@@ -1682,10 +1682,10 @@ const INLINE_UNITS = {
                     "examples": "Office or school Wi-Fi; a café hotspot.",
                     "examTip": "Mobility vs Ethernet's speed, reliability and security. Public Wi-Fi is a risk.",
                     "keyFacts": [
-                      "Range about 30–50 m indoors, reduced by walls",
-                      "2.4 GHz: further, slower; 5 GHz: faster, shorter",
-                      "Use WPA3; WEP is insecure",
-                      "Speed shared between all devices"
+                      "Range about 30–50 m indoors, reduced by walls, so large buildings need several access points",
+                      "2.4 GHz reaches further but is slower; 5 GHz is faster but shorter range, so the choice depends on the room",
+                      "Use WPA3, because WEP is insecure and can be cracked in minutes",
+                      "Speed is shared between all devices, so the network slows down as more people connect"
                     ]
                   },
                   {
@@ -1695,10 +1695,10 @@ const INLINE_UNITS = {
                     "examples": "Office PCs cabled to a switch; fibre between buildings.",
                     "examTip": "For fixed devices it is faster, more reliable and more secure than Wi-Fi.",
                     "keyFacts": [
-                      "Typically 1 Gbps; fibre much faster over long distances",
-                      "Low latency: good for calls and gaming",
-                      "Hard to intercept, no radio interference",
-                      "Needs cabling: less flexible"
+                      "Typically 1 Gbps, and fibre is much faster over long distances, so it suits busy networks and servers",
+                      "Low latency, so it is good for video calls and gaming where delay is noticeable",
+                      "Hard to intercept and free of radio interference, so it is more secure and reliable than wireless",
+                      "Needs cabling, so it is less flexible: devices are tied to where the sockets are"
                     ],
                     "comparisonTable": {
                       "title": "Connection Methods Compared: Bluetooth vs USB vs Wi-Fi vs Ethernet",
@@ -1789,10 +1789,10 @@ const INLINE_UNITS = {
                     "examples": "Ethernet for hospital equipment; Wi-Fi in a café; Bluetooth handheld scanners.",
                     "examTip": "Justify the choice by linking a technical feature to the scenario's need.",
                     "keyFacts": [
-                      "Mobile workers → Wi-Fi",
-                      "Fixed, reliable workstations → Ethernet",
-                      "Short-range peripherals → Bluetooth",
-                      "Servers and backbone → fibre"
+                      "Mobile workers need Wi-Fi, so they can move around the building and stay connected",
+                      "Fixed, reliable workstations suit Ethernet, because a cable gives steady speed with no interference",
+                      "Short-range peripherals suit Bluetooth, because it is low power and needs no cables",
+                      "Servers and the backbone suit fibre, because they carry the most traffic and need the highest speed"
                     ]
                   }
                 ]
@@ -1808,10 +1808,10 @@ const INLINE_UNITS = {
                     "examples": "All-Wi-Fi saves cabling but adds risk; blocking USB stops theft but complicates printing.",
                     "examTip": "For \"implications\" questions cover security, cost, performance and users.",
                     "keyFacts": [
-                      "Wi-Fi: easy to install, less secure",
-                      "Ethernet: costly cabling, reliable",
-                      "USB: may need blocking to stop malware",
-                      "Wireless depends on signal quality"
+                      "Wi-Fi is easy to install but less secure, because signals reach beyond the building and can be picked up",
+                      "Ethernet needs costly cabling but is reliable, so it costs more up front but gives fewer problems",
+                      "USB may need blocking to stop malware, which can inconvenience staff who rely on memory sticks",
+                      "Wireless depends on signal quality, so walls and distance can cause slow or dropped connections"
                     ]
                   }
                 ]
@@ -1827,10 +1827,10 @@ const INLINE_UNITS = {
                     "examples": "Switching video editors from Wi-Fi to Ethernet cuts transfer times.",
                     "examTip": "Link a metric to the connection: Ethernet low latency; Wi-Fi varies; Bluetooth low bandwidth.",
                     "keyFacts": [
-                      "Wired has lower latency",
-                      "Wired is more reliable: no interference",
-                      "Wi-Fi bandwidth is shared between users",
-                      "Jitter on Wi-Fi hurts calls"
+                      "Wired has lower latency, because there is no radio signal to process or retransmit",
+                      "Wired is more reliable because there is no interference, so connections don't drop",
+                      "Wi-Fi bandwidth is shared between users, so each person gets less speed as more people connect",
+                      "Jitter on Wi-Fi hurts calls, because uneven delay makes voices break up"
                     ]
                   }
                 ]
@@ -1852,10 +1852,10 @@ const INLINE_UNITS = {
                     "examples": "An office where each PC and printer connects to one switch.",
                     "examTip": "One cable fails → one device down. Central switch fails → everything down.",
                     "keyFacts": [
-                      "Most common topology",
-                      "Easy to add devices and find faults",
-                      "Switch is a single point of failure",
-                      "More cable than bus"
+                      "Most common topology, because it is reliable and easy to manage",
+                      "Easy to add devices and find faults, because each device has its own cable to the switch",
+                      "The switch is a single point of failure: if it fails, every device loses the network",
+                      "Uses more cable than bus, so it costs more to install"
                     ]
                   },
                   {
@@ -1865,10 +1865,10 @@ const INLINE_UNITS = {
                     "examples": "Old token ring networks.",
                     "examTip": "One break can stop the whole ring. Largely obsolete.",
                     "keyFacts": [
-                      "Each device links to two neighbours",
-                      "Token passing prevents collisions",
-                      "Adding devices disrupts the ring",
-                      "A dual ring adds backup"
+                      "Each device links to two neighbours, so data passes through every device on the way round",
+                      "Token passing prevents collisions, because only the device holding the token can send",
+                      "Adding devices disrupts the ring, because the loop must be broken to connect them",
+                      "A dual ring adds backup, so data can go the other way if one cable breaks"
                     ]
                   },
                   {
@@ -1878,10 +1878,10 @@ const INLINE_UNITS = {
                     "examples": "Early coaxial Ethernet networks.",
                     "examTip": "Cheap, but a cable break takes down the whole network.",
                     "keyFacts": [
-                      "Cheap: minimal cabling",
-                      "Only one device can transmit at a time",
-                      "Slows down as devices are added",
-                      "Needs terminators at each end"
+                      "Cheap because it needs minimal cabling, so it suits small, temporary networks",
+                      "Only one device can transmit at a time, otherwise signals collide on the shared cable",
+                      "Slows down as devices are added, because more devices compete for the same cable",
+                      "Needs terminators at each end, so signals don't bounce back and corrupt data"
                     ],
                     "comparisonTable": {
                       "title": "Network Topologies Compared",
@@ -1962,9 +1962,9 @@ const INLINE_UNITS = {
                     "examples": "A phone linked to earbuds and a smartwatch.",
                     "examTip": "The smallest network: just your own devices.",
                     "keyFacts": [
-                      "Range about 10 m",
-                      "Mainly Bluetooth or USB",
-                      "No infrastructure needed"
+                      "Range about 10 m, so it only links devices one person carries or uses nearby",
+                      "Mainly Bluetooth or USB, connecting things like phones, earbuds and smartwatches",
+                      "No infrastructure needed, so there are no switches or routers to buy"
                     ]
                   },
                   {
@@ -1974,10 +1974,10 @@ const INLINE_UNITS = {
                     "examples": "A school network; an office network.",
                     "examTip": "One site, owned hardware, fast.",
                     "keyFacts": [
-                      "Organisation owns switches, cables and access points",
-                      "Fast (about 1 Gbps wired), low latency",
-                      "Wired and/or wireless",
-                      "Connects to the internet through a router"
+                      "The organisation owns the switches, cables and access points, so it controls security and set-up",
+                      "Fast (about 1 Gbps wired) with low latency, so files and apps on the network open quickly",
+                      "Wired and/or wireless, so it can mix fixed desktops with mobile devices",
+                      "Connects to the internet through a router, which links the private LAN to the outside world"
                     ]
                   },
                   {
@@ -1987,10 +1987,10 @@ const INLINE_UNITS = {
                     "examples": "A bank linking all its branches; the internet.",
                     "examTip": "Unlike a LAN, the organisation does not own the infrastructure.",
                     "keyFacts": [
-                      "Covers cities, countries or continents",
-                      "Uses leased lines from telecoms providers",
-                      "Slower and higher latency than a LAN",
-                      "Ongoing rental costs"
+                      "Covers cities, countries or continents, so an organisation's sites can share systems and data",
+                      "Uses leased lines from telecoms providers, because organisations can't lay cables that far themselves",
+                      "Slower and higher latency than a LAN, because data travels long distances through many devices",
+                      "Ongoing rental costs, because the lines are leased, not owned"
                     ]
                   },
                   {
@@ -2000,10 +2000,10 @@ const INLINE_UNITS = {
                     "examples": "Remote staff on the intranet; linking offices without leased lines.",
                     "examTip": "Not a physical network: it runs over the internet, so it is cheaper than a leased WAN.",
                     "keyFacts": [
-                      "Data inside the tunnel is encrypted",
-                      "Users must authenticate",
-                      "Cheaper than leased WAN lines",
-                      "Encryption adds some delay"
+                      "Data inside the tunnel is encrypted, so it can't be read if intercepted on the internet",
+                      "Users must authenticate, so only authorised people can reach the private network",
+                      "Cheaper than leased WAN lines, because it uses the ordinary internet connection",
+                      "Encryption adds some delay, because every packet must be encrypted and decrypted"
                     ],
                     "comparisonTable": {
                       "title": "Network Types Compared: PAN vs LAN vs WAN vs VPN",
@@ -2079,10 +2079,10 @@ const INLINE_UNITS = {
                     "definition": "What users need: mobility, the applications they run, and how many connect at once.",
                     "examTip": "The starting point for any network choice: what do users actually need to do?",
                     "keyFacts": [
-                      "More users need more bandwidth",
-                      "Mobile users → wireless",
-                      "Real-time apps need low latency",
-                      "Remote access needs a VPN"
+                      "More users need more bandwidth, otherwise everyone's connection slows down",
+                      "Mobile users need wireless, so they can work from anywhere in the building",
+                      "Real-time apps need low latency, so video calls and VoIP don't lag",
+                      "Remote access needs a VPN, so staff outside the office connect securely"
                     ]
                   },
                   {
@@ -2091,10 +2091,10 @@ const INLINE_UNITS = {
                     "definition": "Technical requirements the network must meet, e.g. speed, latency and uptime.",
                     "examTip": "Turn user needs into numbers: bandwidth, latency, uptime.",
                     "keyFacts": [
-                      "Minimum bandwidth for all users",
-                      "Low latency for real-time apps",
-                      "Uptime targets, e.g. 99.99%",
-                      "Room to grow in 3–5 years"
+                      "Minimum bandwidth for all users, so the network stays usable at its busiest",
+                      "Low latency for real-time apps, so calls and live systems respond without delay",
+                      "Uptime targets (e.g. 99.99%), so critical services are almost never unavailable",
+                      "Room to grow in 3–5 years, so the network doesn't need replacing as the organisation expands"
                     ]
                   },
                   {
@@ -2103,9 +2103,9 @@ const INLINE_UNITS = {
                     "definition": "Whether every device and site that needs to connect can do so reliably.",
                     "examTip": "Can everything that needs to connect, connect?",
                     "keyFacts": [
-                      "Must support PCs, phones, printers and IoT",
-                      "Multiple sites need a WAN or VPN",
-                      "4G/5G as backup if broadband fails"
+                      "Must support PCs, phones, printers and IoT, so every device staff rely on can connect",
+                      "Multiple sites need a WAN or VPN, so branches can share systems and data",
+                      "4G/5G as backup if broadband fails, so the organisation can keep working during an outage"
                     ]
                   },
                   {
@@ -2114,10 +2114,10 @@ const INLINE_UNITS = {
                     "definition": "The full cost of building and running a network: hardware, cabling, fees and support.",
                     "examTip": "Split into one-off capital costs and ongoing running costs.",
                     "keyFacts": [
-                      "One-off: switches, routers, cabling",
-                      "Ongoing: ISP fees, leased lines, support",
-                      "VPN is cheaper than leased lines",
-                      "Wireless saves cabling"
+                      "One-off costs: switches, routers and cabling, paid up front when the network is built",
+                      "Ongoing costs: ISP fees, leased lines and support, paid for as long as the network runs",
+                      "VPN is cheaper than leased lines, because it uses the existing internet connection",
+                      "Wireless saves cabling, so it is cheaper to install, especially in older buildings"
                     ]
                   },
                   {
@@ -2126,9 +2126,9 @@ const INLINE_UNITS = {
                     "definition": "How well the network uses its bandwidth to avoid congestion and delays.",
                     "examTip": "QoS prioritises important traffic such as calls.",
                     "keyFacts": [
-                      "QoS puts calls and video first",
-                      "Segmenting the network reduces congestion",
-                      "Monitoring finds bottlenecks"
+                      "QoS puts calls and video first, so they stay smooth even when the network is busy",
+                      "Segmenting the network reduces congestion, because traffic stays within its own section",
+                      "Monitoring finds bottlenecks, so problems are fixed before users notice them"
                     ]
                   },
                   {
@@ -2137,9 +2137,9 @@ const INLINE_UNITS = {
                     "definition": "Whether the network works with the hardware, software and protocols already in use.",
                     "examTip": "An incompatible network is useless however fast it is.",
                     "keyFacts": [
-                      "Older systems may need old protocols",
-                      "New switches must suit existing devices",
-                      "Management tools must work on all systems"
+                      "Older systems may need old protocols, so a new network must still support them or they stop working",
+                      "New switches must suit existing devices, otherwise hardware already owned may need replacing",
+                      "Management tools must work on all systems, so IT staff can monitor everything from one place"
                     ]
                   },
                   {
@@ -2148,10 +2148,10 @@ const INLINE_UNITS = {
                     "definition": "Practicalities of rollout: how long it takes, how it is tested and how much disruption it causes.",
                     "examTip": "Cover all three: timescales, testing and downtime.",
                     "keyFacts": [
-                      "Large installs take weeks or months",
-                      "Test before switching over",
-                      "Reduce downtime with out-of-hours or phased rollout",
-                      "Have a fallback plan"
+                      "Large installs take weeks or months, so they must be planned around the organisation's busy times",
+                      "Test before switching over, so faults are found before staff depend on the new network",
+                      "Reduce downtime with out-of-hours or phased rollout, so work carries on during the change",
+                      "Have a fallback plan, so the old network can be restored if the new one fails"
                     ]
                   },
                   {
@@ -2160,9 +2160,9 @@ const INLINE_UNITS = {
                     "definition": "How the network affects how much staff can get done.",
                     "examTip": "Link slow networks to real costs: missed deadlines, complaints, lost revenue.",
                     "keyFacts": [
-                      "A fast, reliable network boosts output",
-                      "Downtime wastes paid time",
-                      "Remote work depends on VPN and internet quality"
+                      "A fast, reliable network boosts output, because staff aren't waiting for files or systems",
+                      "Downtime wastes paid time, because staff are paid but can't do their work",
+                      "Remote work depends on VPN and internet quality, so a poor connection makes home workers less productive"
                     ]
                   },
                   {
@@ -2171,10 +2171,10 @@ const INLINE_UNITS = {
                     "definition": "Protecting the network from unauthorised access, interception and attack.",
                     "examTip": "Wireless is more vulnerable than wired. Key needs: WPA3, firewall, VPN.",
                     "keyFacts": [
-                      "Wi-Fi: WPA3 (WEP is obsolete)",
-                      "Separate guest Wi-Fi from staff network",
-                      "Firewall at the edge",
-                      "VPN for remote access"
+                      "Use WPA3 on Wi-Fi, because WEP is obsolete and easily cracked",
+                      "Separate guest Wi-Fi from the staff network, so visitors can't reach internal systems",
+                      "Firewall at the edge, so traffic from the internet is filtered before it reaches the network",
+                      "VPN for remote access, so staff working away from the office connect securely"
                     ]
                   }
                 ]
@@ -2190,10 +2190,10 @@ const INLINE_UNITS = {
                     "examples": "Upgrading a 100 Mbps switch to 1 Gbps; adding access points to ease Wi-Fi congestion.",
                     "examTip": "Cover speed, latency, reliability and how the number of users affects them.",
                     "keyFacts": [
-                      "Faster switches increase throughput",
-                      "Cable type: fibre > Cat6 > Cat5e",
-                      "More users = less bandwidth each",
-                      "Access point placement affects Wi-Fi coverage"
+                      "Faster switches increase throughput, so more data moves across the network at once",
+                      "Cable type matters: fibre > Cat6 > Cat5e, so better cable gives higher speeds over longer runs",
+                      "More users means less bandwidth each, so a network that is fine for 10 may struggle with 100",
+                      "Access point placement affects Wi-Fi coverage, so badly placed APs leave dead spots"
                     ]
                   }
                 ]
@@ -2215,9 +2215,9 @@ const INLINE_UNITS = {
                     "examples": "Outlook sending with SMTP; a phone syncing with IMAP.",
                     "examTip": "IMAP keeps mail on the server (syncs all devices); POP3 downloads it to one device.",
                     "keyFacts": [
-                      "SMTP: sends email",
-                      "POP3: downloads to one device, usually deletes from server",
-                      "IMAP: keeps mail on server, syncs everywhere"
+                      "SMTP sends email from the sender's device to the mail server and on to the recipient's server",
+                      "POP3 downloads to one device and usually deletes from the server, so mail isn't available elsewhere",
+                      "IMAP keeps mail on the server and syncs it, so the same inbox shows on every device"
                     ],
                     "comparisonTable": {
                       "title": "Email Protocols Compared: SMTP vs POP3 vs IMAP",
@@ -2286,10 +2286,10 @@ const INLINE_UNITS = {
                     "examples": "Teams, Zoom and WhatsApp calls.",
                     "examTip": "Needs enough bandwidth AND low latency, or calls lag and break up.",
                     "keyFacts": [
-                      "Much cheaper than phone calls, especially abroad",
-                      "High latency causes delays in conversation",
-                      "Packet loss causes dropouts",
-                      "QoS prioritises voice traffic"
+                      "Much cheaper than phone calls, especially abroad, because calls travel as ordinary internet data",
+                      "High latency causes delays, so people talk over each other",
+                      "Packet loss causes dropouts, so words or video frames go missing",
+                      "QoS prioritises voice traffic, so calls stay clear even when the network is busy"
                     ]
                   },
                   {
@@ -2299,9 +2299,9 @@ const INLINE_UNITS = {
                     "examples": "A news site over HTTP; online banking over HTTPS.",
                     "examTip": "HTTPS adds encryption, integrity and authentication.",
                     "keyFacts": [
-                      "HTTP port 80; HTTPS port 443",
-                      "HTTPS needs a digital certificate",
-                      "Browsers mark HTTP sites \"Not Secure\""
+                      "HTTP uses port 80 and HTTPS uses port 443, so firewalls can tell the two kinds of traffic apart",
+                      "HTTPS needs a digital certificate, which proves the site is genuine and enables encryption",
+                      "Browsers mark HTTP sites 'Not Secure', which warns users not to enter personal details"
                     ],
                     "comparisonTable": {
                       "title": "HTTP vs HTTPS",
@@ -2366,10 +2366,10 @@ const INLINE_UNITS = {
                     "examples": "Apple Pay tokens; 3D Secure codes at checkout.",
                     "examTip": "Layers: HTTPS, tokenisation, extra authentication and PCI DSS rules.",
                     "keyFacts": [
-                      "HTTPS encrypts card details in transit",
-                      "Tokenisation: merchant never sees the real card number",
-                      "PCI DSS: rules for handling card data",
-                      "3D Secure adds an extra check"
+                      "HTTPS encrypts card details in transit, so they can't be read if intercepted",
+                      "Tokenisation means the merchant never sees the real card number, so a breach can't leak it",
+                      "PCI DSS sets rules for handling card data, so businesses that take cards must follow them",
+                      "3D Secure adds an extra check (e.g. a code from the bank), so a stolen card number alone isn't enough"
                     ]
                   }
                 ]
@@ -2385,10 +2385,10 @@ const INLINE_UNITS = {
                     "examples": "Sniffing logins on open public Wi-Fi.",
                     "examTip": "The fix for most transmission risks is encryption: TLS, HTTPS or a VPN.",
                     "keyFacts": [
-                      "Packet sniffing reads unencrypted data",
-                      "Man-in-the-middle intercepts and relays traffic",
-                      "Evil twin: fake Wi-Fi hotspot",
-                      "Fix: HTTPS and a VPN on public Wi-Fi"
+                      "Packet sniffing reads unencrypted data, so passwords sent in plain text can be captured",
+                      "Man-in-the-middle intercepts and relays traffic, so the attacker can read or change it unnoticed",
+                      "Evil twin is a fake Wi-Fi hotspot, so users who connect send all their traffic through the attacker",
+                      "Fix with HTTPS and a VPN on public Wi-Fi, so intercepted data is encrypted and useless"
                     ]
                   }
                 ]
@@ -2404,10 +2404,10 @@ const INLINE_UNITS = {
                     "examples": "Fast broadband that still lags in games; school Wi-Fi slowing at lunch.",
                     "examTip": "They are different. High bandwidth doesn't help if latency is high. Explain the effect on users.",
                     "keyFacts": [
-                      "Bandwidth is shared between users",
-                      "Latency comes from distance, hops and congestion",
-                      "Low latency matters for calls and gaming",
-                      "Jitter = varying latency, bad for calls"
+                      "Bandwidth is shared between users, so each person's speed drops as more people use the network",
+                      "Latency comes from distance, hops and congestion, so far-away servers respond more slowly",
+                      "Low latency matters for calls and gaming, because delay makes them hard to use",
+                      "Jitter is varying latency, which makes calls choppy because packets arrive unevenly"
                     ]
                   }
                 ]
@@ -2423,10 +2423,10 @@ const INLINE_UNITS = {
                     "examples": "JPEG photos; PNG logos; GIF animations.",
                     "examTip": "Choose for the scenario: JPEG for photos, PNG for transparency, SVG for scalable logos.",
                     "keyFacts": [
-                      "JPEG: lossy, small, photos",
-                      "PNG: lossless, transparency",
-                      "GIF: 256 colours, simple animation",
-                      "RAW: huge, maximum quality"
+                      "JPEG is lossy and small, so it suits photos on websites where fast loading matters",
+                      "PNG is lossless with transparency, so it suits logos and graphics that need sharp edges",
+                      "GIF has only 256 colours but supports simple animation, so it suits small animated images",
+                      "RAW is huge but keeps maximum quality, so photographers use it for editing"
                     ]
                   },
                   {
@@ -2436,10 +2436,10 @@ const INLINE_UNITS = {
                     "examples": "MP3 streaming; WAV in a recording studio.",
                     "examTip": "MP3 = small, for streaming. WAV/FLAC = full quality, for production.",
                     "keyFacts": [
-                      "MP3: lossy, small, widely supported",
-                      "AAC: lossy, better than MP3",
-                      "WAV: uncompressed, large",
-                      "FLAC: lossless, smaller than WAV"
+                      "MP3 is lossy, small and widely supported, so it plays on almost any device",
+                      "AAC is lossy but sounds better than MP3 at the same size, so streaming services use it",
+                      "WAV is uncompressed and large, so it suits editing where full quality is needed",
+                      "FLAC is lossless but smaller than WAV, so it suits storing music at full quality"
                     ]
                   },
                   {
@@ -2449,10 +2449,10 @@ const INLINE_UNITS = {
                     "examples": "MP4 on YouTube; MOV from an iPhone.",
                     "examTip": "Container holds the streams; the codec compresses them.",
                     "keyFacts": [
-                      "MP4: most compatible",
-                      "MKV: multiple audio/subtitle tracks",
-                      "MOV: Apple, high quality",
-                      "Higher bitrate = better quality, more bandwidth"
+                      "MP4 is the most compatible, so it plays on almost every device and website",
+                      "MKV holds multiple audio and subtitle tracks, so it suits films in several languages",
+                      "MOV is Apple's high-quality format, so it suits editing on Apple devices",
+                      "Higher bitrate gives better quality but needs more bandwidth and storage"
                     ]
                   },
                   {
@@ -2462,10 +2462,10 @@ const INLINE_UNITS = {
                     "examples": ".exe on Windows; .apk on Android; .dmg on macOS.",
                     "examTip": "Large downloads; malware is often disguised as software.",
                     "keyFacts": [
-                      "EXE/MSI: Windows",
-                      "APK: Android",
-                      "DMG: macOS",
-                      "Check the source and digital signature before running"
+                      "EXE/MSI are Windows installers, so they won't run on other operating systems",
+                      "APK installs Android apps, usually from the Play Store",
+                      "DMG is used for macOS apps, so Mac users can install software",
+                      "Check the source and digital signature before running, because installers can contain malware"
                     ],
                     "comparisonTable": {
                       "title": "File Formats Summary by Media Type",
@@ -2516,10 +2516,10 @@ const INLINE_UNITS = {
                     "examples": "JPEG photos; MP3 music; streamed video.",
                     "examTip": "Smaller but lower quality, and irreversible. Never for text, code or medical images.",
                     "keyFacts": [
-                      "Original cannot be rebuilt",
-                      "Much smaller files than lossless",
-                      "Quality drops each re-save",
-                      "Uses: web images, streaming"
+                      "The original cannot be rebuilt, because the removed data is gone for good",
+                      "Much smaller files than lossless, so they download and stream quickly",
+                      "Quality drops each re-save, because more data is removed every time",
+                      "Used for web images and streaming, where small size matters more than perfect quality"
                     ]
                   },
                   {
@@ -2529,9 +2529,9 @@ const INLINE_UNITS = {
                     "examples": "ZIP archives; PNG images; FLAC audio.",
                     "examTip": "Needed wherever accuracy matters: text, code, spreadsheets, medical images.",
                     "keyFacts": [
-                      "Original restored perfectly",
-                      "Less compression than lossy",
-                      "Works on any file type"
+                      "Original restored perfectly, so it suits text, code and data where every bit matters",
+                      "Less compression than lossy, so files stay larger",
+                      "Works on any file type, e.g. ZIP files, because nothing is thrown away"
                     ],
                     "comparisonTable": {
                       "title": "Lossy vs Lossless Compression",
@@ -2602,10 +2602,10 @@ const INLINE_UNITS = {
                     "examples": "H.264 for video; MP3 and AAC for audio.",
                     "examTip": "Codec = coder + decoder. Without the right codec, a file won't play.",
                     "keyFacts": [
-                      "Encoder compresses, decoder decompresses",
-                      "Sender and receiver need the same codec",
-                      "More compression needs more processing",
-                      "H.265 is half the size of H.264"
+                      "The encoder compresses and the decoder decompresses, so video can be sent and then played back",
+                      "Sender and receiver need the same codec, otherwise the file won't play",
+                      "More compression needs more processing, so older devices may struggle to play newer codecs",
+                      "H.265 files are about half the size of H.264 at the same quality, so they save bandwidth and storage"
                     ]
                   }
                 ]
@@ -2635,10 +2635,10 @@ const INLINE_UNITS = {
                     "examples": "A hospital storing patient records; a bank's own cloud for financial data.",
                     "examTip": "More control and security, but higher cost than public cloud.",
                     "keyFacts": [
-                      "Full control over data and security",
-                      "Higher set-up and running costs",
-                      "Suits sensitive data (medical, financial)",
-                      "Not shared with other organisations"
+                      "Full control over data and security, so the organisation sets its own access rules and can meet GDPR for sensitive records",
+                      "Higher set-up and running costs, because it must buy, house and maintain its own servers and pay staff to run them",
+                      "Suits sensitive data (medical, financial), as nothing sits on hardware shared with other customers",
+                      "Not shared with other organisations, so performance is predictable and never slowed by someone else's demand"
                     ]
                   },
                   {
@@ -2648,10 +2648,10 @@ const INLINE_UNITS = {
                     "examples": "A school using Microsoft 365; a start-up hosting its app on AWS.",
                     "examTip": "Low cost and scalable, but less control over where data is stored.",
                     "keyFacts": [
-                      "Pay-as-you-go: cheap for small organisations",
-                      "Scales up or down instantly",
-                      "Provider maintains and secures the hardware",
-                      "Data sits on shared infrastructure"
+                      "Pay-as-you-go, so small organisations avoid buying servers and only pay for what they actually use",
+                      "Scales up or down instantly, so a business can cope with a busy period without buying extra hardware",
+                      "Provider maintains and secures the hardware, so the organisation needs fewer IT staff of its own",
+                      "Data sits on shared infrastructure, so the organisation has less control and must trust the provider's security"
                     ]
                   },
                   {
@@ -2661,10 +2661,10 @@ const INLINE_UNITS = {
                     "examples": "A retailer keeps payment data on private cloud and runs its website on public cloud.",
                     "examTip": "\"Best of both\" in suitability questions: mention flexibility and cost savings.",
                     "keyFacts": [
-                      "Sensitive data kept private for security/compliance",
-                      "Cheaper public cloud for everything else",
-                      "Can burst to public cloud when demand spikes",
-                      "More complex to manage"
+                      "Sensitive data kept private, so the organisation can meet security and legal (GDPR) requirements",
+                      "Cheaper public cloud for everything else, so it avoids paying private-cloud costs for non-sensitive work",
+                      "Can burst to public cloud when demand spikes, so busy periods are handled without buying extra servers",
+                      "More complex to manage, because staff must run two systems and keep data moving securely between them"
                     ]
                   },
                   {
@@ -2674,9 +2674,9 @@ const INLINE_UNITS = {
                     "examples": "Amazon EC2; Azure Virtual Machines.",
                     "examTip": "IaaS = most control, most responsibility.",
                     "keyFacts": [
-                      "Full control over OS and installed software",
-                      "No hardware to buy: pay for what you use",
-                      "Suits custom infrastructure needs"
+                      "Full control over the OS and installed software, so it can be set up exactly as the organisation needs",
+                      "No hardware to buy, so there is no large upfront cost: the organisation pays only for what it uses",
+                      "Suits custom infrastructure needs, but needs skilled IT staff because the organisation still manages the OS"
                     ]
                   },
                   {
@@ -2686,10 +2686,10 @@ const INLINE_UNITS = {
                     "examples": "Microsoft 365; Google Workspace; Salesforce.",
                     "examTip": "SaaS = no installation, access anywhere. Link it to productivity and remote working.",
                     "keyFacts": [
-                      "Nothing to install on devices",
-                      "Works on any device with internet",
-                      "Provider handles updates",
-                      "Monthly or annual subscription"
+                      "Nothing to install on devices, so it can be rolled out to staff quickly with little IT support",
+                      "Works on any device with internet, so staff can work from home or on the move",
+                      "Provider handles updates, so everyone is always on the latest, patched version without IT staff doing it",
+                      "Monthly or annual subscription, so costs are spread out but keep going for as long as the software is used"
                     ]
                   },
                   {
@@ -2699,10 +2699,10 @@ const INLINE_UNITS = {
                     "examples": "Google App Engine; Heroku.",
                     "examTip": "PaaS sits between IaaS (most control) and SaaS (least control).",
                     "keyFacts": [
-                      "Developers focus on code, not servers",
-                      "Provider handles OS, patches and scaling",
-                      "Faster development with built-in tools",
-                      "Less flexible than IaaS"
+                      "Developers focus on code, not servers, so apps are built faster and with fewer infrastructure skills",
+                      "Provider handles the OS, patches and scaling, so the organisation needs fewer system administrators",
+                      "Faster development with built-in tools (databases, testing), so products reach users sooner",
+                      "Less flexible than IaaS, because developers must work within the tools and settings the provider offers"
                     ],
                     "comparisonTable": {
                       "title": "Cloud Service Models Compared (IaaS vs PaaS vs SaaS)",
@@ -2838,10 +2838,10 @@ const INLINE_UNITS = {
                     "examples": "Backing up photos to iCloud; a business replacing its servers with AWS.",
                     "examTip": "Discuss both sides. Benefits: cost, scalability, access. Drawbacks: security, internet dependency, lock-in.",
                     "keyFacts": [
-                      "Individuals: access anywhere, automatic backups",
-                      "Organisations: less capital spending, scalable, always up to date",
-                      "Drawbacks: needs internet; data held by a third party",
-                      "Vendor lock-in and data stored abroad (legal issues)"
+                      "Individuals can access files anywhere, and automatic backups mean losing a device does not lose their data",
+                      "Organisations spend less upfront on hardware, scale as they grow, and always have up-to-date software",
+                      "Drawbacks: no internet means no access, and data is held by a third party the organisation must trust",
+                      "Vendor lock-in makes switching provider hard, and data stored abroad may fall under other countries' laws"
                     ],
                     "extendedAnswer": "Cloud computing offers significant benefits for organisations, including reduced capital expenditure on hardware and the ability to scale resources up or down based on demand. Employees can access data and applications from any location, supporting remote working and improving productivity. However, organisations face risks: if internet connectivity is lost, access to cloud systems is unavailable, causing disruption. Security concerns arise as data is stored on third-party servers, potentially in different countries, raising data protection compliance issues under GDPR. There is also risk of vendor lock-in, where migrating data away from one provider is costly and complex."
                   }
@@ -2858,10 +2858,10 @@ const INLINE_UNITS = {
                     "examples": "Staff working from home reaching the company intranet.",
                     "examTip": "VPN = encryption + tunnel + remote access.",
                     "keyFacts": [
-                      "Encrypts everything sent between device and network",
-                      "Safe to use on public Wi-Fi",
-                      "Remote staff can reach internal systems",
-                      "Encryption can slow the connection"
+                      "Encrypts everything sent between the device and the network, so intercepted data cannot be read",
+                      "Safe to use on public Wi-Fi, because anyone snooping on the hotspot only sees encrypted traffic",
+                      "Remote staff can reach internal systems, so they can work from home as if they were in the office",
+                      "Encryption can slow the connection, because every packet has to be encrypted and decrypted"
                     ]
                   },
                   {
@@ -2871,10 +2871,10 @@ const INLINE_UNITS = {
                     "examples": "IT support fixing a PC with TeamViewer; staff using their office PC from home.",
                     "examTip": "Remote desktop = see and control another machine.",
                     "keyFacts": [
-                      "Run apps and open files on the remote PC",
-                      "Needs a stable connection",
-                      "Security risk if not protected",
-                      "Often used with a VPN"
+                      "Run apps and open files on the remote PC, so IT staff can fix problems without visiting the user",
+                      "Needs a stable connection, because a slow or dropped link makes the remote desktop lag or disconnect",
+                      "Security risk if not protected, as an attacker who gets in has full control of that computer",
+                      "Often used with a VPN, so the remote session is encrypted and not exposed directly to the internet"
                     ],
                     "comparisonTable": {
                       "title": "VPN vs Remote Desktop Technology",
@@ -2929,10 +2929,10 @@ const INLINE_UNITS = {
                     "definition": "How well an online system protects data and accounts: encryption, access control, legal compliance.",
                     "examTip": "Always link security to how sensitive the data is and to GDPR.",
                     "keyFacts": [
-                      "Provider must be GDPR-compliant",
-                      "Encrypt data at rest and in transit",
-                      "MFA adds a layer",
-                      "Breaches bring fines and reputational damage"
+                      "Provider must be GDPR-compliant, because the organisation is still legally responsible for its customers' data",
+                      "Encrypt data at rest and in transit, so stolen or intercepted data cannot be read",
+                      "MFA adds a layer, so a stolen password alone is not enough to get into an account",
+                      "Breaches bring fines and reputational damage, so customers may leave and the organisation loses income"
                     ]
                   },
                   {
@@ -2941,10 +2941,10 @@ const INLINE_UNITS = {
                     "definition": "The full cost of an online system: subscriptions, data transfer, training and migration.",
                     "examTip": "Compare ongoing subscription costs with one-off capital costs.",
                     "keyFacts": [
-                      "Cloud: low upfront cost, ongoing fees",
-                      "On-premise: high upfront cost, lower running cost",
-                      "Pay only for what you use",
-                      "Hidden costs: data transfer, support, training"
+                      "Cloud has a low upfront cost but ongoing fees, so it suits organisations without money to buy servers",
+                      "On-premise has a high upfront cost but lower running costs, so it can work out cheaper over many years",
+                      "Pay only for what you use, so the organisation does not waste money on spare capacity",
+                      "Hidden costs (data transfer, support, training) can push the total well above the advertised price"
                     ]
                   },
                   {
@@ -2953,9 +2953,9 @@ const INLINE_UNITS = {
                     "definition": "How easy the system is for staff and customers to learn and use.",
                     "examTip": "Link ease of use to training needs and productivity.",
                     "keyFacts": [
-                      "Complex systems need more training",
-                      "Good design reduces errors",
-                      "Affects whether staff adopt it"
+                      "Complex systems need more training, which costs time and money before staff are productive",
+                      "Good design reduces errors, so staff waste less time fixing mistakes and data stays accurate",
+                      "Affects whether staff adopt it: a system people avoid using wastes the money spent on it"
                     ]
                   },
                   {
@@ -2964,8 +2964,8 @@ const INLINE_UNITS = {
                     "definition": "Whether the system's functions match what the organisation actually needs.",
                     "examTip": "Match features to the scenario: does it do what the business needs?",
                     "keyFacts": [
-                      "Must meet user and organisation needs",
-                      "Extra features add complexity and cost"
+                      "Must meet user and organisation needs, otherwise staff fall back on old methods and the system is wasted",
+                      "Extra features add complexity and cost, so paying for functions nobody uses gives poor value"
                     ]
                   },
                   {
@@ -2974,9 +2974,9 @@ const INLINE_UNITS = {
                     "definition": "The quality and reliability of the internet connection the system depends on.",
                     "examTip": "Cloud is useless without internet: use this as a drawback.",
                     "keyFacts": [
-                      "Unreliable connection = downtime and lost work",
-                      "Video and large files need high bandwidth",
-                      "Rural areas may have poor coverage"
+                      "Unreliable connection means downtime and lost work, because a cloud system cannot be reached offline",
+                      "Video and large files need high bandwidth, so a slow link makes calls drop and uploads crawl",
+                      "Rural areas may have poor coverage, so staff there cannot rely on online systems"
                     ]
                   },
                   {
@@ -2985,9 +2985,9 @@ const INLINE_UNITS = {
                     "definition": "The ability to increase or reduce capacity as demand changes, without major cost or disruption.",
                     "examTip": "Scalability is a key cloud benefit in any suitability question.",
                     "keyFacts": [
-                      "Scale up at peak times (e.g. Christmas)",
-                      "Scale down to stop paying for unused capacity",
-                      "On-premise is slower and costlier to scale"
+                      "Scale up at peak times (e.g. Christmas), so the website stays fast when most customers are buying",
+                      "Scale down afterwards, so the organisation stops paying for capacity it no longer needs",
+                      "On-premise is slower and costlier to scale, because new servers must be bought, delivered and set up"
                     ]
                   }
                 ]
@@ -3009,10 +3009,10 @@ const INLINE_UNITS = {
                     "examples": "A business marketing on Instagram; a school updating parents on X.",
                     "examTip": "Social media = marketing, communication and community building.",
                     "keyFacts": [
-                      "Reaches large audiences instantly",
-                      "Marketing, customer service, brand building",
-                      "Negative comments spread fast",
-                      "Platforms collect personal data"
+                      "Reaches large audiences instantly, so a business can promote products to thousands at low cost",
+                      "Used for marketing, customer service and brand building, because customers can talk to the business directly",
+                      "Negative comments spread fast, so one bad experience can damage the brand's reputation publicly",
+                      "Platforms collect personal data, which raises privacy concerns about how it is used and shared"
                     ]
                   },
                   {
@@ -3022,10 +3022,10 @@ const INLINE_UNITS = {
                     "examples": "A tech reviewer's blog; YouTube tutorials.",
                     "examTip": "One-to-many communication for sharing information.",
                     "keyFacts": [
-                      "Builds an audience over time",
-                      "Can earn advertising revenue",
-                      "Comments allow interaction",
-                      "Used for content marketing"
+                      "Builds an audience over time, so regular posts create loyal followers who trust the author",
+                      "Can earn advertising revenue, so a popular blog or vlog can become a source of income",
+                      "Comments allow interaction, so the author gets feedback and readers feel part of a community",
+                      "Used for content marketing: useful posts draw in customers who may then buy the product"
                     ]
                   },
                   {
@@ -3035,10 +3035,10 @@ const INLINE_UNITS = {
                     "examples": "Wikipedia; a company's internal knowledge wiki.",
                     "examTip": "Anyone can edit, so accuracy can be a problem.",
                     "keyFacts": [
-                      "Built and updated by the community",
-                      "Free to access",
-                      "Edits may be unverified",
-                      "Used internally for documentation"
+                      "Built and updated by the community, so information can be added and corrected quickly",
+                      "Free to access, so anyone can use it to look up information",
+                      "Edits may be unverified, so information can be wrong or deliberately vandalised and needs checking",
+                      "Used internally for documentation, so staff share know-how in one place everyone can update"
                     ]
                   },
                   {
@@ -3048,9 +3048,9 @@ const INLINE_UNITS = {
                     "examples": "Discord servers; live-chat customer support.",
                     "examTip": "Chatrooms are real-time (synchronous); forums are not.",
                     "keyFacts": [
-                      "Real-time group conversation",
-                      "Public or invite-only",
-                      "Risks: cyberbullying, grooming, inappropriate content"
+                      "Real-time group conversation, so several people can discuss and get answers immediately",
+                      "Public or invite-only, so organisations can keep private discussions limited to chosen members",
+                      "Risks include cyberbullying, grooming and inappropriate content, so chatrooms need moderation"
                     ]
                   },
                   {
@@ -3060,10 +3060,10 @@ const INLINE_UNITS = {
                     "examples": "WhatsApp with friends; Teams at work.",
                     "examTip": "Faster and less formal than email.",
                     "keyFacts": [
-                      "Quicker than email for short queries",
-                      "Supports files, voice and video",
-                      "Can blur work and personal time",
-                      "Often end-to-end encrypted"
+                      "Quicker than email for short queries, so problems are sorted in seconds rather than hours",
+                      "Supports files, voice and video, so a quick chat can turn into a call without switching app",
+                      "Can blur work and personal time, because staff feel they must reply to messages out of hours",
+                      "Often end-to-end encrypted, so only the sender and recipient can read the messages"
                     ]
                   },
                   {
@@ -3073,9 +3073,9 @@ const INLINE_UNITS = {
                     "examples": "BBC podcasts; exam revision podcasts.",
                     "examTip": "On-demand, one-way, one-to-many.",
                     "keyFacts": [
-                      "Listener chooses when to listen",
-                      "Cheap to produce",
-                      "No live interaction"
+                      "Listener chooses when to listen, so people fit episodes around commuting, exercise or chores",
+                      "Cheap to produce, as it only needs a microphone and editing software, so small creators can start easily",
+                      "No live interaction, so listeners cannot ask questions or get answers during the episode"
                     ]
                   },
                   {
@@ -3085,9 +3085,9 @@ const INLINE_UNITS = {
                     "examples": "Reddit; Stack Overflow; product support forums.",
                     "examTip": "Forums are asynchronous and searchable; chatrooms are real-time.",
                     "keyFacts": [
-                      "Posts stay up and are searchable",
-                      "No need to be online together",
-                      "Quality depends on moderation"
+                      "Posts stay up and are searchable, so answers to common problems can be found again later",
+                      "No need to be online together, so people in different time zones can still take part",
+                      "Quality depends on moderation, because without it threads fill with spam, wrong answers or abuse"
                     ],
                     "comparisonTable": {
                       "title": "Online Community Types Compared",
@@ -3171,10 +3171,10 @@ const INLINE_UNITS = {
                     "definition": "How easy, fast, available and accessible the platform is to use.",
                     "examTip": "Ask: is it fast, always available, and usable by people with disabilities?",
                     "keyFacts": [
-                      "Poor usability drives users away",
-                      "Slow performance frustrates users",
-                      "Downtime loses revenue",
-                      "Must work with assistive technology"
+                      "Poor usability drives users away, because people give up on platforms that are confusing to use",
+                      "Slow performance frustrates users, so they leave and engagement drops",
+                      "Downtime loses revenue, because users cannot buy, post or communicate while the platform is down",
+                      "Must work with assistive technology, so disabled users are not excluded (and the law is met)"
                     ]
                   },
                   {
@@ -3183,8 +3183,8 @@ const INLINE_UNITS = {
                     "definition": "Whether the platform's features match what its users actually need.",
                     "examTip": "Tie the platform choice back to the users in the scenario.",
                     "keyFacts": [
-                      "Missing features reduce engagement",
-                      "Feedback reveals unmet needs"
+                      "Missing features reduce engagement, because users move to a platform that does what they need",
+                      "Feedback reveals unmet needs, so the organisation knows which improvements to make first"
                     ]
                   },
                   {
@@ -3192,9 +3192,9 @@ const INLINE_UNITS = {
                     "term": "Cost",
                     "definition": "The cost of setting up and running a platform: subscriptions, hosting, moderation, staff.",
                     "keyFacts": [
-                      "Free platforms mean less control",
-                      "Moderation costs money",
-                      "Hidden costs: premium features, advertising"
+                      "Free platforms mean less control, because the provider decides the features, rules and adverts",
+                      "Moderation costs money, because staff or tools are needed to keep content safe",
+                      "Hidden costs (premium features, advertising) can make a 'free' platform expensive to use properly"
                     ]
                   },
                   {
@@ -3203,10 +3203,10 @@ const INLINE_UNITS = {
                     "definition": "How well users' personal data is protected and whether it is shared with third parties.",
                     "examTip": "Link privacy to GDPR: data must be handled lawfully.",
                     "keyFacts": [
-                      "GDPR requires consent",
-                      "Platforms may sell data to advertisers",
-                      "Users may not know what is collected",
-                      "Needs a clear privacy policy"
+                      "GDPR requires consent, so platforms must ask before collecting and using personal data",
+                      "Platforms may sell data to advertisers, so users get targeted adverts and lose control of their data",
+                      "Users may not know what is collected, so they cannot make an informed choice about using the platform",
+                      "Needs a clear privacy policy, so users can see what data is held, why, and who it is shared with"
                     ]
                   },
                   {
@@ -3214,9 +3214,9 @@ const INLINE_UNITS = {
                     "term": "Security",
                     "definition": "Protecting accounts and data on the platform from hacking and malicious content.",
                     "keyFacts": [
-                      "Strong passwords and MFA",
-                      "Malicious links spread through communities",
-                      "HTTPS encrypts data in transit"
+                      "Strong passwords and MFA, so accounts are much harder to take over even if a password leaks",
+                      "Malicious links spread through communities, because users trust messages that seem to come from friends",
+                      "HTTPS encrypts data in transit, so logins and messages cannot be read if intercepted"
                     ]
                   },
                   {
@@ -3224,9 +3224,9 @@ const INLINE_UNITS = {
                     "term": "Downtime",
                     "definition": "Time when the platform is unavailable, so users cannot access or communicate.",
                     "keyFacts": [
-                      "Planned maintenance vs unexpected outages",
-                      "Critical systems need high uptime (99.9%)",
-                      "Loses revenue and trust"
+                      "Planned maintenance can be scheduled for quiet times and announced, unlike unexpected outages",
+                      "Critical systems need high uptime (99.9%), because even short outages stop essential services",
+                      "Loses revenue and trust, because users cannot buy or communicate and may move to a rival"
                     ]
                   },
                   {
@@ -3234,9 +3234,9 @@ const INLINE_UNITS = {
                     "term": "Training",
                     "definition": "The training staff and users need to use and manage the platform well.",
                     "keyFacts": [
-                      "Staff need training to moderate",
-                      "Costs time and money",
-                      "Needed again when the platform updates"
+                      "Staff need training to moderate, so they know how to deal with abuse and harmful posts correctly",
+                      "Costs time and money, because staff are away from their normal work while they learn",
+                      "Needed again when the platform updates, because new features and layouts change how it works"
                     ]
                   },
                   {
@@ -3244,9 +3244,9 @@ const INLINE_UNITS = {
                     "term": "Integration with Current Systems",
                     "definition": "How easily the platform connects to systems the organisation already uses.",
                     "keyFacts": [
-                      "Should link to email, CRM and analytics",
-                      "Poor integration = duplicate work",
-                      "APIs make integration possible"
+                      "Should link to email, CRM and analytics, so customer data flows between systems automatically",
+                      "Poor integration means duplicate work, because staff re-type the same data into several systems",
+                      "APIs make integration possible, by letting different systems send data to each other directly"
                     ]
                   },
                   {
@@ -3254,9 +3254,9 @@ const INLINE_UNITS = {
                     "term": "Productivity",
                     "definition": "The effect of the platform on how much staff get done.",
                     "keyFacts": [
-                      "Speeds up collaboration and problem-solving",
-                      "Constant notifications and social media distract",
-                      "AUPs help manage use"
+                      "Speeds up collaboration and problem-solving, because staff can share files and get answers quickly",
+                      "Constant notifications and social media distract, so staff lose focus and get less done",
+                      "AUPs help manage use, by setting clear rules on when and how platforms should be used at work"
                     ]
                   },
                   {
@@ -3265,9 +3265,9 @@ const INLINE_UNITS = {
                     "definition": "The rules organisations set for how staff behave on online communities, e.g. an AUP.",
                     "examTip": "Link to AUPs (F1.1.6): rules protect reputation and keep the organisation within the law.",
                     "keyFacts": [
-                      "AUPs set what is and isn't allowed",
-                      "Staff represent the company online",
-                      "Policies must follow GDPR and employment law"
+                      "AUPs set what is and isn't allowed, so staff know the rules and can be disciplined if they break them",
+                      "Staff represent the company online, so a careless post can damage the organisation's reputation",
+                      "Policies must follow GDPR and employment law, otherwise the organisation can face fines or claims"
                     ]
                   }
                 ]
@@ -3297,11 +3297,11 @@ const INLINE_UNITS = {
                     "examples": "Ransomware locking hospital records; spyware logging banking passwords.",
                     "examTip": "Describe how the specific type works, not just \"malware\".",
                     "keyFacts": [
-                      "Virus: attaches to files, spreads when they are run",
-                      "Worm: spreads across networks by itself",
-                      "Ransomware: encrypts files, demands payment",
-                      "Spyware: secretly records activity, e.g. keystrokes",
-                      "Trojan: disguised as legitimate software"
+                      "Virus: attaches to files and spreads when they are run, so sharing one infected file can infect many PCs",
+                      "Worm: spreads across networks by itself, so it can infect a whole organisation without anyone opening a file",
+                      "Ransomware: encrypts files and demands payment, so the organisation cannot work until files are restored",
+                      "Spyware: secretly records activity such as keystrokes, so passwords and bank details can be stolen",
+                      "Trojan: disguised as legitimate software, so users install it themselves and let the attacker in"
                     ],
                     "comparisonTable": {
                       "title": "Types of Malware Compared",
@@ -3358,10 +3358,10 @@ const INLINE_UNITS = {
                     "examples": "Exploiting an unpatched web server to steal customer data.",
                     "examTip": "Use the term \"unauthorised access\". Black-hat = malicious, white-hat = authorised testing.",
                     "keyFacts": [
-                      "Unpatched software is a key target",
-                      "Brute force: tries every password combination",
-                      "Credential stuffing: reuses leaked passwords",
-                      "Motives: money, data theft, disruption"
+                      "Unpatched software is a key target, because attackers use known flaws that updates would have fixed",
+                      "Brute force tries every password combination, so short, simple passwords are cracked quickly",
+                      "Credential stuffing reuses leaked passwords, so one breach can unlock a person's other accounts",
+                      "Motives include money, data theft and disruption, which is why valuable or high-profile targets are hit most"
                     ]
                   },
                   {
@@ -3371,9 +3371,9 @@ const INLINE_UNITS = {
                     "examples": "Deleting a database by mistake; spilling a drink on a server.",
                     "examTip": "Separate accidental threats from deliberate ones when asked.",
                     "keyFacts": [
-                      "Human error is a top cause of data loss",
-                      "Protect with backups and file permissions",
-                      "Training reduces mistakes"
+                      "Human error is a top cause of data loss, e.g. deleting or overwriting files, or spilling drinks on kit",
+                      "Protect with backups and file permissions, so mistakes can be undone and staff can't delete what they shouldn't",
+                      "Training reduces mistakes, because staff learn safe ways to handle files and equipment"
                     ]
                   },
                   {
@@ -3383,11 +3383,11 @@ const INLINE_UNITS = {
                     "examples": "A fake bank email asking you to \"verify\" your login.",
                     "examTip": "It attacks the human. Phishing scenarios are common in exams.",
                     "keyFacts": [
-                      "Phishing: fake emails",
-                      "Vishing: phone calls; smishing: texts",
-                      "Pretexting: a made-up story to get information",
-                      "Baiting: infected USB sticks left lying around",
-                      "Defend with training, email filtering and MFA"
+                      "Phishing: fake emails that look genuine, so users click links or enter passwords on fake sites",
+                      "Vishing uses phone calls and smishing uses texts, so attackers reach people away from email filters",
+                      "Pretexting: a made-up story to get information, e.g. posing as IT support to get a password",
+                      "Baiting: infected USB sticks left lying around, so a curious finder plugs one in and installs malware",
+                      "Defend with training, email filtering and MFA, so fewer attacks arrive and stolen passwords are useless alone"
                     ],
                     "comparisonTable": {
                       "title": "Social Engineering Techniques Compared",
@@ -3444,9 +3444,9 @@ const INLINE_UNITS = {
                     "examples": "A flooded server room wiping out all on-site storage.",
                     "examTip": "Link to off-site backups and disaster recovery plans.",
                     "keyFacts": [
-                      "Cannot be prevented, only prepared for",
-                      "Off-site or cloud backups protect data",
-                      "A disaster recovery plan sets out how to restore systems"
+                      "Cannot be prevented, only prepared for, so organisations plan how to keep working after one",
+                      "Off-site or cloud backups protect data, because a fire or flood at one site cannot destroy every copy",
+                      "A disaster recovery plan sets out how to restore systems, so recovery is quick and downtime is short"
                     ]
                   }
                 ]
@@ -3462,9 +3462,9 @@ const INLINE_UNITS = {
                     "examples": "A piracy site that silently installs malware.",
                     "examTip": "Internal because it comes from an authorised user. Link to AUPs and web filtering.",
                     "keyFacts": [
-                      "Can bring in malware",
-                      "Legal liability for illegal content",
-                      "Controlled by web filtering and AUPs"
+                      "Can bring in malware, because malicious sites may download harmful software onto work PCs",
+                      "Legal liability for illegal content, because the organisation may be responsible for what is accessed on its systems",
+                      "Controlled by web filtering and AUPs, so harmful sites are blocked and staff know the rules"
                     ]
                   },
                   {
@@ -3474,9 +3474,9 @@ const INLINE_UNITS = {
                     "examples": "Emailing customer data to the wrong person.",
                     "examTip": "Still a GDPR breach even though it was accidental.",
                     "keyFacts": [
-                      "Serious breaches must be reported to the ICO within 72 hours",
-                      "Causes: wrong recipient, unencrypted files, lost devices",
-                      "Reduce with training and encryption"
+                      "Serious breaches must be reported to the ICO within 72 hours, or the organisation can be fined",
+                      "Causes include the wrong recipient, unencrypted files and lost devices, which are everyday slip-ups",
+                      "Reduce with training and encryption, so mistakes are rarer and leaked files can't be read"
                     ]
                   },
                   {
@@ -3486,10 +3486,10 @@ const INLINE_UNITS = {
                     "examples": "A leaving employee copying the customer database to a USB stick.",
                     "examTip": "The difference from accidental disclosure is intent.",
                     "keyFacts": [
-                      "Dangerous because they already have access",
-                      "Motives: money, grudges",
-                      "Hard to spot among normal work",
-                      "Reduce with least privilege and removing access promptly"
+                      "Dangerous because insiders already have access, so they get past firewalls and passwords without hacking",
+                      "Motives include money and grudges, e.g. selling customer data or getting revenge after being disciplined",
+                      "Hard to spot among normal work, because copying files looks like the person doing their job",
+                      "Reduce with least privilege and removing access promptly, so leavers and staff can't reach data they don't need"
                     ]
                   },
                   {
@@ -3499,10 +3499,10 @@ const INLINE_UNITS = {
                     "examples": "An unencrypted USB of patient records left on a train.",
                     "examTip": "Two risks: malware coming in, and data lost if the device goes missing.",
                     "keyFacts": [
-                      "A lost unencrypted device is a GDPR breach",
-                      "Encrypt portable devices",
-                      "Many organisations block USB ports",
-                      "BYOD policies control personal devices"
+                      "A lost unencrypted device is a GDPR breach, because anyone who finds it can read the personal data",
+                      "Encrypt portable devices, so a lost or stolen laptop or USB stick is unreadable",
+                      "Many organisations block USB ports, so malware can't come in and data can't be copied out",
+                      "BYOD policies control personal devices, setting rules such as passcodes and remote wipe for work data"
                     ],
                     "comparisonTable": {
                       "title": "Internal Threats Compared",
@@ -3558,9 +3558,9 @@ const INLINE_UNITS = {
                     "examples": "Ransomware with no backup; a flood destroying the only copy.",
                     "examTip": "Link it to what follows: disruption, customers not served, lost revenue.",
                     "keyFacts": [
-                      "Without backups the loss may be permanent",
-                      "Organisation cannot operate normally",
-                      "Prevent with off-site backups"
+                      "Without backups the loss may be permanent, so customer records or work may never be recovered",
+                      "Organisation cannot operate normally, because orders, accounts and records may be missing",
+                      "Prevent with off-site backups, so data can be restored even if the main site is destroyed"
                     ]
                   },
                   {
@@ -3570,9 +3570,9 @@ const INLINE_UNITS = {
                     "examples": "An ICO fine for failing to secure customer data.",
                     "examTip": "Quote it: up to £17.5 million or 4% of global turnover, whichever is higher.",
                     "keyFacts": [
-                      "The ICO enforces UK data protection law",
-                      "Report breaches within 72 hours",
-                      "Extra costs: investigation, recovery, compensation"
+                      "The ICO enforces UK data protection law, so it can investigate breaches and issue large fines",
+                      "Breaches must be reported within 72 hours, and reporting late can increase the penalty",
+                      "Extra costs (investigation, recovery, compensation) add to the fine and can cost more than it"
                     ]
                   },
                   {
@@ -3582,9 +3582,9 @@ const INLINE_UNITS = {
                     "examples": "A retailer losing customers to rivals after a card data breach.",
                     "examTip": "Explain the chain: breach → bad publicity → lost trust → fewer customers → less revenue.",
                     "keyFacts": [
-                      "Trust is slow to rebuild",
-                      "Social media spreads bad news fast",
-                      "Long-term losses can exceed the breach's direct cost"
+                      "Trust is slow to rebuild, so customers may stay away long after the breach is fixed",
+                      "Social media spreads bad news fast, so a breach becomes widely known within hours",
+                      "Long-term losses can exceed the breach's direct cost, because lost customers mean lost future sales"
                     ]
                   }
                 ]
@@ -3606,10 +3606,10 @@ const INLINE_UNITS = {
                     "examples": "Only HR can open the payroll file; everyone else is read-only.",
                     "examTip": "WHO can do WHAT with which files. Link to least privilege.",
                     "keyFacts": [
-                      "Read: view only",
-                      "Write: change or create",
-                      "Execute: run programs",
-                      "Set for individuals or groups"
+                      "Read: view only, so staff can see information without being able to change it",
+                      "Write: change or create, given only to people who need to update the files",
+                      "Execute: run programs, so users can't run unknown software that could be malware",
+                      "Set for individuals or groups, so a whole department can be given the right access in one step"
                     ]
                   },
                   {
@@ -3619,10 +3619,10 @@ const INLINE_UNITS = {
                     "examples": "Staff see their department's files; admins see everything.",
                     "examTip": "Least privilege: each user gets only the access their job needs.",
                     "keyFacts": [
-                      "Guest → user → manager → administrator",
-                      "Based on job role",
-                      "Limits damage if an account is hacked",
-                      "Review when staff change roles or leave"
+                      "Guest → user → manager → administrator, with each level able to reach more systems and data",
+                      "Based on job role, so staff only reach the data they need to do their work (least privilege)",
+                      "Limits damage if an account is hacked, because the attacker only gets that user's level of access",
+                      "Review when staff change roles or leave, so old access is removed before it can be misused"
                     ],
                     "comparisonTable": {
                       "title": "File Permissions vs Access Levels",
@@ -3672,11 +3672,11 @@ const INLINE_UNITS = {
                     "examples": "Nightly incremental backups plus a weekly full backup off-site.",
                     "examTip": "Know full, incremental and differential, and why backups go off-site (fire, flood).",
                     "keyFacts": [
-                      "Full: everything; slowest, quickest to restore",
-                      "Incremental: changes since the last backup",
-                      "Differential: changes since the last full backup",
-                      "3-2-1: 3 copies, 2 media, 1 off-site",
-                      "Test backups, or they may not restore"
+                      "Full backup copies everything: slowest to make, but quickest to restore because only one set is needed",
+                      "Incremental copies changes since the last backup: fast to make, but restoring needs every increment",
+                      "Differential copies changes since the last full backup: restore needs only the full plus the latest differential",
+                      "3-2-1 rule: 3 copies, 2 media, 1 off-site, so one fire, flood or failure can't destroy every copy",
+                      "Test backups, because a backup that has never been restored may turn out to be corrupt or incomplete"
                     ],
                     "comparisonTable": {
                       "title": "Backup Types Compared",
@@ -3723,10 +3723,10 @@ const INLINE_UNITS = {
                     "examples": "A password plus a code from an authenticator app.",
                     "examTip": "Name the factors: something you know, have and are.",
                     "keyFacts": [
-                      "Strong: 12+ characters, mixed types, not a word",
-                      "A stolen password alone is not enough with MFA",
-                      "Methods: SMS code, app, hardware token, biometric",
-                      "Password managers stop reuse"
+                      "Strong: 12+ characters, mixed types, not a word, so it takes far longer to guess or brute force",
+                      "A stolen password alone is not enough with MFA, because the attacker also needs the second factor",
+                      "Methods include an SMS code, app, hardware token or biometric, each something only the user has or is",
+                      "Password managers stop reuse, so one leaked password doesn't unlock the user's other accounts"
                     ]
                   },
                   {
@@ -3736,10 +3736,10 @@ const INLINE_UNITS = {
                     "examples": "Face unlock on a phone; fingerprint entry to an office.",
                     "examTip": "\"Something you are\": cannot be forgotten, but cannot be changed if stolen.",
                     "keyFacts": [
-                      "Unique and cannot be shared",
-                      "Faster than typing a password",
-                      "Cannot be reset if the data is stolen",
-                      "Privacy concerns under GDPR"
+                      "Unique and cannot be shared, so access can't be passed on like a password or swipe card",
+                      "Faster than typing a password, so staff log in quickly without writing passwords down",
+                      "Cannot be reset if the data is stolen, because you can't change your fingerprint like a password",
+                      "Privacy concerns under GDPR, because biometric data is sensitive and must be stored securely"
                     ]
                   },
                   {
@@ -3749,10 +3749,10 @@ const INLINE_UNITS = {
                     "examples": "Swipe cards for the server room; CCTV at entrances.",
                     "examTip": "Physical security matters as much as cyber security.",
                     "keyFacts": [
-                      "Swipe cards and key fobs log who enters",
-                      "Biometric locks on secure rooms",
-                      "CCTV and guards deter intruders",
-                      "Clear desk policy"
+                      "Swipe cards and key fobs log who enters, so access is limited and there is a record if something goes wrong",
+                      "Biometric locks on secure rooms, so only authorised people can reach servers or sensitive data",
+                      "CCTV and guards deter intruders, and footage gives evidence if equipment is stolen",
+                      "Clear desk policy, so papers and unlocked screens can't be read or photographed by visitors"
                     ]
                   },
                   {
@@ -3762,9 +3762,9 @@ const INLINE_UNITS = {
                     "examples": "The padlock icon in a browser.",
                     "examTip": "Certificate = proof of identity + enables encryption. Expired ones trigger warnings.",
                     "keyFacts": [
-                      "Issued by a trusted Certificate Authority",
-                      "Contains the owner's public key and an expiry date",
-                      "Stops attackers impersonating a site"
+                      "Issued by a trusted Certificate Authority, which checks the owner's identity first",
+                      "Contains the owner's public key and an expiry date, so browsers can encrypt traffic and reject old certificates",
+                      "Stops attackers impersonating a site, because a fake site cannot show a valid certificate for that domain"
                     ]
                   }
                 ]
@@ -3780,11 +3780,11 @@ const INLINE_UNITS = {
                     "examples": "Windows Defender blocking a downloaded trojan.",
                     "examTip": "Must be updated. Heuristics catch new, unknown threats.",
                     "keyFacts": [
-                      "Signatures: matches known malware",
-                      "Heuristics: spots suspicious behaviour",
-                      "Real-time scanning",
-                      "Quarantine isolates infected files",
-                      "Useless against new threats without updates"
+                      "Signatures match known malware, so recognised threats are detected reliably",
+                      "Heuristics spot suspicious behaviour, so new malware with no signature yet can still be caught",
+                      "Real-time scanning checks files as they open or download, so threats are stopped before they run",
+                      "Quarantine isolates infected files, so they can't spread while the user decides what to do",
+                      "Useless against new threats without updates, because its signature list goes out of date"
                     ]
                   }
                 ]
@@ -3800,11 +3800,11 @@ const INLINE_UNITS = {
                     "examples": "Blocking incoming traffic on ports the business doesn't use.",
                     "examTip": "Describe it: monitors traffic, applies rules, forms a barrier between networks.",
                     "keyFacts": [
-                      "Checks addresses and ports against rules",
-                      "Can block sites, apps and IP ranges",
-                      "Hardware: protects the whole network",
-                      "Software: protects one device",
-                      "Cannot stop insider threats"
+                      "Checks addresses and ports against rules, so only permitted traffic gets in or out",
+                      "Can block sites, apps and IP ranges, so known malicious sources can't reach the network",
+                      "Hardware firewall protects the whole network, guarding every device behind it at once",
+                      "Software firewall protects one device, so a laptop stays protected on other networks too",
+                      "Cannot stop insider threats, because staff are already inside the network the firewall guards"
                     ],
                     "comparisonTable": {
                       "title": "Hardware Firewall vs Software Firewall",
@@ -3865,9 +3865,9 @@ const INLINE_UNITS = {
                     "examples": "BitLocker on a laptop; an encrypted customer database.",
                     "examTip": "If the key is lost, the data is lost too.",
                     "keyFacts": [
-                      "Full disk encryption, e.g. BitLocker",
-                      "Protects stolen laptops, USBs and backups",
-                      "Keep the key separate and secure"
+                      "Full disk encryption (e.g. BitLocker) encrypts the whole drive, so nothing on it is readable without the key",
+                      "Protects stolen laptops, USBs and backups, so a theft does not become a data breach",
+                      "Keep the key separate and secure, because anyone with the key can decrypt the data"
                     ]
                   },
                   {
@@ -3877,10 +3877,10 @@ const INLINE_UNITS = {
                     "examples": "VPN traffic; end-to-end encrypted WhatsApp messages.",
                     "examTip": "Key methods: TLS (HTTPS, email) and VPNs.",
                     "keyFacts": [
-                      "End-to-end: only sender and recipient can read it",
-                      "Symmetric: one shared key, fast",
-                      "Asymmetric: public key encrypts, private key decrypts",
-                      "Public Wi-Fi is risky without it"
+                      "End-to-end: only sender and recipient can read it, so not even the service provider can see messages",
+                      "Symmetric uses one shared key, so it is fast, but the key must be shared safely first",
+                      "Asymmetric: the public key encrypts and the private key decrypts, so no secret key needs sharing",
+                      "Public Wi-Fi is risky without it, because others on the network can intercept unencrypted traffic"
                     ]
                   },
                   {
@@ -3890,9 +3890,9 @@ const INLINE_UNITS = {
                     "examples": "Online banking and checkout pages.",
                     "examTip": "HTTPS gives encryption, integrity and authentication.",
                     "keyFacts": [
-                      "Padlock = valid certificate",
-                      "Certificate proves the server's identity",
-                      "Over plain HTTP, logins can be sniffed"
+                      "Padlock means a valid certificate, so users can check the connection is encrypted before entering details",
+                      "Certificate proves the server's identity, so users know they're on the genuine site, not a fake",
+                      "Over plain HTTP, logins can be sniffed, because usernames and passwords travel as readable text"
                     ],
                     "comparisonTable": {
                       "title": "Encryption Contexts Compared",
@@ -3969,10 +3969,10 @@ const INLINE_UNITS = {
                     "examples": "Amazon; ASOS; Tesco online groceries.",
                     "examTip": "Cover both sides: convenience for customers AND the decline of the high street.",
                     "keyFacts": [
-                      "Customers: 24/7, more choice, easy price comparison",
-                      "Retailers: lower costs, global reach",
-                      "Risks: fraud, data breaches, can't inspect items",
-                      "Society: high-street closures, more warehouse jobs"
+                      "Customers get 24/7 shopping, more choice and easy price comparison, so they can find the best deal",
+                      "Retailers get lower costs and global reach, because they need fewer shops and can sell anywhere",
+                      "Risks include fraud, data breaches and not being able to inspect items before buying",
+                      "Society sees high-street closures but more warehouse and delivery jobs"
                     ]
                   },
                   {
@@ -3982,10 +3982,10 @@ const INLINE_UNITS = {
                     "examples": "Banking apps; PayPal; Monzo.",
                     "examTip": "Benefits: 24/7, instant transfers. Risks: fraud, phishing, excluding less digital customers.",
                     "keyFacts": [
-                      "Check balances, pay and transfer any time",
-                      "Near-instant payments",
-                      "App-only banks have lower costs",
-                      "Elderly or offline customers can be excluded"
+                      "Check balances, pay and transfer any time, so customers don't need to visit a branch",
+                      "Near-instant payments, so money reaches people and businesses straight away",
+                      "App-only banks have lower costs, because they don't run branches, so they can offer better rates",
+                      "Elderly or offline customers can be excluded as branches close"
                     ]
                   },
                   {
@@ -3995,10 +3995,10 @@ const INLINE_UNITS = {
                     "examples": "Google Classroom; BBC Bitesize; Coursera.",
                     "examTip": "Benefits: anywhere, self-paced, cheaper. Drawbacks: needs internet, less contact, self-discipline.",
                     "keyFacts": [
-                      "VLEs hold resources, homework and feedback",
-                      "Reaches rural and remote learners",
-                      "Learners without devices are disadvantaged",
-                      "Less face-to-face interaction"
+                      "VLEs hold resources, homework and feedback, so learners can study and catch up anywhere",
+                      "Reaches rural and remote learners who can't easily travel to a college",
+                      "Learners without devices are disadvantaged, widening the digital divide",
+                      "Less face-to-face interaction, so some learners feel isolated or lose motivation"
                     ]
                   },
                   {
@@ -4008,10 +4008,10 @@ const INLINE_UNITS = {
                     "examples": "BBC News online; Wikipedia; news on X.",
                     "examTip": "Key issues: fake news, filter bubbles, speed vs accuracy.",
                     "keyFacts": [
-                      "Published within minutes",
-                      "Anyone can publish, so misinformation spreads",
-                      "Filter bubbles show only agreeable views",
-                      "Paywalls replace print advertising"
+                      "Published within minutes, so people hear about events as they happen",
+                      "Anyone can publish, so misinformation spreads quickly",
+                      "Filter bubbles show only agreeable views, because algorithms recommend what users already like",
+                      "Paywalls replace print advertising, because newspapers need a new way to earn money"
                     ]
                   },
                   {
@@ -4021,10 +4021,10 @@ const INLINE_UNITS = {
                     "examples": "Netflix; Spotify; Steam.",
                     "examTip": "Streaming has disrupted DVDs, CDs and broadcast TV. Watch for piracy and age checks.",
                     "keyFacts": [
-                      "Streaming needs internet; downloads work offline",
-                      "Subscriptions replaced buying",
-                      "4K streaming needs about 25 Mbps",
-                      "Piracy breaks copyright law"
+                      "Streaming needs internet, but downloads work offline, e.g. for watching on a flight",
+                      "Subscriptions replaced buying, so users get large libraries for a monthly fee but own nothing",
+                      "4K streaming needs about 25 Mbps, so homes with slow broadband get lower quality",
+                      "Piracy breaks copyright law and takes income away from creators"
                     ]
                   },
                   {
@@ -4034,10 +4034,10 @@ const INLINE_UNITS = {
                     "examples": "Booking.com; Trainline; NHS GP appointments.",
                     "examTip": "Benefits: 24/7, instant confirmation, less admin. Risks: double booking, downtime, data security.",
                     "keyFacts": [
-                      "Live availability and instant confirmation",
-                      "Bookings outside opening hours",
-                      "Must sync with internal systems or double-book",
-                      "Collects personal and payment data (GDPR)"
+                      "Live availability and instant confirmation, so customers know straight away that they're booked",
+                      "Bookings outside opening hours, so the business takes bookings without staff on duty",
+                      "Must sync with internal systems or it will double-book the same slot",
+                      "Collects personal and payment data, so it must be kept secure under GDPR"
                     ],
                     "comparisonTable": {
                       "title": "Online Services: Benefits and Risks by Sector",
@@ -4100,10 +4100,10 @@ const INLINE_UNITS = {
                     "examples": "Supermarket till records; bank card transactions; order history.",
                     "examTip": "Raw data becomes valuable once analysed. Link to targeted marketing and stock control.",
                     "keyFacts": [
-                      "Used for forecasting and restocking",
-                      "Powers recommendations and targeted adverts",
-                      "Loyalty cards link it to named people",
-                      "Must be stored securely under GDPR"
+                      "Used for forecasting and restocking, so shops hold the right stock at the right time",
+                      "Powers recommendations and targeted adverts, which increase sales",
+                      "Loyalty cards link it to named people, so the organisation learns each customer's habits",
+                      "Must be stored securely under GDPR, because it is personal data"
                     ]
                   },
                   {
@@ -4113,10 +4113,10 @@ const INLINE_UNITS = {
                     "examples": "Amazon recommendations; adverts that follow you across websites.",
                     "examTip": "Businesses get more sales; users get relevant ads. But privacy and consent are concerns.",
                     "keyFacts": [
-                      "Uses cookies, purchase and browsing history",
-                      "Cheaper and more effective than blanket adverts",
-                      "Can feel intrusive",
-                      "GDPR: cookie consent and opt-out required"
+                      "Uses cookies, purchase and browsing history to work out what each person is interested in",
+                      "Cheaper and more effective than blanket adverts, because adverts only reach likely buyers",
+                      "Can feel intrusive, so some customers are put off when adverts seem to know too much",
+                      "GDPR requires cookie consent and an opt-out, so users can refuse tracking"
                     ]
                   },
                   {
@@ -4126,10 +4126,10 @@ const INLINE_UNITS = {
                     "examples": "Google Docs; Microsoft Teams; Trello.",
                     "examTip": "Link to productivity, remote working and always-on work culture.",
                     "keyFacts": [
-                      "Several people edit at once",
-                      "Version history tracks changes",
-                      "Chat, video and files in one place",
-                      "Needs internet; can blur work and home"
+                      "Several people edit at once, so work is finished faster without emailing copies around",
+                      "Version history tracks changes, so mistakes can be undone and everyone sees who changed what",
+                      "Chat, video and files in one place, so teams don't switch between tools",
+                      "Needs internet and can blur work and home, because staff can be reached at any time"
                     ]
                   },
                   {
@@ -4139,10 +4139,10 @@ const INLINE_UNITS = {
                     "examples": "Staff working from home over a VPN.",
                     "examTip": "Link the technology (VPN, cloud, collaboration tools) to impacts on the business and staff.",
                     "keyFacts": [
-                      "Organisation: less office space, wider talent pool",
-                      "Staff: no commute, flexible hours",
-                      "Risks: insecure home networks, harder to manage",
-                      "Staff risks: isolation, blurred boundaries"
+                      "Organisation needs less office space and can hire from a wider talent pool, not just locally",
+                      "Staff save the commute and get flexible hours, which can improve work-life balance",
+                      "Risks include insecure home networks, and teams are harder to manage when no one is in the office",
+                      "Staff risk isolation and blurred boundaries, because home becomes the workplace"
                     ],
                     "comparisonTable": {
                       "title": "Transactional Data vs Targeted Marketing",
@@ -4214,10 +4214,10 @@ const INLINE_UNITS = {
                     "examples": "A customer satisfaction survey; running a focus group.",
                     "examTip": "Collected by you, for your purpose, now. Relevant but slow and costly.",
                     "keyFacts": [
-                      "Exactly fits your needs",
-                      "Up to date",
-                      "Methods: surveys, interviews, focus groups, observation",
-                      "Expensive and time-consuming"
+                      "Exactly fits your needs, because you choose the questions and who to ask",
+                      "Up to date, because it is collected now for this purpose",
+                      "Methods include surveys, interviews, focus groups and observation, chosen to suit the question",
+                      "Expensive and time-consuming, because the data has to be gathered from scratch"
                     ]
                   },
                   {
@@ -4227,10 +4227,10 @@ const INLINE_UNITS = {
                     "examples": "Census data; published market research.",
                     "examTip": "Collected by someone else, earlier. Cheap and quick, but may be out of date or not fit.",
                     "keyFacts": [
-                      "No collection needed",
-                      "Cheaper and quicker",
-                      "May be outdated or not fit your needs",
-                      "Check how credible the source is"
+                      "No collection needed, because the data already exists in reports, databases or websites",
+                      "Cheaper and quicker than primary data, so it suits early research",
+                      "May be outdated or not fit your needs, because it was collected for another purpose",
+                      "Check how credible the source is, because you don't control how it was collected"
                     ],
                     "comparisonTable": {
                       "title": "Primary vs Secondary Data",
@@ -4301,10 +4301,10 @@ const INLINE_UNITS = {
                     "examples": "Checking a story against several reputable sources.",
                     "examTip": "Say how an organisation checks information before using it to make decisions.",
                     "keyFacts": [
-                      "Cross-reference several independent sources",
-                      "Check author, date and publisher",
-                      "Prefer peer-reviewed or official sources",
-                      "Compare with past data to spot anomalies"
+                      "Cross-reference several independent sources, so one wrong source doesn't mislead you",
+                      "Check the author, date and publisher, so you know the information is current and from an expert",
+                      "Prefer peer-reviewed or official sources, because experts have checked them",
+                      "Compare with past data to spot anomalies, so unusual figures are questioned before being used"
                     ]
                   }
                 ]
@@ -4320,10 +4320,10 @@ const INLINE_UNITS = {
                     "examples": "An email survey after a purchase.",
                     "examTip": "Best for large numbers and statistics. Watch for bias in who replies.",
                     "keyFacts": [
-                      "Online surveys are cheap and fast",
-                      "Closed questions are easy to analyse",
-                      "Response rates are often low",
-                      "Leading questions skew results"
+                      "Online surveys are cheap and fast, so they reach many people with little effort",
+                      "Closed questions are easy to analyse, because answers can be counted and graphed",
+                      "Response rates are often low, so results may not represent everyone",
+                      "Leading questions skew results, because they push people towards a particular answer"
                     ]
                   },
                   {
@@ -4333,10 +4333,10 @@ const INLINE_UNITS = {
                     "examples": "A feedback form handed to shoppers.",
                     "examTip": "Very close to a survey: the questionnaire is the document itself.",
                     "keyFacts": [
-                      "Cheap to send to many people",
-                      "Rating scales measure opinions",
-                      "Cannot follow up answers",
-                      "Low response rates"
+                      "Cheap to send to many people, by post or online",
+                      "Rating scales measure opinions, so feelings can be turned into numbers and compared",
+                      "Cannot follow up answers, so unclear or interesting replies can't be explored",
+                      "Low response rates, because many people ignore questionnaires"
                     ]
                   },
                   {
@@ -4346,10 +4346,10 @@ const INLINE_UNITS = {
                     "examples": "Testing a prototype app with potential users.",
                     "examTip": "Shows WHY people think something; surveys show HOW MANY.",
                     "keyFacts": [
-                      "Rich, detailed opinions",
-                      "Facilitator can follow up",
-                      "Expensive to run",
-                      "Strong personalities can sway the group"
+                      "Rich, detailed opinions, because people discuss and build on each other's ideas",
+                      "Facilitator can follow up, so interesting points can be explored further",
+                      "Expensive to run, because of venue, facilitator and participants' time",
+                      "Strong personalities can sway the group, so quieter views may be lost"
                     ]
                   },
                   {
@@ -4359,9 +4359,9 @@ const INLINE_UNITS = {
                     "examples": "Interviewing customers about a new product.",
                     "examTip": "Structured = fixed questions; unstructured = flexible conversation.",
                     "keyFacts": [
-                      "Can probe and ask follow-ups",
-                      "Time-consuming, so small samples",
-                      "Interviewer can influence answers"
+                      "Can probe and ask follow-ups, so the interviewer gets detailed, in-depth answers",
+                      "Time-consuming, so only small samples are possible",
+                      "Interviewer can influence answers through tone or wording, which biases results"
                     ],
                     "comparisonTable": {
                       "title": "Data Collection Methods Compared",
@@ -4422,10 +4422,10 @@ const INLINE_UNITS = {
                     "examples": "A hospital giving the wrong drug because of an incorrect record.",
                     "examTip": "Give a specific consequence from the scenario.",
                     "keyFacts": [
-                      "GDPR requires accurate personal data",
-                      "Wrong data → wrong decisions",
-                      "Errors damage customer trust",
-                      "Wrong stock data → over- or under-ordering"
+                      "GDPR requires accurate personal data, so inaccurate records break the law",
+                      "Wrong data leads to wrong decisions, e.g. targeting the wrong customers",
+                      "Errors damage customer trust, e.g. wrong bills or orders sent to the wrong address",
+                      "Wrong stock data leads to over- or under-ordering, wasting money or losing sales"
                     ]
                   }
                 ]
@@ -4441,9 +4441,9 @@ const INLINE_UNITS = {
                     "examples": "Typing a password twice to confirm it.",
                     "examTip": "Checks it was copied correctly, not that it is actually right.",
                     "keyFacts": [
-                      "Double entry: typed twice, must match",
-                      "Proofreading against the original",
-                      "Catches typing mistakes only"
+                      "Double entry: data is typed twice and must match, so a typing slip is spotted",
+                      "Proofreading against the original, so the copy matches the source document",
+                      "Catches typing mistakes only, because it can't tell if the original data was wrong"
                     ]
                   },
                   {
@@ -4453,11 +4453,11 @@ const INLINE_UNITS = {
                     "examples": "Rejecting an age of 200; a required email field.",
                     "examTip": "Know the checks: range, presence, format, length, type, lookup.",
                     "keyFacts": [
-                      "Range: within limits",
-                      "Presence: not left empty",
-                      "Format: matches a pattern, e.g. postcode",
-                      "Type and length checks",
-                      "Valid data can still be wrong"
+                      "Range check keeps values within limits, e.g. an age between 0 and 120",
+                      "Presence check stops a field being left empty, so required data is always entered",
+                      "Format check matches a pattern (e.g. postcode), so data is entered in the right shape",
+                      "Type and length checks stop text in number fields and over-long entries",
+                      "Valid data can still be wrong, because a sensible-looking value may still be incorrect"
                     ],
                     "comparisonTable": {
                       "title": "Verification vs Validation",
@@ -4522,9 +4522,9 @@ const INLINE_UNITS = {
                     "definition": "How easily users can find their way around and enter data without training.",
                     "examTip": "Easy interfaces mean fewer errors and faster entry.",
                     "keyFacts": [
-                      "Fields in a logical order",
-                      "Clear labels",
-                      "Drop-downs and autocomplete reduce typing"
+                      "Fields in a logical order, so users fill the form in naturally without jumping around",
+                      "Clear labels, so users know exactly what to enter in each field",
+                      "Drop-downs and autocomplete reduce typing, which saves time and cuts errors"
                     ]
                   },
                   {
@@ -4533,10 +4533,10 @@ const INLINE_UNITS = {
                     "definition": "Designing interfaces so people with disabilities can use them.",
                     "examTip": "An ethical and legal duty (Equality Act 2010). Link to assistive technology.",
                     "keyFacts": [
-                      "Works with screen readers",
-                      "Strong colour contrast",
-                      "Usable by keyboard alone",
-                      "Works when text is enlarged"
+                      "Works with screen readers, so blind and partially sighted users can use it",
+                      "Strong colour contrast, so text is readable for people with visual impairments",
+                      "Usable by keyboard alone, so people who can't use a mouse aren't excluded",
+                      "Works when text is enlarged, so users who need bigger text can still use every feature"
                     ]
                   },
                   {
@@ -4545,10 +4545,10 @@ const INLINE_UNITS = {
                     "definition": "Design features that stop users entering wrong data in the first place.",
                     "examTip": "Preventing errors beats catching them afterwards.",
                     "keyFacts": [
-                      "Error messages as you type",
-                      "Date pickers and drop-downs limit input",
-                      "Messages say how to fix the error",
-                      "\"Are you sure?\" before irreversible actions"
+                      "Error messages as you type, so mistakes are fixed straight away",
+                      "Date pickers and drop-downs limit input, so users can only choose valid options",
+                      "Messages say how to fix the error, so users aren't left guessing",
+                      "'Are you sure?' before irreversible actions, so data isn't deleted by accident"
                     ]
                   },
                   {
@@ -4557,9 +4557,9 @@ const INLINE_UNITS = {
                     "definition": "Whether the interface has every feature users need to complete their tasks.",
                     "examTip": "Too few features block tasks; too many confuse users.",
                     "keyFacts": [
-                      "All required fields present",
-                      "Search to avoid duplicate records",
-                      "Links to other systems to avoid re-typing"
+                      "All required fields present, so users can complete the task without workarounds",
+                      "Search to avoid duplicate records, so the same customer isn't entered twice",
+                      "Links to other systems to avoid re-typing, which saves time and cuts errors"
                     ]
                   },
                   {
@@ -4568,9 +4568,9 @@ const INLINE_UNITS = {
                     "definition": "How quickly the interface responds, including at busy times.",
                     "examTip": "Slow interfaces make users rush and make mistakes.",
                     "keyFacts": [
-                      "Slow pages make users give up",
-                      "Must cope with peak use",
-                      "Show progress for long tasks"
+                      "Slow pages make users give up, so the organisation loses customers or sales",
+                      "Must cope with peak use, so it doesn't slow down or crash when busiest",
+                      "Show progress for long tasks, so users know it is still working and don't give up"
                     ]
                   },
                   {
@@ -4579,9 +4579,9 @@ const INLINE_UNITS = {
                     "definition": "Whether the interface works on all devices, browsers and screen sizes.",
                     "examTip": "Compatibility = works everywhere, including phones and assistive technology.",
                     "keyFacts": [
-                      "Works in all major browsers",
-                      "Works on Windows, macOS, Android and iOS",
-                      "Responsive design fits every screen size"
+                      "Works in all major browsers, so no user is locked out by their choice of browser",
+                      "Works on Windows, macOS, Android and iOS, so it reaches users on any device",
+                      "Responsive design fits every screen size, so it is usable on phones as well as PCs"
                     ]
                   }
                 ]
@@ -4657,10 +4657,10 @@ const INLINE_UNITS = {
                     "examples": "Apps tracking your location for adverts; employers monitoring staff emails.",
                     "examTip": "Weigh individual rights against organisations' interests, and cite GDPR/DPA 2018.",
                     "keyFacts": [
-                      "Collect only the data you need",
-                      "Consent required under GDPR",
-                      "Right to have data deleted",
-                      "Cookies need consent"
+                      "Collect only the data you need, so less personal data is at risk if there is a breach",
+                      "Consent required under GDPR (or another lawful basis), so people know and agree to how their data is used",
+                      "Right to have data deleted, so people can ask an organisation to erase what it holds about them",
+                      "Cookies need consent, so websites must ask before tracking what users do"
                     ]
                   },
                   {
@@ -4670,10 +4670,10 @@ const INLINE_UNITS = {
                     "examples": "Data centres using 1–2% of the world's electricity; toxic e-waste.",
                     "examTip": "Give both sides: energy and e-waste vs less travel, paperless offices and smart grids.",
                     "keyFacts": [
-                      "E-waste is the fastest-growing waste stream",
-                      "Devices need rare metals mined at a high cost",
-                      "Cloud can be more efficient than many small servers",
-                      "Remote working cuts commuting emissions"
+                      "E-waste is the fastest-growing waste stream, and dumped devices leak toxic chemicals into soil and water",
+                      "Devices need rare metals mined at a high cost, damaging habitats and using lots of energy",
+                      "Cloud can be more efficient than many small servers, because large data centres share and cool hardware better",
+                      "Remote working cuts commuting emissions, because fewer people drive to the office"
                     ]
                   },
                   {
@@ -4683,9 +4683,9 @@ const INLINE_UNITS = {
                     "examples": "Rural areas without fast broadband; elderly people shut out of online services.",
                     "examTip": "Three gaps: access (no device or internet), skills, and usage.",
                     "keyFacts": [
-                      "Linked to income, location, age and education",
-                      "Pupils without devices fall behind",
-                      "Millions of UK adults lack basic digital skills"
+                      "Linked to income, location, age and education, so the people already disadvantaged are most likely to miss out",
+                      "Pupils without devices fall behind, because homework and resources are increasingly online",
+                      "Millions of UK adults lack basic digital skills, so they struggle with online banking, jobs and services"
                     ]
                   },
                   {
@@ -4695,9 +4695,9 @@ const INLINE_UNITS = {
                     "examples": "An employer not providing a screen reader; a website that fails accessibility standards.",
                     "examTip": "Ethical AND legal: the Equality Act 2010 requires reasonable adjustments.",
                     "keyFacts": [
-                      "Employers must make reasonable adjustments",
-                      "WCAG: the web accessibility standard",
-                      "Specialist kit is expensive"
+                      "Employers must make reasonable adjustments, such as providing screen readers, so disabled staff can work",
+                      "WCAG is the web accessibility standard, so sites that follow it work with assistive technology",
+                      "Specialist kit is expensive, so some disabled people can't afford the technology they need"
                     ]
                   },
                   {
@@ -4707,10 +4707,10 @@ const INLINE_UNITS = {
                     "examples": "Cyberbullying on social media; spreading false rumours about a business.",
                     "examTip": "Netiquette is informal; an AUP is the formal version. Cover anonymity and impact on victims.",
                     "keyFacts": [
-                      "Netiquette: be polite, no ALL CAPS, cite sources",
-                      "Cyberbullying can be a crime",
-                      "Anonymity makes people behave worse",
-                      "Your digital footprint is permanent"
+                      "Netiquette: be polite, no ALL CAPS, cite sources, so online discussion stays respectful and clear",
+                      "Cyberbullying can be a crime, so harassment online can lead to prosecution",
+                      "Anonymity makes people behave worse, because they feel there are no consequences for what they post",
+                      "Your digital footprint is permanent, so old posts can affect job and university applications"
                     ]
                   },
                   {
@@ -4720,10 +4720,10 @@ const INLINE_UNITS = {
                     "examples": "A school banning gaming on its laptops; a company banning shared logins.",
                     "examTip": "Contents: allowed uses, banned activities, monitoring, and consequences of breaking it.",
                     "keyFacts": [
-                      "Users cannot claim they didn't know the rules",
-                      "Must be signed or accepted",
-                      "Should say that activity may be monitored",
-                      "Review as technology changes"
+                      "Users cannot claim they didn't know the rules, so the organisation can take action if they break them",
+                      "Must be signed or accepted, which gives a record that the user agreed to the rules",
+                      "Should say that activity may be monitored, so monitoring is lawful and acts as a deterrent",
+                      "Review as technology changes, so new risks (e.g. AI tools, personal devices) are covered"
                     ]
                   }
                 ]
@@ -4821,10 +4821,10 @@ const INLINE_UNITS = {
                       ]
                     },
                     "keyFacts": [
-                      "S1: unauthorised access (up to 2 years)",
-                      "S2: with intent to commit further crime (up to 5 years)",
-                      "S3: unauthorised modification, e.g. malware or DDoS (up to 10 years)",
-                      "Covers any computer, including phones"
+                      "S1: unauthorised access (up to 2 years), e.g. logging in with someone else's password",
+                      "S2: access with intent to commit further crime (up to 5 years), e.g. hacking in to steal money",
+                      "S3: unauthorised modification (up to 10 years), e.g. spreading malware or launching a DDoS",
+                      "Covers any computer, including phones, so the law applies to modern devices too"
                     ]
                   },
                   {
@@ -4834,10 +4834,10 @@ const INLINE_UNITS = {
                     "examples": "Copying software without a licence; sharing pirated films.",
                     "examTip": "Software counts as a literary work; piracy is a crime, and employers can be liable.",
                     "keyFacts": [
-                      "Copyright is automatic in the UK",
-                      "Lasts the creator's life + 70 years",
-                      "Licences (EULAs) set how software may be used",
-                      "Limited exceptions for study and review"
+                      "Copyright is automatic in the UK, so creators are protected without needing to register",
+                      "Lasts the creator's life + 70 years, so work can't be freely copied for a long time",
+                      "Licences (EULAs) set how software may be used, so installing it on extra PCs can break the law",
+                      "Limited exceptions for study and review, so small extracts can be used fairly, e.g. in coursework"
                     ]
                   },
                   {
@@ -4847,9 +4847,9 @@ const INLINE_UNITS = {
                     "examples": "Copying another company's source code and selling it as your own.",
                     "examTip": "Adds to the 1988 Act for software: a backup copy is allowed; decompiling only for compatibility.",
                     "keyFacts": [
-                      "Programs are literary works",
-                      "Decompiling only allowed for compatibility",
-                      "Owners may make one backup copy"
+                      "Programs are literary works, so code is protected by copyright just like a book",
+                      "Decompiling only allowed for compatibility, so rivals can't reverse-engineer code to copy it",
+                      "Owners may make one backup copy, so a legitimate user can protect against loss without breaking the law"
                     ]
                   },
                   {
@@ -4892,10 +4892,10 @@ const INLINE_UNITS = {
                       ]
                     },
                     "keyFacts": [
-                      "Assess every workstation",
-                      "Regular breaks from the screen",
-                      "Free eye tests on request",
-                      "Prevents back pain, eye strain and RSI"
+                      "Assess every workstation, so problems like poor seating or screen glare are found and fixed",
+                      "Regular breaks from the screen, to reduce eye strain and repetitive strain injury",
+                      "Free eye tests on request, paid for by the employer, for staff who use screens regularly",
+                      "Prevents back pain, eye strain and RSI, so fewer staff are off sick"
                     ]
                   },
                   {
@@ -4950,10 +4950,10 @@ const INLINE_UNITS = {
                       ]
                     },
                     "keyFacts": [
-                      "Principles: lawful, set purpose, minimal, accurate, not kept too long, secure",
-                      "Rights: access, correct, erase, object",
-                      "Report serious breaches to the ICO within 72 hours",
-                      "Fines up to £17.5m or 4% of global turnover"
+                      "Principles: lawful, set purpose, minimal, accurate, not kept too long, secure: every organisation must follow them",
+                      "Rights: access, correct, erase, object, so people stay in control of their own data",
+                      "Report serious breaches to the ICO within 72 hours, so affected people can be warned quickly",
+                      "Fines up to £17.5m or 4% of global turnover, so ignoring the law can be very costly"
                     ]
                   }
                 ]
@@ -10928,9 +10928,9 @@ const INLINE_UNITS = {
                     "examples": "Copying the customer database to a USB before resigning; installing pirated software.",
                     "examTip": "Insiders have legitimate access, so they are harder to detect. Say WHO did WHAT.",
                     "keyFacts": [
-                      "Deliberate (revenge, theft) or accidental",
-                      "Theft of equipment, data or licences",
-                      "Unauthorised software brings legal and malware risks"
+                      "Deliberate (revenge, theft) or accidental, so an organisation must guard against honest mistakes as well as malice",
+                      "Theft of equipment, data or licences, which insiders find easy because they already have access",
+                      "Unauthorised software brings legal and malware risks: unlicensed copies break copyright and may hide malware"
                     ]
                   },
                   {
@@ -10940,9 +10940,9 @@ const INLINE_UNITS = {
                     "examples": "A burst pipe flooding a server room; arson; a power cut.",
                     "examTip": "Justifies off-site backups and disaster recovery plans.",
                     "keyFacts": [
-                      "Fire, flood, power loss, terrorism",
-                      "Destroys hardware and the data on it",
-                      "Reduce with off-site backups, UPS, fire suppression"
+                      "Fire, flood, power loss or terrorism can strike without warning, so they must be planned for",
+                      "Destroys hardware and the data on it, so systems are down until both are replaced",
+                      "Reduce with off-site backups, UPS and fire suppression, so data survives and systems keep running"
                     ]
                   },
                   {
@@ -10952,9 +10952,9 @@ const INLINE_UNITS = {
                     "examples": "An unlocked server room; unescorted visitors; staff on dodgy download sites.",
                     "examTip": "A human weakness: fix it with training and policy, not just technology.",
                     "keyFacts": [
-                      "Equipment not physically secured",
-                      "Visitors not vetted",
-                      "Visiting untrustworthy websites"
+                      "Equipment not physically secured, so devices and data can simply be picked up and taken",
+                      "Visitors not vetted, so an attacker can walk in posing as a contractor or delivery driver",
+                      "Visiting untrustworthy websites can download malware onto work systems"
                     ]
                   },
                   {
@@ -10964,9 +10964,9 @@ const INLINE_UNITS = {
                     "examples": "Emailing customer data to the wrong person; a password on a sticky note.",
                     "examTip": "Root causes: negligence, poor training, not following procedures.",
                     "keyFacts": [
-                      "Human factors: negligence, poor training",
-                      "Worse with weak monitoring",
-                      "Usually a weak security culture"
+                      "Human factors such as negligence and poor training cause it, e.g. emailing data to the wrong person",
+                      "Worse with weak monitoring, because leaks go unnoticed and can't be stopped or reported in time",
+                      "Usually a sign of a weak security culture, where staff don't see security as their responsibility"
                     ]
                   }
                 ]
@@ -10982,10 +10982,10 @@ const INLINE_UNITS = {
                     "examples": "A macro virus in a Word document.",
                     "examTip": "Know the types: boot sector, web script, macro, worm, rootkit, trojan, browser hijack, polymorphic.",
                     "keyFacts": [
-                      "Macro: hidden in document macros",
-                      "Worm: spreads across networks by itself",
-                      "Rootkit: hides deep in the OS",
-                      "Polymorphic: changes its code to avoid detection"
+                      "Macro viruses hide in document macros, so opening an infected Word or Excel file runs them",
+                      "Worm spreads across networks by itself, so it can infect many machines with no user action",
+                      "Rootkit hides deep in the OS, so it is very hard for antivirus to detect or remove",
+                      "Polymorphic viruses change their code to avoid detection, so signature-based antivirus misses them"
                     ]
                   },
                   {
@@ -10995,10 +10995,10 @@ const INLINE_UNITS = {
                     "examples": "A keylogger recording passwords.",
                     "examTip": "Keylogger = records keystrokes to steal logins. A favourite exam term.",
                     "keyFacts": [
-                      "Keylogger: records keystrokes",
-                      "System monitor: captures all activity",
-                      "Stalkerware: tracks a phone's location",
-                      "Tracking cookies follow browsing"
+                      "Keylogger records keystrokes, so passwords and card numbers can be stolen as they are typed",
+                      "System monitor captures all activity, e.g. screenshots, emails and chats",
+                      "Stalkerware tracks a phone's location, letting someone secretly follow a victim's movements",
+                      "Tracking cookies follow browsing, building a profile of the user's interests for advertisers"
                     ]
                   },
                   {
@@ -11008,9 +11008,9 @@ const INLINE_UNITS = {
                     "examples": "A free app showing pop-ups; unwanted software bundled with a download.",
                     "examTip": "Not all adware is illegal: tell legitimate adware from abusive adware.",
                     "keyFacts": [
-                      "PUP: installed alongside other software",
-                      "Legitimate adware funds free apps with consent",
-                      "Deceptive adware can be illegal"
+                      "PUP (potentially unwanted program) is installed alongside other software, often without the user noticing",
+                      "Legitimate adware funds free apps with the user's consent, so users get the app without paying",
+                      "Deceptive adware can be illegal, because it installs without consent or tricks users into clicking"
                     ]
                   },
                   {
@@ -11020,10 +11020,10 @@ const INLINE_UNITS = {
                     "examples": "An encryptor scrambling all company files.",
                     "examTip": "Best defence: tested OFFLINE backups, so you can restore without paying.",
                     "keyFacts": [
-                      "Encryptors: files can't be opened",
-                      "Lockers: whole screen locked",
-                      "Leakware: threatens to publish data",
-                      "Defend with offline backups, patching, training"
+                      "Encryptors scramble files so they can't be opened until a ransom is paid for the key",
+                      "Lockers lock the whole screen, so the device can't be used at all",
+                      "Leakware threatens to publish data, so even organisations with backups are pressured to pay",
+                      "Defend with offline backups, patching and training, so data can be restored and fewer attacks get in"
                     ]
                   },
                   {
@@ -11033,9 +11033,9 @@ const INLINE_UNITS = {
                     "examples": "Thousands of infected IoT devices flooding a website.",
                     "examTip": "Botnets link malware to DDoS attacks: a common exam link.",
                     "keyFacts": [
-                      "Controlled remotely by the attacker",
-                      "Many bots = a botnet",
-                      "Used for spam and DDoS"
+                      "Controlled remotely by the attacker, usually without the owner knowing their device is infected",
+                      "Many bots together form a botnet, giving the attacker the power of thousands of devices",
+                      "Used for spam and DDoS, because huge numbers of devices can send mail or flood a target at once"
                     ]
                   },
                   {
@@ -11045,10 +11045,10 @@ const INLINE_UNITS = {
                     "examples": "A DDoS taking a website offline; changing records in a database.",
                     "examTip": "DoS = one source; DDoS = many (a botnet).",
                     "keyFacts": [
-                      "DoS: one machine floods a target",
-                      "DDoS: a botnet floods it",
-                      "Data theft and data tampering",
-                      "Cyberwarfare by states"
+                      "DoS: one machine floods a target with traffic, so genuine users can't get through",
+                      "DDoS: a botnet floods it from thousands of devices, so it is much harder to block than one source",
+                      "Data theft and data tampering, so information is stolen or changed without anyone noticing",
+                      "Cyberwarfare by states targets other countries' systems, e.g. to spy or disrupt"
                     ]
                   },
                   {
@@ -11058,10 +11058,10 @@ const INLINE_UNITS = {
                     "examples": "Poisoning AI training data; hijacking connected machinery.",
                     "examTip": "\"Fakes\" includes AI-generated images, video and audio.",
                     "keyFacts": [
-                      "Data poisoning, tampering, destruction",
-                      "AI-generated fakes",
-                      "Hijacking machinery, vehicles, IoT",
-                      "Can target national infrastructure"
+                      "Data poisoning, tampering and destruction, so the organisation can no longer trust or use its data",
+                      "AI-generated fakes (e.g. deepfakes) can spread false information or trick staff",
+                      "Hijacking machinery, vehicles or IoT devices, which can cause physical harm",
+                      "Can target national infrastructure (power, water, transport), affecting whole populations"
                     ]
                   },
                   {
@@ -11071,10 +11071,10 @@ const INLINE_UNITS = {
                     "examples": "A fake bank email; a call pretending to be IT support.",
                     "examTip": "Know the variants: phishing, vishing, smishing, whaling, spear phishing.",
                     "keyFacts": [
-                      "Phishing (email), vishing (phone), smishing (text)",
-                      "Whaling: senior staff; spear phishing: one person",
-                      "Pretexting: a made-up story",
-                      "Best defence: training"
+                      "Phishing (email), vishing (phone) and smishing (text) all trick people into giving details or clicking links",
+                      "Whaling targets senior staff and spear phishing targets one person, using research to seem convincing",
+                      "Pretexting uses a made-up story (e.g. posing as IT support) to get information",
+                      "Best defence is training, because these attacks target people, not technology"
                     ]
                   },
                   {
@@ -11084,9 +11084,9 @@ const INLINE_UNITS = {
                     "examples": "Tailgating through a door; shoulder surfing a password.",
                     "examTip": "Tailgating = following someone through a secure door. Learn this definition.",
                     "keyFacts": [
-                      "Area access: tailgating, forced entry, impersonation",
-                      "Device access: unattended devices, shoulder surfing, theft",
-                      "Devices in public places are most exposed"
+                      "Area access by tailgating, forced entry or impersonation gets an attacker into restricted spaces",
+                      "Device access through unattended devices, shoulder surfing or theft exposes data without any hacking",
+                      "Devices in public places are most exposed, because anyone can watch or grab them"
                     ]
                   }
                 ]
@@ -11102,9 +11102,9 @@ const INLINE_UNITS = {
                     "examples": "A production line stopped by ransomware; a website down so no orders.",
                     "examTip": "Operational = the business can't function.",
                     "keyFacts": [
-                      "Lost production",
-                      "Services unavailable",
-                      "Data unavailable"
+                      "Lost production, because systems needed to make products or deliver services are down",
+                      "Services unavailable, so customers can't buy, book or get support",
+                      "Data unavailable, so staff can't do their jobs even if systems are running"
                     ]
                   },
                   {
@@ -11114,9 +11114,9 @@ const INLINE_UNITS = {
                     "examples": "GDPR fines; refunds to affected customers.",
                     "examTip": "Split it into organisational costs, compensation and legal liability.",
                     "keyFacts": [
-                      "Lost profits, higher insurance",
-                      "Compensation and refunds",
-                      "Fines and legal fees"
+                      "Lost profits and higher insurance, because sales stop and insurers see the organisation as riskier",
+                      "Compensation and refunds to customers whose data or service was affected",
+                      "Fines and legal fees, e.g. from the ICO under GDPR or from customers suing"
                     ]
                   },
                   {
@@ -11126,9 +11126,9 @@ const INLINE_UNITS = {
                     "examples": "Angry reviews on social media after a breach.",
                     "examTip": "Often the longest-lasting impact: lost trust is hard to rebuild.",
                     "keyFacts": [
-                      "Loss of customer trust",
-                      "Poor reviews online",
-                      "Lower reputation scores"
+                      "Loss of customer trust, so customers move to competitors",
+                      "Poor reviews online, which put off new customers",
+                      "Lower reputation scores, which can lose contracts with partners and investors"
                     ]
                   },
                   {
@@ -11138,9 +11138,9 @@ const INLINE_UNITS = {
                     "examples": "A rival stealing a new product design.",
                     "examTip": "Destroys competitive advantage even with no personal data involved.",
                     "keyFacts": [
-                      "Product designs",
-                      "Testing and development data",
-                      "Strategy and trade secrets"
+                      "Product designs stolen, so competitors can copy them without the development cost",
+                      "Testing and development data exposed, losing years of research",
+                      "Strategy and trade secrets leaked, so the organisation loses its competitive advantage"
                     ]
                   }
                 ]
@@ -11156,9 +11156,9 @@ const INLINE_UNITS = {
                     "examples": "Checking the NCSC site for the latest ransomware advisory.",
                     "examTip": "NCSC = UK. Use it because threats keep changing.",
                     "keyFacts": [
-                      "UK government body",
-                      "Threat reports and malware analysis",
-                      "Advisories and guidance"
+                      "UK government body, so its advice is authoritative for UK organisations",
+                      "Publishes threat reports and malware analysis, so organisations know what attacks to expect",
+                      "Advisories and guidance give practical steps to protect systems"
                     ]
                   },
                   {
@@ -11168,9 +11168,9 @@ const INLINE_UNITS = {
                     "examples": "Following NIST guidance on password policy.",
                     "examTip": "NIST = the US equivalent of the NCSC.",
                     "keyFacts": [
-                      "US standards body",
-                      "News and advisories",
-                      "Widely used security frameworks"
+                      "US standards body whose security standards are used worldwide",
+                      "News and advisories warn organisations about new vulnerabilities",
+                      "Widely used security frameworks give organisations a structured way to manage risk"
                     ]
                   },
                   {
@@ -11180,9 +11180,9 @@ const INLINE_UNITS = {
                     "examples": "Checking a website for SQL injection using the OWASP Top 10.",
                     "examTip": "Used in penetration testing: link the two.",
                     "keyFacts": [
-                      "Focus: web application security",
-                      "Top 10 is updated regularly",
-                      "A checklist for pen testing"
+                      "Focuses on web application security, the risks to websites and online services",
+                      "Top 10 is updated regularly, so it reflects the latest attack trends",
+                      "Used as a checklist for pen testing, so testers check the most common weaknesses first"
                     ]
                   }
                 ]
@@ -11204,9 +11204,9 @@ const INLINE_UNITS = {
                     "examples": "An exposed open port; malware arriving on a USB stick.",
                     "examTip": "Port types: well-known (e.g. 80 for HTTP), registered, dynamic/private. Open ports = risk.",
                     "keyFacts": [
-                      "Three port categories",
-                      "Risks: open ports, spoofing, DoS",
-                      "External storage can bring in malware"
+                      "Three port categories: well-known (0–1023), registered and dynamic, so admins know which should be open",
+                      "Risks include open ports, spoofing and DoS, because every open port is a way in for attackers",
+                      "External storage can bring in malware, e.g. an infected USB stick plugged into a network PC"
                     ]
                   },
                   {
@@ -11216,10 +11216,10 @@ const INLINE_UNITS = {
                     "examples": "Everyone having admin rights; not disabling a leaver's account.",
                     "examTip": "Password policy points (length, characters, reuse, age) are easy marks.",
                     "keyFacts": [
-                      "Permissions: read, write, execute, modify",
-                      "Password policy: length, characters, reuse, age",
-                      "Lock unused accounts; remove leavers",
-                      "Browser auto-fill is a risk"
+                      "Permissions (read, write, execute, modify) set too widely let staff change data they shouldn't",
+                      "Password policy (length, characters, reuse, age) makes passwords harder to guess or crack",
+                      "Lock unused accounts and remove leavers, so old logins can't be used by attackers or ex-staff",
+                      "Browser auto-fill is a risk, because anyone using the device can log in with saved passwords"
                     ]
                   },
                   {
@@ -11229,10 +11229,10 @@ const INLINE_UNITS = {
                     "examples": "Pirated software with a backdoor; an unpatched web app open to SQL injection.",
                     "examTip": "Zero-day = a new flaw with no patch yet.",
                     "keyFacts": [
-                      "Safe downloads: trusted source, HTTPS, malware scan, hash check",
-                      "Illegal copies get no updates",
-                      "Zero-day exploits",
-                      "SQL injection and missing patches"
+                      "Safe downloads: trusted source, HTTPS, malware scan and hash check, so the file hasn't been tampered with",
+                      "Illegal copies get no updates, so their security flaws are never fixed",
+                      "Zero-day exploits attack flaws the vendor doesn't know about yet, so no patch exists",
+                      "SQL injection and missing patches let attackers read or change databases through badly written code"
                     ]
                   },
                   {
@@ -11242,9 +11242,9 @@ const INLINE_UNITS = {
                     "examples": "An unsupported version of Windows.",
                     "examTip": "Unsupported software no longer gets security patches.",
                     "keyFacts": [
-                      "Unsupported versions",
-                      "Missing patches",
-                      "Wrong security settings"
+                      "Unsupported versions no longer get security updates, so new flaws stay open forever",
+                      "Missing patches leave known flaws open, which attackers actively scan for",
+                      "Wrong security settings (e.g. default admin passwords) make systems easy to break into"
                     ]
                   },
                   {
@@ -11254,9 +11254,9 @@ const INLINE_UNITS = {
                     "examples": "An old Android phone that no longer gets updates.",
                     "examTip": "Updates may be slow or stop entirely, leaving known flaws open.",
                     "keyFacts": [
-                      "Updates come from the manufacturer",
-                      "Older devices stop getting them",
-                      "Known flaws stay unpatched"
+                      "Updates come from the manufacturer (OEM), not just the OS maker, so patches can arrive late",
+                      "Older devices stop getting updates, even though people keep using them for years",
+                      "Known flaws stay unpatched, so attackers can exploit them on those devices"
                     ]
                   },
                   {
@@ -11266,8 +11266,8 @@ const INLINE_UNITS = {
                     "examples": "A stolen laptop; a badly secured restricted area.",
                     "examTip": "Link to physical security measures.",
                     "keyFacts": [
-                      "Theft of devices holding data",
-                      "Poor security for restricted areas"
+                      "Theft of devices holding data, so unencrypted data can be read by whoever takes them",
+                      "Poor security for restricted areas, so intruders can reach servers and network equipment"
                     ]
                   },
                   {
@@ -11277,9 +11277,9 @@ const INLINE_UNITS = {
                     "examples": "Sharing a login; a process that lets data leave unchecked.",
                     "examTip": "Human weaknesses: fixed by training, policy and better processes.",
                     "keyFacts": [
-                      "Leaks, deliberate or accidental",
-                      "Sharing security details",
-                      "Flawed processes"
+                      "Leaks, deliberate or accidental, expose data even when the technology is secure",
+                      "Sharing security details (e.g. passwords) means anyone could be using that account",
+                      "Flawed processes (e.g. no check before sending data) make mistakes likely"
                     ]
                   },
                   {
@@ -11289,9 +11289,9 @@ const INLINE_UNITS = {
                     "examples": "A misconfigured cloud store exposing data; a hijacked IoT camera.",
                     "examTip": "Learn several IoT risks: default passwords, no encryption, no patches, always listening.",
                     "keyFacts": [
-                      "Cloud: wrong settings, third-party access, reliance on provider",
-                      "IoT: weak encryption, default passwords, no patches",
-                      "IoT: set up by non-IT staff, always listening"
+                      "Cloud: wrong settings, third-party access and reliance on the provider can expose data or cut off access",
+                      "IoT: weak encryption, default passwords and no patches make devices easy to hack",
+                      "IoT: set up by non-IT staff and always listening, so insecure devices can join the network unnoticed"
                     ]
                   }
                 ]
@@ -11307,9 +11307,9 @@ const INLINE_UNITS = {
                     "examples": "A manufacturer's website; a professional security forum.",
                     "examTip": "Three sources: manufacturer, professional forums, specialist third-party sites.",
                     "keyFacts": [
-                      "Manufacturer's website",
-                      "IT and security forums",
-                      "Specialist third-party sites"
+                      "Manufacturer's website lists patches and known issues for its own products",
+                      "IT and security forums share experiences and fixes from other professionals",
+                      "Specialist third-party sites (e.g. CVE databases) track vulnerabilities across many products"
                     ]
                   },
                   {
@@ -11319,9 +11319,9 @@ const INLINE_UNITS = {
                     "examples": "Attacking over Wi-Fi or Bluetooth; exploiting a router.",
                     "examTip": "An attack vector is the \"way in\".",
                     "keyFacts": [
-                      "Wireless: Wi-Fi, Bluetooth, cellular, NFC, RFID",
-                      "Internet connections",
-                      "Internal devices: router, switch, access point"
+                      "Wireless (Wi-Fi, Bluetooth, cellular, NFC, RFID) can be attacked from outside the building",
+                      "Internet connections expose systems to attackers anywhere in the world",
+                      "Internal devices (router, switch, access point) give control of traffic if compromised"
                     ]
                   }
                 ]
@@ -11337,10 +11337,10 @@ const INLINE_UNITS = {
                     "examples": "A port scanner; a website vulnerability scanner.",
                     "examTip": "Know the named tools.",
                     "keyFacts": [
-                      "Port scanner and network mapper",
-                      "Registry checker",
-                      "Website vulnerability scanner",
-                      "Phishing simulations test users"
+                      "Port scanner and network mapper show which devices and open ports exist, revealing ways in",
+                      "Registry checker finds suspicious or wrong settings in Windows that malware may have changed",
+                      "Website vulnerability scanner tests sites for common flaws like SQL injection",
+                      "Phishing simulations test users, showing who needs more training"
                     ]
                   },
                   {
@@ -11350,9 +11350,9 @@ const INLINE_UNITS = {
                     "examples": "A consultancy reviewing and certifying a new network design.",
                     "examTip": "Shows due diligence and gives independent certification.",
                     "keyFacts": [
-                      "Done before implementation",
-                      "Shows due diligence",
-                      "Third-party certification"
+                      "Done before implementation, so design flaws are fixed before they cost money to change",
+                      "Shows due diligence, proving the organisation took reasonable care over security",
+                      "Third-party certification gives customers and partners confidence the system is secure"
                     ]
                   },
                   {
@@ -11362,9 +11362,9 @@ const INLINE_UNITS = {
                     "examples": "A pen tester trying to break into a network.",
                     "examTip": "Real attack techniques used with permission. Links to OWASP.",
                     "keyFacts": [
-                      "Uses a range of attack techniques",
-                      "Checks against known lists (OWASP Top 10)",
-                      "Produces a report"
+                      "Uses a range of attack techniques, so it finds weaknesses a real attacker would use",
+                      "Checks against known lists (OWASP Top 10), so the most common weaknesses are covered",
+                      "Produces a report listing weaknesses and fixes, so the organisation knows what to do next"
                     ]
                   },
                   {
@@ -11374,9 +11374,9 @@ const INLINE_UNITS = {
                     "examples": "Buying cyber insurance; stopping a risky activity.",
                     "examTip": "Three options: transfer, avoid, accept.",
                     "keyFacts": [
-                      "Transfer: pass it on, e.g. insurance",
-                      "Avoid: stop the activity",
-                      "Accept: tolerate a small risk"
+                      "Transfer the risk to someone else, e.g. insurance, so they bear the cost if it happens",
+                      "Avoid it by stopping the activity, so the risk no longer exists",
+                      "Accept a small risk when protecting against it would cost more than the likely loss"
                     ]
                   }
                 ]
@@ -11398,9 +11398,9 @@ const INLINE_UNITS = {
                     "examples": "Getting consent before collecting data; reporting a breach within 72 hours.",
                     "examTip": "GDPR = personal data and privacy. Don't mix it up with the Computer Misuse Act.",
                     "keyFacts": [
-                      "Protects personal data and privacy",
-                      "Applies to stored and transferred data",
-                      "Covers anything that identifies a person"
+                      "Protects personal data and privacy, giving people control over their information",
+                      "Applies to stored and transferred data, so data must be protected at rest and in transit",
+                      "Covers anything that identifies a person, e.g. name, email, IP address or photo"
                     ]
                   },
                   {
@@ -11410,9 +11410,9 @@ const INLINE_UNITS = {
                     "examples": "Hacking into a system you have no permission to use.",
                     "examTip": "Computer Misuse Act = unauthorised access and modification.",
                     "keyFacts": [
-                      "Unauthorised access is an offence",
-                      "Changing data without permission is an offence",
-                      "Covers hacking and creating malware"
+                      "Unauthorised access is an offence, even if nothing is changed or stolen",
+                      "Changing data without permission is an offence, e.g. altering or deleting records",
+                      "Covers hacking and creating malware, so writing or spreading viruses is a crime"
                     ]
                   }
                 ]
@@ -11428,10 +11428,10 @@ const INLINE_UNITS = {
                     "examples": "Collecting the minimum data, keeping it accurate, deleting it when done.",
                     "examTip": "Lawful/fair/transparent, set purpose, accurate, minimal, minimum time, secure.",
                     "keyFacts": [
-                      "Lawful, fair and transparent",
-                      "Limited purpose; accurate",
-                      "Minimum data for minimum time",
-                      "Kept confidential and intact"
+                      "Lawful, fair and transparent, so people know how their data is used",
+                      "Limited purpose and accurate, so data is only used for the reason it was collected and kept correct",
+                      "Minimum data for the minimum time, so less is at risk if there is a breach",
+                      "Kept confidential and intact, so data is secured against loss, theft and damage"
                     ]
                   },
                   {
@@ -11441,9 +11441,9 @@ const INLINE_UNITS = {
                     "examples": "Payroll under \"contract\"; medical data under \"vital interest\".",
                     "examTip": "Six bases: consent, contract, legitimate interest, vital interest, legal requirement, public interest.",
                     "keyFacts": [
-                      "Consent; contract",
-                      "Legitimate interest; vital interest",
-                      "Legal requirement; public interest"
+                      "Consent or a contract, e.g. a customer agrees, or the data is needed to deliver their order",
+                      "Legitimate interest or vital interest, e.g. fraud prevention, or protecting someone's life",
+                      "Legal requirement or public interest, e.g. sharing data with HMRC, or tasks for the public good"
                     ]
                   },
                   {
@@ -11453,10 +11453,10 @@ const INLINE_UNITS = {
                     "examples": "Asking for a copy of your data or for it to be deleted.",
                     "examTip": "Access, be informed, correct/erase/restrict, object, portability, no solely automated decisions.",
                     "keyFacts": [
-                      "Access and be informed",
-                      "Correct, erase or restrict",
-                      "Object; portability",
-                      "Not subject to solely automated decisions"
+                      "Right to access and be informed, so people can see what is held and why",
+                      "Right to correct, erase or restrict, so wrong data is fixed and unwanted data removed",
+                      "Right to object and to portability, so people can stop some uses and take their data elsewhere",
+                      "Not subject to solely automated decisions, so a person can ask for a human to review the decision"
                     ]
                   }
                 ]
@@ -11478,10 +11478,10 @@ const INLINE_UNITS = {
                     "examples": "Card entry; fingerprint scanners; CCTV; locked server cabinets.",
                     "examTip": "Group them: locks, card entry, biometrics, surveillance, training.",
                     "keyFacts": [
-                      "Locks: mechanical or electronic",
-                      "Card entry: NFC, RFID, QR, chip",
-                      "Biometrics: fingerprint, iris, face, voice",
-                      "CCTV, guards, alarms"
+                      "Locks, mechanical or electronic, stop unauthorised people entering rooms",
+                      "Card entry (NFC, RFID, QR, chip) controls and logs who goes where",
+                      "Biometrics (fingerprint, iris, face, voice) can't be lent or lost like a card",
+                      "CCTV, guards and alarms deter intruders and provide evidence"
                     ]
                   },
                   {
@@ -11491,10 +11491,10 @@ const INLINE_UNITS = {
                     "examples": "A weekly full backup plus daily incrementals stored off-site.",
                     "examTip": "Full, incremental (since last backup), differential (since last full). RAID is NOT a backup.",
                     "keyFacts": [
-                      "Types: full, differential, incremental",
-                      "On-site, off-site, cloud",
-                      "RAID and archiving are not backups",
-                      "Restore a file, an image or the whole system"
+                      "Types: full, differential and incremental, which trade backup speed against restore speed",
+                      "On-site, off-site and cloud: off-site and cloud copies survive a fire or flood at the main site",
+                      "RAID and archiving are not backups, because RAID copies deletions and corruption instantly",
+                      "Restore a file, an image or the whole system, depending on how much was lost"
                     ]
                   },
                   {
@@ -11504,10 +11504,10 @@ const INLINE_UNITS = {
                     "examples": "Quarantining a suspicious file.",
                     "examTip": "Signatures catch known malware; heuristics catch new behaviour.",
                     "keyFacts": [
-                      "Signature scanning: known threats",
-                      "Heuristics: suspicious behaviour",
-                      "File integrity checks",
-                      "Responses: warn, block, quarantine, delete"
+                      "Signature scanning finds known threats by matching them against a database",
+                      "Heuristics spot suspicious behaviour, so new malware without a signature can still be caught",
+                      "File integrity checks spot changed system files, which can be a sign of infection",
+                      "Responses (warn, block, quarantine, delete) stop the threat spreading"
                     ]
                   },
                   {
@@ -11517,10 +11517,10 @@ const INLINE_UNITS = {
                     "examples": "Blocking inbound traffic on every port except those needed.",
                     "examTip": "Inbound and outbound rules; packet filtering; application awareness.",
                     "keyFacts": [
-                      "Packet filtering and inspection",
-                      "Application-layer awareness",
-                      "Inbound and outbound rules",
-                      "Filtering by address"
+                      "Packet filtering and inspection check each packet against rules, blocking anything not allowed",
+                      "Application-layer awareness lets it understand traffic from specific apps, so it can block risky ones",
+                      "Inbound and outbound rules stop attacks coming in and data leaking out",
+                      "Filtering by address blocks known malicious IP addresses"
                     ]
                   },
                   {
@@ -11530,10 +11530,10 @@ const INLINE_UNITS = {
                     "examples": "Password + USB security key; an authenticator app code.",
                     "examTip": "Factors: knowledge, possession, inherence, plus location and behaviour. A USB key = possession.",
                     "keyFacts": [
-                      "Single-factor vs multi-factor",
-                      "Knowledge, possession, inherence",
-                      "Tokens: USB key, contactless, code generator",
-                      "Certificate-based authentication"
+                      "Single-factor uses one check, while multi-factor needs two or more, so a stolen password isn't enough",
+                      "Factors are knowledge (password), possession (phone or token) and inherence (fingerprint)",
+                      "Tokens (USB key, contactless card, code generator) prove the user has a physical item",
+                      "Certificate-based authentication uses a digital certificate on the device, so no password is needed"
                     ]
                   },
                   {
@@ -11543,10 +11543,10 @@ const INLINE_UNITS = {
                     "examples": "Finance can open accounts but not HR files.",
                     "examTip": "DAC: owners control files. Role-based: by job. Rule-based: rules per user.",
                     "keyFacts": [
-                      "DAC: users control their own resources",
-                      "Role-based: by job role",
-                      "Rule-based: rules for each user",
-                      "Applies to apps, files and devices"
+                      "DAC lets users control their own resources, which is flexible but less secure",
+                      "Role-based access is set by job role, so new staff get the right access automatically",
+                      "Rule-based access applies rules to each user, e.g. only during working hours",
+                      "Applies to apps, files and devices, so every resource is protected"
                     ]
                   },
                   {
@@ -11556,8 +11556,8 @@ const INLINE_UNITS = {
                     "examples": "A TPM checking the system is trusted before start-up.",
                     "examTip": "Benefit: more security. Drawback: less user control and privacy.",
                     "keyFacts": [
-                      "Adds another layer of protection",
-                      "Less user control, privacy and anonymity"
+                      "Adds another layer of protection, e.g. a TPM chip storing encryption keys in hardware",
+                      "Less user control, privacy and anonymity, because the hardware enforces what can run"
                     ]
                   },
                   {
@@ -11567,10 +11567,10 @@ const INLINE_UNITS = {
                     "examples": "\"Find my device\"; remotely wiping a stolen phone.",
                     "examTip": "Remote lock/wipe and timed lockout are strong answers.",
                     "keyFacts": [
-                      "GPS and tracking software",
-                      "Screen locks after time or failed logins",
-                      "Wipe after too many failed attempts",
-                      "Remote lock and wipe"
+                      "GPS and tracking software help locate lost or stolen devices",
+                      "Screen locks after time or failed logins, so an unattended device can't be used",
+                      "Wipe after too many failed attempts, so a thief can't keep guessing the passcode",
+                      "Remote lock and wipe, so data on a lost device is protected even if it isn't found"
                     ]
                   }
                 ]
@@ -11586,9 +11586,9 @@ const INLINE_UNITS = {
                     "examples": "Full-disk encryption on a laptop.",
                     "examTip": "Protects data \"at rest\": vital for lost or stolen devices.",
                     "keyFacts": [
-                      "Safe password storage",
-                      "Digital Rights Management (DRM)",
-                      "File, folder, disk and device encryption"
+                      "Safe password storage (hashed, not plain text), so stolen password files are useless",
+                      "Digital Rights Management (DRM) stops copyrighted content being copied or shared",
+                      "File, folder, disk and device encryption make stolen data unreadable"
                     ]
                   },
                   {
@@ -11598,10 +11598,10 @@ const INLINE_UNITS = {
                     "examples": "HTTPS; VPNs; end-to-end encrypted messaging.",
                     "examTip": "Symmetric = one shared key (AES, fast). Asymmetric = public/private pair (RSA).",
                     "keyFacts": [
-                      "Symmetric: one secret key, e.g. AES",
-                      "Asymmetric: public + private keys, e.g. RSA",
-                      "Used in VPNs, HTTPS, TOR",
-                      "End-to-end encryption in messaging"
+                      "Symmetric uses one secret key (e.g. AES), so it is fast, but the key must be shared securely",
+                      "Asymmetric uses public and private keys (e.g. RSA), so no secret key has to be shared",
+                      "Used in VPNs, HTTPS and TOR, so traffic can't be read as it crosses the internet",
+                      "End-to-end encryption in messaging means only sender and recipient can read messages"
                     ]
                   }
                 ]
@@ -11617,10 +11617,10 @@ const INLINE_UNITS = {
                     "examples": "WPA3; hiding the SSID; MAC filtering; changing default passwords.",
                     "examTip": "MAC addresses can be spoofed, so MAC filtering is only medium security.",
                     "keyFacts": [
-                      "MAC filtering; hide the SSID",
-                      "Use WPA2/WPA3",
-                      "Attacks: Evil Twin, piggybacking, sniffing",
-                      "Change defaults; use VPNs and firewalls"
+                      "MAC filtering and hiding the SSID add small obstacles, but both are easily bypassed by spoofing or scanning",
+                      "Use WPA2/WPA3, so traffic is strongly encrypted",
+                      "Attacks include Evil Twin, piggybacking and sniffing, which steal access or data",
+                      "Change defaults and use VPNs and firewalls, so known default passwords can't be used"
                     ]
                   },
                   {
@@ -11630,10 +11630,10 @@ const INLINE_UNITS = {
                     "examples": "Designing with least privilege and assuming attackers will try.",
                     "examTip": "Expect attacks, least privilege, don't rely on secrecy, follow standards (ISO 27000).",
                     "keyFacts": [
-                      "Expect attacks",
-                      "Least privilege",
-                      "Don't rely on secrecy",
-                      "Follow ISO 27000"
+                      "Expect attacks, so defences are designed in from the start, not added after a breach",
+                      "Least privilege gives users only the access they need, limiting damage if an account is compromised",
+                      "Don't rely on secrecy: a system should stay secure even if attackers know how it works",
+                      "Follow ISO 27000 standards, so security meets a recognised international benchmark"
                     ]
                   }
                 ]
@@ -11663,10 +11663,10 @@ const INLINE_UNITS = {
                     "examples": "A LAN in one office; a WAN linking offices nationally; a PAN of phone and earbuds.",
                     "examTip": "LAN = one site; WAN = wide area; SAN = storage; PAN = personal.",
                     "keyFacts": [
-                      "LAN / WLAN: one site, wired or wireless",
-                      "WAN: large area",
-                      "SAN: storage; PAN: personal",
-                      "The internet: the global WAN"
+                      "LAN / WLAN covers one site, wired or wireless, so the organisation owns and controls it",
+                      "WAN covers a large area, linking sites in different cities or countries",
+                      "SAN is a network just for storage, and PAN links one person's devices nearby",
+                      "The internet is the global WAN, so anything connected to it is exposed to attackers worldwide"
                     ]
                   },
                   {
@@ -11676,9 +11676,9 @@ const INLINE_UNITS = {
                     "examples": "A staff intranet; an extranet for suppliers.",
                     "examTip": "Intranet = staff only. Extranet = selected outsiders too.",
                     "keyFacts": [
-                      "Intranet: private, for staff",
-                      "Extranet: controlled access for partners",
-                      "Cloud network: private networking in the cloud"
+                      "Intranet is private and for staff only, so internal information isn't on the public internet",
+                      "Extranet gives partners controlled access, so suppliers can use some systems without seeing everything",
+                      "Cloud network provides private networking in the cloud, so systems can be added without new hardware"
                     ]
                   },
                   {
@@ -11688,10 +11688,10 @@ const INLINE_UNITS = {
                     "examples": "Wi-Fi access points connected to a wired backbone.",
                     "examTip": "Issues: compatibility, admin (channels, IPs) and technical (signal, interference).",
                     "keyFacts": [
-                      "802 family of standards",
-                      "Compatibility between protocols and access points",
-                      "Admin: channels and IP addresses",
-                      "Signal strength and interference"
+                      "The 802 family of standards (e.g. 802.3 Ethernet, 802.11 Wi-Fi) lets wired and wireless kit work together",
+                      "Protocols and access points must be compatible, or some devices can't connect",
+                      "Admin of channels and IP addresses prevents clashes and interference between devices",
+                      "Signal strength and interference affect wireless reliability, so access points must be placed carefully"
                     ]
                   },
                   {
@@ -11701,9 +11701,9 @@ const INLINE_UNITS = {
                     "examples": "Adding a firewall between the router and the switch.",
                     "examTip": "Practise reading and changing diagrams, e.g. adding a firewall and labelling links.",
                     "keyFacts": [
-                      "Logical: how data flows",
-                      "Physical: real devices and cabling",
-                      "May show ports or addresses"
+                      "Logical diagrams show how data flows, which helps plan security and troubleshoot",
+                      "Physical diagrams show the real devices and cabling, so technicians can find equipment",
+                      "May show ports or addresses, which helps configuration but should be kept confidential from attackers"
                     ]
                   },
                   {
@@ -11713,9 +11713,9 @@ const INLINE_UNITS = {
                     "examples": "Designing for growth and to survive failures.",
                     "examTip": "Security-related needs: security settings, reliability, fault tolerance, backups.",
                     "keyFacts": [
-                      "Scalability and performance",
-                      "Reliability and fault tolerance",
-                      "Backup management and security settings"
+                      "Scalability and performance, so the network copes as users and data grow",
+                      "Reliability and fault tolerance, so one failure doesn't stop the whole network",
+                      "Backup management and security settings, so data can be restored and the network is protected"
                     ]
                   }
                 ]
@@ -11731,9 +11731,9 @@ const INLINE_UNITS = {
                     "examples": "A star network around a switch; a wireless mesh.",
                     "examTip": "Physical = cable and device layout; logical = how data flows.",
                     "keyFacts": [
-                      "Physical: star, extended star, hierarchical, mesh",
-                      "Logical: bus or ring",
-                      "In a star, one broken cable doesn't stop the network"
+                      "Physical topologies (star, extended star, hierarchical, mesh) decide how devices are cabled together",
+                      "Logical topology (bus or ring) is how data actually travels, which can differ from the cabling",
+                      "In a star, one broken cable doesn't stop the network, because each device has its own link"
                     ]
                   },
                   {
@@ -11743,9 +11743,9 @@ const INLINE_UNITS = {
                     "examples": "Client/server with central control; peer-to-peer file sharing.",
                     "examTip": "Client/server = central control and security; P2P = no server; thin client = processing on the server.",
                     "keyFacts": [
-                      "Peer-to-peer: devices share directly",
-                      "Client/server: central control",
-                      "Thin client: the server does the processing"
+                      "Peer-to-peer devices share directly, so it is cheap but hard to secure and back up centrally",
+                      "Client/server gives central control, so security, accounts and backups are managed in one place",
+                      "Thin client: the server does the processing, so data stays on the server and devices are cheap"
                     ]
                   }
                 ]
@@ -11761,9 +11761,9 @@ const INLINE_UNITS = {
                     "examples": "Testing a suspicious program in an isolated virtual machine.",
                     "examTip": "Security benefit: isolation contains threats and shrinks the attack surface.",
                     "keyFacts": [
-                      "Segments systems",
-                      "Sandboxing and containers",
-                      "Smaller attack surface"
+                      "Segments systems, so a problem in one virtual machine doesn't affect the others",
+                      "Sandboxing and containers let suspicious software run safely in isolation",
+                      "Smaller attack surface, because each service runs separately with only what it needs"
                     ]
                   },
                   {
@@ -11773,10 +11773,10 @@ const INLINE_UNITS = {
                     "examples": "Storage left open by default settings; hijacked accounts.",
                     "examTip": "Risks: misconfiguration, reliance on the provider, insecure APIs, hijacking.",
                     "keyFacts": [
-                      "Wrong or default settings",
-                      "Reliance on the provider",
-                      "Insecure APIs",
-                      "Account hijacking"
+                      "Wrong or default settings can leave data publicly exposed, e.g. open storage buckets",
+                      "Reliance on the provider means an outage or breach at their end hits the organisation too",
+                      "Insecure APIs give attackers a way into cloud data and services",
+                      "Account hijacking gives an attacker full control of cloud resources, so MFA is essential"
                     ]
                   },
                   {
@@ -11786,10 +11786,10 @@ const INLINE_UNITS = {
                     "examples": "Company email on a personal phone.",
                     "examTip": "Issues: passwords, privacy, patching, wiping data when staff leave.",
                     "keyFacts": [
-                      "Company data on a private device",
-                      "Enforcing password policy",
-                      "Keeping it patched",
-                      "Wiping company data when no longer needed"
+                      "Company data on a private device can leak if the device is lost or shared with family",
+                      "Enforcing password policy is harder on devices the organisation doesn't own",
+                      "Keeping it patched depends on the owner, so devices may run with known flaws",
+                      "Wiping company data when no longer needed (e.g. when staff leave) stops data leaving with them"
                     ]
                   },
                   {
@@ -11799,10 +11799,10 @@ const INLINE_UNITS = {
                     "examples": "A home worker needing a VPN on insecure home Wi-Fi.",
                     "examTip": "Remote working risks: shared devices, home Wi-Fi, third-party tools. Needs a VPN.",
                     "keyFacts": [
-                      "SDN: central management and segmentation",
-                      "SAN: redundancy, access control, encryption",
-                      "IoT: default passwords, no patches, botnets",
-                      "Remote working: shared devices, home Wi-Fi"
+                      "SDN gives central management and segmentation, so the whole network can be controlled from one place",
+                      "SAN needs redundancy, access control and encryption, because it holds the organisation's key data",
+                      "IoT has default passwords and no patches, so devices can be hijacked into botnets",
+                      "Remote working brings shared devices and home Wi-Fi, which are less secure than the office"
                     ]
                   }
                 ]
@@ -11824,9 +11824,9 @@ const INLINE_UNITS = {
                     "examples": "Phones, laptops, tablets; servers, PCs, networked printers.",
                     "examTip": "Split into mobile devices and fixed networked devices.",
                     "keyFacts": [
-                      "Mobile: phone, laptop, tablet, smartwatch",
-                      "Fixed: server, PC, printer, NAS",
-                      "Multifunction devices combine several"
+                      "Mobile devices (phone, laptop, tablet, smartwatch) are easily lost, so they need encryption and remote wipe",
+                      "Fixed devices (server, PC, printer, NAS) stay on site, so physical security protects them",
+                      "Multifunction devices combine several functions, so one compromised device exposes several services"
                     ]
                   },
                   {
@@ -11836,10 +11836,10 @@ const INLINE_UNITS = {
                     "examples": "A switch in a LAN; a router joining networks.",
                     "examTip": "Switch: connects devices in a LAN. Router: joins networks. Gateway: translates protocols.",
                     "keyFacts": [
-                      "Switch (managed or unmanaged)",
-                      "Router and gateway",
-                      "Bridge, repeater, access point",
-                      "Modem: DSL, fibre, wireless"
+                      "Switch (managed or unmanaged) connects devices in a LAN; managed switches can be configured for security",
+                      "Router and gateway connect different networks, deciding where traffic goes",
+                      "Bridge, repeater and access point extend or join networks, including wireless access",
+                      "Modem (DSL, fibre, wireless) connects the network to the internet provider"
                     ]
                   },
                   {
@@ -11849,9 +11849,9 @@ const INLINE_UNITS = {
                     "examples": "Ethernet cable; fibre; Wi-Fi; Bluetooth.",
                     "examTip": "Fibre is fast and hard to tap; wireless is easier to intercept.",
                     "keyFacts": [
-                      "Cable: Ethernet, USB",
-                      "Wireless: Wi-Fi, Bluetooth, NFC, 5G",
-                      "Fibre and Li-Fi"
+                      "Cable (Ethernet, USB) is hard to intercept without physical access, so it is more secure",
+                      "Wireless (Wi-Fi, Bluetooth, NFC, 5G) is convenient but signals can be picked up by attackers nearby",
+                      "Fibre is very fast and hard to tap, and Li-Fi uses light, so it doesn't pass through walls"
                     ]
                   }
                 ]
@@ -11867,10 +11867,10 @@ const INLINE_UNITS = {
                     "examples": "A lost USB stick; an external drive spreading malware.",
                     "examTip": "Risks: loss/theft, copying, malware, failure. Fix with encryption and secure disposal.",
                     "keyFacts": [
-                      "Loss, theft and copying",
-                      "Can carry malware",
-                      "Media fails over time",
-                      "Encrypt and dispose of securely"
+                      "Loss, theft and copying are easy because media is small and portable",
+                      "Can carry malware onto the network when plugged in",
+                      "Media fails over time, so data on it can be lost",
+                      "Encrypt and dispose of securely, so lost or thrown-away media can't be read"
                     ]
                   },
                   {
@@ -11880,9 +11880,9 @@ const INLINE_UNITS = {
                     "examples": "A packet sniffer; a log viewer; remote admin tools.",
                     "examTip": "Monitoring tools help spot incidents: link to forensics.",
                     "keyFacts": [
-                      "Configured through GUI, CLI or web interface",
-                      "Monitoring: performance, logs, vulnerability scans, packet sniffing",
-                      "Remote working and document tools"
+                      "Configured through a GUI, CLI or web interface, so admin access must be protected",
+                      "Monitoring (performance, logs, vulnerability scans, packet sniffing) spots problems and attacks early",
+                      "Remote working and document tools let staff collaborate, but must be secured"
                     ]
                   }
                 ]
@@ -11904,10 +11904,10 @@ const INLINE_UNITS = {
                     "examples": "TCP splits a file into packets, IP addresses them, TLS secures the link.",
                     "examTip": "Four-layer model; TLS adds security; error correction ensures delivery.",
                     "keyFacts": [
-                      "Four-layer model",
-                      "TLS for secure connections",
-                      "Packets with headers",
-                      "Error correction"
+                      "Four-layer model (application, transport, internet, link), so each layer handles one job",
+                      "TLS gives secure connections, encrypting data such as HTTPS traffic",
+                      "Packets with headers carry addresses, so each packet can find its own way to the destination",
+                      "Error correction resends lost or damaged packets, so data arrives complete"
                     ]
                   },
                   {
@@ -11917,9 +11917,9 @@ const INLINE_UNITS = {
                     "examples": "Port 443 for HTTPS.",
                     "examTip": "Packet = header (addresses), payload (data), trailer (error check). Know TCP vs UDP.",
                     "keyFacts": [
-                      "Hardware ports vs software ports",
-                      "Header, payload, trailer",
-                      "TCP: reliable; UDP: fast, no guarantee"
+                      "Hardware ports are physical sockets, while software ports are numbers that identify services, e.g. 443",
+                      "Header, payload and trailer: addresses, the data itself, and an error check",
+                      "TCP is reliable because it checks delivery; UDP is fast but gives no guarantee, so it suits streaming"
                     ]
                   },
                   {
@@ -11929,10 +11929,10 @@ const INLINE_UNITS = {
                     "examples": "Many home devices sharing one public IP.",
                     "examTip": "Private ranges: 10.x, 172.16–31.x, 192.168.x. APIPA 169.254.x; loopback 127.0.0.1.",
                     "keyFacts": [
-                      "NAT types: static, dynamic, PAT",
-                      "IPv4 and IPv6",
-                      "APIPA 169.254.x = DHCP failed",
-                      "127.0.0.1 = loopback"
+                      "NAT types (static, dynamic, PAT) let many private devices share public addresses, which hides them",
+                      "IPv4 is running out of addresses, so IPv6 provides vastly more",
+                      "APIPA 169.254.x means DHCP failed, so the device can't reach the wider network",
+                      "127.0.0.1 is the loopback address, used to test the device's own network software"
                     ]
                   }
                 ]
@@ -11948,10 +11948,10 @@ const INLINE_UNITS = {
                     "examples": "Putting guest Wi-Fi on a separate segment from staff systems.",
                     "examTip": "Benefits: limits access, stops lateral movement, smaller attack surface.",
                     "keyFacts": [
-                      "Limits access to devices and data",
-                      "Stops attackers moving sideways",
-                      "Smaller attack surface",
-                      "Easier to contain damage"
+                      "Limits access to devices and data, so users only reach their own segment",
+                      "Stops attackers moving sideways from one compromised device to the rest of the network",
+                      "Smaller attack surface, because each segment exposes less",
+                      "Easier to contain damage, because an infected segment can be cut off"
                     ]
                   },
                   {
@@ -11961,9 +11961,9 @@ const INLINE_UNITS = {
                     "examples": "A firewall filtering traffic; a router directing packets.",
                     "examTip": "For \"secure internet access\" the expected answer is a FIREWALL.",
                     "keyFacts": [
-                      "Server, router, switch",
-                      "Wireless access point",
-                      "Firewall, bridge, gateway"
+                      "Server, router and switch form the core, so they must be configured and locked down securely",
+                      "Wireless access point lets devices join the network, so it needs strong encryption",
+                      "Firewall, bridge and gateway control and join traffic between networks"
                     ]
                   }
                 ]
@@ -11979,9 +11979,9 @@ const INLINE_UNITS = {
                     "examples": "www.example.com → its IP address.",
                     "examTip": "DNS can be attacked by spoofing or poisoning.",
                     "keyFacts": [
-                      "Name → IP (and reverse)",
-                      "Results are cached",
-                      "Supports IPv6"
+                      "Turns names into IP addresses (and back), so users can type names, not numbers",
+                      "Results are cached, so lookups are faster, but a poisoned cache sends users to fake sites",
+                      "Supports IPv6, so it works with the newer, larger address system"
                     ]
                   },
                   {
@@ -11991,9 +11991,9 @@ const INLINE_UNITS = {
                     "examples": "Active Directory accounts; single sign-on.",
                     "examTip": "Types: single-factor, two-factor, multi-factor, SSO.",
                     "keyFacts": [
-                      "Active Directory, OpenLDAP",
-                      "Single-factor, 2FA, MFA, SSO",
-                      "Protocols: PAP, CHAP, EAP"
+                      "Active Directory and OpenLDAP store user accounts centrally, so access is managed in one place",
+                      "Single-factor, 2FA, MFA and SSO, where SSO means one login gives access to many systems",
+                      "Protocols PAP, CHAP and EAP: PAP sends passwords in plain text, so CHAP and EAP are more secure"
                     ]
                   },
                   {
@@ -12003,10 +12003,10 @@ const INLINE_UNITS = {
                     "examples": "A laptop joining Wi-Fi and getting its settings automatically.",
                     "examTip": "DHCP has no built-in security, so a rogue DHCP server can be set up.",
                     "keyFacts": [
-                      "Assigns IP, gateway and lease",
-                      "Config: address range, lease, reservations",
-                      "No built-in security",
-                      "Open to spoofing"
+                      "Assigns IP, gateway and lease automatically, so devices join the network without manual set-up",
+                      "Config sets the address range, lease time and reservations, so key devices keep fixed addresses",
+                      "No built-in security, so any device can request an address",
+                      "Open to spoofing: a rogue DHCP server can send traffic through an attacker"
                     ]
                   },
                   {
@@ -12016,9 +12016,9 @@ const INLINE_UNITS = {
                     "examples": "A VPN giving a home worker secure access.",
                     "examTip": "A VPN is an encrypted tunnel, so intercepted data can't be read.",
                     "keyFacts": [
-                      "Static or dynamic routing",
-                      "BGP routes traffic across the internet",
-                      "Remote access via VPN"
+                      "Static routing is set by hand and dynamic routing adapts automatically to changes and failures",
+                      "BGP routes traffic across the internet between large networks",
+                      "Remote access via VPN, so off-site users connect over an encrypted tunnel"
                     ]
                   }
                 ]
@@ -12034,9 +12034,9 @@ const INLINE_UNITS = {
                     "examples": "A file server for shared documents; a print server queuing jobs.",
                     "examTip": "File server = central storage; print server = manages shared printers.",
                     "keyFacts": [
-                      "File server: storage and sharing",
-                      "Print server: queues and prioritises",
-                      "Manages printer drivers"
+                      "File server gives central storage and sharing, so files are backed up and permissions controlled in one place",
+                      "Print server queues and prioritises jobs, so many users can share printers",
+                      "Manages printer drivers, so devices get the right driver automatically"
                     ]
                   },
                   {
@@ -12046,9 +12046,9 @@ const INLINE_UNITS = {
                     "examples": "A website over HTTPS; email via SMTP; a VoIP call.",
                     "examTip": "SMTP and POP have no built-in encryption: a security weakness.",
                     "keyFacts": [
-                      "Web: HTTP/HTTPS",
-                      "Mail: SMTP, POP, MIME, unencrypted by default",
-                      "Email, VoIP, SMS, video calls"
+                      "Web uses HTTP/HTTPS, and only HTTPS encrypts the traffic",
+                      "Mail (SMTP, POP, MIME) is unencrypted by default, so emails can be read if intercepted",
+                      "Email, VoIP, SMS and video calls all need securing, because they carry sensitive conversations"
                     ]
                   }
                 ]
@@ -12078,9 +12078,9 @@ const INLINE_UNITS = {
                     "examples": "Reviewing and improving security measures every quarter.",
                     "examTip": "PDCA = continuous improvement. Security is never finished because threats change.",
                     "keyFacts": [
-                      "Plan-Do-Check-Act loop from ISO 27001",
-                      "Security as a repeating cycle",
-                      "Covers internet use, passwords, staff duties, training"
+                      "Plan-Do-Check-Act loop from ISO 27001, so security keeps improving rather than standing still",
+                      "Security as a repeating cycle, because threats change and the policy must keep up",
+                      "Covers internet use, passwords, staff duties and training, so every area has clear rules"
                     ]
                   },
                   {
@@ -12090,10 +12090,10 @@ const INLINE_UNITS = {
                     "examples": "Banning downloads of executable files; warning that email may be monitored.",
                     "examTip": "Covers offensive material, confidential info, copyright, risky sites and monitoring.",
                     "keyFacts": [
-                      "No offensive or illegal material",
-                      "Rules on sending confidential information",
-                      "No copyrighted or risky downloads",
-                      "The organisation may scan traffic and keep emails"
+                      "No offensive or illegal material, which protects staff and the organisation's reputation",
+                      "Rules on sending confidential information, so data isn't leaked by email",
+                      "No copyrighted or risky downloads, which avoids malware and legal action",
+                      "The organisation may scan traffic and keep emails, so staff know they can be monitored"
                     ]
                   },
                   {
@@ -12103,10 +12103,10 @@ const INLINE_UNITS = {
                     "examples": "Blocking common passwords; locking accounts after failed logins.",
                     "examTip": "Include: length/strength, no sharing, no reuse, lockout, minimum age, expiry.",
                     "keyFacts": [
-                      "Length and strength rules",
-                      "Deny list of common passwords",
-                      "Log attempts and lock out",
-                      "Use technology to rely less on passwords"
+                      "Length and strength rules make passwords harder to crack",
+                      "A deny list of common passwords stops easily guessed choices like 'Password1'",
+                      "Log attempts and lock out, so brute-force attacks are stopped and noticed",
+                      "Use technology (e.g. MFA, password managers) to rely less on passwords alone"
                     ]
                   },
                   {
@@ -12116,10 +12116,10 @@ const INLINE_UNITS = {
                     "examples": "Annual security training; reporting suspicious emails.",
                     "examTip": "Good training is funded, flexible, varied, tracked, rewarding and ongoing.",
                     "keyFacts": [
-                      "Staff: train, follow procedures, report suspicious activity",
-                      "Training is ongoing and flexible",
-                      "Incentives, not punishment",
-                      "Refreshed for new threats"
+                      "Staff must train, follow procedures and report suspicious activity, so threats are caught early",
+                      "Training is ongoing and flexible, so it fits around work and keeps up with threats",
+                      "Incentives, not punishment, so staff report mistakes instead of hiding them",
+                      "Refreshed for new threats, because attackers keep changing their methods"
                     ]
                   },
                   {
@@ -12129,10 +12129,10 @@ const INLINE_UNITS = {
                     "examples": "Finding accounts that still belong to ex-employees.",
                     "examTip": "Finds gaps and checks against internal policy AND external law.",
                     "keyFacts": [
-                      "Set goals and scope",
-                      "Find gaps and weaknesses",
-                      "Check against policy and law",
-                      "Report required improvements"
+                      "Set goals and scope, so the audit checks the right systems and areas",
+                      "Find gaps and weaknesses before attackers do",
+                      "Check against policy and law, so the organisation knows it is compliant",
+                      "Report required improvements, so managers know what to fix and in what order"
                     ]
                   },
                   {
@@ -12142,10 +12142,10 @@ const INLINE_UNITS = {
                     "examples": "Nightly incrementals, weekly fulls, quarterly restore tests.",
                     "examTip": "A good policy includes testing restores and legal compliance.",
                     "keyFacts": [
-                      "What data, which method and type",
-                      "How often, where stored",
-                      "Who is responsible",
-                      "Test backups regularly"
+                      "Sets which data, method and type (full, incremental, differential), so everything important is covered",
+                      "Sets how often and where copies are stored, so recent data survives a site disaster",
+                      "Names who is responsible, so backups aren't skipped or forgotten",
+                      "Test backups regularly, so they are known to restore when needed"
                     ]
                   },
                   {
@@ -12155,10 +12155,10 @@ const INLINE_UNITS = {
                     "examples": "Appointing a Data Protection Officer; covering contractors too.",
                     "examTip": "Links to GDPR. Key parts: DPO, principles, rights, training, accountability.",
                     "keyFacts": [
-                      "Appoint a Data Protection Officer",
-                      "Follow GDPR principles and rights",
-                      "Train staff",
-                      "Applies to contractors"
+                      "Appoint a Data Protection Officer, so one person oversees GDPR compliance",
+                      "Follow GDPR principles and rights, so personal data is handled lawfully",
+                      "Train staff, so everyone knows how to handle personal data correctly",
+                      "Applies to contractors too, because they may also handle the organisation's data"
                     ]
                   },
                   {
@@ -12168,10 +12168,10 @@ const INLINE_UNITS = {
                     "examples": "A triage flowchart and contact list including legal, PR, HR and insurance.",
                     "examTip": "Stages: triage/escalate → contain, mitigate, recover → review and close.",
                     "keyFacts": [
-                      "Contacts: response lead, IT, management, legal, PR, HR, insurance",
-                      "Triage and escalation",
-                      "Contain, mitigate, recover",
-                      "Review, report, close"
+                      "Contacts list (response lead, IT, management, legal, PR, HR, insurance), so the right people act fast",
+                      "Triage and escalation rate the incident's severity, so serious ones reach senior staff quickly",
+                      "Contain, mitigate, recover: stop the spread, reduce the damage, then restore normal service",
+                      "Review, report and close, so lessons are learned and the plan is improved"
                     ]
                   },
                   {
@@ -12181,10 +12181,10 @@ const INLINE_UNITS = {
                     "examples": "Deciding whether to trigger incident response, business continuity or full recovery.",
                     "examTip": "Includes triage (rating severity), roles, contact lists and monitoring.",
                     "keyFacts": [
-                      "Clear purpose and scope",
-                      "Triage: list events and rate severity",
-                      "Choose which plan to activate",
-                      "Clear roles and contacts"
+                      "Clear purpose and scope, so everyone knows what the plan covers",
+                      "Triage lists possible events and rates their severity, so the response matches the disaster",
+                      "Choose which plan to activate, so staff follow the right steps for that event",
+                      "Clear roles and contacts, so no time is wasted working out who does what"
                     ]
                   },
                   {
@@ -12194,10 +12194,10 @@ const INLINE_UNITS = {
                     "examples": "A service level agreement setting response and fix times.",
                     "examTip": "Covers authorisation, accountability, SLAs and incident handling.",
                     "keyFacts": [
-                      "Who authorises and who is accountable",
-                      "Cloud: what's protected, data protection",
-                      "Vendors, licences, support agreements",
-                      "SLAs: response and fix times"
+                      "Who authorises and who is accountable, so outside services aren't taken on without approval",
+                      "Cloud: what's protected and how data protection is met, so GDPR still applies to data held by others",
+                      "Vendors, licences and support agreements are recorded, so the organisation knows what it relies on",
+                      "SLAs set response and fix times, so the provider can be held to account if service fails"
                     ]
                   }
                 ]
@@ -12227,10 +12227,10 @@ const INLINE_UNITS = {
                     "examples": "Photograph the screen, put the phone in a Faraday bag, record the chain of custody.",
                     "examTip": "A Faraday bag blocks all signals, so the device can't be remotely wiped.",
                     "keyFacts": [
-                      "Collect passwords, chargers and cables",
-                      "Keep its power state if possible",
-                      "Isolate: airplane mode or Faraday bag",
-                      "Package it and record chain of custody"
+                      "Collect passwords, chargers and cables, so the device can be accessed and kept powered",
+                      "Keep its power state if possible, because turning it off loses data held in RAM",
+                      "Isolate it with airplane mode or a Faraday bag, so it can't be remotely wiped or altered",
+                      "Package it and record chain of custody, so the evidence is admissible in court"
                     ]
                   },
                   {
@@ -12240,10 +12240,10 @@ const INLINE_UNITS = {
                     "examples": "Imaging a drive, then reviewing logs and user activity.",
                     "examTip": "Always analyse the COPY, never the original.",
                     "keyFacts": [
-                      "Take an exact image",
-                      "Use forensic tools",
-                      "Review files, logs and user activity",
-                      "Look for malware activity"
+                      "Take an exact (bit-for-bit) image, so analysis never touches the original evidence",
+                      "Use forensic tools, which are tested and accepted in court",
+                      "Review files, logs and user activity to build a timeline of what happened",
+                      "Look for malware activity, to find out how the attacker got in and what they did"
                     ]
                   },
                   {
@@ -12253,9 +12253,9 @@ const INLINE_UNITS = {
                     "examples": "Capturing RAM before it is lost at power-off.",
                     "examTip": "RAM and temporary files are lost when the device is switched off.",
                     "keyFacts": [
-                      "Data keeps changing while it runs",
-                      "Risk of corrupting data",
-                      "RAM and remote data are hard to capture"
+                      "Data keeps changing while the system runs, so evidence can be overwritten as you collect it",
+                      "Risk of corrupting data, because the investigator's actions alter the live system",
+                      "RAM and remote data are hard to capture, but may hold vital evidence such as encryption keys"
                     ]
                   },
                   {
@@ -12265,10 +12265,10 @@ const INLINE_UNITS = {
                     "examples": "Reviewing firewall and router logs to trace an attacker.",
                     "examTip": "Agree a method, get permission, and don't disrupt the live system.",
                     "keyFacts": [
-                      "Agree methodology with authorities",
-                      "Get permission first",
-                      "Passive and active tools",
-                      "Check firewall, switch, router and server logs"
+                      "Agree the methodology with the authorities, so the evidence is collected in an accepted way",
+                      "Get permission first, because monitoring a network without authority can itself be illegal",
+                      "Use passive and active tools: passive only watches traffic, active probes devices",
+                      "Check firewall, switch, router and server logs, which record who connected and when"
                     ]
                   },
                   {
@@ -12278,10 +12278,10 @@ const INLINE_UNITS = {
                     "examples": "Photos, diagrams, notes made on the spot, witness statements.",
                     "examTip": "Contemporaneous notes = made at the time. They make evidence more reliable.",
                     "keyFacts": [
-                      "Secure the scene",
-                      "Photos and diagrams",
-                      "Contemporaneous notes",
-                      "Witness statements"
+                      "Secure the scene, so nobody can tamper with the evidence",
+                      "Photos and diagrams record exactly how devices and cables were set up",
+                      "Contemporaneous notes are written at the time, so they are accurate and trusted in court",
+                      "Witness statements capture what people saw before memories fade"
                     ]
                   }
                 ]
@@ -12303,10 +12303,10 @@ const INLINE_UNITS = {
                     "examples": "Imaging a whole drive and hashing it to prove it hasn't changed.",
                     "examTip": "Physical image = the whole drive, including deleted files. Targeted image = selected files only.",
                     "keyFacts": [
-                      "Keep a clean original for comparison",
-                      "Hash copies to prove they're unchanged",
-                      "Capture disk, files and memory",
-                      "Include deleted and temporary files"
+                      "Keep a clean original for comparison, so changes made by an attacker can be spotted",
+                      "Hash copies to prove they're unchanged, because matching hashes show nothing was altered",
+                      "Capture disk, files and memory, so no evidence is missed",
+                      "Include deleted and temporary files, which often hold evidence the attacker tried to hide"
                     ]
                   },
                   {
@@ -12316,10 +12316,10 @@ const INLINE_UNITS = {
                     "examples": "Logging every action, by whom, with timestamps.",
                     "examTip": "Nothing should change the data; a competent person collects it; keep a chain of custody.",
                     "keyFacts": [
-                      "No action should change the data",
-                      "Collected by a competent person",
-                      "Chain of custody for every action",
-                      "Record who made each decision"
+                      "No action should change the data, so the evidence stays reliable",
+                      "Collected by a competent person, so the methods can stand up in court",
+                      "Chain of custody for every action, showing who had the evidence at all times",
+                      "Record who made each decision, so every step can be explained later"
                     ]
                   },
                   {
@@ -12329,9 +12329,9 @@ const INLINE_UNITS = {
                     "examples": "Working only from a copy so the original is untouched.",
                     "examTip": "Altered originals can be thrown out of court, so investigators use copies.",
                     "keyFacts": [
-                      "Record every action from seizure",
-                      "Altered data may be inadmissible",
-                      "Work from copies, not the original"
+                      "Record every action from seizure, so any change can be explained",
+                      "Altered data may be inadmissible, because the court can't trust it",
+                      "Work from copies, not the original, so the original evidence stays untouched"
                     ]
                   },
                   {
@@ -12341,9 +12341,9 @@ const INLINE_UNITS = {
                     "examples": "Time-stamped screenshots; manually checking alerts.",
                     "examTip": "Too many false positives cause alert fatigue.",
                     "keyFacts": [
-                      "Photos, video and time-stamped screenshots",
-                      "Know your tools' error rates",
-                      "Manually review positives"
+                      "Photos, video and time-stamped screenshots show exactly what was found and when",
+                      "Know your tools' error rates, so you can judge how far to trust their results",
+                      "Manually review positives, so innocent files aren't wrongly flagged as evidence"
                     ]
                   }
                 ]
@@ -12359,10 +12359,10 @@ const INLINE_UNITS = {
                     "examples": "Findings showing a hack, a GDPR breach or staff negligence.",
                     "examTip": "Could be crime, a regulatory or contract breach, a policy breach, an attack or negligence.",
                     "keyFacts": [
-                      "Crime or regulatory breach",
-                      "Contract breach",
-                      "Internal policy breach",
-                      "Attack, negligence or mismanagement"
+                      "Crime or regulatory breach, e.g. hacking under the Computer Misuse Act or a GDPR breach",
+                      "Contract breach, e.g. a supplier failing to protect data as agreed",
+                      "Internal policy breach, e.g. staff breaking the AUP, dealt with by disciplinary action",
+                      "Attack, negligence or mismanagement, which decides who is responsible and what happens next"
                     ]
                   },
                   {
@@ -12372,10 +12372,10 @@ const INLINE_UNITS = {
                     "examples": "Unusual traffic abroad; spikes in failed logins; odd DNS requests.",
                     "examTip": "Indicators: unusual traffic, logins, DNS or port use, suspicious file changes.",
                     "keyFacts": [
-                      "Unusual traffic or destinations",
-                      "Unusual logins and DNS requests",
-                      "Spikes in file reads; odd ports",
-                      "Suspicious file changes"
+                      "Unusual traffic or destinations can mean data is being sent to an attacker",
+                      "Unusual logins and DNS requests suggest stolen accounts or malware contacting its controller",
+                      "Spikes in file reads and odd ports can mean data is being copied out",
+                      "Suspicious file changes can mean malware has altered system files"
                     ]
                   },
                   {
@@ -12385,10 +12385,10 @@ const INLINE_UNITS = {
                     "examples": "A report analysing what went wrong and recommending policy and training changes.",
                     "examTip": "Structure: title, contents, intro, headings, conclusions, citations.",
                     "keyFacts": [
-                      "Clear structure",
-                      "What went wrong and why detection was slow",
-                      "Improve policies",
-                      "Improve physical, software, hardware and training measures"
+                      "Clear structure, so managers can quickly find what happened and what to do",
+                      "Explain what went wrong and why detection was slow, so the same gaps aren't left open",
+                      "Recommend improved policies, so procedures stop it happening again",
+                      "Improve physical, software, hardware and training measures, so every weak area is addressed"
                     ]
                   }
                 ]
