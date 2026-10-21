@@ -1609,3 +1609,59 @@ main { scrollbar-gutter: stable; }
 .ppp-reason-counts > div { display: flex; flex-direction: column; gap: 2px; padding: 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg2); }
 .ppp-reason-counts strong { font-size: 22px; color: var(--accent); font-variant-numeric: tabular-nums; }
 .ppp-reason-counts span { font-size: 13px; color: var(--text2); }
+
+/* ─── EASE OF USE (2026-10-21) ─── */
+/* Skip link: first Tab stop, hidden until focused. */
+.skip-link { position: fixed; top: 8px; left: 8px; z-index: 400; padding: 8px 14px; border-radius: var(--radius-sm); background: var(--accent); color: #fff; font-weight: 700; text-decoration: none; transform: translateY(-200%); }
+.skip-link:focus { transform: none; }
+main:focus { outline: none; }
+
+/* Sidebar groups: a small heading when open, a hairline in the icon rail. */
+.sidebar-group { flex-shrink: 0; line-height: 1.4; margin: 10px 10px 2px; font-family: var(--mono); font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text2); opacity: .8; white-space: nowrap; overflow: hidden; }
+.sidebar:not(.open) .sidebar-group { height: 1px; margin: 8px 12px; background: var(--border); opacity: 1; }
+.sidebar:not(.open) .sidebar-group span { display: none; }
+
+/* Top-bar search and shortcuts buttons share the theme button's look. */
+.top-bar-theme-btn .ico { width: 16px; height: 16px; }
+.top-bar-keys { font-weight: 800; font-size: 14px; }
+@media (pointer: coarse) { .top-bar-keys { display: none; } }
+
+/* Shortcuts dialog. */
+.kbd-group { font-size: 13px; margin: 14px 0 6px; color: var(--text2); }
+.kbd-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.kbd-table td { padding: 5px 0; border-bottom: 1px solid var(--border); }
+.kbd-table td:first-child { width: 42%; white-space: nowrap; }
+.modal kbd, .kbd-table kbd { font-family: inherit; font-size: 12px; font-weight: 700; padding: 1px 6px; border: 1px solid var(--border); border-bottom-width: 2px; border-radius: 4px; background: var(--bg3); }
+
+/* Back to top. */
+.to-top { position: fixed; right: 20px; bottom: 20px; z-index: 150; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg2); color: var(--accent); box-shadow: var(--shadow); cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .2s, transform .2s, visibility .2s; }
+.to-top.show { opacity: 1; visibility: visible; transform: none; }
+.to-top:hover { background: var(--accent-light); }
+.to-top .ico { width: 20px; height: 20px; }
+
+/* Section notes: jump, filter, expand. */
+.notes-tools { display: flex; flex-direction: column; gap: 10px; margin: -6px 0 8px; }
+.notes-jump, .notes-filter, .notes-expand { display: flex; gap: 6px; flex-wrap: wrap; }
+.notes-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+.notes-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1px solid var(--border); border-radius: var(--radius-pill); background: var(--bg2); color: var(--text); font: 600 13px var(--ui); cursor: pointer; transition: background .15s, border-color .15s; }
+.notes-chip:hover { border-color: var(--accent); }
+.notes-chip.active { border-color: var(--accent); background: var(--accent-light); color: var(--accent2); }
+.notes-chip b { font-weight: 700; color: var(--text2); font-variant-numeric: tabular-nums; }
+.notes-jump .notes-chip { font-family: var(--mono); font-size: 12px; }
+.notes-none { color: var(--text2); font-size: 14px; margin: 4px 0 12px; }
+[id^="topic-"] { scroll-margin-top: 12px; }
+[id^="topic-"]:focus { outline: none; }
+
+/* RAG dot: a card's self-rating, visible without opening it. */
+.rag-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; background: var(--red); }
+.rag-dot-amber { background: var(--amber); }
+.rag-dot-green { background: var(--green); }
+.rag-dot-unrated { background: transparent; border: 1.5px solid var(--text2); opacity: .45; }
+
+/* Search: say how many matched; flash the card a result opens. */
+.search-count { font-size: 13px; color: var(--text2); margin: 0 0 8px; }
+.card-flash { animation: cardFlash 1.6s ease-out; }
+@keyframes cardFlash { 0%, 40% { box-shadow: 0 0 0 3px var(--accent); } 100% { box-shadow: var(--shadow-sm); } }
+
+/* Previous / next section at the foot of the notes. */
+.section-pager { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); }

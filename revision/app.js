@@ -421,7 +421,9 @@ function resetTransientState() {
   DATA = {};
   searchBuilt = false;
   allSearchContent = [];
+  searchQuery = '';
   currentSection = null;
+  notesFilter = 'all';
   flashFilter = 'all';
   qFilter = 'all';
   if (typeof flashPracticeMode !== 'undefined') flashPracticeMode = false;
@@ -539,7 +541,41 @@ function navigate(page, opts = {}) {
   // scroll content to top on navigation
   scrollContentTop();
   renderPage(page, opts);
+  syncRoute(page, opts);
 }
+
+/* ---- ROUTING ----
+   The page lives in the URL hash (#flashcards, #sections/C), so the browser's
+   Back button moves between pages instead of leaving the site, a refresh stays
+   put, and a page can be bookmarked. Which unit is showing stays in saved state,
+   not the URL. */
+function routeHash(page, section) {
+  if (page === 'sections' && section) return '#sections/' + section;
+  return page === 'home' ? '' : '#' + page;
+}
+
+function syncRoute(page, opts) {
+  if (opts.fromHistory) return;
+  const hash = routeHash(page, page === 'sections' ? currentSection : null);
+  if (hash === location.hash) return;
+  const url = location.pathname + location.search + hash;
+  try {
+    if (opts.replaceRoute) history.replaceState(null, '', url);
+    else history.pushState(null, '', url);
+  } catch { /* history blocked (file:// in some browsers): the page still works */ }
+}
+
+function parseRoute() {
+  const [page, arg] = decodeURIComponent(location.hash.replace(/^#\/?/, '')).split('/');
+  if (!PAGES.includes(page)) return { page: 'home' };
+  const L = (arg || '').toUpperCase();
+  return { page, section: page === 'sections' && unitLettersUpper().includes(L) ? L : undefined };
+}
+
+window.addEventListener('popstate', () => {
+  const r = parseRoute();
+  navigate(r.page, { section: r.section, fromHistory: true });
+});
 
 /* Page content scrolls inside <main>, not the window, so window.scrollTo() on
    its own does nothing. Reset both in case a layout ever scrolls the window. */
@@ -575,8 +611,10 @@ function lsGet(key) { try { return localStorage.getItem(key); } catch { return n
 function lsSet(key, val) { try { localStorage.setItem(key, val); } catch { /* not persisted */ } }
 
 function initSidebar() {
+  // With no saved choice, a wide screen starts with the labelled sidebar: the
+  // icon rail alone left first-time visitors guessing what each icon was.
   const saved = lsGet('rev_sidebar') ?? lsGet('u2_sidebar');
-  sidebarOpen = saved !== null ? saved === 'true' : false;
+  sidebarOpen = saved !== null ? saved === 'true' : window.innerWidth >= 1200;
   applySidebarState();
 }
 
@@ -584,6 +622,7 @@ function applySidebarState() {
   const sidebar = el('sidebar');
   const backdrop = el('sidebar-backdrop');
   const isDesktop = window.innerWidth >= 900;
+  el('hamburger').setAttribute('aria-expanded', String(!!sidebarOpen));
   if (sidebarOpen) {
     sidebar.classList.add('open');
     if (!isDesktop) backdrop.classList.add('visible');
@@ -1181,6 +1220,7 @@ function renderSections(letter) {
   const container = el('sections-content');
 
   if (!letter) {
+    currentSection = null;
     renderSectionList(container);
     return;
   }
@@ -1214,30 +1254,110 @@ function renderSectionList(container) {
     </div>`;
 }
 
+/* Notes filter, by self-rating: lets a student work through only what they
+   marked "Not sure", or what they have not rated yet. Kept across sections. */
+let notesFilter = 'all';
+const NOTES_FILTERS = [
+  { id: 'all',     label: 'All' },
+  { id: 'unrated', label: 'Not rated' },
+  { id: 'red',     label: 'Not sure' },
+  { id: 'amber',   label: 'Getting there' },
+  { id: 'green',   label: 'Confident' }
+];
+
+function notesMatch(code) {
+  const r = state.rag[code] || 'unrated';
+  return notesFilter === 'all' || r === notesFilter;
+}
+
 function renderSectionContent(container, data, letter) {
   const col = sectionColour(letter);
+  const letters = unitLettersUpper();
+  const at = letters.indexOf(letter);
+  const prev = letters[at - 1], next = letters[at + 1];
+
+  const counts = { all: 0, unrated: 0, red: 0, amber: 0, green: 0 };
+  data.topics.forEach(t => t.subtopics.forEach(s => s.items.forEach(item => {
+    counts.all++;
+    counts[state.rag[item.code] || 'unrated']++;
+  })));
 
   let html = `
     <div class="section-header">
-      <button class="section-header-back" onclick="navigate('sections')" title="Back">←</button>
+      <button class="section-header-back" onclick="navigate('sections')" title="All sections" aria-label="Back to all sections">←</button>
       <h2><span style="color:${col}">${data.section}</span> — ${data.title}</h2>
       <span class="badge ${sectionTierClass(letter)}">Tier ${sectionTier(letter)}</span>
+    </div>
+    <div class="notes-tools">
+      <nav class="notes-jump" aria-label="Jump to topic">
+        ${data.topics.map(t => `<button class="notes-chip" onclick="jumpToTopic('${t.code}')">${t.code} ${t.title}</button>`).join('')}
+      </nav>
+      <div class="notes-row">
+        <div class="notes-filter" role="group" aria-label="Show cards rated">
+          ${NOTES_FILTERS.map(f => `<button class="notes-chip${notesFilter === f.id ? ' active' : ''}" aria-pressed="${notesFilter === f.id}" onclick="setNotesFilter('${f.id}')">${f.id !== 'all' ? `<i class="rag-dot rag-dot-${f.id}" aria-hidden="true"></i>` : ''}${f.label} <b id="nf-count-${f.id}">${counts[f.id]}</b></button>`).join('')}
+        </div>
+        <div class="notes-expand">
+          <button class="btn btn-secondary btn-sm" onclick="expandAllCards(true)">Expand all</button>
+          <button class="btn btn-secondary btn-sm" onclick="expandAllCards(false)">Collapse all</button>
+        </div>
+      </div>
     </div>`;
 
+  let shown = 0;
   data.topics.forEach(topic => {
-    html += `<div class="subtopic-header">${topic.code} ${topic.title}</div>`;
+    let topicHtml = '';
     topic.subtopics.forEach(sub => {
-      html += `<div class="subtopic-header" style="font-size:12px;margin-bottom:4px">${sub.code ? sub.code + (sub.title ? ' — ' + sub.title : '') : sub.title || ''}</div>`;
-      if (sub.comparisonTable) {
-        html += `<div class="subtopic-table-wrap">${sub.comparisonTable.title ? '' : '<div class="subtopic-table-title">Overview</div>'}${renderComparisonTable(sub.comparisonTable)}</div>`;
+      const items = sub.items.filter(item => notesMatch(item.code));
+      // Overview tables belong to the whole subtopic, so they only show unfiltered.
+      if (!items.length && (notesFilter !== 'all' || !sub.comparisonTable)) return;
+      topicHtml += `<div class="subtopic-header" style="font-size:12px;margin-bottom:4px">${sub.code ? sub.code + (sub.title ? ' — ' + sub.title : '') : sub.title || ''}</div>`;
+      if (sub.comparisonTable && notesFilter === 'all') {
+        topicHtml += `<div class="subtopic-table-wrap">${sub.comparisonTable.title ? '' : '<div class="subtopic-table-title">Overview</div>'}${renderComparisonTable(sub.comparisonTable)}</div>`;
       }
-      sub.items.forEach(item => {
-        html += renderSpecItem(item, letter);
-      });
+      items.forEach(item => { topicHtml += renderSpecItem(item, letter); shown++; });
     });
+    // The topic heading stays even when filtered empty, so Jump always lands somewhere.
+    html += `<div class="subtopic-header" id="topic-${topic.code}">${topic.code} ${topic.title}</div>`;
+    html += topicHtml || `<p class="notes-none">No cards here match this filter.</p>`;
   });
 
+  if (!shown && notesFilter !== 'all') {
+    html += `<p class="notes-none"><button class="btn btn-secondary btn-sm" onclick="setNotesFilter('all')">Show all cards</button></p>`;
+  }
+
+  html += `
+    <nav class="section-pager" aria-label="Other sections">
+      ${prev ? `<button class="btn btn-secondary" onclick="navigate('sections',{section:'${prev}'})">← ${prev} ${sectionShortName(prev)}</button>` : '<span></span>'}
+      ${next ? `<button class="btn btn-secondary" onclick="navigate('sections',{section:'${next}'})">${next} ${sectionShortName(next)} →</button>` : '<span></span>'}
+    </nav>`;
+
   container.innerHTML = html;
+}
+
+function setNotesFilter(f) {
+  notesFilter = f;
+  const main = el('main-content');
+  const y = main.scrollTop;
+  renderSections(currentSection);
+  main.scrollTop = Math.min(y, main.scrollHeight);
+}
+
+function jumpToTopic(code) {
+  const h = el('topic-' + code);
+  if (!h) return;
+  h.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  h.setAttribute('tabindex', '-1');
+  h.focus({ preventScroll: true });
+}
+
+function expandAllCards(open) {
+  document.querySelectorAll('#sections-content .card-body').forEach(body => {
+    body.classList.toggle('hidden', !open);
+    const header = body.previousElementSibling;
+    if (header) header.setAttribute('aria-expanded', String(open));
+    const chev = header && header.querySelector('.chevron');
+    if (chev) chev.classList.toggle('open', open);
+  });
 }
 
 function renderComparisonTable(t) {
@@ -1251,6 +1371,8 @@ function renderComparisonTable(t) {
   </table></div>`;
 }
 
+const RAG_LABELS = { red: 'Rated: not sure', amber: 'Rated: getting there', green: 'Rated: confident', unrated: 'Not rated yet' };
+
 function renderSpecItem(item, letter) {
   const ragVal = state.rag[item.code] || '';
   const reviewedKey = letter + '_' + item.code;
@@ -1260,6 +1382,7 @@ function renderSpecItem(item, letter) {
     <div class="card" id="item-${item.code}">
       <div role="button" tabindex="0" class="card-header" aria-expanded="false" aria-controls="body-${item.code}" onclick="toggleCard('${item.code}')">
         <span class="badge" style="min-width:65px;text-align:center">${item.code}</span>
+        <i class="rag-dot rag-dot-${ragVal || 'unrated'}" id="rag-dot-${item.code}" title="${RAG_LABELS[ragVal || 'unrated']}" aria-label="${RAG_LABELS[ragVal || 'unrated']}" role="img"></i>
         <h3>${item.term}</h3>
         ${isReviewed ? '<span class="reviewed-tick" style="color:var(--green);font-size:12px">✓</span>' : ''}
         <span class="chevron" id="chev-${item.code}">▼</span>
@@ -1306,7 +1429,27 @@ function setRAG(code, val, letter) {
       if (b.textContent.includes('Confident') && val === 'green') b.classList.add('active-green');
     });
   }
+  const dot = el('rag-dot-' + code);
+  if (dot) {
+    dot.className = 'rag-dot rag-dot-' + val;
+    dot.title = RAG_LABELS[val];
+    dot.setAttribute('aria-label', RAG_LABELS[val]);
+  }
+  if (currentPage === 'sections') updateNotesCounts(letter);
   toast(val === 'green' ? '✓ Marked confident' : val === 'amber' ? 'Noted — keep practising' : 'Added to revision priority');
+}
+
+/* The card stays put when its rating changes, even if the filter would now hide
+   it (it would vanish mid-read); only the counts on the filter chips move. */
+function updateNotesCounts(letter) {
+  const data = DATA[String(letter).toLowerCase()];
+  if (!data) return;
+  const counts = { all: 0, unrated: 0, red: 0, amber: 0, green: 0 };
+  data.topics.forEach(t => t.subtopics.forEach(s => s.items.forEach(item => {
+    counts.all++;
+    counts[state.rag[item.code] || 'unrated']++;
+  })));
+  Object.keys(counts).forEach(k => { const b = el('nf-count-' + k); if (b) b.textContent = counts[k]; });
 }
 
 /* Updates this one card in place. Re-rendering the section (as it used to) reset
@@ -1427,9 +1570,9 @@ function renderFlashUI() {
         </div>`).join('')}
     </div>
     <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center">
-      <select id="flash-filter" onchange="setFlashFilter(this.value)" style="background:var(--bg2);border:1px solid var(--border);color:var(--text);padding:9px 12px;border-radius:var(--radius-sm);font-size:14px;font-family:'Inter',sans-serif;font-weight:600;box-shadow:var(--shadow-sm);cursor:pointer">
+      <select id="flash-filter" aria-label="Which section's cards" onchange="setFlashFilter(this.value)" style="background:var(--bg2);border:1px solid var(--border);color:var(--text);padding:9px 12px;border-radius:var(--radius-sm);font-size:14px;font-family:'Inter',sans-serif;font-weight:600;box-shadow:var(--shadow-sm);cursor:pointer">
         <option value="all" ${flashFilter === 'all' ? 'selected' : ''}>All sections</option>
-        ${unitLettersUpper().map(l => `<option value="${l}" ${flashFilter === l ? 'selected' : ''}>${l}</option>`).join('')}
+        ${unitLettersUpper().map(l => `<option value="${l}" ${flashFilter === l ? 'selected' : ''}>${l} · ${sectionShortName(l)}</option>`).join('')}
       </select>
       <span style="font-size:14px;color:var(--text2)">${dueLabel}</span>
       <button class="btn btn-secondary btn-sm" onclick="flashPracticeMode=false;buildFlashQueue();renderFlashUI()">Refresh queue</button>
@@ -5387,6 +5530,7 @@ function renderExamKit() {
 /* ---- SEARCH ---- */
 let allSearchContent = [];
 let searchBuilt = false;
+let searchQuery = '';
 
 function renderSearch() {
   if (!searchBuilt) {
@@ -5396,10 +5540,14 @@ function renderSearch() {
   const container = el('search-content');
   container.innerHTML = `
     <h2 style="margin-bottom:12px">Search</h2>
-    <input type="search" class="search-bar" id="search-input" aria-label="Search revision content" placeholder="Search spec codes, terms, definitions..." oninput="doSearch(this.value)" autofocus>
-    <div id="search-results" class="search-results">
-      <div class="empty-state"><p>Type to search across all content</p></div>
-    </div>`;
+    <input type="search" class="search-bar" id="search-input" aria-label="Search revision content" placeholder="Search spec codes, terms, definitions..." oninput="doSearch(this.value)">
+    <div id="search-results" class="search-results" aria-live="polite"></div>`;
+  // Coming Back from a result finds the same search still there.
+  const input = el('search-input');
+  input.value = searchQuery;
+  doSearch(searchQuery);
+  // autofocus only works on page load, not in markup added later.
+  input.focus();
 }
 
 function buildSearchIndex() {
@@ -5426,19 +5574,23 @@ function buildSearchIndex() {
   searchBuilt = true;
 }
 
+const SEARCH_LIMIT = 30;
+
 function doSearch(query) {
+  searchQuery = query || '';
   const container = el('search-results');
   if (!query || query.length < 2) {
     container.innerHTML = `<div class="empty-state"><p>Type to search across all content</p></div>`;
     return;
   }
   const q = query.toLowerCase();
-  const results = allSearchContent.filter(item =>
+  const matches = allSearchContent.filter(item =>
     item.code.toLowerCase().includes(q) ||
     item.term.toLowerCase().includes(q) ||
     item.definition.toLowerCase().includes(q) ||
     item.examTip.toLowerCase().includes(q)
-  ).slice(0, 30);
+  );
+  const results = matches.slice(0, SEARCH_LIMIT);
 
   if (!results.length) {
     // The query is the student's own typing and must never be parsed as HTML.
@@ -5446,7 +5598,10 @@ function doSearch(query) {
     return;
   }
 
-  container.innerHTML = results.map(r => `
+  const count = matches.length > SEARCH_LIMIT
+    ? `Showing the first ${SEARCH_LIMIT} of ${matches.length} results. Type more to narrow it down.`
+    : `${matches.length} result${matches.length === 1 ? '' : 's'}`;
+  container.innerHTML = `<p class="search-count">${count}</p>` + results.map(r => `
     <div role="button" tabindex="0" class="search-result" onclick="goToResult('${r.section}', '${r.code}')">
       <div style="display:flex;gap:8px;margin-bottom:4px">
         <span class="badge">${r.code}</span>
@@ -5473,11 +5628,14 @@ function highlight(text, query) {
 }
 
 function goToResult(section, code) {
+  notesFilter = 'all';   // a confidence filter could hide the card searched for
   navigate('sections', { section });
   setTimeout(() => {
     const el_item = el('item-' + code);
     if (el_item) {
       el_item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      el_item.classList.add('card-flash');
+      setTimeout(() => el_item.classList.remove('card-flash'), 1600);
       const body = el('body-' + code);
       const chev = el('chev-' + code);
       if (body && body.classList.contains('hidden')) {
@@ -5793,6 +5951,50 @@ document.addEventListener('keydown', e => {
   if (sidebarOpen && window.innerWidth < 900) closeSidebar();
 });
 
+/* Site-wide keys: / jumps to Search, ? lists every shortcut. Never while typing,
+   and never over an open dialog. */
+function typingIn(t) {
+  return t && (/^(INPUT|SELECT|TEXTAREA)$/.test(t.tagName) || t.isContentEditable);
+}
+
+document.addEventListener('keydown', e => {
+  if (e.ctrlKey || e.metaKey || e.altKey || e.repeat || typingIn(e.target)) return;
+  const modal = el('player-modal-overlay');
+  if (modal && modal.classList.contains('show')) return;
+  if (e.key === '/') {
+    e.preventDefault();
+    sidebarNav('search');
+  } else if (e.key === '?') {
+    e.preventDefault();
+    showShortcuts();
+  }
+});
+
+function showShortcuts() {
+  const row = (keys, what) => `<tr><td>${keys.map(k => `<kbd>${k}</kbd>`).join(' ')}</td><td>${what}</td></tr>`;
+  const group = (title, rows) => `<h3 class="kbd-group">${title}</h3><table class="kbd-table"><tbody>${rows.join('')}</tbody></table>`;
+  openModal(`
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    <h2 id="modal-title">Keyboard shortcuts</h2>
+    ${group('Anywhere', [row(['/'], 'Search'), row(['?'], 'This list'), row(['Esc'], 'Close a dialog or the menu')])}
+    ${group('Flashcards', [row(['Space'], 'Flip the card'), row(['←'], "Didn't know"), row(['→'], 'Got it')])}
+    ${group('Questions', [row(['←', '→'], 'Previous / next question')])}
+    ${group('Reasoning test', [row(['1–5'], 'Pick an option'), row(['←', '→'], 'Previous / next question')])}
+    ${group('True or False game', [row(['T', '→'], 'True'), row(['F', '←'], 'False')])}`);
+}
+
+/* Long pages (a section's notes run to 100 cards) get a way back to the top. */
+function syncToTopButton() {
+  const btn = el('to-top');
+  if (btn) btn.classList.toggle('show', el('main-content').scrollTop > 900);
+}
+
+function backToTop() {
+  el('main-content').scrollTo({ top: 0, behavior: 'smooth' });
+  const h = document.querySelector('.page.active h2');
+  if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
+}
+
 /* Anything given role="button" must also answer to Enter and Space, or it is
    only usable with a mouse. */
 document.addEventListener('keydown', e => {
@@ -5821,7 +6023,9 @@ document.addEventListener('DOMContentLoaded', () => {
   syncThemeButtons();
   loadData(unitLetters());
   updateNavAvatar();
-  navigate('home');
+  const r = parseRoute();
+  navigate(r.page, { section: r.section, replaceRoute: true });
+  el('main-content').addEventListener('scroll', syncToTopButton, { passive: true });
   if (storeWasCorrupt) {
     toast('Your saved progress could not be read, so the site started fresh. A copy of the old data was kept in this browser.', 8000, 'error');
   }
