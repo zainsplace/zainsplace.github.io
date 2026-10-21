@@ -1206,13 +1206,6 @@ textarea.response-area:focus { border-color: var(--accent); box-shadow: 0 0 0 4p
 .lb-tag { font-size: 11.5px; color: var(--text2); font-weight: 600; }
 .lb-xp { font-weight: 800; font-size: 14px; color: var(--accent2); white-space: nowrap; }
 @media (max-width: 560px) { .lb-row .rank-chip { display: none; } }
-.lb-tier { margin-bottom: 24px; }
-.lb-tier-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-weight: 800; font-size: 16px; margin-bottom: 10px; padding: 0 2px; color: var(--rank); color: color-mix(in srgb, var(--rank) 70%, var(--text)); }
-.lb-tier-count { font-size: 12px; font-weight: 700; color: var(--text2); }
-.season-banner { font-size: 13px; line-height: 1.5; color: var(--text2); background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 9px 12px; margin-bottom: 14px; }
-.season-banner strong { color: var(--accent); }
-.lb-tier.mine .lb-tier-head { font-size: 18px; }
-.lb-tier.mine .lb-tier-head span:first-child { color: var(--accent) !important; }
 
 /* ─── NAV AVATAR ─── */
 .nav-avatar {
@@ -1314,7 +1307,6 @@ textarea.response-area:focus { border-color: var(--accent); box-shadow: 0 0 0 4p
 .rank-step.current { border-color: var(--accent); border-width: 2px; box-shadow: 0 0 0 4px rgba(27,90,95,0.12); transform: scale(1.04); opacity: 1; background: var(--bg2); }
 .rank-step-icon { font-size: 20px; }
 .rank-step-name { font-size: 12px; font-weight: 800; line-height: 1.1; }
-.rank-step-xp { font-size: 12px; color: var(--text2); font-weight: 600; }
 /* Locked ranks and achievements used opacity: 0.5, which took their text below 4.5:1.
    The icon and a faded card carry the locked look instead; the text stays readable. */
 .rank-step:not(.unlocked) .rank-step-icon, .ach:not(.done) .ach-icon { opacity: 0.5; }
@@ -1665,3 +1657,24 @@ main:focus { outline: none; }
 
 /* Previous / next section at the foot of the notes. */
 .section-pager { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); }
+
+/* ─── WEEKLY LEAGUES + BATTLE RATING (2026-10-21) ─── */
+.league-card { border-left: 4px solid var(--rank); margin-bottom: 18px; }
+.league-head { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
+.league-icon { font-size: 36px; line-height: 1; }
+.league-head h3 { font-size: 20px; margin-bottom: 2px; }
+.league-sub { font-size: 13px; color: var(--text2); }
+.league-status { font-size: 14px; line-height: 1.5; margin-bottom: 4px; }
+.league-card .btn { margin-top: 10px; }
+.league-result { font-size: 14px; line-height: 1.5; border-radius: var(--radius-sm); padding: 10px 14px; margin-bottom: 14px; background: var(--bg3); border-left: 3px solid var(--text2); }
+.league-result.up { background: var(--accent-light); border-left-color: var(--accent); }
+/* Promotion and demotion lines across the table. Kept out of the RAG colours'
+   meaning by using the accent for "up" and plain text for "down". */
+.lb-zone-line { font-family: var(--mono); font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; text-align: center; padding: 6px 0; border-bottom: 1px solid var(--border); }
+.lb-zone-line.up { color: var(--accent); background: var(--accent-light); }
+.lb-zone-line.down { color: var(--text2); background: var(--bg3); }
+.league-how { margin-top: 18px; font-size: 14px; color: var(--text2); }
+.league-how summary { cursor: pointer; font-weight: 700; color: var(--text); padding: 6px 0; }
+.league-how ul { margin: 6px 0 0 18px; display: grid; gap: 6px; line-height: 1.5; }
+.rating-delta.up { color: var(--accent); font-weight: 800; }
+.rating-delta.down { color: var(--text2); font-weight: 800; }

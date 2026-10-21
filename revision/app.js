@@ -89,15 +89,15 @@ function defaultUnitState() {
     streak: { last: null, count: 0 },
     xp: 0,
     activity: {},      // 'YYYY-MM-DD' -> action count (feeds the heatmap)
-    battles: { played: 0, won: 0, modes: {} },
+    xpByDay: {},       // 'YYYY-MM-DD' -> XP earned that day (weekly leagues)
+    battles: { played: 0, won: 0, modes: {}, rating: LEAGUE.START_RATING, rated: 0, peak: LEAGUE.START_RATING },
     extended: {
       history: [],     // {type, wordCount, date, timeTaken}
       drafts: {}       // prompt id -> essay text, kept until the box is emptied
     },
     planChecks: {},
     bests: { tf: 0, match: 0 },
-    season: { id: 0, startXP: 0 },   // XP banked before the current season began
-    rankBest: 0                      // highest rank index ever held (achievements)
+    league: LEAGUE.defaultState()    // weekly league: tier, this week, past results
   };
 }
 
@@ -182,6 +182,8 @@ function coerceUnit(raw) {
   keepMap(unit.flashcards.boxes, SAFE_KEY, v => Number.isInteger(v) && v >= 1 && v <= 5);
   keepMap(unit.flashcards.nextDue, SAFE_KEY, v => typeof v === 'string' && DATE_KEY.test(v));
   keepMap(unit.activity, DATE_KEY, count);
+  keepMap(unit.xpByDay, DATE_KEY, count);
+  unit.league = LEAGUE.coerceState(isPlainObject(raw) ? raw.league : null);
   keepMap(unit.planChecks, DATE_KEY, isPlainObject);
   Object.values(unit.planChecks).forEach(day => keepMap(day, SAFE_KEY, v => typeof v === 'boolean'));
   keepMap(unit.battles.modes, SAFE_KEY, isPlainObject);
@@ -478,6 +480,7 @@ function stopAllTimers() {
 
 function switchUnit(id) {
   if (!isUnitId(id) || id === store.activeUnit) return;
+  forfeitBattle();   // the rating belongs to the unit being left
   store.activeUnit = id;
   saveState();
   resetTransientState();
@@ -521,6 +524,7 @@ function navigate(page, opts = {}) {
   // Leaving the games page abandons whatever was running. Without this a live
   // Blitz or Match timer keeps ticking and banks its score minutes later.
   if (page !== 'games' && typeof stopGameTimers === 'function') {
+    forfeitBattle();
     stopGameTimers();
     gamesMode = 'menu';
     tfState = null;
@@ -1043,10 +1047,11 @@ function renderHome() {
   el('home-overall-pct').textContent = prog + '%';
   renderConfidenceStrip();
   el('home-stat-streak').textContent = currentStreak();
-  const myRank = rankInfo(myStanding().tier);
-  el('home-stat-level').textContent = myRank.icon;
-  el('home-stat-level').style.color = myRank.col;
-  el('home-stat-xp').textContent = `${myRank.name} · ${seasonXP()} season XP`;
+  const wk = weekXP();
+  const myLeague = TIERS[state.league.tier];
+  el('home-stat-level').textContent = myLeague.icon;
+  el('home-stat-level').style.color = myLeague.col;
+  el('home-stat-xp').textContent = `${myLeague.name} League · ${wk.toLocaleString()} XP this week`;
   renderTodayCard();
   renderSectionTiles();
   renderPriorityTopics();
@@ -1645,7 +1650,7 @@ function answerFlash(correct) {
     const due = new Date();
     due.setDate(due.getDate() + interval);
     state.flashcards.nextDue[card.id] = localDateStr(due);
-    state.xp = (state.xp || 0) + (correct ? 5 : 2);
+    gainXP(correct ? 5 : 2);
     bumpActivity();
     saveState();
   }
@@ -2745,7 +2750,7 @@ function showMockResults() {
   state.questions.mocks.push({ paper: p.id, date: today(), score, max, minutes: mock.minutesUsed });
   qs.forEach(q => state.questions.history.push({ qId: q.id, marks: q.marks, date: today(),
                                                   selfScore: Math.round(mock.scores[q.id] / q.marks * 100) }));
-  state.xp = (state.xp || 0) + score * 2;
+  gainXP(score * 2);
   bumpActivity();
   saveState();
   mock.phase = 'done';
@@ -3394,7 +3399,7 @@ function pppFinish() {
   const minutesUsed = Math.round(Object.values(ppp.seconds).reduce((a, b) => a + b, 0) / 60);
   PPP.recordSitting(st, { id: ppp.id, kind: ppp.kind, ref: ppp.ref, date: d, status: 'done',
                           score, max, minutesUsed, parts });
-  state.xp = (state.xp || 0) + score * 2;
+  gainXP(score * 2);
   ppp.result = { score, max, parts, minutesUsed, xp: score * 2 };
   ppp.step = 'done';
   persistPPP(true);
@@ -3977,8 +3982,19 @@ function toggleMarkScheme(id) {
 /* ---- XP & LEVELS ---- */
 const XP_PER_LEVEL = 250;
 
-function awardXP(n, quiet) {
+/* Every XP gain goes through here, so the weekly league can count XP by day. */
+function gainXP(n) {
+  ensureLeague();
   state.xp = (state.xp || 0) + n;
+  const d = today();
+  state.xpByDay[d] = (state.xpByDay[d] || 0) + n;
+  // A league only looks at its own week; keep two months for the profile.
+  const cutoff = localDateStr(new Date(Date.now() - 60 * 86400000));
+  Object.keys(state.xpByDay).forEach(k => { if (k < cutoff) delete state.xpByDay[k]; });
+}
+
+function awardXP(n, quiet) {
+  gainXP(n);
   bumpActivity();
   saveState();
   if (!quiet) toast(`+${n} XP`);
@@ -3986,82 +4002,6 @@ function awardXP(n, quiet) {
 
 function xpLevel() { return Math.floor((state.xp || 0) / XP_PER_LEVEL) + 1; }
 function xpIntoLevel() { return (state.xp || 0) % XP_PER_LEVEL; }
-
-/* ---- RANKS ----
-   Ranks used to be XP thresholds, and rivals gain XP every day forever, so the
-   whole ladder drifted upwards until nobody was left in Bronze or Silver. Ranks
-   are now places on the table: each rank holds a fixed share of the players,
-   shaped like a bell curve, filled from the top. However much XP everyone
-   earns, only the top ~5% can ever be Cyber Legend. `share` is a percentage. */
-const RANKS = [
-  { name: 'Bronze',       icon: '🥉', col: '#B45309', share: 5 },
-  { name: 'Silver',       icon: '🥈', col: '#64748B', share: 12 },
-  { name: 'Gold',         icon: '🥇', col: '#BE7A1C', share: 20 },
-  { name: 'Platinum',     icon: '💠', col: '#0E7490', share: 26 },
-  { name: 'Diamond',      icon: '💎', col: '#1B5A5F', share: 20 },
-  { name: 'Master',       icon: '🔮', col: '#A85A3C', share: 12 },
-  { name: 'Cyber Legend', icon: '👑', col: '#7B61B8', share: 5 }
-];
-
-// Places per rank for n players: largest-remainder rounding, at least one each
-// (so n must be at least RANKS.length; the ladder always has 41 players).
-function rankSizes(n) {
-  const raw = RANKS.map(r => r.share * n / 100);
-  const sizes = raw.map(x => Math.max(1, Math.floor(x)));
-  let spare = n - sizes.reduce((a, b) => a + b, 0);
-  const order = raw.map((x, i) => [x - Math.floor(x), i]).sort((a, b) => b[0] - a[0]);
-  for (let k = 0; spare > 0; k = (k + 1) % order.length, spare--) sizes[order[k][1]]++;
-  return sizes;
-}
-
-function rankInfo(idx) {
-  return { ...RANKS[idx], idx, next: RANKS[idx + 1] ? { ...RANKS[idx + 1], idx: idx + 1 } : null };
-}
-
-// Rows arrive sorted best-first; hand out places from the top rank down.
-function assignRanks(rows) {
-  const sizes = rankSizes(rows.length);
-  let pos = 0;
-  for (let t = RANKS.length - 1; t >= 0; t--) {
-    for (let k = 0; k < sizes[t] && pos < rows.length; k++) rows[pos++].tier = t;
-  }
-}
-
-function rankChip(tier) {
-  const r = RANKS[tier] || RANKS[0];
-  return `<span class="rank-chip" style="--rank:${r.col}">${r.icon} ${r.name}</span>`;
-}
-
-/* ---- SEASONS ----
-   Season 2 started with a full reset: every rival and every student begins on
-   0 season XP. Lifetime XP (levels, the profile total) is untouched; ranks come
-   from what you earn this season. startXP is banked per unit the first time the
-   unit is used in the new season. */
-const SEASON = { id: 2, name: 'Season 2', start: '2026-09-23' };
-const SEASON_START = new Date(SEASON.start + 'T00:00:00').getTime();
-
-function seasonDays(daysAgo = 0) {
-  return Math.max(0, Math.floor((Date.now() - SEASON_START) / 86400000) - daysAgo);
-}
-
-// The old XP thresholds, used once to carry over rank achievements already earned.
-const LEGACY_RANK_MIN = [0, 300, 750, 1500, 2500, 4000, 6000];
-
-function ensureSeason() {
-  const cur = state.season;
-  if (cur && cur.id === SEASON.id && typeof cur.startXP === 'number') return;
-  const xp = state.xp || 0;
-  let legacy = 0;
-  LEGACY_RANK_MIN.forEach((min, i) => { if (xp >= min) legacy = i; });
-  state.season = { id: SEASON.id, startXP: xp };
-  state.rankBest = Math.max(state.rankBest || 0, legacy);
-  saveState();
-}
-
-function seasonXP() {
-  ensureSeason();
-  return Math.max(0, (state.xp || 0) - state.season.startXP);
-}
 
 /* ---- GAMES (MCQ quick-fire + match) ---- */
 let gamesMode = 'menu';
@@ -4173,7 +4113,7 @@ function endFITB() {
   if (!fitbState) return;
   const { correct, qs } = fitbState;
   const xpEarned = correct * 8;
-  state.xp = (state.xp || 0) + xpEarned;
+  gainXP(xpEarned);
   bumpActivity(correct);
   saveState();
 
@@ -4305,7 +4245,7 @@ function endTrueFalse() {
   clearInterval(tfState.timer);
   const { correct, total } = tfState;
   const xpEarned = correct * 5;
-  state.xp = (state.xp || 0) + xpEarned;
+  gainXP(xpEarned);
   bumpActivity(correct);
 
   if (correct > getBest('tf')) setBest('tf', correct);
@@ -4379,9 +4319,10 @@ function renderGames() {
     ${renderLeaderboardHTML()}`;
 }
 
-/* -- Leaderboard (fake rivals — their XP grows daily so the race feels live) -- */
-const LB_EPOCH = new Date('2026-06-01').getTime();
-
+/* -- LEADERBOARD: weekly leagues and the battle rating --
+   The rules live in league.js. The rivals are simulated; LB_BOTS is their
+   roster. `base` is each rival's standing on the old all-time table and now
+   only sets their battle rating. */
 const LB_BOTS = [
   /* — your bracket (Bronze/Silver) — */
   { name: 'itzKayden08',        tag: 'Revision machine',  base: 120, rate: 38, col: '#1B5A5F' },
@@ -4428,49 +4369,62 @@ const LB_BOTS = [
   { name: 'xue_2008',           tag: 'The final boss',    base: 7400, rate: 7, col: '#1B5A5F' }
 ];
 
-function botXP(bot, daysAgo = 0) {
-  const days = seasonDays(daysAgo);
-  const h = nameHash(bot.name, 997);
-  // Last season's standing (base) sets a small head start and the pace; the old
-  // climbers (high rate) keep some momentum. Daily form (±16) lets close rivals
-  // genuinely overtake each other.
-  const headStart = Math.round(bot.base / 60);
-  const pace = 8 + bot.base / 260 + (bot.rate - 12) * 0.4;
-  const form = days ? (((days * h) % 17) - 8) * 2 : 0;
-  return Math.max(0, Math.round(headStart + pace * days + form));
-}
-
 function nameHash(name, mod = 9973) {
-  let h = 0;
-  for (const ch of name) h = (h * 31 + ch.charCodeAt(0)) % mod;
-  return h;
+  return LEAGUE.hash(name, mod);
 }
 
-/* Season standings. xp here is SEASON XP. Ties go to the rival, so a fresh
-   season starts you at the bottom. Every row gets .pos and .tier. */
-function getLBRows(daysAgo = 0) {
-  const rows = LB_BOTS.map(b => ({ name: b.name, tag: b.tag, col: b.col, xp: botXP(b, daysAgo), me: false }));
-  rows.push({ name: 'You', tag: `Level ${xpLevel()}`, col: pCol(), xp: seasonXP(), me: true });
-  rows.sort((a, b) => b.xp - a.xp || a.me - b.me);
-  rows.forEach((r, i) => { r.pos = i + 1; });
-  assignRanks(rows);
-  if (!daysAgo) {
-    const me = rows.find(r => r.me);
-    if (me.tier > (state.rankBest || 0)) { state.rankBest = me.tier; saveState(); }
+const TIERS = LEAGUE.TIERS;
+
+/* Settles a finished week (promotion, relegation) and joins the current one.
+   Cheap when nothing has changed, so every league view calls it first. */
+function ensureLeague() {
+  const { league, result } = LEAGUE.rollover(state.league, state.xpByDay, LB_BOTS, Date.now());
+  if (league === state.league) return;
+  state.league = league;
+  saveState();
+  if (result) {
+    const t = TIERS[league.tier];
+    toast(result.zone === 'up' ? `Promoted to the ${t.name} League!` : result.zone === 'down' ? `New week: you're in the ${t.name} League` : `New week in the ${t.name} League`, 4000, result.zone === 'up' ? 'success' : 'info');
   }
-  return rows;
+}
+
+function rankChip(tier) {
+  const r = TIERS[tier] || TIERS[0];
+  return `<span class="rank-chip" style="--rank:${r.col}">${r.icon} ${r.name}</span>`;
+}
+
+function weekXP() {
+  ensureLeague();
+  return LEAGUE.weekXP(state.xpByDay, state.league.week);
+}
+
+// The league table at time t (default now). myXP defaults to this week's XP.
+function leagueRows(t = Date.now(), myXP) {
+  ensureLeague();
+  const lg = state.league;
+  return LEAGUE.standings({
+    pool: LB_BOTS, id: lg.week, tier: lg.tier, joinedAt: lg.joinedAt, t,
+    myXP: myXP === undefined ? LEAGUE.weekXP(state.xpByDay, lg.week) : myXP,
+    me: { tag: `Level ${xpLevel()}`, col: pCol() }
+  });
 }
 
 function myStanding() {
-  return getLBRows().find(r => r.me);
+  return leagueRows().find(r => r.me);
 }
 
-/* position change vs yesterday: positive = climbed */
+/* Places climbed since this time yesterday: positive = up. Nothing until
+   you've been in the week a few hours, since everyone starts level. */
 function lbMovementMap() {
-  const yesterday = {};
-  getLBRows(1).forEach(r => { yesterday[r.name] = r.pos; });
+  ensureLeague();
+  const lg = state.league;
+  const now = Date.now();
+  const then = Math.max(now - 86400000, LEAGUE.weekStart(lg.week), lg.joinedAt || 0);
+  if (now - then < 3 * 3600000) return {};
+  const before = {};
+  leagueRows(then, LEAGUE.weekXPBefore(state.xpByDay, lg.week, now)).forEach(r => { before[r.name] = r.place; });
   const m = {};
-  getLBRows().forEach(r => { m[r.name] = (yesterday[r.name] || r.pos) - r.pos; });
+  leagueRows().forEach(r => { m[r.name] = (before[r.name] || r.place) - r.place; });
   return m;
 }
 
@@ -4486,223 +4440,224 @@ function lbRowHTML(r, moveMap) {
   const delta = moveMap ? (moveMap[r.name] || 0) : 0;
   return `
     <div role="button" tabindex="0" class="lb-row${r.me ? ' me' : ''} clickable" onclick="${r.me ? "navigate('profile')" : `showPlayerCard('${r.name}')`}" title="${r.me ? 'View your profile' : 'View player'}">
-      <span class="lb-rank">${LB_MEDALS[r.pos] || '#' + r.pos}</span>
+      <span class="lb-rank">${LB_MEDALS[r.place] || '#' + r.place}</span>
       ${lbMoveHTML(delta)}
       <span class="lb-av" style="background:${r.col}">${r.me ? meAvInner() : r.name.charAt(0)}</span>
       <span class="lb-name">${r.name}${r.me ? ' <span class="lb-you">(you)</span>' : ''}<span class="lb-tag">${r.tag}</span></span>
-      ${rankChip(r.tier)}
       <span class="lb-xp">${r.xp.toLocaleString()} XP</span>
     </div>`;
 }
 
-/* "Today on the ladder" — real overtakes + rank-ups, padded with flavour */
-function ladderFeedHTML() {
-  const move = lbMovementMap();
-  const events = [];
-
-  const tierYesterday = {};
-  getLBRows(1).forEach(r => { tierYesterday[r.name] = r.tier; });
-  getLBRows().forEach(r => {
-    if (r.me || tierYesterday[r.name] === undefined) return;
-    const now = RANKS[r.tier];
-    if (r.tier > tierYesterday[r.name]) events.push(`${now.icon} <strong>${r.name}</strong> took a ${now.name} place`);
-    else if (r.tier < tierYesterday[r.name]) events.push(`▼ <strong>${r.name}</strong> was pushed down to ${now.name}`);
+// The full table, with lines marking who moves up and who drops at the end of the week.
+function leagueBoardHTML(rows, move) {
+  const tier = state.league.tier;
+  const up = LEAGUE.promoteCount(tier), down = LEAGUE.demoteCount(tier);
+  let html = '';
+  rows.forEach(r => {
+    if (down && r.place === rows.length - down + 1) {
+      html += `<div class="lb-zone-line down">▼ Bottom ${down} drop to ${TIERS[tier - 1].name}</div>`;
+    }
+    html += lbRowHTML(r, move);
+    if (up && r.place === up) {
+      html += `<div class="lb-zone-line up">▲ Top ${up} move up to ${TIERS[tier + 1].name}</div>`;
+    }
   });
+  return `<div class="lb-board">${html}</div>`;
+}
 
-  const movers = Object.entries(move)
+function weekLeftText() {
+  const ms = Math.max(0, LEAGUE.weekEnd(state.league.week) - Date.now());
+  const d = Math.floor(ms / 86400000), h = Math.floor((ms % 86400000) / 3600000);
+  return d > 0 ? `${d}d ${h}h left this week` : h > 0 ? `${h}h left this week` : 'Week ends within the hour';
+}
+
+const plural = (n, w) => `${n} ${w}${n === 1 ? '' : 's'}`;
+
+// One line on where you stand and what it takes to move.
+function leagueStatus(rows) {
+  const me = rows.find(r => r.me);
+  const tier = state.league.tier;
+  const up = LEAGUE.promoteCount(tier), down = LEAGUE.demoteCount(tier);
+  if (me.zone === 'up') {
+    return `You're <strong>#${me.place}</strong>, in the promotion zone. Finish the week in the top ${up} to move up to ${TIERS[tier + 1].name}.`;
+  }
+  const warn = me.zone === 'down' ? ` You're in the bottom ${down}: finish there and you drop to ${TIERS[tier - 1].name}.` : '';
+  if (!up) {
+    return `You're <strong>#${me.place}</strong> in the top league.${warn || ` Stay out of the bottom ${down} to keep your place.`}`;
+  }
+  const gap = rows[up - 1].xp - me.xp + 1;
+  return `You're <strong>#${me.place}</strong>. ${gap.toLocaleString()} XP to reach the promotion zone: about ${plural(Math.ceil(gap / 10), 'correct MCQ')} or ${plural(Math.ceil(gap / 5), 'flashcard')}.${warn}`;
+}
+
+// Shown once after a week is settled.
+function lastWeekBannerHTML() {
+  const lg = state.league;
+  const last = lg.history[lg.history.length - 1];
+  if (lg.seen || !last) return '';
+  const was = TIERS[last.tier].name, now = TIERS[lg.tier].name;
+  const msg = last.zone === 'up'
+    ? `🎉 <strong>Promoted!</strong> You finished #${last.place} in ${was} last week with ${last.xp.toLocaleString()} XP, so you're now in the ${now} League.`
+    : last.zone === 'down'
+      ? `You finished #${last.place} in ${was} last week and dropped to ${now}. New week, new table.`
+      : `You finished #${last.place} in ${was} last week, so you stay in ${now}.`;
+  return `<div class="league-result ${last.zone}">${msg}</div>`;
+}
+
+function leagueCardHTML(rows) {
+  const lg = state.league;
+  const t = TIERS[lg.tier];
+  const me = rows.find(r => r.me);
+  return `
+    <div class="card league-card" style="--rank:${t.col}">
+      <div class="league-head">
+        <span class="league-icon" aria-hidden="true">${t.icon}</span>
+        <div>
+          <h3>${t.name} League</h3>
+          <p class="league-sub">#${me.place} of ${rows.length} · ${me.xp.toLocaleString()} XP this week · ${weekLeftText()}</p>
+        </div>
+      </div>
+      <p class="league-status">${leagueStatus(rows)}</p>
+      <div class="rank-ladder" aria-label="Leagues, lowest to highest">
+        ${TIERS.map((r, i) => `
+          <div class="rank-step${i === lg.tier ? ' current' : ''}${i <= lg.best ? ' unlocked' : ''}">
+            <span class="rank-step-icon">${r.icon}</span>
+            <span class="rank-step-name">${r.name}</span>
+          </div>`).join('')}
+      </div>
+    </div>`;
+}
+
+/* "Today in your league": real moves since yesterday, plus the leader. */
+function ladderFeedHTML(rows, move) {
+  const events = [];
+  const myMove = move['You'] || 0;
+  if (myMove > 0) events.push(`<strong>You</strong> climbed ${plural(myMove, 'place')} since yesterday. Keep going.`);
+  if (myMove < 0) events.push(`⚠️ <strong>You</strong> slipped ${plural(-myMove, 'place')} since yesterday. The table doesn't wait.`);
+  Object.entries(move)
     .filter(([n, d]) => n !== 'You' && d !== 0)
     .sort((a, b) => Math.abs(b[1]) - Math.abs(a[1]))
-    .slice(0, 3);
-  movers.forEach(([n, d]) => {
-    events.push(d > 0
-      ? `▲ <strong>${n}</strong> climbed ${d} place${d !== 1 ? 's' : ''} overnight`
-      : `▼ <strong>${n}</strong> dropped ${-d} place${d !== -1 ? 's' : ''}`);
-  });
-
-  const myMove = move['You'] || 0;
-  if (myMove > 0) events.unshift(`<strong>You</strong> climbed ${myMove} place${myMove !== 1 ? 's' : ''} — keep going`);
-  if (myMove < 0) events.unshift(`⚠️ <strong>You</strong> slipped ${-myMove} place${myMove !== -1 ? 's' : ''} — the ladder doesn't wait`);
-
-  // deterministic daily flavour
-  const day = Math.floor(Date.now() / 86400000);
-  const f1 = LB_BOTS[(day * 7) % LB_BOTS.length];
-  const f2 = LB_BOTS[(day * 13 + 5) % LB_BOTS.length];
-  events.push(`🧩 <strong>${f1.name}</strong> cleared Match in ${17 + ((day + nameHash(f1.name)) % 21)}s`);
-  events.push(`⚡ <strong>${f2.name}</strong> scored ${10 + ((day + nameHash(f2.name)) % 12)} in a Blitz 60`);
-
+    .slice(0, 3)
+    .forEach(([n, d]) => events.push(d > 0
+      ? `▲ <strong>${n}</strong> climbed ${plural(d, 'place')}`
+      : `▼ <strong>${n}</strong> dropped ${plural(-d, 'place')}`));
+  const lead = rows[0];
+  if (lead.xp > 0) events.push(`👑 <strong>${lead.me ? 'You lead' : lead.name + ' leads'}</strong> the league on ${lead.xp.toLocaleString()} XP`);
+  if (!events.length) return '';
   return `
     <div class="ladder-feed">
-      <div class="ladder-feed-title">TODAY ON THE LADDER</div>
+      <div class="ladder-feed-title">TODAY IN YOUR LEAGUE</div>
       ${events.slice(0, 5).map(e => `<div class="ladder-feed-row">${e}</div>`).join('')}
     </div>`;
 }
 
-function lbMotivator(rows) {
-  const me = rows.find(r => r.me);
-  const ahead = me.pos > 1 ? rows[me.pos - 2] : null;
-  const gap = ahead ? ahead.xp - me.xp : 0;
-  return me.pos === 1
-    ? 'You\'re top of the table — defend it! 👑'
-    : `You're <strong>#${me.pos} of ${rows.length}</strong>. ${ahead.name} is ${gap.toLocaleString()} XP ahead — about ${Math.max(1, Math.ceil(gap / 10))} correct MCQs to catch them.`;
-}
+const LEAGUE_HOW = `
+  <details class="league-how">
+    <summary>How leagues work</summary>
+    <ul>
+      <li>Each week you race ${LEAGUE.RIVALS} rivals in your league on the XP you earn that week. Everyone starts on 0 every Monday.</li>
+      <li>When the week ends on Sunday night, the top 5 move up a league (the top 7 in Bronze) and the bottom 5 drop down one.</li>
+      <li>Rivals in higher leagues revise more. One long session can win Bronze; reaching Cyber Legend takes weeks of steady revision.</li>
+      <li>Miss a whole week and you keep your league. If you join partway through a week, rivals' XP only counts from when you joined.</li>
+      <li>Battles have their own skill rating: see the Battle rating tab.</li>
+    </ul>
+  </details>`;
 
 /* compact view: the 7 players around you (used on the Games page) */
 function renderLeaderboardHTML() {
-  const rows = getLBRows();
+  const rows = leagueRows();
   const move = lbMovementMap();
   const i = rows.findIndex(r => r.me);
   const start = Math.max(0, Math.min(i - 3, rows.length - 7));
   const view = rows.slice(start, start + 7);
+  const t = TIERS[state.league.tier];
 
   return `
-    <h3 style="margin:24px 0 4px;font-size:14px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">🏁 Players near you</h3>
-    <p style="color:var(--text2);font-size:13px;margin-bottom:12px">${lbMotivator(rows)} <span class="sim-inline">(Simulated rivals, not real students.)</span></p>
+    <h3 style="margin:24px 0 4px;font-size:14px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">${t.icon} Your ${t.name} League · ${weekLeftText()}</h3>
+    <p style="color:var(--text2);font-size:13px;margin-bottom:12px">${leagueStatus(rows)} <span class="sim-inline">(Simulated rivals, not real students.)</span></p>
     <div class="lb-board">${view.map(r => lbRowHTML(r, move)).join('')}</div>
-    <button class="btn btn-secondary btn-sm" style="margin-top:10px" onclick="navigate('leaderboard')">View full leaderboard →</button>`;
+    <button class="btn btn-secondary btn-sm" style="margin-top:10px" onclick="navigate('leaderboard')">View full league →</button>`;
 }
 
-/* full view: every player, grouped by rank tier (used on the Leaderboard page) */
-function renderLeaderboardByTier() {
-  const rows = getLBRows();
-  const move = lbMovementMap();
-  const sizes = rankSizes(rows.length);
+/* -- BATTLE RATING (Elo) -- */
+function rivalRating(bot) {
+  return LEAGUE.rivalRating(bot, LEAGUE.weekId(Date.now()));
+}
 
+function ratingRows() {
+  const b = state.battles;
+  const rows = LB_BOTS.map(bot => ({ name: bot.name, tag: bot.tag, col: bot.col, rating: rivalRating(bot), me: false }));
+  rows.push({
+    name: 'You', col: pCol(), rating: b.rating, me: true,
+    tag: b.rated < LEAGUE.PROVISIONAL ? `Provisional: ${b.rated} of ${LEAGUE.PROVISIONAL} battles played` : `${b.rated} rated battles`
+  });
+  rows.sort((a, c) => c.rating - a.rating || a.me - c.me);
+  rows.forEach((r, i) => { r.place = i + 1; });
+  return rows;
+}
+
+function ratingBoardHTML() {
+  const b = state.battles;
+  const rows = ratingRows();
+  const me = rows.find(r => r.me);
+  const provisional = b.rated < LEAGUE.PROVISIONAL;
+  const row = r => `
+    <div role="button" tabindex="0" class="lb-row${r.me ? ' me' : ' clickable'}" onclick="${r.me ? "navigate('profile')" : `showPlayerCard('${r.name}')`}">
+      <span class="lb-rank">${LB_MEDALS[r.place] || '#' + r.place}</span>
+      <span class="lb-av" style="background:${r.col}">${r.me ? meAvInner() : r.name.charAt(0)}</span>
+      <span class="lb-name">${r.name}${r.me ? ' <span class="lb-you">(you)</span>' : ''}<span class="lb-tag">${r.tag}</span></span>
+      <span class="lb-xp">${r.rating}</span>
+    </div>`;
+  const top = rows.slice(0, 10);
   return `
-    ${RANKS.map((t, i) => ({ t, i })).reverse().map(({ t, i }) => {
-      const members = rows.filter(r => r.tier === i);
-      if (!members.length) return '';
-      const mine = members.some(r => r.me);
-      return `
-        <div class="lb-tier${mine ? ' mine' : ''}">
-          <div class="lb-tier-head" style="--rank:${t.col}">
-            <span>${t.icon} ${t.name}</span>
-            <span class="lb-tier-count">${sizes[i]} place${sizes[i] !== 1 ? 's' : ''} · ${RANKS[i].share}% of players${mine ? ' · your division' : ''}</span>
-          </div>
-          <div class="lb-board">${members.map(r => lbRowHTML(r, move)).join('')}</div>
-        </div>`;
-    }).join('')}`;
+    <div class="card league-card" style="--rank:var(--accent)">
+      <div class="league-head">
+        <span class="league-icon" aria-hidden="true">⚔️</span>
+        <div>
+          <h3>Battle rating: ${b.rating}${provisional ? ' <span class="badge">Provisional</span>' : ''}</h3>
+          <p class="league-sub">#${me.place} of ${rows.length} · peak ${b.peak} · ${plural(b.rated, 'rated battle')}</p>
+        </div>
+      </div>
+      <p class="league-status">An Elo rating from Duel, Race to 10, Elimination and Blitz 60. Beat higher-rated rivals for a big gain; lose to lower-rated ones and it drops. Matchmaking finds rivals near your rating.${provisional ? ` Your first ${LEAGUE.PROVISIONAL} battles move it twice as far, so it finds your level quickly.` : ''} Quitting a battle you've started counts as a loss.</p>
+      <button class="btn btn-primary btn-sm" onclick="navigate('games')">⚔️ Play a battle</button>
+    </div>
+    <div class="lb-board">
+      ${top.map(row).join('')}
+      ${me.place > 10 ? `<div class="lb-gap">···</div>${row(me)}` : ''}
+    </div>`;
 }
 
-/* -- MODE LEADERBOARDS — who's the best at each gamemode -- */
-let lbView = 'overall';
-
-const MODE_BOARD_META = {
-  elim:  { label: 'Victories',  salt: 'E' },
-  race:  { label: 'Wins',       salt: 'R' },
-  duel:  { label: 'Wins',       salt: 'D' },
-  blitz: { label: 'Best score', salt: 'B' }
-};
-
-function modeBoardRows(mode) {
-  const rows = getLBRows();
-  const days = Math.max(1, Math.floor((Date.now() - LB_EPOCH) / 86400000));
-  const meta = MODE_BOARD_META[mode];
-
-  const board = rows.filter(r => !r.me).map(r => {
-    const skill = 1 - (r.pos - 1) / rows.length;
-    const h = nameHash(r.name + meta.salt, 997);
-    // per-mode flair: the salt reshuffles who excels where, so each board has its own champion
-    const flair = (h % 100) / 100;
-    let score;
-    if (mode === 'blitz') score = Math.round(5 + skill * 9 + flair * 8);
-    else score = Math.floor((1 + skill * 2 + flair * 1.6) * days / 3) + (h % 5);
-    return { name: r.name, col: r.col, me: false, xp: r.xp, score };
-  });
-
-  const bm = (state.battles && state.battles.modes && state.battles.modes[mode]) || {};
-  board.push({
-    name: 'You', col: pCol(), me: true, xp: state.xp || 0,
-    score: mode === 'blitz' ? (bm.best || 0) : (bm.won || 0)
-  });
-  board.sort((a, b) => b.score - a.score || b.xp - a.xp);
-  board.forEach((r, i) => { r.pos = i + 1; });
-  return board;
-}
+let lbView = 'league';   // 'league' | 'rating'
 
 function setLbView(v) {
   lbView = v;
   renderLeaderboardPage();
 }
 
-function modeBoardHTML(mode) {
-  const board = modeBoardRows(mode);
-  const meta = MODE_BOARD_META[mode];
-  const meRow = board.find(r => r.me);
-  const top = board.slice(0, 10);
-  const showMeBelow = meRow.pos > 10;
-
-  const row = r => `
-    <div role="button" tabindex="0" class="lb-row${r.me ? ' me' : ''}${r.me ? '' : ' clickable'}" ${r.me ? '' : `onclick="showPlayerCard('${r.name}')"`}>
-      <span class="lb-rank">${r.pos === 1 ? '👑' : LB_MEDALS[r.pos] || '#' + r.pos}</span>
-      <span class="lb-av" style="background:${r.col}">${r.me ? meAvInner() : r.name.charAt(0)}</span>
-      <span class="lb-name">${r.name}${r.me ? ' <span class="lb-you">(you)</span>' : ''}</span>
-      <span class="lb-xp">${r.score} ${meta.label.toLowerCase()}</span>
-    </div>`;
-
-  return `
-    <p style="color:var(--text2);font-size:13px;margin-bottom:12px">${BATTLE_MODES[mode].icon} <strong>${BATTLE_MODES[mode].name}</strong> — ranked by ${meta.label.toLowerCase()}. ${meRow.pos === 1 ? 'You hold the crown. 👑' : `You're #${meRow.pos} of ${board.length}.`}</p>
-    <div class="lb-board">
-      ${top.map(row).join('')}
-      ${showMeBelow ? `<div class="lb-gap">···</div>${row(meRow)}` : ''}
-    </div>`;
-}
-
-function renderRankLadder() {
-  const rows = getLBRows();
-  const me = rows.find(r => r.me);
-  const rank = rankInfo(me.tier);
-  const sizes = rankSizes(rows.length);
-  const inMine = rows.filter(r => r.tier === me.tier);
-  // To move up you must overtake the lowest player in the rank above.
-  const gate = rank.next ? rows.filter(r => r.tier === rank.next.idx).pop() : null;
-  const toNext = gate ? Math.max(1, gate.xp - me.xp + 1) : 0;
-  const floor = inMine[inMine.length - 1].xp;
-  const pct = gate ? Math.min(100, Math.round(((me.xp - floor) / Math.max(1, gate.xp + 1 - floor)) * 100)) : 100;
-  const status = gate
-    ? `${toNext.toLocaleString()} season XP to overtake <strong>${gate.name}</strong> for a ${rank.next.icon} ${rank.next.name} place, roughly ${Math.max(1, Math.ceil(toNext / 10))} correct MCQs or ${Math.max(1, Math.ceil(toNext / 30))} match clears.`
-    : me.pos === 1
-      ? `Top of the table. Only ${sizes[me.tier]} players can be ${rank.name}, so hold on to it.`
-      : `You hold a ${rank.name} place. Stay in the top ${sizes[me.tier]} to keep it.`;
-
-  return `
-    <div class="card" style="margin-bottom:18px">
-      <h3 style="margin-bottom:4px">${rank.icon} Your rank: <span style="color:${rank.col}">${rank.name}</span></h3>
-      <p style="font-size:13px;color:var(--text2);margin-bottom:10px">${status}</p>
-      <div class="progress-bar-wrap"><div class="progress-bar" style="width:${pct}%"></div></div>
-      <div class="rank-ladder">
-        ${RANKS.map((r, i) => `
-          <div class="rank-step${i === me.tier ? ' current' : ''}${i <= me.tier ? ' unlocked' : ''}">
-            <span class="rank-step-icon">${r.icon}</span>
-            <span class="rank-step-name">${r.name}</span>
-            <span class="rank-step-xp">${sizes[i]} place${sizes[i] !== 1 ? 's' : ''}</span>
-          </div>`).join('')}
-      </div>
-    </div>`;
-}
-
 function renderLeaderboardPage() {
-  const isOverall = lbView === 'overall';
+  const isLeague = lbView !== 'rating';
+  const rows = leagueRows();
+  const move = lbMovementMap();
+  const banner = isLeague ? lastWeekBannerHTML() : '';
 
   el('leaderboard-content').innerHTML = `
     <h2 style="margin-bottom:6px">Leaderboard</h2>
-    <p style="color:var(--text2);font-size:14px;margin-bottom:14px">Earn XP from flashcards, games and quizzes to climb. Rivals revise daily — fall behind and they'll pass you.</p>
     <p class="sim-note">The other players are simulated practice rivals, not real students. Your progress stays on this device.</p>
-    <div class="season-banner"><strong>${SEASON.name}</strong> · ranks reset on ${new Date(SEASON_START).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' })}. Each rank has a fixed number of places, so to move up you have to overtake someone.</div>
-    <div class="tabs" style="max-width:680px">
-      <button class="tab-btn ${isOverall ? 'active' : ''}" onclick="setLbView('overall')">🏁 Overall</button>
-      ${Object.keys(MODE_BOARD_META).map(m => `
-        <button class="tab-btn ${lbView === m ? 'active' : ''}" onclick="setLbView('${m}')">${BATTLE_MODES[m].icon} ${BATTLE_MODES[m].name}</button>`).join('')}
+    <div class="tabs" role="group" aria-label="Leaderboard" style="max-width:420px">
+      <button class="tab-btn ${isLeague ? 'active' : ''}" aria-pressed="${isLeague}" onclick="setLbView('league')">🏆 Weekly league</button>
+      <button class="tab-btn ${isLeague ? '' : 'active'}" aria-pressed="${!isLeague}" onclick="setLbView('rating')">⚔️ Battle rating</button>
     </div>
-    ${isOverall ? `
-      <p style="color:var(--text2);font-size:13px;margin-bottom:12px">${lbMotivator(getLBRows())}</p>
-      ${ladderFeedHTML()}
-      ${renderRankLadder()}
-      ${renderLeaderboardByTier()}
-    ` : modeBoardHTML(lbView)}
+    ${isLeague ? `
+      ${banner}
+      ${leagueCardHTML(rows)}
+      ${ladderFeedHTML(rows, move)}
+      ${leagueBoardHTML(rows, move)}
+      ${LEAGUE_HOW}
+    ` : ratingBoardHTML()}
     <div style="margin-top:18px;display:flex;gap:8px;flex-wrap:wrap">
       <button class="btn btn-primary" onclick="navigate('games')">⚡ Earn XP in Games</button>
       <button class="btn btn-secondary" onclick="navigate('flashcards')">Review flashcards</button>
     </div>`;
+  if (banner) { state.league.seen = true; saveState(); }
 }
 
 /* -- Quick-fire MCQ -- */
@@ -4880,45 +4835,39 @@ function finishMatch() {
   }, 500);
 }
 
-/* -- PLAYER CARD — click any rival on the ladder -- */
+/* -- PLAYER CARD — click any rival on the league table or rating board -- */
 function showPlayerCard(name) {
-  const rows = getLBRows();
-  const r = rows.find(x => x.name === name);
   const bot = LB_BOTS.find(b => b.name === name);
-  if (!r || !bot) return;
-
-  const move = lbMovementMap()[name] || 0;
-  const h = nameHash(name);
-  const winRate = 38 + (h % 48);
-  const played = 14 + (h % 88);
-  const favMode = ['Elimination', 'Race to 10', 'Duel', 'Blitz 60'][h % 4];
-  const daysIn = Math.max(1, Math.floor((Date.now() - LB_EPOCH) / 86400000));
-  const meXp = seasonXP();
-  const gap = r.xp - meXp;
+  if (!bot) return;
+  const rows = leagueRows();
+  const r = rows.find(x => x.name === name);   // only if they're in your league this week
+  const rating = rivalRating(bot);
+  const winChance = Math.round(LEAGUE.expected(state.battles.rating, rating) * 100);
+  const move = r ? (lbMovementMap()[name] || 0) : 0;
+  const favMode = ['Elimination', 'Race to 10', 'Duel', 'Blitz 60'][nameHash(name) % 4];
+  const gap = r ? r.xp - weekXP() : 0;
 
   openModal(`
     <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
     <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
-      <span class="lb-av" style="background:${r.col};width:56px;height:56px;font-size:24px" aria-hidden="true">${name.charAt(0)}</span>
+      <span class="lb-av" style="background:${bot.col};width:56px;height:56px;font-size:24px" aria-hidden="true">${name.charAt(0)}</span>
       <div>
         <h2 id="modal-title" style="margin-bottom:2px;font-size:20px">${name}</h2>
         <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
-          ${rankChip(r.tier)}
-          <span class="badge">#${r.pos} of ${rows.length}</span>
-          ${lbMoveHTML(move)}
+          ${r ? `${rankChip(state.league.tier)}<span class="badge">#${r.place} of ${rows.length} this week</span>${lbMoveHTML(move)}` : '<span class="badge">Not in your league this week</span>'}
         </div>
       </div>
     </div>
-    <p style="font-size:13px;color:var(--text2);margin-bottom:14px;font-style:italic">"${r.tag}"</p>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:14px;font-style:italic">"${bot.tag}"</p>
     <div class="stats-row" style="margin-bottom:16px">
-      <div class="stat-box"><div class="num" style="font-size:22px">${r.xp.toLocaleString()}</div><div class="lbl">XP</div></div>
-      <div class="stat-box"><div class="num" style="font-size:22px">${winRate}%</div><div class="lbl">Win rate</div></div>
-      <div class="stat-box"><div class="num" style="font-size:22px">${played}</div><div class="lbl">Battles</div></div>
+      <div class="stat-box"><div class="num" style="font-size:22px">${r ? r.xp.toLocaleString() : '–'}</div><div class="lbl">XP this week</div></div>
+      <div class="stat-box"><div class="num" style="font-size:22px">${rating}</div><div class="lbl">Battle rating</div></div>
+      <div class="stat-box"><div class="num" style="font-size:22px">${winChance}%</div><div class="lbl">Your duel odds</div></div>
     </div>
-    <p style="font-size:12.5px;color:var(--text2);margin-bottom:16px">Favourite mode: <strong>${favMode}</strong> · On the ladder ${daysIn} days · ${
-      gap > 0 ? `<strong>${gap.toLocaleString()} XP ahead of you</strong>` : gap < 0 ? `<strong>${(-gap).toLocaleString()} XP behind you</strong>` : 'dead level with you'
-    }</p>
-    <p style="font-size:12px;color:var(--text2);margin-bottom:12px">Simulated practice rival. Not a real student.</p>
+    <p style="font-size:12.5px;color:var(--text2);margin-bottom:16px">Favourite mode: <strong>${favMode}</strong>${r ? ` · ${
+      gap > 0 ? `<strong>${gap.toLocaleString()} XP ahead of you</strong> this week` : gap < 0 ? `<strong>${(-gap).toLocaleString()} XP behind you</strong> this week` : 'dead level with you this week'
+    }` : ''}</p>
+    <p style="font-size:12px;color:var(--text2);margin-bottom:12px">Simulated practice rival. Not a real student. Duel odds come from the gap between your battle ratings.</p>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
       <button class="btn btn-primary" onclick="closeModal();challengePlayer('${name}')">🤺 Challenge to Duel</button>
       <button class="btn btn-secondary" onclick="closeModal()">Close</button>
@@ -4979,7 +4928,7 @@ const BATTLE_Q_SECS = 12;
 const BATTLE_MODES = {
   elim:  { name: 'Elimination', icon: '💀', desc: '8 players. Answer wrong — or be the slowest correct — and you\'re out. Last one standing wins.' },
   race:  { name: 'Race to 10',  icon: '🏁', desc: 'You vs 3 rivals. First to 10 correct answers takes it. Pure consistency.' },
-  duel:  { name: 'Duel',        icon: '🤺', desc: 'Best-of-7 vs the rival directly above you on the leaderboard. Faster correct answer wins the point.' },
+  duel:  { name: 'Duel',        icon: '🤺', desc: 'Best-of-7 vs the rival rated just above you. Faster correct answer wins the point.' },
   blitz: { name: 'Blitz 60',    icon: '⚡', desc: '60 seconds, unlimited questions. Outscore your rivals before the clock dies.' }
 };
 
@@ -5003,11 +4952,10 @@ function battleQuestionPool(n) {
   });
 }
 
+/* Opponents carry their battle rating, and their skill follows from it. */
 function pickOpponents(k, directlyAbove, targetName) {
-  const rows = getLBRows();
-  const me = rows.find(r => r.me);
-  const others = rows.filter(r => !r.me);
-  others.forEach(o => { o.skill = 1 - (o.pos - 1) / rows.length; });
+  const mine = state.battles.rating;
+  const others = LB_BOTS.map(b => ({ name: b.name, col: b.col, rating: rivalRating(b) }));
 
   // targeted challenge (from a player card)
   if (targetName) {
@@ -5015,17 +4963,13 @@ function pickOpponents(k, directlyAbove, targetName) {
     if (target) return [target];
   }
   if (directlyAbove) {
-    const above = others.filter(o => o.xp >= me.xp).sort((a, b) => a.xp - b.xp);
-    return [above[0] || others.sort((a, b) => b.xp - a.xp)[0]];
+    const above = others.filter(o => o.rating >= mine).sort((a, b) => a.rating - b.rating);
+    return [above[0] || others.sort((a, b) => b.rating - a.rating)[0]];
   }
 
-  // matchmaking: weighted draw — your own tier pulls hardest, adjacent tiers are
-  // common, and a small floor keeps every rank possible (rare cross-rank lobbies)
-  const myTier = me.tier;
-  const pool = others.map(o => ({
-    o,
-    w: 1 / (1 + Math.pow(Math.abs(o.tier - myTier), 2) * 3) + 0.04
-  }));
+  // matchmaking: a weighted draw, so rivals within ~150 of your rating are
+  // likely and a small floor still allows the odd mismatch
+  const pool = others.map(o => ({ o, w: Math.exp(-Math.pow((o.rating - mine) / 150, 2)) + 0.02 }));
 
   const picks = [];
   while (picks.length < k && pool.length) {
@@ -5061,9 +5005,10 @@ function startBattle(mode, targetName) {
     qs: battleQuestionPool(mode === 'blitz' ? 40 : 30),
     players: [
       { name: 'You', col: pCol(), me: true, alive: true, score: 0, totalTime: 0, out: 0 },
-      ...opps.map(o => ({ name: o.name, col: o.col, me: false, skill: o.skill, alive: true, score: 0, totalTime: 0, out: 0 }))
+      ...opps.map(o => ({ name: o.name, col: o.col, me: false, rating: o.rating, skill: LEAGUE.rivalSkill(o.rating), alive: true, score: 0, totalTime: 0, out: 0 }))
     ],
     log: [],
+    started: false,   // set on the first answer; quitting after that is a loss
     blitzEnd: 0
   };
   if (mode === 'blitz') {
@@ -5150,7 +5095,32 @@ function renderBattleUI(container) {
   if (blitz && !battleTick) startBlitzTick();
 }
 
+/* Leaving a battle you've started counts as finishing last, so the rating
+   can't be protected by walking out of a battle you're losing. */
+function forfeitBattle() {
+  if (!battle || battle.over || !battle.started) return;
+  stopBattleTick();
+  const ch = applyRating(battle.players.filter(p => !p.me).map(p => ({ rating: p.rating, score: 0 })));
+  const bm = state.battles.modes[battle.mode] || (state.battles.modes[battle.mode] = { played: 0, won: 0, best: 0 });
+  state.battles.played++;
+  bm.played++;
+  battle.over = true;
+  saveState();
+  toast(`Battle abandoned: counted as a loss (rating ${ch.delta >= 0 ? '+' : ''}${ch.delta})`, 3500);
+}
+
+function applyRating(results) {
+  const b = state.battles;
+  const before = b.rating;
+  const delta = LEAGUE.ratingChange(before, b.rated, results);
+  b.rating = Math.max(100, before + delta);
+  b.rated++;
+  b.peak = Math.max(b.peak, b.rating);
+  return { before, after: b.rating, delta };
+}
+
 function quitBattle() {
+  forfeitBattle();
   stopBattleTick();
   battle = null;
   gamesMode = 'menu';
@@ -5160,6 +5130,7 @@ function quitBattle() {
 function answerBattle(i) {
   if (!battle || battle.answered) return;
   battle.answered = true;
+  battle.started = true;
   // Only the per-question timer stops here. Blitz's clock is for the whole minute.
   if (battle.mode !== 'blitz') stopBattleTick();
   const q = battle.qs[battle.idx];
@@ -5265,8 +5236,9 @@ function finishBattle() {
   battle.standings = standings;
   battle.xpEarned = xp;
   battle.headline = headline;
-  if (!state.battles) state.battles = { played: 0, won: 0, modes: {} };
-  if (!state.battles.modes) state.battles.modes = {};
+  // Each rival is a win or a loss by finishing order (Elo, see league.js).
+  const myPlace = standings.indexOf(me);
+  battle.rating = applyRating(standings.filter(p => !p.me).map(p => ({ rating: p.rating, score: standings.indexOf(p) > myPlace ? 1 : 0 })));
   const bm = state.battles.modes[battle.mode] || (state.battles.modes[battle.mode] = { played: 0, won: 0, best: 0 });
   state.battles.played++;
   bm.played++;
@@ -5282,7 +5254,7 @@ function renderBattleEnd(container) {
     <div class="quiz-wrap" style="max-width:680px">
       <div style="text-align:center;padding:18px 0 6px">
         <h2 style="margin-bottom:4px">${battle.headline}</h2>
-        <p style="color:var(--text2);font-size:14px;margin-bottom:14px">+${battle.xpEarned} XP earned</p>
+        <p style="color:var(--text2);font-size:14px;margin-bottom:14px">+${battle.xpEarned} XP earned${battle.rating ? ` · Battle rating ${battle.rating.before} → <strong>${battle.rating.after}</strong> (<span class="rating-delta ${battle.rating.delta >= 0 ? 'up' : 'down'}">${battle.rating.delta >= 0 ? '+' : ''}${battle.rating.delta}</span>)` : ''}</p>
       </div>
       <div class="lb-board" style="max-width:100%">
         ${battle.standings.map((p, i) => `
@@ -5318,8 +5290,8 @@ function getAchievements() {
     { icon: '⚔️', name: 'First Blood',     desc: 'Win any battle',                done: battles.won >= 1 },
     { icon: '🏹', name: 'Warlord',         desc: 'Win 10 battles',                done: battles.won >= 10 },
     { icon: '⏱️', name: 'Speed Demon',     desc: 'Clear Match in under 30s',      done: best > 0 && best < 30 },
-    { icon: '🥈', name: 'Silver Surfer',   desc: 'Reach Silver rank',             done: (state.rankBest || 0) >= 1 },
-    { icon: '💎', name: 'Shine Bright',    desc: 'Reach Diamond rank',            done: (state.rankBest || 0) >= 4 },
+    { icon: '🥈', name: 'Silver Surfer',   desc: 'Reach the Silver League',       done: state.league.best >= 1 },
+    { icon: '💎', name: 'Shine Bright',    desc: 'Reach the Diamond League',      done: state.league.best >= 4 },
     { icon: '✍️', name: 'Examiner\'s Pet', desc: 'Self-mark 20 questions',        done: state.questions.history.length >= 20 }
   ];
 }
@@ -5342,7 +5314,7 @@ function buildSparklineSVG(data, width = 200, height = 40) {
 function renderProfile() {
   loadData(unitLetters());
   const xp = state.xp || 0;
-  const rows = getLBRows();
+  const rows = leagueRows();
   const me = rows.find(x => x.me);
   const rc = ragCounts();
   const act = state.activity || {};
@@ -5378,9 +5350,10 @@ function renderProfile() {
       <div style="flex:1">
         <h2 style="margin-bottom:2px">You</h2>
         <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-          ${rankChip(me.tier)}
+          ${rankChip(state.league.tier)}
           <span class="badge">Level ${xpLevel()}</span>
-          <span class="badge">#${me.pos} of ${rows.length}</span>
+          <span class="badge">#${me.place} of ${rows.length} this week</span>
+          <span class="badge">Battle rating ${state.battles.rating}</span>
           <span class="badge">${currentStreak()}-day streak</span>
         </div>
       </div>
