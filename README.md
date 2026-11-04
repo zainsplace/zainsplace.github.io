@@ -90,10 +90,16 @@ will fail if:
 ### Sections path (lessons)
 
 The Sections tab is a path of lessons, one per spec subtopic (`lessons.js`).
-Each lesson teaches every term on a "New" card, then asks questions until all of
-them have been answered correctly. Two questions per term are built automatically
-from the section JSON: one from the `definition`, and one from the `examples`
-when there are any. The scenario questions are written by hand in
+A lesson teaches terms in batches of three on "New" cards, then asks the batch in
+shuffled order, so the answer is never just the card you read last. The rest of
+the questions come in a final mixed round where the same term never appears twice
+in a row. A few review questions from lessons you've already finished are mixed
+in, weakest terms first. Everything repeats until it has been answered correctly.
+Two questions per term are built automatically from the section JSON. The
+`definition` one is a typed answer, which forgives small spelling mistakes and
+accepts any name for the term, e.g. "IaaS". It falls back to multiple choice for
+terms too long to type. The other comes from the `examples` when there are any.
+The scenario questions are written by hand in
 `data/<unit>/lessons/<letter>.json`, keyed by item code:
 
 ```json

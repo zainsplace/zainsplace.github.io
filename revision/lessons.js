@@ -17,6 +17,8 @@ let lessonAdvanceTimer = null;
 
 const LESSON_XP = 5;          // per question right first time
 const REQUEUE_GAP = 3;        // a missed question returns this many cards later
+const TEACH_BATCH = 3;        // terms taught together before any of them is asked
+const TYPE_MAX_LEN = 28;      // longest answer we'll ask anyone to type
 
 /* ---------- building the path ---------- */
 
@@ -73,6 +75,58 @@ function termParts(term) {
   return parts.filter(p => p && p.trim().length > 1);
 }
 
+/* ---------- typed answers ----------
+   Like Gizmo's "Mixed" style: once a term has been met in a multiple-choice
+   question, it comes back later as one you have to type. Small spelling
+   mistakes are forgiven, and any accepted name for the term counts
+   (e.g. "IaaS" or "Infrastructure as a Service"). */
+
+function acceptedAnswers(term) {
+  const out = new Set(termParts(term));
+  termParts(term).forEach(p => String(p).split(/\s+[–—-]\s+|\s*\/\s*/).forEach(x => out.add(x)));
+  return [...out].map(x => x.trim()).filter(x => x.length > 1);
+}
+
+function normAnswer(s) {
+  return String(s).toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/\b(the|a|an)\b/g, ' ')
+    .replace(/s\b/g, '')            // "VPNs" = "VPN", "Viruses" ~ "Virus"
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function editDistance(a, b) {
+  const d = Array.from({ length: a.length + 1 }, (_, i) => [i]);
+  for (let j = 1; j <= b.length; j++) d[0][j] = j;
+  for (let i = 1; i <= a.length; i++) {
+    for (let j = 1; j <= b.length; j++) {
+      d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+    }
+  }
+  return d[a.length][b.length];
+}
+
+/* 'exact' | 'close' (right, but misspelt) | false */
+function checkTyped(typed, accepts) {
+  const t = normAnswer(typed);
+  if (!t) return false;
+  let best = false;
+  accepts.forEach(a => {
+    const n = normAnswer(a);
+    if (!n) return;
+    if (n === t) { best = 'exact'; return; }
+    const tol = n.length <= 4 ? 0 : n.length <= 9 ? 1 : 2;
+    if (!best && editDistance(t, n) <= tol) best = 'close';
+  });
+  return best;
+}
+
+function isTypeable(term) {
+  return acceptedAnswers(term).some(a => a.length <= TYPE_MAX_LEN);
+}
+
 /* Hide the answer if the prompt text gives it away. */
 function maskTerm(text, term) {
   let out = String(text);
@@ -124,12 +178,22 @@ function questionsForItem(item, node) {
   });
 
   const wrong = distractorTerms(item, node, 3);
-  if (wrong.length >= 2) {
+  const defText = `<span class="lq-quote">${escapeHTML(maskTerm(item.definition, item.term))}</span>`;
+  if (isTypeable(item.term)) {
+    // The hardest check: no options to pick from, you have to recall it.
+    qs.push({
+      id: `${item.code}#t`, code: item.code, kind: 'Type the term', typed: true,
+      q: `Which term matches this description?${defText}`, html: true,
+      answer: item.term, accepts: acceptedAnswers(item.term), why
+    });
+  } else if (wrong.length >= 2) {
     qs.push({
       id: `${item.code}#d`, code: item.code, kind: 'Definition',
-      q: `Which term matches this description?<span class="lq-quote">${escapeHTML(maskTerm(item.definition, item.term))}</span>`,
+      q: `Which term matches this description?${defText}`,
       html: true, answer: item.term, options: [item.term, ...wrong], why
     });
+  }
+  if (wrong.length >= 2) {
     if (item.examples) {
       const ex = String(item.examples).split(/;\s*/).map(s => s.trim().replace(/\.$/, '')).filter(Boolean);
       if (ex.length) {
@@ -205,9 +269,13 @@ function renderPath(container) {
     const isCurrent = current && current.id === n.id;
     const qCount = nodeQuestionCount(n);
     const cls = done ? 'done' : isCurrent ? 'current' : '';
+    // Like Gizmo's node percentage: how much of this node you're confident in,
+    // from lessons or your own ratings in the notes.
+    const pct = Math.round(100 * n.items.filter(it => state.rag[it.code] === 'green').length / n.items.length);
+    const icon = done ? ICON_CHECK : pct > 0 ? `<span class="path-pct">${pct}%</span>` : ICON_SPROUT;
     html += `
-      <button class="path-node ${cls}" id="node-${n.id.replace(/[^A-Za-z0-9_-]/g, '_')}" style="--x:${PATH_WAVE[i % PATH_WAVE.length]};--sec:${sectionColour(n.letter)}" onclick="startLesson('${n.id}')">
-        <span class="path-hex">${done ? ICON_CHECK : ICON_SPROUT}</span>
+      <button class="path-node ${cls}" id="node-${n.id.replace(/[^A-Za-z0-9_-]/g, '_')}" style="--x:${PATH_WAVE[i % PATH_WAVE.length]};--sec:${sectionColour(n.letter)}" onclick="startLesson('${n.id}')" aria-label="${escapeHTML(n.title)}${done ? ', done' : pct ? ', ' + pct + '% confident' : ''}">
+        <span class="path-hex">${icon}</span>
         <span class="path-label">
           <span class="path-title">${escapeHTML(n.title)}</span>
           <span class="path-meta">${n.sub.code ? escapeHTML(n.sub.code) + ' · ' : ''}${n.items.length} term${n.items.length === 1 ? '' : 's'} · ${qCount} questions</span>
@@ -231,18 +299,7 @@ function startLesson(id, onlyCodes) {
   if (!node) return;
   const items = onlyCodes ? node.items.filter(it => onlyCodes.includes(it.code)) : node.items;
 
-  // First pass: teach a term, then ask its first question. The rest of the
-  // questions are shuffled together afterwards so they can't be answered by
-  // position.
-  const queue = [];
-  const later = [];
-  items.forEach(item => {
-    const qs = questionsForItem(item, node);
-    queue.push({ type: 'teach', item });
-    if (qs[0]) queue.push({ type: 'q', q: qs[0] });
-    qs.slice(1).forEach(q => later.push({ type: 'q', q }));
-  });
-  shuffled(later).forEach(c => queue.push(c));
+  const queue = buildLessonQueue(items, node, !onlyCodes);
 
   const total = queue.filter(c => c.type === 'q').length;
   lesson = {
@@ -258,6 +315,94 @@ function startLesson(id, onlyCodes) {
   };
   scrollContentTop();
   renderLesson();
+}
+
+/* The order is what stops the answer being obvious. Asking about a term
+   straight after its "New" card means the answer is whatever you just read.
+   So terms are taught in small batches, and only then is the batch asked,
+   in shuffled order, with the batch's other terms as wrong options. Every
+   remaining question (typed ones included) is saved for a final mixed round
+   across the whole lesson, spread out so the same term never comes twice
+   in a row. */
+function buildLessonQueue(items, node, withReview) {
+  const per = items.map(item => ({ item, qs: questionsForItem(item, node) }));
+  const review = withReview ? reviewQuestions(node, REVIEW_COUNT) : [];
+  const batches = [];
+  for (let i = 0; i < per.length; i += TEACH_BATCH) batches.push(per.slice(i, i + TEACH_BATCH));
+  // A lone term at the end would be asked straight after it was taught.
+  if (batches.length > 1 && batches[batches.length - 1].length === 1) {
+    batches[batches.length - 2].push(...batches.pop());
+  }
+
+  const queue = [];
+  const later = [];
+  batches.forEach((batch, bi) => {
+    batch.forEach((p, i) => queue.push({ type: 'teach', item: p.item, n: i + 1, of: batch.length }));
+    // A review question between the new cards and their questions breaks the
+    // "answer = what I just read" pattern.
+    if (bi === 0 && review.length) queue.push({ type: 'q', q: review.shift() });
+    let first = shuffled(batch.map(p => p.qs.find(q => !q.typed)).filter(Boolean));
+    // Never open with the term that was on screen a moment ago.
+    const lastTaught = batch[batch.length - 1].item.code;
+    if (first.length > 1 && first[0].code === lastTaught) first.push(first.shift());
+    first.forEach(q => queue.push({ type: 'q', q }));
+    batch.forEach(p => p.qs.filter(q => !first.includes(q)).forEach(q => later.push({ type: 'q', q })));
+  });
+  review.forEach(q => later.push({ type: 'q', q }));
+  spreadOut(shuffled(later), queue.length ? queue[queue.length - 1] : null).forEach(c => queue.push(c));
+  return queue;
+}
+
+function cardCode(c) { return c && (c.type === 'teach' ? c.item.code : c.q.code); }
+
+/* Reorder so no two neighbouring cards test the same term, where possible. */
+function spreadOut(cards, before) {
+  // Always take next from the term with the most cards left (other than the
+  // one just shown), so one term's questions don't bunch up at the end.
+  const groups = new Map();
+  cards.forEach(c => {
+    const k = cardCode(c);
+    if (!groups.has(k)) groups.set(k, []);
+    groups.get(k).push(c);
+  });
+  const out = [];
+  let prev = cardCode(before);
+  while (groups.size) {
+    const keys = shuffled([...groups.keys()]);
+    let pick = keys.filter(k => k !== prev).sort((a, b) => groups.get(b).length - groups.get(a).length)[0];
+    if (pick === undefined) pick = keys[0];
+    const g = groups.get(pick);
+    out.push(g.shift());
+    if (!g.length) groups.delete(pick);
+    prev = pick;
+  }
+  return out;
+}
+
+/* Gizmo mixes "Forgotten" cards from earlier into new material. Here, a lesson
+   borrows a few questions about terms from lessons you've already finished in
+   this unit, weakest first. Besides keeping old terms fresh, this matters for
+   small lessons: in a one-term lesson the first question is no longer simply
+   "the thing you just read". */
+const REVIEW_COUNT = 3;
+
+function reviewQuestions(node, count) {
+  const RANK = { red: 0, amber: 1, green: 2 };
+  const pool = [];
+  pathNodes().forEach(n => {
+    if (n.id === node.id || !nodeDone(n.id)) return;
+    n.items.forEach(item => pool.push({ item, n, rank: RANK[state.rag[item.code]] ?? 1, r: Math.random() }));
+  });
+  pool.sort((a, b) => a.rank - b.rank || a.r - b.r);
+  const out = [];
+  for (const p of pool) {
+    if (out.length >= count) break;
+    const q = questionsForItem(p.item, p.n).filter(x => !x.typed);
+    if (!q.length) continue;
+    const pick = q[Math.floor(Math.random() * q.length)];
+    out.push({ ...pick, id: pick.id + '#r', kind: 'Review', review: true });
+  }
+  return out;
 }
 
 function exitLesson() {
@@ -291,7 +436,7 @@ function renderLesson() {
     const it = card.item;
     container.innerHTML = top + `
       <div class="lesson-card teach">
-        <div class="lesson-tag new">${ICON_SPROUT}New term</div>
+        <div class="lesson-tag new">${ICON_SPROUT}New term${card.of > 1 ? ` · ${card.n} of ${card.of}` : ''}</div>
         <div class="teach-code">${escapeHTML(it.code)}</div>
         <h3 class="teach-term">${escapeHTML(it.term)}</h3>
         <p class="teach-def">${escapeHTML(it.definition)}</p>
@@ -299,18 +444,43 @@ function renderLesson() {
         ${it.keyFacts && it.keyFacts.length ? `<ul class="teach-facts">${it.keyFacts.slice(0, 4).map(f => `<li>${escapeHTML(f)}</li>`).join('')}</ul>` : ''}
         ${it.examTip ? `<div class="exam-tip">${escapeHTML(it.examTip)}</div>` : ''}
       </div>
-      <button class="btn btn-primary btn-full lesson-continue" id="lesson-go" onclick="lessonNext()">Got it — test me</button>`;
+      <button class="btn btn-primary btn-full lesson-continue" id="lesson-go" onclick="lessonNext()">${card.n < card.of ? 'Next new term →' : 'Got it — test me'}</button>`;
     focusLesson('lesson-go');
     return;
   }
 
   const q = card.q;
+  if (q.typed && L.phase === 'recall') L.phase = 'typing';
   const tag = card.retry ? '<div class="lesson-tag retry">Try again</div>'
     : `<div class="lesson-tag">${escapeHTML(q.kind)}</div>`;
   const prompt = q.html ? q.q : escapeHTML(q.q);
   let below = '';
 
-  if (L.phase === 'recall') {
+  if (L.phase === 'typing') {
+    const hinted = L.hidden.has('hint');
+    below = `
+      <div class="type-box">
+        ${hinted ? `<div class="type-hint">Starts with: <strong>${escapeHTML(typeHint(q.answer))}</strong></div>` : ''}
+        <input id="lesson-type" class="type-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false"
+          placeholder="Type the term…" aria-label="Your answer"
+          onkeydown="if(event.key==='Enter'){event.preventDefault();lessonSubmitTyped();}">
+        <div class="type-note">Small spelling mistakes are fine.</div>
+      </div>
+      <div class="lesson-tools three">
+        <button class="btn btn-primary btn-sm" onclick="lessonSubmitTyped()">Check</button>
+        <button class="btn btn-secondary btn-sm" onclick="lessonTypeHint()" ${hinted ? 'disabled' : ''}>🗝️ Hint</button>
+        <button class="btn btn-secondary btn-sm" onclick="lessonAnswer(null, false)">I don’t know</button>
+      </div>`;
+  } else if (L.phase === 'feedback' && q.typed) {
+    const right = L.right;
+    below = `
+      ${L.picked ? `<div class="type-given ${right ? 'ok' : 'bad'}">You typed: <strong>${escapeHTML(L.picked)}</strong></div>` : ''}
+      <div class="lesson-why ${right ? 'ok' : 'bad'}">
+        <strong>${right ? (L.close ? 'Correct! Watch the spelling: ' + escapeHTML(q.answer) : 'Correct!') : 'The answer is ' + escapeHTML(q.answer) + '.'}</strong>
+        <span>${escapeHTML(q.why)}</span>
+      </div>
+      <button class="btn btn-primary btn-full lesson-continue" id="lesson-go" onclick="lessonNext()">Continue</button>`;
+  } else if (L.phase === 'recall') {
     below = `
       <div class="recall-box">
         <div class="recall-hint">💡 Think of the answer first</div>
@@ -326,7 +496,7 @@ function renderLesson() {
       return `<button class="mcq-opt ${c}" ${fb || L.hidden.has(o) ? 'disabled' : ''} onclick="lessonPick(${i})"><span class="opt-key">${i + 1}</span>${escapeHTML(o)}</button>`;
     }).join('')}</div>`;
     if (fb) {
-      const right = L.picked === q.answer;
+      const right = L.right;
       below += `
         <div class="lesson-why ${right ? 'ok' : 'bad'}">
           <strong>${right ? 'Correct!' : L.picked === null ? 'Answer: ' + escapeHTML(q.answer) : 'Not quite. It’s ' + escapeHTML(q.answer) + '.'}</strong>
@@ -343,11 +513,33 @@ function renderLesson() {
   }
 
   container.innerHTML = top + `
-    <div class="lesson-card q ${L.phase === 'feedback' ? (L.picked === q.answer ? 'is-right' : 'is-wrong') : ''}">
+    <div class="lesson-card q ${L.phase === 'feedback' ? (L.right ? 'is-right' : 'is-wrong') : ''}">
       ${tag}
       <div class="lesson-q">${prompt}</div>
     </div>` + below;
-  focusLesson(L.phase === 'options' ? null : 'lesson-go');
+  focusLesson(L.phase === 'options' ? null : L.phase === 'typing' ? 'lesson-type' : 'lesson-go');
+}
+
+/* "Private Cloud" -> "P______ C____" */
+function typeHint(answer) {
+  const a = acceptedAnswers(answer).filter(x => x.length <= TYPE_MAX_LEN).sort((x, y) => x.length - y.length)[0] || answer;
+  return a.split(' ').map(w => w.charAt(0) + w.slice(1).replace(/[A-Za-z0-9]/g, '_')).join(' ');
+}
+
+function lessonTypeHint() {
+  const input = document.getElementById('lesson-type');
+  const keep = input ? input.value : '';
+  lesson.hidden.add('hint');
+  renderLesson();
+  const again = document.getElementById('lesson-type');
+  if (again) again.value = keep;
+}
+
+function lessonSubmitTyped() {
+  const input = document.getElementById('lesson-type');
+  const val = input ? input.value.trim() : '';
+  if (!val) { if (input) input.focus(); return; }
+  lessonAnswer(val, checkTyped(val, currentCard().q.accepts));
 }
 
 function focusLesson(id) {
@@ -385,14 +577,17 @@ function lessonPick(i) {
   lessonAnswer(o);
 }
 
-function lessonAnswer(choice) {
+/* typedResult is checkTyped()'s 'exact' | 'close' | false, for typed questions. */
+function lessonAnswer(choice, typedResult) {
   const L = lesson;
-  if (L.phase !== 'options') return;
+  if (L.phase !== 'options' && L.phase !== 'typing') return;
   const q = currentCard().q;
-  const right = choice === q.answer;
+  const right = q.typed ? !!typedResult : choice === q.answer;
   const firstTime = !L.seen.has(q.id);
   L.seen.add(q.id);
   L.picked = choice;
+  L.right = right;
+  L.close = typedResult === 'close';
   L.phase = 'feedback';
 
   if (right) {
@@ -408,7 +603,8 @@ function lessonAnswer(choice) {
     L.queue.splice(at, 0, { type: 'q', q, retry: true });
   }
   renderLesson();
-  if (right) lessonAdvanceTimer = setTimeout(lessonNext, 1400);
+  // A misspelt-but-accepted answer stays up so the correct spelling is read.
+  if (right && !L.close) lessonAdvanceTimer = setTimeout(lessonNext, 1400);
 }
 
 function lessonNext() {
@@ -432,6 +628,10 @@ function finishLesson() {
   L.items.forEach(it => {
     state.rag[it.code] = L.missedCodes.has(it.code) ? 'amber' : 'green';
   });
+  // A review term you've forgotten drops back to "getting there". One you got
+  // right keeps whatever rating it already had.
+  const own = new Set(L.items.map(it => it.code));
+  L.missedCodes.forEach(code => { if (!own.has(code)) state.rag[code] = 'amber'; });
   if (!L.retry) {
     state.lessons[L.node.id] = { done: true, date: today(), firstTry: L.firstTry, total: L.total };
   }

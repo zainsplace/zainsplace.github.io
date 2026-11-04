@@ -1849,3 +1849,25 @@ main:focus { outline: none; }
   .path-node.current::before { animation: none; opacity: 0.4; }
   .lesson-bar div, .path-hex { transition: none; }
 }
+
+/* Typed answers in lessons (Gizmo's "Mixed" style) and node percentages. */
+.type-box {
+  max-width: 680px; margin: 0 auto 12px; background: var(--bg2);
+  border: 2px solid var(--border); border-radius: var(--radius-lg); padding: 16px;
+}
+.type-input {
+  width: 100%; box-sizing: border-box; font: 600 17px var(--ui); color: var(--text);
+  background: var(--bg); border: 2px solid var(--border); border-radius: var(--radius);
+  padding: 12px 14px;
+}
+.type-input:focus { outline: none; border-color: var(--accent); }
+.type-note { font-size: 12px; color: var(--text3); margin-top: 8px; }
+.type-hint { font-size: 14px; color: var(--text2); margin-bottom: 10px; }
+.type-hint strong { font-family: var(--mono); letter-spacing: 0.08em; color: var(--text); }
+.type-given { max-width: 680px; margin: 0 auto 10px; font-size: 14px; color: var(--text2); }
+.type-given.bad strong { color: var(--red); text-decoration: line-through; }
+.type-given.ok strong { color: var(--green-text); }
+[data-theme="dark"] .type-given.ok strong { color: var(--green); }
+.lesson-tools.three { grid-template-columns: 1fr 1fr 1fr; }
+.path-pct { font-weight: 800; font-size: 14px; font-variant-numeric: tabular-nums; }
+.path-node.current .path-pct { color: #fff; }
