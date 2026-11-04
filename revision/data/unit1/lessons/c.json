@@ -1,0 +1,101 @@
+{
+  "C1.1.1": [
+    {"q": "A hospital wants full control over where patient records are stored and who can reach them, and will pay extra for it. Which cloud model suits it best?", "options": ["Private cloud", "Public cloud", "Hybrid cloud"], "answer": 0, "why": "Private cloud is used by one organisation only, giving the most control and security for sensitive data, at a higher cost."},
+    {"q": "Which is the main DRAWBACK of a private cloud compared with a public cloud?", "options": ["Higher set-up and running costs", "Data is shared with other organisations", "Less control over security", "It cannot be scaled at all"], "answer": 0, "why": "The organisation must buy, house and maintain its own servers and staff to run them."}
+  ],
+  "C1.1.2": [
+    {"q": "A new start-up has little money and expects users to grow quickly. It wants to pay only for what it uses. Which cloud model should it choose?", "options": ["Public cloud", "Private cloud", "Hybrid cloud"], "answer": 0, "why": "Public cloud is pay-as-you-go and scales easily, so it suits small organisations with changing demand."},
+    {"q": "A school uses Microsoft 365, run on servers shared by thousands of other organisations. What is a risk of this model?", "options": ["Less control over where its data is physically stored", "Very high up-front hardware costs", "Staff must maintain the servers", "It can only be used on-site"], "answer": 0, "why": "In a public cloud the provider controls the hardware and data location, so the school has less control."}
+  ],
+  "C1.1.3": [
+    {"q": "A retailer keeps card payment data on its own servers but runs its busy website on AWS so it can cope with Black Friday traffic. Which model is this?", "options": ["Hybrid cloud", "Private cloud", "Public cloud"], "answer": 0, "why": "Hybrid cloud mixes private (sensitive data) and public (scalable, cheaper workloads)."}
+  ],
+  "C1.1.4": [
+    {"q": "A games company rents virtual servers from Azure. Its own staff install the operating system and the game server software. Which service model is this?", "options": ["IaaS", "PaaS", "SaaS"], "answer": 0, "why": "With IaaS the provider supplies the hardware; the customer manages the OS and software."}
+  ],
+  "C1.1.5": [
+    {"q": "A small accountancy firm pays a monthly fee per user for Google Workspace. The provider handles all updates, servers and security. Which service model is this?", "options": ["SaaS", "IaaS", "PaaS"], "answer": 0, "why": "SaaS delivers finished software over the internet; the provider manages everything."}
+  ],
+  "C1.1.6": [
+    {"q": "A team of developers wants to build and launch a web app without having to set up or manage any servers or operating systems. Which service model should they use?", "options": ["PaaS", "IaaS", "SaaS"], "answer": 0, "why": "PaaS gives developers a ready-made platform to build and deploy apps on."}
+  ],
+  "C1.2": [
+    {"q": "A business replaces its own server room with cloud services. Which is a likely impact?", "options": ["IT costs move from large up-front purchases to ongoing subscriptions", "Staff can no longer work from home", "It no longer needs an internet connection", "Its data can never be lost"], "answer": 0, "why": "Cloud turns capital spending on hardware into a regular running cost, and depends on internet access."},
+    {"q": "Which is a disadvantage of an organisation relying on cloud computing?", "options": ["Services stop if the internet connection fails", "Software can never be updated", "Data cannot be shared between staff", "It must buy extra servers every year"], "answer": 0, "why": "Cloud services are reached over the internet, so poor connectivity stops work."}
+  ],
+  "C1.3.1": [
+    {"q": "Staff working from home need to reach the company's internal file server securely over their home broadband. What should the company provide?", "options": ["A VPN", "A wiki", "A public cloud account", "A chatroom"], "answer": 0, "why": "A VPN creates an encrypted tunnel over the internet into the organisation's network."}
+  ],
+  "C1.3.2": [
+    {"q": "An IT technician in head office takes control of a branch employee's PC to fix a settings problem without travelling. What technology are they using?", "options": ["Remote desktop", "VPN only", "Instant messaging", "SaaS"], "answer": 0, "why": "Remote desktop software lets one computer view and control another computer's desktop over a network."}
+  ],
+  "C1.4.1": [
+    {"q": "A bank is choosing an online system. Its top concern is that customer data is encrypted and that the system meets UK GDPR. Which selection factor is this?", "options": ["Security", "Ease of use", "Scalability", "Features"], "answer": 0, "why": "Security covers encryption, access control and legal compliance."}
+  ],
+  "C1.4.2": [
+    {"q": "A charity compares systems by adding up subscription fees, staff training and the effort of moving its old data across. Which factor is it judging?", "options": ["Cost", "Connectivity", "Features", "Security"], "answer": 0, "why": "Cost includes subscriptions, data transfer, training and migration, not just the price tag."}
+  ],
+  "C1.4.3": [
+    {"q": "A care home's staff have limited IT skills, so the manager wants a rota system they can learn in a few minutes. Which factor matters most?", "options": ["Ease of use", "Scalability", "Cost", "Connectivity"], "answer": 0, "why": "Ease of use is how quickly staff and customers can learn and use the system."}
+  ],
+  "C1.4.4": [
+    {"q": "A dentist rejects an online booking system because it cannot send text reminders, which the practice needs. Which factor caused the rejection?", "options": ["Features", "Ease of use", "Cost", "Security"], "answer": 0, "why": "Features means whether the system's functions match what the organisation actually needs."}
+  ],
+  "C1.4.5": [
+    {"q": "A farm in a rural area with slow, unreliable broadband is unsure whether to move to cloud software. Which factor is the main worry?", "options": ["Connectivity", "Scalability", "Features", "Ease of use"], "answer": 0, "why": "Online systems depend on the quality and reliability of the internet connection."}
+  ],
+  "C1.4.6": [
+    {"q": "An online shop gets ten times more visitors at Christmas and wants extra capacity just for December. Which factor should it look for in a system?", "options": ["Scalability", "Ease of use", "Security", "Features"], "answer": 0, "why": "Scalability is the ability to increase or reduce capacity as demand changes, without major cost or disruption."}
+  ],
+  "C2.1.1": [
+    {"q": "A clothing brand wants to share photos and short videos of new products and let customers like, comment and share them. Which online community should it use?", "options": ["Social media", "Wiki", "Forum", "Podcast"], "answer": 0, "why": "Social media platforms let users create, share and interact with content."}
+  ],
+  "C2.1.2": [
+    {"q": "A tech reviewer posts regular video reviews of new phones on YouTube. What is this an example of?", "options": ["Vlog", "Wiki", "Chatroom", "Forum"], "answer": 0, "why": "A vlog is the video version of a blog: regularly updated content from one creator."}
+  ],
+  "C2.1.3": [
+    {"q": "A company wants a knowledge base that any member of staff can add to and edit, so procedures stay up to date. What should it set up?", "options": ["Wiki", "Blog", "Podcast", "Instant messaging"], "answer": 0, "why": "A wiki is a website that many users can create and edit together."}
+  ],
+  "C2.1.4": [
+    {"q": "A gaming community wants a space where many members can type to each other live at the same time in themed rooms. Which tool fits?", "options": ["Chatroom", "Forum", "Blog", "Podcast"], "answer": 0, "why": "Chatrooms let several users talk in real time by text."}
+  ],
+  "C2.1.5": [
+    {"q": "A manager wants to send quick real-time text messages to one colleague or a small project team during the day. Which tool fits best?", "options": ["Instant messaging", "Forum", "Wiki", "Podcast"], "answer": 0, "why": "Instant messaging is real-time text chat between individuals or small groups, e.g. WhatsApp or Teams."}
+  ],
+  "C2.1.6": [
+    {"q": "A college records weekly audio revision episodes that students can download and listen to on the bus. What is this?", "options": ["Podcast", "Vlog", "Chatroom", "Wiki"], "answer": 0, "why": "Podcasts are audio episodes published online to listen to on demand."}
+  ],
+  "C2.1.7": [
+    {"q": "A software company wants customers to post questions and reply to each other in threads, which others can read and answer later. Which tool should it use?", "options": ["Forum", "Chatroom", "Instant messaging", "Podcast"], "answer": 0, "why": "Forums are discussion boards with threads that users post to in their own time, not live."}
+  ],
+  "C2.2.1": [
+    {"q": "Users complain that a council's community app is slow to load and hard to use with a screen reader. Which consideration does this affect?", "options": ["User experience (UX)", "Integration with current systems", "Cost", "Training"], "answer": 0, "why": "UX covers how easy, fast, available and accessible the platform is."}
+  ],
+  "C2.2.2": [
+    {"q": "A youth club chooses a platform with group video calls because its members asked for them. Which consideration is it addressing?", "options": ["Meeting user needs", "Downtime", "Privacy", "Productivity"], "answer": 0, "why": "Meeting user needs means the platform's features match what its users actually need."}
+  ],
+  "C2.2.3": [
+    {"q": "A small business finds that running an online community needs paid hosting and a part-time moderator. Which consideration is this?", "options": ["Cost", "Security", "Downtime", "User experience"], "answer": 0, "why": "Cost covers subscriptions, hosting, moderation and staff."}
+  ],
+  "C2.2.4": [
+    {"q": "Members are worried that a forum sells their email addresses to advertisers. Which consideration is this?", "options": ["Privacy", "Security", "Downtime", "Training"], "answer": 0, "why": "Privacy is about how personal data is protected and whether it is shared with third parties."}
+  ],
+  "C2.2.5": [
+    {"q": "Hackers take over several accounts on a company's social media page and post malicious links. Which consideration failed?", "options": ["Security", "Privacy", "User experience", "Integration"], "answer": 0, "why": "Security protects accounts and data on the platform from hacking and malicious content."}
+  ],
+  "C2.2.6": [
+    {"q": "A company's Teams service goes offline for four hours, so staff cannot talk to customers. Which consideration is this?", "options": ["Downtime", "Training", "Cost", "Privacy"], "answer": 0, "why": "Downtime is time when the platform is unavailable, so users cannot communicate."}
+  ],
+  "C2.2.7": [
+    {"q": "Older staff struggle to post on the new company intranet until they attend a short workshop. Which consideration does this show?", "options": ["Training", "Productivity", "Integration", "Cost"], "answer": 0, "why": "Staff and users may need training to use and manage a platform well."}
+  ],
+  "C2.2.8": [
+    {"q": "A firm chooses Microsoft Teams because it links straight into the Outlook calendars and SharePoint files it already uses. Which consideration is this?", "options": ["Integration with current systems", "Meeting user needs", "Downtime", "Privacy"], "answer": 0, "why": "Integration is how easily the platform connects to systems the organisation already uses."}
+  ],
+  "C2.2.9": [
+    {"q": "A manager notices staff spend hours scrolling the company social feed instead of finishing tasks. Which consideration is affected?", "options": ["Productivity", "Security", "Downtime", "Cost"], "answer": 0, "why": "Online communities can raise or lower how much staff get done."}
+  ],
+  "C2.2.10": [
+    {"q": "A company writes rules banning staff from posting confidential information or abusing customers on social media. What is this an example of?", "options": ["Working practices and company policies", "Training", "User experience", "Integration with current systems"], "answer": 0, "why": "Organisations set policies, such as an AUP, for how staff behave on online communities."}
+  ]
+}

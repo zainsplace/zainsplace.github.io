@@ -10903,7 +10903,3105 @@ const INLINE_UNITS = {
         ],
         "modelAnswer": "Moving to a full online and mobile banking platform would have wide-ranging impacts on the bank across customer experience, operations, security, workforce, and competitive positioning.\n\nFrom a customer experience perspective, online banking delivers significant benefits. Customers gain 24/7 access to their accounts, removing the constraint of branch opening hours. The bank can also reach customers in areas without a local branch, potentially expanding its customer base. Features such as instant transfers, real-time balance notifications, and mobile cheque deposits improve convenience substantially.\n\nHowever, not all customers will benefit equally. Older customers or those with limited digital literacy may struggle to use the platform, effectively excluding them from services they currently access in-branch. The bank has a responsibility under the Equality Act and its own service obligations to ensure these customers are not disadvantaged — which may require maintaining some physical branches or telephone services, reducing the anticipated cost savings.\n\nIn terms of operational costs, the long-term savings could be substantial: fewer physical branches means reduced property costs, and reduced footfall in branches means lower staffing requirements. However, the upfront investment is significant — developing a secure, scalable platform, integrating it with existing systems, and testing it thoroughly requires considerable capital expenditure and a lengthy implementation period during which normal operations must continue.\n\nSecurity is one of the most critical impacts. Online banking is a high-value target for cybercriminals: phishing attacks attempting to steal login credentials, man-in-the-middle attacks intercepting transactions, and account takeover fraud are all significant threats. The bank must invest heavily in security measures — multi-factor authentication, real-time fraud detection, end-to-end encryption — and will face strict obligations under GDPR and Financial Conduct Authority (FCA) regulations. A data breach involving financial data could result in severe ICO fines, legal action from affected customers, and catastrophic reputational damage.\n\nThe impact on the workforce is significant. Branch cashiers and counter staff will see their roles reduced as more customers manage accounts online. This creates potential redundancies and requires investment in retraining staff for digital support roles. Managing this transition sensitively is important for staff morale and the bank's public image.\n\nA strategic benefit of online banking is the volume of transactional data generated. The bank can analyse spending patterns to offer personalised financial products — such as targeted loan or savings account offers — creating a competitive advantage and additional revenue streams.\n\nOverall, the transition to online banking represents a strongly positive long-term impact for the bank, provided it is executed carefully. The cost savings, expanded reach, and data-driven competitive advantages are substantial. The critical risks — cybersecurity, customer exclusion, and workforce disruption — are manageable but require significant investment. The bank's success depends on maintaining service quality for all customer segments during and after the transition, and on building a security infrastructure robust enough to protect highly sensitive financial data."
       }
-    ]
+    ],
+    "lessons": {
+      "A1.1.1": [
+        {
+          "q": "A graphic designer needs a powerful general-purpose computer at a desk for editing large images. Which device fits best?",
+          "options": [
+            "Personal computer (desktop)",
+            "Embedded system",
+            "Server",
+            "Navigation system"
+          ],
+          "answer": 0,
+          "why": "PCs are general-purpose computers for one person. A desktop gives the most power for the price."
+        }
+      ],
+      "A1.1.2": [
+        {
+          "q": "A small office wants one machine that can print, scan and photocopy to save space and money. What should it buy?",
+          "options": [
+            "Multifunctional device (MFD)",
+            "Entertainment system",
+            "Server",
+            "Braille display"
+          ],
+          "answer": 0,
+          "why": "An MFD combines printing, scanning, copying and sometimes fax in one device."
+        }
+      ],
+      "A1.1.3": [
+        {
+          "q": "A delivery driver needs a portable, battery-powered touchscreen device to capture customer signatures on the doorstep. Which device type is this?",
+          "options": [
+            "Mobile device",
+            "Personal computer",
+            "Server",
+            "MFD"
+          ],
+          "answer": 0,
+          "why": "Mobile devices such as phones and tablets are portable, battery-powered and use touchscreens."
+        }
+      ],
+      "A1.1.4": [
+        {
+          "q": "A company needs a powerful computer that stores shared documents for all staff on its network. What is this?",
+          "options": [
+            "A file server",
+            "A personal computer",
+            "An embedded system",
+            "A mobile device"
+          ],
+          "answer": 0,
+          "why": "Servers provide files, apps or web pages to other computers on a network."
+        }
+      ],
+      "A1.1.5": [
+        {
+          "q": "A family buys a smart TV and a games console mainly for leisure. Which device category are these?",
+          "options": [
+            "Entertainment systems",
+            "Communication devices",
+            "Embedded systems only",
+            "Servers"
+          ],
+          "answer": 0,
+          "why": "Entertainment systems are devices mainly for leisure, e.g. consoles, smart TVs and streaming sticks."
+        }
+      ],
+      "A1.1.6": [
+        {
+          "q": "A shop installs networked cameras that record video of the tills all day. Which device type is this?",
+          "options": [
+            "Digital cameras (video)",
+            "Navigation systems",
+            "MFDs",
+            "Mobile devices"
+          ],
+          "answer": 0,
+          "why": "Digital cameras capture photos or video digitally. CCTV is a video example."
+        }
+      ],
+      "A1.1.7": [
+        {
+          "q": "A courier company tracks every van's location live and plans routes around traffic. Which device type does this rely on?",
+          "options": [
+            "Navigation systems (GPS)",
+            "Entertainment systems",
+            "MFDs",
+            "Braille displays"
+          ],
+          "answer": 0,
+          "why": "Navigation systems use GPS satellites to find location and plan routes."
+        }
+      ],
+      "A1.1.8": [
+        {
+          "q": "A home needs a device that connects all its gadgets to each other and to the internet. Which category does a router belong to?",
+          "options": [
+            "Communication devices and systems",
+            "Storage devices",
+            "Entertainment systems",
+            "Input devices"
+          ],
+          "answer": 0,
+          "why": "Communication devices send and receive information, e.g. phones, routers and modems."
+        }
+      ],
+      "A1.1.9": [
+        {
+          "q": "A smart thermostat has a tiny built-in computer that only controls heating, and it can be adjusted from a phone app over the internet. What is it?",
+          "options": [
+            "An embedded IoT device",
+            "A personal computer",
+            "A server",
+            "A multifunctional device"
+          ],
+          "answer": 0,
+          "why": "An embedded system is a computer built in to do one job. Connecting it to the internet makes it IoT."
+        }
+      ],
+      "A1.2.1": [
+        {
+          "q": "Someone uses their phone to check their bank balance, order food and stream music. Which context of use is this?",
+          "options": [
+            "Personal",
+            "Manufacturing",
+            "Healthcare",
+            "Retail"
+          ],
+          "answer": 0,
+          "why": "Personal use covers everyday communication, entertainment, shopping and banking."
+        }
+      ],
+      "A1.2.2": [
+        {
+          "q": "A teacher sets quizzes on tablets and students submit homework through Google Classroom. Which context of use is this?",
+          "options": [
+            "Education and training",
+            "Retail",
+            "Social",
+            "Creative"
+          ],
+          "answer": 0,
+          "why": "Education use supports teaching, learning and assessment."
+        }
+      ],
+      "A1.2.3": [
+        {
+          "q": "Friends in different countries keep in touch through group video chats and shared photos. Which context of use is this?",
+          "options": [
+            "Social",
+            "Manufacturing",
+            "Retail",
+            "Healthcare"
+          ],
+          "answer": 0,
+          "why": "Social use is communicating and interacting with others online."
+        }
+      ],
+      "A1.2.4": [
+        {
+          "q": "A supermarket uses barcode scanners at the tills that update stock levels automatically. Which context of use is this?",
+          "options": [
+            "Retail",
+            "Manufacturing",
+            "Education",
+            "Creative"
+          ],
+          "answer": 0,
+          "why": "Retail use supports buying, selling and managing stock."
+        }
+      ],
+      "A1.2.5": [
+        {
+          "q": "A car factory uses robot arms and sensors to weld car bodies with almost no human input. Which context of use is this?",
+          "options": [
+            "Manufacturing",
+            "Retail",
+            "Social",
+            "Personal"
+          ],
+          "answer": 0,
+          "why": "Manufacturing uses computer-controlled machines, robots and sensors to automate production."
+        }
+      ],
+      "A1.2.6": [
+        {
+          "q": "A hospital uses wearable devices to monitor patients' heart rates and alert nurses to problems. Which context of use is this?",
+          "options": [
+            "Healthcare",
+            "Retail",
+            "Creative",
+            "Education"
+          ],
+          "answer": 0,
+          "why": "Healthcare uses devices for diagnosis, treatment, monitoring and admin."
+        }
+      ],
+      "A1.2.7": [
+        {
+          "q": "A musician records, edits and mixes an album on a laptop with a drawing tablet for artwork. Which context of use is this?",
+          "options": [
+            "Creative",
+            "Manufacturing",
+            "Healthcare",
+            "Retail"
+          ],
+          "answer": 0,
+          "why": "Creative use covers design, music, video, animation and photography."
+        }
+      ],
+      "A1.2.8": [
+        {
+          "q": "An online shop's warehouse uses robots to pick items and a chatbot to answer customer questions. What does this show?",
+          "options": [
+            "Automation and robotics",
+            "Manual data processing",
+            "Social use",
+            "Data logging"
+          ],
+          "answer": 0,
+          "why": "Automation and robotics are machines and AI doing tasks with little human input."
+        }
+      ],
+      "A1.3.1": [
+        {
+          "q": "An IT technician draws how the office PCs, switch, router, server and internet connect together. What kind of diagram is this?",
+          "options": [
+            "System diagram",
+            "Flowchart",
+            "Comparison table",
+            "Spreadsheet"
+          ],
+          "answer": 0,
+          "why": "System diagrams show a system's components and how they connect."
+        }
+      ],
+      "A1.3.2": [
+        {
+          "q": "A developer plans the steps of a login process with decision diamonds such as 'Password correct?'. What is this?",
+          "options": [
+            "Flowchart",
+            "System diagram",
+            "Network topology",
+            "User interface"
+          ],
+          "answer": 0,
+          "why": "Flowcharts use standard symbols to show the steps and decisions in a process."
+        }
+      ],
+      "A2.1.1": [
+        {
+          "q": "A library uses a barcode scanner to read the codes on books as they are borrowed. What type of device is the scanner?",
+          "options": [
+            "Input",
+            "Output",
+            "Storage",
+            "Communication"
+          ],
+          "answer": 0,
+          "why": "Input devices get data into a computer."
+        }
+      ],
+      "A2.1.2": [
+        {
+          "q": "A teacher uses a projector to show a presentation to the class. What type of device is the projector?",
+          "options": [
+            "Output",
+            "Input",
+            "Storage",
+            "Embedded"
+          ],
+          "answer": 0,
+          "why": "Output devices present results from a computer to people."
+        }
+      ],
+      "A2.1.3": [
+        {
+          "q": "A photographer copies a week of photos onto an external SSD to keep them safe. What type of device is the SSD?",
+          "options": [
+            "Storage",
+            "Input",
+            "Output",
+            "Communication"
+          ],
+          "answer": 0,
+          "why": "Storage devices keep data so it can be used again later."
+        }
+      ],
+      "A2.2.1": [
+        {
+          "q": "A user with limited hand movement struggles with small keys, so is given one with large, widely spaced keys. What assistive technology is this?",
+          "options": [
+            "Adaptive keyboard",
+            "Screen reader",
+            "Eye tracker",
+            "Foot switch"
+          ],
+          "answer": 0,
+          "why": "Adaptive keyboards are adapted for users with physical, visual or learning difficulties."
+        }
+      ],
+      "A2.2.2": [
+        {
+          "q": "A blind employee needs software that reads emails and web pages aloud. What should they be given?",
+          "options": [
+            "Screen reader",
+            "Screen magnifier",
+            "Head pointer",
+            "Sip-and-puff switch"
+          ],
+          "answer": 0,
+          "why": "Screen readers read screen content aloud for blind or partially sighted users."
+        }
+      ],
+      "A2.2.3": [
+        {
+          "q": "A blind programmer wants to read code by touch, character by character. Which device suits this?",
+          "options": [
+            "Braille display",
+            "Text-to-speech software",
+            "Screen magnifier",
+            "Foot switch"
+          ],
+          "answer": 0,
+          "why": "A braille display raises pins to form braille so text can be read by touch."
+        }
+      ],
+      "A2.2.4": [
+        {
+          "q": "A user with low vision can see the screen but needs text and images much bigger. Which assistive technology is best?",
+          "options": [
+            "Screen magnifier",
+            "Braille display",
+            "Sip-and-puff switch",
+            "Head pointer"
+          ],
+          "answer": 0,
+          "why": "Screen magnifiers enlarge part or all of the screen for low-vision users."
+        }
+      ],
+      "A2.2.5": [
+        {
+          "q": "A user with paralysis below the neck presses keys with a stick worn on their head. What is this?",
+          "options": [
+            "Head pointer",
+            "Foot switch",
+            "Eye tracker",
+            "Adaptive keyboard"
+          ],
+          "answer": 0,
+          "why": "A head pointer is worn on the head so users can press keys without their hands."
+        }
+      ],
+      "A2.2.6": [
+        {
+          "q": "A user with very limited movement controls a computer by pressing one large button with their cheek. What is this?",
+          "options": [
+            "Single switch entry device",
+            "Adaptive keyboard",
+            "Screen reader",
+            "Braille display"
+          ],
+          "answer": 0,
+          "why": "A single switch lets users with very limited movement control a computer."
+        }
+      ],
+      "A2.2.7": [
+        {
+          "q": "A medical secretary pauses and rewinds dictation audio with a pedal so both hands stay on the keyboard. What is this?",
+          "options": [
+            "Foot switch",
+            "Head pointer",
+            "Sip-and-puff switch",
+            "Single switch"
+          ],
+          "answer": 0,
+          "why": "A foot switch triggers an action by foot, keeping hands free."
+        }
+      ],
+      "A2.2.8": [
+        {
+          "q": "A user who can only move their mouth controls a wheelchair and a computer by sucking and blowing into a tube. What is this?",
+          "options": [
+            "Sip-and-puff switch",
+            "Eye-tracking software",
+            "Foot switch",
+            "Adaptive keyboard"
+          ],
+          "answer": 0,
+          "why": "Sip-and-puff switches are controlled by sucking or blowing into a tube."
+        }
+      ],
+      "A2.2.9": [
+        {
+          "q": "A user with motor neurone disease moves the cursor just by looking at different parts of the screen. What technology is this?",
+          "options": [
+            "Eye-tracking software",
+            "Screen magnifier",
+            "Head pointer",
+            "Text-to-speech"
+          ],
+          "answer": 0,
+          "why": "Eye tracking uses a camera to follow where the user looks and moves the cursor there."
+        }
+      ],
+      "A2.2.10": [
+        {
+          "q": "A student with dyslexia has Word read their essay out loud to help them spot mistakes. Which assistive technology is this?",
+          "options": [
+            "Text-to-speech software",
+            "Braille display",
+            "Eye tracker",
+            "Adaptive keyboard"
+          ],
+          "answer": 0,
+          "why": "Text-to-speech reads written text aloud as speech."
+        }
+      ],
+      "A2.3.1": [
+        {
+          "q": "A video production company needs to store 40 TB of 4K footage. Which storage characteristic matters most here?",
+          "options": [
+            "Capacity",
+            "Compatibility",
+            "Portability",
+            "Colour"
+          ],
+          "answer": 0,
+          "why": "Capacity is how much data a medium can hold, measured in GB or TB."
+        }
+      ],
+      "A2.3.2": [
+        {
+          "q": "A school must back up huge amounts of data on a tight budget, so it compares the price per gigabyte of HDDs and SSDs. Which characteristic is this?",
+          "options": [
+            "Cost",
+            "Speed",
+            "Capacity",
+            "Compatibility"
+          ],
+          "answer": 0,
+          "why": "Cost compares the price of storage, especially per gigabyte. HDDs are cheaper per GB."
+        }
+      ],
+      "A2.3.3": [
+        {
+          "q": "A gamer replaces a hard disk with an SSD so games load much faster. Which characteristic is improved?",
+          "options": [
+            "Speed",
+            "Cost",
+            "Capacity",
+            "Compatibility"
+          ],
+          "answer": 0,
+          "why": "Speed is how fast data is read from and written to storage. SSDs are much faster than HDDs."
+        }
+      ],
+      "A2.3.4": [
+        {
+          "q": "A new external drive uses only USB-C, but the office PCs have only USB-A ports. Which characteristic is the problem?",
+          "options": [
+            "Compatibility",
+            "Capacity",
+            "Speed",
+            "Cost"
+          ],
+          "answer": 0,
+          "why": "Compatibility is whether storage works with the device's connections, OS and hardware."
+        }
+      ],
+      "A2.4.1": [
+        {
+          "q": "A small hairdresser writes appointments in a paper diary and counts stock by hand. What kind of data processing is this?",
+          "options": [
+            "Manual",
+            "Automatic",
+            "Batch",
+            "Real-time"
+          ],
+          "answer": 0,
+          "why": "Manual processing is data handled by people rather than computers: slower and more error-prone."
+        }
+      ],
+      "A2.4.2": [
+        {
+          "q": "Every time an item is sold, the shop's EPOS till updates the stock level with no staff input. What kind of data processing is this?",
+          "options": [
+            "Automatic",
+            "Manual",
+            "Verification",
+            "Secondary"
+          ],
+          "answer": 0,
+          "why": "Automatic processing is done by computers with little or no human input."
+        }
+      ],
+      "A3.1.1": [
+        {
+          "q": "A bank processes all of the day's payments together overnight, with no one interacting with the system. Which type of OS suits this?",
+          "options": [
+            "Batch",
+            "Real-time",
+            "Mobile",
+            "Single-use"
+          ],
+          "answer": 0,
+          "why": "Batch OSs process groups of jobs automatically without user interaction."
+        }
+      ],
+      "A3.1.2": [
+        {
+          "q": "A search engine spreads each search across thousands of servers that appear to users as one system. Which type of OS is this?",
+          "options": [
+            "Distributed",
+            "Batch",
+            "Single-use",
+            "Mobile"
+          ],
+          "answer": 0,
+          "why": "A distributed OS makes many separate computers work together as one system."
+        }
+      ],
+      "A3.1.3": [
+        {
+          "q": "A student browses the web while music plays and a file downloads, all at the same time. Which OS feature makes this possible?",
+          "options": [
+            "Multitasking",
+            "Batch processing",
+            "Real-time response",
+            "Single-use"
+          ],
+          "answer": 0,
+          "why": "A multitasking OS runs several programs at once by switching the CPU between them quickly."
+        }
+      ],
+      "A3.1.4": [
+        {
+          "q": "A school server manages shared drives, printers and every student's login across the network. Which type of OS runs on it?",
+          "options": [
+            "Network operating system",
+            "Mobile operating system",
+            "Real-time operating system",
+            "Single-use operating system"
+          ],
+          "answer": 0,
+          "why": "A network OS manages shared files, printers and user accounts for a network."
+        }
+      ],
+      "A3.1.5": [
+        {
+          "q": "A car's anti-lock brakes must react to wheel sensors within milliseconds every time. Which type of OS is needed?",
+          "options": [
+            "Real-time (RTOS)",
+            "Batch",
+            "Multi-user",
+            "Distributed"
+          ],
+          "answer": 0,
+          "why": "An RTOS must respond within a guaranteed, very short time, which is vital for safety systems."
+        }
+      ],
+      "A3.1.6": [
+        {
+          "q": "A tablet needs an OS built for touch, battery saving and apps from an app store. Which type is this?",
+          "options": [
+            "Mobile OS",
+            "Batch OS",
+            "Network OS",
+            "Single-use OS"
+          ],
+          "answer": 0,
+          "why": "Mobile OSs such as iOS and Android are designed for phones, tablets and wearables."
+        }
+      ],
+      "A3.1.7": [
+        {
+          "q": "A cash machine runs a stripped-down OS that only lets customers do banking tasks. Which type of OS is this?",
+          "options": [
+            "Single-use",
+            "Multitasking",
+            "Distributed",
+            "Mobile"
+          ],
+          "answer": 0,
+          "why": "A single-use OS is stripped down to do one job only, which also makes it more secure."
+        }
+      ],
+      "A3.1.8": [
+        {
+          "q": "Fifty developers log into the same Linux server remotely at once, each with their own account and files. Which type of OS is this?",
+          "options": [
+            "Multi-user",
+            "Single-use",
+            "Real-time",
+            "Batch"
+          ],
+          "answer": 0,
+          "why": "A multi-user OS lets several users use the same system at once, each with their own account."
+        }
+      ],
+      "A3.2.1": [
+        {
+          "q": "Which OS role handles connecting to Wi-Fi and sending and receiving data packets using protocols?",
+          "options": [
+            "Networking",
+            "Memory management",
+            "Device drivers",
+            "User accounts"
+          ],
+          "answer": 0,
+          "why": "The OS handles network protocols, connections, data transfer and bandwidth."
+        }
+      ],
+      "A3.2.2": [
+        {
+          "q": "Windows blocks a suspicious program and its built-in firewall stops an incoming connection. Which OS role is this?",
+          "options": [
+            "Security",
+            "Multitasking",
+            "Memory management",
+            "Networking"
+          ],
+          "answer": 0,
+          "why": "The OS protects the system through access control, malware protection, encryption and a firewall."
+        }
+      ],
+      "A3.2.3": [
+        {
+          "q": "RAM is full, so the OS moves some data to the hard drive to keep programs running, though everything slows down. Which OS role is this?",
+          "options": [
+            "Memory management (virtual memory)",
+            "Device drivers",
+            "Networking",
+            "User accounts"
+          ],
+          "answer": 0,
+          "why": "The OS allocates RAM, keeps programs apart, and uses virtual memory when RAM runs out."
+        }
+      ],
+      "A3.2.4": [
+        {
+          "q": "The OS gives each running program a short slice of CPU time in turn, so they all seem to run together. Which role is this?",
+          "options": [
+            "Multitasking (scheduling)",
+            "Memory management",
+            "Security",
+            "Device drivers"
+          ],
+          "answer": 0,
+          "why": "The OS shares CPU time between programs by scheduling and switching between them."
+        }
+      ],
+      "A3.2.5": [
+        {
+          "q": "A new printer won't work until the right software is installed so Windows can communicate with it. What is that software?",
+          "options": [
+            "A device driver",
+            "A utility",
+            "A codec",
+            "A network OS"
+          ],
+          "answer": 0,
+          "why": "A device driver lets the OS talk to a hardware device."
+        }
+      ],
+      "A3.2.6": [
+        {
+          "q": "Each family member logs into the shared PC with their own password and gets their own desktop and files. Which OS role is this?",
+          "options": [
+            "User accounts",
+            "Networking",
+            "Multitasking",
+            "Memory management"
+          ],
+          "answer": 0,
+          "why": "The OS checks who users are, stores their settings and lets admins manage accounts."
+        }
+      ],
+      "A3.3.1": [
+        {
+          "q": "A technician runs a program that scans for malware and another that backs up the hard drive. What type of software are these?",
+          "options": [
+            "Utility software",
+            "Application software",
+            "Device drivers",
+            "Operating systems"
+          ],
+          "answer": 0,
+          "why": "Utility software maintains and looks after the computer system."
+        }
+      ],
+      "A3.3.2": [
+        {
+          "q": "An accountant uses Excel to build a budget spreadsheet. What type of software is Excel?",
+          "options": [
+            "Application software",
+            "Utility software",
+            "Operating system",
+            "Device driver"
+          ],
+          "answer": 0,
+          "why": "Application software is what people use to do tasks and create things."
+        }
+      ],
+      "A3.4.1": [
+        {
+          "q": "A charity picks LibreOffice over Microsoft 365 mainly because there are no licence fees. Which factor drove the choice?",
+          "options": [
+            "Cost",
+            "Features",
+            "Performance",
+            "Security"
+          ],
+          "answer": 0,
+          "why": "Cost covers buying, licensing and running the software."
+        }
+      ],
+      "A3.4.2": [
+        {
+          "q": "A company refuses to keep using an old OS because it no longer receives security updates. Which factor is this?",
+          "options": [
+            "Security",
+            "Cost",
+            "Features",
+            "Performance"
+          ],
+          "answer": 0,
+          "why": "Security includes how well software protects data and how often it is patched."
+        }
+      ],
+      "A3.4.3": [
+        {
+          "q": "An architect's firm can't move to macOS because its CAD software runs only on Windows. Which factor is this?",
+          "options": [
+            "Hardware and software compatibility",
+            "Cost",
+            "Performance",
+            "User needs"
+          ],
+          "answer": 0,
+          "why": "Compatibility is whether software works with the hardware and other software already in use."
+        }
+      ],
+      "A3.4.4": [
+        {
+          "q": "A school chooses a learning platform because it has built-in quizzes and plagiarism checking, which it needs. Which factor is this?",
+          "options": [
+            "Features",
+            "Cost",
+            "Compatibility",
+            "Performance"
+          ],
+          "answer": 0,
+          "why": "Features means whether the software has the functions the organisation needs."
+        }
+      ],
+      "A3.4.5": [
+        {
+          "q": "A care home picks very simple rota software because its staff have low IT skills. Which factor is this?",
+          "options": [
+            "Business and user needs",
+            "Performance",
+            "Security",
+            "Cost"
+          ],
+          "answer": 0,
+          "why": "Software must fit the organisation's tasks and its users' skills."
+        }
+      ],
+      "A3.4.6": [
+        {
+          "q": "New design software runs very slowly on the office's old PCs. Which factor was overlooked?",
+          "options": [
+            "Performance",
+            "Features",
+            "Security",
+            "Cost"
+          ],
+          "answer": 0,
+          "why": "Performance is how well the software runs on the available hardware."
+        }
+      ],
+      "A3.5.1": [
+        {
+          "q": "A network admin types commands such as 'ipconfig' to configure servers quickly, using little memory. Which interface is this?",
+          "options": [
+            "Command line interface (CLI)",
+            "GUI",
+            "Menu-driven",
+            "Touchscreen GUI"
+          ],
+          "answer": 0,
+          "why": "A CLI is a text interface where the user types commands. It is powerful but needs commands to be learned."
+        }
+      ],
+      "A3.5.2": [
+        {
+          "q": "A cash machine shows a few options on screen, and users choose one at a time such as 'Withdraw cash'. Which interface is this?",
+          "options": [
+            "Menu-driven",
+            "CLI",
+            "GUI with WIMP",
+            "Voice"
+          ],
+          "answer": 0,
+          "why": "Menu-driven interfaces let users choose from a list of options. They are simple, with limited choices."
+        }
+      ],
+      "A3.5.3": [
+        {
+          "q": "An office worker uses windows, icons, menus and a mouse pointer to manage files. Which interface is this?",
+          "options": [
+            "Graphical user interface (GUI)",
+            "CLI",
+            "Menu-driven",
+            "Batch"
+          ],
+          "answer": 0,
+          "why": "A GUI is a visual WIMP interface: windows, icons, menus and a pointer."
+        }
+      ],
+      "A3.5.4": [
+        {
+          "q": "A supermarket self-checkout lets customers tap and swipe on the screen instead of using a mouse. Which interface is this?",
+          "options": [
+            "Touchscreen GUI",
+            "CLI",
+            "Menu-driven only",
+            "Head pointer"
+          ],
+          "answer": 0,
+          "why": "A touchscreen GUI is controlled by touch gestures."
+        }
+      ],
+      "A3.6.1": [
+        {
+          "q": "A company wants an OS it can view, modify and use with no licence fee, accepting there's no official helpline. Which should it choose?",
+          "options": [
+            "Open source (e.g. Linux)",
+            "Proprietary (e.g. Windows)",
+            "Proprietary (e.g. macOS)",
+            "A single-use OS"
+          ],
+          "answer": 0,
+          "why": "Open-source code is free to view and change; proprietary code is closed and usually paid."
+        }
+      ],
+      "A3.6.2": [
+        {
+          "q": "A business pays for Microsoft 365 rather than free LibreOffice mainly to get official support and guaranteed updates. What type of software has it chosen?",
+          "options": [
+            "Proprietary",
+            "Open source",
+            "Utility",
+            "Freeware embedded"
+          ],
+          "answer": 0,
+          "why": "Proprietary software is closed source and paid for, but comes with official support."
+        }
+      ],
+      "A3.7.1": [
+        {
+          "q": "A web designer needs icons that stay sharp at any size, from a phone screen to a billboard. Which image format suits this?",
+          "options": [
+            "SVG",
+            "JPEG",
+            "MP3",
+            "EXE"
+          ],
+          "answer": 0,
+          "why": "SVG is a vector format, so it scales without losing quality."
+        }
+      ],
+      "A3.7.2": [
+        {
+          "q": "A podcast is shared online, where small file size matters more than perfect quality. Which audio format suits this?",
+          "options": [
+            "MP3",
+            "WAV",
+            "PNG",
+            "MOV"
+          ],
+          "answer": 0,
+          "why": "MP3 uses lossy compression for small files. WAV is uncompressed and large."
+        }
+      ],
+      "A3.7.3": [
+        {
+          "q": "An iPhone records a video file holding both the video and the audio in one container. Which format is this likely to be?",
+          "options": [
+            "MOV",
+            "MP3",
+            "JPEG",
+            "APK"
+          ],
+          "answer": 0,
+          "why": "MOV and MP4 are containers holding video and audio streams compressed by codecs."
+        }
+      ],
+      "A3.7.4": [
+        {
+          "q": "A developer releases an app for Android phones. Which file format will it be installed from?",
+          "options": [
+            "APK",
+            "EXE",
+            "DMG",
+            "MSI"
+          ],
+          "answer": 0,
+          "why": "Installer formats are OS-specific: APK for Android, EXE/MSI for Windows, DMG for macOS."
+        }
+      ],
+      "A4.1.1": [
+        {
+          "q": "Field engineers need a system they can use on the move in poor light with gloves on. Which factor should drive the choice of IT system?",
+          "options": [
+            "User needs",
+            "Cost",
+            "Compatibility",
+            "Efficiency"
+          ],
+          "answer": 0,
+          "why": "User needs cover users' tasks, skills, mobility and accessibility."
+        }
+      ],
+      "A4.1.2": [
+        {
+          "q": "A video editing team needs PCs with at least 32 GB of RAM, a fast GPU and Thunderbolt ports. Which factor is this?",
+          "options": [
+            "Specifications",
+            "User needs",
+            "Productivity",
+            "Security"
+          ],
+          "answer": 0,
+          "why": "Specifications are technical requirements such as performance, storage and ports."
+        }
+      ],
+      "A4.1.3": [
+        {
+          "q": "A hospital's new system must read patient records saved in the old system's format. Which factor is this?",
+          "options": [
+            "Compatibility",
+            "Connectivity",
+            "Efficiency",
+            "Cost"
+          ],
+          "answer": 0,
+          "why": "Compatibility is whether the system works with existing hardware, software, data and networks."
+        }
+      ],
+      "A4.1.4": [
+        {
+          "q": "Tablets for a sales team must support 4G and Wi-Fi so staff can connect anywhere. Which factor is this?",
+          "options": [
+            "Connectivity",
+            "Specifications",
+            "Compatibility",
+            "Productivity"
+          ],
+          "answer": 0,
+          "why": "Connectivity is the network and device connections the system supports."
+        }
+      ],
+      "A4.1.5": [
+        {
+          "q": "A firm adds up purchase price, installation, licences, support and eventual replacement before choosing a system. Which factor is this?",
+          "options": [
+            "Cost (total cost of ownership)",
+            "Efficiency",
+            "Specifications",
+            "Security"
+          ],
+          "answer": 0,
+          "why": "Cost is the total cost of buying, setting up, running and replacing the system."
+        }
+      ],
+      "A4.1.6": [
+        {
+          "q": "A new system lets one person process orders that used to take three people, using less paper and time. Which factor is this?",
+          "options": [
+            "Efficiency",
+            "Compatibility",
+            "Connectivity",
+            "Security"
+          ],
+          "answer": 0,
+          "why": "Efficiency is how well a system uses time, money and resources."
+        }
+      ],
+      "A4.1.7": [
+        {
+          "q": "An office plans when to move its data to the new system, how to test it and how to keep downtime low. Which factor is this?",
+          "options": [
+            "Implementation",
+            "User needs",
+            "Specifications",
+            "Cost"
+          ],
+          "answer": 0,
+          "why": "Implementation covers timescales, testing, data migration and downtime."
+        }
+      ],
+      "A4.1.8": [
+        {
+          "q": "A manager chooses a system because staff will be able to complete twice as many claims per day. Which factor is this?",
+          "options": [
+            "Productivity",
+            "Compatibility",
+            "Security",
+            "Connectivity"
+          ],
+          "answer": 0,
+          "why": "Productivity is how a system affects how much work staff can get done."
+        }
+      ],
+      "A4.1.9": [
+        {
+          "q": "A law firm only shortlists systems with encryption, MFA and audit logs that fit its existing security set-up. Which factor is this?",
+          "options": [
+            "Security",
+            "Efficiency",
+            "Cost",
+            "User needs"
+          ],
+          "answer": 0,
+          "why": "Security means the system's security features and how it fits existing measures."
+        }
+      ],
+      "A4.2.1": [
+        {
+          "q": "A supermarket's system lowers the count of beans at each sale and automatically orders more when stock is low. What use of IT is this?",
+          "options": [
+            "Stock control",
+            "Data logging",
+            "Advertising",
+            "Creative tasks"
+          ],
+          "answer": 0,
+          "why": "Stock control tracks stock in real time and reorders automatically."
+        }
+      ],
+      "A4.2.2": [
+        {
+          "q": "Sensors in a food factory record the fridge temperature every minute with a timestamp. What use of IT is this?",
+          "options": [
+            "Data logging",
+            "Data analysis",
+            "Stock control",
+            "General office tasks"
+          ],
+          "answer": 0,
+          "why": "Data logging is sensors automatically recording time-stamped readings over time."
+        }
+      ],
+      "A4.2.3": [
+        {
+          "q": "A shop studies a year of sales data to find which products sell best in summer and decide what to promote. What use of IT is this?",
+          "options": [
+            "Data analysis",
+            "Data logging",
+            "Stock control",
+            "Automation"
+          ],
+          "answer": 0,
+          "why": "Data analysis finds patterns and trends in data to guide decisions."
+        }
+      ],
+      "A4.2.4": [
+        {
+          "q": "Staff write letters, keep spreadsheets, email clients and book meetings in Teams. What use of IT is this?",
+          "options": [
+            "General office tasks",
+            "Creative tasks",
+            "Manufacturing",
+            "Data logging"
+          ],
+          "answer": 0,
+          "why": "General office tasks are everyday admin: documents, spreadsheets, email and scheduling."
+        }
+      ],
+      "A4.2.5": [
+        {
+          "q": "An architecture firm uses AutoCAD to draw building plans and Blender to make 3D walkthroughs. What use of IT is this?",
+          "options": [
+            "Creative tasks",
+            "Stock control",
+            "Data logging",
+            "Advertising"
+          ],
+          "answer": 0,
+          "why": "Creative tasks cover design, media production and animation."
+        }
+      ],
+      "A4.2.6": [
+        {
+          "q": "A gym shows online adverts only to people aged 18 to 30 living within 5 miles, then measures how many click. What use of IT is this?",
+          "options": [
+            "Advertising",
+            "Data logging",
+            "Stock control",
+            "Manufacturing"
+          ],
+          "answer": 0,
+          "why": "IT is used to create, target and measure adverts."
+        }
+      ],
+      "A4.2.7": [
+        {
+          "q": "An engineer designs a part in CAD and sends it straight to a CNC machine to be cut. What use of IT is this?",
+          "options": [
+            "Manufacturing",
+            "Creative tasks",
+            "General office tasks",
+            "Advertising"
+          ],
+          "answer": 0,
+          "why": "IT designs, controls and checks manufacturing, from CAD to quality control."
+        }
+      ],
+      "A4.2.8": [
+        {
+          "q": "A data centre uses networked CCTV and fingerprint locks on its server room. What use of IT is this?",
+          "options": [
+            "Security",
+            "Automation",
+            "Data analysis",
+            "Advertising"
+          ],
+          "answer": 0,
+          "why": "IT is used for physical and cyber security, e.g. CCTV and access control."
+        }
+      ],
+      "A4.2.9": [
+        {
+          "q": "A company's payroll runs itself every month and a chatbot answers common customer questions. What use of IT is this?",
+          "options": [
+            "Automation",
+            "Data logging",
+            "Creative tasks",
+            "Stock control"
+          ],
+          "answer": 0,
+          "why": "Automation is IT doing tasks with little or no human input."
+        }
+      ],
+      "A4.3.1": [
+        {
+          "q": "Customers abandon a new booking system because it is slow, often offline and hard to use on a phone. Which impact is this?",
+          "options": [
+            "User experience",
+            "Working practices",
+            "Cost",
+            "User support"
+          ],
+          "answer": 0,
+          "why": "User experience covers ease of use, performance, availability and accessibility."
+        }
+      ],
+      "A4.3.2": [
+        {
+          "q": "A new till system is fast for staff, but customers can no longer pay by cash, which many prefer. Which impact is this?",
+          "options": [
+            "Employee and customer needs",
+            "Implementation",
+            "Security",
+            "Training needs"
+          ],
+          "answer": 0,
+          "why": "A system must meet the needs of both staff and customers."
+        }
+      ],
+      "A4.3.3": [
+        {
+          "q": "A new system's subscription fees, upgrades and support costs keep rising each year. Which impact on the organisation is this?",
+          "options": [
+            "Cost",
+            "Productivity",
+            "Working practices",
+            "User experience"
+          ],
+          "answer": 0,
+          "why": "Cost is the system's cost to the organisation now and over time."
+        }
+      ],
+      "A4.3.4": [
+        {
+          "q": "Moving patient records to a new system takes a week longer than planned, and the clinic must close for a day. Which impact is this?",
+          "options": [
+            "Implementation (migration and downtime)",
+            "Security",
+            "User support",
+            "Working practices"
+          ],
+          "answer": 0,
+          "why": "Implementation affects the organisation through timescales, testing, data migration and downtime."
+        }
+      ],
+      "A4.3.5": [
+        {
+          "q": "A school keeps its old timetable system running alongside the new learning platform and links the two. Which impact is this?",
+          "options": [
+            "Replacement or integration with current systems",
+            "User support",
+            "Security",
+            "Cost"
+          ],
+          "answer": 0,
+          "why": "An organisation decides whether a new system replaces the old one or works alongside it."
+        }
+      ],
+      "A4.3.6": [
+        {
+          "q": "Output drops for the first month while staff get used to a new system, then rises above the old level. Which impact is this?",
+          "options": [
+            "Productivity",
+            "Security",
+            "Cost",
+            "Working practices"
+          ],
+          "answer": 0,
+          "why": "Productivity often dips during a change, then improves."
+        }
+      ],
+      "A4.3.7": [
+        {
+          "q": "After a new system arrives, sales staff work from home two days a week and log calls digitally instead of on paper. Which impact is this?",
+          "options": [
+            "Working practices",
+            "User support",
+            "Cost",
+            "Security"
+          ],
+          "answer": 0,
+          "why": "Working practices are the ways a system changes how staff work."
+        }
+      ],
+      "A4.3.8": [
+        {
+          "q": "Staff get a course when a new system launches and refresher sessions whenever it is updated. Which impact is this?",
+          "options": [
+            "Staff training needs (initial and ongoing)",
+            "User support",
+            "Productivity",
+            "Implementation"
+          ],
+          "answer": 0,
+          "why": "Staff need training at launch and as the system changes."
+        }
+      ],
+      "A4.3.9": [
+        {
+          "q": "A company sets up a helpdesk and live chat so staff can get help with the new system. Which impact is this?",
+          "options": [
+            "User support",
+            "Training needs",
+            "Security",
+            "Cost"
+          ],
+          "answer": 0,
+          "why": "User support is ongoing help for staff using the system."
+        }
+      ],
+      "A4.3.10": [
+        {
+          "q": "A new cloud system means customer data now leaves the building, so the firm adds MFA and encryption. Which impact is this?",
+          "options": [
+            "Security",
+            "User experience",
+            "Cost",
+            "Working practices"
+          ],
+          "answer": 0,
+          "why": "A new system brings new security risks that must be managed."
+        }
+      ],
+      "A5.1": [
+        {
+          "q": "A phone with a dedicated AI chip edits photos instantly on the device instead of sending them to a server. How does this emerging technology affect performance?",
+          "options": [
+            "It makes processing faster on the device",
+            "It makes the phone unable to use apps",
+            "It removes the need for storage",
+            "It always increases latency"
+          ],
+          "answer": 0,
+          "why": "AI hardware, 5G and edge computing make systems faster and more capable."
+        }
+      ],
+      "A5.2": [
+        {
+          "q": "A fake video of a celebrity, made with AI, spreads on social media. Which implication of AI for personal use does this show?",
+          "options": [
+            "Deepfakes make it harder to trust what you see",
+            "Faster broadband",
+            "Better battery life",
+            "Cheaper hardware"
+          ],
+          "answer": 0,
+          "why": "AI changes personal use, including risks such as deepfakes and misinformation."
+        }
+      ],
+      "A5.3": [
+        {
+          "q": "A bank uses AI to flag unusual card payments, and fewer staff are needed to review transactions. Which implication does this show for organisations?",
+          "options": [
+            "AI changes how they operate and how many people they employ",
+            "AI removes all security risk",
+            "AI stops organisations needing data",
+            "AI only affects personal users"
+          ],
+          "answer": 0,
+          "why": "AI changes how organisations work, e.g. fraud detection and automated screening, and affects jobs."
+        }
+      ],
+      "B1.1.1": [
+        {
+          "q": "A warehouse worker wants a handheld scanner to talk to a tablet a couple of metres away, using very little battery. Which connection fits?",
+          "options": [
+            "Bluetooth",
+            "Ethernet",
+            "Wi-Fi",
+            "USB"
+          ],
+          "answer": 0,
+          "why": "Bluetooth is short-range (about 10 m) and low-power, for linking devices directly."
+        }
+      ],
+      "B1.1.2": [
+        {
+          "q": "A photographer needs to copy files from a camera to a laptop with a cable that also charges the camera. Which connection is this?",
+          "options": [
+            "USB",
+            "Bluetooth",
+            "Wi-Fi",
+            "Ethernet"
+          ],
+          "answer": 0,
+          "why": "USB is a wired standard that carries both data and power."
+        }
+      ],
+      "B1.1.3": [
+        {
+          "q": "A café wants customers to connect their own phones and laptops to the internet without any cables. Which connection should it provide?",
+          "options": [
+            "Wi-Fi",
+            "Ethernet",
+            "USB",
+            "Bluetooth"
+          ],
+          "answer": 0,
+          "why": "Wi-Fi connects many devices wirelessly to a router or access point."
+        }
+      ],
+      "B1.1.4": [
+        {
+          "q": "A video editing studio needs the fastest, most reliable link between its desktop PCs and file server, and nobody moves around. Which connection is best?",
+          "options": [
+            "Ethernet",
+            "Wi-Fi",
+            "Bluetooth",
+            "USB"
+          ],
+          "answer": 0,
+          "why": "Wired Ethernet (copper or fibre) is faster, more reliable and harder to intercept than wireless."
+        }
+      ],
+      "B1.2": [
+        {
+          "q": "A hospital's heart monitors must never drop their connection, while visitors just want to browse the web. What is the best match?",
+          "options": [
+            "Ethernet for monitors, Wi-Fi for visitors",
+            "Wi-Fi for both",
+            "Bluetooth for monitors, Ethernet for visitors",
+            "USB for both"
+          ],
+          "answer": 0,
+          "why": "Connection choice depends on need: critical kit needs reliable wired links, and visitors need mobility."
+        }
+      ],
+      "B1.3": [
+        {
+          "q": "A school removes all network cables and goes Wi-Fi only to save money. What is a likely implication?",
+          "options": [
+            "More security risk and possible slowdowns at busy times",
+            "No devices can move between rooms",
+            "It must buy more switches",
+            "Bluetooth will stop working"
+          ],
+          "answer": 0,
+          "why": "Choosing a connection affects security, cost and performance, not just convenience."
+        }
+      ],
+      "B1.4": [
+        {
+          "q": "Video editors complain that large file transfers over Wi-Fi are slow and sometimes fail. What change would most improve performance?",
+          "options": [
+            "Switch them to wired Ethernet",
+            "Use Bluetooth instead",
+            "Add a second monitor",
+            "Compress files with lossy compression"
+          ],
+          "answer": 0,
+          "why": "Wired connections give higher speed, lower latency and more reliability than shared Wi-Fi."
+        }
+      ],
+      "B2.1.1": [
+        {
+          "q": "In an office network, each PC has its own cable to one central switch. One cable breaks. What happens?",
+          "options": [
+            "Only that PC loses its connection",
+            "The whole network goes down",
+            "Data travels the other way round the loop",
+            "All PCs slow to a stop"
+          ],
+          "answer": 0,
+          "why": "In a star topology each device has its own link, but if the central switch fails, everything stops."
+        }
+      ],
+      "B2.1.2": [
+        {
+          "q": "In a network, devices are connected in a closed loop and data passes around it in one direction. Which topology is this?",
+          "options": [
+            "Ring",
+            "Star",
+            "Bus",
+            "Mesh"
+          ],
+          "answer": 0,
+          "why": "A ring links devices in a loop, so one break can stop the whole ring."
+        }
+      ],
+      "B2.1.3": [
+        {
+          "q": "All devices share one backbone cable, and every device receives all the data sent. Traffic grows and collisions increase. Which topology is this?",
+          "options": [
+            "Bus",
+            "Star",
+            "Ring",
+            "PAN"
+          ],
+          "answer": 0,
+          "why": "In a bus topology everything shares one cable, so heavy traffic causes collisions and one break stops the network."
+        }
+      ],
+      "B2.2.1": [
+        {
+          "q": "A runner's phone connects to their wireless earbuds and smartwatch by Bluetooth. What type of network is this?",
+          "options": [
+            "PAN",
+            "LAN",
+            "WAN",
+            "VPN"
+          ],
+          "answer": 0,
+          "why": "A Personal Area Network links one person's devices over a short range."
+        }
+      ],
+      "B2.2.2": [
+        {
+          "q": "A school's computers, printers and servers all sit on one site and use network hardware the school owns. What type of network is this?",
+          "options": [
+            "LAN",
+            "WAN",
+            "PAN",
+            "VPN"
+          ],
+          "answer": 0,
+          "why": "A LAN covers a single site using the organisation's own hardware."
+        }
+      ],
+      "B2.2.3": [
+        {
+          "q": "A bank links the networks in all its branches across the UK using lines leased from a telecoms company. What type of network is this?",
+          "options": [
+            "WAN",
+            "LAN",
+            "PAN",
+            "Star topology"
+          ],
+          "answer": 0,
+          "why": "A WAN covers a large area and links LANs using third-party lines."
+        }
+      ],
+      "B2.2.4": [
+        {
+          "q": "A company with two offices wants to link them securely over the public internet rather than paying for leased lines. What should it use?",
+          "options": [
+            "VPN",
+            "PAN",
+            "Bluetooth",
+            "Bus topology"
+          ],
+          "answer": 0,
+          "why": "A VPN creates an encrypted tunnel through the internet to a private network."
+        }
+      ],
+      "B2.3.1": [
+        {
+          "q": "Nurses need to move between wards with tablets and stay connected the whole time. Which network factor is the designer considering?",
+          "options": [
+            "User needs",
+            "Cost",
+            "Compatibility",
+            "Efficiency"
+          ],
+          "answer": 0,
+          "why": "User needs cover mobility, the applications users run and how many connect at once."
+        }
+      ],
+      "B2.3.2": [
+        {
+          "q": "A stock trading firm requires a network with under 5 ms latency and 99.99% uptime. Which factor is this?",
+          "options": [
+            "Specifications",
+            "User needs",
+            "Productivity",
+            "Cost"
+          ],
+          "answer": 0,
+          "why": "Specifications are the technical requirements the network must meet, such as speed, latency and uptime."
+        }
+      ],
+      "B2.3.3": [
+        {
+          "q": "A farm needs the network to reach sensors in fields far from the main building. Which factor is this?",
+          "options": [
+            "Connectivity",
+            "Compatibility",
+            "Security",
+            "Efficiency"
+          ],
+          "answer": 0,
+          "why": "Connectivity is whether every device and site that needs to connect can do so reliably."
+        }
+      ],
+      "B2.3.4": [
+        {
+          "q": "A small charity weighs up the price of cabling, switches, ISP fees and paying someone to support the network. Which factor is this?",
+          "options": [
+            "Cost",
+            "Specifications",
+            "Productivity",
+            "Implementation"
+          ],
+          "answer": 0,
+          "why": "Cost is the full cost of building and running the network."
+        }
+      ],
+      "B2.3.5": [
+        {
+          "q": "Backups that run during the working day slow everyone's connection. Scheduling them overnight makes better use of the bandwidth. Which factor is this?",
+          "options": [
+            "Efficiency",
+            "Security",
+            "Cost",
+            "User needs"
+          ],
+          "answer": 0,
+          "why": "Efficiency is how well the network uses its bandwidth to avoid congestion and delays."
+        }
+      ],
+      "B2.3.6": [
+        {
+          "q": "A company checks that a new network will work with its existing printers, servers and software before buying it. Which factor is this?",
+          "options": [
+            "Compatibility",
+            "Connectivity",
+            "Productivity",
+            "Specifications"
+          ],
+          "answer": 0,
+          "why": "Compatibility is whether the network works with the hardware, software and protocols already in use."
+        }
+      ],
+      "B2.3.7": [
+        {
+          "q": "A school installs its new network over the summer holiday, testing it before staff return, so lessons aren't disrupted. Which factor is this?",
+          "options": [
+            "Implementation (timescales, testing, downtime)",
+            "Efficiency",
+            "Cost",
+            "Security"
+          ],
+          "answer": 0,
+          "why": "Implementation covers how long rollout takes, how it is tested and how much disruption it causes."
+        }
+      ],
+      "B2.3.8": [
+        {
+          "q": "After the network upgrade, staff no longer wait minutes for files to open and finish more work each day. Which factor improved?",
+          "options": [
+            "Productivity",
+            "Compatibility",
+            "Connectivity",
+            "Security"
+          ],
+          "answer": 0,
+          "why": "Productivity is how the network affects how much staff can get done."
+        }
+      ],
+      "B2.3.9": [
+        {
+          "q": "A law firm insists its network uses encrypted Wi-Fi, a firewall and separate guest access. Which factor is it prioritising?",
+          "options": [
+            "Security",
+            "Efficiency",
+            "User needs",
+            "Cost"
+          ],
+          "answer": 0,
+          "why": "Security protects the network from unauthorised access, interception and attack."
+        }
+      ],
+      "B2.4": [
+        {
+          "q": "Wi-Fi in a busy open-plan office is slow because too many devices share one access point. What would most improve performance?",
+          "options": [
+            "Add more access points",
+            "Use a bus topology",
+            "Switch off the firewall",
+            "Use lossless compression"
+          ],
+          "answer": 0,
+          "why": "Performance depends on hardware and set-up. More access points spread the load."
+        }
+      ],
+      "B3.1.1": [
+        {
+          "q": "A worker wants their email kept on the server and synced, so they can see the same inbox on their phone and laptop. Which protocol fits?",
+          "options": [
+            "IMAP",
+            "POP3",
+            "SMTP",
+            "HTTP"
+          ],
+          "answer": 0,
+          "why": "IMAP keeps mail on the server and syncs it across devices. POP3 downloads it, and SMTP sends it."
+        },
+        {
+          "q": "Which protocol is used to SEND an email from Outlook to the mail server?",
+          "options": [
+            "SMTP",
+            "IMAP",
+            "POP3",
+            "FTP"
+          ],
+          "answer": 0,
+          "why": "SMTP sends email; IMAP and POP3 retrieve it."
+        }
+      ],
+      "B3.1.2": [
+        {
+          "q": "A company drops its landline phones and makes all calls through Microsoft Teams over the internet. What technology is this?",
+          "options": [
+            "VoIP",
+            "SMTP",
+            "HTTPS",
+            "Bluetooth"
+          ],
+          "answer": 0,
+          "why": "VoIP sends voice and video as data packets over the internet."
+        }
+      ],
+      "B3.1.3": [
+        {
+          "q": "Which protocol should an online banking site use so that logins can't be read if intercepted?",
+          "options": [
+            "HTTPS",
+            "HTTP",
+            "POP3",
+            "VoIP"
+          ],
+          "answer": 0,
+          "why": "HTTPS adds TLS encryption to HTTP."
+        }
+      ],
+      "B3.1.4": [
+        {
+          "q": "When you pay with Apple Pay, the shop receives a one-off token instead of your real card number. What is this an example of?",
+          "options": [
+            "A secure payment system (tokenisation)",
+            "Lossy compression",
+            "A VPN",
+            "IMAP"
+          ],
+          "answer": 0,
+          "why": "Secure payment systems protect card data using encryption and tokenisation."
+        }
+      ],
+      "B3.2": [
+        {
+          "q": "Someone on an open café Wi-Fi network captures another customer's unencrypted login details. Which security issue is this?",
+          "options": [
+            "Interception of data in transit",
+            "Accidental damage",
+            "Natural disaster",
+            "Data loss at rest"
+          ],
+          "answer": 0,
+          "why": "Unencrypted data in transit can be intercepted, altered or blocked."
+        }
+      ],
+      "B3.3": [
+        {
+          "q": "A gamer has very fast broadband for downloads but still sees a lag between pressing a button and the game reacting. What is the problem?",
+          "options": [
+            "High latency",
+            "Low bandwidth",
+            "Lossless compression",
+            "Too much storage"
+          ],
+          "answer": 0,
+          "why": "Bandwidth is how much data per second; latency is the delay. High latency causes lag even on fast connections."
+        }
+      ],
+      "B3.4.1": [
+        {
+          "q": "A designer needs the company logo to have a transparent background on the website without losing sharpness. Which format suits it?",
+          "options": [
+            "PNG",
+            "JPEG",
+            "MP3",
+            "WAV"
+          ],
+          "answer": 0,
+          "why": "PNG is lossless and supports transparency. JPEG suits photos."
+        }
+      ],
+      "B3.4.2": [
+        {
+          "q": "A recording studio needs uncompressed, full-quality audio for editing, even though the files are huge. Which format suits it?",
+          "options": [
+            "WAV",
+            "MP3",
+            "JPEG",
+            "MP4"
+          ],
+          "answer": 0,
+          "why": "WAV keeps full quality; MP3 is compressed for streaming."
+        }
+      ],
+      "B3.4.3": [
+        {
+          "q": "A YouTuber uploads a file containing both video and audio streams compressed by codecs. Which format is it most likely in?",
+          "options": [
+            "MP4",
+            "PNG",
+            "WAV",
+            ".exe"
+          ],
+          "answer": 0,
+          "why": "MP4 is a container format holding video and audio streams."
+        }
+      ],
+      "B3.4.4": [
+        {
+          "q": "A user downloads a program to install on Windows. Which file type will it most likely be?",
+          "options": [
+            ".exe",
+            ".apk",
+            ".dmg",
+            ".png"
+          ],
+          "answer": 0,
+          "why": "Application file formats are OS-specific: .exe for Windows, .apk for Android, .dmg for macOS."
+        }
+      ],
+      "B3.5.1": [
+        {
+          "q": "A music streaming service shrinks songs by permanently removing sounds most people can't hear. Which compression is this?",
+          "options": [
+            "Lossy",
+            "Lossless",
+            "Encryption",
+            "Tokenisation"
+          ],
+          "answer": 0,
+          "why": "Lossy compression permanently removes some data for much smaller files."
+        }
+      ],
+      "B3.5.2": [
+        {
+          "q": "A company zips its spreadsheets before emailing them, and every number must come back exactly as it was. Which compression must it use?",
+          "options": [
+            "Lossless",
+            "Lossy",
+            "MP3",
+            "JPEG"
+          ],
+          "answer": 0,
+          "why": "Lossless compression restores the original exactly, which is essential for documents and data."
+        }
+      ],
+      "B3.6": [
+        {
+          "q": "During a video call, software compresses the video before sending it and decompresses it for playback on the other side. What is this software?",
+          "options": [
+            "Codec",
+            "Protocol",
+            "Firewall",
+            "Topology"
+          ],
+          "answer": 0,
+          "why": "A codec (coder-decoder) compresses media for sending and decompresses it for playback."
+        }
+      ],
+      "C1.1.1": [
+        {
+          "q": "A hospital wants full control over where patient records are stored and who can reach them, and will pay extra for it. Which cloud model suits it best?",
+          "options": [
+            "Private cloud",
+            "Public cloud",
+            "Hybrid cloud"
+          ],
+          "answer": 0,
+          "why": "Private cloud is used by one organisation only, giving the most control and security for sensitive data, at a higher cost."
+        },
+        {
+          "q": "Which is the main DRAWBACK of a private cloud compared with a public cloud?",
+          "options": [
+            "Higher set-up and running costs",
+            "Data is shared with other organisations",
+            "Less control over security",
+            "It cannot be scaled at all"
+          ],
+          "answer": 0,
+          "why": "The organisation must buy, house and maintain its own servers and staff to run them."
+        }
+      ],
+      "C1.1.2": [
+        {
+          "q": "A new start-up has little money and expects users to grow quickly. It wants to pay only for what it uses. Which cloud model should it choose?",
+          "options": [
+            "Public cloud",
+            "Private cloud",
+            "Hybrid cloud"
+          ],
+          "answer": 0,
+          "why": "Public cloud is pay-as-you-go and scales easily, so it suits small organisations with changing demand."
+        },
+        {
+          "q": "A school uses Microsoft 365, run on servers shared by thousands of other organisations. What is a risk of this model?",
+          "options": [
+            "Less control over where its data is physically stored",
+            "Very high up-front hardware costs",
+            "Staff must maintain the servers",
+            "It can only be used on-site"
+          ],
+          "answer": 0,
+          "why": "In a public cloud the provider controls the hardware and data location, so the school has less control."
+        }
+      ],
+      "C1.1.3": [
+        {
+          "q": "A retailer keeps card payment data on its own servers but runs its busy website on AWS so it can cope with Black Friday traffic. Which model is this?",
+          "options": [
+            "Hybrid cloud",
+            "Private cloud",
+            "Public cloud"
+          ],
+          "answer": 0,
+          "why": "Hybrid cloud mixes private (sensitive data) and public (scalable, cheaper workloads)."
+        }
+      ],
+      "C1.1.4": [
+        {
+          "q": "A games company rents virtual servers from Azure. Its own staff install the operating system and the game server software. Which service model is this?",
+          "options": [
+            "IaaS",
+            "PaaS",
+            "SaaS"
+          ],
+          "answer": 0,
+          "why": "With IaaS the provider supplies the hardware; the customer manages the OS and software."
+        }
+      ],
+      "C1.1.5": [
+        {
+          "q": "A small accountancy firm pays a monthly fee per user for Google Workspace. The provider handles all updates, servers and security. Which service model is this?",
+          "options": [
+            "SaaS",
+            "IaaS",
+            "PaaS"
+          ],
+          "answer": 0,
+          "why": "SaaS delivers finished software over the internet; the provider manages everything."
+        }
+      ],
+      "C1.1.6": [
+        {
+          "q": "A team of developers wants to build and launch a web app without having to set up or manage any servers or operating systems. Which service model should they use?",
+          "options": [
+            "PaaS",
+            "IaaS",
+            "SaaS"
+          ],
+          "answer": 0,
+          "why": "PaaS gives developers a ready-made platform to build and deploy apps on."
+        }
+      ],
+      "C1.2": [
+        {
+          "q": "A business replaces its own server room with cloud services. Which is a likely impact?",
+          "options": [
+            "IT costs move from large up-front purchases to ongoing subscriptions",
+            "Staff can no longer work from home",
+            "It no longer needs an internet connection",
+            "Its data can never be lost"
+          ],
+          "answer": 0,
+          "why": "Cloud turns capital spending on hardware into a regular running cost, and depends on internet access."
+        },
+        {
+          "q": "Which is a disadvantage of an organisation relying on cloud computing?",
+          "options": [
+            "Services stop if the internet connection fails",
+            "Software can never be updated",
+            "Data cannot be shared between staff",
+            "It must buy extra servers every year"
+          ],
+          "answer": 0,
+          "why": "Cloud services are reached over the internet, so poor connectivity stops work."
+        }
+      ],
+      "C1.3.1": [
+        {
+          "q": "Staff working from home need to reach the company's internal file server securely over their home broadband. What should the company provide?",
+          "options": [
+            "A VPN",
+            "A wiki",
+            "A public cloud account",
+            "A chatroom"
+          ],
+          "answer": 0,
+          "why": "A VPN creates an encrypted tunnel over the internet into the organisation's network."
+        }
+      ],
+      "C1.3.2": [
+        {
+          "q": "An IT technician in head office takes control of a branch employee's PC to fix a settings problem without travelling. What technology are they using?",
+          "options": [
+            "Remote desktop",
+            "VPN only",
+            "Instant messaging",
+            "SaaS"
+          ],
+          "answer": 0,
+          "why": "Remote desktop software lets one computer view and control another computer's desktop over a network."
+        }
+      ],
+      "C1.4.1": [
+        {
+          "q": "A bank is choosing an online system. Its top concern is that customer data is encrypted and that the system meets UK GDPR. Which selection factor is this?",
+          "options": [
+            "Security",
+            "Ease of use",
+            "Scalability",
+            "Features"
+          ],
+          "answer": 0,
+          "why": "Security covers encryption, access control and legal compliance."
+        }
+      ],
+      "C1.4.2": [
+        {
+          "q": "A charity compares systems by adding up subscription fees, staff training and the effort of moving its old data across. Which factor is it judging?",
+          "options": [
+            "Cost",
+            "Connectivity",
+            "Features",
+            "Security"
+          ],
+          "answer": 0,
+          "why": "Cost includes subscriptions, data transfer, training and migration, not just the price tag."
+        }
+      ],
+      "C1.4.3": [
+        {
+          "q": "A care home's staff have limited IT skills, so the manager wants a rota system they can learn in a few minutes. Which factor matters most?",
+          "options": [
+            "Ease of use",
+            "Scalability",
+            "Cost",
+            "Connectivity"
+          ],
+          "answer": 0,
+          "why": "Ease of use is how quickly staff and customers can learn and use the system."
+        }
+      ],
+      "C1.4.4": [
+        {
+          "q": "A dentist rejects an online booking system because it cannot send text reminders, which the practice needs. Which factor caused the rejection?",
+          "options": [
+            "Features",
+            "Ease of use",
+            "Cost",
+            "Security"
+          ],
+          "answer": 0,
+          "why": "Features means whether the system's functions match what the organisation actually needs."
+        }
+      ],
+      "C1.4.5": [
+        {
+          "q": "A farm in a rural area with slow, unreliable broadband is unsure whether to move to cloud software. Which factor is the main worry?",
+          "options": [
+            "Connectivity",
+            "Scalability",
+            "Features",
+            "Ease of use"
+          ],
+          "answer": 0,
+          "why": "Online systems depend on the quality and reliability of the internet connection."
+        }
+      ],
+      "C1.4.6": [
+        {
+          "q": "An online shop gets ten times more visitors at Christmas and wants extra capacity just for December. Which factor should it look for in a system?",
+          "options": [
+            "Scalability",
+            "Ease of use",
+            "Security",
+            "Features"
+          ],
+          "answer": 0,
+          "why": "Scalability is the ability to increase or reduce capacity as demand changes, without major cost or disruption."
+        }
+      ],
+      "C2.1.1": [
+        {
+          "q": "A clothing brand wants to share photos and short videos of new products and let customers like, comment and share them. Which online community should it use?",
+          "options": [
+            "Social media",
+            "Wiki",
+            "Forum",
+            "Podcast"
+          ],
+          "answer": 0,
+          "why": "Social media platforms let users create, share and interact with content."
+        }
+      ],
+      "C2.1.2": [
+        {
+          "q": "A tech reviewer posts regular video reviews of new phones on YouTube. What is this an example of?",
+          "options": [
+            "Vlog",
+            "Wiki",
+            "Chatroom",
+            "Forum"
+          ],
+          "answer": 0,
+          "why": "A vlog is the video version of a blog: regularly updated content from one creator."
+        }
+      ],
+      "C2.1.3": [
+        {
+          "q": "A company wants a knowledge base that any member of staff can add to and edit, so procedures stay up to date. What should it set up?",
+          "options": [
+            "Wiki",
+            "Blog",
+            "Podcast",
+            "Instant messaging"
+          ],
+          "answer": 0,
+          "why": "A wiki is a website that many users can create and edit together."
+        }
+      ],
+      "C2.1.4": [
+        {
+          "q": "A gaming community wants a space where many members can type to each other live at the same time in themed rooms. Which tool fits?",
+          "options": [
+            "Chatroom",
+            "Forum",
+            "Blog",
+            "Podcast"
+          ],
+          "answer": 0,
+          "why": "Chatrooms let several users talk in real time by text."
+        }
+      ],
+      "C2.1.5": [
+        {
+          "q": "A manager wants to send quick real-time text messages to one colleague or a small project team during the day. Which tool fits best?",
+          "options": [
+            "Instant messaging",
+            "Forum",
+            "Wiki",
+            "Podcast"
+          ],
+          "answer": 0,
+          "why": "Instant messaging is real-time text chat between individuals or small groups, e.g. WhatsApp or Teams."
+        }
+      ],
+      "C2.1.6": [
+        {
+          "q": "A college records weekly audio revision episodes that students can download and listen to on the bus. What is this?",
+          "options": [
+            "Podcast",
+            "Vlog",
+            "Chatroom",
+            "Wiki"
+          ],
+          "answer": 0,
+          "why": "Podcasts are audio episodes published online to listen to on demand."
+        }
+      ],
+      "C2.1.7": [
+        {
+          "q": "A software company wants customers to post questions and reply to each other in threads, which others can read and answer later. Which tool should it use?",
+          "options": [
+            "Forum",
+            "Chatroom",
+            "Instant messaging",
+            "Podcast"
+          ],
+          "answer": 0,
+          "why": "Forums are discussion boards with threads that users post to in their own time, not live."
+        }
+      ],
+      "C2.2.1": [
+        {
+          "q": "Users complain that a council's community app is slow to load and hard to use with a screen reader. Which consideration does this affect?",
+          "options": [
+            "User experience (UX)",
+            "Integration with current systems",
+            "Cost",
+            "Training"
+          ],
+          "answer": 0,
+          "why": "UX covers how easy, fast, available and accessible the platform is."
+        }
+      ],
+      "C2.2.2": [
+        {
+          "q": "A youth club chooses a platform with group video calls because its members asked for them. Which consideration is it addressing?",
+          "options": [
+            "Meeting user needs",
+            "Downtime",
+            "Privacy",
+            "Productivity"
+          ],
+          "answer": 0,
+          "why": "Meeting user needs means the platform's features match what its users actually need."
+        }
+      ],
+      "C2.2.3": [
+        {
+          "q": "A small business finds that running an online community needs paid hosting and a part-time moderator. Which consideration is this?",
+          "options": [
+            "Cost",
+            "Security",
+            "Downtime",
+            "User experience"
+          ],
+          "answer": 0,
+          "why": "Cost covers subscriptions, hosting, moderation and staff."
+        }
+      ],
+      "C2.2.4": [
+        {
+          "q": "Members are worried that a forum sells their email addresses to advertisers. Which consideration is this?",
+          "options": [
+            "Privacy",
+            "Security",
+            "Downtime",
+            "Training"
+          ],
+          "answer": 0,
+          "why": "Privacy is about how personal data is protected and whether it is shared with third parties."
+        }
+      ],
+      "C2.2.5": [
+        {
+          "q": "Hackers take over several accounts on a company's social media page and post malicious links. Which consideration failed?",
+          "options": [
+            "Security",
+            "Privacy",
+            "User experience",
+            "Integration"
+          ],
+          "answer": 0,
+          "why": "Security protects accounts and data on the platform from hacking and malicious content."
+        }
+      ],
+      "C2.2.6": [
+        {
+          "q": "A company's Teams service goes offline for four hours, so staff cannot talk to customers. Which consideration is this?",
+          "options": [
+            "Downtime",
+            "Training",
+            "Cost",
+            "Privacy"
+          ],
+          "answer": 0,
+          "why": "Downtime is time when the platform is unavailable, so users cannot communicate."
+        }
+      ],
+      "C2.2.7": [
+        {
+          "q": "Older staff struggle to post on the new company intranet until they attend a short workshop. Which consideration does this show?",
+          "options": [
+            "Training",
+            "Productivity",
+            "Integration",
+            "Cost"
+          ],
+          "answer": 0,
+          "why": "Staff and users may need training to use and manage a platform well."
+        }
+      ],
+      "C2.2.8": [
+        {
+          "q": "A firm chooses Microsoft Teams because it links straight into the Outlook calendars and SharePoint files it already uses. Which consideration is this?",
+          "options": [
+            "Integration with current systems",
+            "Meeting user needs",
+            "Downtime",
+            "Privacy"
+          ],
+          "answer": 0,
+          "why": "Integration is how easily the platform connects to systems the organisation already uses."
+        }
+      ],
+      "C2.2.9": [
+        {
+          "q": "A manager notices staff spend hours scrolling the company social feed instead of finishing tasks. Which consideration is affected?",
+          "options": [
+            "Productivity",
+            "Security",
+            "Downtime",
+            "Cost"
+          ],
+          "answer": 0,
+          "why": "Online communities can raise or lower how much staff get done."
+        }
+      ],
+      "C2.2.10": [
+        {
+          "q": "A company writes rules banning staff from posting confidential information or abusing customers on social media. What is this an example of?",
+          "options": [
+            "Working practices and company policies",
+            "Training",
+            "User experience",
+            "Integration with current systems"
+          ],
+          "answer": 0,
+          "why": "Organisations set policies, such as an AUP, for how staff behave on online communities."
+        }
+      ],
+      "D1.1.1": [
+        {
+          "q": "A hospital's files are suddenly locked and a message demands payment in Bitcoin to unlock them. What kind of threat is this?",
+          "options": [
+            "Malware (ransomware)",
+            "Social engineering",
+            "Accidental damage",
+            "Natural disaster"
+          ],
+          "answer": 0,
+          "why": "Ransomware is malware that encrypts data and demands payment to release it."
+        }
+      ],
+      "D1.1.2": [
+        {
+          "q": "An attacker exploits an unpatched web server to get into a shop's network and download customer records. Which threat is this?",
+          "options": [
+            "Unauthorised access (hacking)",
+            "Accidental disclosure",
+            "Social engineering",
+            "Natural disaster"
+          ],
+          "answer": 0,
+          "why": "Hacking is gaining access to a system without permission, often through unpatched weaknesses."
+        }
+      ],
+      "D1.1.3": [
+        {
+          "q": "A technician spills coffee over a server, which stops working and loses a day's orders. Which threat is this?",
+          "options": [
+            "Accidental damage",
+            "Malware",
+            "Unauthorised access",
+            "Stealing information"
+          ],
+          "answer": 0,
+          "why": "Accidental damage is unintentional harm from human error or physical accidents."
+        }
+      ],
+      "D1.1.4": [
+        {
+          "q": "Staff get an email that looks like it's from the IT department asking them to click a link and 'confirm' their password. What attack is this?",
+          "options": [
+            "Social engineering (phishing)",
+            "Virus",
+            "Hacking an unpatched server",
+            "Natural disaster"
+          ],
+          "answer": 0,
+          "why": "Social engineering tricks people, not systems, into giving away information or access."
+        }
+      ],
+      "D1.1.5": [
+        {
+          "q": "A river floods a company's ground-floor server room, destroying all its on-site storage. What should the company have had to survive this?",
+          "options": [
+            "An off-site or cloud backup",
+            "Stronger passwords",
+            "A firewall",
+            "Antivirus software"
+          ],
+          "answer": 0,
+          "why": "Natural disasters destroy hardware on site, so only a copy kept somewhere else lets you recover."
+        }
+      ],
+      "D1.2.1": [
+        {
+          "q": "An employee visits a film piracy site on a work PC, and malware is silently installed. Which internal threat is this?",
+          "options": [
+            "Access to inappropriate websites",
+            "Stealing/leaking information",
+            "Accidental disclosure",
+            "Natural disaster"
+          ],
+          "answer": 0,
+          "why": "Visiting malicious or banned sites on work systems can bring malware in."
+        }
+      ],
+      "D1.2.2": [
+        {
+          "q": "A receptionist emails a spreadsheet of patient details to the wrong person by mistake. What is this?",
+          "options": [
+            "Accidental disclosure of data",
+            "Stealing/leaking information",
+            "Hacking",
+            "Malware"
+          ],
+          "answer": 0,
+          "why": "Sharing data by mistake still counts as a data breach."
+        }
+      ],
+      "D1.2.3": [
+        {
+          "q": "On his last day, a salesperson copies the whole customer database onto a USB stick to take to a rival. Which threat is this?",
+          "options": [
+            "Stealing/leaking information",
+            "Accidental disclosure",
+            "Use of portable devices only",
+            "Social engineering"
+          ],
+          "answer": 0,
+          "why": "It is a deliberate insider act of copying confidential data to share or sell."
+        }
+      ],
+      "D1.2.4": [
+        {
+          "q": "A nurse leaves an unencrypted USB stick of patient records on a train. Which internal threat does this show?",
+          "options": [
+            "Use of portable devices",
+            "Access to inappropriate websites",
+            "Hacking",
+            "Natural disaster"
+          ],
+          "answer": 0,
+          "why": "USB sticks, laptops and phones can be lost or bring in malware."
+        }
+      ],
+      "D1.3.1": [
+        {
+          "q": "Ransomware encrypts a small firm's only copy of its accounts, and there is no backup. What is the most direct impact?",
+          "options": [
+            "Loss of data",
+            "Loss of customers due to public image",
+            "Financial loss from legal action",
+            "Slower internet"
+          ],
+          "answer": 0,
+          "why": "With no backup, the data is permanently lost or inaccessible."
+        }
+      ],
+      "D1.3.2": [
+        {
+          "q": "After failing to secure customer data, a company is fined by the ICO and sued by affected customers. What impact is this?",
+          "options": [
+            "Financial loss due to legal action",
+            "Loss of data",
+            "Loss of customers due to public image",
+            "Accidental damage"
+          ],
+          "answer": 0,
+          "why": "ICO fines and lawsuits are financial losses caused by legal action."
+        }
+      ],
+      "D1.3.3": [
+        {
+          "q": "After a card data breach makes the news, shoppers stop trusting a retailer and buy from its rivals. Which impact is this?",
+          "options": [
+            "Loss of customers due to public image",
+            "Financial loss due to legal action",
+            "Loss of data",
+            "Downtime"
+          ],
+          "answer": 0,
+          "why": "A public breach damages trust and reputation, so customers leave."
+        }
+      ],
+      "D2.1.1": [
+        {
+          "q": "Everyone in a company can open the payroll spreadsheet, but only HR should be able to edit it. What should be set on the file?",
+          "options": [
+            "File permissions (read-only for everyone except HR)",
+            "A digital certificate",
+            "Biometrics",
+            "A firewall rule"
+          ],
+          "answer": 0,
+          "why": "File permissions control who can read, write, run or delete a file."
+        }
+      ],
+      "D2.1.2": [
+        {
+          "q": "Staff should see only their own department's systems, while IT admins can manage everything. Which protection is this?",
+          "options": [
+            "Access levels",
+            "Backups",
+            "Physical access control",
+            "Encryption in transit"
+          ],
+          "answer": 0,
+          "why": "Access levels give each user only the privileges their role needs."
+        }
+      ],
+      "D2.1.3": [
+        {
+          "q": "A school copies its data every night to a separate location so it can restore files after a disaster. Which protection is this?",
+          "options": [
+            "Backup and recovery procedures",
+            "File permissions",
+            "Antivirus software",
+            "MFA"
+          ],
+          "answer": 0,
+          "why": "Backups are copies kept elsewhere that can be restored after data loss."
+        }
+      ],
+      "D2.1.4": [
+        {
+          "q": "An attacker has stolen a member of staff's password but still can't log in because a code is needed from the staff member's phone. What stopped them?",
+          "options": [
+            "Multi-factor authentication",
+            "File permissions",
+            "A firewall",
+            "A digital certificate"
+          ],
+          "answer": 0,
+          "why": "MFA adds a second factor, so a password alone is not enough."
+        }
+      ],
+      "D2.1.5": [
+        {
+          "q": "A lab wants entry that can't be passed on like a swipe card or password, so it scans each person's fingerprint. Which protection is this?",
+          "options": [
+            "Biometrics",
+            "Physical access control with keys",
+            "Passwords",
+            "Access levels"
+          ],
+          "answer": 0,
+          "why": "Biometrics use unique body features, which can't easily be shared or forgotten."
+        }
+      ],
+      "D2.1.6": [
+        {
+          "q": "A company puts its server room behind a locked door with swipe-card entry and CCTV. Which kind of protection is this?",
+          "options": [
+            "Physical access control",
+            "Encryption",
+            "File permissions",
+            "Antivirus"
+          ],
+          "answer": 0,
+          "why": "Physical measures stop unauthorised people reaching IT equipment."
+        }
+      ],
+      "D2.1.7": [
+        {
+          "q": "A customer checks the padlock on a bank's website to be sure it is the genuine bank. What issued by a Certificate Authority proves this?",
+          "options": [
+            "A digital certificate",
+            "A firewall",
+            "A VPN",
+            "An access level"
+          ],
+          "answer": 0,
+          "why": "Digital certificates prove a website is genuine and enable encryption."
+        }
+      ],
+      "D2.2": [
+        {
+          "q": "A downloaded file matches a known trojan's signature and is moved somewhere it can't run. Which software did this, and what action did it take?",
+          "options": [
+            "Antivirus: quarantine",
+            "Firewall: port blocking",
+            "Encryption: data at rest",
+            "Backup: restore"
+          ],
+          "answer": 0,
+          "why": "Antivirus finds malware using signatures and behaviour checks, then quarantines or removes it."
+        }
+      ],
+      "D2.3": [
+        {
+          "q": "A business wants to block all incoming network traffic on ports it does not use. What should it configure?",
+          "options": [
+            "A firewall",
+            "Antivirus software",
+            "File permissions",
+            "A backup"
+          ],
+          "answer": 0,
+          "why": "A firewall monitors traffic in and out and blocks it according to rules."
+        }
+      ],
+      "D2.4.1": [
+        {
+          "q": "A sales rep's laptop is stolen, but the thief cannot read any of the files on the drive because BitLocker is turned on. What protected the data?",
+          "options": [
+            "Encryption of data at rest",
+            "Encryption of data in transit",
+            "A firewall",
+            "Antivirus"
+          ],
+          "answer": 0,
+          "why": "Encrypting stored data means a stolen device or drive can't be read."
+        }
+      ],
+      "D2.4.2": [
+        {
+          "q": "Messages are intercepted on public Wi-Fi as they travel, but the attacker sees only scrambled data. What protected them?",
+          "options": [
+            "Encryption of data in transit",
+            "Encryption of data at rest",
+            "File permissions",
+            "Physical access control"
+          ],
+          "answer": 0,
+          "why": "Encrypting data as it travels means it can't be read if it is intercepted."
+        }
+      ],
+      "D2.4.3": [
+        {
+          "q": "An online shop's checkout page must encrypt card details between the browser and server and prove the site is genuine. What should it use?",
+          "options": [
+            "HTTPS (TLS)",
+            "HTTP",
+            "FTP",
+            "A screen reader"
+          ],
+          "answer": 0,
+          "why": "HTTPS is HTTP secured with TLS: it encrypts the traffic and proves the server is genuine."
+        }
+      ],
+      "E1.1.1": [
+        {
+          "q": "A clothes shop starts selling through its own website, taking payment online and posting orders to customers. Which online service is this?",
+          "options": [
+            "Online retail",
+            "Online booking system",
+            "Online financial services",
+            "Online education"
+          ],
+          "answer": 0,
+          "why": "Online retail is buying and selling goods online, with ordering, payment and delivery handled digitally."
+        },
+        {
+          "q": "Which is a DISADVANTAGE of online retail for customers?",
+          "options": [
+            "They can't see or try products before buying",
+            "They must travel to a shop",
+            "Shops are only open 9 to 5",
+            "They can't compare prices"
+          ],
+          "answer": 0,
+          "why": "Online shopping is convenient, but you can't handle goods and returns take effort."
+        }
+      ],
+      "E1.1.2": [
+        {
+          "q": "A customer pays bills, moves money between accounts and checks their balance on a phone app without visiting a branch. What is this?",
+          "options": [
+            "Online financial services",
+            "Online retail",
+            "Online booking",
+            "Online entertainment"
+          ],
+          "answer": 0,
+          "why": "Banking, insurance and payments done online are online financial services."
+        }
+      ],
+      "E1.1.3": [
+        {
+          "q": "A student completes a certified coding course through video lessons and online quizzes at home. Which online service is this?",
+          "options": [
+            "Online education and training",
+            "Online news and information",
+            "Online entertainment",
+            "Online booking"
+          ],
+          "answer": 0,
+          "why": "Courses and qualifications delivered over the internet are online education."
+        }
+      ],
+      "E1.1.4": [
+        {
+          "q": "A story spreads on social media within minutes, before it has been fact-checked. Which online service, and which risk, does this show?",
+          "options": [
+            "Online news: misinformation spreading",
+            "Online retail: fraud",
+            "Online booking: double booking",
+            "Online education: cheating"
+          ],
+          "answer": 0,
+          "why": "Online news is instant, but unchecked stories can spread misinformation."
+        }
+      ],
+      "E1.1.5": [
+        {
+          "q": "A family stops buying DVDs and streams films on demand for a monthly fee instead. Which online service is this?",
+          "options": [
+            "Online entertainment and leisure",
+            "Online retail",
+            "Online education",
+            "Online financial services"
+          ],
+          "answer": 0,
+          "why": "Music, films, TV and games delivered on demand count as online entertainment."
+        }
+      ],
+      "E1.1.6": [
+        {
+          "q": "A patient checks which appointment slots are free at their GP and reserves one instantly through an app. What system is this?",
+          "options": [
+            "Online booking system",
+            "Online retail",
+            "Online financial service",
+            "Online news"
+          ],
+          "answer": 0,
+          "why": "Booking systems let customers check availability and reserve in real time."
+        }
+      ],
+      "E1.2.1": [
+        {
+          "q": "A supermarket records every purchase: the items, time, amount and payment method. What kind of data is this?",
+          "options": [
+            "Transactional data",
+            "Secondary data",
+            "Targeted marketing",
+            "Primary research data"
+          ],
+          "answer": 0,
+          "why": "Transactional data is recorded each time a customer interacts with an organisation."
+        }
+      ],
+      "E1.2.2": [
+        {
+          "q": "After you look at trainers on one website, adverts for those trainers follow you around other sites. What is this?",
+          "options": [
+            "Targeted marketing",
+            "Collaborative working",
+            "Transactional data",
+            "Validation"
+          ],
+          "answer": 0,
+          "why": "Targeted marketing uses data about your behaviour to show personalised adverts."
+        }
+      ],
+      "E1.2.3": [
+        {
+          "q": "Five students edit the same Google Doc at the same time from different homes. What does this show?",
+          "options": [
+            "Collaborative working",
+            "Remote desktop",
+            "Targeted marketing",
+            "Primary data collection"
+          ],
+          "answer": 0,
+          "why": "Collaborative working tools let people work on the same files at once from anywhere."
+        }
+      ],
+      "E1.2.4": [
+        {
+          "q": "An accountant works from home three days a week using a VPN, cloud apps and video calls. What is this?",
+          "options": [
+            "Remote working",
+            "Collaborative working",
+            "Online retail",
+            "Transactional data"
+          ],
+          "answer": 0,
+          "why": "Remote working means working away from the office with tools such as VPNs and video calls."
+        },
+        {
+          "q": "Which is a DRAWBACK of remote working for an organisation?",
+          "options": [
+            "Harder to keep data secure on home networks",
+            "Higher office rent",
+            "Staff can't use email",
+            "Fewer people can apply for jobs"
+          ],
+          "answer": 0,
+          "why": "Home networks and devices are harder to control, which raises security risks."
+        }
+      ],
+      "E2.1.1": [
+        {
+          "q": "A café wants to know what its own customers think of its new menu, so it hands out a short survey. What kind of data will this collect?",
+          "options": [
+            "Primary data",
+            "Secondary data",
+            "Transactional data",
+            "Census data"
+          ],
+          "answer": 0,
+          "why": "Primary data is collected first-hand for a specific current purpose."
+        }
+      ],
+      "E2.1.2": [
+        {
+          "q": "A business planning a new shop uses government census figures about the local population. What kind of data is this?",
+          "options": [
+            "Secondary data",
+            "Primary data",
+            "Transactional data",
+            "Focus group data"
+          ],
+          "answer": 0,
+          "why": "Secondary data already exists and was collected by someone else for another purpose."
+        }
+      ],
+      "E2.2": [
+        {
+          "q": "A student finds a surprising statistic on one website. What is the best way to check it is reliable?",
+          "options": [
+            "Check it against several reputable sources",
+            "Use it because it is online",
+            "Check how many likes it has",
+            "Ask a friend if it sounds right"
+          ],
+          "answer": 0,
+          "why": "Cross-checking against trusted, up-to-date sources is how you make sure information is reliable."
+        }
+      ],
+      "E2.3.1": [
+        {
+          "q": "An online shop emails structured questions to 5,000 customers after purchase to get measurable satisfaction scores. Which method is this?",
+          "options": [
+            "Survey",
+            "Interview",
+            "Focus group",
+            "Observation"
+          ],
+          "answer": 0,
+          "why": "Surveys reach many people with structured questions and produce measurable data."
+        }
+      ],
+      "E2.3.2": [
+        {
+          "q": "Shoppers are handed a printed form with the same fixed set of written questions to fill in. Which method is this?",
+          "options": [
+            "Questionnaire",
+            "Interview",
+            "Focus group",
+            "Secondary research"
+          ],
+          "answer": 0,
+          "why": "A questionnaire is a fixed set of written questions on paper or online."
+        }
+      ],
+      "E2.3.3": [
+        {
+          "q": "An app developer invites eight potential users to try a prototype and discuss it together, led by a facilitator. Which method is this?",
+          "options": [
+            "Focus group",
+            "Survey",
+            "Questionnaire",
+            "Interview"
+          ],
+          "answer": 0,
+          "why": "A focus group is a small group discussing a topic in depth, led by a facilitator."
+        }
+      ],
+      "E2.3.4": [
+        {
+          "q": "A researcher wants detailed views and follow-up answers from one customer at a time. Which method is best?",
+          "options": [
+            "Interview",
+            "Survey",
+            "Questionnaire",
+            "Census"
+          ],
+          "answer": 0,
+          "why": "Interviews are one-to-one and allow detailed answers and follow-up questions."
+        }
+      ],
+      "E2.4": [
+        {
+          "q": "A hospital gives a patient the wrong drug because their allergy was recorded incorrectly. What does this show?",
+          "options": [
+            "Why data accuracy matters",
+            "Why data must be secondary",
+            "Why surveys are better than interviews",
+            "Why websites need HTTPS"
+          ],
+          "answer": 0,
+          "why": "Inaccurate data leads to bad decisions, harm and legal problems."
+        }
+      ],
+      "E2.5.1": [
+        {
+          "q": "A sign-up form asks you to type your new password twice to confirm it. Which accuracy method is this?",
+          "options": [
+            "Verification",
+            "Validation",
+            "Encryption",
+            "Backup"
+          ],
+          "answer": 0,
+          "why": "Verification checks data was copied or entered correctly, e.g. by entering it twice."
+        }
+      ],
+      "E2.5.2": [
+        {
+          "q": "An online form refuses to accept an age of 200 and says 'Please enter an age between 16 and 100'. Which accuracy method is this?",
+          "options": [
+            "Validation (range check)",
+            "Verification",
+            "Proofreading",
+            "Double entry"
+          ],
+          "answer": 0,
+          "why": "Validation automatically checks data is sensible and follows rules before accepting it."
+        },
+        {
+          "q": "A form passes validation but the customer has typed their house number as 12 instead of 21. Why wasn't this caught?",
+          "options": [
+            "Validation only checks data is sensible, not that it is correct",
+            "Validation was turned off",
+            "Verification always fails",
+            "The data was encrypted"
+          ],
+          "answer": 0,
+          "why": "12 is a sensible value, so validation accepts it. Only verification can catch a correct-looking mistake."
+        }
+      ],
+      "E2.6.1": [
+        {
+          "q": "A delivery driver has to enter details on a form with no training, so it uses clear labels and a simple layout. Which characteristic is this?",
+          "options": [
+            "Ease of use",
+            "Compatibility",
+            "Performance",
+            "Functionality"
+          ],
+          "answer": 0,
+          "why": "Ease of use is how easily users can find their way around and enter data without training."
+        }
+      ],
+      "E2.6.2": [
+        {
+          "q": "A council form supports screen readers and high-contrast text, and every field can be used with the keyboard alone. Which characteristic is this?",
+          "options": [
+            "Accessibility",
+            "Performance",
+            "Error reduction",
+            "Compatibility"
+          ],
+          "answer": 0,
+          "why": "Accessibility means people with disabilities can use the interface."
+        }
+      ],
+      "E2.6.3": [
+        {
+          "q": "Instead of a free-text box, a form gives a drop-down list of UK counties so users can't misspell them. Which characteristic is this?",
+          "options": [
+            "Error reduction",
+            "Accessibility",
+            "Performance",
+            "Compatibility"
+          ],
+          "answer": 0,
+          "why": "Error reduction designs stop users entering wrong data in the first place."
+        }
+      ],
+      "E2.6.4": [
+        {
+          "q": "Users can't finish an online claim because the form has no way to upload a photo of the receipt. Which characteristic is missing?",
+          "options": [
+            "Functionality",
+            "Ease of use",
+            "Accessibility",
+            "Performance"
+          ],
+          "answer": 0,
+          "why": "Functionality is whether the interface has every feature users need to complete their tasks."
+        }
+      ],
+      "E2.6.5": [
+        {
+          "q": "A ticket booking form freezes when thousands of fans try to buy at once. Which characteristic is poor?",
+          "options": [
+            "Performance",
+            "Compatibility",
+            "Error reduction",
+            "Ease of use"
+          ],
+          "answer": 0,
+          "why": "Performance is how quickly the interface responds, including at busy times."
+        }
+      ],
+      "E2.6.6": [
+        {
+          "q": "A survey form looks fine on a laptop but its buttons are cut off on phones. Which characteristic has failed?",
+          "options": [
+            "Compatibility",
+            "Accessibility",
+            "Functionality",
+            "Performance"
+          ],
+          "answer": 0,
+          "why": "Compatibility is whether the interface works on all devices, browsers and screen sizes."
+        }
+      ],
+      "F1.1.1": [
+        {
+          "q": "A free torch app collects users' location and contacts and sells them to advertisers without asking. Which ethical issue does this raise?",
+          "options": [
+            "Privacy",
+            "Environmental impact",
+            "Unequal access",
+            "Netiquette"
+          ],
+          "answer": 0,
+          "why": "Privacy is a person's right to control how their personal information is collected, used and shared."
+        }
+      ],
+      "F1.1.2": [
+        {
+          "q": "A company replaces every staff laptop each year and sends the old ones to landfill. Which ethical issue is this?",
+          "options": [
+            "Environmental impact",
+            "Privacy",
+            "Unequal access",
+            "Assistive technology"
+          ],
+          "answer": 0,
+          "why": "E-waste, energy use and manufacturing emissions are the environmental impact of IT."
+        }
+      ],
+      "F1.1.3": [
+        {
+          "q": "A council moves all parking permit applications online only. Elderly residents without internet or IT skills can no longer apply. Which issue is this?",
+          "options": [
+            "Unequal access to IT (digital divide)",
+            "Privacy",
+            "Environmental impact",
+            "Online behaviour"
+          ],
+          "answer": 0,
+          "why": "The digital divide is the gap between those with devices, internet and skills and those without."
+        }
+      ],
+      "F1.1.4": [
+        {
+          "q": "A visually impaired employee is refused a screen reader, so they cannot use the company's systems. Which ethical issue is this?",
+          "options": [
+            "Access to assistive technology",
+            "Unequal access to IT",
+            "Privacy",
+            "Acceptable use policy"
+          ],
+          "answer": 0,
+          "why": "Disabled people should have fair access to the assistive technology they need."
+        }
+      ],
+      "F1.1.5": [
+        {
+          "q": "A group of students repeatedly posts insulting comments about a classmate on social media. Which issue is this?",
+          "options": [
+            "Online behaviour and netiquette",
+            "Privacy",
+            "Unequal access",
+            "Copyright"
+          ],
+          "answer": 0,
+          "why": "Cyberbullying and trolling break the standards of respectful online behaviour."
+        }
+      ],
+      "F1.1.6": [
+        {
+          "q": "Before getting a login, new staff must sign a document saying they won't share passwords or install unapproved software. What is this document?",
+          "options": [
+            "Acceptable Use Policy (AUP)",
+            "Data protection policy",
+            "Copyright licence",
+            "DSE assessment"
+          ],
+          "answer": 0,
+          "why": "An AUP sets out what users may and may not do on an organisation's IT systems."
+        }
+      ],
+      "F2.1.1": [
+        {
+          "q": "A former employee uses an old password to log into his ex-employer's customer database without permission. Which law has he broken?",
+          "options": [
+            "Computer Misuse Act 1990",
+            "Data Protection Act 2018",
+            "Copyright, Designs and Patents Act 1988",
+            "DSE Regulations"
+          ],
+          "answer": 0,
+          "why": "Unauthorised access to computer material is a Section 1 offence under the Computer Misuse Act."
+        },
+        {
+          "q": "A hacker breaks into a bank's system in order to transfer money to himself. Under the Computer Misuse Act, what makes this more serious than simply logging in?",
+          "options": [
+            "Access with intent to commit a further crime (Section 2)",
+            "Breaking copyright (Section 3)",
+            "Failing to report a breach in 72 hours",
+            "Not having a DSE assessment"
+          ],
+          "answer": 0,
+          "why": "Section 2 covers unauthorised access with intent to commit or help commit a further offence, such as fraud."
+        }
+      ],
+      "F2.1.2": [
+        {
+          "q": "A student downloads a pirated copy of a paid film and shares it with friends. Which law does this break?",
+          "options": [
+            "Copyright, Designs and Patents Act 1988",
+            "Computer Misuse Act 1990",
+            "Data Protection Act 2018",
+            "DSE Regulations"
+          ],
+          "answer": 0,
+          "why": "The CDPA protects creators' work from being copied or shared without permission."
+        }
+      ],
+      "F2.1.3": [
+        {
+          "q": "A developer copies another company's source code and sells the program as their own. Which regulations specifically protect the program as a literary work?",
+          "options": [
+            "Copyright Regulations (Computer Programs) 1992",
+            "Computer Misuse Act 1990",
+            "Data Protection Act 2018",
+            "DSE Regulations"
+          ],
+          "answer": 0,
+          "why": "The 1992 regulations extend copyright to computer programs as literary works."
+        }
+      ],
+      "F2.1.4": [
+        {
+          "q": "A call-centre worker gets back pain and eye strain from long shifts at a screen. What do the regulations require her employer to provide?",
+          "options": [
+            "Adjustable chairs, eye tests and screen breaks",
+            "A VPN and encrypted laptop",
+            "A copyright licence",
+            "A data breach report within 72 hours"
+          ],
+          "answer": 0,
+          "why": "The DSE Regulations require employers to protect staff who use screens regularly."
+        }
+      ],
+      "F2.1.5": [
+        {
+          "q": "A GP surgery's records are hacked and patient data is stolen. Under data protection law, how quickly must the breach be reported to the ICO?",
+          "options": [
+            "Within 72 hours",
+            "Within 7 days",
+            "Within 30 days",
+            "Only if patients complain"
+          ],
+          "answer": 0,
+          "why": "UK GDPR requires serious personal data breaches to be reported within 72 hours."
+        },
+        {
+          "q": "An online shop keeps old customers' details for ten years 'just in case', with no reason to. Which law does this break?",
+          "options": [
+            "Data Protection Act 2018 / UK GDPR",
+            "Computer Misuse Act 1990",
+            "Copyright, Designs and Patents Act 1988",
+            "DSE Regulations"
+          ],
+          "answer": 0,
+          "why": "Personal data must not be kept longer than necessary for its purpose."
+        }
+      ]
+    }
   },
   "u2": {
     "sections": {
@@ -14719,7 +17817,1244 @@ const INLINE_UNITS = {
         ],
         "modelAnswer": "The company's approach relies mainly on technical measures with only minimal staff training, which leaves a significant gap in its cyber security.\n\nTechnical measures such as firewalls and antivirus are valuable and do provide real protection. A firewall filters network traffic and blocks unauthorised inbound connections, while antivirus detects and removes known malware. Together these stop many automated and external threats before they can reach the company's systems, so they are a sensible foundation.\n\nHowever, technology alone cannot manage cyber security, because many incidents are caused by people rather than by systems. Social-engineering attacks such as phishing are specifically designed to trick staff into revealing credentials or clicking malicious links, and these bypass firewalls and antivirus entirely. A brief, one-off training session when employees join is not enough: staff forget what they were taught, new threats constantly emerge, and new starters in between sessions may never be trained at all. Without ongoing training there is also unlikely to be a strong reporting culture, so suspicious activity may go unreported.\n\nGood practice would involve building security into the organisation through documented policies — such as an acceptable use policy, a password policy and a cyber security incident response policy — supported by regular security audits to check these are being followed. Training should be ongoing and refreshed for new threats, using varied resources and incentives rather than punishment so staff engage with it. This reflects the Plan-Do-Check-Act cycle, where security is continually reviewed and improved rather than treated as a one-off task.\n\nOverall, the company is over-reliant on technical measures and has neglected the human and procedural side of security, which is often the weakest link. While its firewalls and antivirus are worthwhile, the most important improvement would be to introduce clear security policies, regular audits and continuous staff training, so that people, processes and technology work together to manage cyber security effectively."
       }
-    ]
+    ],
+    "lessons": {
+      "A1.1.1": [
+        {
+          "q": "An unhappy employee deletes key project files on their last day. Which internal threat is this?",
+          "options": [
+            "Employee sabotage",
+            "Social engineering",
+            "Natural disaster",
+            "Adware"
+          ],
+          "answer": 0,
+          "why": "Insiders can damage systems on purpose or by mistake, including theft and installing unauthorised software."
+        }
+      ],
+      "A1.1.2": [
+        {
+          "q": "A burst pipe floods a server room and destroys the servers. How does Unit 2 classify this threat?",
+          "options": [
+            "Accidental or deliberate (physical) damage",
+            "Hacking",
+            "Spyware",
+            "Social engineering"
+          ],
+          "answer": 0,
+          "why": "Physical events, whether natural, accidental or deliberate, can damage IT systems and data."
+        }
+      ],
+      "A1.1.3": [
+        {
+          "q": "The server room is left unlocked and visitors walk around unescorted. What kind of weakness is this?",
+          "options": [
+            "Weak security measures and unsafe practices",
+            "Ransomware",
+            "A software vulnerability",
+            "Intellectual property loss"
+          ],
+          "answer": 0,
+          "why": "Poor habits and weak controls make an organisation easier to attack."
+        }
+      ],
+      "A1.1.4": [
+        {
+          "q": "A manager writes the admin password on a sticky note on their monitor, and a visitor photographs it. Which threat is this?",
+          "options": [
+            "Accidental disclosure of credentials",
+            "Employee sabotage",
+            "Bots",
+            "Adware"
+          ],
+          "answer": 0,
+          "why": "Data or logins exposed through human error, not a deliberate attack."
+        }
+      ],
+      "A1.2.1a": [
+        {
+          "q": "Opening an infected Word document runs hidden macro code that copies itself into other documents. What malware is this?",
+          "options": [
+            "Virus",
+            "Spyware",
+            "Adware",
+            "Bot"
+          ],
+          "answer": 0,
+          "why": "A virus attaches to a file and copies itself when the file is run."
+        }
+      ],
+      "A1.2.1b": [
+        {
+          "q": "Hidden software records every key a user presses and sends their bank passwords to a criminal. What is this?",
+          "options": [
+            "Spyware (keylogger)",
+            "Adware",
+            "Ransomware",
+            "Bot"
+          ],
+          "answer": 0,
+          "why": "Spyware secretly collects information about a user and sends it to a third party."
+        }
+      ],
+      "A1.2.1c": [
+        {
+          "q": "A free game fills the screen with pop-up adverts and installs an unwanted toolbar. What malware is this?",
+          "options": [
+            "Adware",
+            "Ransomware",
+            "Virus",
+            "Spyware"
+          ],
+          "answer": 0,
+          "why": "Adware displays or downloads adverts, from legitimate to deceptive."
+        }
+      ],
+      "A1.2.1d": [
+        {
+          "q": "All of a company's files are suddenly encrypted, and a note demands payment for the key. What malware is this?",
+          "options": [
+            "Ransomware",
+            "Adware",
+            "Bot",
+            "Spyware"
+          ],
+          "answer": 0,
+          "why": "Ransomware locks or encrypts data and demands payment."
+        }
+      ],
+      "A1.2.1e": [
+        {
+          "q": "Thousands of hijacked smart cameras are remotely ordered to flood a website with traffic. What are the cameras part of?",
+          "options": [
+            "A botnet",
+            "A VPN",
+            "A SAN",
+            "An extranet"
+          ],
+          "answer": 0,
+          "why": "Bots are infected devices controlled remotely. Together they form a botnet, often used for DDoS."
+        }
+      ],
+      "A1.2.2": [
+        {
+          "q": "An attacker gets into a school database without permission and changes students' grades. Which threat is this?",
+          "options": [
+            "Hacking",
+            "Adware",
+            "Accidental disclosure",
+            "Physical damage"
+          ],
+          "answer": 0,
+          "why": "Hacking is gaining unauthorised access to systems or data."
+        }
+      ],
+      "A1.2.3": [
+        {
+          "q": "Attackers deliberately corrupt the data used to train a company's AI so that it makes bad decisions. Which threat is this?",
+          "options": [
+            "Sabotage",
+            "Adware",
+            "Social engineering",
+            "Tailgating"
+          ],
+          "answer": 0,
+          "why": "Sabotage is deliberately damaging or corrupting data, systems or infrastructure."
+        }
+      ],
+      "A1.2.4": [
+        {
+          "q": "Someone phones staff pretending to be from IT support and asks for their password to 'fix an issue'. Which threat is this?",
+          "options": [
+            "Social engineering (pretexting)",
+            "Hacking a firewall",
+            "Virus",
+            "Sabotage"
+          ],
+          "answer": 0,
+          "why": "Social engineering tricks people, rather than technology, into giving away secure information."
+        }
+      ],
+      "A1.2.5": [
+        {
+          "q": "An intruder follows a member of staff through a secure door before it closes, without using a card. Which threat is this?",
+          "options": [
+            "Physical security threat (tailgating)",
+            "Phishing email",
+            "Spyware",
+            "Bot"
+          ],
+          "answer": 0,
+          "why": "Physical threats involve getting into secure areas, e.g. tailgating or shoulder surfing."
+        }
+      ],
+      "A1.3.1": [
+        {
+          "q": "Ransomware stops a factory's production line for three days, so no products are made. What kind of loss is this?",
+          "options": [
+            "Operational loss",
+            "Reputational loss",
+            "Intellectual property loss",
+            "Physical loss"
+          ],
+          "answer": 0,
+          "why": "Operational loss means the organisation can't operate or deliver its products and services."
+        }
+      ],
+      "A1.3.2": [
+        {
+          "q": "After a breach, a company pays a GDPR fine and refunds affected customers. What kind of loss is this?",
+          "options": [
+            "Financial loss",
+            "Operational loss",
+            "Reputational loss",
+            "IP loss"
+          ],
+          "answer": 0,
+          "why": "Financial loss is the money an incident costs: lost income, compensation and legal costs."
+        }
+      ],
+      "A1.3.3": [
+        {
+          "q": "News of a data breach trends on social media and customers post angry reviews. What kind of loss is this?",
+          "options": [
+            "Reputational loss",
+            "Operational loss",
+            "Financial loss only",
+            "IP loss"
+          ],
+          "answer": 0,
+          "why": "Reputational loss is damage to how customers and the public see the organisation."
+        }
+      ],
+      "A1.3.4": [
+        {
+          "q": "A hacker steals the designs for a company's unreleased product and sells them to a rival. What kind of loss is this?",
+          "options": [
+            "Intellectual property loss",
+            "Operational loss",
+            "Reputational loss",
+            "Physical loss"
+          ],
+          "answer": 0,
+          "why": "IP loss is theft or exposure of an organisation's valuable ideas and secrets."
+        }
+      ],
+      "A1.4.1": [
+        {
+          "q": "A UK IT manager wants the latest official advice on a new ransomware strain affecting British businesses. Which source should they check first?",
+          "options": [
+            "NCSC",
+            "NIST",
+            "OWASP",
+            "ISO 27001"
+          ],
+          "answer": 0,
+          "why": "The National Cyber Security Centre is the UK authority for threat reports and advice."
+        }
+      ],
+      "A1.4.2": [
+        {
+          "q": "A company follows a US government body's published standards for password policy. Which source is this?",
+          "options": [
+            "NIST",
+            "NCSC",
+            "OWASP",
+            "The ICO"
+          ],
+          "answer": 0,
+          "why": "NIST is the US National Institute of Standards and Technology."
+        }
+      ],
+      "A1.4.3": [
+        {
+          "q": "A web developer checks a new site against a list of the most critical web application risks, such as injection. Which source is this?",
+          "options": [
+            "OWASP Top 10",
+            "NCSC",
+            "NIST",
+            "GDPR"
+          ],
+          "answer": 0,
+          "why": "OWASP's Top 10 lists the most critical web application security risks."
+        }
+      ],
+      "A2.1.1": [
+        {
+          "q": "A port scan shows several firewall ports open that the business never uses. Which type of vulnerability is this?",
+          "options": [
+            "Network",
+            "Organisational",
+            "Mobile",
+            "People-process"
+          ],
+          "answer": 0,
+          "why": "Network vulnerabilities include open firewall ports and external storage."
+        }
+      ],
+      "A2.1.2": [
+        {
+          "q": "Every member of staff has admin rights, and leavers' accounts are never disabled. Which type of vulnerability is this?",
+          "options": [
+            "Organisational",
+            "Network",
+            "Physical",
+            "Software"
+          ],
+          "answer": 0,
+          "why": "Organisational vulnerabilities come from how permissions, passwords and accounts are managed."
+        }
+      ],
+      "A2.1.3": [
+        {
+          "q": "A company runs an unpatched web app that is open to SQL injection. Which type of vulnerability is this?",
+          "options": [
+            "Software",
+            "Physical",
+            "Organisational",
+            "Mobile"
+          ],
+          "answer": 0,
+          "why": "Software vulnerabilities come from untrustworthy, outdated or badly made software."
+        }
+      ],
+      "A2.1.4": [
+        {
+          "q": "An office still runs a version of Windows that Microsoft no longer supports with security updates. Which type of vulnerability is this?",
+          "options": [
+            "OS vulnerability",
+            "Physical vulnerability",
+            "Cloud vulnerability",
+            "People-process vulnerability"
+          ],
+          "answer": 0,
+          "why": "OS weaknesses usually come from being outdated or misconfigured."
+        }
+      ],
+      "A2.1.5": [
+        {
+          "q": "Staff use old Android phones whose manufacturer has stopped sending security updates. Which type of vulnerability is this?",
+          "options": [
+            "Mobile device",
+            "Network",
+            "Organisational",
+            "Physical"
+          ],
+          "answer": 0,
+          "why": "Phones depend on their manufacturer (OEM) for updates, so they can be left unpatched."
+        }
+      ],
+      "A2.1.6": [
+        {
+          "q": "An unencrypted laptop is stolen from an employee's car. Which type of vulnerability did this exploit?",
+          "options": [
+            "Physical",
+            "Software",
+            "Organisational",
+            "Cloud"
+          ],
+          "answer": 0,
+          "why": "Physical vulnerabilities allow theft of, or physical access to, equipment holding data."
+        }
+      ],
+      "A2.1.7": [
+        {
+          "q": "Two staff routinely share one login to save time, so no one can tell who did what. Which type of vulnerability is this?",
+          "options": [
+            "People-process",
+            "Network",
+            "Mobile",
+            "Software"
+          ],
+          "answer": 0,
+          "why": "People-process vulnerabilities are weaknesses in how people actually use systems day to day."
+        }
+      ],
+      "A2.1.8": [
+        {
+          "q": "A smart CCTV camera with a default password is hijacked to spy on an office. Which security implication is this?",
+          "options": [
+            "Cloud and IoT",
+            "Mobile device",
+            "Organisational",
+            "Physical"
+          ],
+          "answer": 0,
+          "why": "Cloud services and IoT devices bring their own risks, such as default passwords and misconfiguration."
+        }
+      ],
+      "A2.2": [
+        {
+          "q": "An administrator wants to know if the router model they use has any newly found weaknesses. Where is a reliable source?",
+          "options": [
+            "The manufacturer's website or security advisories",
+            "A random social media post",
+            "The company's backup policy",
+            "The staff handbook"
+          ],
+          "answer": 0,
+          "why": "Vulnerability information comes from manufacturers, advisories and professional security forums."
+        }
+      ],
+      "A2.3": [
+        {
+          "q": "An attacker in a car park gets into a company's systems through its poorly secured Wi-Fi. In risk terms, what is the Wi-Fi?",
+          "options": [
+            "The attack vector",
+            "The vulnerability assessment tool",
+            "The impact",
+            "The policy"
+          ],
+          "answer": 0,
+          "why": "An attack vector is the route an attacker uses to reach a system."
+        }
+      ],
+      "A2.4": [
+        {
+          "q": "Before attackers can, the IT team runs a tool that scans all devices for open ports and known weaknesses. What is this?",
+          "options": [
+            "A vulnerability assessment tool",
+            "A penetration test report",
+            "Passive risk management",
+            "A disaster recovery plan"
+          ],
+          "answer": 0,
+          "why": "Vulnerability assessment tools such as port scanners find weaknesses first."
+        }
+      ],
+      "A2.5": [
+        {
+          "q": "A business pays an outside consultancy to check and certify its network design before it is built. What is this?",
+          "options": [
+            "Independent third-party review",
+            "Penetration testing",
+            "A security audit by staff",
+            "Passive risk management"
+          ],
+          "answer": 0,
+          "why": "An outside expert reviews system designs before they are built."
+        }
+      ],
+      "A2.6": [
+        {
+          "q": "With permission, a security expert tries to break into a company's network and then writes up the weak spots found. What is this?",
+          "options": [
+            "Penetration testing",
+            "Hacking under the Computer Misuse Act",
+            "Social engineering",
+            "Passive risk management"
+          ],
+          "answer": 0,
+          "why": "Pen testing is an authorised simulated attack, ending in a report."
+        }
+      ],
+      "A2.7": [
+        {
+          "q": "A small firm decides that buying cyber insurance is cheaper than adding new security controls for one risk. What approach is this?",
+          "options": [
+            "Passive risk management (transfer)",
+            "Penetration testing",
+            "Trusted computing",
+            "Segmentation"
+          ],
+          "answer": 0,
+          "why": "Passive risk management transfers, avoids or accepts risk instead of adding controls."
+        }
+      ],
+      "A3.1.1": [
+        {
+          "q": "An online shop collects customer emails without consent and doesn't report a breach for two weeks. Which law has it broken?",
+          "options": [
+            "GDPR",
+            "Computer Misuse Act 1990",
+            "Copyright Act",
+            "DSE Regulations"
+          ],
+          "answer": 0,
+          "why": "GDPR protects personal data and requires breaches to be reported within 72 hours."
+        }
+      ],
+      "A3.1.2": [
+        {
+          "q": "A student uses a teacher's password to get into the school system and change their marks. Which law has the student broken?",
+          "options": [
+            "Computer Misuse Act 1990",
+            "GDPR",
+            "Copyright Act",
+            "Freedom of Information Act"
+          ],
+          "answer": 0,
+          "why": "The CMA makes unauthorised access to, and modification of, computer material a crime."
+        }
+      ],
+      "A3.3.1a": [
+        {
+          "q": "A gym asks members only for the details it actually needs and deletes them when membership ends. Which GDPR principles does this follow?",
+          "options": [
+            "Data minimisation and storage limitation",
+            "Vital interest and consent",
+            "Right to be forgotten only",
+            "Transparency only"
+          ],
+          "answer": 0,
+          "why": "GDPR principles include collecting the minimum data, keeping it accurate and deleting it when done."
+        }
+      ],
+      "A3.3.1b": [
+        {
+          "q": "An employer processes staff bank details to pay their wages. Which lawful reason applies?",
+          "options": [
+            "Contract",
+            "Vital interest",
+            "Consent only",
+            "Public task"
+          ],
+          "answer": 0,
+          "why": "Processing needed to fulfil a contract, such as payroll, is a lawful reason under GDPR."
+        }
+      ],
+      "A3.3.1c": [
+        {
+          "q": "A customer asks a company to send them a copy of all the personal data it holds about them. Which right are they using?",
+          "options": [
+            "Right of access (subject access request)",
+            "Right to be forgotten",
+            "Lawful reason: contract",
+            "Right to object"
+          ],
+          "answer": 0,
+          "why": "GDPR gives people rights over their own data, including access and erasure."
+        }
+      ],
+      "A4.1.1": [
+        {
+          "q": "A data centre uses card entry, fingerprint scanners and locked server cabinets. Which type of measure is this?",
+          "options": [
+            "Physical security",
+            "Access control lists",
+            "Encryption",
+            "Trusted computing"
+          ],
+          "answer": 0,
+          "why": "Physical measures protect equipment, sites and restricted areas."
+        }
+      ],
+      "A4.1.2": [
+        {
+          "q": "After ransomware hits, a company restores everything from last night's off-site copy and loses only a few hours of work. Which measure saved it?",
+          "options": [
+            "Backup and recovery procedures",
+            "Antivirus",
+            "MFA",
+            "Trusted computing"
+          ],
+          "answer": 0,
+          "why": "Backups let data be restored after loss, corruption or attack."
+        }
+      ],
+      "A4.1.3": [
+        {
+          "q": "Software spots a file that behaves suspiciously, even though it matches no known signature, and quarantines it. Which technique is this?",
+          "options": [
+            "Antivirus heuristic detection",
+            "Firewall port blocking",
+            "Storage encryption",
+            "MAC filtering"
+          ],
+          "answer": 0,
+          "why": "Antivirus uses signatures for known malware and heuristics for suspicious behaviour."
+        }
+      ],
+      "A4.1.4": [
+        {
+          "q": "Rules are set to block all inbound traffic except on ports 443 and 25. Which measure is this?",
+          "options": [
+            "Firewall filtering",
+            "Antivirus",
+            "Access control",
+            "Backup"
+          ],
+          "answer": 0,
+          "why": "Firewalls filter traffic by rules to block unauthorised access."
+        }
+      ],
+      "A4.1.5": [
+        {
+          "q": "To log in, staff need their password and must also tap a USB security key. Which measure is this?",
+          "options": [
+            "Multi-factor authentication",
+            "Access control lists",
+            "Trusted computing",
+            "Segmentation"
+          ],
+          "answer": 0,
+          "why": "MFA checks users are who they claim, using more than one factor."
+        }
+      ],
+      "A4.1.6": [
+        {
+          "q": "The finance team can open the accounts folder but not HR records. Which measure is this?",
+          "options": [
+            "Access controls",
+            "MFA",
+            "Storage encryption",
+            "Physical security"
+          ],
+          "answer": 0,
+          "why": "Access controls decide which users can reach which resources."
+        }
+      ],
+      "A4.1.7": [
+        {
+          "q": "A TPM chip checks that a laptop's boot software hasn't been tampered with before it starts. Which measure is this?",
+          "options": [
+            "Trusted computing",
+            "Antivirus",
+            "A firewall",
+            "Backup"
+          ],
+          "answer": 0,
+          "why": "Trusted computing is hardware-based security. It adds protection but reduces user control."
+        }
+      ],
+      "A4.2.1": [
+        {
+          "q": "A stolen work laptop is useless to the thief because full-disk encryption makes the drive unreadable. Which type of encryption protected it?",
+          "options": [
+            "Storage encryption",
+            "Communications encryption",
+            "HTTPS",
+            "VPN"
+          ],
+          "answer": 0,
+          "why": "Storage encryption protects data at rest."
+        }
+      ],
+      "A4.2.2": [
+        {
+          "q": "Messages sent through an app are end-to-end encrypted, so an attacker who intercepts them sees only scrambled data. Which type of encryption is this?",
+          "options": [
+            "Communications encryption",
+            "Storage encryption",
+            "Hashing",
+            "Trusted computing"
+          ],
+          "answer": 0,
+          "why": "Communications encryption protects data in transit."
+        }
+      ],
+      "A4.3": [
+        {
+          "q": "An office upgrades its wireless security to WPA3 and changes the router's default admin password. What is it protecting?",
+          "options": [
+            "A WLAN",
+            "A SAN",
+            "A PAN",
+            "A printer"
+          ],
+          "answer": 0,
+          "why": "WLAN protection includes WPA3, changing default passwords and MAC filtering."
+        }
+      ],
+      "A4.4": [
+        {
+          "q": "Architects design a new system so every user gets only the access they need from day one, assuming attackers will try to get in. What principle is this?",
+          "options": [
+            "Secure network and system design",
+            "Passive risk management",
+            "Penetration testing",
+            "Disaster recovery"
+          ],
+          "answer": 0,
+          "why": "Security should be built in from the start, e.g. least privilege, not added later."
+        }
+      ],
+      "B1.1.1": [
+        {
+          "q": "A retail chain links the networks in its shops across the country so stock data is shared. Which network type is this?",
+          "options": [
+            "WAN",
+            "LAN",
+            "PAN",
+            "SAN"
+          ],
+          "answer": 0,
+          "why": "A WAN links networks over a large geographical area."
+        }
+      ],
+      "B1.1.2": [
+        {
+          "q": "A company gives trusted suppliers controlled access to part of its private network to check orders. What is this?",
+          "options": [
+            "Extranet",
+            "Intranet",
+            "Internet",
+            "PAN"
+          ],
+          "answer": 0,
+          "why": "An intranet is for staff only; an extranet extends limited access to approved outsiders."
+        }
+      ],
+      "B1.1.3": [
+        {
+          "q": "An office connects Wi-Fi access points to its wired Ethernet backbone. What extra security issue does the wireless part add?",
+          "options": [
+            "Signals can be picked up outside the building",
+            "Cables can be cut",
+            "It removes the need for a firewall",
+            "Devices can't get IP addresses"
+          ],
+          "answer": 0,
+          "why": "Integrating wireless widens the attack surface, because radio leaks beyond physical walls."
+        }
+      ],
+      "B1.1.4": [
+        {
+          "q": "A security consultant redraws a network diagram to show a firewall added between the router and the switch. What kind of diagram is this?",
+          "options": [
+            "Schematic diagram",
+            "Flowchart",
+            "Gantt chart",
+            "Risk matrix"
+          ],
+          "answer": 0,
+          "why": "Schematic diagrams show network layout, sometimes with ports or addresses."
+        }
+      ],
+      "B1.1.5": [
+        {
+          "q": "A business needs its network to keep running if one link fails, and to grow as it opens new sites. Which features are these?",
+          "options": [
+            "Fault tolerance and scalability",
+            "Encryption and hashing",
+            "Latency and jitter",
+            "Imaging and hashing"
+          ],
+          "answer": 0,
+          "why": "Network requirements include surviving failures and allowing growth. Many are linked to security."
+        }
+      ],
+      "B1.2": [
+        {
+          "q": "In a network, every device connects to a central switch. If the switch fails, what happens?",
+          "options": [
+            "The whole network stops (single point of failure)",
+            "Only one device is affected",
+            "Data reroutes through other nodes",
+            "Nothing, as it is fully meshed"
+          ],
+          "answer": 0,
+          "why": "In a star topology, the central device is a single point of failure."
+        }
+      ],
+      "B1.3": [
+        {
+          "q": "Every PC in a small office shares files directly with the others, with no central server managing security. What is the security weakness of this architecture?",
+          "options": [
+            "Peer-to-peer has no central control of security",
+            "Client/server is too expensive",
+            "Data can't be shared at all",
+            "It needs a WAN"
+          ],
+          "answer": 0,
+          "why": "Client/server gives central control; peer-to-peer leaves security up to each machine."
+        }
+      ],
+      "B1.4.1": [
+        {
+          "q": "A security team runs a suspicious file inside an isolated virtual machine so it can't harm the real system. Which trend is this?",
+          "options": [
+            "Virtualisation",
+            "BYOD",
+            "Cloud storage",
+            "NAT"
+          ],
+          "answer": 0,
+          "why": "Virtualisation runs isolated VMs on one physical host."
+        }
+      ],
+      "B1.4.2": [
+        {
+          "q": "A company's cloud storage bucket is left publicly readable by default settings, exposing customer files. Which trend's security issue is this?",
+          "options": [
+            "Cloud computing (misconfiguration)",
+            "Virtualisation",
+            "BYOD",
+            "Bluetooth"
+          ],
+          "answer": 0,
+          "why": "Cloud risks include misconfiguration, hijacked accounts and less control over data."
+        }
+      ],
+      "B1.4.3a": [
+        {
+          "q": "Staff read company email on their own phones, which have no passcode and run unvetted apps. Which trend creates this risk?",
+          "options": [
+            "BYOD",
+            "SDN",
+            "SAN",
+            "Virtualisation"
+          ],
+          "answer": 0,
+          "why": "BYOD mixes personal and company data on devices the organisation doesn't control."
+        }
+      ],
+      "B1.4.3b": [
+        {
+          "q": "A home worker connects to company systems over unsecured home Wi-Fi, next to an insecure smart camera. What should the company require?",
+          "options": [
+            "A VPN for remote working",
+            "A bus topology",
+            "Lossy compression",
+            "Peer-to-peer sharing"
+          ],
+          "answer": 0,
+          "why": "Remote working and IoT bring risks such as insecure home networks. A VPN encrypts the connection."
+        }
+      ],
+      "B2.1.1": [
+        {
+          "q": "Which group lists only end-user devices?",
+          "options": [
+            "Laptops, phones and networked printers",
+            "Switches, routers and access points",
+            "Fibre, Ethernet and Wi-Fi",
+            "DNS, DHCP and NAT"
+          ],
+          "answer": 0,
+          "why": "End-user devices are the ones people use directly, both mobile and fixed."
+        }
+      ],
+      "B2.1.2": [
+        {
+          "q": "Which device joins a company's LAN to the internet and directs packets between the two networks?",
+          "options": [
+            "Router",
+            "Switch",
+            "Printer",
+            "Hub cable"
+          ],
+          "answer": 0,
+          "why": "Connectivity devices direct traffic. A router joins networks; a switch connects devices within a LAN."
+        }
+      ],
+      "B2.1.3": [
+        {
+          "q": "A bank links two buildings with a medium that is fast, works over long distances and is very hard to tap. Which medium is this?",
+          "options": [
+            "Fibre optic",
+            "Wi-Fi",
+            "Bluetooth",
+            "Copper Ethernet"
+          ],
+          "answer": 0,
+          "why": "Connection media carry the data. Fibre is fast, long-range and hard to intercept."
+        }
+      ],
+      "B2.2": [
+        {
+          "q": "An employee finds a USB stick in the car park and plugs it into a work PC to see whose it is. What is the main risk?",
+          "options": [
+            "Malware spreading from external media",
+            "The PC running out of storage",
+            "Slower Wi-Fi",
+            "A DHCP conflict"
+          ],
+          "answer": 0,
+          "why": "External media can carry malware or be lost with data on them."
+        }
+      ],
+      "B2.3": [
+        {
+          "q": "An administrator uses a packet sniffer to watch traffic for suspicious activity. Which network component is this?",
+          "options": [
+            "A software component (monitoring tool)",
+            "A connectivity device",
+            "A connection medium",
+            "An end-user device"
+          ],
+          "answer": 0,
+          "why": "Software components include OSs, monitoring tools and applications running on the network."
+        }
+      ],
+      "B3.1.1": [
+        {
+          "q": "When a file is sent across a network, which protocol suite splits it into packets and addresses them to the destination?",
+          "options": [
+            "TCP/IP",
+            "DHCP",
+            "DNS",
+            "NAT"
+          ],
+          "answer": 0,
+          "why": "TCP splits data into packets and IP addresses and routes them."
+        }
+      ],
+      "B3.1.4": [
+        {
+          "q": "Ten devices in a home all reach the internet using one public IP address. What makes this possible?",
+          "options": [
+            "NAT",
+            "DNS",
+            "DHCP",
+            "VPN"
+          ],
+          "answer": 0,
+          "why": "NAT maps private internal addresses to one public address, which also hides internal devices."
+        }
+      ],
+      "B3.2": [
+        {
+          "q": "A hotel puts guest Wi-Fi on a separate segment from its booking and payment systems. What is the security benefit?",
+          "options": [
+            "An attacker on guest Wi-Fi can't easily reach staff systems",
+            "Guests get faster internet",
+            "It removes the need for passwords",
+            "It speeds up DNS"
+          ],
+          "answer": 0,
+          "why": "Segmentation controls access and limits how far an attacker can spread."
+        }
+      ],
+      "B3.3": [
+        {
+          "q": "Which network configuration device should be set to block all inbound traffic except on the ports the business needs?",
+          "options": [
+            "Firewall",
+            "Switch",
+            "Access point",
+            "Repeater"
+          ],
+          "answer": 0,
+          "why": "Firewalls filter traffic using rules; routers direct packets."
+        }
+      ],
+      "B3.4.1": [
+        {
+          "q": "A user types www.example.com, and the computer needs the matching IP address. Which service provides it?",
+          "options": [
+            "DNS",
+            "DHCP",
+            "NAT",
+            "SMTP"
+          ],
+          "answer": 0,
+          "why": "DNS turns domain names into IP addresses. Poisoned DNS can redirect users to fake sites."
+        }
+      ],
+      "B3.4.4": [
+        {
+          "q": "A visitor's laptop joins the office Wi-Fi and is given an IP address and gateway automatically. Which service did this?",
+          "options": [
+            "DHCP",
+            "DNS",
+            "NAT",
+            "TCP"
+          ],
+          "answer": 0,
+          "why": "DHCP automatically gives devices an IP address and network settings."
+        }
+      ],
+      "B3.5.1": [
+        {
+          "q": "Staff save shared documents to one central server and send print jobs to a queue that manages the office printers. Which services are these?",
+          "options": [
+            "File and print services",
+            "Web and mail services",
+            "DNS and DHCP",
+            "NAT and VPN"
+          ],
+          "answer": 0,
+          "why": "File and print services provide shared storage and printing across a network."
+        }
+      ],
+      "B3.5.2": [
+        {
+          "q": "A company's email is sent using SMTP with no encryption added. What is the risk?",
+          "options": [
+            "Messages could be read if intercepted",
+            "Emails can't be delivered",
+            "The printer stops working",
+            "IP addresses run out"
+          ],
+          "answer": 0,
+          "why": "Some web, mail and communication services have no built-in encryption, so TLS or HTTPS must be added."
+        }
+      ],
+      "C1.1.1a": [
+        {
+          "q": "Every quarter, a firm plans new security controls, puts them in place, checks how well they worked, then improves them. Which approach is this?",
+          "options": [
+            "Plan-Do-Check-Act cycle in the cyber security policy",
+            "A disaster recovery plan",
+            "A security audit only",
+            "An external services policy"
+          ],
+          "answer": 0,
+          "why": "The cyber security policy runs as a repeating Plan-Do-Check-Act cycle (ISO 27001)."
+        }
+      ],
+      "C1.1.1b": [
+        {
+          "q": "A company bans staff from downloading .exe files and warns them that work email may be monitored. Which policy sets these rules?",
+          "options": [
+            "Internet and email use policy",
+            "Backup policy",
+            "Disaster recovery policy",
+            "Data protection policy"
+          ],
+          "answer": 0,
+          "why": "The internet and email use policy defines acceptable internet and email use at work."
+        }
+      ],
+      "C1.1.1c": [
+        {
+          "q": "The system blocks 'Password123' and locks an account after five failed logins. Which part of policy does this enforce?",
+          "options": [
+            "Security and password procedures",
+            "Incident response policy",
+            "External services policy",
+            "Backup policy"
+          ],
+          "answer": 0,
+          "why": "Security and password procedures enforce strong passwords and safe account use."
+        }
+      ],
+      "C1.1.1d": [
+        {
+          "q": "All staff must complete annual phishing training and report suspicious emails to IT. Which part of the policy is this?",
+          "options": [
+            "Staff responsibilities and training",
+            "Security audit",
+            "Disaster recovery",
+            "External services"
+          ],
+          "answer": 0,
+          "why": "This part sets out what staff must do for security and how they are trained."
+        }
+      ],
+      "C1.1.2": [
+        {
+          "q": "A review finds three ex-employees whose accounts are still active, which breaks the company's own leavers policy. What process found this?",
+          "options": [
+            "A security audit",
+            "A backup restore test",
+            "An incident response triage",
+            "A service level agreement"
+          ],
+          "answer": 0,
+          "why": "A security audit checks that the organisation follows its own security policies and the law."
+        }
+      ],
+      "C1.1.3": [
+        {
+          "q": "A document states that incrementals run nightly, full backups weekly, and restores are tested every quarter by the IT manager. Which policy is this?",
+          "options": [
+            "Backup policy",
+            "Disaster recovery policy",
+            "Data protection policy",
+            "Internet use policy"
+          ],
+          "answer": 0,
+          "why": "A backup policy states what is backed up, how, how often and by whom."
+        }
+      ],
+      "C1.1.4": [
+        {
+          "q": "A company appoints a Data Protection Officer and makes contractors follow GDPR rules when handling customer data. Which policy is this?",
+          "options": [
+            "Data protection policy",
+            "External services policy",
+            "Backup policy",
+            "Incident response policy"
+          ],
+          "answer": 0,
+          "why": "The data protection policy makes sure the organisation follows data protection law."
+        }
+      ],
+      "C1.1.5": [
+        {
+          "q": "Ransomware is detected. Staff follow a triage flowchart and contact list covering legal, PR, HR and insurers. Which policy are they following?",
+          "options": [
+            "Cyber security incident response policy",
+            "Backup policy",
+            "Security audit",
+            "Internet use policy"
+          ],
+          "answer": 0,
+          "why": "The incident response policy is the plan for responding to a security incident."
+        }
+      ],
+      "C1.1.6": [
+        {
+          "q": "A fire destroys a company's head office. The policy guides how systems and operations are restored at a backup site. Which policy is this?",
+          "options": [
+            "Disaster recovery policy",
+            "Incident response policy",
+            "Data protection policy",
+            "Staff training policy"
+          ],
+          "answer": 0,
+          "why": "Disaster recovery restores systems and operations after a major disruption."
+        }
+      ],
+      "C1.1.7": [
+        {
+          "q": "A school's contract with its IT support company sets a 4-hour response time and fines if fixes are late. Which policy covers this?",
+          "options": [
+            "External services policy (SLA)",
+            "Backup policy",
+            "Security audit",
+            "Password procedures"
+          ],
+          "answer": 0,
+          "why": "The external services policy governs outside providers, often through a service level agreement."
+        }
+      ],
+      "D1.1.1a": [
+        {
+          "q": "Police seize a suspect's phone at the scene. What should they do to stop it being remotely wiped?",
+          "options": [
+            "Put it in a Faraday bag",
+            "Switch it off and on again",
+            "Charge it overnight",
+            "Connect it to the station Wi-Fi"
+          ],
+          "answer": 0,
+          "why": "A Faraday bag blocks signals, so the device can't be remotely wiped or changed. Then the chain of custody is recorded."
+        }
+      ],
+      "D1.1.1b": [
+        {
+          "q": "An investigator must examine a hard drive without changing the original evidence. What should they do first?",
+          "options": [
+            "Make a forensic image and analyse the copy",
+            "Open the files directly on the original",
+            "Defragment the drive",
+            "Reinstall the OS"
+          ],
+          "answer": 0,
+          "why": "Investigators make an exact bit-for-bit image and work on the copy, keeping the original intact."
+        }
+      ],
+      "D1.1.2": [
+        {
+          "q": "An attacker's malware is running only in a server's memory. Why is it hard to collect evidence of it?",
+          "options": [
+            "RAM contents are lost when the system powers off",
+            "RAM is encrypted by law",
+            "Memory can't be copied at all",
+            "Logs are always deleted"
+          ],
+          "answer": 0,
+          "why": "Live forensics must capture volatile data such as RAM before it is lost, without altering the system."
+        }
+      ],
+      "D1.1.3": [
+        {
+          "q": "After a breach, an investigator reviews firewall and router logs to trace where the attacker connected from. What type of forensics is this?",
+          "options": [
+            "Network forensics",
+            "Live forensics on a phone",
+            "Documenting the scene",
+            "Imaging a hard drive"
+          ],
+          "answer": 0,
+          "why": "Network forensics collects and analyses evidence from network devices."
+        }
+      ],
+      "D1.1.4": [
+        {
+          "q": "Before touching anything, an investigator photographs the desk, sketches where devices sit and writes timed notes. What are they doing?",
+          "options": [
+            "Documenting the scene",
+            "Imaging the drive",
+            "Network forensics",
+            "Writing the final report"
+          ],
+          "answer": 0,
+          "why": "The scene must be recorded thoroughly at the time, with photos, diagrams and contemporaneous notes."
+        }
+      ],
+      "D2.1.1": [
+        {
+          "q": "An investigator images a drive and records its hash value before and after analysis. Why?",
+          "options": [
+            "To prove the evidence hasn't changed",
+            "To make the drive faster",
+            "To encrypt the evidence",
+            "To delete the malware"
+          ],
+          "answer": 0,
+          "why": "Matching hashes prove the snapshot is identical to the original, so it can be relied on."
+        }
+      ],
+      "D2.1.2": [
+        {
+          "q": "Every action in an investigation is logged with who did it and when. What is the main purpose?",
+          "options": [
+            "So the evidence is reliable and can stand up in court",
+            "To make the report longer",
+            "To speed up imaging",
+            "To meet the backup policy"
+          ],
+          "answer": 0,
+          "why": "Recording every finding and action keeps evidence reliable and defensible."
+        }
+      ],
+      "D2.1.3": [
+        {
+          "q": "An investigator accidentally opens a file on the original drive, changing its 'last accessed' date. What must happen?",
+          "options": [
+            "The change must be recorded, as it may affect admissibility",
+            "Nothing, as small changes don't matter",
+            "The drive should be wiped",
+            "The evidence should be hidden"
+          ],
+          "answer": 0,
+          "why": "Altered data may be inadmissible, so every change must be recorded. Ideally, investigators work only on a copy."
+        }
+      ],
+      "D2.2.1": [
+        {
+          "q": "An investigation finds a member of staff emailed customer records to a personal account. What must the investigator decide?",
+          "options": [
+            "Whether this is a crime, a legal (GDPR) breach or a policy breach",
+            "Which antivirus to buy",
+            "How to speed up the network",
+            "Whether to delete the emails"
+          ],
+          "answer": 0,
+          "why": "Findings are assessed to decide whether they show a crime, a legal breach, a policy breach or another incident."
+        }
+      ],
+      "D2.2.2": [
+        {
+          "q": "Overnight, a server sends large amounts of data to an unknown foreign IP, and failed logins spike. What do these suggest?",
+          "options": [
+            "Signs of system compromise",
+            "A normal backup",
+            "A software update",
+            "Accidental damage"
+          ],
+          "answer": 0,
+          "why": "Unusual outbound traffic, failed login spikes and odd DNS requests are signs of compromise."
+        }
+      ],
+      "D2.3": [
+        {
+          "q": "After an incident, the investigator writes a document explaining what happened and recommending new training and policies. What is this?",
+          "options": [
+            "A security report",
+            "A backup policy",
+            "A chain of custody form",
+            "A schematic diagram"
+          ],
+          "answer": 0,
+          "why": "A security report analyses the incident and recommends how to stop it happening again."
+        }
+      ]
+    }
   }
 };
 

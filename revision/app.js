@@ -73,6 +73,7 @@ function defaultUnitState() {
   return {
     rag: {},           // code -> 'red'|'amber'|'green'
     reviewed: {},      // code -> true
+    lessons: {},       // path node id -> {done, date, firstTry, total}
     flashcards: {
       boxes: {},       // cardId -> 1..5
       nextDue: {},     // cardId -> ISO date string
@@ -179,6 +180,12 @@ function coerceUnit(raw) {
   const count = v => typeof v === 'number' && isFinite(v) && v >= 0;
   keepMap(unit.rag, SAFE_KEY, v => RAG_VALUES.has(v));
   keepMap(unit.reviewed, SAFE_KEY, v => v === true);
+  keepMap(unit.lessons, SAFE_KEY, v => isPlainObject(v) && v.done === true);
+  Object.keys(unit.lessons).forEach(k => {
+    const r = coerceLike({ done: true, date: '', firstTry: 0, total: 0 }, unit.lessons[k]);
+    if (!DATE_KEY.test(r.date)) r.date = '';
+    unit.lessons[k] = r;
+  });
   keepMap(unit.flashcards.boxes, SAFE_KEY, v => Number.isInteger(v) && v >= 1 && v <= 5);
   keepMap(unit.flashcards.nextDue, SAFE_KEY, v => typeof v === 'string' && DATE_KEY.test(v));
   keepMap(unit.activity, DATE_KEY, count);
@@ -426,6 +433,8 @@ function resetTransientState() {
   searchQuery = '';
   currentSection = null;
   notesFilter = 'all';
+  sectionsTab = 'path';
+  if (typeof lesson !== 'undefined') lesson = null;
   flashFilter = 'all';
   qFilter = 'all';
   if (typeof flashPracticeMode !== 'undefined') flashPracticeMode = false;
@@ -512,6 +521,7 @@ function applyUnitChrome() {
 const PAGES = ['home', 'sections', 'flashcards', 'questions', 'games', 'leaderboard', 'extended', 'examkit', 'aptitude', 'search', 'plan', 'profile'];
 let currentPage = 'home';
 let currentSection = null;
+let sectionsTab = 'path';   // 'path' | 'materials'
 
 const PAGE_TITLES = {
   home: 'Home', sections: 'Sections', flashcards: 'Flashcards',
@@ -555,6 +565,7 @@ function navigate(page, opts = {}) {
    not the URL. */
 function routeHash(page, section) {
   if (page === 'sections' && section) return '#sections/' + section;
+  if (page === 'sections' && sectionsTab === 'materials') return '#sections/materials';
   return page === 'home' ? '' : '#' + page;
 }
 
@@ -573,12 +584,15 @@ function parseRoute() {
   const [page, arg] = decodeURIComponent(location.hash.replace(/^#\/?/, '')).split('/');
   if (!PAGES.includes(page)) return { page: 'home' };
   const L = (arg || '').toUpperCase();
-  return { page, section: page === 'sections' && unitLettersUpper().includes(L) ? L : undefined };
+  const section = page === 'sections' && unitLettersUpper().includes(L) ? L : undefined;
+  // #sections is the lesson path, #sections/materials the list of notes.
+  const tab = page === 'sections' && !section ? (arg === 'materials' ? 'materials' : 'path') : undefined;
+  return { page, section, tab };
 }
 
 window.addEventListener('popstate', () => {
   const r = parseRoute();
-  navigate(r.page, { section: r.section, fromHistory: true });
+  navigate(r.page, { section: r.section, tab: r.tab, fromHistory: true });
 });
 
 /* Page content scrolls inside <main>, not the window, so window.scrollTo() on
@@ -592,7 +606,7 @@ function scrollContentTop() {
 function renderPage(page, opts) {
   switch (page) {
     case 'home': renderHome(); break;
-    case 'sections': renderSections(opts.section); break;
+    case 'sections': renderSections(opts.section, opts.tab); break;
     case 'flashcards': renderFlashcards(); break;
     case 'questions': renderQuestions(); break;
     case 'games': renderGames(); break;
@@ -1221,14 +1235,20 @@ function renderSectionTiles() {
 }
 
 /* ---- SECTIONS PAGE ---- */
-function renderSections(letter) {
+/* Sections has two tabs: the Path of lessons (lessons.js) and the Materials,
+   which are the full notes. A letter always means a section's notes, so links
+   from Home and Search still land on the notes they point at. */
+function renderSections(letter, tab) {
   const container = el('sections-content');
 
   if (!letter) {
     currentSection = null;
-    renderSectionList(container);
+    if (tab) sectionsTab = tab;
+    if (sectionsTab === 'materials') renderSectionList(container);
+    else renderPath(container);
     return;
   }
+  sectionsTab = 'materials';
 
   currentSection = letter;
   loadData([letter.toLowerCase()]);
@@ -1245,7 +1265,8 @@ function renderSections(letter) {
 function renderSectionList(container) {
   const sections = sectionList();
   container.innerHTML = `
-    <h2 style="margin-bottom:16px">Sections</h2>
+    ${sectionsTabsHTML('materials')}
+    <p class="path-intro">The full notes for every section. Open one to read it and rate each term.</p>
     <div class="grid2">
       ${sections.map(s => `
         <div role="button" tabindex="0" class="section-tile" onclick="navigate('sections',{section:'${s.letter}'})">
@@ -1289,7 +1310,7 @@ function renderSectionContent(container, data, letter) {
 
   let html = `
     <div class="section-header">
-      <button class="section-header-back" onclick="navigate('sections')" title="All sections" aria-label="Back to all sections">←</button>
+      <button class="section-header-back" onclick="navigate('sections',{tab:'materials'})" title="All sections" aria-label="Back to all sections">←</button>
       <h2><span style="color:${col}">${data.section}</span> — ${data.title}</h2>
       <span class="badge ${sectionTierClass(letter)}">Tier ${sectionTier(letter)}</span>
     </div>
@@ -5997,7 +6018,7 @@ document.addEventListener('DOMContentLoaded', () => {
   loadData(unitLetters());
   updateNavAvatar();
   const r = parseRoute();
-  navigate(r.page, { section: r.section, replaceRoute: true });
+  navigate(r.page, { section: r.section, tab: r.tab, replaceRoute: true });
   el('main-content').addEventListener('scroll', syncToTopButton, { passive: true });
   if (storeWasCorrupt) {
     toast('Your saved progress could not be read, so the site started fresh. A copy of the old data was kept in this browser.', 8000, 'error');

@@ -1,0 +1,84 @@
+{
+  "E1.1.1": [
+    {"q": "A clothes shop starts selling through its own website, taking payment online and posting orders to customers. Which online service is this?", "options": ["Online retail", "Online booking system", "Online financial services", "Online education"], "answer": 0, "why": "Online retail is buying and selling goods online, with ordering, payment and delivery handled digitally."},
+    {"q": "Which is a DISADVANTAGE of online retail for customers?", "options": ["They can't see or try products before buying", "They must travel to a shop", "Shops are only open 9 to 5", "They can't compare prices"], "answer": 0, "why": "Online shopping is convenient, but you can't handle goods and returns take effort."}
+  ],
+  "E1.1.2": [
+    {"q": "A customer pays bills, moves money between accounts and checks their balance on a phone app without visiting a branch. What is this?", "options": ["Online financial services", "Online retail", "Online booking", "Online entertainment"], "answer": 0, "why": "Banking, insurance and payments done online are online financial services."}
+  ],
+  "E1.1.3": [
+    {"q": "A student completes a certified coding course through video lessons and online quizzes at home. Which online service is this?", "options": ["Online education and training", "Online news and information", "Online entertainment", "Online booking"], "answer": 0, "why": "Courses and qualifications delivered over the internet are online education."}
+  ],
+  "E1.1.4": [
+    {"q": "A story spreads on social media within minutes, before it has been fact-checked. Which online service, and which risk, does this show?", "options": ["Online news: misinformation spreading", "Online retail: fraud", "Online booking: double booking", "Online education: cheating"], "answer": 0, "why": "Online news is instant, but unchecked stories can spread misinformation."}
+  ],
+  "E1.1.5": [
+    {"q": "A family stops buying DVDs and streams films on demand for a monthly fee instead. Which online service is this?", "options": ["Online entertainment and leisure", "Online retail", "Online education", "Online financial services"], "answer": 0, "why": "Music, films, TV and games delivered on demand count as online entertainment."}
+  ],
+  "E1.1.6": [
+    {"q": "A patient checks which appointment slots are free at their GP and reserves one instantly through an app. What system is this?", "options": ["Online booking system", "Online retail", "Online financial service", "Online news"], "answer": 0, "why": "Booking systems let customers check availability and reserve in real time."}
+  ],
+  "E1.2.1": [
+    {"q": "A supermarket records every purchase: the items, time, amount and payment method. What kind of data is this?", "options": ["Transactional data", "Secondary data", "Targeted marketing", "Primary research data"], "answer": 0, "why": "Transactional data is recorded each time a customer interacts with an organisation."}
+  ],
+  "E1.2.2": [
+    {"q": "After you look at trainers on one website, adverts for those trainers follow you around other sites. What is this?", "options": ["Targeted marketing", "Collaborative working", "Transactional data", "Validation"], "answer": 0, "why": "Targeted marketing uses data about your behaviour to show personalised adverts."}
+  ],
+  "E1.2.3": [
+    {"q": "Five students edit the same Google Doc at the same time from different homes. What does this show?", "options": ["Collaborative working", "Remote desktop", "Targeted marketing", "Primary data collection"], "answer": 0, "why": "Collaborative working tools let people work on the same files at once from anywhere."}
+  ],
+  "E1.2.4": [
+    {"q": "An accountant works from home three days a week using a VPN, cloud apps and video calls. What is this?", "options": ["Remote working", "Collaborative working", "Online retail", "Transactional data"], "answer": 0, "why": "Remote working means working away from the office with tools such as VPNs and video calls."},
+    {"q": "Which is a DRAWBACK of remote working for an organisation?", "options": ["Harder to keep data secure on home networks", "Higher office rent", "Staff can't use email", "Fewer people can apply for jobs"], "answer": 0, "why": "Home networks and devices are harder to control, which raises security risks."}
+  ]
+,
+  "E2.1.1": [
+    {"q": "A café wants to know what its own customers think of its new menu, so it hands out a short survey. What kind of data will this collect?", "options": ["Primary data", "Secondary data", "Transactional data", "Census data"], "answer": 0, "why": "Primary data is collected first-hand for a specific current purpose."}
+  ],
+  "E2.1.2": [
+    {"q": "A business planning a new shop uses government census figures about the local population. What kind of data is this?", "options": ["Secondary data", "Primary data", "Transactional data", "Focus group data"], "answer": 0, "why": "Secondary data already exists and was collected by someone else for another purpose."}
+  ],
+  "E2.2": [
+    {"q": "A student finds a surprising statistic on one website. What is the best way to check it is reliable?", "options": ["Check it against several reputable sources", "Use it because it is online", "Check how many likes it has", "Ask a friend if it sounds right"], "answer": 0, "why": "Cross-checking against trusted, up-to-date sources is how you make sure information is reliable."}
+  ],
+  "E2.3.1": [
+    {"q": "An online shop emails structured questions to 5,000 customers after purchase to get measurable satisfaction scores. Which method is this?", "options": ["Survey", "Interview", "Focus group", "Observation"], "answer": 0, "why": "Surveys reach many people with structured questions and produce measurable data."}
+  ],
+  "E2.3.2": [
+    {"q": "Shoppers are handed a printed form with the same fixed set of written questions to fill in. Which method is this?", "options": ["Questionnaire", "Interview", "Focus group", "Secondary research"], "answer": 0, "why": "A questionnaire is a fixed set of written questions on paper or online."}
+  ],
+  "E2.3.3": [
+    {"q": "An app developer invites eight potential users to try a prototype and discuss it together, led by a facilitator. Which method is this?", "options": ["Focus group", "Survey", "Questionnaire", "Interview"], "answer": 0, "why": "A focus group is a small group discussing a topic in depth, led by a facilitator."}
+  ],
+  "E2.3.4": [
+    {"q": "A researcher wants detailed views and follow-up answers from one customer at a time. Which method is best?", "options": ["Interview", "Survey", "Questionnaire", "Census"], "answer": 0, "why": "Interviews are one-to-one and allow detailed answers and follow-up questions."}
+  ],
+  "E2.4": [
+    {"q": "A hospital gives a patient the wrong drug because their allergy was recorded incorrectly. What does this show?", "options": ["Why data accuracy matters", "Why data must be secondary", "Why surveys are better than interviews", "Why websites need HTTPS"], "answer": 0, "why": "Inaccurate data leads to bad decisions, harm and legal problems."}
+  ],
+  "E2.5.1": [
+    {"q": "A sign-up form asks you to type your new password twice to confirm it. Which accuracy method is this?", "options": ["Verification", "Validation", "Encryption", "Backup"], "answer": 0, "why": "Verification checks data was copied or entered correctly, e.g. by entering it twice."}
+  ],
+  "E2.5.2": [
+    {"q": "An online form refuses to accept an age of 200 and says 'Please enter an age between 16 and 100'. Which accuracy method is this?", "options": ["Validation (range check)", "Verification", "Proofreading", "Double entry"], "answer": 0, "why": "Validation automatically checks data is sensible and follows rules before accepting it."},
+    {"q": "A form passes validation but the customer has typed their house number as 12 instead of 21. Why wasn't this caught?", "options": ["Validation only checks data is sensible, not that it is correct", "Validation was turned off", "Verification always fails", "The data was encrypted"], "answer": 0, "why": "12 is a sensible value, so validation accepts it. Only verification can catch a correct-looking mistake."}
+  ],
+  "E2.6.1": [
+    {"q": "A delivery driver has to enter details on a form with no training, so it uses clear labels and a simple layout. Which characteristic is this?", "options": ["Ease of use", "Compatibility", "Performance", "Functionality"], "answer": 0, "why": "Ease of use is how easily users can find their way around and enter data without training."}
+  ],
+  "E2.6.2": [
+    {"q": "A council form supports screen readers and high-contrast text, and every field can be used with the keyboard alone. Which characteristic is this?", "options": ["Accessibility", "Performance", "Error reduction", "Compatibility"], "answer": 0, "why": "Accessibility means people with disabilities can use the interface."}
+  ],
+  "E2.6.3": [
+    {"q": "Instead of a free-text box, a form gives a drop-down list of UK counties so users can't misspell them. Which characteristic is this?", "options": ["Error reduction", "Accessibility", "Performance", "Compatibility"], "answer": 0, "why": "Error reduction designs stop users entering wrong data in the first place."}
+  ],
+  "E2.6.4": [
+    {"q": "Users can't finish an online claim because the form has no way to upload a photo of the receipt. Which characteristic is missing?", "options": ["Functionality", "Ease of use", "Accessibility", "Performance"], "answer": 0, "why": "Functionality is whether the interface has every feature users need to complete their tasks."}
+  ],
+  "E2.6.5": [
+    {"q": "A ticket booking form freezes when thousands of fans try to buy at once. Which characteristic is poor?", "options": ["Performance", "Compatibility", "Error reduction", "Ease of use"], "answer": 0, "why": "Performance is how quickly the interface responds, including at busy times."}
+  ],
+  "E2.6.6": [
+    {"q": "A survey form looks fine on a laptop but its buttons are cut off on phones. Which characteristic has failed?", "options": ["Compatibility", "Accessibility", "Functionality", "Performance"], "answer": 0, "why": "Compatibility is whether the interface works on all devices, browsers and screen sizes."}
+  ]
+}

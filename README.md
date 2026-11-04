@@ -87,6 +87,24 @@ will fail if:
   exception is a plain link to Pearson's past-papers page, which is opened by the
   student, not loaded by the site)
 
+### Sections path (lessons)
+
+The Sections tab is a path of lessons, one per spec subtopic (`lessons.js`).
+Each lesson teaches every term on a "New" card, then asks questions until all of
+them have been answered correctly. Two questions per term are built automatically
+from the section JSON: one from the `definition`, and one from the `examples`
+when there are any. The scenario questions are written by hand in
+`data/<unit>/lessons/<letter>.json`, keyed by item code:
+
+```json
+{ "C1.1.1": [ { "q": "A hospital wants…", "options": ["Private cloud", "Public cloud", "Hybrid cloud"], "answer": 0, "why": "One-line reason." } ] }
+```
+
+`answer` is the index of the right option (options are shuffled on screen).
+`validate_data.py` fails if any term has no scenario question, if a question has
+fewer than 3 or more than 4 options, or if `answer` doesn't point at one of them.
+The Materials tab still shows each section's full notes.
+
 ### Reasoning test questions
 
 The reasoning test reads `data/aptitude.json`, which belongs to neither unit. Each question needs an

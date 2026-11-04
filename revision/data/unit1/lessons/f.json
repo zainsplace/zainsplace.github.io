@@ -1,0 +1,37 @@
+{
+  "F1.1.1": [
+    {"q": "A free torch app collects users' location and contacts and sells them to advertisers without asking. Which ethical issue does this raise?", "options": ["Privacy", "Environmental impact", "Unequal access", "Netiquette"], "answer": 0, "why": "Privacy is a person's right to control how their personal information is collected, used and shared."}
+  ],
+  "F1.1.2": [
+    {"q": "A company replaces every staff laptop each year and sends the old ones to landfill. Which ethical issue is this?", "options": ["Environmental impact", "Privacy", "Unequal access", "Assistive technology"], "answer": 0, "why": "E-waste, energy use and manufacturing emissions are the environmental impact of IT."}
+  ],
+  "F1.1.3": [
+    {"q": "A council moves all parking permit applications online only. Elderly residents without internet or IT skills can no longer apply. Which issue is this?", "options": ["Unequal access to IT (digital divide)", "Privacy", "Environmental impact", "Online behaviour"], "answer": 0, "why": "The digital divide is the gap between those with devices, internet and skills and those without."}
+  ],
+  "F1.1.4": [
+    {"q": "A visually impaired employee is refused a screen reader, so they cannot use the company's systems. Which ethical issue is this?", "options": ["Access to assistive technology", "Unequal access to IT", "Privacy", "Acceptable use policy"], "answer": 0, "why": "Disabled people should have fair access to the assistive technology they need."}
+  ],
+  "F1.1.5": [
+    {"q": "A group of students repeatedly posts insulting comments about a classmate on social media. Which issue is this?", "options": ["Online behaviour and netiquette", "Privacy", "Unequal access", "Copyright"], "answer": 0, "why": "Cyberbullying and trolling break the standards of respectful online behaviour."}
+  ],
+  "F1.1.6": [
+    {"q": "Before getting a login, new staff must sign a document saying they won't share passwords or install unapproved software. What is this document?", "options": ["Acceptable Use Policy (AUP)", "Data protection policy", "Copyright licence", "DSE assessment"], "answer": 0, "why": "An AUP sets out what users may and may not do on an organisation's IT systems."}
+  ],
+  "F2.1.1": [
+    {"q": "A former employee uses an old password to log into his ex-employer's customer database without permission. Which law has he broken?", "options": ["Computer Misuse Act 1990", "Data Protection Act 2018", "Copyright, Designs and Patents Act 1988", "DSE Regulations"], "answer": 0, "why": "Unauthorised access to computer material is a Section 1 offence under the Computer Misuse Act."},
+    {"q": "A hacker breaks into a bank's system in order to transfer money to himself. Under the Computer Misuse Act, what makes this more serious than simply logging in?", "options": ["Access with intent to commit a further crime (Section 2)", "Breaking copyright (Section 3)", "Failing to report a breach in 72 hours", "Not having a DSE assessment"], "answer": 0, "why": "Section 2 covers unauthorised access with intent to commit or help commit a further offence, such as fraud."}
+  ],
+  "F2.1.2": [
+    {"q": "A student downloads a pirated copy of a paid film and shares it with friends. Which law does this break?", "options": ["Copyright, Designs and Patents Act 1988", "Computer Misuse Act 1990", "Data Protection Act 2018", "DSE Regulations"], "answer": 0, "why": "The CDPA protects creators' work from being copied or shared without permission."}
+  ],
+  "F2.1.3": [
+    {"q": "A developer copies another company's source code and sells the program as their own. Which regulations specifically protect the program as a literary work?", "options": ["Copyright Regulations (Computer Programs) 1992", "Computer Misuse Act 1990", "Data Protection Act 2018", "DSE Regulations"], "answer": 0, "why": "The 1992 regulations extend copyright to computer programs as literary works."}
+  ],
+  "F2.1.4": [
+    {"q": "A call-centre worker gets back pain and eye strain from long shifts at a screen. What do the regulations require her employer to provide?", "options": ["Adjustable chairs, eye tests and screen breaks", "A VPN and encrypted laptop", "A copyright licence", "A data breach report within 72 hours"], "answer": 0, "why": "The DSE Regulations require employers to protect staff who use screens regularly."}
+  ],
+  "F2.1.5": [
+    {"q": "A GP surgery's records are hacked and patient data is stolen. Under data protection law, how quickly must the breach be reported to the ICO?", "options": ["Within 72 hours", "Within 7 days", "Within 30 days", "Only if patients complain"], "answer": 0, "why": "UK GDPR requires serious personal data breaches to be reported within 72 hours."},
+    {"q": "An online shop keeps old customers' details for ten years 'just in case', with no reason to. Which law does this break?", "options": ["Data Protection Act 2018 / UK GDPR", "Computer Misuse Act 1990", "Copyright, Designs and Patents Act 1988", "DSE Regulations"], "answer": 0, "why": "Personal data must not be kept longer than necessary for its purpose."}
+  ]
+}

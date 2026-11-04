@@ -261,8 +261,44 @@ for unit, (folder, letters) in UNITS.items():
     except (FileNotFoundError, KeyError) as e:
         err('%s: questions.json unreadable (%s)' % (unit, e))
 
-    print('%s: %d item codes, %d flashcards, %d questions'
-          % (unit, len(all_codes), len(all_cards), len(all_qs)))
+    # Sections path: written scenario questions, keyed by spec code. Every
+    # lesson term must have at least one, or its lesson is definitions only.
+    lesson_qs = 0
+    lesson_codes = set()
+    for letter in letters:
+        path = os.path.join(DATA, folder, 'lessons', letter + '.json')
+        if not os.path.exists(path):
+            err('%s: missing lessons/%s.json' % (unit, letter))
+            continue
+        with open(path, encoding='utf-8') as f:
+            bank = json.load(f)
+        for code, qs in bank.items():
+            lesson_codes.add(code)
+            if code not in all_codes:
+                err('%s: lessons/%s.json has questions for unknown code %s' % (unit, letter, code))
+            if not isinstance(qs, list) or not qs:
+                err('%s: lesson %s needs a non-empty list of questions' % (unit, code))
+                continue
+            for i, q in enumerate(qs):
+                where = '%s: lesson %s question %d' % (unit, code, i + 1)
+                opts = q.get('options') if isinstance(q, dict) else None
+                if not isinstance(opts, list) or not 3 <= len(opts) <= 4:
+                    err(where + ' needs 3 or 4 options')
+                    continue
+                if len(set(o.strip().lower() for o in opts)) != len(opts):
+                    err(where + ' has duplicate options')
+                ans = q.get('answer')
+                if not isinstance(ans, int) or not 0 <= ans < len(opts):
+                    err(where + ' answer index is out of range')
+                if not str(q.get('q', '')).strip() or not str(q.get('why', '')).strip():
+                    err(where + ' needs both q and why text')
+                lesson_qs += 1
+    for code in all_codes:
+        if '-' not in code and code not in lesson_codes:
+            err('%s: term %s has no lesson questions' % (unit, code))
+
+    print('%s: %d item codes, %d flashcards, %d questions, %d lesson questions'
+          % (unit, len(all_codes), len(all_cards), len(all_qs), lesson_qs))
 
 # The reasoning test is shared by both units. A wrong or ambiguous answer key is
 # the worst thing that can happen to it, so the structure that makes "exactly one

@@ -1,0 +1,114 @@
+{
+  "B1.1.1": [
+    {"q": "A warehouse worker wants a handheld scanner to talk to a tablet a couple of metres away, using very little battery. Which connection fits?", "options": ["Bluetooth", "Ethernet", "Wi-Fi", "USB"], "answer": 0, "why": "Bluetooth is short-range (about 10 m) and low-power, for linking devices directly."}
+  ],
+  "B1.1.2": [
+    {"q": "A photographer needs to copy files from a camera to a laptop with a cable that also charges the camera. Which connection is this?", "options": ["USB", "Bluetooth", "Wi-Fi", "Ethernet"], "answer": 0, "why": "USB is a wired standard that carries both data and power."}
+  ],
+  "B1.1.3": [
+    {"q": "A café wants customers to connect their own phones and laptops to the internet without any cables. Which connection should it provide?", "options": ["Wi-Fi", "Ethernet", "USB", "Bluetooth"], "answer": 0, "why": "Wi-Fi connects many devices wirelessly to a router or access point."}
+  ],
+  "B1.1.4": [
+    {"q": "A video editing studio needs the fastest, most reliable link between its desktop PCs and file server, and nobody moves around. Which connection is best?", "options": ["Ethernet", "Wi-Fi", "Bluetooth", "USB"], "answer": 0, "why": "Wired Ethernet (copper or fibre) is faster, more reliable and harder to intercept than wireless."}
+  ],
+  "B1.2": [
+    {"q": "A hospital's heart monitors must never drop their connection, while visitors just want to browse the web. What is the best match?", "options": ["Ethernet for monitors, Wi-Fi for visitors", "Wi-Fi for both", "Bluetooth for monitors, Ethernet for visitors", "USB for both"], "answer": 0, "why": "Connection choice depends on need: critical kit needs reliable wired links, and visitors need mobility."}
+  ],
+  "B1.3": [
+    {"q": "A school removes all network cables and goes Wi-Fi only to save money. What is a likely implication?", "options": ["More security risk and possible slowdowns at busy times", "No devices can move between rooms", "It must buy more switches", "Bluetooth will stop working"], "answer": 0, "why": "Choosing a connection affects security, cost and performance, not just convenience."}
+  ],
+  "B1.4": [
+    {"q": "Video editors complain that large file transfers over Wi-Fi are slow and sometimes fail. What change would most improve performance?", "options": ["Switch them to wired Ethernet", "Use Bluetooth instead", "Add a second monitor", "Compress files with lossy compression"], "answer": 0, "why": "Wired connections give higher speed, lower latency and more reliability than shared Wi-Fi."}
+  ],
+  "B2.1.1": [
+    {"q": "In an office network, each PC has its own cable to one central switch. One cable breaks. What happens?", "options": ["Only that PC loses its connection", "The whole network goes down", "Data travels the other way round the loop", "All PCs slow to a stop"], "answer": 0, "why": "In a star topology each device has its own link, but if the central switch fails, everything stops."}
+  ],
+  "B2.1.2": [
+    {"q": "In a network, devices are connected in a closed loop and data passes around it in one direction. Which topology is this?", "options": ["Ring", "Star", "Bus", "Mesh"], "answer": 0, "why": "A ring links devices in a loop, so one break can stop the whole ring."}
+  ],
+  "B2.1.3": [
+    {"q": "All devices share one backbone cable, and every device receives all the data sent. Traffic grows and collisions increase. Which topology is this?", "options": ["Bus", "Star", "Ring", "PAN"], "answer": 0, "why": "In a bus topology everything shares one cable, so heavy traffic causes collisions and one break stops the network."}
+  ],
+  "B2.2.1": [
+    {"q": "A runner's phone connects to their wireless earbuds and smartwatch by Bluetooth. What type of network is this?", "options": ["PAN", "LAN", "WAN", "VPN"], "answer": 0, "why": "A Personal Area Network links one person's devices over a short range."}
+  ],
+  "B2.2.2": [
+    {"q": "A school's computers, printers and servers all sit on one site and use network hardware the school owns. What type of network is this?", "options": ["LAN", "WAN", "PAN", "VPN"], "answer": 0, "why": "A LAN covers a single site using the organisation's own hardware."}
+  ],
+  "B2.2.3": [
+    {"q": "A bank links the networks in all its branches across the UK using lines leased from a telecoms company. What type of network is this?", "options": ["WAN", "LAN", "PAN", "Star topology"], "answer": 0, "why": "A WAN covers a large area and links LANs using third-party lines."}
+  ],
+  "B2.2.4": [
+    {"q": "A company with two offices wants to link them securely over the public internet rather than paying for leased lines. What should it use?", "options": ["VPN", "PAN", "Bluetooth", "Bus topology"], "answer": 0, "why": "A VPN creates an encrypted tunnel through the internet to a private network."}
+  ],
+  "B2.3.1": [
+    {"q": "Nurses need to move between wards with tablets and stay connected the whole time. Which network factor is the designer considering?", "options": ["User needs", "Cost", "Compatibility", "Efficiency"], "answer": 0, "why": "User needs cover mobility, the applications users run and how many connect at once."}
+  ],
+  "B2.3.2": [
+    {"q": "A stock trading firm requires a network with under 5 ms latency and 99.99% uptime. Which factor is this?", "options": ["Specifications", "User needs", "Productivity", "Cost"], "answer": 0, "why": "Specifications are the technical requirements the network must meet, such as speed, latency and uptime."}
+  ],
+  "B2.3.3": [
+    {"q": "A farm needs the network to reach sensors in fields far from the main building. Which factor is this?", "options": ["Connectivity", "Compatibility", "Security", "Efficiency"], "answer": 0, "why": "Connectivity is whether every device and site that needs to connect can do so reliably."}
+  ],
+  "B2.3.4": [
+    {"q": "A small charity weighs up the price of cabling, switches, ISP fees and paying someone to support the network. Which factor is this?", "options": ["Cost", "Specifications", "Productivity", "Implementation"], "answer": 0, "why": "Cost is the full cost of building and running the network."}
+  ],
+  "B2.3.5": [
+    {"q": "Backups that run during the working day slow everyone's connection. Scheduling them overnight makes better use of the bandwidth. Which factor is this?", "options": ["Efficiency", "Security", "Cost", "User needs"], "answer": 0, "why": "Efficiency is how well the network uses its bandwidth to avoid congestion and delays."}
+  ],
+  "B2.3.6": [
+    {"q": "A company checks that a new network will work with its existing printers, servers and software before buying it. Which factor is this?", "options": ["Compatibility", "Connectivity", "Productivity", "Specifications"], "answer": 0, "why": "Compatibility is whether the network works with the hardware, software and protocols already in use."}
+  ],
+  "B2.3.7": [
+    {"q": "A school installs its new network over the summer holiday, testing it before staff return, so lessons aren't disrupted. Which factor is this?", "options": ["Implementation (timescales, testing, downtime)", "Efficiency", "Cost", "Security"], "answer": 0, "why": "Implementation covers how long rollout takes, how it is tested and how much disruption it causes."}
+  ],
+  "B2.3.8": [
+    {"q": "After the network upgrade, staff no longer wait minutes for files to open and finish more work each day. Which factor improved?", "options": ["Productivity", "Compatibility", "Connectivity", "Security"], "answer": 0, "why": "Productivity is how the network affects how much staff can get done."}
+  ],
+  "B2.3.9": [
+    {"q": "A law firm insists its network uses encrypted Wi-Fi, a firewall and separate guest access. Which factor is it prioritising?", "options": ["Security", "Efficiency", "User needs", "Cost"], "answer": 0, "why": "Security protects the network from unauthorised access, interception and attack."}
+  ],
+  "B2.4": [
+    {"q": "Wi-Fi in a busy open-plan office is slow because too many devices share one access point. What would most improve performance?", "options": ["Add more access points", "Use a bus topology", "Switch off the firewall", "Use lossless compression"], "answer": 0, "why": "Performance depends on hardware and set-up. More access points spread the load."}
+  ],
+  "B3.1.1": [
+    {"q": "A worker wants their email kept on the server and synced, so they can see the same inbox on their phone and laptop. Which protocol fits?", "options": ["IMAP", "POP3", "SMTP", "HTTP"], "answer": 0, "why": "IMAP keeps mail on the server and syncs it across devices. POP3 downloads it, and SMTP sends it."},
+    {"q": "Which protocol is used to SEND an email from Outlook to the mail server?", "options": ["SMTP", "IMAP", "POP3", "FTP"], "answer": 0, "why": "SMTP sends email; IMAP and POP3 retrieve it."}
+  ],
+  "B3.1.2": [
+    {"q": "A company drops its landline phones and makes all calls through Microsoft Teams over the internet. What technology is this?", "options": ["VoIP", "SMTP", "HTTPS", "Bluetooth"], "answer": 0, "why": "VoIP sends voice and video as data packets over the internet."}
+  ],
+  "B3.1.3": [
+    {"q": "Which protocol should an online banking site use so that logins can't be read if intercepted?", "options": ["HTTPS", "HTTP", "POP3", "VoIP"], "answer": 0, "why": "HTTPS adds TLS encryption to HTTP."}
+  ],
+  "B3.1.4": [
+    {"q": "When you pay with Apple Pay, the shop receives a one-off token instead of your real card number. What is this an example of?", "options": ["A secure payment system (tokenisation)", "Lossy compression", "A VPN", "IMAP"], "answer": 0, "why": "Secure payment systems protect card data using encryption and tokenisation."}
+  ],
+  "B3.2": [
+    {"q": "Someone on an open café Wi-Fi network captures another customer's unencrypted login details. Which security issue is this?", "options": ["Interception of data in transit", "Accidental damage", "Natural disaster", "Data loss at rest"], "answer": 0, "why": "Unencrypted data in transit can be intercepted, altered or blocked."}
+  ],
+  "B3.3": [
+    {"q": "A gamer has very fast broadband for downloads but still sees a lag between pressing a button and the game reacting. What is the problem?", "options": ["High latency", "Low bandwidth", "Lossless compression", "Too much storage"], "answer": 0, "why": "Bandwidth is how much data per second; latency is the delay. High latency causes lag even on fast connections."}
+  ],
+  "B3.4.1": [
+    {"q": "A designer needs the company logo to have a transparent background on the website without losing sharpness. Which format suits it?", "options": ["PNG", "JPEG", "MP3", "WAV"], "answer": 0, "why": "PNG is lossless and supports transparency. JPEG suits photos."}
+  ],
+  "B3.4.2": [
+    {"q": "A recording studio needs uncompressed, full-quality audio for editing, even though the files are huge. Which format suits it?", "options": ["WAV", "MP3", "JPEG", "MP4"], "answer": 0, "why": "WAV keeps full quality; MP3 is compressed for streaming."}
+  ],
+  "B3.4.3": [
+    {"q": "A YouTuber uploads a file containing both video and audio streams compressed by codecs. Which format is it most likely in?", "options": ["MP4", "PNG", "WAV", ".exe"], "answer": 0, "why": "MP4 is a container format holding video and audio streams."}
+  ],
+  "B3.4.4": [
+    {"q": "A user downloads a program to install on Windows. Which file type will it most likely be?", "options": [".exe", ".apk", ".dmg", ".png"], "answer": 0, "why": "Application file formats are OS-specific: .exe for Windows, .apk for Android, .dmg for macOS."}
+  ],
+  "B3.5.1": [
+    {"q": "A music streaming service shrinks songs by permanently removing sounds most people can't hear. Which compression is this?", "options": ["Lossy", "Lossless", "Encryption", "Tokenisation"], "answer": 0, "why": "Lossy compression permanently removes some data for much smaller files."}
+  ],
+  "B3.5.2": [
+    {"q": "A company zips its spreadsheets before emailing them, and every number must come back exactly as it was. Which compression must it use?", "options": ["Lossless", "Lossy", "MP3", "JPEG"], "answer": 0, "why": "Lossless compression restores the original exactly, which is essential for documents and data."}
+  ],
+  "B3.6": [
+    {"q": "During a video call, software compresses the video before sending it and decompresses it for playback on the other side. What is this software?", "options": ["Codec", "Protocol", "Firewall", "Topology"], "answer": 0, "why": "A codec (coder-decoder) compresses media for sending and decompresses it for playback."}
+  ]
+}

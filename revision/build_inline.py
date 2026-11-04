@@ -39,7 +39,20 @@ def build_unit(unit):
         'flashcards': load(unit, 'flashcards'),
         'questions': load(unit, 'questions'),
         'extended': load(unit, 'extended'),
+        'lessons': load_lessons(unit),
     }
+
+
+def load_lessons(unit):
+    """Scenario questions for the Sections path, keyed by spec code.
+    One optional file per section: data/<unit>/lessons/<letter>.json."""
+    out = {}
+    for letter in UNITS[unit]:
+        path = os.path.join(DATA, FOLDER[unit], 'lessons', letter + '.json')
+        if os.path.exists(path):
+            with open(path, encoding='utf-8') as f:
+                out.update(json.load(f))
+    return out
 
 
 payload = {unit: build_unit(unit) for unit in UNITS}

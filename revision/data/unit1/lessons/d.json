@@ -1,0 +1,74 @@
+{
+  "D1.1.1": [
+    {"q": "A hospital's files are suddenly locked and a message demands payment in Bitcoin to unlock them. What kind of threat is this?", "options": ["Malware (ransomware)", "Social engineering", "Accidental damage", "Natural disaster"], "answer": 0, "why": "Ransomware is malware that encrypts data and demands payment to release it."}
+  ],
+  "D1.1.2": [
+    {"q": "An attacker exploits an unpatched web server to get into a shop's network and download customer records. Which threat is this?", "options": ["Unauthorised access (hacking)", "Accidental disclosure", "Social engineering", "Natural disaster"], "answer": 0, "why": "Hacking is gaining access to a system without permission, often through unpatched weaknesses."}
+  ],
+  "D1.1.3": [
+    {"q": "A technician spills coffee over a server, which stops working and loses a day's orders. Which threat is this?", "options": ["Accidental damage", "Malware", "Unauthorised access", "Stealing information"], "answer": 0, "why": "Accidental damage is unintentional harm from human error or physical accidents."}
+  ],
+  "D1.1.4": [
+    {"q": "Staff get an email that looks like it's from the IT department asking them to click a link and 'confirm' their password. What attack is this?", "options": ["Social engineering (phishing)", "Virus", "Hacking an unpatched server", "Natural disaster"], "answer": 0, "why": "Social engineering tricks people, not systems, into giving away information or access."}
+  ],
+  "D1.1.5": [
+    {"q": "A river floods a company's ground-floor server room, destroying all its on-site storage. What should the company have had to survive this?", "options": ["An off-site or cloud backup", "Stronger passwords", "A firewall", "Antivirus software"], "answer": 0, "why": "Natural disasters destroy hardware on site, so only a copy kept somewhere else lets you recover."}
+  ],
+  "D1.2.1": [
+    {"q": "An employee visits a film piracy site on a work PC, and malware is silently installed. Which internal threat is this?", "options": ["Access to inappropriate websites", "Stealing/leaking information", "Accidental disclosure", "Natural disaster"], "answer": 0, "why": "Visiting malicious or banned sites on work systems can bring malware in."}
+  ],
+  "D1.2.2": [
+    {"q": "A receptionist emails a spreadsheet of patient details to the wrong person by mistake. What is this?", "options": ["Accidental disclosure of data", "Stealing/leaking information", "Hacking", "Malware"], "answer": 0, "why": "Sharing data by mistake still counts as a data breach."}
+  ],
+  "D1.2.3": [
+    {"q": "On his last day, a salesperson copies the whole customer database onto a USB stick to take to a rival. Which threat is this?", "options": ["Stealing/leaking information", "Accidental disclosure", "Use of portable devices only", "Social engineering"], "answer": 0, "why": "It is a deliberate insider act of copying confidential data to share or sell."}
+  ],
+  "D1.2.4": [
+    {"q": "A nurse leaves an unencrypted USB stick of patient records on a train. Which internal threat does this show?", "options": ["Use of portable devices", "Access to inappropriate websites", "Hacking", "Natural disaster"], "answer": 0, "why": "USB sticks, laptops and phones can be lost or bring in malware."}
+  ],
+  "D1.3.1": [
+    {"q": "Ransomware encrypts a small firm's only copy of its accounts, and there is no backup. What is the most direct impact?", "options": ["Loss of data", "Loss of customers due to public image", "Financial loss from legal action", "Slower internet"], "answer": 0, "why": "With no backup, the data is permanently lost or inaccessible."}
+  ],
+  "D1.3.2": [
+    {"q": "After failing to secure customer data, a company is fined by the ICO and sued by affected customers. What impact is this?", "options": ["Financial loss due to legal action", "Loss of data", "Loss of customers due to public image", "Accidental damage"], "answer": 0, "why": "ICO fines and lawsuits are financial losses caused by legal action."}
+  ],
+  "D1.3.3": [
+    {"q": "After a card data breach makes the news, shoppers stop trusting a retailer and buy from its rivals. Which impact is this?", "options": ["Loss of customers due to public image", "Financial loss due to legal action", "Loss of data", "Downtime"], "answer": 0, "why": "A public breach damages trust and reputation, so customers leave."}
+  ],
+  "D2.1.1": [
+    {"q": "Everyone in a company can open the payroll spreadsheet, but only HR should be able to edit it. What should be set on the file?", "options": ["File permissions (read-only for everyone except HR)", "A digital certificate", "Biometrics", "A firewall rule"], "answer": 0, "why": "File permissions control who can read, write, run or delete a file."}
+  ],
+  "D2.1.2": [
+    {"q": "Staff should see only their own department's systems, while IT admins can manage everything. Which protection is this?", "options": ["Access levels", "Backups", "Physical access control", "Encryption in transit"], "answer": 0, "why": "Access levels give each user only the privileges their role needs."}
+  ],
+  "D2.1.3": [
+    {"q": "A school copies its data every night to a separate location so it can restore files after a disaster. Which protection is this?", "options": ["Backup and recovery procedures", "File permissions", "Antivirus software", "MFA"], "answer": 0, "why": "Backups are copies kept elsewhere that can be restored after data loss."}
+  ],
+  "D2.1.4": [
+    {"q": "An attacker has stolen a member of staff's password but still can't log in because a code is needed from the staff member's phone. What stopped them?", "options": ["Multi-factor authentication", "File permissions", "A firewall", "A digital certificate"], "answer": 0, "why": "MFA adds a second factor, so a password alone is not enough."}
+  ],
+  "D2.1.5": [
+    {"q": "A lab wants entry that can't be passed on like a swipe card or password, so it scans each person's fingerprint. Which protection is this?", "options": ["Biometrics", "Physical access control with keys", "Passwords", "Access levels"], "answer": 0, "why": "Biometrics use unique body features, which can't easily be shared or forgotten."}
+  ],
+  "D2.1.6": [
+    {"q": "A company puts its server room behind a locked door with swipe-card entry and CCTV. Which kind of protection is this?", "options": ["Physical access control", "Encryption", "File permissions", "Antivirus"], "answer": 0, "why": "Physical measures stop unauthorised people reaching IT equipment."}
+  ],
+  "D2.1.7": [
+    {"q": "A customer checks the padlock on a bank's website to be sure it is the genuine bank. What issued by a Certificate Authority proves this?", "options": ["A digital certificate", "A firewall", "A VPN", "An access level"], "answer": 0, "why": "Digital certificates prove a website is genuine and enable encryption."}
+  ],
+  "D2.2": [
+    {"q": "A downloaded file matches a known trojan's signature and is moved somewhere it can't run. Which software did this, and what action did it take?", "options": ["Antivirus: quarantine", "Firewall: port blocking", "Encryption: data at rest", "Backup: restore"], "answer": 0, "why": "Antivirus finds malware using signatures and behaviour checks, then quarantines or removes it."}
+  ],
+  "D2.3": [
+    {"q": "A business wants to block all incoming network traffic on ports it does not use. What should it configure?", "options": ["A firewall", "Antivirus software", "File permissions", "A backup"], "answer": 0, "why": "A firewall monitors traffic in and out and blocks it according to rules."}
+  ],
+  "D2.4.1": [
+    {"q": "A sales rep's laptop is stolen, but the thief cannot read any of the files on the drive because BitLocker is turned on. What protected the data?", "options": ["Encryption of data at rest", "Encryption of data in transit", "A firewall", "Antivirus"], "answer": 0, "why": "Encrypting stored data means a stolen device or drive can't be read."}
+  ],
+  "D2.4.2": [
+    {"q": "Messages are intercepted on public Wi-Fi as they travel, but the attacker sees only scrambled data. What protected them?", "options": ["Encryption of data in transit", "Encryption of data at rest", "File permissions", "Physical access control"], "answer": 0, "why": "Encrypting data as it travels means it can't be read if it is intercepted."}
+  ],
+  "D2.4.3": [
+    {"q": "An online shop's checkout page must encrypt card details between the browser and server and prove the site is genuine. What should it use?", "options": ["HTTPS (TLS)", "HTTP", "FTP", "A screen reader"], "answer": 0, "why": "HTTPS is HTTP secured with TLS: it encrypts the traffic and proves the server is genuine."}
+  ]
+}
