@@ -1,0 +1,605 @@
+{
+  "section": "B",
+  "title": "American film since 2012 (two-film study): Joker and Get Out",
+  "tier": 1,
+  "colour": "#1E5A8A",
+  "topics": [
+    {
+      "code": "B1",
+      "title": "Joker (Phillips, 2019) — mainstream",
+      "subtopics": [
+        {
+          "code": "B1.1",
+          "title": "Key idea and contexts",
+          "items": [
+            {
+              "code": "B1.1.1",
+              "term": "Joker: the key idea",
+              "definition": "A mentally ill, abused loner is ground down by an uncaring city until he kills: the monster is made, not born.",
+              "examples": "Arthur Fleck loses his job, his medication and his mother, and the “clown” protests turn him into a symbol.",
+              "keyFacts": [
+                "The film makes the spectator uncomfortably sympathise with Arthur: the whole spectatorship game",
+                "It blames class neglect and social indifference, which is its ideological argument",
+                "Killer line: “Phillips aligns the spectator with Arthur through subjective camerawork and an unreliable narrative, so sympathy curdles into complicity.”"
+              ],
+              "examTip": "Every Joker paragraph should link a technique to HOW the spectator is positioned."
+            },
+            {
+              "code": "B1.1.2",
+              "term": "Social and political context",
+              "definition": "Inequality, austerity and a defunded mental-health system; the clown protests echo Occupy-style anger at the rich.",
+              "examples": "Arthur’s social worker tells him the city has cut funding: “They don’t give a shit about people like you, Arthur.”",
+              "keyFacts": [
+                "Released in 2019, amid debates about wealth inequality and populist anger",
+                "Thomas Wayne calls the protesters “clowns”, echoing politicians dismissing the poor",
+                "The film was feared to inspire real violence: US cinemas increased security at screenings"
+              ],
+              "examTip": "Context + spectatorship: different audiences read the riots as protest or as warning."
+            },
+            {
+              "code": "B1.1.3",
+              "term": "Cultural context: 1970s–80s New York cinema",
+              "definition": "A deliberate homage to Scorsese’s Taxi Driver (1976) and The King of Comedy (1982): lonely men, decaying cities.",
+              "examples": "Robert De Niro, star of both Scorsese films, plays talk-show host Murray Franklin.",
+              "keyFacts": [
+                "Gotham is a rubbish-strewn, strike-bound early-1980s New York",
+                "Borrows the New Hollywood character study inside a comic-book franchise",
+                "Spectators who know the references read Arthur through Travis Bickle and Rupert Pupkin"
+              ],
+              "examTip": "Intertextuality is an “auteur cue” and a “genre cue” for spectator response."
+            },
+            {
+              "code": "B1.1.4",
+              "term": "Institutional context: a mainstream studio film",
+              "definition": "A Warner Bros./DC comic-book property made as a gritty, R-rated character study on a modest superhero budget.",
+              "examples": "It won the Golden Lion at Venice and Oscars for Joaquin Phoenix (Best Actor) and Hildur Guðnadóttir (Best Score).",
+              "keyFacts": [
+                "Became the first R-rated film to gross over $1 billion worldwide",
+                "Mainstream in funding and IP, but art-house in tone: blurs the spec’s mainstream/independent divide",
+                "Marketing used the brand to bring mass audiences to a challenging film"
+              ],
+              "examTip": "Mainstream ≠ simple: a mass audience brings a wider range of readings.",
+              "verify": true
+            }
+          ]
+        },
+        {
+          "code": "B1.2",
+          "title": "Film form",
+          "items": [
+            {
+              "code": "B1.2.1",
+              "term": "Cinematography: Lawrence Sher",
+              "definition": "Character-locked, often handheld camera and tight framing trap us with Arthur in a sickly green-yellow city.",
+              "examples": "Close-ups of Arthur’s face and body; claustrophobic subway carriages and corridors.",
+              "keyFacts": [
+                "Arthur is in almost every shot: restricted narration aligns us with him",
+                "Low-key, sickly lighting and grime connote decay",
+                "Later the palette brightens to red and orange as he becomes Joker: his liberation looks seductive"
+              ],
+              "examTip": "Link camera to alignment: “the camera never leaves Arthur, so the spectator is forced to share his perspective”."
+            },
+            {
+              "code": "B1.2.2",
+              "term": "Sound: Guðnadóttir’s cello score",
+              "definition": "A mournful solo cello score, often following Arthur’s movements, pulls the spectator into sympathy.",
+              "examples": "The cello swells after the subway killings as Arthur dances in the bathroom.",
+              "keyFacts": [
+                "Arthur’s involuntary laughter is a recurring sound motif of pain disguised as joy",
+                "Needle-drops like “Rock and Roll Part 2” on the stairs make his transformation feel triumphant",
+                "Music cues ask for sympathy that the images might make us resist"
+              ],
+              "examTip": "The sample question asks about “visual and soundtrack cues”: have one sound cue per film ready."
+            },
+            {
+              "code": "B1.2.3",
+              "term": "Mise-en-scène: the stairs and the make-up",
+              "definition": "The long Bronx staircase and the clown make-up chart Arthur’s descent and rebirth.",
+              "examples": "He trudges UP the stairs in grey clothes early on; later he dances DOWN them in a red suit and full Joker make-up.",
+              "keyFacts": [
+                "Make-up = a mask of forced happiness; it runs when he cries",
+                "Red suit marks his new identity and power",
+                "Cramped flat, TV and fridge show isolation and fantasy"
+              ],
+              "examTip": "Repeated settings with changed meaning = strong mise-en-scène motif analysis."
+            },
+            {
+              "code": "B1.2.4",
+              "term": "Performance: Joaquin Phoenix",
+              "definition": "An extreme physical performance: severe weight loss, a contorted body and a painful, uncontrollable laugh.",
+              "examples": "The bathroom dance after the subway killings was reportedly improvised.",
+              "keyFacts": [
+                "The body as a site of suffering makes the spectator wince and sympathise",
+                "Method-style commitment and star discourse shaped expectations",
+                "Phoenix won the Oscar for Best Actor"
+              ],
+              "examTip": "Performance is a “cue” to spectator response: name a gesture, not just “good acting”.",
+              "verify": true
+            },
+            {
+              "code": "B1.2.5",
+              "term": "Editing and narrative: the unreliable narrator",
+              "definition": "Scenes are replayed to reveal they were imagined, so the spectator can no longer trust what they have seen.",
+              "examples": "Arthur’s romance with his neighbour Sophie is replayed without her: she was never there.",
+              "keyFacts": [
+                "Forces the spectator from passive acceptance to active questioning",
+                "Leaves the whole film open: was any of it real?",
+                "The final asylum scene may frame everything as fantasy"
+              ],
+              "examTip": "Your best evidence for “a constant shift between passive and active spectatorship”."
+            }
+          ]
+        },
+        {
+          "code": "B1.3",
+          "title": "Key scenes",
+          "items": [
+            {
+              "code": "B1.3.1",
+              "term": "Opening: forcing a smile",
+              "definition": "Arthur, in clown make-up, pulls his mouth into a smile with his fingers as a tear runs his mascara.",
+              "examples": "Close-up in a dressing-room mirror; then he is beaten by teenagers in an alley.",
+              "keyFacts": [
+                "Visual thesis: a man forced to perform happiness in a society hurting him",
+                "Immediate sympathy: passive identification from the first image",
+                "The mirror suggests a split self"
+              ],
+              "examTip": "Quick, precise opening example for a sympathy/alignment point."
+            },
+            {
+              "code": "B1.3.2",
+              "term": "The subway murders",
+              "definition": "Three drunk Wall Street men harass and beat Arthur; he shoots them all.",
+              "examples": "Low-key lighting, flickering carriage lights, claustrophobic framing; afterwards the bathroom dance to the cello.",
+              "keyFacts": [
+                "Spectatorship: guilty relief (passive identification) collides with horror (active judgement)",
+                "Ideology: the killings spark the anti-rich clown movement",
+                "The first shooting is self-defence; the last is an execution, testing how far we follow him"
+              ],
+              "examTip": "Strongest single Joker sequence for both specialist areas."
+            },
+            {
+              "code": "B1.3.3",
+              "term": "The Sophie reveal",
+              "definition": "Arthur enters Sophie’s flat; she is terrified and doesn’t know him; earlier scenes replay without her in them.",
+              "examples": "Fast cuts back to the date, the hospital and the comedy club, now with Arthur alone.",
+              "keyFacts": [
+                "Unreliable narration exposed: our alignment is destabilised",
+                "Raises the question of whether he harms her (left off-screen)",
+                "Makes the spectator re-read the film actively"
+              ],
+              "examTip": "Pair with Get Out’s twist about Rose for a comparison of narrative reveals."
+            },
+            {
+              "code": "B1.3.4",
+              "term": "Dancing on the stairs",
+              "definition": "Fully transformed, Arthur dances triumphantly down the Bronx steps to a glam-rock anthem.",
+              "examples": "Celebratory camera, slow motion and a bright palette contrast with the earlier trudges up the same steps.",
+              "keyFacts": [
+                "Form celebrates a murderer’s rebirth: seductive and deliberately uncomfortable",
+                "Shows how visual and sound cues can make the spectator complicit",
+                "The steps became a real tourist site: evidence of the film’s cultural reach"
+              ],
+              "examTip": "Ask: does the spectator resist this pleasure? That is active spectatorship."
+            },
+            {
+              "code": "B1.3.5",
+              "term": "The Murray Franklin show and the riot",
+              "definition": "Arthur confesses live on TV, rants about society abandoning people like him, shoots Murray, and Gotham riots.",
+              "examples": "Cross-cutting between the studio and burning streets; rioters lift Arthur onto a car bonnet like a messiah.",
+              "keyFacts": [
+                "Ideological climax: neglect produces violence",
+                "Preferred reading (sympathy for the abandoned) vs oppositional reading (alarm at glorified violence)",
+                "Media spectacle: the TV show turns violence into entertainment"
+              ],
+              "examTip": "Use Stuart Hall’s readings here to show diverse spectator response."
+            }
+          ]
+        },
+        {
+          "code": "B1.4",
+          "title": "Spectatorship and ideology in Joker",
+          "items": [
+            {
+              "code": "B1.4.1",
+              "term": "Joker: passive and active spectatorship",
+              "definition": "Subjective camera and score invite passive identification; the violence and unreliable narration push active judgement.",
+              "examples": "We feel with Arthur in the subway, then question everything after the Sophie reveal.",
+              "keyFacts": [
+                "Passive = absorbed, aligned, swept along; active = questioning, resisting, bringing our own values",
+                "Murray Smith: we are ALIGNED with Arthur (we see what he sees) without necessarily feeling ALLEGIANCE",
+                "The shift is constant: the film keeps rewarding and then punishing sympathy"
+              ],
+              "examTip": "Make a judgement: “to a significant extent, because the film is designed to make sympathy uncomfortable”."
+            },
+            {
+              "code": "B1.4.2",
+              "term": "Joker: ideology of class neglect",
+              "definition": "The film argues that inequality, austerity and the indifference of the rich produce violence.",
+              "examples": "Thomas Wayne’s contempt; cut welfare services; Wall Street men on the subway.",
+              "keyFacts": [
+                "Marxist reading: class conflict between Gotham’s rich and poor",
+                "Critics debated whether it critiques or glamorises angry, isolated men",
+                "Its ideology is ambiguous, which makes spectator response diverse"
+              ],
+              "examTip": "Evaluate: an ideological reading explains the riots, but the ambiguity limits a single reading."
+            },
+            {
+              "code": "B1.4.3",
+              "term": "Joker: viewing conditions and diverse response",
+              "definition": "Fears of copycat violence, heavy security and online debate shaped how audiences watched the film.",
+              "examples": "Families of victims of the 2012 Aurora cinema shooting wrote to Warner Bros. with concerns before release.",
+              "keyFacts": [
+                "The spec asks about “the impact of different viewing conditions on spectator response”",
+                "Cinema crowds, home streaming and repeat viewing all change response",
+                "Some viewers identified with Arthur; others read him as a warning"
+              ],
+              "examTip": "Viewing conditions is a spec point many students forget: one sentence earns credit."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "B2",
+      "title": "Get Out (Peele, 2017) — contemporary independent",
+      "subtopics": [
+        {
+          "code": "B2.1",
+          "title": "Key idea and contexts",
+          "items": [
+            {
+              "code": "B2.1.1",
+              "term": "Get Out: the key idea",
+              "definition": "A Black photographer meets his white girlfriend’s liberal family, who steal Black bodies: horror as social critique.",
+              "examples": "Dean Armitage: “I would have voted for Obama a third time if I could.”",
+              "keyFacts": [
+                "Attacks covert, liberal racism rather than open hatred",
+                "Restricted to Chris’s point of view, so we share his paranoia",
+                "Killer line: “Peele weaponises the horror genre to expose liberal racism, positioning a mixed audience to feel the surveillance of the Black body.”"
+              ],
+              "examTip": "The spec says Get Out “uses the very mainstream genres of Horror and Comedy” to deliver social critique."
+            },
+            {
+              "code": "B2.1.2",
+              "term": "Social and political context",
+              "definition": "The “post-racial” myth after Obama; police violence and Black Lives Matter; racism hidden behind liberal smiles.",
+              "examples": "The ending’s police car plays on the spectator’s knowledge of real police shootings of Black Americans.",
+              "keyFacts": [
+                "Written during the Obama years, released weeks after Trump’s inauguration",
+                "Fetishisation and commodification of Black bodies echo slavery",
+                "“The Sunken Place” entered everyday language as a metaphor"
+              ],
+              "examTip": "Always connect context to a scene and a technique."
+            },
+            {
+              "code": "B2.1.3",
+              "term": "Institutional context: Blumhouse",
+              "definition": "Made by Blumhouse on a micro-budget of about $4.5 million, earning about $255 million worldwide.",
+              "examples": "Peele won the Oscar for Best Original Screenplay; the film was nominated for Best Picture.",
+              "keyFacts": [
+                "Blumhouse model: low budgets in return for creative control for the director",
+                "This let a first-time Black director make a radical film with full control",
+                "Released by Universal: independent production, mainstream distribution"
+              ],
+              "examTip": "Institutional context explains WHY its ideology could be so pointed.",
+              "verify": true
+            },
+            {
+              "code": "B2.1.4",
+              "term": "Cultural context: Peele and the horror tradition",
+              "definition": "Peele came from sketch comedy and draws on Night of the Living Dead, Rosemary’s Baby and The Stepford Wives.",
+              "examples": "The smiling, controlled suburban wives recall The Stepford Wives (1975).",
+              "keyFacts": [
+                "Comedy timing helps him control tension and release",
+                "Black horror tradition: Romero’s Black hero in Night of the Living Dead (1968)",
+                "Genre knowledge is a cue: we expect horror tropes and Peele flips them"
+              ],
+              "examTip": "Genre cues are explicitly named in the spec’s spectatorship content."
+            }
+          ]
+        },
+        {
+          "code": "B2.2",
+          "title": "Film form",
+          "items": [
+            {
+              "code": "B2.2.1",
+              "term": "Cinematography: restricted point of view",
+              "definition": "Toby Oliver’s camera stays tied to Chris, so the spectator shares what he notices and what he misses.",
+              "examples": "Point-of-view shots of Walter sprinting at night and Georgina staring; Chris’s camera flash exposes the truth.",
+              "keyFacts": [
+                "Chris is a photographer: looking and being looked at is the film’s theme",
+                "Calm, bright suburban daylight that feels wrong",
+                "The phone camera flash breaks the hypnosis: seeing clearly = resistance"
+              ],
+              "examTip": "“Restricted narration” is the precise term: use it."
+            },
+            {
+              "code": "B2.2.2",
+              "term": "Mise-en-scène: motifs planted for rewatch",
+              "definition": "The teacup and spoon, the deer, the cotton, the silent Black servants: clues hiding in plain sight.",
+              "examples": "Chris pulls stuffing out of the chair and plugs his ears with cotton, picking cotton to free himself.",
+              "keyFacts": [
+                "The deer links to Chris’s guilt over his mother and to hunted Black bodies",
+                "Rose’s white milk and separated Froot Loops hint at her nature",
+                "A first viewing and a rewatch produce different responses: active spectatorship"
+              ],
+              "examTip": "Motifs + repeat viewing = an excellent viewing-conditions point."
+            },
+            {
+              "code": "B2.2.3",
+              "term": "Sound: score and warnings",
+              "definition": "Michael Abels’ score uses Swahili voices warning Chris to listen to his ancestors and run.",
+              "examples": "“Sikiliza Kwa Wahenga” plays over the opening credits; “Run Rabbit Run” plays in the abductor’s car.",
+              "keyFacts": [
+                "Swahili lyrics address Black ancestry and are opaque to many viewers: different audiences, different access",
+                "The spoon on china becomes a terrifying sound trigger",
+                "Jump-scare stings are genre cues for horror audiences"
+              ],
+              "examTip": "A sound cue that different audiences understand differently = diverse response."
+            },
+            {
+              "code": "B2.2.4",
+              "term": "Performance: Daniel Kaluuya",
+              "definition": "Kaluuya’s restrained, watchful Chris holds back anger, letting small reactions carry the tension.",
+              "examples": "In the Sunken Place a single tear runs down his frozen face.",
+              "keyFacts": [
+                "Kaluuya was nominated for the Best Actor Oscar",
+                "Betty Gabriel’s Georgina smiles while crying: a body controlled by someone else",
+                "Lil Rel Howery’s Rod gives comic release and voices the audience’s fears"
+              ],
+              "examTip": "Performance as a cue: name the tear or Georgina’s smile."
+            }
+          ]
+        },
+        {
+          "code": "B2.3",
+          "title": "Key scenes",
+          "items": [
+            {
+              "code": "B2.3.1",
+              "term": "Opening: Andre’s abduction",
+              "definition": "A Black man walking through a white suburb at night is stalked and bundled into a car.",
+              "examples": "A long take; “Run Rabbit Run” plays from the car; a knight’s helmet hides the attacker.",
+              "keyFacts": [
+                "Flips the horror trope of a white woman alone in a dangerous city",
+                "Positions white suburbia as the threat from the first scene",
+                "Andre’s line about feeling like “a sore thumb” sets up the theme of being looked at"
+              ],
+              "examTip": "Strong for genre cues and for ideology together."
+            },
+            {
+              "code": "B2.3.2",
+              "term": "The hypnosis and the Sunken Place",
+              "definition": "Missy stirs a teacup; Chris sinks into a black void, watching the world through a distant screen, paralysed.",
+              "examples": "Subjective camera, slow falling motion, muffled sound, the spoon’s chime.",
+              "keyFacts": [
+                "Peele has described the Sunken Place as a metaphor for the marginalisation of Black people",
+                "Restricted POV makes us FEEL the paralysis: deep passive immersion",
+                "Chris watches the world on a “screen”: the spectator watching a film"
+              ],
+              "examTip": "Signature scene: use it for visual AND soundtrack cues."
+            },
+            {
+              "code": "B2.3.3",
+              "term": "The garden party and silent auction",
+              "definition": "White guests inspect Chris’s body; later they bid silently with bingo cards while Dean stands by his portrait.",
+              "examples": "Intercutting the auction with Chris and Rose by the lake: we know before he does.",
+              "keyFacts": [
+                "Evokes a slave auction: commodification of the Black body made literal",
+                "Dramatic irony shifts spectators from sharing Chris’s ignorance to knowing more than him",
+                "Guests praise Tiger Woods and Black physique: fetishisation disguised as admiration"
+              ],
+              "examTip": "The ideological heart of the film."
+            },
+            {
+              "code": "B2.3.4",
+              "term": "Rod: the comic release",
+              "definition": "Chris’s TSA friend Rod phones in comic theories that are actually right, cutting the tension.",
+              "examples": "The police officers laugh at Rod’s “sex slaves” theory, then the film proves him right.",
+              "keyFacts": [
+                "Tension/release rhythm controls spectator dread",
+                "Rod is an audience surrogate: he says “get out!”",
+                "Satirises authorities that do not believe Black people"
+              ],
+              "examTip": "Useful for a shift between immersion (passive) and reflection (active)."
+            },
+            {
+              "code": "B2.3.5",
+              "term": "The ending: the police car",
+              "definition": "Chris kneels over Rose as police lights appear; the audience fears he will be shot or arrested, but it is Rod.",
+              "examples": "Rose reaches out pleading for help; the camera holds on Chris raising his hands.",
+              "keyFacts": [
+                "Exploits the spectator’s real-world knowledge of racist policing",
+                "An earlier, darker ending in which Chris is arrested was replaced after test screenings",
+                "Different audiences experience this moment very differently"
+              ],
+              "examTip": "Best evidence that spectators bring context to the film: active spectatorship."
+            }
+          ]
+        },
+        {
+          "code": "B2.4",
+          "title": "Spectatorship and ideology in Get Out",
+          "items": [
+            {
+              "code": "B2.4.1",
+              "term": "Get Out: passive and active spectatorship",
+              "definition": "Restricted POV immerses us in Chris’s fear; clues, irony and real-world knowledge make us actively read the film.",
+              "examples": "Passive in the Sunken Place; active at the auction and the police-car ending.",
+              "keyFacts": [
+                "Black and white spectators may be positioned differently: some recognise the microaggressions instantly",
+                "bell hooks’ “oppositional gaze”: Black spectators looking back critically",
+                "The film shifts us constantly between immersion and suspicion"
+              ],
+              "examTip": "Contrast with Joker: Get Out asks us to identify with the victim, Joker with the perpetrator."
+            },
+            {
+              "code": "B2.4.2",
+              "term": "Get Out: ideology of liberal racism",
+              "definition": "Racism persists behind progressive smiles: white liberals admire, consume and possess Black bodies.",
+              "examples": "Jim Hudson, the blind art dealer, wants Chris’s “eye”: admiration as theft.",
+              "keyFacts": [
+                "Challenges the dominant “post-racial” ideology",
+                "The Coagula procedure literalises cultural appropriation",
+                "Rose: the girlfriend figure as the ultimate betrayer"
+              ],
+              "examTip": "Evaluate the ideological approach: it explains the satire, but genre pleasure also matters."
+            },
+            {
+              "code": "B2.4.3",
+              "term": "Get Out: genre and auteur cues",
+              "definition": "Horror conventions set expectations; Peele’s comic timing and planted motifs build his auteur signature.",
+              "examples": "The jump scare of Walter running at Chris; the deer collision as an omen.",
+              "keyFacts": [
+                "Genre cues tell spectators how to feel, then Peele subverts them",
+                "Peele’s later films (Us, Nope) confirm motifs: doubles, watching, social horror",
+                "Audience knowledge of Peele as a comedian shaped expectations"
+              ],
+              "examTip": "The spec names narrative, visual, musical, performance, genre and auteur cues: cover two or three."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "B3",
+      "title": "Spectatorship and ideology: the theory",
+      "subtopics": [
+        {
+          "code": "B3.1",
+          "title": "Spectatorship",
+          "items": [
+            {
+              "code": "B3.1.1",
+              "term": "Passive spectatorship",
+              "definition": "The spectator is absorbed by the film, identifies with characters and accepts the position the film offers.",
+              "examples": "Feeling relief when Arthur shoots the Wall Street men; falling with Chris into the Sunken Place.",
+              "keyFacts": [
+                "Linked to older “effects” and psychoanalytic theories of film",
+                "Classical continuity editing and subjective camera encourage it",
+                "Never total: spectators always bring something of themselves"
+              ],
+              "examTip": "Define both passive and active in the introduction of every spectatorship essay."
+            },
+            {
+              "code": "B3.1.2",
+              "term": "Active spectatorship",
+              "definition": "The spectator questions, interprets and resists, bringing their own knowledge, values and context.",
+              "examples": "Doubting Arthur after the Sophie reveal; fearing the police car at the end of Get Out.",
+              "keyFacts": [
+                "David Bordwell: viewers actively build the story from cues (cognitive approach)",
+                "Ambiguity, unreliable narrators and irony provoke active viewing",
+                "Rewatching makes spectators more active"
+              ],
+              "examTip": "Exam stem: “a constant shift between passive and active spectatorship”."
+            },
+            {
+              "code": "B3.1.3",
+              "term": "Stuart Hall: preferred, negotiated, oppositional readings",
+              "definition": "Hall’s encoding/decoding model: audiences may accept, partly accept or reject the meaning a text intends.",
+              "examples": "Joker: preferred = sympathy for the abandoned; oppositional = it glamorises violent men.",
+              "keyFacts": [
+                "Preferred: the reading the film encourages",
+                "Negotiated: accepted in part, adapted to the viewer’s situation",
+                "Oppositional: rejected; aberrant: a reading far from anything intended"
+              ],
+              "examTip": "The spec lists preferred, negotiated, oppositional and aberrant readings."
+            },
+            {
+              "code": "B3.1.4",
+              "term": "Murray Smith: the structure of sympathy",
+              "definition": "We engage with characters through recognition, alignment (access to their view) and allegiance (moral support).",
+              "examples": "We are aligned with Arthur almost all the time, but allegiance is withdrawn as he kills.",
+              "keyFacts": [
+                "Alignment ≠ allegiance: you can see through someone’s eyes without approving",
+                "Explains how films make us “root for” or recoil from characters",
+                "From Engaging Characters (1995)"
+              ],
+              "examTip": "Precise theory that separates you from answers that only say “we sympathise”."
+            },
+            {
+              "code": "B3.1.5",
+              "term": "Laura Mulvey: the male gaze",
+              "definition": "Mulvey (1975) argued Classical cinema positions the spectator as male, with women as objects “to-be-looked-at”.",
+              "examples": "Get Out reworks the gaze: white guests looking at Chris’s Black body as an object.",
+              "keyFacts": [
+                "From “Visual Pleasure and Narrative Cinema”",
+                "Psychoanalytic: scopophilia (pleasure in looking) and identification",
+                "Criticised for assuming a single, passive spectator"
+              ],
+              "examTip": "Use the gaze flexibly: who looks, who is looked at, and with what power."
+            },
+            {
+              "code": "B3.1.6",
+              "term": "bell hooks: the oppositional gaze",
+              "definition": "hooks argued Black spectators, especially Black women, look back critically and resist dominant images.",
+              "examples": "Black audiences recognising the microaggressions at the Armitage party before Chris names them.",
+              "keyFacts": [
+                "From Black Looks: Race and Representation (1992)",
+                "Looking critically is a form of resistance",
+                "Shows that spectator identity shapes response"
+              ],
+              "examTip": "Excellent for “reasons for the uniformity or diversity of response”."
+            },
+            {
+              "code": "B3.1.7",
+              "term": "Cues that shape spectator response",
+              "definition": "Narrative, visual, musical, performance, genre and auteur cues steer how the spectator feels and thinks.",
+              "examples": "The cello (musical), the stairs (visual), Phoenix’s laugh (performance), horror stings (genre), Peele’s motifs (auteur).",
+              "keyFacts": [
+                "Listed directly in the spec’s spectatorship content",
+                "Cues can work together or against each other (upbeat music over violence)",
+                "Viewing conditions (cinema, phone, crowd, alone) affect how strongly cues work"
+              ],
+              "examTip": "Sample stem: “visual and soundtrack cues in influencing spectator response”."
+            }
+          ]
+        },
+        {
+          "code": "B3.2",
+          "title": "Ideology",
+          "items": [
+            {
+              "code": "B3.2.1",
+              "term": "Ideology",
+              "definition": "The values and beliefs a film conveys or is shaped by, which may reinforce or challenge a society’s dominant ideas.",
+              "examples": "Get Out challenges the post-racial myth; Joker argues inequality creates violence.",
+              "keyFacts": [
+                "Dominant ideology = the beliefs presented as “normal” in a society",
+                "Films can reinforce, challenge or be contradictory",
+                "Spec: connotations of visuals and sounds, binary oppositions, spectator positioning, ideological perspectives"
+              ],
+              "examTip": "Always say WHICH ideology (Marxist, feminist, anti-racist) you are applying."
+            },
+            {
+              "code": "B3.2.2",
+              "term": "Marxist ideology and hegemony",
+              "definition": "Marxism reads films through class conflict; Gramsci’s hegemony is how the ruling class makes its values seem natural.",
+              "examples": "Joker: Wayne’s wealth vs Arthur’s poverty; Shaun of the Dead: workers as zombies.",
+              "keyFacts": [
+                "Althusser: institutions (media, school, family) reproduce ideology",
+                "Films can expose hegemony or quietly support it",
+                "Useful for Joker, Trainspotting and Shaun"
+              ],
+              "examTip": "Name the theorist briefly, then get straight to the film evidence."
+            },
+            {
+              "code": "B3.2.3",
+              "term": "Evaluating the ideological approach",
+              "definition": "Ideological criticism reveals hidden values but can ignore pleasure, genre, authorship and audience diversity.",
+              "examples": "Reading Get Out only as ideology misses its effectiveness as a scary, funny horror film.",
+              "keyFacts": [
+                "The spec requires “an evaluation of the ideological critical approach to film”",
+                "Strength: explains why films matter politically",
+                "Weakness: risks one fixed meaning; spectators read differently"
+              ],
+              "examTip": "Put at least one evaluative sentence in every paragraph for AO2."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

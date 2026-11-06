@@ -1,0 +1,516 @@
+{
+  "section": "A",
+  "title": "Global film (two-film study): Pan’s Labyrinth and City of God",
+  "tier": 1,
+  "colour": "#A8326E",
+  "topics": [
+    {
+      "code": "A1",
+      "title": "Pan’s Labyrinth (del Toro, Spain/Mexico, 2006) — European film",
+      "subtopics": [
+        {
+          "code": "A1.1",
+          "title": "Key idea and contexts",
+          "items": [
+            {
+              "code": "A1.1.1",
+              "term": "Pan’s Labyrinth: the key idea",
+              "definition": "Two parallel worlds, 1944 fascist Spain and Ofelia’s dark fairytale: the fantasy mirrors and critiques the fascism.",
+              "examples": "The Pale Man’s banquet mirrors Vidal’s dinner for the priest and officials.",
+              "keyFacts": [
+                "The fantasy is not escapism: its monsters ARE the real world’s monsters",
+                "Disobedience and imagination become acts of resistance",
+                "Killer line: “Del Toro structures the film so the fantasy reflects and critiques the fascist reality, making disobedience and imagination acts of resistance.”"
+              ],
+              "examTip": "Global film = core areas only: lead with film form, meaning and context."
+            },
+            {
+              "code": "A1.1.2",
+              "term": "Historical and political context: Franco’s Spain",
+              "definition": "Spain, 1944: the Civil War ended in 1939, but Franco’s fascists still hunt republican guerrillas in the north.",
+              "examples": "Captain Vidal is sent to a mill in the mountains to wipe out the rebels hiding in the forest.",
+              "keyFacts": [
+                "Falangists = brutal fascism allied with a corrupt Church",
+                "Rebels are shown as humane and egalitarian",
+                "Del Toro has attacked fascism’s “imaginative poverty”: it demands obedience and kills imagination"
+              ],
+              "examTip": "Link the context to a scene of film form every time."
+            },
+            {
+              "code": "A1.1.3",
+              "term": "Social context: patriarchy",
+              "definition": "A macho, patriarchal era in which the women, Ofelia, Carmen and Mercedes, all suffer under male power.",
+              "examples": "Vidal wants only his son; the doctor is told to save the baby, not Carmen, if he must choose.",
+              "keyFacts": [
+                "Carmen’s body is valued only for producing an heir",
+                "Mercedes survives by being “invisible” to Vidal",
+                "Ofelia refuses to obey: a feminist reading of resistance"
+              ],
+              "examTip": "Representation of gender is a strong Global-film angle."
+            },
+            {
+              "code": "A1.1.4",
+              "term": "Institutional context: co-production",
+              "definition": "A Spanish–Mexican co-production costing about $19 million that grossed about $83 million worldwide.",
+              "examples": "Premiered at Cannes in 2006; won three Oscars: Cinematography, Art Direction and Makeup.",
+              "keyFacts": [
+                "Del Toro is Mexican, making a Spanish film: a transnational auteur",
+                "Del Toro reportedly gave up his fee to keep the film going",
+                "Distributed in the US by Picturehouse, reaching a wide non-Spanish audience"
+              ],
+              "examTip": "Global film often means transnational production: say so.",
+              "verify": true
+            },
+            {
+              "code": "A1.1.5",
+              "term": "Technological context: practical effects",
+              "definition": "Del Toro prefers animatronics, prosthetics and make-up to CGI, with digital work used to enhance them.",
+              "examples": "Doug Jones plays both the Faun and the Pale Man in heavy prosthetics.",
+              "keyFacts": [
+                "Practical creatures feel tactile and present on set",
+                "Del Toro sketches creatures in his notebooks first",
+                "Digital work removes rigs and adds details"
+              ],
+              "examTip": "Useful link to the spec point on post-production VFX."
+            }
+          ]
+        },
+        {
+          "code": "A1.2",
+          "title": "Film form",
+          "items": [
+            {
+              "code": "A1.2.1",
+              "term": "Cinematography: two colour worlds",
+              "definition": "Guillermo Navarro shoots cold blue-grey for the fascist reality and warm amber-gold for the fantasy.",
+              "examples": "Cold blue mill and forest vs the golden light of the underworld throne room at the end.",
+              "keyFacts": [
+                "Navarro won the Oscar for Best Cinematography",
+                "Canted angles signal a world off balance",
+                "Fluid, fairytale camera moves contrast with harsher framing for Vidal"
+              ],
+              "examTip": "Colour = the simplest route to “how film form creates meaning”."
+            },
+            {
+              "code": "A1.2.2",
+              "term": "Mise-en-scène: gothic design and motifs",
+              "definition": "Hand-built gothic creatures and repeated motifs: the labyrinth, keys, the moon, the mandrake root, Vidal’s watch.",
+              "examples": "Vidal’s crisp uniform and polished boots; the tree’s womb-like entrance; the chalk door.",
+              "keyFacts": [
+                "Circles and labyrinths repeat throughout the design",
+                "Vidal’s watch belonged to his father: a symbol of time, order and macho inheritance",
+                "Art direction won an Oscar"
+              ],
+              "examTip": "Motifs and their patterned repetition are spec language."
+            },
+            {
+              "code": "A1.2.3",
+              "term": "Editing: linking the two worlds",
+              "definition": "Mostly classical editing, with wipes and dissolves that move between the fantasy and the real world.",
+              "examples": "A wipe across a tree trunk or a dark object carries us from one world into the other.",
+              "keyFacts": [
+                "Invisible transitions blur where fantasy ends",
+                "Cross-cutting at the climax links Ofelia’s test and the rebels’ attack",
+                "Editing leaves the fantasy ambiguous: we rarely see an adult see it"
+              ],
+              "examTip": "Pair editing with the ambiguity of the ending."
+            },
+            {
+              "code": "A1.2.4",
+              "term": "Sound: the lullaby and sweetened violence",
+              "definition": "Javier Navarrete’s hummed lullaby is Ofelia’s motif; violent sounds are exaggerated in post-production.",
+              "examples": "Mercedes hums the lullaby to Ofelia; it returns over the ending.",
+              "keyFacts": [
+                "A fairytale voiceover frames the film",
+                "“Sweetened” sound design makes the bottle murder visceral",
+                "Vidal’s watch ticks: a sound motif of control"
+              ],
+              "examTip": "Sound motifs are perfect for the sample question on editing OR sound."
+            },
+            {
+              "code": "A1.2.5",
+              "term": "Performance",
+              "definition": "Sergi López’s controlled, chilling Vidal; Ivana Baquero’s wide-eyed Ofelia; Maribel Verdú’s quietly heroic Mercedes.",
+              "examples": "Vidal shaves in the mirror and mimes cutting his own throat.",
+              "keyFacts": [
+                "López’s stiff, precise movements mask sadism",
+                "Doug Jones’ movement brings the creatures to life",
+                "Baquero’s stillness makes us share Ofelia’s fear"
+              ],
+              "examTip": "The sample paper offers “performance or mise-en-scène”: be ready for both."
+            }
+          ]
+        },
+        {
+          "code": "A1.3",
+          "title": "Key scenes",
+          "items": [
+            {
+              "code": "A1.3.1",
+              "term": "Opening: into Ofelia’s eye",
+              "definition": "A canted close-up of the dying Ofelia, then the camera seems to move into her eye as a fairytale voiceover begins.",
+              "examples": "Blood runs back into her nose; the cold blue image gives way to the fantasy kingdom.",
+              "keyFacts": [
+                "Starting with her death frames the whole film as circular",
+                "Entering through her eye makes the fantasy her perspective",
+                "Sets up the ambiguity of the ending"
+              ],
+              "examTip": "Strong evidence for cinematography and narrative structure."
+            },
+            {
+              "code": "A1.3.2",
+              "term": "Vidal’s watch",
+              "definition": "Vidal’s first close shots show him checking his dead father’s watch, its glass cracked.",
+              "examples": "He insists his son be born where he is; he times everything.",
+              "keyFacts": [
+                "Symbolises order, control and the burden of macho inheritance",
+                "Pays off when he asks Mercedes to tell his son the time of his death, and she refuses",
+                "Shots of mirrors and shaving show his self-obsession"
+              ],
+              "examTip": "Track the watch across the film for a motif paragraph."
+            },
+            {
+              "code": "A1.3.3",
+              "term": "The bottle murder",
+              "definition": "Vidal beats a young farmer to death with a bottle, then shoots his father, wrongly accusing them of being rebels.",
+              "examples": "Low-key lighting, no musical build-up, an exaggerated crunching sound.",
+              "keyFacts": [
+                "No warning cut: violence erupts suddenly",
+                "Sound design makes it physical and unbearable",
+                "Fascist violence shown as arbitrary and reasonless"
+              ],
+              "examTip": "Strong editing + sound evidence."
+            },
+            {
+              "code": "A1.3.4",
+              "term": "The Pale Man",
+              "definition": "Ofelia enters a lair with a forbidden feast; the eyeless Pale Man wakes after she eats two grapes and chases her.",
+              "examples": "Murals of him eating children; a shallow-focus close-up of a pile of victims’ shoes.",
+              "keyFacts": [
+                "The shoes evoke Holocaust imagery",
+                "The monster stands for the gluttonous elite of Church and state",
+                "Ofelia’s disobedience links her to the resistance"
+              ],
+              "examTip": "The best scene to prove the fantasy is political."
+            },
+            {
+              "code": "A1.3.5",
+              "term": "The ending: the flower blooms",
+              "definition": "Vidal shoots Ofelia; the rebels kill Vidal; Ofelia wakes, or imagines waking, as a princess in a golden kingdom.",
+              "examples": "Mercedes: “He won’t even know your name.” A flower blooms on a dead branch.",
+              "keyFacts": [
+                "Golden underworld vs cold real world: the palette resolves the two worlds",
+                "Ambiguous: real magic or a dying child’s imagination?",
+                "Fascist patriarchy is ended: Vidal’s son will not know his name"
+              ],
+              "examTip": "Use for aesthetics, narrative ambiguity and political meaning."
+            }
+          ]
+        },
+        {
+          "code": "A1.4",
+          "title": "Meaning, response and auteur",
+          "items": [
+            {
+              "code": "A1.4.1",
+              "term": "Pan’s Labyrinth: representation",
+              "definition": "Gender (women under patriarchy), youth (innocence crushed) and politics (fascists vs humane rebels).",
+              "examples": "Vidal: “She is just a woman.” Mercedes slashes his mouth with a kitchen knife.",
+              "keyFacts": [
+                "Mercedes is the resourceful survivor",
+                "Innocence crushed by a brutal elite, shown by the Pale Man’s victims",
+                "The doctor’s line: obeying “for the sake of obeying” is what people like Vidal do"
+              ],
+              "examTip": "Representation through form: costume, framing and lighting."
+            },
+            {
+              "code": "A1.4.2",
+              "term": "Pan’s Labyrinth: aesthetics and auteur",
+              "definition": "Del Toro’s gothic fairytale look: practical monsters, amber and blue palettes, insects, clockwork, children in peril.",
+              "examples": "A companion piece to The Devil’s Backbone (2001), also set during the Spanish Civil War.",
+              "keyFacts": [
+                "Magical realism: fantasy elements inside a realistic historical world",
+                "Recurring del Toro motifs: insects, eyes, gears, the monstrous as sympathetic",
+                "Aesthetics carry ideology: beauty belongs to resistance, sterility to fascism"
+              ],
+              "examTip": "Aesthetic questions: name the style and prove it in two scenes."
+            },
+            {
+              "code": "A1.4.3",
+              "term": "Pan’s Labyrinth: useful concepts",
+              "definition": "Propp (the Faun as donor/dispatcher) and binary oppositions (obedience/disobedience) add range.",
+              "examples": "Ofelia’s three tasks follow fairytale structure.",
+              "keyFacts": [
+                "Not required for Global film, but useful",
+                "Never replace film-form analysis with theory",
+                "Spectators are positioned against fascism and with the rebels"
+              ],
+              "examTip": "Use theory in one sentence, film form in three."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "A2",
+      "title": "City of God (Meirelles and Lund, Brazil, 2002) — outside Europe",
+      "subtopics": [
+        {
+          "code": "A2.1",
+          "title": "Key idea and contexts",
+          "items": [
+            {
+              "code": "A2.1.1",
+              "term": "City of God: the key idea",
+              "definition": "Rocket grows up in a violent Rio favela and escapes by becoming a photographer, an observer rather than a gangster.",
+              "examples": "His peers are drawn into the drug trade; Li’l Zé rises and falls; the Runts take over.",
+              "keyFacts": [
+                "A kinetic, almost glamorous style shows horrific violence: that tension is the point",
+                "The narrative is cyclical: violence keeps reproducing itself",
+                "Killer line: “Meirelles’ hyper-kinetic editing and saturated cinematography make favela violence visceral and seductive, while the cyclical narrative blames poverty and state neglect.”"
+              ],
+              "examTip": "Lead with cinematography and editing, tied to meaning and context."
+            },
+            {
+              "code": "A2.1.2",
+              "term": "Social and political context",
+              "definition": "Poverty and state neglect in Rio’s favelas, where drugs are the only route to power for poor, mostly Black youth.",
+              "examples": "Based on Paulo Lins’ novel about the real Cidade de Deus housing project, 1960s to 1980s.",
+              "keyFacts": [
+                "Police corruption is shown as part of the problem",
+                "The state built the project and then abandoned it",
+                "The film provoked debate in Brazil about poverty and violence"
+              ],
+              "examTip": "Say who the film blames: poverty and the state, not just individuals."
+            },
+            {
+              "code": "A2.1.3",
+              "term": "Cultural context: Cinema Novo and its critics",
+              "definition": "Brazil’s 1960s Cinema Novo made raw films about poverty; City of God updates that tradition with MTV-era style.",
+              "examples": "Critic Ivana Bentes called its style a “cosmetics of hunger”, attacking Glauber Rocha’s “aesthetics of hunger” turned glossy.",
+              "keyFacts": [
+                "Rocha’s manifesto (1965) called for films as raw as hunger itself",
+                "Critics debated whether the slick style exploits or exposes the favela",
+                "Strong evaluative point for aesthetics questions"
+              ],
+              "examTip": "Cite Bentes to evaluate the aesthetic: this impresses examiners.",
+              "verify": true
+            },
+            {
+              "code": "A2.1.4",
+              "term": "Institutional context and casting",
+              "definition": "A Brazilian production (O2 Filmes) distributed internationally by Miramax, with four Oscar nominations.",
+              "examples": "Non-professional cast trained in workshops (“Nós do Cinema”) with favela children.",
+              "keyFacts": [
+                "Nominations included Best Director and Best Cinematography (2004)",
+                "Put Brazilian cinema on the world map",
+                "Kátia Lund co-directed, especially working with the young cast"
+              ],
+              "examTip": "Casting real favela youth is both institutional and performance evidence.",
+              "verify": true
+            }
+          ]
+        },
+        {
+          "code": "A2.2",
+          "title": "Film form",
+          "items": [
+            {
+              "code": "A2.2.1",
+              "term": "Cinematography: César Charlone",
+              "definition": "Restless handheld camera and a saturated, sun-drenched grade; warm golden past, colder blue-grey present.",
+              "examples": "1960s scenes glow yellow and open; 1980s scenes are darker, bluer and more cramped.",
+              "keyFacts": [
+                "Handheld = documentary immediacy and chaos",
+                "Colour grading marks time and the decline of the favela",
+                "Charlone was Oscar-nominated"
+              ],
+              "examTip": "Colour grading across time is a precise, original point."
+            },
+            {
+              "code": "A2.2.2",
+              "term": "Editing: Daniel Rezende",
+              "definition": "Hyper-kinetic cutting, freeze-frames, split-screen, flashbacks and a 360° spin that jumps back in time.",
+              "examples": "Freeze-frames introduce characters as Rocket names them, as if taking their photo.",
+              "keyFacts": [
+                "Rezende was Oscar-nominated for editing",
+                "Freeze-frames link to Rocket’s photography",
+                "Non-linear chapters (“The Story of...”) organise the narrative"
+              ],
+              "examTip": "Ideal for the sample question “editing or sound create meaning”."
+            },
+            {
+              "code": "A2.2.3",
+              "term": "Sound: voiceover and ironic music",
+              "definition": "Rocket’s first-person voiceover guides us; diegetic funk and samba sit ironically against violence.",
+              "examples": "Rocket: “If you run, the beast gets you; if you stay, the beast eats you.”",
+              "keyFacts": [
+                "Voiceover positions Rocket as observer, not participant",
+                "Period music marks each decade",
+                "Contrapuntal music unsettles our response to violence"
+              ],
+              "examTip": "Name the voiceover’s function: it controls our point of view."
+            },
+            {
+              "code": "A2.2.4",
+              "term": "Mise-en-scène and performance",
+              "definition": "The favela grows from open dusty streets to cramped graffitied alleys; a raw non-professional cast.",
+              "examples": "Leandro Firmino’s terrifying Li’l Zé vs Alexandre Rodrigues’ watchful Rocket.",
+              "keyFacts": [
+                "Guns and gold chains as gangster iconography",
+                "Shot partly in a different, safer favela for practical reasons",
+                "Performances feel improvised and authentic"
+              ],
+              "examTip": "Performance + casting = authenticity argument.",
+              "verify": true
+            }
+          ]
+        },
+        {
+          "code": "A2.3",
+          "title": "Key scenes",
+          "items": [
+            {
+              "code": "A2.3.1",
+              "term": "Opening: the flying chicken",
+              "definition": "A chicken escapes a gang barbecue and is chased through the favela until Rocket is caught between gang and police.",
+              "examples": "Flash-cuts of a knife on stone and drumming; a 360° spin morphs present-day Rocket into his younger self.",
+              "keyFacts": [
+                "Establishes the kinetic style instantly",
+                "Rocket is trapped in the middle: his position throughout",
+                "The spin announces the non-linear narrative"
+              ],
+              "examTip": "Name three techniques: handheld, rapid editing, the 360° spin."
+            },
+            {
+              "code": "A2.3.2",
+              "term": "The Story of the Apartment",
+              "definition": "A single drug-dealing flat is shown across years from a fixed camera as dealers come and go.",
+              "examples": "Dissolves show people appear and vanish; walls and lighting change; the room gets darker.",
+              "keyFacts": [
+                "The fixed camera makes us detached observers, like Rocket",
+                "Editing compresses time to show the cycle",
+                "The location stays; the young dealers keep dying and being replaced"
+              ],
+              "examTip": "Perfect for showing how editing creates meaning."
+            },
+            {
+              "code": "A2.3.3",
+              "term": "Li’l Zé’s rise",
+              "definition": "Li’l Dice becomes Li’l Zé, kills rivals and takes over the favela’s drug trade.",
+              "examples": "The motel massacre: young Dice smiles as he kills; a rapid montage shows Zé claiming territory.",
+              "keyFacts": [
+                "Stylised violence glamorises power even as it horrifies",
+                "A child’s smile while killing: innocence already lost",
+                "The spectator is seduced and implicated"
+              ],
+              "examTip": "Use for spectator response and the “cosmetics of hunger” debate."
+            },
+            {
+              "code": "A2.3.4",
+              "term": "The Runts: a child forced to kill",
+              "definition": "Zé makes a young boy choose which of two small children to shoot.",
+              "examples": "Shot starkly, with less stylisation; the camera holds on the children’s faces.",
+              "keyFacts": [
+                "The film’s bleakest moment",
+                "Violence has consumed the youngest generation",
+                "The cycle of poverty made literal"
+              ],
+              "examTip": "Use to show the style changes when the film wants to shock."
+            },
+            {
+              "code": "A2.3.5",
+              "term": "The ending: Rocket’s photo",
+              "definition": "Rocket photographs the dying Zé and police corruption; the Runts walk away listing who they will kill next.",
+              "examples": "Rocket chooses to publish the gang photo for his career, not the corrupt-police photo.",
+              "keyFacts": [
+                "Rocket escapes through representation: the camera is his way out",
+                "The cycle continues with the next generation",
+                "No restored equilibrium: poverty and corruption remain"
+              ],
+              "examTip": "Strong conclusion evidence for meaning and context."
+            }
+          ]
+        },
+        {
+          "code": "A2.4",
+          "title": "Meaning, response and auteur",
+          "items": [
+            {
+              "code": "A2.4.1",
+              "term": "City of God: representation",
+              "definition": "Poverty and class, poor Black Brazilian youth, childhood destroyed, and violence as cyclical and stylised.",
+              "examples": "Children with guns; the favela as a world abandoned by the state.",
+              "keyFacts": [
+                "Representation of place: the favela itself is a character",
+                "Race: darker-skinned youth trapped most deeply in the cycle",
+                "Critics debated whether it stereotypes favela residents"
+              ],
+              "examTip": "Use place representation for top-band range."
+            },
+            {
+              "code": "A2.4.2",
+              "term": "City of God: aesthetics and auteur",
+              "definition": "Meirelles’ restless camera, non-linear chapters and colour-coded decades build a kinetic, sun-soaked aesthetic.",
+              "examples": "Meirelles came from advertising, which shaped the slick style.",
+              "keyFacts": [
+                "Comparable to Scorsese’s Goodfellas: voiceover, freeze-frames, crime chronicle",
+                "Aesthetic of energy vs content of despair",
+                "Evaluate with Bentes’ “cosmetics of hunger” critique"
+              ],
+              "examTip": "Always reach a judgement on whether the style exposes or exploits."
+            },
+            {
+              "code": "A2.4.3",
+              "term": "City of God: useful concepts",
+              "definition": "Social realism (real locations, non-actors) mixed with stylisation; Todorov’s equilibrium is never restored.",
+              "examples": "The ending returns to the start: a new gang, the same violence.",
+              "keyFacts": [
+                "Hybrid of documentary realism and music-video style",
+                "Cyclical narrative = systemic violence",
+                "Spectators positioned to see the system, not just individuals"
+              ],
+              "examTip": "Concepts support, film form proves."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "A3",
+      "title": "Using the two films together",
+      "subtopics": [
+        {
+          "code": "A3.1",
+          "title": "Links (no comparison marks, but useful)",
+          "items": [
+            {
+              "code": "A3.1.1",
+              "term": "Children in a violent world",
+              "definition": "Both films show children whose innocence is destroyed by adult violence and political systems.",
+              "examples": "Ofelia under Vidal; the Runts under Li’l Zé.",
+              "keyFacts": [
+                "Pan’s Labyrinth uses fantasy, City of God uses kinetic realism",
+                "Both end with a child observer escaping, in different ways",
+                "Both blame systems: fascism and state neglect"
+              ],
+              "examTip": "Component 2 does not assess comparison, but questions ask about both films."
+            },
+            {
+              "code": "A3.1.2",
+              "term": "Colour as meaning in both films",
+              "definition": "Both films use colour grading to divide worlds or times and guide spectator response.",
+              "examples": "Blue reality vs amber fantasy; golden past vs grey present.",
+              "keyFacts": [
+                "Grading as a key element of cinematography",
+                "Palette creates aesthetic pleasure and ideological meaning",
+                "Easy to evidence in any core-area question"
+              ],
+              "examTip": "A neat way into either sample question."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

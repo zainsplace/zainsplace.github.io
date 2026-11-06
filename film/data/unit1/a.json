@@ -1,0 +1,851 @@
+{
+  "section": "A",
+  "title": "Hollywood 1930–1990 (comparative study): Casablanca vs Bonnie and Clyde",
+  "tier": 1,
+  "colour": "#B45309",
+  "topics": [
+    {
+      "code": "A1",
+      "title": "Casablanca (Curtiz, 1942) — Classical Hollywood",
+      "subtopics": [
+        {
+          "code": "A1.1",
+          "title": "Key idea and contexts",
+          "items": [
+            {
+              "code": "A1.1.1",
+              "term": "Casablanca: the key idea",
+              "definition": "A cynical American exile learns to give up private love for the fight against fascism: a wartime call to commitment.",
+              "examples": "Rick moves from “I stick my neck out for nobody” to “the problems of three little people don’t amount to a hill of beans in this crazy world.”",
+              "keyFacts": [
+                "Rick’s arc mirrors America’s: from neutral isolationism to joining the war, so a personal story carries a national message",
+                "Set in December 1941, the days around Pearl Harbor (“If it’s December 1941 in Casablanca, what time is it in New York?”)",
+                "The peak of the Classical Hollywood style: invisible editing, star system, goal-driven hero and full closure",
+                "Killer line: “Curtiz’s studio-era classic turns Rick’s private sacrifice into propaganda for American intervention, proving the Classical style could carry an urgent political context.”"
+              ],
+              "examTip": "Use Rick’s arc as your spine for any context question: his personal choice stands for America’s choice in 1941–42."
+            },
+            {
+              "code": "A1.1.2",
+              "term": "Historical context: the Second World War",
+              "definition": "Made in 1942 and set in December 1941, as the USA entered the war after Pearl Harbor (7 December 1941).",
+              "examples": "The film premiered in New York in November 1942, weeks after Allied forces landed in North Africa and took Casablanca.",
+              "keyFacts": [
+                "Vichy France collaborated with Nazi Germany, so French Morocco is a grey zone where Nazis, Vichy police and refugees mix",
+                "Renault drops a bottle of Vichy water in the bin at the end: France symbolically rejects collaboration",
+                "The topical timing made the title front-page news, a lucky break the studio exploited for publicity"
+              ],
+              "examTip": "Link a specific moment (the Vichy water, the Marseillaise) to the war, not just “it was made in WW2”."
+            },
+            {
+              "code": "A1.1.3",
+              "term": "Political context: isolationism to intervention",
+              "definition": "Many Americans opposed joining the war until Pearl Harbor; Rick’s neutrality and conversion mirror that national shift.",
+              "examples": "Rick refuses to help Ugarte (“I stick my neck out for nobody”) but finally shoots Strasser and sends Laszlo to carry on the resistance.",
+              "keyFacts": [
+                "The government’s Office of War Information encouraged Hollywood films that supported the war effort",
+                "Laszlo (resistance leader) is the ideal of commitment; Rick becomes the reluctant hero America needed",
+                "The final “beautiful friendship” of an American and a Frenchman suggests the Allied alliance"
+              ],
+              "examTip": "A political reading is strongest when you show HOW form delivers it, e.g. the anthem duel’s cutting."
+            },
+            {
+              "code": "A1.1.4",
+              "term": "Social context: refugees and exiles",
+              "definition": "Casablanca is a waiting room for refugees fleeing Nazi Europe, desperate for exit visas to Lisbon and America.",
+              "examples": "The opening map traces the refugee trail Paris → Marseilles → Oran → Casablanca → Lisbon → America.",
+              "keyFacts": [
+                "Many of the cast were real European émigrés and refugees, which gave the café crowd scenes real emotion",
+                "The Bulgarian bride subplot (Annina) shows refugees forced into corruption; Rick rigs the roulette to save her",
+                "America is presented as the promised land, a flattering self-image for 1942 audiences"
+              ],
+              "examTip": "Social context + representation: refugees, gender roles and nationality all come from the same wartime moment.",
+              "verify": true
+            },
+            {
+              "code": "A1.1.5",
+              "term": "Institutional context: Warner Bros. studio system",
+              "definition": "A vertically integrated studio film made by contract staff: producer Hal B. Wallis, director Michael Curtiz.",
+              "examples": "Adapted from the unproduced play “Everybody Comes to Rick’s” (Murray Burnett and Joan Alison) by Julius and Philip Epstein and Howard Koch.",
+              "keyFacts": [
+                "Contract stars (Humphrey Bogart), composer (Max Steiner) and cinematographer (Arthur Edeson) were studio employees assigned to the film",
+                "Shot almost entirely on Warner’s Burbank sound stages; the fog at the airport hides a small studio set",
+                "The script was famously being rewritten during shooting, with the ending settled late",
+                "The spec calls it a film that “began life as an unremarkable studio genre film”"
+              ],
+              "examTip": "Production-context questions: contrast this factory model with Beatty’s independent producing on Bonnie and Clyde.",
+              "verify": true
+            },
+            {
+              "code": "A1.1.6",
+              "term": "The Production Code (Hays Code)",
+              "definition": "Hollywood’s self-censorship rules (from 1934): no sympathetic adultery, crime must be punished, sex kept off screen.",
+              "examples": "Rick and Ilsa’s night together is implied by a dissolve to the airport searchlight tower, then Rick smoking at the window.",
+              "keyFacts": [
+                "Ilsa is married to Laszlo, so the Code made it almost impossible for her to leave with Rick",
+                "The censors objected to Renault trading visas for sex; the dialogue keeps it implied",
+                "Ellipsis and dissolves were the Classical way of suggesting what could not be shown"
+              ],
+              "examTip": "A strong context point: the Code shaped the narrative resolution, not just what was cut."
+            },
+            {
+              "code": "A1.1.7",
+              "term": "Reception and cult status",
+              "definition": "A 1943 hit that won Best Picture, Director and Screenplay Oscars, then grew into one of the most loved films ever.",
+              "examples": "Umberto Eco: “Two clichés make us laugh. A hundred clichés move us.”",
+              "keyFacts": [
+                "Eco argued Casablanca is a “collage” of genre clichés (war film, romance, thriller) that adds up to a myth",
+                "Repeated TV and repertory screenings created its cult following, especially among students in the 1950s–60s",
+                "Its lines (“Here’s looking at you, kid”, “Round up the usual suspects”) entered everyday speech"
+              ],
+              "examTip": "Reception history lets you argue the film’s meaning changed over time, a sophisticated context point."
+            }
+          ]
+        },
+        {
+          "code": "A1.2",
+          "title": "Film form",
+          "items": [
+            {
+              "code": "A1.2.1",
+              "term": "Cinematography: Edeson’s low-key lighting",
+              "definition": "Arthur Edeson’s chiaroscuro lighting fills the café and offices with shadows, bars and blinds: a world of entrapment.",
+              "examples": "Shadows of window blinds fall across Rick and Renault; the airport is lit through fog with hard backlight.",
+              "keyFacts": [
+                "Edeson had shot The Maltese Falcon (1941) with Bogart, and Casablanca shares its proto-noir look",
+                "Bars of shadow suggest everyone in Casablanca is a prisoner waiting for a visa",
+                "Three-point lighting is used classically to model faces and pick the star out of the crowd"
+              ],
+              "examTip": "Name the lighting AND its meaning: “barred shadows connote entrapment”."
+            },
+            {
+              "code": "A1.2.2",
+              "term": "Lighting the star: Ingrid Bergman",
+              "definition": "Ilsa is lit with soft, diffused light and eye catchlights so her face glows: the idealised object of Rick’s gaze.",
+              "examples": "Her first close-up as she asks Sam to “play it” is softer and brighter than the shots around it.",
+              "keyFacts": [
+                "Classical Hollywood glamour lighting turned stars into icons; Bergman’s close-ups are held longer than other characters’",
+                "The soft light connotes purity and romance even though her story involves a secret past",
+                "Mulvey’s idea of woman as “to-be-looked-at” is useful here: the camera adopts Rick’s gaze"
+              ],
+              "examTip": "Good for gender/representation and for the star as a contributor to meaning."
+            },
+            {
+              "code": "A1.2.3",
+              "term": "Mise-en-scène: Rick’s Café Américain",
+              "definition": "The café is a microcosm of wartime Europe: every nation, class and loyalty under one roof, run by an American.",
+              "examples": "Props that matter: the letters of transit, the rigged roulette wheel, the chess set Rick plays alone, the piano where Sam plays.",
+              "keyFacts": [
+                "Rick’s white tuxedo marks him as separate and in control; Strasser’s uniform marks Nazi menace",
+                "The café has a public front (gambling, music) and a private back office: Rick’s divided self",
+                "The Moorish arches and lamps are studio exotic, a Hollywood fantasy of North Africa"
+              ],
+              "examTip": "Pick two props and track how their meaning changes (the letters of transit drive the whole plot)."
+            },
+            {
+              "code": "A1.2.4",
+              "term": "Editing: classical continuity",
+              "definition": "Invisible continuity editing (shot/reverse shot, eyeline matches, 180° rule) keeps the spectator absorbed in the story.",
+              "examples": "The Rick–Ilsa conversations are built from matched close-ups; the Paris flashback is entered and left by dissolves.",
+              "keyFacts": [
+                "Editor Owen Marks; the style hides the cut so meaning seems to come from the characters, not the filmmaker",
+                "The opening montage (map, globe, newsreel-style voiceover) borrows documentary techniques to set the context",
+                "Contrast with Dede Allen’s jump cuts in Bonnie and Clyde, which make the editing visible"
+              ],
+              "examTip": "Classical editing is a comparison goldmine: invisible vs visible editing = studio era vs New Hollywood.",
+              "verify": true
+            },
+            {
+              "code": "A1.2.5",
+              "term": "Sound: Max Steiner’s score and “As Time Goes By”",
+              "definition": "Steiner’s score uses leitmotifs: the song “As Time Goes By” becomes the theme of Rick and Ilsa’s lost love.",
+              "examples": "Sam plays the song diegetically; Steiner then weaves it into the non-diegetic score at every romantic memory.",
+              "keyFacts": [
+                "“La Marseillaise” is used as a leitmotif of France and resistance, and swells over the final walk into the fog",
+                "Fragments of the German anthem are distorted in the score to signal Nazi threat",
+                "The diegetic/non-diegetic shift lets music move from the café into the characters’ memories"
+              ],
+              "examTip": "Use “leitmotif” and “diegetic to non-diegetic” for top-band terminology."
+            },
+            {
+              "code": "A1.2.6",
+              "term": "Performance: Bogart’s star persona",
+              "definition": "Bogart brings his tough, cynical gangster/detective persona, then lets it crack to show the wounded romantic beneath.",
+              "examples": "Drunk and alone in the dark café: “Of all the gin joints in all the towns in all the world, she walks into mine.”",
+              "keyFacts": [
+                "Minimal, restrained gesture and clipped delivery: emotion is shown in pauses and the tightening of his face",
+                "Claude Rains’s witty Renault and Paul Henreid’s stiff, noble Laszlo frame Rick between cynicism and idealism",
+                "Richard Dyer’s star theory: a star image is a set of meanings the audience brings to every role"
+              ],
+              "examTip": "Star = a possible “auteur” for the auteur question: the film is as much Bogart’s as Curtiz’s."
+            }
+          ]
+        },
+        {
+          "code": "A1.3",
+          "title": "Key scenes",
+          "items": [
+            {
+              "code": "A1.3.1",
+              "term": "Opening: the globe and the refugee trail",
+              "definition": "A spinning globe, an animated map and a newsreel-style voiceover set the wartime context before the story starts.",
+              "examples": "The camera then cranes down into the market as police round up suspects; a man carrying Free French papers is shot.",
+              "keyFacts": [
+                "Documentary techniques (voiceover, map) give the fiction authority and topicality",
+                "The Cross of Lorraine on the dead man’s leaflets signals the Free French resistance",
+                "The crane movement from the sky into the street is a Curtiz signature of fluid camera"
+              ],
+              "examTip": "Perfect evidence for “reflects historical/political context”: the film tells you its context in the first minute."
+            },
+            {
+              "code": "A1.3.2",
+              "term": "Rick’s entrance",
+              "definition": "The camera tracks through the café, then reveals Rick by his hand signing a cheque, before tilting up to his face.",
+              "examples": "We see “OK — Rick” written, his chess board, his cigarette, then Bogart’s face: a delayed star reveal.",
+              "keyFacts": [
+                "Delaying the face builds his power: he is the authority everyone talks about before we meet him",
+                "He plays chess alone: calculating, isolated, emotionally closed",
+                "His refusal to drink with customers and to help Ugarte establishes his neutrality"
+              ],
+              "examTip": "Pair with the ending to show his arc: isolated control → selfless commitment."
+            },
+            {
+              "code": "A1.3.3",
+              "term": "“Play it, Sam”: Ilsa returns",
+              "definition": "Ilsa asks Sam to play “As Time Goes By”; Rick storms over, sees her, and a music sting and close-ups freeze the moment.",
+              "examples": "Later that night Rick drinks alone in the dark café and the song triggers a dissolve into the Paris flashback.",
+              "keyFacts": [
+                "Shot/reverse shot of close-ups holds the shock on both faces: the past invades the present",
+                "The song bridges diegetic performance and memory, a classic sound motif",
+                "Rick’s drunk scene shows vulnerability under the tough persona"
+              ],
+              "examTip": "Great for sound and performance questions in one sequence."
+            },
+            {
+              "code": "A1.3.4",
+              "term": "The Paris flashback",
+              "definition": "A bright, high-key montage of Rick and Ilsa in pre-war Paris that ends with Rick abandoned at a rain-soaked station.",
+              "examples": "Ilsa’s goodbye letter gets wet and the ink runs, as if it were crying; the train pulls out with Rick and Sam.",
+              "keyFacts": [
+                "High-key lighting and open spaces contrast with Casablanca’s shadows: lost innocence and freedom",
+                "News of the German advance interrupts their romance: history crushes private happiness",
+                "Flashback is a classical narrative device to give psychological insight into Rick’s cynicism"
+              ],
+              "examTip": "Use lighting contrast (Paris high-key vs Casablanca low-key) as one clean point."
+            },
+            {
+              "code": "A1.3.5",
+              "term": "The duel of the anthems",
+              "definition": "Nazi officers sing “Die Wacht am Rhein”; Laszlo has the band play “La Marseillaise” and the whole café drowns them out.",
+              "examples": "Rick nods to the bandleader: his first public act of commitment. Yvonne, who flirted with a German, sings in tears: “Vive la France!”",
+              "keyFacts": [
+                "Fast cutting between singing faces turns the café into a nation united against Nazism",
+                "Sound is the battlefield: two diegetic songs compete and the louder one wins",
+                "Renault closes the café: “I’m shocked, shocked to find that gambling is going on in here!”"
+              ],
+              "examTip": "The single best scene for political context + sound + editing in Casablanca."
+            },
+            {
+              "code": "A1.3.6",
+              "term": "Ilsa at gunpoint and the searchlight dissolve",
+              "definition": "Ilsa points a gun at Rick for the letters, breaks down and confesses her love; a dissolve hides what happens next.",
+              "examples": "Cut to the airport searchlight tower, then Rick at the window smoking: the Code’s way of implying sex.",
+              "keyFacts": [
+                "Ilsa: “You’ll have to think for both of us, for all of us” — she hands her choice to Rick",
+                "The ellipsis is a direct effect of the Production Code",
+                "The searchlight also reminds us they are watched: private love sits inside a police state"
+              ],
+              "examTip": "Use for gender (Ilsa’s lack of agency) and institutional context (the Code)."
+            },
+            {
+              "code": "A1.3.7",
+              "term": "The airport ending",
+              "definition": "In fog, Rick sends Ilsa away with Laszlo, shoots Strasser, and walks off with Renault: love sacrificed for the cause.",
+              "examples": "“We’ll always have Paris.” “Here’s looking at you, kid.” Renault: “Round up the usual suspects.” “Louis, I think this is the beginning of a beautiful friendship.”",
+              "keyFacts": [
+                "Low-key lighting through studio fog makes the set feel mythic and hides its small scale",
+                "Full classical closure: every narrative strand is resolved and the hero is reintegrated into society",
+                "“La Marseillaise” swells as they walk into the fog: personal story becomes national myth"
+              ],
+              "examTip": "Compare with Bonnie and Clyde’s ending: closure and hope vs abrupt death and a cut to black."
+            }
+          ]
+        },
+        {
+          "code": "A1.4",
+          "title": "Representation",
+          "items": [
+            {
+              "code": "A1.4.1",
+              "term": "Masculinity: Rick and Laszlo",
+              "definition": "Rick is tough, self-reliant and wounded; true manhood is shown as self-sacrifice for a greater cause.",
+              "examples": "Laszlo is the noble ideal; Rick is the flawed man who earns heroism by giving up Ilsa.",
+              "keyFacts": [
+                "Wartime ideology: men must put duty before desire",
+                "Rick makes every key decision, including Ilsa’s future",
+                "Renault’s sexual exploitation of refugees is played as charm, a period blind spot"
+              ],
+              "examTip": "Gender questions: connect masculinity to the war-effort ideology."
+            },
+            {
+              "code": "A1.4.2",
+              "term": "Femininity: Ilsa as object of exchange",
+              "definition": "Ilsa is passed between two men; her desire matters less than the men’s decisions and the war.",
+              "examples": "“You’ll have to think for both of us.” Rick decides she will leave with Laszlo.",
+              "keyFacts": [
+                "Glamour lighting makes her an image to be looked at (Mulvey)",
+                "Yvonne, the discarded lover, is punished for flirting with a German",
+                "Annina must consider sleeping with Renault to get visas: women’s bodies as currency"
+              ],
+              "examTip": "Contrast with Bonnie, who drives the action and voices her own desire."
+            },
+            {
+              "code": "A1.4.3",
+              "term": "Nationality and race",
+              "definition": "Americans are the moral centre, Nazis are cold villains, the French are redeemed; Sam is talented but subordinate.",
+              "examples": "Sam (Dooley Wilson) is called “boy” by Ilsa and exists mainly to serve Rick’s story.",
+              "keyFacts": [
+                "Strasser is a propaganda caricature of Nazi arrogance",
+                "Renault’s conversion stands for France turning from Vichy to resistance",
+                "Sam is loyal and gifted, but Classical Hollywood gives Black characters little inner life"
+              ],
+              "examTip": "A modern oppositional reading of Sam’s role shows a critical, sophisticated approach."
+            }
+          ]
+        },
+        {
+          "code": "A1.5",
+          "title": "Auteur",
+          "items": [
+            {
+              "code": "A1.5.1",
+              "term": "Michael Curtiz as auteur",
+              "definition": "Hungarian émigré and Warner contract director: fast, versatile, with a fluid camera and expressive shadows.",
+              "examples": "Also directed The Adventures of Robin Hood (1938), Yankee Doodle Dandy (1942) and Mildred Pierce (1945).",
+              "keyFacts": [
+                "Signatures: crane and tracking shots through crowded sets, foreground objects in the frame, strong shadows",
+                "He made films in almost every genre, which makes a single thematic signature hard to find",
+                "Sarris did not rank him among Hollywood’s greatest auteurs; critics now see him as a master craftsman of the studio system"
+              ],
+              "examTip": "Argue “how far”: a strong STYLISTIC signature, a weak THEMATIC one.",
+              "verify": true
+            },
+            {
+              "code": "A1.5.2",
+              "term": "Casablanca as collaborative “genius of the system”",
+              "definition": "Thomas Schatz argued studio films were authored by the system: producers, writers, stars and craft departments together.",
+              "examples": "Wallis chose the project and team; the Epsteins wrote the wit; Koch the politics; Steiner the music; Edeson the look; Bogart the persona.",
+              "keyFacts": [
+                "Schatz, The Genius of the System (1988): producers like Wallis were often as decisive as directors",
+                "The film’s success is often called a “happy accident” of studio teamwork",
+                "This makes Casablanca the perfect film to TEST auteur theory rather than simply apply it"
+              ],
+              "examTip": "Band 5 indicative content rewards recognising institutional limits on the auteur."
+            },
+            {
+              "code": "A1.5.3",
+              "term": "The star as auteur: Bogart",
+              "definition": "A star’s persona can shape meaning as strongly as a director’s style: Bogart’s cynical hero defines the film.",
+              "examples": "Bogart’s earlier roles in High Sierra and The Maltese Falcon (both 1941) built the image the audience brought to Rick.",
+              "keyFacts": [
+                "The mark scheme accepts any significant role as auteur: director, cinematographer, star, editor, composer or studio",
+                "Dyer: stars are constructed images with meanings that carry between films",
+                "Compare Warren Beatty, star AND producer of Bonnie and Clyde"
+              ],
+              "examTip": "Arguing for a non-director auteur shows independent thinking."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "A2",
+      "title": "Bonnie and Clyde (Penn, 1967) — New Hollywood",
+      "subtopics": [
+        {
+          "code": "A2.1",
+          "title": "Key idea and contexts",
+          "items": [
+            {
+              "code": "A2.1.1",
+              "term": "Bonnie and Clyde: the key idea",
+              "definition": "1930s outlaws remade as glamorous, rebellious anti-heroes: a Depression story speaking to 1960s youth and violence.",
+              "examples": "“We rob banks.” The gang are cheered by poor farmers, then destroyed by the state in a shocking ambush.",
+              "keyFacts": [
+                "Comic, romantic and suddenly brutal: the tonal shifts were new for a Hollywood film",
+                "The audience is aligned with the criminals against the law, an anti-establishment stance",
+                "Often named as the film that launched New Hollywood",
+                "Killer line: “Penn uses European art-cinema techniques to turn Depression outlaws into 1960s counterculture martyrs, making the spectator feel the real cost of violence.”"
+              ],
+              "examTip": "Every context point has two layers: the 1930s setting and the 1960s production."
+            },
+            {
+              "code": "A2.1.2",
+              "term": "Historical setting: the Great Depression",
+              "definition": "Set in 1930s Texas and the Midwest, when bank foreclosures, poverty and the Dust Bowl made robbers into folk heroes.",
+              "examples": "The real Barrow gang robbed and killed across the South-West until Bonnie Parker and Clyde Barrow were ambushed in Louisiana in May 1934.",
+              "keyFacts": [
+                "Banks repossessing farms made them hated, so robbing them looked like revenge for the poor",
+                "Bonnie’s real poem “The Story of Bonnie and Clyde” is read in the film: they built their own legend",
+                "The film romanticises and simplifies the real gang, who killed several police officers"
+              ],
+              "examTip": "Don’t confuse setting with production context: the 1930s is the story, the 1960s is the context that shaped it."
+            },
+            {
+              "code": "A2.1.3",
+              "term": "Social and political context: the 1960s",
+              "definition": "Vietnam on TV, civil rights struggles, assassinations and a youth counterculture distrusting authority shaped the film.",
+              "examples": "The slow-motion, bullet-ridden ending was read as a reflection of televised Vietnam violence and the Kennedy assassination footage.",
+              "keyFacts": [
+                "Young audiences identified with outsiders rebelling against a corrupt establishment",
+                "Penn said he wanted violence to look real and costly, not clean as in older Hollywood",
+                "Released in 1967, the year of protests and the “Summer of Love”"
+              ],
+              "examTip": "Social context + spectatorship: young audiences cheered the outlaws; older critics were appalled.",
+              "verify": true
+            },
+            {
+              "code": "A2.1.4",
+              "term": "Institutional context: the end of the studio system",
+              "definition": "After the 1948 Paramount ruling and TV, studios lost power; independent producers and young directors gained it.",
+              "examples": "Warren Beatty bought the script, produced the film and negotiated a share of the profits; Warner Bros.–Seven Arts only distributed it.",
+              "keyFacts": [
+                "Jack Warner reportedly disliked the film and gave it a weak first release",
+                "After critical defence it was re-released in 1968 and became a huge hit",
+                "Shot largely on real Texas locations, not studio backlots: cheaper and more realistic"
+              ],
+              "examTip": "Compare with Casablanca’s factory model for any production-context question.",
+              "verify": true
+            },
+            {
+              "code": "A2.1.5",
+              "term": "Censorship: the collapse of the Production Code",
+              "definition": "By 1967 the Code was failing; graphic violence and frank sexuality helped push its 1968 replacement by age ratings.",
+              "examples": "Bloody squibs, a man shot in the face through glass, and Clyde’s impotence would all have been unthinkable in 1942.",
+              "keyFacts": [
+                "The MPAA ratings system (G, M, R, X) replaced the Code in November 1968",
+                "Sex is discussed openly but Clyde cannot perform, a bold twist on the gangster hero",
+                "Compare Casablanca’s dissolve to the searchlight: implication vs exposure"
+              ],
+              "examTip": "One of the clearest comparison points between the two films."
+            },
+            {
+              "code": "A2.1.6",
+              "term": "Cultural context: the French New Wave",
+              "definition": "Writers David Newman and Robert Benton loved the French New Wave and first offered the script to Truffaut and Godard.",
+              "examples": "Jump cuts, sudden shifts from comedy to violence, and a doomed romantic couple on the run all echo Godard’s Breathless (1960).",
+              "keyFacts": [
+                "The spec: New Hollywood directors “began to show new influences, especially from European cinema”",
+                "Location shooting, handheld moments and elliptical editing break classical rules",
+                "Robert Towne did uncredited rewrites on set"
+              ],
+              "examTip": "Cultural context = an artistic movement; name it precisely: “the French New Wave (Nouvelle Vague)”."
+            },
+            {
+              "code": "A2.1.7",
+              "term": "Reception: Crowther vs Kael",
+              "definition": "The film split critics: Bosley Crowther attacked it, Pauline Kael defended it, and the younger view won.",
+              "examples": "Crowther called it “a cheap piece of bald-faced slapstick comedy”; Kael wrote a long defence in October 1967.",
+              "keyFacts": [
+                "Ten Oscar nominations; it won two: Estelle Parsons (Supporting Actress) and Burnett Guffey (Cinematography)",
+                "Crowther left his post as New York Times critic soon after, a symbolic changing of the guard",
+                "Its fashion (berets, midi skirts) became a craze, showing its cultural impact"
+              ],
+              "examTip": "Reception splits by generation: perfect for a spectatorship angle in a context answer.",
+              "verify": true
+            }
+          ]
+        },
+        {
+          "code": "A2.2",
+          "title": "Film form",
+          "items": [
+            {
+              "code": "A2.2.1",
+              "term": "Cinematography: Burnett Guffey",
+              "definition": "Real locations and soft natural light give a sun-faded, nostalgic 1930s look, broken by brutal close-ups.",
+              "examples": "The family picnic is shot hazy and washed out; the ending uses several cameras at different speeds for slow motion.",
+              "keyFacts": [
+                "Guffey won the Oscar for Best Cinematography",
+                "Soft light romanticises the couple; harsh close-ups of wounds shatter the romance",
+                "Wide shots of empty landscapes make the gang look small and exposed"
+              ],
+              "examTip": "Contrast with Edeson’s studio chiaroscuro in Casablanca."
+            },
+            {
+              "code": "A2.2.2",
+              "term": "Editing: Dede Allen",
+              "definition": "Dede Allen’s fast, elliptical cutting and jump cuts make the editing visible and the tone unstable.",
+              "examples": "The ending mixes split-second cuts between Bonnie and Clyde’s faces with slow-motion shots of their bodies hit by bullets.",
+              "keyFacts": [
+                "Influenced by the French New Wave and by Eisenstein’s montage (the shot through the glass)",
+                "Abrupt cuts from comedy to violence stop the spectator settling into one response",
+                "Allen became one of the most influential editors of New Hollywood"
+              ],
+              "examTip": "Use “elliptical editing”, “jump cut” and “montage” for terminology marks."
+            },
+            {
+              "code": "A2.2.3",
+              "term": "Sound: “Foggy Mountain Breakdown”",
+              "definition": "Flatt and Scruggs’ jaunty bluegrass banjo plays over the getaways, making crime feel like a comic adventure.",
+              "examples": "The banjo plays as the gang escape from robberies, even as the chases turn dangerous.",
+              "keyFacts": [
+                "Often contrapuntal: cheerful music against real danger creates unease",
+                "The music disappears as the film darkens; the ending has no score, just birds, gunfire and silence",
+                "Period-appropriate folk music adds Depression-era authenticity"
+              ],
+              "examTip": "Compare with Steiner’s emotional leitmotif score in Casablanca."
+            },
+            {
+              "code": "A2.2.4",
+              "term": "Mise-en-scène: costume, cars and guns",
+              "definition": "Theadora Van Runkle’s stylish costumes, the getaway cars and the guns turn the outlaws into glamorous icons.",
+              "examples": "Bonnie’s beret and midi skirts; Clyde showing Bonnie his gun at the start, which she strokes.",
+              "keyFacts": [
+                "The gun works as a phallic symbol that compensates for Clyde’s impotence (a Freudian reading)",
+                "Cars = freedom and escape, but also the trap where they die",
+                "Dusty small towns and foreclosed farmhouses ground the glamour in poverty"
+              ],
+              "examTip": "Track a motif (the gun, the car) from opening to ending."
+            },
+            {
+              "code": "A2.2.5",
+              "term": "Performance: naturalism and ensemble",
+              "definition": "Naturalistic, often improvised, Method-influenced acting gives the gang a raw, modern feel unlike 1940s star polish.",
+              "examples": "Faye Dunaway’s restless frustration; Warren Beatty’s charm and insecurity; Estelle Parsons’ screaming Blanche.",
+              "keyFacts": [
+                "Gene Hackman (Buck) and Michael J. Pollard (C.W. Moss) added comic, earthy energy",
+                "Performances make the outlaws likeable, so their deaths hurt",
+                "Compare Bogart’s controlled star performance"
+              ],
+              "examTip": "Performance comparison: classical star persona vs New Hollywood naturalism."
+            }
+          ]
+        },
+        {
+          "code": "A2.3",
+          "title": "Key scenes",
+          "items": [
+            {
+              "code": "A2.3.1",
+              "term": "Opening: Bonnie behind the bars",
+              "definition": "Sepia snapshots with camera clicks, then an extreme close-up of Bonnie’s red lips as she prowls naked and bored.",
+              "examples": "She leans on her bed frame, its rails like prison bars, then sees Clyde trying to steal her mother’s car.",
+              "keyFacts": [
+                "Opens on female desire, unheard of in a 1940s film",
+                "The bars connote small-town entrapment; Clyde is her escape",
+                "The photo-album credits frame the story as a legend being recorded"
+              ],
+              "examTip": "Perfect opening comparison with Casablanca’s documentary-style globe."
+            },
+            {
+              "code": "A2.3.2",
+              "term": "The gun and the Coke bottle",
+              "definition": "Clyde shows Bonnie his gun in a low-angle two-shot; she fondles it, dares him, and he robs a store.",
+              "examples": "A Coca-Cola bottle and a gun are framed as obvious sexual symbols as their flirting turns into crime.",
+              "keyFacts": [
+                "Sex and violence are fused from the start: crime is their substitute for sex",
+                "Light comedy tone makes the first crime exciting",
+                "Low angles make Clyde look powerful; later scenes undercut this"
+              ],
+              "examTip": "Use with A2.4.1 on gender and Clyde’s impotence."
+            },
+            {
+              "code": "A2.3.3",
+              "term": "The foreclosed farm: “We rob banks”",
+              "definition": "Clyde lets an evicted farmer and his worker shoot at the bank’s repossession sign on their own farmhouse.",
+              "examples": "“We rob banks.” The gang see themselves as Robin Hoods of the Depression.",
+              "keyFacts": [
+                "Positions the bank, not the outlaws, as the villain of the Depression",
+                "Echoes 1960s anti-establishment feeling",
+                "Wide, bleak shots of the empty farm show the poverty around them"
+              ],
+              "examTip": "Best evidence for how the film reflects social context."
+            },
+            {
+              "code": "A2.3.4",
+              "term": "The first killing",
+              "definition": "During a robbery a bank employee jumps on the getaway car; Clyde shoots him in the face through the glass.",
+              "examples": "A shocking close-up of the bloodied face; afterwards the gang hide in a cinema watching “We’re in the Money” from Gold Diggers of 1933.",
+              "keyFacts": [
+                "The tone flips from slapstick to horror in one cut: Dede Allen’s editing makes the shock land",
+                "The close-up recalls Eisenstein’s Odessa Steps shot of a woman shot through her glasses",
+                "The Hollywood musical they watch is the escapism of the old cinema, contrasted with new realism"
+              ],
+              "examTip": "Strong for New Hollywood vs Classical: the film literally shows a 1930s musical inside itself."
+            },
+            {
+              "code": "A2.3.5",
+              "term": "The family reunion picnic",
+              "definition": "A hazy, desaturated, dreamlike picnic in the sand dunes where Bonnie’s mother warns them to keep running.",
+              "examples": "Filtered, washed-out images and wind make the scene feel like a fading memory or a dream of death.",
+              "keyFacts": [
+                "Soft focus = nostalgia and loss; Bonnie realises she can never go home",
+                "A pause in the action that deepens character before the violent end",
+                "Expressive cinematography rather than classical realism"
+              ],
+              "examTip": "Use for aesthetics and cinematography, and for Bonnie’s psychological insight."
+            },
+            {
+              "code": "A2.3.6",
+              "term": "The ambushes: Buck’s death",
+              "definition": "Police ambushes at night and in the woods leave Buck dying and Blanche blinded; the glamour is gone.",
+              "examples": "Chaotic handheld shots, screaming and blood replace the bluegrass getaways.",
+              "keyFacts": [
+                "Violence now has painful consequences for characters we like",
+                "Blanche’s capture leads to Hamer learning C.W.’s name, setting up the betrayal",
+                "The law appears in faceless, overwhelming numbers"
+              ],
+              "examTip": "Shows the film’s structure: comedy first half, tragedy second half."
+            },
+            {
+              "code": "A2.3.7",
+              "term": "The ending: the ambush",
+              "definition": "Birds scatter, the lovers exchange a look, and a hail of bullets plays in slow motion; then a sudden cut to black.",
+              "examples": "Rapid cuts between their faces, then multi-speed slow motion as their bodies jerk under gunfire; no music, no resolution.",
+              "keyFacts": [
+                "Called a “ballet of death”: aestheticised yet horrifying violence",
+                "No restored equilibrium, no moral voiceover: the spectator is left in shock",
+                "The establishment kills its rebels: a powerful image for 1967 audiences"
+              ],
+              "examTip": "Compare directly with Casablanca’s closure: fog, music and friendship vs silence and death."
+            }
+          ]
+        },
+        {
+          "code": "A2.4",
+          "title": "Representation",
+          "items": [
+            {
+              "code": "A2.4.1",
+              "term": "Gender: Bonnie’s desire and Clyde’s impotence",
+              "definition": "Bonnie is active and desiring; Clyde’s impotence undermines the macho gangster hero.",
+              "examples": "Clyde: “I ain’t much of a lover boy.” Late in the film they finally make love after Bonnie’s poem is published.",
+              "keyFacts": [
+                "Reflects 1960s debates about sexuality and women’s liberation",
+                "Blanche is a comic stereotype of hysterical femininity",
+                "Clyde’s confidence comes from guns and fame, not traditional masculinity"
+              ],
+              "examTip": "Compare with Ilsa’s passivity and Rick’s mastery in Casablanca."
+            },
+            {
+              "code": "A2.4.2",
+              "term": "Outlaws vs authority",
+              "definition": "The outlaws are likeable folk heroes; the law (Frank Hamer) is cold, humourless and finally vengeful.",
+              "examples": "The gang photograph themselves with a captured Hamer, humiliating him; he returns to kill them.",
+              "keyFacts": [
+                "Anti-establishment ideology aligned with the 1960s counterculture",
+                "Spectators are positioned to sympathise with criminals: a break from the Code’s rule that crime must not pay",
+                "C.W.’s father betrays them to the police for a deal"
+              ],
+              "examTip": "Useful ideological link even though Section A foregrounds context and auteur."
+            },
+            {
+              "code": "A2.4.3",
+              "term": "Violence: the end of the clean death",
+              "definition": "Violence is graphic and messy, with squibs and blood, so killing has visible physical cost.",
+              "examples": "The bank clerk’s face; Buck’s head wound; the final slow-motion bullets.",
+              "keyFacts": [
+                "In Classical Hollywood people died cleanly; here bodies are damaged",
+                "Penn argued realistic violence was more moral than bloodless violence",
+                "Opened the way for the violence of later New Hollywood (The Wild Bunch, 1969)"
+              ],
+              "examTip": "Compare Strasser’s quick, bloodless death in Casablanca."
+            }
+          ]
+        },
+        {
+          "code": "A2.5",
+          "title": "Auteur",
+          "items": [
+            {
+              "code": "A2.5.1",
+              "term": "Arthur Penn as auteur",
+              "definition": "Penn came from live TV and theatre; his films return to outsiders, violence and myths of American history.",
+              "examples": "The Left Handed Gun (1958, Billy the Kid), The Miracle Worker (1962), Little Big Man (1970).",
+              "keyFacts": [
+                "Thematic signature: sympathetic rebels destroyed by a violent society",
+                "Stylistic signature: actor-centred, naturalistic performance and bursts of physical violence",
+                "Penn insisted on shooting in Texas for authenticity"
+              ],
+              "examTip": "Show both stylistic AND thematic signatures for top bands."
+            },
+            {
+              "code": "A2.5.2",
+              "term": "Bonnie and Clyde as collaborative authorship",
+              "definition": "Beatty (star-producer), Benton and Newman (writers), Allen (editor) and Guffey (camera) all shaped the film.",
+              "examples": "Beatty fought the studio for the film; Allen’s editing is often credited with its rhythm and shock.",
+              "keyFacts": [
+                "The 2019 examiners’ report praised candidates who recognised specific crew members’ contributions to Bonnie and Clyde",
+                "Beatty is arguably the film’s driving force, so the “auteur” could be the producer-star",
+                "New Hollywood promoted the director-auteur image even though work stayed collaborative"
+              ],
+              "examTip": "Examiners reward naming specific collaborators: do it in every auteur answer."
+            },
+            {
+              "code": "A2.5.3",
+              "term": "New Hollywood and the auteur renaissance",
+              "definition": "From the late 1960s young directors gained unusual control over their films in a weakened studio system.",
+              "examples": "Bonnie and Clyde and The Graduate (both 1967) are usually named as the start; Peter Biskind’s Easy Riders, Raging Bulls tells the story.",
+              "keyFacts": [
+                "Directors were influenced by European art cinema and by auteur criticism itself",
+                "Sarris brought auteur theory to America in 1962, so directors began to see themselves as authors",
+                "Ended around 1980 as blockbusters returned power to studios"
+              ],
+              "examTip": "Context + auteur together: the institution changed, so authorship changed."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "A3",
+      "title": "Comparing the films and the auteur approach",
+      "subtopics": [
+        {
+          "code": "A3.1",
+          "title": "Comparison points",
+          "items": [
+            {
+              "code": "A3.1.1",
+              "term": "Classical style vs New Hollywood style",
+              "definition": "Casablanca hides its technique to absorb the viewer; Bonnie and Clyde shows it to jolt the viewer.",
+              "examples": "Continuity editing and studio sets vs jump cuts, location shooting and tonal shifts.",
+              "comparisonTable": {
+                "title": "Style compared",
+                "headers": [
+                  "Element",
+                  "Casablanca (1942)",
+                  "Bonnie and Clyde (1967)"
+                ],
+                "rows": [
+                  [
+                    "Editing",
+                    "Invisible continuity, dissolves",
+                    "Elliptical, jump cuts, montage"
+                  ],
+                  [
+                    "Cinematography",
+                    "Studio low-key chiaroscuro",
+                    "Location, soft natural light, slow motion"
+                  ],
+                  [
+                    "Sound",
+                    "Steiner leitmotif score",
+                    "Bluegrass counterpoint, silence at the end"
+                  ],
+                  [
+                    "Performance",
+                    "Star persona (Bogart)",
+                    "Naturalistic ensemble"
+                  ],
+                  [
+                    "Ending",
+                    "Closure, hope",
+                    "Abrupt death, cut to black"
+                  ]
+                ]
+              },
+              "keyFacts": [
+                "Classical: goal-driven hero, cause and effect, closure (Bordwell)",
+                "New Hollywood: ambiguity, anti-heroes, open or bleak endings",
+                "Both are still genre films (war-romance, gangster) that bend their genres"
+              ],
+              "examTip": "Compare WITHIN each paragraph using “whereas” and “similarly”."
+            },
+            {
+              "code": "A3.1.2",
+              "term": "Production contexts compared",
+              "definition": "A studio-assigned project made in a factory system vs a star-produced project made as the studio system collapsed.",
+              "examples": "Wallis assigned Curtiz, Bogart and Steiner; Beatty chose Penn, hired the team and owned a share of the profits.",
+              "keyFacts": [
+                "Studio era: contracts, sound stages, the Production Code",
+                "Post-studio era: independent producers, locations, the move to ratings",
+                "The sample paper asks: “Compare how far your chosen films reflect their different production contexts.”"
+              ],
+              "examTip": "This is a real exam question: have a 4-paragraph plan ready."
+            },
+            {
+              "code": "A3.1.3",
+              "term": "Heroes and endings compared",
+              "definition": "Rick sacrifices love and rejoins society; Bonnie and Clyde refuse society and are destroyed by it.",
+              "examples": "Rick walks into the fog with Renault; Bonnie and Clyde die in a hail of bullets.",
+              "keyFacts": [
+                "1942: individual desire must serve the collective war effort",
+                "1967: the individual rebels against a corrupt establishment",
+                "Both protagonists are outsiders who make a final defining choice"
+              ],
+              "examTip": "Use endings as your conclusion evidence: they crystallise each era’s values."
+            },
+            {
+              "code": "A3.1.4",
+              "term": "Contemporary setting vs period setting",
+              "definition": "Casablanca is set just a year before its release; Bonnie and Clyde looks back 30 years to talk about its own present.",
+              "examples": "Casablanca’s refugees were real in 1942; Bonnie and Clyde’s Depression rebels stand for 1960s youth.",
+              "keyFacts": [
+                "A period film reflects the time it was MADE as much as the time it SHOWS",
+                "Both films romanticise their subjects",
+                "Context questions reward recognising this double layer"
+              ],
+              "examTip": "A subtle comparison point that lifts answers into the top band."
+            }
+          ]
+        },
+        {
+          "code": "A3.2",
+          "title": "Auteur theory",
+          "items": [
+            {
+              "code": "A3.2.1",
+              "term": "La politique des auteurs (Cahiers du Cinéma)",
+              "definition": "1950s French critics, led by Truffaut, argued the director is the true author whose personal vision marks every film.",
+              "examples": "Truffaut’s essay “A Certain Tendency of French Cinema” (1954); Cahiers praised Hollywood directors such as Hitchcock and Hawks.",
+              "keyFacts": [
+                "Claimed even studio directors could express a personal vision through style (mise-en-scène)",
+                "Distinguished auteurs from mere “metteurs en scène” (technicians)",
+                "The same critics then became New Wave directors, influencing Bonnie and Clyde"
+              ],
+              "examTip": "Link the theory to the films: the New Wave connects auteur theory to Bonnie and Clyde directly."
+            },
+            {
+              "code": "A3.2.2",
+              "term": "Andrew Sarris: three circles",
+              "definition": "Sarris (1962) said an auteur shows technical competence, a distinguishable personal style and an “interior meaning”.",
+              "examples": "His book The American Cinema (1968) ranked directors, with a “Pantheon” at the top.",
+              "keyFacts": [
+                "Brought auteur theory into American criticism",
+                "Interior meaning = the tension between a director’s personality and the material",
+                "Useful test: does Curtiz have interior meaning, or only competence and style?"
+              ],
+              "examTip": "Apply the three circles to each director in turn for a structured auteur answer."
+            },
+            {
+              "code": "A3.2.3",
+              "term": "Pauline Kael and the case against auteurism",
+              "definition": "Kael’s “Circles and Squares” (1963) attacked Sarris: films are collaborative and repeated habits are not genius.",
+              "examples": "Ironically Kael championed Bonnie and Clyde, a film shaped by many creative voices.",
+              "keyFacts": [
+                "Argues writers, stars and editors deserve credit",
+                "Points out that a recognisable signature can just be repetition",
+                "Supports a collaborative reading of both films"
+              ],
+              "examTip": "Use Kael to evaluate (AO2): auteur theory has limits."
+            },
+            {
+              "code": "A3.2.4",
+              "term": "Evaluating the auteur approach",
+              "definition": "Auteur theory explains signature style but can ignore collaboration, institutions, stars and audiences.",
+              "examples": "Barthes’ “The Death of the Author” (1967) moves meaning to the reader; Schatz moves it to the studio.",
+              "keyFacts": [
+                "Strength: explains recurring style and themes across a director’s work",
+                "Weakness: Casablanca shows how much a studio and its crafts shaped a film",
+                "Middle ground: the director as orchestrator of a team’s talents"
+              ],
+              "examTip": "The question says “how far”: always reach a judgement on the approach itself."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

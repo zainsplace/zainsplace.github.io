@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- The app uses inline onclick handlers, so scripts need 'unsafe-inline'. The policy stops any injected script sending data off-site (connect-src, img-src). -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Film Studies Revision</title>
+  <meta name="description" content="Eduqas A-Level Film Studies revision: Components 1 and 2. Spaced-repetition flashcards, exam-style essay questions, games, a mock countdown timetable and progress tracking.">
+  <meta name="theme-color" content="#1B5A5F">
+  <meta property="og:title" content="Film Studies Revision">
+  <meta property="og:description" content="Eduqas A-Level Film Studies revision hub.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zainsplace.github.io/film/">
+  <link rel="canonical" href="https://zainsplace.github.io/film/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231B5A5F'/%3E%3Ctext x='50' y='70' font-size='54' font-family='Georgia,serif' font-weight='700' fill='%23F5F1E8' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css?v=3">
+</head>
+<body>
+
+<a class="skip-link" href="#main-content" onclick="event.preventDefault();el('main-content').focus()">Skip to content</a>
+
+<!-- Sidebar backdrop (mobile only) -->
+<div class="sidebar-backdrop" id="sidebar-backdrop" onclick="closeSidebar()"></div>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-top">
+    <div class="sidebar-wordmark">
+      <span class="sidebar-icon-mark" id="brand-mark">C1</span>
+      <span class="sidebar-logo-text" id="brand-text">Film Studies</span>
+    </div>
+    <div class="unit-switch" role="group" aria-label="Choose component">
+      <button class="unit-switch-btn" data-unit="u1" aria-pressed="false">
+        <span class="unit-switch-code">C1</span><span class="unit-switch-name">Varieties of Film</span>
+      </button>
+      <button class="unit-switch-btn" data-unit="u2" aria-pressed="false">
+        <span class="unit-switch-code">C2</span><span class="unit-switch-name">Global Perspectives</span>
+      </button>
+    </div>
+  </div>
+  <nav class="sidebar-nav" aria-label="Main">
+    <button class="sidebar-btn" data-page="home" title="Home"       onclick="sidebarNav('home')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Home</span></button>
+    <button class="sidebar-btn" data-page="plan" title="Today's plan"       onclick="sidebarNav('plan')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg><span>Plan</span></button>
+    <button class="sidebar-btn" data-page="search" title="Search"     onclick="sidebarNav('search')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span>Search</span></button>
+    <p class="sidebar-group" aria-hidden="true"><span>Learn</span></p>
+    <button class="sidebar-btn" data-page="sections" title="Sections"   onclick="sidebarNav('sections')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg><span>Sections</span></button>
+    <button class="sidebar-btn" data-page="flashcards" title="Flashcards" onclick="sidebarNav('flashcards')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 9 5-9 5-9-5z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></svg><span>Flashcards</span></button>
+    <button class="sidebar-btn" data-page="examkit" title="Exam Kit"    onclick="sidebarNav('examkit')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg><span>Exam Kit</span></button>
+    <p class="sidebar-group" aria-hidden="true"><span>Practise</span></p>
+    <button class="sidebar-btn" data-page="questions" title="Questions"  onclick="sidebarNav('questions')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>Questions</span></button>
+    <button class="sidebar-btn" data-page="extended" title="Extended writing"   onclick="sidebarNav('extended')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg><span>Extended</span></button>
+    <button class="sidebar-btn" data-page="games" title="Games"      onclick="sidebarNav('games')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg><span>Games</span></button>
+    <p class="sidebar-group" aria-hidden="true"><span>Progress</span></p>
+    <button class="sidebar-btn" data-page="leaderboard" title="Leaderboard" onclick="sidebarNav('leaderboard')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0z"/></svg><span>Leaderboard</span></button>
+    <button class="sidebar-btn" data-page="profile" title="Profile"    onclick="sidebarNav('profile')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Profile</span></button>
+  </nav>
+  <div class="sidebar-bottom">
+    <a class="sidebar-btn sidebar-home" href="../revision/index.html" title="Open the BTEC IT revision site"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg><span>BTEC IT site</span></a>
+    <button class="sidebar-av-btn" id="sidebar-avatar" onclick="sidebarNav('profile')" title="Your profile">
+      <span class="sidebar-av-circle" id="sidebar-av-circle">Z</span>
+      <span class="sidebar-av-label">Profile</span>
+    </button>
+  </div>
+</aside>
+
+<!-- App shell wraps top-bar + main -->
+<div class="app-shell">
+
+<header class="top-bar">
+  <button class="top-bar-menu" id="hamburger" onclick="toggleSidebar()" aria-label="Toggle menu">
+    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+  </button>
+  <span class="top-bar-title" id="top-bar-title">Home</span>
+  <div class="top-bar-right">
+    <button class="top-bar-theme-btn" onclick="sidebarNav('search')" title="Search (/)" aria-label="Search"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
+    <button class="top-bar-theme-btn top-bar-keys" onclick="showShortcuts()" title="Keyboard shortcuts (?)" aria-label="Keyboard shortcuts">?</button>
+    <button class="theme-toggle top-bar-theme-btn" id="top-bar-theme" onclick="toggleTheme()" title="Switch to dark mode">🌙</button>
+    <button class="top-bar-avatar" id="nav-avatar" onclick="sidebarNav('profile')" title="Your profile">Z</button>
+  </div>
+</header>
+
+<main id="main-content" tabindex="-1">
+  <!-- One h1 for the whole app, for screen readers and outlines. applyUnitChrome() keeps it on the active unit. -->
+  <h1 class="sr-only" id="app-title">Film Studies Revision</h1>
+
+  <!-- HOME: about today. One card says what to do now; progress and topics follow. -->
+  <div class="page" id="page-home">
+    <div class="dash-header">
+      <div class="dash-header-info">
+        <p class="dash-greeting" id="home-greeting">Good morning</p>
+        <h2 class="dash-title" id="dash-title">Component 1 · Varieties of Film and Filmmaking</h2>
+        <p class="dash-sub" id="dash-sub">Eduqas A-Level Film Studies</p>
+      </div>
+    </div>
+
+    <div id="home-mock-resume"></div>
+
+    <section class="today-card" aria-labelledby="today-title">
+      <p class="today-kicker" id="today-date">Today</p>
+      <h3 class="today-title" id="today-title">Today's revision</h3>
+      <ol class="today-tasks" id="today-tasks"></ol>
+      <div class="today-foot">
+        <button class="today-link" onclick="navigate('plan')">Full plan for today <span aria-hidden="true">&rarr;</span></button>
+        <button class="today-link" onclick="navigate('games')">Games &amp; battles <span aria-hidden="true">&rarr;</span></button>
+      </div>
+    </section>
+
+    <section class="confidence" aria-labelledby="confidence-title">
+      <div class="confidence-head">
+        <h3 class="confidence-title" id="confidence-title">Where you are</h3>
+        <span class="confidence-count" id="home-topic-count">—</span>
+      </div>
+      <div class="strip" id="home-strip" role="img" aria-label="Confidence across the syllabus"></div>
+      <ul class="strip-key">
+        <li><i class="sw sw-green"></i>Confident <b id="home-stat-green">0</b></li>
+        <li><i class="sw sw-amber"></i>Getting there <b id="home-stat-amber">0</b></li>
+        <li><i class="sw sw-red"></i>Need work <b id="home-stat-red">0</b></li>
+        <li><i class="sw sw-none"></i>Not rated <b id="home-stat-unrated">0</b></li>
+      </ul>
+    </section>
+
+    <div class="stat-chips">
+      <span class="stat-chip"><b id="home-stat-streak">0</b> day streak</span>
+      <span class="stat-chip"><span id="home-stat-level" aria-hidden="true"></span><span id="home-stat-xp">Bronze · 0 season XP</span></span>
+      <span class="stat-chip"><b id="home-overall-pct">0%</b> confident overall</span>
+    </div>
+
+    <div id="priority-topics"></div>
+
+    <h3 class="home-section-title">Sections</h3>
+    <div class="grid2" id="section-tiles"></div>
+  </div>
+
+  <!-- SECTIONS -->
+  <div class="page" id="page-sections">
+    <div id="sections-content"></div>
+  </div>
+
+  <!-- FLASHCARDS -->
+  <div class="page" id="page-flashcards">
+    <div id="flashcards-content"></div>
+  </div>
+
+  <!-- QUESTIONS -->
+  <div class="page" id="page-questions">
+    <div id="questions-content"></div>
+  </div>
+
+  <!-- GAMES -->
+  <div class="page" id="page-games">
+    <div id="games-content"></div>
+  </div>
+
+  <!-- LEADERBOARD -->
+  <div class="page" id="page-leaderboard">
+    <div id="leaderboard-content"></div>
+  </div>
+
+  <!-- EXTENDED RESPONSE -->
+  <div class="page" id="page-extended">
+    <div id="extended-content"></div>
+  </div>
+
+  <!-- EXAM KIT -->
+  <div class="page" id="page-examkit">
+    <div id="examkit-content"></div>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="page" id="page-search">
+    <div id="search-content"></div>
+  </div>
+
+  <!-- PLAN -->
+  <div class="page" id="page-plan">
+    <div id="plan-content"></div>
+  </div>
+
+  <!-- PROFILE -->
+  <div class="page" id="page-profile">
+    <div id="profile-content"></div>
+  </div>
+
+</main>
+
+<button class="to-top" id="to-top" onclick="backToTop()" aria-label="Back to top" title="Back to top"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button>
+
+</div><!-- /.app-shell -->
+
+<div class="modal-overlay" id="player-modal-overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="player-modal" role="dialog" aria-modal="true"></div>
+</div>
+
+<div id="toast" role="status" aria-live="polite">
+  <span id="toast-icon"></span>
+  <span id="toast-msg"></span>
+  <div id="toast-bar"></div>
+</div>
+
+<script src="data_inline.js?v=2"></script>
+<script src="ppp.js?v=2"></script>
+<script src="league.js?v=2"></script>
+<script src="timetable.js?v=2"></script>
+<script src="app.js?v=3"></script>
+<script src="lessons.js?v=3"></script>
+</body>
+</html>

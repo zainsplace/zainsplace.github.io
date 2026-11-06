@@ -1,0 +1,645 @@
+{
+  "papers": [
+    {
+      "id": "c2m1",
+      "title": "Component 2 Mock Paper 1 (Sections A and B)",
+      "minutes": 90,
+      "scenarios": [
+        "gm1",
+        "dm1"
+      ]
+    },
+    {
+      "id": "c2m2",
+      "title": "Component 2 Mock Paper 2 (Sections A and B)",
+      "minutes": 90,
+      "scenarios": [
+        "gm2",
+        "dm2"
+      ]
+    },
+    {
+      "id": "c2p3",
+      "title": "Paper 3",
+      "minutes": 90,
+      "scenarios": [
+        "gp3",
+        "dp3"
+      ],
+      "sealed": true
+    },
+    {
+      "id": "c2p4",
+      "title": "Paper 4",
+      "minutes": 90,
+      "scenarios": [
+        "gp4",
+        "dp4"
+      ],
+      "sealed": true
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "ga",
+      "number": 1,
+      "title": "Section A practice: Global film",
+      "stem": "Section A: Global film (two-film study). Answer with close reference to the two films you have studied: one European film (Pan’s Labyrinth) and one from outside Europe (City of God). Comparison is not assessed. [40]"
+    },
+    {
+      "id": "db",
+      "number": 2,
+      "title": "Section B practice: Documentary",
+      "stem": "Section B: Documentary film. Answer on the documentary you have studied (Amy). [20]"
+    },
+    {
+      "id": "gm1",
+      "number": 1,
+      "title": "Section A",
+      "stem": "Section A: Global film (two-film study). Answer with close reference to the two films you have studied: one European film (Pan’s Labyrinth) and one from outside Europe (City of God). Comparison is not assessed. [40]"
+    },
+    {
+      "id": "dm1",
+      "number": 2,
+      "title": "Section B",
+      "stem": "Section B: Documentary film. Answer on the documentary you have studied (Amy). [20]"
+    },
+    {
+      "id": "gm2",
+      "number": 1,
+      "title": "Section A",
+      "stem": "Section A: Global film (two-film study). Answer with close reference to the two films you have studied: one European film (Pan’s Labyrinth) and one from outside Europe (City of God). Comparison is not assessed. [40]"
+    },
+    {
+      "id": "dm2",
+      "number": 2,
+      "title": "Section B",
+      "stem": "Section B: Documentary film. Answer on the documentary you have studied (Amy). [20]"
+    },
+    {
+      "id": "gp3",
+      "number": 1,
+      "title": "Section A",
+      "stem": "Section A: Global film (two-film study). Answer with close reference to the two films you have studied: one European film (Pan’s Labyrinth) and one from outside Europe (City of God). Comparison is not assessed. [40]",
+      "total": 40
+    },
+    {
+      "id": "dp3",
+      "number": 2,
+      "title": "Section B",
+      "stem": "Section B: Documentary film. Answer on the documentary you have studied (Amy). [20]",
+      "total": 20
+    },
+    {
+      "id": "gp4",
+      "number": 1,
+      "title": "Section A",
+      "stem": "Section A: Global film (two-film study). Answer with close reference to the two films you have studied: one European film (Pan’s Labyrinth) and one from outside Europe (City of God). Comparison is not assessed. [40]",
+      "total": 40
+    },
+    {
+      "id": "dp4",
+      "number": 2,
+      "title": "Section B",
+      "stem": "Section B: Documentary film. Answer on the documentary you have studied (Amy). [20]",
+      "total": 20
+    }
+  ],
+  "questions": [
+    {
+      "id": "g-perf",
+      "scenario": "ga",
+      "part": "1",
+      "section": "A",
+      "code": "A1.2.2",
+      "marks": 40,
+      "commandWord": "Explore",
+      "context": "",
+      "question": "With close reference to the two films you have studied, explore how either performance or mise-en-scène create meaning. (sample paper)",
+      "slots": 0,
+      "traps": [
+        "“With close reference to the two films” = both films, in depth. Comparison earns no extra marks.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Choose ONE element and analyse how it creates meaning in both films.",
+        "indicative": [
+          "Mise-en-scène: Vidal’s watch and uniform; the Pale Man’s banquet and shoes; the labyrinth motif",
+          "City of God: the favela growing cramped; the apartment; guns and gold",
+          "Performance: López’s chilling precision; Baquero’s stillness; City of God’s non-professional cast",
+          "Meaning linked to context: fascism; state neglect",
+          "Aesthetic dimension: gothic fairytale vs kinetic realism"
+        ]
+      },
+      "modelAnswer": "Thesis (mise-en-scène): in both films mise-en-scène turns setting into argument: the fantasy mirrors fascism, the favela shows the cycle of neglect.\n\nP1 Vidal’s watch and the mirror. P2 The Pale Man’s feast and shoes. P3 The Story of the Apartment. P4 The favela closing in over the decades.\n\nConclusion: mise-en-scène is where each film’s politics becomes visible."
+    },
+    {
+      "id": "g-edit",
+      "scenario": "ga",
+      "part": "2",
+      "section": "A",
+      "code": "A2.2.2",
+      "marks": 40,
+      "commandWord": "Explore",
+      "context": "",
+      "question": "With close reference to the two films you have studied, explore how either editing or sound create meaning. (sample paper)",
+      "slots": 0,
+      "traps": [
+        "“With close reference to the two films” = both films, in depth. Comparison earns no extra marks.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Choose ONE element and analyse how it creates meaning in both films.",
+        "indicative": [
+          "Editing: City of God’s freeze-frames, 360° spin, apartment dissolves",
+          "Pan’s Labyrinth’s wipes between worlds; cross-cutting at the climax",
+          "Sound: the lullaby motif; sweetened violence; Rocket’s voiceover; ironic funk and samba",
+          "Meaning: cycles of violence; fantasy as resistance",
+          "Spectator response to rhythm and sound"
+        ]
+      },
+      "modelAnswer": "Thesis (editing): editing creates each film’s structure of meaning: cycles in City of God, mirrored worlds in Pan’s Labyrinth.\n\nP1 Chicken chase. P2 Apartment. P3 Wipes. P4 Final cross-cutting.\n\nConclusion."
+    },
+    {
+      "id": "g-cine",
+      "scenario": "ga",
+      "part": "3",
+      "section": "A",
+      "code": "A1.2.1",
+      "marks": 40,
+      "commandWord": "Explore",
+      "context": "",
+      "question": "With close reference to the two films you have studied, explore how cinematography, including lighting, creates meaning.",
+      "slots": 0,
+      "traps": [
+        "“With close reference to the two films” = both films, in depth. Comparison earns no extra marks.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Camera, colour and lighting in both films.",
+        "indicative": [
+          "Blue reality vs amber fantasy",
+          "Canted opening and the eye",
+          "Handheld chaos; warm past vs cold present",
+          "Low-key lighting in the bottle murder",
+          "Shallow focus on the shoes"
+        ]
+      },
+      "modelAnswer": "Thesis: colour and camera build each film’s argument.\n\nP1 Palettes. P2 Openings. P3 Violence. P4 Endings.\n\nConclusion."
+    },
+    {
+      "id": "g-rep",
+      "scenario": "ga",
+      "part": "4",
+      "section": "A",
+      "code": "A2.4.1",
+      "marks": 40,
+      "commandWord": "Explore",
+      "context": "",
+      "question": "With close reference to the two films you have studied, explore how film form constructs representations of identity and place.",
+      "slots": 0,
+      "traps": [
+        "“With close reference to the two films” = both films, in depth. Comparison earns no extra marks.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Identity (gender, age, class, ethnicity) and place through film form.",
+        "indicative": [
+          "Patriarchy in Vidal’s mill; Mercedes and Carmen",
+          "Children in danger in both films",
+          "The favela as character; race and class",
+          "1944 rural Spain as a place of occupation",
+          "Ideological nature of representation"
+        ]
+      },
+      "modelAnswer": "Thesis: both films represent places that crush the young, through distinctive form.\n\nP1 Place. P2 Gender. P3 Childhood.\n\nConclusion."
+    },
+    {
+      "id": "g-aesth",
+      "scenario": "ga",
+      "part": "5",
+      "section": "A",
+      "code": "A1.4.2",
+      "marks": 40,
+      "commandWord": "Explore",
+      "context": "",
+      "question": "With close reference to the two films you have studied, explore how far their aesthetic qualities contribute to their meaning.",
+      "slots": 0,
+      "traps": [
+        "“With close reference to the two films” = both films, in depth. Comparison earns no extra marks.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Aesthetics and meaning; spectacle vs narrative; critical views.",
+        "indicative": [
+          "Del Toro’s gothic fairytale; practical creatures",
+          "City of God’s kinetic sun-drenched style",
+          "Bentes’ “cosmetics of hunger” critique",
+          "Spectacle vs narrative resolution",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: aesthetics carry meaning in both, though City of God’s style risks glamorising what it condemns.\n\nP1 Pale Man. P2 Chicken chase. P3 Critique. P4 Endings.\n\nConclusion."
+    },
+    {
+      "id": "d-theory",
+      "scenario": "db",
+      "part": "1",
+      "section": "B",
+      "code": "B3.1.3",
+      "marks": 20,
+      "commandWord": "How far",
+      "context": "",
+      "question": "Apply one filmmaker’s theory of documentary film you have studied to your chosen documentary. How far does this increase your understanding of the film? (sample paper)",
+      "slots": 0,
+      "traps": [
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion.",
+        "Name the filmmaker’s theory precisely and explain its central ideas before applying it.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (10) and AO2 (10) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Clarify one theory (Longinotto, Broomfield, Moore or Watkins), apply it to Amy, judge how far it helps.",
+        "indicative": [
+          "Longinotto: invisible filmmaker, fiction-like identification, no conclusions",
+          "Amy: invisible Kapadia, audio-only interviews, identification with Amy",
+          "Differences: Amy uses captions, music and an implied conclusion about blame",
+          "Techniques conveying the real: home video, on-screen lyrics",
+          "Band 5: documentaries can only give an ideological representation of their subject"
+        ]
+      },
+      "modelAnswer": "Thesis: Longinotto’s theory increases understanding to a large extent, because Amy shares her invisibility and identification, but its implied blame shows where Kapadia departs.\n\nP1 Invisibility: no talking heads; audio over footage. P2 Identification: the birthday video and lyrics. P3 Departures: score, edit-driven blame, paparazzi sequences.\n\nConclusion."
+    },
+    {
+      "id": "d-digital",
+      "scenario": "db",
+      "part": "2",
+      "section": "B",
+      "code": "B2.1.1",
+      "marks": 20,
+      "commandWord": "How far",
+      "context": "",
+      "question": "“Portable digital cameras, digital sound recording and non-linear digital editing have had a very significant impact on documentary film.” How far has digital technology had an impact on your chosen documentary? (sample paper)",
+      "slots": 0,
+      "traps": [
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion.",
+        "Name the filmmaker’s theory precisely and explain its central ideas before applying it.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (10) and AO2 (10) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Both sides of the digital debate, applied to Amy.",
+        "indicative": [
+          "Digital-era footage: camcorders, phones, paparazzi",
+          "Non-linear editing of vast archive; reframing low-res images",
+          "Digital distribution and celebrity websites",
+          "Counter: compilation films and tragic narratives pre-date digital",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: very significant: Amy could not exist without digital recording, though its storytelling is traditional.\n\nP1 Footage. P2 Editing. P3 Counter-argument.\n\nConclusion."
+    },
+    {
+      "id": "d-fact",
+      "scenario": "db",
+      "part": "3",
+      "section": "B",
+      "code": "B4.1.3",
+      "marks": 20,
+      "commandWord": "How far",
+      "context": "",
+      "question": "How far does your chosen documentary blur the boundary between fact and fiction?",
+      "slots": 0,
+      "traps": [
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion.",
+        "Name the filmmaker’s theory precisely and explain its central ideas before applying it.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (10) and AO2 (10) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Fiction-like techniques in a factual film.",
+        "indicative": [
+          "Tragic three-act shape",
+          "Pinto’s score",
+          "Selective editing and Mitch’s objections",
+          "Real footage as authenticating",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: to a significant extent in form, though not in content."
+    },
+    {
+      "id": "d-construct",
+      "scenario": "db",
+      "part": "4",
+      "section": "B",
+      "code": "B4.1.1",
+      "marks": 20,
+      "commandWord": "How far",
+      "context": "",
+      "question": "“Documentary filmmakers construct rather than record reality.” How far is this true of your chosen documentary?",
+      "slots": 0,
+      "traps": [
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion.",
+        "Name the filmmaker’s theory precisely and explain its central ideas before applying it.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (10) and AO2 (10) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Grierson’s creative treatment of actuality applied to Amy.",
+        "indicative": [
+          "Kapadia did not shoot the footage but selected it",
+          "Audio-only interviews shape interpretation",
+          "On-screen lyrics",
+          "Ending with press footage",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: largely true: Amy records nothing itself and constructs everything through selection."
+    },
+    {
+      "id": "d-presence",
+      "scenario": "db",
+      "part": "5",
+      "section": "B",
+      "code": "B3.1.2",
+      "marks": 20,
+      "commandWord": "How far",
+      "context": "",
+      "question": "How far is the filmmaker’s presence visible in your chosen documentary? Refer to at least one filmmaker’s theory.",
+      "slots": 0,
+      "traps": [
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion.",
+        "Name the filmmaker’s theory precisely and explain its central ideas before applying it.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (10) and AO2 (10) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Visible (Broomfield, Moore) vs invisible (Longinotto) presence.",
+        "indicative": [
+          "Kapadia never appears",
+          "Presence felt through editing and juxtaposition",
+          "Contrast with Broomfield’s Whitney",
+          "Moore’s polemic vs Amy’s implied blame",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: invisible on screen but highly visible in the edit."
+    },
+    {
+      "id": "m1-ga",
+      "scenario": "gm1",
+      "part": "1",
+      "section": "A",
+      "code": "A1.1.2",
+      "marks": 40,
+      "commandWord": "Explore",
+      "context": "",
+      "question": "With close reference to the two films you have studied, explore how their contexts are reflected in their film form.",
+      "slots": 0,
+      "traps": [
+        "“With close reference to the two films” = both films, in depth. Comparison earns no extra marks.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Contexts (Franco’s Spain; Rio favelas) through form.",
+        "indicative": [
+          "Fascist brutality and the bottle murder",
+          "State neglect and the apartment",
+          "Practical effects; non-professional casting",
+          "Colour",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: both films build their political context into their style."
+    },
+    {
+      "id": "m1-db",
+      "scenario": "dm1",
+      "part": "2",
+      "section": "B",
+      "code": "B1.4.1",
+      "marks": 20,
+      "commandWord": "How far",
+      "context": "",
+      "question": "How far does a filmmaker’s theory help to explain the representation of the subject in your chosen documentary?",
+      "slots": 0,
+      "traps": [
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion.",
+        "Name the filmmaker’s theory precisely and explain its central ideas before applying it.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (10) and AO2 (10) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Representation of Amy through a chosen theory.",
+        "indicative": [
+          "Longinotto and identification",
+          "Watkins and media spectacle",
+          "Selective portrait",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: Longinotto explains the sympathy; Watkins explains the critique of media."
+    },
+    {
+      "id": "m2-ga",
+      "scenario": "gm2",
+      "part": "1",
+      "section": "A",
+      "code": "A3.1.1",
+      "marks": 40,
+      "commandWord": "Explore",
+      "context": "",
+      "question": "With close reference to the two films you have studied, explore how they create meaning through the representation of childhood.",
+      "slots": 0,
+      "traps": [
+        "“With close reference to the two films” = both films, in depth. Comparison earns no extra marks.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Children in violent worlds.",
+        "indicative": [
+          "Ofelia’s disobedience",
+          "The Runts",
+          "Observer children: Ofelia and Rocket",
+          "Form in key scenes",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: both use children to measure the cruelty of adult systems."
+    },
+    {
+      "id": "m2-db",
+      "scenario": "dm2",
+      "part": "2",
+      "section": "B",
+      "code": "B2.1.3",
+      "marks": 20,
+      "commandWord": "How far",
+      "context": "",
+      "question": "How far has digital editing shaped the meaning of your chosen documentary?",
+      "slots": 0,
+      "traps": [
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion.",
+        "Name the filmmaker’s theory precisely and explain its central ideas before applying it.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (10) and AO2 (10) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Non-linear editing and meaning.",
+        "indicative": [
+          "Juxtaposition and blame",
+          "Paparazzi rhythm",
+          "Reframing footage",
+          "Counter-arguments",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: editing is where Amy’s meaning is made."
+    },
+    {
+      "id": "s3-ga",
+      "scenario": "gp3",
+      "part": "1",
+      "section": "A",
+      "code": "A2.4.2",
+      "marks": 40,
+      "commandWord": "Explore",
+      "context": "",
+      "question": "With close reference to the two films you have studied, explore how mise-en-scène and cinematography contribute to their aesthetics.",
+      "slots": 0,
+      "traps": [
+        "“With close reference to the two films” = both films, in depth. Comparison earns no extra marks.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Aesthetics through two elements.",
+        "indicative": [
+          "Gothic design",
+          "Kinetic handheld",
+          "Colour grading",
+          "Critical views"
+        ]
+      },
+      "modelAnswer": "Thesis: two distinct aesthetics, both political."
+    },
+    {
+      "id": "s3-db",
+      "scenario": "dp3",
+      "part": "2",
+      "section": "B",
+      "code": "B3.1.1",
+      "marks": 20,
+      "commandWord": "How far",
+      "context": "",
+      "question": "Apply Peter Watkins’ idea of the “monoform” to your chosen documentary. How far does this increase your understanding of the film?",
+      "slots": 0,
+      "traps": [
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion.",
+        "Name the filmmaker’s theory precisely and explain its central ideas before applying it.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (10) and AO2 (10) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Watkins applied critically to Amy.",
+        "indicative": [
+          "Monoform defined",
+          "Amy critiques tabloid media",
+          "Amy’s own fast, emotive style",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: useful, because Amy both attacks and uses the monoform."
+    },
+    {
+      "id": "s4-ga",
+      "scenario": "gp4",
+      "part": "1",
+      "section": "A",
+      "code": "A2.3.2",
+      "marks": 40,
+      "commandWord": "Explore",
+      "context": "",
+      "question": "With close reference to the two films you have studied, explore how editing and sound shape spectator response.",
+      "slots": 0,
+      "traps": [
+        "“With close reference to the two films” = both films, in depth. Comparison earns no extra marks.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Editing and sound as cues.",
+        "indicative": [
+          "Lullaby and sweetened sound",
+          "Voiceover and freeze-frames",
+          "Pace and shock",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: both films guide response through rhythm and sound."
+    },
+    {
+      "id": "s4-db",
+      "scenario": "dp4",
+      "part": "2",
+      "section": "B",
+      "code": "B2.1.2",
+      "marks": 20,
+      "commandWord": "How far",
+      "context": "",
+      "question": "How far has digital archive footage affected the way the spectator responds to your chosen documentary?",
+      "slots": 0,
+      "traps": [
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion.",
+        "Name the filmmaker’s theory precisely and explain its central ideas before applying it.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (10) and AO2 (10) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Digital footage and response.",
+        "indicative": [
+          "Intimacy of home video",
+          "Invasive paparazzi images",
+          "Spectator complicity",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: very far: the footage’s source shapes each response."
+    }
+  ]
+}

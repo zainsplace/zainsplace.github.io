@@ -1,0 +1,512 @@
+{
+  "section": "K",
+  "title": "Film Toolkit: core study areas, contexts and exam skills",
+  "tier": 2,
+  "colour": "#6D5BD6",
+  "topics": [
+    {
+      "code": "K1",
+      "title": "Core area 1: key elements of film form",
+      "subtopics": [
+        {
+          "code": "K1.1",
+          "title": "Cinematography and lighting",
+          "items": [
+            {
+              "code": "K1.1.1",
+              "term": "Shot types",
+              "definition": "Shot scale from extreme long shot to extreme close-up controls how much we see and how close we feel.",
+              "examples": "ELS of the ruins in Pan’s Labyrinth; ECU of Bonnie’s lips; CU of Arthur forcing a smile.",
+              "keyFacts": [
+                "ELS/LS establish place and can make characters look small",
+                "MS shows body language and relationships",
+                "CU/ECU give psychological insight and intensify emotion"
+              ],
+              "examTip": "Write the scale AND the effect: “a close-up isolates Arthur’s pain”."
+            },
+            {
+              "code": "K1.1.2",
+              "term": "Camera angles",
+              "definition": "High, low, canted (Dutch) and point-of-view angles shape power, stability and alignment.",
+              "examples": "Canted close-up of the dying Ofelia; POV of the Sunken Place; low angle on Renton in the carpet.",
+              "keyFacts": [
+                "Low angle = power or threat; high angle = vulnerability",
+                "Canted angle = a world off balance",
+                "POV shots align the spectator with a character"
+              ],
+              "examTip": "Angles are easy marks when tied to meaning."
+            },
+            {
+              "code": "K1.1.3",
+              "term": "Camera movement",
+              "definition": "Pans, tilts, tracking, crane, handheld and Steadicam movement create energy, intimacy or control.",
+              "examples": "Handheld chaos in City of God; Curtiz’s crane into the market; Shaun’s long tracking walks.",
+              "keyFacts": [
+                "Handheld = immediacy, instability, documentary feel",
+                "Steadicam = smooth, floating, controlled",
+                "The spec contrasts handheld with Steadicam technology"
+              ],
+              "examTip": "Pair movement with editing to describe a sequence’s rhythm."
+            },
+            {
+              "code": "K1.1.4",
+              "term": "Focus and depth of field",
+              "definition": "Deep focus keeps foreground and background sharp; shallow focus isolates one plane; focus pulls shift attention.",
+              "examples": "Shallow focus on the victims’ shoes in the Pale Man’s lair; deep focus in City of God’s apartment.",
+              "keyFacts": [
+                "Deep focus lets the spectator choose where to look (Bazin)",
+                "Shallow focus directs attention and isolates characters",
+                "A rack focus changes meaning within a single shot"
+              ],
+              "examTip": "Depth of field overlaps with mise-en-scène: the spec says so."
+            },
+            {
+              "code": "K1.1.5",
+              "term": "Composition and framing",
+              "definition": "Balanced or unbalanced arrangement of the frame, frames within frames and off-screen space create meaning.",
+              "examples": "Bonnie behind the bed-rail “bars”; Chris framed through doorways at the Armitage house.",
+              "keyFacts": [
+                "Rule of thirds and symmetry signal order or control",
+                "Unbalanced frames create unease",
+                "Frames within frames suggest entrapment"
+              ],
+              "examTip": "Mention the spec phrase “balanced and unbalanced shots”."
+            },
+            {
+              "code": "K1.1.6",
+              "term": "Lighting: three-point and low-key",
+              "definition": "Key, fill and backlight model a subject; low-key lighting (little fill) creates shadow and mood.",
+              "examples": "Edeson’s low-key café in Casablanca; low-key subway in Joker; Pan’s Labyrinth’s bottle murder.",
+              "keyFacts": [
+                "High-key = bright, even, optimistic",
+                "Chiaroscuro = strong light/dark contrast, from painting",
+                "Lighting gives psychological insight into character"
+              ],
+              "examTip": "“Chiaroscuro” and “three-point lighting” are named in the spec."
+            },
+            {
+              "code": "K1.1.7",
+              "term": "Colour and grading",
+              "definition": "Palette, filters and colour grading create mood, mark time or separate worlds.",
+              "examples": "Pan’s Labyrinth: cold blue reality vs warm amber fantasy; City of God: warm past, cold present.",
+              "keyFacts": [
+                "Monochrome cinematography is also a spec point",
+                "Digital grading allows precise control in post-production",
+                "Colour motifs build meaning through repetition"
+              ],
+              "examTip": "Colour is often the easiest way into aesthetics questions."
+            }
+          ]
+        },
+        {
+          "code": "K1.2",
+          "title": "Mise-en-scène",
+          "items": [
+            {
+              "code": "K1.2.1",
+              "term": "Setting and props",
+              "definition": "Locations and objects place the story and carry symbolic meaning, often as repeated motifs.",
+              "examples": "Vidal’s watch; Casablanca’s letters of transit; Get Out’s teacup.",
+              "keyFacts": [
+                "Settings can be naturalistic or expressive",
+                "Props can become motifs through patterned repetition",
+                "Location shooting vs studio sets is also a context point"
+              ],
+              "examTip": "Pick a prop and track how its meaning develops."
+            },
+            {
+              "code": "K1.2.2",
+              "term": "Costume and make-up",
+              "definition": "What characters wear and how they look shows identity, status, change and genre.",
+              "examples": "Joker’s red suit; Bonnie’s beret; Vidal’s crisp uniform; the Pale Man’s practical make-up.",
+              "keyFacts": [
+                "Costume change = character change",
+                "Make-up can be realistic or expressive (prosthetics)",
+                "Costume can define a whole era’s style"
+              ],
+              "examTip": "Link costume to representation (gender, class)."
+            },
+            {
+              "code": "K1.2.3",
+              "term": "Staging, movement and off-screen space",
+              "definition": "Where actors stand and move (blocking) and what is kept off-screen shape power and suspense.",
+              "examples": "Arthur dancing down the stairs; the rebels hidden in the woods around the mill.",
+              "keyFacts": [
+                "Directing as “choreography” of movement (spec)",
+                "Off-screen space builds fear: what we cannot see",
+                "Distance between characters shows relationships"
+              ],
+              "examTip": "Staging is often missed by students: an easy way to stand out."
+            },
+            {
+              "code": "K1.2.4",
+              "term": "Naturalistic vs expressive mise-en-scène",
+              "definition": "Naturalistic mise-en-scène imitates reality; expressive mise-en-scène exaggerates it to show emotion or ideas.",
+              "examples": "City of God’s real favela vs Pan’s Labyrinth’s fantasy creatures.",
+              "keyFacts": [
+                "Social realism favours naturalism",
+                "Expressionism and fantasy favour stylisation",
+                "Many films mix both, as Trainspotting does"
+              ],
+              "examTip": "Useful for aesthetics and realism questions."
+            }
+          ]
+        },
+        {
+          "code": "K1.3",
+          "title": "Editing",
+          "items": [
+            {
+              "code": "K1.3.1",
+              "term": "Continuity editing",
+              "definition": "Invisible editing that keeps space and time clear: shot/reverse shot, eyeline match, match on action, 180° rule.",
+              "examples": "Rick and Ilsa’s conversations in Casablanca.",
+              "keyFacts": [
+                "The default style of Classical Hollywood",
+                "Keeps the spectator absorbed (passive)",
+                "Breaking it draws attention to the film’s construction"
+              ],
+              "examTip": "Contrast continuity with jump cuts for style questions."
+            },
+            {
+              "code": "K1.3.2",
+              "term": "Montage and the Kuleshov effect",
+              "definition": "Meaning is created by joining shots; Kuleshov showed the same face reads differently after different images.",
+              "examples": "City of God’s “Story of the Apartment”; Casablanca’s opening map montage.",
+              "keyFacts": [
+                "Soviet montage (Eisenstein) creates ideas through collision of shots",
+                "A montage sequence compresses time",
+                "Spec names the Kuleshov effect directly"
+              ],
+              "examTip": "Montage is ideal for showing time and cycles."
+            },
+            {
+              "code": "K1.3.3",
+              "term": "Stylised editing: jump cuts, freeze-frames, split-screen",
+              "definition": "Visible editing techniques that break continuity to create energy, shock or comment.",
+              "examples": "Freeze-frames in City of God and Trainspotting; jump cuts in Bonnie and Clyde.",
+              "keyFacts": [
+                "Jump cuts were popularised by the French New Wave",
+                "Freeze-frames fix a moment and a character",
+                "Split-screen shows simultaneous action"
+              ],
+              "examTip": "Connect stylised editing to an auteur signature."
+            },
+            {
+              "code": "K1.3.4",
+              "term": "Pace, rhythm and cross-cutting",
+              "definition": "Shot length sets pace; cross-cutting between places builds tension or links ideas.",
+              "examples": "Joker cross-cuts the TV studio with the riots; Get Out intercuts the silent auction.",
+              "keyFacts": [
+                "Fast cutting = energy or panic; long takes = tension or realism",
+                "Cross-cutting implies a connection between two actions",
+                "Editing motifs repeat patterns of cutting"
+              ],
+              "examTip": "Describe the rhythm, not just “fast editing”."
+            },
+            {
+              "code": "K1.3.5",
+              "term": "Visual effects (VFX) and post-production",
+              "definition": "Effects created in post-production designed to engage the spectator and produce emotion.",
+              "examples": "Pan’s Labyrinth mixes practical creatures with digital touch-ups.",
+              "keyFacts": [
+                "Spec: the tension between intended and actual spectator response to VFX",
+                "Practical effects can feel more tactile than CGI",
+                "Digital grading and compositing are now standard"
+              ],
+              "examTip": "Links to the digital debate in Component 2."
+            }
+          ]
+        },
+        {
+          "code": "K1.4",
+          "title": "Sound",
+          "items": [
+            {
+              "code": "K1.4.1",
+              "term": "Diegetic and non-diegetic sound",
+              "definition": "Diegetic sound exists in the story world; non-diegetic sound (score, narration) is heard only by the audience.",
+              "examples": "Sam playing “As Time Goes By” (diegetic) becomes Steiner’s score (non-diegetic).",
+              "keyFacts": [
+                "Sounds can move between the two",
+                "Voiceover is usually non-diegetic narration",
+                "Jukebox music in Shaun is diegetic"
+              ],
+              "examTip": "Always classify the sound before analysing it."
+            },
+            {
+              "code": "K1.4.2",
+              "term": "Parallel and contrapuntal sound",
+              "definition": "Parallel sound matches the mood of the image; contrapuntal sound contrasts with it.",
+              "examples": "“Perfect Day” over Renton’s overdose; bluegrass banjo over dangerous getaways.",
+              "keyFacts": [
+                "Contrapuntal sound creates irony or unease",
+                "Parallel sound intensifies emotion",
+                "The distinction is named in the spec"
+              ],
+              "examTip": "A precise term that examiners reward."
+            },
+            {
+              "code": "K1.4.3",
+              "term": "Sound design and motifs",
+              "definition": "Layered effects, Foley, ambient sound, silence and repeated sound motifs build atmosphere and meaning.",
+              "examples": "The spoon on the teacup in Get Out; Arthur’s laugh; the sweetened crunch of the bottle murder.",
+              "keyFacts": [
+                "Multitrack mixing, asynchronous sound, Foley",
+                "Silence can be the most powerful sound",
+                "Sound motifs link characters and ideas"
+              ],
+              "examTip": "Pick one sound motif per film and learn its scenes."
+            },
+            {
+              "code": "K1.4.4",
+              "term": "Music: score and needle-drops",
+              "definition": "An original score or existing songs (needle-drops) shape emotion, period and meaning.",
+              "examples": "Guðnadóttir’s cello (Joker); “Lust for Life” (Trainspotting); “Don’t Stop Me Now” (Shaun).",
+              "keyFacts": [
+                "Leitmotif: a theme tied to a character or idea",
+                "Songs can comment ironically on the action",
+                "Music is a key cue for spectator response"
+              ],
+              "examTip": "Name the piece and its function."
+            }
+          ]
+        },
+        {
+          "code": "K1.5",
+          "title": "Performance",
+          "items": [
+            {
+              "code": "K1.5.1",
+              "term": "Performance styles",
+              "definition": "Classical star performance, Method acting, naturalism and improvisation create different effects.",
+              "examples": "Bogart’s star persona; Phoenix’s Method-style transformation; City of God’s non-professional cast.",
+              "keyFacts": [
+                "Method: the actor draws on inner experience",
+                "Improvisation brings spontaneity",
+                "Non-professional actors add authenticity"
+              ],
+              "examTip": "Compare performance styles across eras or films."
+            },
+            {
+              "code": "K1.5.2",
+              "term": "Non-verbal communication and vocal delivery",
+              "definition": "Gesture, posture, facial expression and voice carry meaning beyond dialogue.",
+              "examples": "Chris’s single tear; Vidal’s precise, preening movements; Arthur’s laugh.",
+              "keyFacts": [
+                "The body can tell a story the dialogue hides",
+                "Vocal delivery: pace, pitch, accent",
+                "Interaction between actors creates relationships"
+              ],
+              "examTip": "Describe a specific gesture to earn the mark."
+            },
+            {
+              "code": "K1.5.3",
+              "term": "Casting and stars",
+              "definition": "Casting choices carry meaning through a star’s image or a non-actor’s authenticity.",
+              "examples": "De Niro in Joker recalls Scorsese; Bogart’s tough-guy image shapes Rick.",
+              "keyFacts": [
+                "Star theory (Dyer): stars are constructed images",
+                "Casting against type can surprise spectators",
+                "Casting is part of performance in the spec"
+              ],
+              "examTip": "Casting is a cue to spectator response."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "K2",
+      "title": "Core area 2: meaning and response",
+      "subtopics": [
+        {
+          "code": "K2.1",
+          "title": "Representation and aesthetics",
+          "items": [
+            {
+              "code": "K2.1.1",
+              "term": "Representation",
+              "definition": "How films construct identities (gender, ethnicity, class, age) and places, including the ideology behind them.",
+              "examples": "Liberal racism in Get Out; the favela in City of God; patriarchy in Pan’s Labyrinth.",
+              "keyFacts": [
+                "Representations are constructed, never neutral",
+                "From 2029 the spec focuses on identity and place",
+                "Stereotypes can be reinforced or challenged"
+              ],
+              "examTip": "Always analyse representation through film form."
+            },
+            {
+              "code": "K2.1.2",
+              "term": "Representation of place",
+              "definition": "How location and setting construct meaning, from a whole nation to a single neighbourhood.",
+              "examples": "1944 rural Spain; Rio’s favela; Renton’s Edinburgh; Shaun’s suburban London; Gotham as 1980s New York.",
+              "keyFacts": [
+                "Place shaped by history, politics and national identity",
+                "Real locations vs studio sets",
+                "Place can be a character in itself"
+              ],
+              "examTip": "A strong angle for Global film questions."
+            },
+            {
+              "code": "K2.1.3",
+              "term": "Aesthetics",
+              "definition": "The overall look, sound and feel of a film and the pleasure or effect its style creates.",
+              "examples": "Pan’s Labyrinth’s gothic fairytale; City of God’s kinetic, sun-drenched style.",
+              "keyFacts": [
+                "Created by mise-en-scène, cinematography, lighting, music and editing together",
+                "The spec mentions the conflict between spectacle and narrative resolution",
+                "Aesthetics connect to auteur and ideology"
+              ],
+              "examTip": "Define the film’s aesthetic in one phrase before analysing it."
+            },
+            {
+              "code": "K2.1.4",
+              "term": "Spectacle vs narrative",
+              "definition": "Moments of visual spectacle can pause or compete with the drive towards narrative resolution.",
+              "examples": "The Pale Man sequence; Arthur’s stair dance; Renton’s underwater swim.",
+              "keyFacts": [
+                "Spectacle gives pleasure in itself",
+                "It can deepen meaning or distract from it",
+                "A good evaluative point in aesthetics answers"
+              ],
+              "examTip": "Use to show critical engagement with aesthetics."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "K3",
+      "title": "Core area 3: the contexts of film",
+      "subtopics": [
+        {
+          "code": "K3.1",
+          "title": "Context types",
+          "items": [
+            {
+              "code": "K3.1.1",
+              "term": "Social context",
+              "definition": "Social debates around the film’s production, such as those about ethnicity, gender or class.",
+              "examples": "Post-Obama racial politics for Get Out; Gen-X slacker culture for Shaun.",
+              "keyFacts": [
+                "Can be current (when made) or historical (when set)",
+                "Link to representation",
+                "Avoid generalised history lessons"
+              ],
+              "examTip": "One sentence of context, then straight into the film."
+            },
+            {
+              "code": "K3.1.2",
+              "term": "Cultural context",
+              "definition": "Artistic movements, genres and cultural trends that shaped the film.",
+              "examples": "The French New Wave for Bonnie and Clyde; Cinema Novo for City of God; Britpop for Trainspotting.",
+              "keyFacts": [
+                "Spec example: “a significant film or artistic movement”",
+                "Intertextuality is a cultural link",
+                "Popular culture (music, fashion) also counts"
+              ],
+              "examTip": "Name the movement precisely."
+            },
+            {
+              "code": "K3.1.3",
+              "term": "Political context",
+              "definition": "Political factors such as restrictions on free expression or movements for change.",
+              "examples": "Francoism for Pan’s Labyrinth; Thatcherism for Trainspotting; WWII intervention for Casablanca.",
+              "keyFacts": [
+                "Censorship (the Production Code) is political and institutional",
+                "Films can protest or support governments",
+                "Political context often drives ideology"
+              ],
+              "examTip": "Political context is the bridge to ideology questions."
+            },
+            {
+              "code": "K3.1.4",
+              "term": "Institutional and production context",
+              "definition": "Who made and funded the film, how, and with what money, technology and constraints.",
+              "examples": "Warner Bros. studio system; Blumhouse micro-budget; Channel 4 Films; Spanish–Mexican co-production.",
+              "keyFacts": [
+                "Finance, distribution, technology, stars and censorship",
+                "Production constraints can create creative solutions",
+                "Explicit focus in Hollywood comparative study questions"
+              ],
+              "examTip": "Always include at least one number (budget, gross) per film."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "K4",
+      "title": "Exam skills",
+      "subtopics": [
+        {
+          "code": "K4.1",
+          "title": "Assessment and essay technique",
+          "items": [
+            {
+              "code": "K4.1.1",
+              "term": "AO1 and AO2",
+              "definition": "AO1: knowledge and understanding of film. AO2: applying it to analyse, compare and evaluate. Equal weight.",
+              "examples": "A 40-mark answer is marked 20 for AO1 and 20 for AO2 across five bands.",
+              "keyFacts": [
+                "AO1 rewards accurate terminology and knowledge",
+                "AO2 rewards analysis, comparison (Section A) and evaluation of critical approaches",
+                "If only one film is discussed in a two-film question, the mark is halved"
+              ],
+              "examTip": "Every paragraph needs both: knowledge (AO1) used to argue (AO2)."
+            },
+            {
+              "code": "K4.1.2",
+              "term": "Decoding the question",
+              "definition": "Underline the command (how far / how useful), the focus and the instruction before planning.",
+              "examples": "“How far... Refer in detail to at least one sequence from each film.”",
+              "keyFacts": [
+                "How far / how useful / to what extent = make and argue a judgement",
+                "The focus is the lens (spectatorship, ideology, auteur, context)",
+                "The instruction tells you what evidence is required"
+              ],
+              "examTip": "Your biggest fix: answer THAT question, not everything you know."
+            },
+            {
+              "code": "K4.1.3",
+              "term": "The four-step paragraph",
+              "definition": "Point that answers the question, specific scene, named technique, meaning linked to the lens and the judgement.",
+              "examples": "“To a significant extent... In the subway murders, low-key lighting and claustrophobic framing... aligning the spectator...”",
+              "keyFacts": [
+                "Film form in EVERY paragraph (your teacher’s target 1)",
+                "Link back to the command words every time",
+                "Weave the second film in with “whereas” or “similarly”"
+              ],
+              "examTip": "Run every paragraph through the checklist on the Exam Kit page."
+            },
+            {
+              "code": "K4.1.4",
+              "term": "Impersonal academic voice",
+              "definition": "Write impersonally: “the spectator is positioned”, never “I felt”.",
+              "examples": "Replace “I think Joker makes me sympathise” with “Joker positions the spectator to sympathise”.",
+              "keyFacts": [
+                "Your teacher’s target 3: no first person",
+                "“The spectator” lets you discuss different responses",
+                "Hedge with “arguably” and “to an extent”"
+              ],
+              "examTip": "Quick proofread for “I” before the end of the exam."
+            },
+            {
+              "code": "K4.1.5",
+              "term": "Timing the exam",
+              "definition": "Both papers are 2 hours 30 minutes; Component 1 has three 40-mark essays, so about 50 minutes each.",
+              "examples": "Component 2: Global (40) about 60 minutes; Documentary, Silent and Experimental (20 each) about 30 minutes each.",
+              "keyFacts": [
+                "Spend 5 minutes planning each essay",
+                "One question from a choice of two in each section",
+                "Leave 5 minutes to check judgement and conclusion"
+              ],
+              "examTip": "Plans: thesis + 3 to 4 scenes + judgement, in that order."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

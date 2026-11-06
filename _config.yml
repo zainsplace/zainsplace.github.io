@@ -12,3 +12,8 @@ exclude:
   - revision/tests
   - tools
   - roblox-security/source
+  - film/README.md
+  - film/build_inline.py
+  - film/validate_data.py
+  - film/tests
+  - film/tools

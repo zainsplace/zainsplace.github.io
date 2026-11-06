@@ -1,0 +1,566 @@
+{
+  "section": "C",
+  "title": "British film since 1995 (two-film study): Trainspotting and Shaun of the Dead",
+  "tier": 1,
+  "colour": "#0E7A5F",
+  "topics": [
+    {
+      "code": "C1",
+      "title": "Trainspotting (Boyle, 1996)",
+      "subtopics": [
+        {
+          "code": "C1.1",
+          "title": "Key idea and contexts",
+          "items": [
+            {
+              "code": "C1.1.1",
+              "term": "Trainspotting: the key idea",
+              "definition": "Heroin addicts in 1980s Edinburgh reject “Choose Life” consumerism, but the ending endorses selfish individualism.",
+              "examples": "Renton opens rejecting “a job, a career, a family, a big television” and ends promising to be “just like you”.",
+              "keyFacts": [
+                "Refuses to simply moralise: energetic, stylised and darkly funny, yet shows addiction’s squalor",
+                "The ideological core is the bookended “Choose Life” monologue",
+                "Killer line: “Boyle’s kinetic style and Renton’s ironic voiceover frame heroin as a nihilistic rejection of Thatcherite consumerism — yet the narrative endorses individualism.”"
+              ],
+              "examTip": "Your spine for narrative-resolution questions: the opening and closing monologues mirror each other."
+            },
+            {
+              "code": "C1.1.2",
+              "term": "Social context: the Edinburgh underclass",
+              "definition": "1980s Edinburgh’s heroin epidemic, unemployment, HIV/AIDS and poverty, far from the tourist city.",
+              "examples": "Tommy, the healthy one, becomes addicted after Allison leaves him, contracts HIV and dies.",
+              "keyFacts": [
+                "Edinburgh had one of the highest HIV infection rates in Europe in the 1980s, linked to shared needles",
+                "Unemployment after deindustrialisation left young men with little purpose",
+                "The film shows the “other” Scotland behind the tourist image"
+              ],
+              "examTip": "Use Tommy’s story to show the real cost beneath the cool style.",
+              "verify": true
+            },
+            {
+              "code": "C1.1.3",
+              "term": "Political context: post-Thatcher Britain",
+              "definition": "Thatcherism promoted consumerism, individualism and the market over community: “Choose Life” mocks that ideal.",
+              "examples": "Thatcher’s claim “there is no such thing as society” is the ideology Renton finally buys into.",
+              "keyFacts": [
+                "Industrial decline hit Scotland hard, fuelling resentment of Westminster",
+                "Consumer goods are listed as if they were life choices",
+                "The ending’s theft = Thatcherite self-interest over loyalty"
+              ],
+              "examTip": "Name the ideology precisely: “Thatcherite neoliberal individualism”."
+            },
+            {
+              "code": "C1.1.4",
+              "term": "Cultural and institutional context",
+              "definition": "Adapted from Irvine Welsh’s novel; funded by Channel 4 Films on about £1.5 million; a Cool Britannia landmark.",
+              "examples": "Its soundtrack (Iggy Pop, Underworld, Blur, Pulp) and poster style became part of 1990s Britpop culture.",
+              "keyFacts": [
+                "Made by the team behind Shallow Grave (1994): Boyle, producer Andrew Macdonald, writer John Hodge",
+                "PolyGram distribution helped it become a global hit",
+                "Showed low-budget British film could be commercial and stylish"
+              ],
+              "examTip": "Institutional context explains its freedom to be provocative.",
+              "verify": true
+            }
+          ]
+        },
+        {
+          "code": "C1.2",
+          "title": "Film form",
+          "items": [
+            {
+              "code": "C1.2.1",
+              "term": "Cinematography: Brian Tufano",
+              "definition": "Bold saturated colour, low and wide angles and surreal subjective shots stylise grimy realism into something kinetic.",
+              "examples": "Renton sinking into the red carpet during his overdose, shot from a low angle.",
+              "keyFacts": [
+                "Wide-angle lenses distort the flats, making them claustrophobic",
+                "Colour-coded rooms (Swanney’s bright painted den) make squalor striking",
+                "Rejects the drab look of traditional British social realism"
+              ],
+              "examTip": "Contrast its stylised realism with Shaun’s deliberately drab suburbia."
+            },
+            {
+              "code": "C1.2.2",
+              "term": "Editing: fast, music-driven montage",
+              "definition": "Fast cutting, freeze-frames and montage synced to music give the film the energy of a music video.",
+              "examples": "Freeze-frames with on-screen names introduce each character in the opening football match and chase.",
+              "keyFacts": [
+                "Editor Masahiro Hirakubo cuts to the beat of the soundtrack",
+                "Freeze-frames suggest Renton controlling his own story",
+                "Rhythm makes the high exciting before the crash"
+              ],
+              "examTip": "Editing as a NARRATIVE tool: freeze-frames show who is telling the story.",
+              "verify": true
+            },
+            {
+              "code": "C1.2.3",
+              "term": "Sound: voiceover and needle-drops",
+              "definition": "Renton’s ironic first-person voiceover and a landmark soundtrack shape tone and meaning.",
+              "examples": "“Lust for Life” over the opening chase; “Perfect Day” over the overdose; “Born Slippy” over the ending.",
+              "keyFacts": [
+                "Voiceover = charismatic but unreliable narration",
+                "Songs often contrapuntal: “Perfect Day” over near-death",
+                "The soundtrack sold the film to a youth audience"
+              ],
+              "examTip": "Contrapuntal sound is a precise term: use it with “Perfect Day”."
+            },
+            {
+              "code": "C1.2.4",
+              "term": "Mise-en-scène and performance",
+              "definition": "Squalid flats and the “worst toilet in Scotland” against consumer goods; McGregor’s charm and Carlyle’s menace.",
+              "examples": "Robert Carlyle’s Begbie glasses a woman in a pub without a second thought.",
+              "keyFacts": [
+                "Ewan McGregor lost weight for the role: the body tells the addiction story",
+                "Ewen Bremner’s hapless Spud gives comic warmth",
+                "Kelly Macdonald’s Diane, a schoolgirl, undercuts Renton’s cool"
+              ],
+              "examTip": "Begbie is your evidence for toxic masculinity."
+            }
+          ]
+        },
+        {
+          "code": "C1.3",
+          "title": "Key scenes",
+          "items": [
+            {
+              "code": "C1.3.1",
+              "term": "Opening: “Choose Life” and the chase",
+              "definition": "Renton and Spud sprint from store security as Renton’s voiceover lists consumer choices he rejects for heroin.",
+              "examples": "Cut to “Lust for Life”; freeze-frames introduce the gang.",
+              "keyFacts": [
+                "Ideology: a direct attack on consumer conformity",
+                "Narrative: sets up the unreliable narrator and the circular structure",
+                "Form seduces us into the addicts’ worldview before showing its cost"
+              ],
+              "examTip": "Pair with the ending for any narrative-resolution question."
+            },
+            {
+              "code": "C1.3.2",
+              "term": "The worst toilet in Scotland",
+              "definition": "Renton dives into a filthy toilet for his opium suppositories and swims into a clear blue underwater world.",
+              "examples": "Squalor becomes dreamlike: the camera follows him down into calm water and music.",
+              "keyFacts": [
+                "Surreal, subjective sequence as a narrative device",
+                "Shows how addiction reframes degradation as escape",
+                "Boyle’s signature mix of the grotesque and the beautiful"
+              ],
+              "examTip": "Evidence of “stylisation” rather than social realism."
+            },
+            {
+              "code": "C1.3.3",
+              "term": "Baby Dawn’s death",
+              "definition": "Allison’s baby dies of neglect in the flat; the scene is stark and unstylised.",
+              "examples": "Silence, then Allison’s scream; the gang respond by cooking up more heroin.",
+              "keyFacts": [
+                "The film’s moral counterweight to its cool style",
+                "Shows the real cost of addiction on the innocent",
+                "Later the baby hallucination returns crawling on the ceiling during withdrawal"
+              ],
+              "examTip": "Use to evaluate: the film does not simply glamorise drugs."
+            },
+            {
+              "code": "C1.3.4",
+              "term": "The overdose: “Perfect Day”",
+              "definition": "Renton overdoses and sinks into a red, grave-like carpet, then is dumped outside a hospital.",
+              "examples": "Low-angle shot from inside the hole; Lou Reed’s “Perfect Day” plays.",
+              "keyFacts": [
+                "Subjective form makes the high seductive and lethal at once",
+                "Contrapuntal music: beauty over near-death",
+                "Ties the spectator to Renton’s point of view"
+              ],
+              "examTip": "One scene that covers cinematography, sound and narrative."
+            },
+            {
+              "code": "C1.3.5",
+              "term": "“It’s shite being Scottish”",
+              "definition": "In the Highlands, Renton rants that Scots are “colonised by wankers”, puncturing the romantic image of Scotland.",
+              "examples": "Spoken in a wide shot of green hills: the romantic Scotland image punctured.",
+              "keyFacts": [
+                "Anti-romantic national identity",
+                "Political frustration at powerlessness under Westminster",
+                "Representation of place: rejecting the tourist Highlands"
+              ],
+              "examTip": "Great for representation of place and national identity."
+            },
+            {
+              "code": "C1.3.6",
+              "term": "The ending: Renton steals the money",
+              "definition": "After a London drug deal, Renton takes the cash while his mates sleep and walks off promising to “choose life”.",
+              "examples": "“Born Slippy” builds; Renton walks towards camera: “I’m going to be just like you.”",
+              "keyFacts": [
+                "Narrative resolution endorses individualism over collective loyalty",
+                "He leaves money for Spud only: a small act of conscience",
+                "Bookended voiceover closes the circular structure"
+              ],
+              "examTip": "THE scene for “How useful is an ideological approach to the narrative resolution?”"
+            }
+          ]
+        },
+        {
+          "code": "C1.4",
+          "title": "Narrative and ideology in Trainspotting",
+          "items": [
+            {
+              "code": "C1.4.1",
+              "term": "Trainspotting: narrative structure",
+              "definition": "An episodic, loosely linear structure narrated by an unreliable first-person voiceover, bookended by “Choose Life”.",
+              "examples": "Episodes: the Highlands, Tommy’s decline, withdrawal, the London deal.",
+              "keyFacts": [
+                "Circular framing: the opening chase returns later in the film",
+                "Subjective sequences (toilet, overdose, withdrawal) as narrative devices",
+                "Todorov: the final equilibrium is a new life built on betrayal"
+              ],
+              "examTip": "Use precise devices: voiceover, framing narrative, flashback, repetition."
+            },
+            {
+              "code": "C1.4.2",
+              "term": "Trainspotting: binary oppositions",
+              "definition": "Key oppositions include heroin vs consumerism, loyalty vs individualism, Scotland vs England.",
+              "examples": "The ending collapses heroin vs “life”: Renton swaps one addiction (drugs) for another (money and goods).",
+              "keyFacts": [
+                "Lévi-Strauss: narratives are built on binary oppositions",
+                "Ideology reveals which side the film finally favours",
+                "Begbie (violence) vs Spud (gentleness) as masculine extremes"
+              ],
+              "examTip": "Sample question: “binary oppositions in the narratives of your chosen films”."
+            },
+            {
+              "code": "C1.4.3",
+              "term": "Trainspotting: masculinity",
+              "definition": "Begbie embodies toxic, violent masculinity; Renton is evasive and self-serving; Spud is gentle but powerless.",
+              "examples": "Begbie starts a pub brawl over a dropped glass he threw himself.",
+              "keyFacts": [
+                "Van Zoonen / feminist readings: men in crisis without work",
+                "Women (Diane, Allison, Gail) are mostly peripheral",
+                "Crisis of masculinity links to deindustrialisation"
+              ],
+              "examTip": "Compare with Shaun’s man-children for a cross-film paragraph."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "C2",
+      "title": "Shaun of the Dead (Wright, 2004)",
+      "subtopics": [
+        {
+          "code": "C2.1",
+          "title": "Key idea and contexts",
+          "items": [
+            {
+              "code": "C2.1.1",
+              "term": "Shaun of the Dead: the key idea",
+              "definition": "A “rom-zom-com” and Marxist satire: modern routine already makes us zombies, so the apocalypse barely changes anything.",
+              "examples": "Shaun walks to the shop twice, before and after the outbreak, and notices nothing different.",
+              "keyFacts": [
+                "Comedy on the surface, social critique underneath",
+                "Shaun’s arc is from slacker to responsible adult",
+                "Killer line: “Wright uses the zombie genre for Marxist critique: consumer capitalism has already zombified Britain.”"
+              ],
+              "examTip": "Lead ideology answers with the mirrored walks and the ending montage."
+            },
+            {
+              "code": "C2.1.2",
+              "term": "Social context: Generation X slackers",
+              "definition": "Men in their late twenties stuck in arrested adolescence, dead-end jobs and routines in early-2000s suburbia.",
+              "examples": "Shaun works in an electronics shop, bossed by teenage staff; Ed plays video games all day.",
+              "keyFacts": [
+                "Consumerism and low expectations define the characters",
+                "The pub and the sofa are their whole world",
+                "Liz dumps Shaun because he never changes"
+              ],
+              "examTip": "Social context + masculinity in one paragraph."
+            },
+            {
+              "code": "C2.1.3",
+              "term": "Cultural context: genre hybrid and Romero homage",
+              "definition": "A postmodern blend of horror, comedy and romance that pays loving homage to George A. Romero’s zombie films.",
+              "examples": "Romero’s Dawn of the Dead (1978) satirised consumerism with zombies in a shopping mall.",
+              "keyFacts": [
+                "Grew from Wright and Pegg’s Channel 4 sitcom Spaced",
+                "Full of intertextual references for knowing fans",
+                "Romero liked it enough to cast Wright and Pegg as zombies in Land of the Dead (2005)"
+              ],
+              "examTip": "Genre is part of the narrative specialist area: “genre in relation to narrative”.",
+              "verify": true
+            },
+            {
+              "code": "C2.1.4",
+              "term": "Institutional context: Working Title and StudioCanal",
+              "definition": "A modest-budget British film from Working Title, with Universal distribution, that became a global cult hit.",
+              "examples": "Made for roughly £4 million, it took about $30 million worldwide.",
+              "keyFacts": [
+                "Working Title also made Four Weddings and Notting Hill: British films with transatlantic reach",
+                "Wright’s editing-led comedy could be done cheaply",
+                "Launched the “Three Flavours Cornetto” trilogy"
+              ],
+              "examTip": "Compare with Trainspotting’s Channel 4 funding.",
+              "verify": true
+            }
+          ]
+        },
+        {
+          "code": "C2.2",
+          "title": "Film form",
+          "items": [
+            {
+              "code": "C2.2.1",
+              "term": "Cinematography: drab suburbia",
+              "definition": "David M. Dunlap shoots a dull, desaturated suburban London; Shaun appears in blank, zombie-like close-ups.",
+              "examples": "Shaun’s first close-up stares vacantly until Liz snaps him out of it.",
+              "keyFacts": [
+                "The grey palette codes everyday life as half-dead",
+                "Parodies horror low-key lighting",
+                "Bright colour only in the Winchester’s warm interior"
+              ],
+              "examTip": "Visual evidence that Shaun is a “zombie” before the zombies arrive."
+            },
+            {
+              "code": "C2.2.2",
+              "term": "Editing: Wright’s kinetic style",
+              "definition": "Whip-pans, crash zooms, sound stings and rapid match-cut montages make banal tasks comic and meaningful.",
+              "examples": "A fast montage of Shaun washing, dressing and making tea, repeated later as he prepares to fight.",
+              "keyFacts": [
+                "Repetition of montages marks change and sameness",
+                "Editing is a NARRATIVE tool, not just style",
+                "Comedy timing is created in the edit"
+              ],
+              "examTip": "“Editing motif and patterned repetition” is spec language: use it."
+            },
+            {
+              "code": "C2.2.3",
+              "term": "Sound: jukebox and stings",
+              "definition": "Electronic stings punctuate cuts; diegetic music is synced to violence for comic effect.",
+              "examples": "Queen’s “Don’t Stop Me Now” plays on the Winchester jukebox as they beat the zombie landlord.",
+              "keyFacts": [
+                "Contrapuntal: upbeat songs over slaughter",
+                "Sound bridges link scenes and gags",
+                "Ironic song choices comment on the action"
+              ],
+              "examTip": "Pair with Trainspotting’s needle-drops for comparison."
+            },
+            {
+              "code": "C2.2.4",
+              "term": "Mise-en-scène and performance",
+              "definition": "The corner shop, the Winchester pub, garden sheds and very English weapons: a cricket bat, a spade, vinyl records.",
+              "examples": "They choose which LPs to throw at zombies, sparing the ones they like.",
+              "keyFacts": [
+                "Simon Pegg’s everyman Shaun; Nick Frost’s man-child Ed",
+                "Kate Ashfield’s Liz drives Shaun’s change",
+                "Bill Nighy’s Philip: the distant stepfather Shaun reconciles with"
+              ],
+              "examTip": "British national identity through props and setting."
+            }
+          ]
+        },
+        {
+          "code": "C2.3",
+          "title": "Key scenes",
+          "items": [
+            {
+              "code": "C2.3.1",
+              "term": "The mirrored walk to the shop",
+              "definition": "Shaun’s half-asleep walk to the corner shop is repeated after the outbreak with the same framing and rhythm.",
+              "examples": "Both are long handheld tracking takes along the same route; the second time zombies and blood are everywhere.",
+              "keyFacts": [
+                "Ideology: consumer routine already equals zombiehood",
+                "Narrative: repetition as patterning, a parallel structure",
+                "Pure form carrying meaning"
+              ],
+              "examTip": "Your single best ideology evidence for Shaun."
+            },
+            {
+              "code": "C2.3.2",
+              "term": "The pub plan: foreshadowing",
+              "definition": "In the first pub scene a drunk Ed lists tomorrow’s plans, a coded preview of the zombie plot to come.",
+              "examples": "Ed’s day (a “Bloody Mary” first thing, “a bite” at one pub, a stagger back to the Winchester) comes true in zombie form; Shaun’s own plan (“go to the Winchester, have a nice cold pint, and wait for all this to blow over”) becomes a running gag.",
+              "keyFacts": [
+                "Wright’s parodic, self-aware narrative structure",
+                "Rewards active spectators on rewatching",
+                "Postmodern playfulness with narrative"
+              ],
+              "examTip": "Evidence for any narrative structure question.",
+              "verify": true
+            },
+            {
+              "code": "C2.3.3",
+              "term": "Killing Mum",
+              "definition": "Shaun’s bitten mother turns in the Winchester, and Shaun must shoot her.",
+              "examples": "The comedy stops; close-ups and a quiet score hold on Shaun’s grief.",
+              "keyFacts": [
+                "Shaun’s moment of adult responsibility",
+                "Tonal shift shows the film’s emotional core",
+                "Completes his arc away from the man-child"
+              ],
+              "examTip": "Use to show the film is more than parody."
+            },
+            {
+              "code": "C2.3.4",
+              "term": "The Winchester siege: “Don’t Stop Me Now”",
+              "definition": "Shaun, Liz and Ed beat the zombie landlord with pool cues in time to Queen on the jukebox.",
+              "examples": "Choreographed violence synced to the beat; the jukebox flashes.",
+              "keyFacts": [
+                "Diegetic music synced to action: comedy and horror fused",
+                "The pub as a last bastion of British identity",
+                "Advances Shaun’s turn towards responsibility"
+              ],
+              "examTip": "Aesthetics + narrative in one scene."
+            },
+            {
+              "code": "C2.3.5",
+              "term": "The ending news montage",
+              "definition": "Six months on, TV shows zombies used as cheap labour and game-show entertainment; zombie Ed lives in the shed.",
+              "examples": "Channel-flicking montage of news and chat shows; Shaun plays video games with chained Ed.",
+              "keyFacts": [
+                "Marxist punchline: capitalism absorbs the undead as labour and entertainment",
+                "Todorov parodied: the new equilibrium looks almost exactly like the old one",
+                "Shaun keeps both Liz and Ed: a compromise ending"
+              ],
+              "examTip": "THE scene for an ideological reading of the narrative resolution."
+            }
+          ]
+        },
+        {
+          "code": "C2.4",
+          "title": "Narrative and ideology in Shaun of the Dead",
+          "items": [
+            {
+              "code": "C2.4.1",
+              "term": "Shaun: narrative structure",
+              "definition": "A linear, conventional three-act structure, made parodic by foreshadowing, repetition and genre knowingness.",
+              "examples": "Act 1: Liz dumps Shaun. Act 2: the outbreak and the journey. Act 3: the Winchester siege.",
+              "keyFacts": [
+                "Todorov: equilibrium, disruption, recognition, repair, new equilibrium",
+                "Propp: Shaun as hero, Liz as princess figure, Philip as false father",
+                "Genre conventions are followed in order to be mocked"
+              ],
+              "examTip": "Contrast with Trainspotting’s episodic, unreliable structure."
+            },
+            {
+              "code": "C2.4.2",
+              "term": "Shaun: binary oppositions",
+              "definition": "Alive vs undead, responsibility vs slacking, pub vs home; Marxist ideology reveals the living/dead line is fake.",
+              "examples": "Shaun and the zombies move the same way in the mirrored walks.",
+              "keyFacts": [
+                "The film blurs its own oppositions to make its point",
+                "Liz vs Ed: adulthood vs adolescence",
+                "Resolved by compromise, not victory"
+              ],
+              "examTip": "Ideology lets you say WHY the oppositions blur."
+            },
+            {
+              "code": "C2.4.3",
+              "term": "Shaun: masculinity",
+              "definition": "Hegemonic masculinity is inverted: the men are man-children; Shaun’s arc is towards care, not toughness.",
+              "examples": "Shaun finally takes charge, makes plans and protects Liz and his mum.",
+              "keyFacts": [
+                "A modern, failing masculinity",
+                "Ed represents permanent adolescence",
+                "Philip’s stiff, traditional fatherhood is reconciled before he dies"
+              ],
+              "examTip": "Cross-film comparison with Trainspotting’s Begbie and Renton."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "C3",
+      "title": "Narrative and ideology: the theory",
+      "subtopics": [
+        {
+          "code": "C3.1",
+          "title": "Narrative theory",
+          "items": [
+            {
+              "code": "C3.1.1",
+              "term": "Story and plot (formalism)",
+              "definition": "Story (fabula) is events in time order; plot (syuzhet) is how the film arranges and shows them.",
+              "examples": "Trainspotting’s plot shuffles and frames events; Shaun’s plot follows story order.",
+              "keyFacts": [
+                "From Russian Formalism, developed by Bordwell",
+                "Ellipsis and duration: what is cut out and how long things last",
+                "Spec: “the formalist conception of narrative based on the distinction between story and plot”"
+              ],
+              "examTip": "Use the terms story/plot to show precise narrative knowledge."
+            },
+            {
+              "code": "C3.1.2",
+              "term": "Todorov: equilibrium",
+              "definition": "Narratives move from equilibrium to disruption, recognition, repair and a new equilibrium.",
+              "examples": "Shaun’s new equilibrium is almost the old one; Renton’s is built on betrayal.",
+              "keyFacts": [
+                "Useful for judging narrative resolution",
+                "Endings carry ideology: what kind of order is restored?",
+                "Limit: not every film resolves neatly"
+              ],
+              "examTip": "Always ask what the NEW equilibrium says ideologically."
+            },
+            {
+              "code": "C3.1.3",
+              "term": "Lévi-Strauss: binary oppositions",
+              "definition": "Structuralism: meaning comes from opposed pairs that the narrative explores and resolves.",
+              "examples": "Life vs death, loyalty vs self-interest, conformity vs rebellion.",
+              "keyFacts": [
+                "Spec: “the structuralist conception of narrative based on binary oppositions”",
+                "Ideology decides which side the film privileges",
+                "Oppositions also exist in form: colour, lighting, sound"
+              ],
+              "examTip": "Sample stem uses binary oppositions: have two per film ready."
+            },
+            {
+              "code": "C3.1.4",
+              "term": "Propp: character functions",
+              "definition": "Propp found folk tales use the same roles: hero, villain, donor, helper, princess, dispatcher, false hero.",
+              "examples": "Shaun as hero; Ed as hapless helper; the faun in Pan’s Labyrinth as donor/dispatcher.",
+              "keyFacts": [
+                "From Morphology of the Folktale (1928)",
+                "Works best on genre narratives",
+                "Can be ideological: who gets to be the hero?"
+              ],
+              "examTip": "Use briefly; do not let it replace film-form analysis."
+            },
+            {
+              "code": "C3.1.5",
+              "term": "Narrative devices",
+              "definition": "Voiceover, flashback, framing narrative, open endings, repetition and foreshadowing shape how a story is told.",
+              "examples": "Renton’s voiceover; Shaun’s foreshadowed plan; City of God’s flashbacks.",
+              "keyFacts": [
+                "Restricted vs omniscient narration controls what the spectator knows",
+                "Unreliable narrators create ambiguity",
+                "The spec lists these devices directly"
+              ],
+              "examTip": "Name a device, then show its effect on the spectator."
+            },
+            {
+              "code": "C3.1.6",
+              "term": "Genre and narrative",
+              "definition": "Genre conventions shape narrative expectations; films repeat and vary them (Steve Neale: repetition and difference).",
+              "examples": "Shaun follows zombie-film structure to parody it; Trainspotting borrows the crime-caper ending.",
+              "keyFacts": [
+                "Rick Altman: semantic (iconography) and syntactic (structure) elements of genre",
+                "Hybrid genres (rom-zom-com) mix conventions",
+                "Genre is part of the narrative specialist area for British film"
+              ],
+              "examTip": "Use genre to explain WHY a narrative is shaped as it is."
+            },
+            {
+              "code": "C3.1.7",
+              "term": "Narrative as an ideological framework",
+              "definition": "Who wins, who is punished and how a story ends express values: narrative structure carries ideology.",
+              "examples": "Renton rewarded for betrayal; zombies absorbed into capitalism.",
+              "keyFacts": [
+                "Spec: “how narrative can function as an ideological framework”",
+                "Endings are the clearest site of ideology",
+                "Evaluate: endings can also be ironic or ambiguous"
+              ],
+              "examTip": "This item links both specialist areas: use it in every Section C essay."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

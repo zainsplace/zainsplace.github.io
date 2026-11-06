@@ -1,0 +1,980 @@
+{
+  "papers": [
+    {
+      "id": "c1m1",
+      "title": "Component 1 Mock Paper 1",
+      "minutes": 150,
+      "scenarios": [
+        "m1a",
+        "m1b",
+        "m1c"
+      ]
+    },
+    {
+      "id": "c1m2",
+      "title": "Component 1 Mock Paper 2",
+      "minutes": 150,
+      "scenarios": [
+        "m2a",
+        "m2b",
+        "m2c"
+      ]
+    },
+    {
+      "id": "c1p3",
+      "title": "Paper 3",
+      "minutes": 150,
+      "scenarios": [
+        "p3a",
+        "p3b",
+        "p3c"
+      ],
+      "sealed": true
+    },
+    {
+      "id": "c1p4",
+      "title": "Paper 4",
+      "minutes": 150,
+      "scenarios": [
+        "p4a",
+        "p4b",
+        "p4c"
+      ],
+      "sealed": true
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "pa",
+      "number": 1,
+      "title": "Section A practice: Hollywood comparative",
+      "stem": "Section A: Hollywood 1930–1990 (comparative study). Answer on one film from Group 1 (Classical Hollywood: Casablanca) and one from Group 2 (New Hollywood: Bonnie and Clyde). Compare the films throughout. [40]"
+    },
+    {
+      "id": "pb",
+      "number": 2,
+      "title": "Section B practice: American film",
+      "stem": "Section B: American film since 2012 (two-film study). Answer on one mainstream film (Joker) and one contemporary independent film (Get Out). Refer in detail to at least one sequence from each film. [40]"
+    },
+    {
+      "id": "pc",
+      "number": 3,
+      "title": "Section C practice: British film",
+      "stem": "Section C: British film since 1995 (two-film study). Answer on your two British films (Trainspotting and Shaun of the Dead). [40]"
+    },
+    {
+      "id": "m1a",
+      "number": 1,
+      "title": "Section A",
+      "stem": "Section A: Hollywood 1930–1990 (comparative study). Answer on one film from Group 1 (Classical Hollywood: Casablanca) and one from Group 2 (New Hollywood: Bonnie and Clyde). Compare the films throughout. [40]"
+    },
+    {
+      "id": "m1b",
+      "number": 2,
+      "title": "Section B",
+      "stem": "Section B: American film since 2012 (two-film study). Answer on one mainstream film (Joker) and one contemporary independent film (Get Out). Refer in detail to at least one sequence from each film. [40]"
+    },
+    {
+      "id": "m1c",
+      "number": 3,
+      "title": "Section C",
+      "stem": "Section C: British film since 1995 (two-film study). Answer on your two British films (Trainspotting and Shaun of the Dead). [40]"
+    },
+    {
+      "id": "m2a",
+      "number": 1,
+      "title": "Section A",
+      "stem": "Section A: Hollywood 1930–1990 (comparative study). Answer on one film from Group 1 (Classical Hollywood: Casablanca) and one from Group 2 (New Hollywood: Bonnie and Clyde). Compare the films throughout. [40]"
+    },
+    {
+      "id": "m2b",
+      "number": 2,
+      "title": "Section B",
+      "stem": "Section B: American film since 2012 (two-film study). Answer on one mainstream film (Joker) and one contemporary independent film (Get Out). Refer in detail to at least one sequence from each film. [40]"
+    },
+    {
+      "id": "m2c",
+      "number": 3,
+      "title": "Section C",
+      "stem": "Section C: British film since 1995 (two-film study). Answer on your two British films (Trainspotting and Shaun of the Dead). [40]"
+    },
+    {
+      "id": "p3a",
+      "number": 1,
+      "title": "Section A",
+      "stem": "Section A: Hollywood 1930–1990 (comparative study). Answer on one film from Group 1 (Classical Hollywood: Casablanca) and one from Group 2 (New Hollywood: Bonnie and Clyde). Compare the films throughout. [40]",
+      "total": 40
+    },
+    {
+      "id": "p3b",
+      "number": 2,
+      "title": "Section B",
+      "stem": "Section B: American film since 2012 (two-film study). Answer on one mainstream film (Joker) and one contemporary independent film (Get Out). Refer in detail to at least one sequence from each film. [40]",
+      "total": 40
+    },
+    {
+      "id": "p3c",
+      "number": 3,
+      "title": "Section C",
+      "stem": "Section C: British film since 1995 (two-film study). Answer on your two British films (Trainspotting and Shaun of the Dead). [40]",
+      "total": 40
+    },
+    {
+      "id": "p4a",
+      "number": 1,
+      "title": "Section A",
+      "stem": "Section A: Hollywood 1930–1990 (comparative study). Answer on one film from Group 1 (Classical Hollywood: Casablanca) and one from Group 2 (New Hollywood: Bonnie and Clyde). Compare the films throughout. [40]",
+      "total": 40
+    },
+    {
+      "id": "p4b",
+      "number": 2,
+      "title": "Section B",
+      "stem": "Section B: American film since 2012 (two-film study). Answer on one mainstream film (Joker) and one contemporary independent film (Get Out). Refer in detail to at least one sequence from each film. [40]",
+      "total": 40
+    },
+    {
+      "id": "p4c",
+      "number": 3,
+      "title": "Section C",
+      "stem": "Section C: British film since 1995 (two-film study). Answer on your two British films (Trainspotting and Shaun of the Dead). [40]",
+      "total": 40
+    }
+  ],
+  "questions": [
+    {
+      "id": "a-auteur",
+      "scenario": "pa",
+      "part": "1",
+      "section": "A",
+      "code": "A3.2.4",
+      "marks": 40,
+      "commandWord": "Compare",
+      "context": "",
+      "question": "Compare how far your chosen films reflect the auteur signature features of their filmmakers. (sample paper)",
+      "slots": 0,
+      "traps": [
+        "Compare = weave both films into every paragraph (“whereas”, “similarly”), not film 1 then film 2.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Auteur signatures (stylistic and thematic) in both films, and how far each film reflects them; the tension between a single auteur and collaboration.",
+        "indicative": [
+          "Curtiz’s stylistic signature: crane and tracking shots, expressive shadows, dense foregrounds (Rick’s entrance, the market crane)",
+          "Curtiz’s weak thematic signature: a versatile studio workhorse; Schatz’s “genius of the system” (Wallis, the Epsteins, Steiner, Edeson, Bogart)",
+          "Penn’s thematic signature: sympathetic outsiders destroyed by a violent society (The Left Handed Gun, Little Big Man)",
+          "Collaborators on Bonnie and Clyde: Beatty as producer-star, Dede Allen’s editing, Benton and Newman’s New Wave script",
+          "Judgement on degree: Bonnie and Clyde reflects a stronger personal signature than Casablanca because New Hollywood gave directors more control",
+          "Band 5: constraints on the auteur (studio, Production Code, star persona vs director)"
+        ]
+      },
+      "modelAnswer": "Thesis: Bonnie and Clyde reflects its director’s signature far more than Casablanca, because Penn worked as the studio system collapsed while Curtiz worked inside it.\n\nP1 Style: Curtiz’s crane into the market and the delayed reveal of Rick show a fluid-camera signature, whereas Penn’s signature lies in performance and sudden violence (the clerk shot through the glass).\n\nP2 Themes: Penn returns to outsiders destroyed by society; Curtiz moved across genres, so Casablanca’s commitment theme comes from Wallis, the writers and wartime policy as much as from him.\n\nP3 Collaboration: Casablanca as Schatz’s “genius of the system”; Bonnie and Clyde shaped by Beatty and Dede Allen, so even New Hollywood auteurism was collaborative.\n\nConclusion: to a large extent for Penn, to a limited extent for Curtiz; the auteur approach is more useful for New Hollywood than for the studio era."
+    },
+    {
+      "id": "a-production",
+      "scenario": "pa",
+      "part": "2",
+      "section": "A",
+      "code": "A3.1.2",
+      "marks": 40,
+      "commandWord": "Compare",
+      "context": "",
+      "question": "Compare how far your chosen films reflect their different production contexts. (sample paper)",
+      "slots": 0,
+      "traps": [
+        "Compare = weave both films into every paragraph (“whereas”, “similarly”), not film 1 then film 2.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "How the studio system (1942) and its collapse (1967) shaped each film’s style, content and meaning.",
+        "indicative": [
+          "Warner Bros. vertical integration: contract stars, director, composer; studio sets and fog at the airport",
+          "Production Code shaping Casablanca’s narrative resolution (Ilsa cannot leave her husband) and the searchlight dissolve",
+          "1948 Paramount ruling, TV, and Beatty as independent producer; Warner–Seven Arts as reluctant distributor",
+          "Collapse of the Code: graphic violence and sexuality in Bonnie and Clyde; ratings in 1968",
+          "Location shooting and New Wave influence vs studio-built exoticism",
+          "Judgement: both films are products of their institution, but Bonnie and Clyde ALSO helped change its context"
+        ]
+      },
+      "modelAnswer": "Thesis: both films reflect their production contexts to a significant extent, but Casablanca is shaped BY its institution, while Bonnie and Clyde helps reshape its own.\n\nP1 Studio system vs independent producing (Wallis assigning the team vs Beatty buying the script).\n\nP2 Censorship: the dissolve to the searchlight vs the clerk’s bloodied face.\n\nP3 Technology and place: studio fog and Edeson’s chiaroscuro vs Guffey’s location light and slow-motion multi-camera ending.\n\nConclusion: to a large extent for both; the endings are the clearest proof."
+    },
+    {
+      "id": "a-social",
+      "scenario": "pa",
+      "part": "3",
+      "section": "A",
+      "code": "A1.1.3",
+      "marks": 40,
+      "commandWord": "Compare",
+      "context": "",
+      "question": "Compare how far your chosen films reflect the social and political contexts in which they were made.",
+      "slots": 0,
+      "traps": [
+        "Compare = weave both films into every paragraph (“whereas”, “similarly”), not film 1 then film 2.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "The Second World War and intervention (1942) vs the 1960s counterculture, Vietnam and distrust of authority (1967).",
+        "indicative": [
+          "Rick’s isolationism to commitment mirrors America entering the war; the anthem duel",
+          "Refugees, Vichy France, the Vichy water bottle",
+          "Bonnie and Clyde: a Depression setting read through 1960s youth rebellion and anti-establishment feeling",
+          "Televised Vietnam violence and the realistic, slow-motion ending",
+          "Contemporary setting (Casablanca) vs period setting (Bonnie and Clyde): the double layer of context",
+          "Judgement on how far context explains meaning versus genre or authorship"
+        ]
+      },
+      "modelAnswer": "Thesis: both films reflect their contexts closely, but Casablanca speaks about its present directly while Bonnie and Clyde uses the past as an allegory for the present.\n\nP1 War vs counterculture through the heroes’ final choices.\n\nP2 The anthem duel vs the foreclosed farm.\n\nP3 Violence: Strasser’s clean death vs the bullet-ridden ending.\n\nConclusion: to a large extent; context shapes each film’s idea of heroism."
+    },
+    {
+      "id": "a-collab",
+      "scenario": "pa",
+      "part": "4",
+      "section": "A",
+      "code": "A1.5.2",
+      "marks": 40,
+      "commandWord": "Compare",
+      "context": "",
+      "question": "“Hollywood films are the product of collaboration, not of a single author.” Compare how far this is true of your chosen films.",
+      "slots": 0,
+      "traps": [
+        "Compare = weave both films into every paragraph (“whereas”, “similarly”), not film 1 then film 2.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Evaluate the auteur approach against collaborative authorship in both films.",
+        "indicative": [
+          "Casablanca: Wallis, the Epsteins and Koch, Steiner, Edeson, Bogart’s persona; the script rewritten during shooting",
+          "Bonnie and Clyde: Beatty, Benton and Newman, Robert Towne, Dede Allen, Guffey, Van Runkle",
+          "Arguments for a single author: Curtiz’s visual style; Penn’s themes and work with actors",
+          "Sarris vs Kael: three circles vs “Circles and Squares”",
+          "Stars as authors (Dyer): Bogart and Beatty",
+          "Judgement on which film better fits the statement"
+        ]
+      },
+      "modelAnswer": "Thesis: the statement is largely true of both, and especially of Casablanca, though Penn’s themes give Bonnie and Clyde a stronger single voice.\n\nP1 Casablanca’s team. P2 Bonnie and Clyde’s team (Allen, Beatty). P3 The case for the director in each. P4 Stars as co-authors.\n\nConclusion: collaboration is the rule; the auteur is at most an orchestrator."
+    },
+    {
+      "id": "a-values",
+      "scenario": "pa",
+      "part": "5",
+      "section": "A",
+      "code": "A3.1.3",
+      "marks": 40,
+      "commandWord": "Compare",
+      "context": "",
+      "question": "Compare how far the endings of your chosen films reflect the values of their time.",
+      "slots": 0,
+      "traps": [
+        "Compare = weave both films into every paragraph (“whereas”, “similarly”), not film 1 then film 2.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Narrative resolution and film form in both endings, linked to context.",
+        "indicative": [
+          "Casablanca: closure, sacrifice, “beautiful friendship”, La Marseillaise, fog",
+          "Production Code requirement that adultery not be rewarded",
+          "Bonnie and Clyde: no closure, slow-motion massacre, cut to black, no music",
+          "War-effort collectivism vs 1960s individual rebellion and distrust of the state",
+          "Classical vs New Hollywood narrative conventions",
+          "Judgement: endings as the clearest expression of each era’s values"
+        ]
+      },
+      "modelAnswer": "Thesis: both endings reflect their era’s values to a great extent: duty and alliance in 1942, rebellion and the violence of authority in 1967.\n\nP1 Form of each ending. P2 Values: sacrifice vs martyrdom. P3 Institution: Code vs collapse.\n\nConclusion: the endings are the films’ arguments."
+    },
+    {
+      "id": "b-passive",
+      "scenario": "pb",
+      "part": "1",
+      "section": "B",
+      "code": "B3.1.2",
+      "marks": 40,
+      "commandWord": "How far",
+      "context": "",
+      "question": "How far do your chosen films demonstrate a constant shift between passive and active spectatorship? Refer in detail to at least one sequence from each film. (sample paper)",
+      "slots": 0,
+      "traps": [
+        "“Refer in detail to at least one sequence from each film” is an instruction: missing it caps the mark.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion.",
+        "Write impersonally: “the spectator is positioned”, never “I felt”."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Passive identification and active questioning in both films, through specific sequences and techniques.",
+        "indicative": [
+          "Definitions: passive (absorbed, aligned) vs active (questioning, resisting, bringing context)",
+          "Joker: subway murders (subjective camera, cello) → guilty identification; Sophie reveal → active doubt",
+          "Get Out: Sunken Place (subjective camera, muffled sound) → immersion; auction and police-car ending → active reading",
+          "Murray Smith: alignment vs allegiance; Hall’s readings; hooks’ oppositional gaze",
+          "Viewing conditions and different spectators (Black and white audiences; fans vs critics)",
+          "Judgement on “constant”: is the shift constant, or concentrated at key moments?"
+        ]
+      },
+      "modelAnswer": "Thesis: both films shift the spectator between passive and active positions to a significant extent, though Joker does so to unsettle sympathy and Get Out to sharpen suspicion.\n\nP1 Joker’s subway sequence (low-key lighting, claustrophobic framing, cello): passive alignment, then active horror.\n\nP2 The Sophie reveal: editing replays scenes without her, forcing active re-reading.\n\nP3 Get Out’s Sunken Place: restricted POV, falling motion, muffled sound = passive immersion; the teacup motif rewards active viewers.\n\nP4 The police-car ending relies on spectators’ real-world knowledge: active spectatorship.\n\nConclusion: constant to a large extent; the shifts ARE each film’s meaning."
+    },
+    {
+      "id": "b-cues",
+      "scenario": "pb",
+      "part": "2",
+      "section": "B",
+      "code": "B3.1.7",
+      "marks": 40,
+      "commandWord": "How far",
+      "context": "",
+      "question": "How far do your chosen films demonstrate the importance of visual and soundtrack cues in influencing spectator response? Refer in detail to at least one sequence from each film. (sample paper)",
+      "slots": 0,
+      "traps": [
+        "“Refer in detail to at least one sequence from each film” is an instruction: missing it caps the mark.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion.",
+        "Write impersonally: “the spectator is positioned”, never “I felt”."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Specific visual and sound cues in sequences from both films and how far they determine response.",
+        "indicative": [
+          "Joker: the cello score, Arthur’s laugh, the stairs palette and glam-rock needle-drop",
+          "Get Out: the spoon on china, “Run Rabbit Run”, Swahili score, POV framing",
+          "Cues can conflict: upbeat music over violence creates unease",
+          "Other cues: narrative, performance, genre, auteur (spec list)",
+          "Limits: spectators’ identity and context also shape response",
+          "Judgement on importance compared with other factors"
+        ]
+      },
+      "modelAnswer": "Thesis: visual and soundtrack cues are central in both films, but their effect depends on what the spectator brings.\n\nP1 Joker’s stair dance: palette, slow motion and music. P2 The cello after the subway. P3 Get Out’s teacup and Sunken Place. P4 The police lights at the end.\n\nConclusion: important to a significant extent, but not alone."
+    },
+    {
+      "id": "b-ideology",
+      "scenario": "pb",
+      "part": "3",
+      "section": "B",
+      "code": "B3.2.1",
+      "marks": 40,
+      "commandWord": "How far",
+      "context": "",
+      "question": "How far is the spectator’s response to your chosen films shaped by their ideology? Refer in detail to at least one sequence from each film.",
+      "slots": 0,
+      "traps": [
+        "“Refer in detail to at least one sequence from each film” is an instruction: missing it caps the mark.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion.",
+        "Write impersonally: “the spectator is positioned”, never “I felt”."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Ideology (class neglect; liberal racism) and how it shapes response through form.",
+        "indicative": [
+          "Joker: Marxist reading of class neglect; the Murray Franklin show and riot",
+          "Get Out: liberal racism and the commodified Black body; the garden-party auction",
+          "Preferred and oppositional readings (Hall): Joker’s ambiguity",
+          "Genre pleasure can matter as much as ideology",
+          "Evaluation of the ideological approach itself",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: ideology shapes response strongly in Get Out, where it is precise, and more ambiguously in Joker, whose ideology divides spectators.\n\nP1 Auction. P2 Murray show. P3 Diverse responses. P4 Limits of ideology.\n\nConclusion."
+    },
+    {
+      "id": "b-identify",
+      "scenario": "pb",
+      "part": "4",
+      "section": "B",
+      "code": "B3.1.4",
+      "marks": 40,
+      "commandWord": "How far",
+      "context": "",
+      "question": "How far do your chosen films position the spectator to identify with their central characters? Refer in detail to at least one sequence from each film.",
+      "slots": 0,
+      "traps": [
+        "“Refer in detail to at least one sequence from each film” is an instruction: missing it caps the mark.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion.",
+        "Write impersonally: “the spectator is positioned”, never “I felt”."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Alignment and allegiance with Arthur and Chris, created by film form and narrative.",
+        "indicative": [
+          "Restricted narration in both films",
+          "Joker: alignment without full allegiance (Murray Smith)",
+          "Get Out: alignment and allegiance with a victim",
+          "Performance cues: Phoenix’s body; Kaluuya’s tear",
+          "Moments that break identification: Arthur’s later murders; dramatic irony at the auction",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: both align us with their protagonists almost totally, but only Get Out asks for full allegiance.\n\nP1 Opening sequences. P2 Joker’s violence breaking allegiance. P3 Sunken Place. P4 Irony at the auction.\n\nConclusion."
+    },
+    {
+      "id": "b-challenge",
+      "scenario": "pb",
+      "part": "5",
+      "section": "B",
+      "code": "B3.2.3",
+      "marks": 40,
+      "commandWord": "How far",
+      "context": "",
+      "question": "How far do your chosen films challenge dominant ideologies of American society? Refer in detail to at least one sequence from each film.",
+      "slots": 0,
+      "traps": [
+        "“Refer in detail to at least one sequence from each film” is an instruction: missing it caps the mark.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion.",
+        "Write impersonally: “the spectator is positioned”, never “I felt”."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Whether each film challenges or reinforces dominant ideas (post-racial America, meritocracy, the comic-book hero).",
+        "indicative": [
+          "Get Out challenges the post-racial myth",
+          "Joker challenges meritocracy and attacks the indifferent rich",
+          "Joker may also reinforce a violent, male grievance fantasy",
+          "Institutional context: Blumhouse control vs Warner IP",
+          "Hegemony (Gramsci) and how mainstream films absorb critique",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: Get Out challenges dominant ideology clearly; Joker challenges it but risks glamorising what it critiques.\n\nP1 Liberal racism. P2 Class. P3 Ambiguity. P4 Institution.\n\nConclusion."
+    },
+    {
+      "id": "c-resolution",
+      "scenario": "pc",
+      "part": "1",
+      "section": "C",
+      "code": "C3.1.7",
+      "marks": 40,
+      "commandWord": "How useful",
+      "context": "",
+      "question": "How useful has an ideological critical approach been in understanding the narrative resolution of your chosen films? (sample paper)",
+      "slots": 0,
+      "traps": [
+        "“How useful … ideological critical approach” = evaluate the APPROACH, not just describe the ideology.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Apply ideology to each ending and evaluate how much it explains.",
+        "indicative": [
+          "Trainspotting: Renton steals the money; “Choose Life” bookends; individualism over loyalty (Thatcherism)",
+          "Shaun: the news montage; zombies as labour; parodied Todorov equilibrium (Marxist)",
+          "Film form in the endings: “Born Slippy”, walking to camera; channel-flicking montage",
+          "What ideology reveals that a purely narrative reading misses",
+          "Limits: irony, comedy and genre pleasure; ambiguous endings",
+          "Judgement on usefulness"
+        ]
+      },
+      "modelAnswer": "Thesis: an ideological approach is highly useful for both resolutions, because each ending exposes how capitalism absorbs rebellion, though comedy and irony limit a single reading.\n\nP1 Renton’s theft: voiceover returns inverted; Thatcherite individualism.\n\nP2 Shaun’s montage: capitalism absorbs the undead; the new equilibrium = the old.\n\nP3 Comparison: both endings are ironic “happy endings”.\n\nP4 Limits: Renton’s gift to Spud; Shaun keeps Ed out of love, not ideology.\n\nConclusion: very useful, but not sufficient alone."
+    },
+    {
+      "id": "c-binary",
+      "scenario": "pc",
+      "part": "2",
+      "section": "C",
+      "code": "C3.1.3",
+      "marks": 40,
+      "commandWord": "How useful",
+      "context": "",
+      "question": "How useful has an ideological critical approach been in understanding binary oppositions in the narratives of your chosen films? (sample paper)",
+      "slots": 0,
+      "traps": [
+        "“How useful … ideological critical approach” = evaluate the APPROACH, not just describe the ideology.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Lévi-Strauss oppositions in each film, read ideologically, with evaluation.",
+        "indicative": [
+          "Trainspotting: heroin vs consumer “life”; loyalty vs individualism; Scotland vs England",
+          "Shaun: alive vs undead; responsibility vs slacking; pub vs home",
+          "Ideology shows the oppositions collapsing: Renton swaps one addiction for another; Shaun is already a zombie",
+          "Form: mirrored walks, bookended monologues, colour",
+          "Limits of structuralism and ideology",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: ideology is very useful because in both films the oppositions are revealed as false.\n\nP1 Heroin vs life. P2 Living vs undead (mirrored walks). P3 Masculine oppositions. P4 Limits.\n\nConclusion."
+    },
+    {
+      "id": "c-masculinity",
+      "scenario": "pc",
+      "part": "3",
+      "section": "C",
+      "code": "C1.4.3",
+      "marks": 40,
+      "commandWord": "How useful",
+      "context": "",
+      "question": "How useful has an ideological critical approach been in understanding the representation of masculinity in your chosen films?",
+      "slots": 0,
+      "traps": [
+        "“How useful … ideological critical approach” = evaluate the APPROACH, not just describe the ideology.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Feminist/ideological readings of masculinity in crisis in both films.",
+        "indicative": [
+          "Begbie’s toxic violence; Renton’s evasion; Spud’s gentleness",
+          "Shaun and Ed as man-children; Shaun’s arc to care",
+          "Deindustrialisation and Gen-X contexts",
+          "Women as peripheral or as agents of change (Liz, Diane)",
+          "Evaluation of the approach",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: very useful for both, as masculinity in crisis is central to each film’s critique of British society.\n\nP1 Begbie’s pub brawl. P2 Shaun’s mum. P3 Women. P4 Limits.\n\nConclusion."
+    },
+    {
+      "id": "c-devices",
+      "scenario": "pc",
+      "part": "4",
+      "section": "C",
+      "code": "C3.1.5",
+      "marks": 40,
+      "commandWord": "How far",
+      "context": "",
+      "question": "How far do narrative devices in your chosen films shape their ideological meaning?",
+      "slots": 0,
+      "traps": [
+        "“How useful … ideological critical approach” = evaluate the APPROACH, not just describe the ideology.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Voiceover, repetition, foreshadowing and structure as carriers of ideology.",
+        "indicative": [
+          "Renton’s unreliable voiceover and bookending",
+          "Shaun’s foreshadowing and mirrored walks",
+          "Episodic vs linear three-act structures",
+          "Genre parody as narrative device",
+          "Todorov’s new equilibria",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: to a great extent; in both films the ideology lives in the structure.\n\nP1 Voiceover. P2 Repetition. P3 Endings.\n\nConclusion."
+    },
+    {
+      "id": "c-society",
+      "scenario": "pc",
+      "part": "5",
+      "section": "C",
+      "code": "C1.1.3",
+      "marks": 40,
+      "commandWord": "How useful",
+      "context": "",
+      "question": "“British film offers a critique of its society.” How useful has an ideological critical approach been in exploring this in your chosen films?",
+      "slots": 0,
+      "traps": [
+        "“How useful … ideological critical approach” = evaluate the APPROACH, not just describe the ideology.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Critique of Thatcherite and consumer Britain in both films; evaluation of the approach.",
+        "indicative": [
+          "Trainspotting: “Choose Life”, Tommy’s HIV, “It’s shite being Scottish”",
+          "Shaun: dead-end jobs, suburban routine, the pub as identity",
+          "Representation of place: Edinburgh and suburban London",
+          "Comedy and style as vehicles of critique",
+          "Limits: entertainment and genre",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: very useful, as both films satirise consumer Britain, though one through heroin and one through zombies.\n\nP1 Consumerism. P2 Place. P3 Endings.\n\nConclusion."
+    },
+    {
+      "id": "m1-a",
+      "scenario": "m1a",
+      "part": "1",
+      "section": "A",
+      "code": "A3.1.1",
+      "marks": 40,
+      "commandWord": "Compare",
+      "context": "",
+      "question": "Compare how far key elements of film form in your chosen films reflect their historical contexts.",
+      "slots": 0,
+      "traps": [
+        "Compare = weave both films into every paragraph (“whereas”, “similarly”), not film 1 then film 2.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Film form as evidence of 1942 and 1967 contexts.",
+        "indicative": [
+          "Studio lighting and continuity vs location light and jump cuts",
+          "Steiner’s patriotic leitmotifs vs bluegrass counterpoint",
+          "The Code’s dissolves vs graphic squibs",
+          "Opening sequences compared",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: film form reflects context strongly in both; style itself is historical evidence.\n\nP1 Editing. P2 Sound. P3 Openings.\n\nConclusion."
+    },
+    {
+      "id": "m1-b",
+      "scenario": "m1b",
+      "part": "2",
+      "section": "B",
+      "code": "B2.4.3",
+      "marks": 40,
+      "commandWord": "How far",
+      "context": "",
+      "question": "How far do your chosen films use genre to shape spectator response? Refer in detail to at least one sequence from each film.",
+      "slots": 0,
+      "traps": [
+        "“Refer in detail to at least one sequence from each film” is an instruction: missing it caps the mark.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion.",
+        "Write impersonally: “the spectator is positioned”, never “I felt”."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Genre cues (horror, comic-book, character study) and how they position the spectator.",
+        "indicative": [
+          "Get Out: horror tropes flipped (opening abduction); comic release through Rod",
+          "Joker: comic-book IP vs 1970s character study",
+          "Genre expectation as an active-spectator cue",
+          "Limits",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: genre is crucial to both, especially Get Out, which relies on horror literacy.\n\nP1 Opening. P2 Rod. P3 Joker’s genre mix.\n\nConclusion."
+    },
+    {
+      "id": "m1-c",
+      "scenario": "m1c",
+      "part": "3",
+      "section": "C",
+      "code": "C3.1.6",
+      "marks": 40,
+      "commandWord": "How far",
+      "context": "",
+      "question": "How far do your chosen films use genre conventions in their narratives?",
+      "slots": 0,
+      "traps": [
+        "“How useful … ideological critical approach” = evaluate the APPROACH, not just describe the ideology.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Genre and narrative (spec Area 5) in both films.",
+        "indicative": [
+          "Shaun: zombie-film structure parodied; Romero homage",
+          "Trainspotting: crime-caper ending; drug-film conventions subverted",
+          "Neale’s repetition and difference",
+          "Ideological effect of genre choices",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: Shaun is built on genre; Trainspotting uses genre only at its edges.\n\nP1 Shaun’s three acts. P2 Trainspotting’s episodes. P3 Endings.\n\nConclusion."
+    },
+    {
+      "id": "m2-a",
+      "scenario": "m2a",
+      "part": "1",
+      "section": "A",
+      "code": "A1.4.2",
+      "marks": 40,
+      "commandWord": "Compare",
+      "context": "",
+      "question": "Compare how far your chosen films reflect changing representations of gender in Hollywood.",
+      "slots": 0,
+      "traps": [
+        "Compare = weave both films into every paragraph (“whereas”, “similarly”), not film 1 then film 2.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Gender representation in 1942 and 1967 linked to context and form.",
+        "indicative": [
+          "Ilsa as object of exchange; glamour lighting; Mulvey",
+          "Bonnie’s desire; the opening ECU; Clyde’s impotence",
+          "Production Code vs its collapse",
+          "Masculinity: Rick’s sacrifice vs Clyde’s insecurity",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: a clear shift from passive to active femininity, though Bonnie still exists through Clyde’s story.\n\nP1 Lighting the women. P2 Masculinity. P3 Censorship.\n\nConclusion."
+    },
+    {
+      "id": "m2-b",
+      "scenario": "m2b",
+      "part": "2",
+      "section": "B",
+      "code": "B3.1.3",
+      "marks": 40,
+      "commandWord": "How far",
+      "context": "",
+      "question": "How far do different spectators respond differently to your chosen films? Refer in detail to at least one sequence from each film.",
+      "slots": 0,
+      "traps": [
+        "“Refer in detail to at least one sequence from each film” is an instruction: missing it caps the mark.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion.",
+        "Write impersonally: “the spectator is positioned”, never “I felt”."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Reasons for uniformity or diversity of response: identity, context, viewing conditions.",
+        "indicative": [
+          "Hall’s readings applied to Joker’s riot",
+          "Black and white spectators and the police-car ending; hooks",
+          "Viewing conditions: security at Joker screenings; rewatching Get Out",
+          "Cues that create uniform response (jump scares)",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: response is diverse to a large extent, though both films use strong cues to unify reactions at key moments.\n\nP1 Joker riot. P2 Police car. P3 Shared jump scares.\n\nConclusion."
+    },
+    {
+      "id": "m2-c",
+      "scenario": "m2c",
+      "part": "3",
+      "section": "C",
+      "code": "C1.3.1",
+      "marks": 40,
+      "commandWord": "How useful",
+      "context": "",
+      "question": "How useful has an ideological critical approach been in understanding the opening sequences of your chosen films?",
+      "slots": 0,
+      "traps": [
+        "“How useful … ideological critical approach” = evaluate the APPROACH, not just describe the ideology.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Openings as ideological statements.",
+        "indicative": [
+          "“Choose Life” chase: anti-consumerism, freeze-frames, “Lust for Life”",
+          "Shaun’s blank close-up and first walk to the shop",
+          "Openings set up later reversals",
+          "Limits",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: very useful; both openings state the ideology the endings resolve.\n\nP1 Choose Life. P2 Zombie Shaun. P3 Links to endings.\n\nConclusion."
+    },
+    {
+      "id": "s3-a",
+      "scenario": "p3a",
+      "part": "1",
+      "section": "A",
+      "code": "A2.1.4",
+      "marks": 40,
+      "commandWord": "Compare",
+      "context": "",
+      "question": "Compare how far your chosen films reflect the institutional context of the Hollywood studio system and its decline.",
+      "slots": 0,
+      "traps": [
+        "Compare = weave both films into every paragraph (“whereas”, “similarly”), not film 1 then film 2.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Studio system (1942) vs post-studio New Hollywood (1967).",
+        "indicative": [
+          "Vertical integration and contracts",
+          "Paramount Decree and TV",
+          "Beatty as producer",
+          "Production Code and ratings",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: both are defined by their institutions, at opposite ends of the studio era."
+    },
+    {
+      "id": "s3-b",
+      "scenario": "p3b",
+      "part": "2",
+      "section": "B",
+      "code": "B1.4.2",
+      "marks": 40,
+      "commandWord": "How useful",
+      "context": "",
+      "question": "How useful is an ideological critical approach in understanding the representation of class or race in your chosen films? Refer in detail to at least one sequence from each film.",
+      "slots": 0,
+      "traps": [
+        "“Refer in detail to at least one sequence from each film” is an instruction: missing it caps the mark.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion.",
+        "Write impersonally: “the spectator is positioned”, never “I felt”."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Class (Joker) and race (Get Out) through an ideological lens.",
+        "indicative": [
+          "Joker: Wayne vs the clowns; subway",
+          "Get Out: auction; Georgina and Walter",
+          "Marxist and anti-racist readings",
+          "Evaluation",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: very useful for both, as each film argues that social systems create its horror."
+    },
+    {
+      "id": "s3-c",
+      "scenario": "p3c",
+      "part": "3",
+      "section": "C",
+      "code": "C1.4.1",
+      "marks": 40,
+      "commandWord": "How far",
+      "context": "",
+      "question": "How far does narrative structure create ideological meaning in your chosen films?",
+      "slots": 0,
+      "traps": [
+        "“How useful … ideological critical approach” = evaluate the APPROACH, not just describe the ideology.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Episodic vs linear structures and their ideology.",
+        "indicative": [
+          "Trainspotting’s bookends",
+          "Shaun’s mirrored walks and ending",
+          "Todorov",
+          "Limits",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: to a large extent; both structures turn rebellion into conformity."
+    },
+    {
+      "id": "s4-a",
+      "scenario": "p4a",
+      "part": "1",
+      "section": "A",
+      "code": "A2.5.1",
+      "marks": 40,
+      "commandWord": "Compare",
+      "context": "",
+      "question": "“A director’s signature is most visible in a film’s style.” Compare how far this is true of your chosen films.",
+      "slots": 0,
+      "traps": [
+        "Compare = weave both films into every paragraph (“whereas”, “similarly”), not film 1 then film 2.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Stylistic vs thematic signatures of Curtiz and Penn.",
+        "indicative": [
+          "Curtiz’s camera and shadows",
+          "Penn’s violence and performance",
+          "Collaborators’ style (Edeson, Allen)",
+          "Thematic signatures",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: true of Curtiz, only partly of Penn, whose signature is also thematic."
+    },
+    {
+      "id": "s4-b",
+      "scenario": "p4b",
+      "part": "2",
+      "section": "B",
+      "code": "B1.2.5",
+      "marks": 40,
+      "commandWord": "How far",
+      "context": "",
+      "question": "How far do the narratives of your chosen films position the spectator? Refer in detail to at least one sequence from each film.",
+      "slots": 0,
+      "traps": [
+        "“Refer in detail to at least one sequence from each film” is an instruction: missing it caps the mark.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "“How far / How useful” needs a judgement, argued in every paragraph and stated in the conclusion.",
+        "Write impersonally: “the spectator is positioned”, never “I felt”."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Narrative cues: restricted narration, reveals, endings.",
+        "indicative": [
+          "Sophie reveal",
+          "Rose’s reveal and the auction irony",
+          "Endings",
+          "Alignment",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: narrative is the main positioning tool in both films."
+    },
+    {
+      "id": "s4-c",
+      "scenario": "p4c",
+      "part": "3",
+      "section": "C",
+      "code": "C2.4.3",
+      "marks": 40,
+      "commandWord": "How useful",
+      "context": "",
+      "question": "How useful has an ideological critical approach been in understanding character relationships in your chosen films?",
+      "slots": 0,
+      "traps": [
+        "“How useful … ideological critical approach” = evaluate the APPROACH, not just describe the ideology.",
+        "If only one film is discussed, the mark scheme halves the band mark.",
+        "Every paragraph needs a named scene AND a named technique (your teacher’s target 1)."
+      ],
+      "markScheme": {
+        "type": "levels",
+        "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
+        "focus": "Friendships and families read ideologically.",
+        "indicative": [
+          "Renton’s betrayal of the gang",
+          "Shaun, Ed, Liz and Philip",
+          "Masculinity and loyalty",
+          "Limits",
+          "Judgement"
+        ]
+      },
+      "modelAnswer": "Thesis: useful, as both films test loyalty against self-interest and adulthood."
+    }
+  ]
+}

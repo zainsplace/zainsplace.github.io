@@ -1,0 +1,655 @@
+{
+  "cards": [
+    {
+      "id": "ha1",
+      "section": "A",
+      "code": "A1.1.1",
+      "front": "Casablanca: director, studio, year?",
+      "back": "Michael Curtiz, Warner Bros., 1942 (Classical Hollywood)."
+    },
+    {
+      "id": "ha2",
+      "section": "A",
+      "code": "A1.1.5",
+      "front": "Who produced Casablanca?",
+      "back": "Hal B. Wallis, Warner Bros. head of production."
+    },
+    {
+      "id": "ha3",
+      "section": "A",
+      "code": "A1.1.5",
+      "front": "Who wrote Casablanca, and from what source?",
+      "back": "Julius and Philip Epstein and Howard Koch, from the unproduced play “Everybody Comes to Rick’s”."
+    },
+    {
+      "id": "ha4",
+      "section": "A",
+      "code": "A1.1.2",
+      "front": "When is Casablanca set, and why does it matter?",
+      "back": "December 1941, around Pearl Harbor: America is about to enter the war, like Rick."
+    },
+    {
+      "id": "ha5",
+      "section": "A",
+      "code": "A1.1.2",
+      "front": "What does Renault throw in the bin at the end?",
+      "back": "A bottle of Vichy water: France rejecting collaboration."
+    },
+    {
+      "id": "ha6",
+      "section": "A",
+      "code": "A1.1.3",
+      "front": "Rick’s isolationist line?",
+      "back": "“I stick my neck out for nobody.”"
+    },
+    {
+      "id": "ha7",
+      "section": "A",
+      "code": "A1.3.7",
+      "front": "Rick’s line that puts the cause above love?",
+      "back": "“The problems of three little people don’t amount to a hill of beans in this crazy world.”"
+    },
+    {
+      "id": "ha8",
+      "section": "A",
+      "code": "A1.3.7",
+      "front": "Last line of Casablanca?",
+      "back": "“Louis, I think this is the beginning of a beautiful friendship.”"
+    },
+    {
+      "id": "ha9",
+      "section": "A",
+      "code": "A1.1.6",
+      "front": "How does Casablanca imply Rick and Ilsa sleep together?",
+      "back": "A dissolve to the airport searchlight tower, then Rick smoking: a Production Code ellipsis."
+    },
+    {
+      "id": "ha10",
+      "section": "A",
+      "code": "A1.2.1",
+      "front": "Who shot Casablanca and in what lighting style?",
+      "back": "Arthur Edeson: low-key chiaroscuro, shadows like bars."
+    },
+    {
+      "id": "ha11",
+      "section": "A",
+      "code": "A1.2.5",
+      "front": "Who composed Casablanca’s score?",
+      "back": "Max Steiner, using “As Time Goes By” and “La Marseillaise” as leitmotifs."
+    },
+    {
+      "id": "ha12",
+      "section": "A",
+      "code": "A1.3.5",
+      "front": "What happens in the duel of the anthems?",
+      "back": "Laszlo has the band play “La Marseillaise” to drown out Nazis singing “Die Wacht am Rhein”."
+    },
+    {
+      "id": "ha13",
+      "section": "A",
+      "code": "A1.3.5",
+      "front": "Renault’s hypocritical line when closing the café?",
+      "back": "“I’m shocked, shocked to find that gambling is going on in here!”"
+    },
+    {
+      "id": "ha14",
+      "section": "A",
+      "code": "A1.1.7",
+      "front": "Casablanca’s Oscars?",
+      "back": "Best Picture, Best Director and Best Screenplay."
+    },
+    {
+      "id": "ha15",
+      "section": "A",
+      "code": "A1.1.7",
+      "front": "Umberto Eco on Casablanca?",
+      "back": "“Two clichés make us laugh. A hundred clichés move us.”"
+    },
+    {
+      "id": "ha16",
+      "section": "A",
+      "code": "A1.5.2",
+      "front": "Who wrote The Genius of the System and what does it argue?",
+      "back": "Thomas Schatz (1988): studio films were authored by the whole system, not just directors."
+    },
+    {
+      "id": "ha17",
+      "section": "A",
+      "code": "A1.3.2",
+      "front": "How is Rick introduced?",
+      "back": "By his hand signing a cheque, then his chess board, then a tilt up to his face."
+    },
+    {
+      "id": "ha18",
+      "section": "A",
+      "code": "A1.4.2",
+      "front": "Ilsa’s line that gives Rick her choice?",
+      "back": "“You’ll have to think for both of us, for all of us.”"
+    },
+    {
+      "id": "ha19",
+      "section": "A",
+      "code": "A2.1.1",
+      "front": "Bonnie and Clyde: director, year, star-producer?",
+      "back": "Arthur Penn, 1967; Warren Beatty produced and starred."
+    },
+    {
+      "id": "ha20",
+      "section": "A",
+      "code": "A2.1.6",
+      "front": "Who wrote Bonnie and Clyde and what influenced them?",
+      "back": "David Newman and Robert Benton, inspired by the French New Wave (offered to Truffaut and Godard)."
+    },
+    {
+      "id": "ha21",
+      "section": "A",
+      "code": "A2.2.2",
+      "front": "Who edited Bonnie and Clyde?",
+      "back": "Dede Allen: elliptical cutting, jump cuts, the slow-motion ending."
+    },
+    {
+      "id": "ha22",
+      "section": "A",
+      "code": "A2.2.1",
+      "front": "Who shot Bonnie and Clyde?",
+      "back": "Burnett Guffey, who won the Oscar for Best Cinematography."
+    },
+    {
+      "id": "ha23",
+      "section": "A",
+      "code": "A2.1.7",
+      "front": "Bonnie and Clyde’s two Oscars?",
+      "back": "Estelle Parsons (Supporting Actress) and Burnett Guffey (Cinematography)."
+    },
+    {
+      "id": "ha24",
+      "section": "A",
+      "code": "A2.2.3",
+      "front": "What music plays over the getaways?",
+      "back": "Flatt and Scruggs’ bluegrass “Foggy Mountain Breakdown”."
+    },
+    {
+      "id": "ha25",
+      "section": "A",
+      "code": "A2.1.7",
+      "front": "Which critic attacked Bonnie and Clyde, and who defended it?",
+      "back": "Bosley Crowther (New York Times) attacked it; Pauline Kael defended it."
+    },
+    {
+      "id": "ha26",
+      "section": "A",
+      "code": "A2.1.5",
+      "front": "What replaced the Production Code, and when?",
+      "back": "The MPAA age-ratings system, in November 1968."
+    },
+    {
+      "id": "ha27",
+      "section": "A",
+      "code": "A2.3.3",
+      "front": "Clyde’s line to the evicted farmer?",
+      "back": "“We rob banks.”"
+    },
+    {
+      "id": "ha28",
+      "section": "A",
+      "code": "A2.3.4",
+      "front": "What do the gang watch in the cinema after the first killing?",
+      "back": "“We’re in the Money” from Gold Diggers of 1933: Depression escapism."
+    },
+    {
+      "id": "ha29",
+      "section": "A",
+      "code": "A2.3.7",
+      "front": "How is the ending shot and cut?",
+      "back": "Multi-camera slow motion mixed with fast cuts, no music, then a sudden cut to black."
+    },
+    {
+      "id": "ha30",
+      "section": "A",
+      "code": "A2.2.4",
+      "front": "Who designed Bonnie’s costumes?",
+      "back": "Theadora Van Runkle: the beret and midi skirts started a fashion craze."
+    },
+    {
+      "id": "ha31",
+      "section": "A",
+      "code": "A2.1.4",
+      "front": "Which 1948 ruling began the end of the studio system?",
+      "back": "The Paramount Decree, which broke up studio ownership of cinemas."
+    },
+    {
+      "id": "ha32",
+      "section": "A",
+      "code": "A2.5.1",
+      "front": "Other Arthur Penn films?",
+      "back": "The Left Handed Gun (1958), The Miracle Worker (1962), Little Big Man (1970)."
+    },
+    {
+      "id": "ha33",
+      "section": "A",
+      "code": "A3.2.1",
+      "front": "Who launched la politique des auteurs, where and when?",
+      "back": "François Truffaut, Cahiers du Cinéma, 1954 (“A Certain Tendency of French Cinema”)."
+    },
+    {
+      "id": "ha34",
+      "section": "A",
+      "code": "A3.2.2",
+      "front": "Sarris’s three circles?",
+      "back": "Technical competence, distinguishable personality (style) and interior meaning."
+    },
+    {
+      "id": "ha35",
+      "section": "A",
+      "code": "A3.2.3",
+      "front": "Kael’s attack on auteur theory?",
+      "back": "“Circles and Squares” (1963): filmmaking is collaborative."
+    },
+    {
+      "id": "ha36",
+      "section": "A",
+      "code": "A3.2.4",
+      "front": "Barthes’ challenge to authorship?",
+      "back": "“The Death of the Author” (1967): meaning is made by the reader."
+    },
+    {
+      "id": "hb1",
+      "section": "B",
+      "code": "B1.1.1",
+      "front": "Joker: director, year, studio?",
+      "back": "Todd Phillips, 2019, Warner Bros./DC (the mainstream film)."
+    },
+    {
+      "id": "hb2",
+      "section": "B",
+      "code": "B1.1.3",
+      "front": "Which films does Joker pay homage to?",
+      "back": "Scorsese’s Taxi Driver (1976) and The King of Comedy (1982)."
+    },
+    {
+      "id": "hb3",
+      "section": "B",
+      "code": "B1.2.2",
+      "front": "Who composed Joker’s score?",
+      "back": "Hildur Guðnadóttir: a mournful solo cello. She won the Oscar."
+    },
+    {
+      "id": "hb4",
+      "section": "B",
+      "code": "B1.2.1",
+      "front": "Who shot Joker?",
+      "back": "Lawrence Sher."
+    },
+    {
+      "id": "hb5",
+      "section": "B",
+      "code": "B1.1.4",
+      "front": "Joker’s major awards?",
+      "back": "Venice Golden Lion; Oscars for Phoenix (Best Actor) and Guðnadóttir (Score)."
+    },
+    {
+      "id": "hb6",
+      "section": "B",
+      "code": "B1.3.3",
+      "front": "What does the Sophie reveal show?",
+      "back": "Their romance was imagined: an unreliable narrator."
+    },
+    {
+      "id": "hb7",
+      "section": "B",
+      "code": "B1.3.2",
+      "front": "Who does Arthur kill on the subway?",
+      "back": "Three drunk Wall Street men who harass and beat him."
+    },
+    {
+      "id": "hb8",
+      "section": "B",
+      "code": "B1.3.5",
+      "front": "Who plays Murray Franklin, and why does it matter?",
+      "back": "Robert De Niro, star of Taxi Driver and The King of Comedy."
+    },
+    {
+      "id": "hb9",
+      "section": "B",
+      "code": "B1.1.2",
+      "front": "Line showing welfare cuts in Joker?",
+      "back": "His social worker: “They don’t give a shit about people like you, Arthur.”"
+    },
+    {
+      "id": "hb10",
+      "section": "B",
+      "code": "B1.4.3",
+      "front": "A viewing-conditions fact about Joker?",
+      "back": "Fears of copycat violence led to extra security at US screenings."
+    },
+    {
+      "id": "hb11",
+      "section": "B",
+      "code": "B2.1.1",
+      "front": "Get Out: director, year, producer?",
+      "back": "Jordan Peele, 2017, Blumhouse (the independent film)."
+    },
+    {
+      "id": "hb12",
+      "section": "B",
+      "code": "B2.1.3",
+      "front": "Get Out’s budget and box office?",
+      "back": "About $4.5 million budget; about $255 million worldwide."
+    },
+    {
+      "id": "hb13",
+      "section": "B",
+      "code": "B2.1.3",
+      "front": "Get Out’s Oscar win?",
+      "back": "Best Original Screenplay for Jordan Peele."
+    },
+    {
+      "id": "hb14",
+      "section": "B",
+      "code": "B2.1.1",
+      "front": "Dean Armitage’s liberal line?",
+      "back": "“I would have voted for Obama a third time if I could.”"
+    },
+    {
+      "id": "hb15",
+      "section": "B",
+      "code": "B2.3.2",
+      "front": "What triggers Chris’s hypnosis?",
+      "back": "Missy stirring a spoon in a teacup."
+    },
+    {
+      "id": "hb16",
+      "section": "B",
+      "code": "B2.3.2",
+      "front": "What does the Sunken Place represent?",
+      "back": "Black silencing and marginalisation: watching your life, unable to act."
+    },
+    {
+      "id": "hb17",
+      "section": "B",
+      "code": "B2.3.1",
+      "front": "Song in the opening abduction?",
+      "back": "“Run Rabbit Run”."
+    },
+    {
+      "id": "hb18",
+      "section": "B",
+      "code": "B2.2.3",
+      "front": "Swahili phrase in the score and its meaning?",
+      "back": "“Sikiliza Kwa Wahenga”: listen to (your) ancestors."
+    },
+    {
+      "id": "hb19",
+      "section": "B",
+      "code": "B2.3.3",
+      "front": "What does the bingo auction evoke?",
+      "back": "A slave auction: the Black body as commodity."
+    },
+    {
+      "id": "hb20",
+      "section": "B",
+      "code": "B2.3.5",
+      "front": "Why does the police car at the end matter?",
+      "back": "It plays on the audience’s knowledge of racist policing; it turns out to be Rod."
+    },
+    {
+      "id": "hb21",
+      "section": "B",
+      "code": "B2.2.2",
+      "front": "How does Chris free himself in the basement?",
+      "back": "Plugging his ears with cotton from the chair: “picking cotton” to escape."
+    },
+    {
+      "id": "hb22",
+      "section": "B",
+      "code": "B3.1.3",
+      "front": "Hall’s four readings?",
+      "back": "Preferred, negotiated, oppositional and aberrant."
+    },
+    {
+      "id": "hb23",
+      "section": "B",
+      "code": "B3.1.4",
+      "front": "Murray Smith’s structure of sympathy?",
+      "back": "Recognition, alignment and allegiance."
+    },
+    {
+      "id": "hb24",
+      "section": "B",
+      "code": "B3.1.5",
+      "front": "Mulvey’s essay and year?",
+      "back": "“Visual Pleasure and Narrative Cinema” (1975): the male gaze."
+    },
+    {
+      "id": "hb25",
+      "section": "B",
+      "code": "B3.1.6",
+      "front": "bell hooks’ concept?",
+      "back": "The oppositional gaze: Black spectators looking back critically."
+    },
+    {
+      "id": "hb26",
+      "section": "B",
+      "code": "B3.1.7",
+      "front": "The six spectator cues in the spec?",
+      "back": "Narrative, visual, musical, performance, genre and auteur cues."
+    },
+    {
+      "id": "hb27",
+      "section": "B",
+      "code": "B3.2.2",
+      "front": "Gramsci’s hegemony in one line?",
+      "back": "How ruling-class values come to seem natural and common sense."
+    },
+    {
+      "id": "hc1",
+      "section": "C",
+      "code": "C1.1.1",
+      "front": "Trainspotting: director, year, source?",
+      "back": "Danny Boyle, 1996, from Irvine Welsh’s novel."
+    },
+    {
+      "id": "hc2",
+      "section": "C",
+      "code": "C1.1.4",
+      "front": "Trainspotting’s writer, producer and funder?",
+      "back": "John Hodge, Andrew Macdonald, Channel 4 Films."
+    },
+    {
+      "id": "hc3",
+      "section": "C",
+      "code": "C1.2.1",
+      "front": "Who shot Trainspotting?",
+      "back": "Brian Tufano."
+    },
+    {
+      "id": "hc4",
+      "section": "C",
+      "code": "C1.2.3",
+      "front": "Three songs and their scenes?",
+      "back": "“Lust for Life” (opening chase), “Perfect Day” (overdose), “Born Slippy” (ending)."
+    },
+    {
+      "id": "hc5",
+      "section": "C",
+      "code": "C1.3.6",
+      "front": "Renton’s final promise?",
+      "back": "“I’m going to be just like you”: the job, the family, the big television."
+    },
+    {
+      "id": "hc6",
+      "section": "C",
+      "code": "C1.3.5",
+      "front": "Renton’s Highlands rant?",
+      "back": "“It’s shite being Scottish!”"
+    },
+    {
+      "id": "hc7",
+      "section": "C",
+      "code": "C1.4.3",
+      "front": "Who embodies toxic masculinity in Trainspotting?",
+      "back": "Begbie (Robert Carlyle)."
+    },
+    {
+      "id": "hc8",
+      "section": "C",
+      "code": "C1.3.6",
+      "front": "Who does Renton leave money for?",
+      "back": "Spud."
+    },
+    {
+      "id": "hc9",
+      "section": "C",
+      "code": "C1.1.2",
+      "front": "What happens to Tommy?",
+      "back": "He starts using after Allison leaves him, contracts HIV and dies."
+    },
+    {
+      "id": "hc10",
+      "section": "C",
+      "code": "C2.1.1",
+      "front": "Shaun of the Dead: director, year, co-writer?",
+      "back": "Edgar Wright, 2004, co-written with Simon Pegg."
+    },
+    {
+      "id": "hc11",
+      "section": "C",
+      "code": "C2.1.3",
+      "front": "Which TV sitcom did Shaun grow out of?",
+      "back": "Spaced (Channel 4)."
+    },
+    {
+      "id": "hc12",
+      "section": "C",
+      "code": "C2.1.3",
+      "front": "Whose films does Shaun pay homage to?",
+      "back": "George A. Romero’s, especially Dawn of the Dead (1978)."
+    },
+    {
+      "id": "hc13",
+      "section": "C",
+      "code": "C2.3.4",
+      "front": "Song during the Winchester fight?",
+      "back": "Queen’s “Don’t Stop Me Now”, on the jukebox."
+    },
+    {
+      "id": "hc14",
+      "section": "C",
+      "code": "C2.3.1",
+      "front": "What do the two walks to the shop prove?",
+      "back": "Routine already made Shaun a zombie: the apocalypse changes nothing."
+    },
+    {
+      "id": "hc15",
+      "section": "C",
+      "code": "C2.3.5",
+      "front": "What does the ending montage show?",
+      "back": "Zombies used as cheap labour and TV entertainment; Ed in the shed."
+    },
+    {
+      "id": "hc16",
+      "section": "C",
+      "code": "C2.2.4",
+      "front": "Very English weapons used in Shaun?",
+      "back": "A cricket bat, a spade and vinyl records."
+    },
+    {
+      "id": "hc17",
+      "section": "C",
+      "code": "C2.1.4",
+      "front": "Shaun’s production company?",
+      "back": "Working Title (with StudioCanal and Universal)."
+    },
+    {
+      "id": "hc18",
+      "section": "C",
+      "code": "C3.1.1",
+      "front": "Fabula and syuzhet?",
+      "back": "Story (events in time order) and plot (how the film presents them)."
+    },
+    {
+      "id": "hc19",
+      "section": "C",
+      "code": "C3.1.2",
+      "front": "Todorov’s stages?",
+      "back": "Equilibrium, disruption, recognition, repair, new equilibrium."
+    },
+    {
+      "id": "hc20",
+      "section": "C",
+      "code": "C3.1.3",
+      "front": "Lévi-Strauss’s narrative idea?",
+      "back": "Binary oppositions structure meaning."
+    },
+    {
+      "id": "hc21",
+      "section": "C",
+      "code": "C3.1.4",
+      "front": "Five of Propp’s character functions?",
+      "back": "Hero, villain, donor, helper, princess (also dispatcher, false hero)."
+    },
+    {
+      "id": "hc22",
+      "section": "C",
+      "code": "C3.1.6",
+      "front": "Steve Neale on genre?",
+      "back": "Genres work through repetition and difference."
+    },
+    {
+      "id": "hk1",
+      "section": "K",
+      "code": "K1.4.2",
+      "front": "Parallel vs contrapuntal sound?",
+      "back": "Parallel matches the image’s mood; contrapuntal contrasts with it."
+    },
+    {
+      "id": "hk2",
+      "section": "K",
+      "code": "K1.3.2",
+      "front": "The Kuleshov effect?",
+      "back": "The same shot of a face reads differently depending on the shot beside it."
+    },
+    {
+      "id": "hk3",
+      "section": "K",
+      "code": "K1.1.6",
+      "front": "Three-point lighting?",
+      "back": "Key light, fill light and backlight."
+    },
+    {
+      "id": "hk4",
+      "section": "K",
+      "code": "K1.3.1",
+      "front": "Four continuity editing rules?",
+      "back": "Shot/reverse shot, eyeline match, match on action, the 180° rule."
+    },
+    {
+      "id": "hk5",
+      "section": "K",
+      "code": "K4.1.1",
+      "front": "How is a 40-mark answer split?",
+      "back": "20 marks AO1 (knowledge), 20 marks AO2 (application), across five bands."
+    },
+    {
+      "id": "hk6",
+      "section": "K",
+      "code": "K4.1.1",
+      "front": "What if you only write about one film in a two-film question?",
+      "back": "The mark for the band is halved."
+    },
+    {
+      "id": "hk7",
+      "section": "K",
+      "code": "K4.1.5",
+      "front": "Component 1 timing?",
+      "back": "2h30 for three 40-mark essays: about 50 minutes each, with 5 minutes planning."
+    },
+    {
+      "id": "hk8",
+      "section": "K",
+      "code": "K4.1.2",
+      "front": "What does “How far” require?",
+      "back": "A judgement, argued throughout and stated in the conclusion."
+    }
+  ]
+}

@@ -1,0 +1,438 @@
+{
+  "section": "B",
+  "title": "Documentary film: Amy (Kapadia, UK, 2015)",
+  "tier": 1,
+  "colour": "#0E7490",
+  "topics": [
+    {
+      "code": "B1",
+      "title": "Amy: contexts, form and key sequences",
+      "subtopics": [
+        {
+          "code": "B1.1",
+          "title": "Key idea and contexts",
+          "items": [
+            {
+              "code": "B1.1.1",
+              "term": "Amy: the key idea",
+              "definition": "Made almost entirely from archive and home footage, Amy lets the singer seem to tell her story, and asks who failed her.",
+              "examples": "From a teenage Amy singing “Happy Birthday” on a friend’s camcorder to her body being carried out of her Camden home.",
+              "keyFacts": [
+                "No on-screen talking heads: interviewees are heard as audio only, over images of Amy",
+                "A rise-and-fall narrative structured like a tragic drama",
+                "Killer line: “Kapadia assembles digital-era archive into a tragic narrative that implicates family, management, media and the spectator in Amy Winehouse’s destruction.”"
+              ],
+              "examTip": "Every Amy answer should name a sequence and how it was made from archive material."
+            },
+            {
+              "code": "B1.1.2",
+              "term": "Amy Winehouse: the subject",
+              "definition": "A north London jazz and soul singer whose album Back to Black made her a global star; she died aged 27 in July 2011.",
+              "examples": "Back to Black (2006) included “Rehab”; she won five Grammys in 2008.",
+              "keyFacts": [
+                "Her death from alcohol poisoning came after years of addiction and bulimia",
+                "Her lyrics were autobiographical, which the film exploits",
+                "Fame arrived with the rise of camera phones and celebrity websites"
+              ],
+              "examTip": "Keep biography brief: the exam is about the FILM."
+            },
+            {
+              "code": "B1.1.3",
+              "term": "Institutional context",
+              "definition": "Directed by Asif Kapadia and produced by James Gay-Rees (On the Corner), with Universal Music and Film4 involvement.",
+              "examples": "It won the Oscar and BAFTA for Best Documentary and became one of the highest-grossing British documentaries.",
+              "keyFacts": [
+                "Premiered at Cannes in 2015",
+                "Distributed by Altitude in the UK and A24 in the US",
+                "Universal Music owned much of the music, raising questions about independence"
+              ],
+              "examTip": "Institutional context matters for the debate about who controls the story.",
+              "verify": true
+            },
+            {
+              "code": "B1.1.4",
+              "term": "Kapadia’s method (from Senna)",
+              "definition": "Kapadia’s Senna (2010) used only archive footage, no talking heads; Amy repeats and refines that method.",
+              "examples": "He recorded around 100 audio interviews, often in darkened rooms to help people speak openly.",
+              "keyFacts": [
+                "Audio-only interviews keep the screen on Amy",
+                "He trained as a fiction director: he wanted the film to feel like a drama",
+                "Editor Chris King and composer Antonio Pinto also worked on Senna"
+              ],
+              "examTip": "A clear auteur angle: Kapadia’s archive-only signature.",
+              "verify": true
+            },
+            {
+              "code": "B1.1.5",
+              "term": "Reception and controversy",
+              "definition": "Praised by critics, but Amy’s father Mitch Winehouse said the film was misleading and unfair to him.",
+              "examples": "The film includes Amy singing “Rehab” about her dad thinking she was fine.",
+              "keyFacts": [
+                "Raises the ethical question of whose version of the truth a documentary tells",
+                "Shows editing shapes blame: selection is argument",
+                "Kapadia defended the film as true to what interviewees told him"
+              ],
+              "examTip": "Use the controversy to evaluate how “real” the documentary is."
+            }
+          ]
+        },
+        {
+          "code": "B1.2",
+          "title": "Film form",
+          "items": [
+            {
+              "code": "B1.2.1",
+              "term": "Archive and home footage",
+              "definition": "Camcorder videos, phone clips, TV, concerts and paparazzi footage, often low resolution, form almost the whole film.",
+              "examples": "Grainy early videos of Amy with friends feel intimate; later paparazzi images feel invasive.",
+              "keyFacts": [
+                "Image quality shifts as fame grows: from private camcorder to public press",
+                "Footage was shot by others, so Kapadia constructs meaning through selection",
+                "Digital zooms and reframing enlarge tiny or blurred images"
+              ],
+              "examTip": "Identify WHO shot each kind of footage: it changes its meaning."
+            },
+            {
+              "code": "B1.2.2",
+              "term": "Audio-only interviews",
+              "definition": "Friends, family and colleagues are heard but not seen, laid over footage of Amy.",
+              "examples": "Childhood friends Juliette Ashby and Lauren Gilbert and first manager Nick Shymansky narrate her early life.",
+              "keyFacts": [
+                "No talking heads: the spectator stays “with” Amy",
+                "Voices can contradict the images, inviting active reading",
+                "Some interviews sound like confessions"
+              ],
+              "examTip": "Contrast with expository documentaries that show experts on screen."
+            },
+            {
+              "code": "B1.2.3",
+              "term": "On-screen lyrics",
+              "definition": "Amy’s handwritten lyrics appear on screen as she sings, linking songs to the life events behind them.",
+              "examples": "Lyrics to “Back to Black” appear as the film covers her relationship with Blake Fielder-Civil.",
+              "keyFacts": [
+                "Positions Amy as author of her own story",
+                "Makes the songs into evidence and narration",
+                "Creates intimacy: we read her words in her hand"
+              ],
+              "examTip": "A distinctive technique: name it in every Amy essay."
+            },
+            {
+              "code": "B1.2.4",
+              "term": "Editing: Chris King",
+              "definition": "Non-linear digital editing shapes huge amounts of archive into a chronological tragedy with rising tension.",
+              "examples": "Paparazzi sequences are cut fast with flashes and noise; quiet home videos are given time.",
+              "keyFacts": [
+                "The rhythm turns real footage into a dramatic arc",
+                "Juxtaposition implies blame without a narrator saying it",
+                "Montage of comedians mocking Amy implicates the media and the audience"
+              ],
+              "examTip": "Editing = the documentary’s argument."
+            },
+            {
+              "code": "B1.2.5",
+              "term": "Sound and music",
+              "definition": "Amy’s own songs, live recordings and Antonio Pinto’s score shape emotion; paparazzi noise becomes oppressive.",
+              "examples": "The shutter clicks and shouted name during paparazzi scenes; her voice in the studio with Tony Bennett.",
+              "keyFacts": [
+                "Pinto’s score adds fiction-style emotional cues",
+                "Sound design heightens the violence of fame",
+                "Silence and Amy’s isolated voice create intimacy"
+              ],
+              "examTip": "Sound design shows documentaries are constructed, not neutral."
+            }
+          ]
+        },
+        {
+          "code": "B1.3",
+          "title": "Key sequences",
+          "items": [
+            {
+              "code": "B1.3.1",
+              "term": "Opening: the birthday video",
+              "definition": "A teenage Amy messes about with friends on a home camcorder and sings “Happy Birthday” in a startling jazz voice.",
+              "examples": "Low-quality home video, natural sound, no score at first.",
+              "keyFacts": [
+                "Establishes intimacy and her raw talent",
+                "The amateur image connotes innocence before fame",
+                "Sets up the tragic arc: we know how it ends"
+              ],
+              "examTip": "Pair with the ending to discuss narrative structure."
+            },
+            {
+              "code": "B1.3.2",
+              "term": "“Rehab” and the father",
+              "definition": "The film links the song “Rehab” to Amy refusing rehab after her father said she did not need to go.",
+              "examples": "Audio interviews from Nick Shymansky recall the moment; the song plays over performance footage.",
+              "keyFacts": [
+                "Implies Mitch’s influence on a fatal decision",
+                "The song becomes evidence",
+                "The basis of Mitch’s objections to the film"
+              ],
+              "examTip": "Strong for representation and the ethics of selection."
+            },
+            {
+              "code": "B1.3.3",
+              "term": "The paparazzi sequences",
+              "definition": "Amy is surrounded by photographers; flashes white out the image and shutter noise fills the soundtrack.",
+              "examples": "Fast cutting, strobing flashes and shouted questions as she tries to get home.",
+              "keyFacts": [
+                "Form makes the spectator feel hounded",
+                "Digital cameras made constant celebrity surveillance possible",
+                "Implicates the spectator, who also consumed these images"
+              ],
+              "examTip": "Your best digital-debate evidence."
+            },
+            {
+              "code": "B1.3.4",
+              "term": "The Grammys 2008",
+              "definition": "Performing via satellite from London, Amy wins Record of the Year and looks stunned and fragile.",
+              "examples": "Close-ups of her reaction; friends recall her saying the moment felt empty without drugs.",
+              "keyFacts": [
+                "The peak of success shown as hollow",
+                "Satellite link: a digital-era image of global fame",
+                "Shifts the spectator from celebration to sorrow"
+              ],
+              "examTip": "Good for structure: triumph placed right before decline.",
+              "verify": true
+            },
+            {
+              "code": "B1.3.5",
+              "term": "Recording with Tony Bennett",
+              "definition": "In the studio for the duet “Body and Soul”, Amy is anxious and self-critical; Bennett is patient and kind.",
+              "examples": "Observational footage in close-up; she apologises and restarts.",
+              "keyFacts": [
+                "Shows her vulnerability and musicianship",
+                "A rare moment of respect from the industry",
+                "Feels like observational documentary in the Longinotto style"
+              ],
+              "examTip": "Useful when applying Longinotto."
+            },
+            {
+              "code": "B1.3.6",
+              "term": "Belgrade and the ending",
+              "definition": "Amy stumbles through a 2011 concert in Belgrade and is booed; weeks later her body is carried from her home.",
+              "examples": "Overhead press footage of the body bag; the film then returns to images of young Amy.",
+              "keyFacts": [
+                "Audience mockery and media spectacle at their cruellest",
+                "The ending uses press footage: the media’s gaze to the end",
+                "Return to early footage creates a mournful circular structure"
+              ],
+              "examTip": "Strong ending evidence for any question on representation or ethics."
+            }
+          ]
+        },
+        {
+          "code": "B1.4",
+          "title": "Representation and response",
+          "items": [
+            {
+              "code": "B1.4.1",
+              "term": "Amy: representation of Amy",
+              "definition": "Amy appears as a gifted, funny, vulnerable artist, a victim of addiction, fame and the people around her.",
+              "examples": "Her wit in early interviews contrasts with her later exhaustion.",
+              "keyFacts": [
+                "A sympathetic, possibly selective portrait",
+                "Gender: the media shamed her body, relationships and appearance",
+                "She seems the author of her story, though the edit is Kapadia’s"
+              ],
+              "examTip": "Question the representation: who constructed it?"
+            },
+            {
+              "code": "B1.4.2",
+              "term": "Amy: blame and spectator response",
+              "definition": "Juxtaposition invites the spectator to blame Mitch, Blake, management and media, and finally themselves.",
+              "examples": "Clips of TV comedians joking about her addiction.",
+              "keyFacts": [
+                "No narrator says “who is to blame”: editing implies it",
+                "Spectators who laughed at the jokes in 2008 are confronted",
+                "Different viewers (fans, family) respond very differently"
+              ],
+              "examTip": "Links the documentary to spectatorship skills from Component 1."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "B2",
+      "title": "Critical debate: the significance of digital technology",
+      "subtopics": [
+        {
+          "code": "B2.1",
+          "title": "The digital debate",
+          "items": [
+            {
+              "code": "B2.1.1",
+              "term": "The digital debate",
+              "definition": "Has digital technology transformed film since the 1990s, or has filmmaking changed less than it seems?",
+              "examples": "Sample question: “How far has digital technology had an impact on your chosen documentary film?”",
+              "keyFacts": [
+                "One side: digital transforms production, editing, distribution and the relationship with reality",
+                "Other side: narrative forms and documentary ethics have changed very little",
+                "The spec frames it as “a developing debate”"
+              ],
+              "examTip": "Always argue both sides, then judge “how far”."
+            },
+            {
+              "code": "B2.1.2",
+              "term": "Digital production: abundant footage",
+              "definition": "Cheap camcorders, phones and digital press cameras meant Amy’s life was filmed constantly.",
+              "examples": "Home videos, mobile clips and paparazzi footage make up most of the film.",
+              "keyFacts": [
+                "Amy could not exist in this form before digital recording",
+                "Fame in the digital age = permanent surveillance",
+                "Much of the footage was shot by amateurs, not filmmakers"
+              ],
+              "examTip": "Strongest argument that digital had a very significant impact."
+            },
+            {
+              "code": "B2.1.3",
+              "term": "Non-linear digital editing",
+              "definition": "Digital editing let the team search, reorder and reshape vast archive material quickly.",
+              "examples": "Low-resolution clips are reframed, stabilised and graded to sit together.",
+              "keyFacts": [
+                "Makes archive-only feature documentaries practical",
+                "Digital manipulation raises questions of authenticity",
+                "Audio interviews are layered freely over images"
+              ],
+              "examTip": "Name “non-linear editing” precisely: the sample question does."
+            },
+            {
+              "code": "B2.1.4",
+              "term": "Digital distribution and audiences",
+              "definition": "Online clips shaped Amy’s fame; streaming and downloads widened the documentary’s audience.",
+              "examples": "Many viewers first knew Amy through viral clips and tabloid websites.",
+              "keyFacts": [
+                "The spectator already “knew” the images, which changes response",
+                "Documentaries now reach streaming audiences worldwide",
+                "Celebrity websites made mockery instant and global"
+              ],
+              "examTip": "Links digital debate to spectator response."
+            },
+            {
+              "code": "B2.1.5",
+              "term": "Counter-argument: little has changed",
+              "definition": "Compilation documentaries existed long before digital, and Amy still uses a classic rise-and-fall narrative.",
+              "examples": "Archive compilation goes back to Soviet filmmaker Esfir Shub in the 1920s.",
+              "keyFacts": [
+                "Selection and editing always shaped documentary “truth”",
+                "The tragic structure is as old as the biopic",
+                "Ethical questions about consent are not new"
+              ],
+              "examTip": "Needed for a balanced, top-band judgement.",
+              "verify": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "B3",
+      "title": "Filmmakers’ theories",
+      "subtopics": [
+        {
+          "code": "B3.1",
+          "title": "The four set filmmakers",
+          "items": [
+            {
+              "code": "B3.1.1",
+              "term": "Peter Watkins: the monoform",
+              "definition": "Watkins attacks the “monoform”: mainstream media’s fast, fragmented, single-voice style that leaves no room to think.",
+              "examples": "His docu-dramas Culloden (1964) and The War Game (1965) used actors and reconstruction to question documentary.",
+              "keyFacts": [
+                "Monoform: rapid editing, constant music, a linear story, no space for reflection",
+                "Amy critiques tabloid media, yet uses fast editing and emotive music itself",
+                "So Watkins helps judge whether Amy resists or repeats the monoform"
+              ],
+              "examTip": "Applying Watkins critically to Amy makes an excellent evaluative essay."
+            },
+            {
+              "code": "B3.1.2",
+              "term": "Nick Broomfield: participatory and performative",
+              "definition": "Broomfield appears on screen with his boom mic and small crew, using his interview style to expose people’s real views.",
+              "examples": "Kurt and Courtney (1998); Whitney: Can I Be Me (2017), another music documentary.",
+              "keyFacts": [
+                "Calls his films a “rollercoaster ride... a diary into the future”",
+                "Crew of no more than three: minimal filmmaking presence",
+                "Amy is the opposite: Kapadia is never seen"
+              ],
+              "examTip": "Use as a contrast to show what Amy’s invisible style gains and loses."
+            },
+            {
+              "code": "B3.1.3",
+              "term": "Kim Longinotto: invisible and fiction-like",
+              "definition": "Longinotto stays invisible, avoids voiceover and captions, and wants films to feel like fiction without conclusions.",
+              "examples": "Sisters in Law (2005); she does not like to zoom or pan and wants viewers to “jump into someone else’s experience”.",
+              "keyFacts": [
+                "Identification with characters is central",
+                "Amy shares invisibility and fiction-like identification",
+                "But Amy uses interviews, captions, music and implied conclusions"
+              ],
+              "examTip": "Longinotto is the most natural fit for Amy: argue how far."
+            },
+            {
+              "code": "B3.1.4",
+              "term": "Michael Moore: polemical agit-prop",
+              "definition": "Moore is a visible, committed presence who uses humour and argument to give “balance” against mainstream media.",
+              "examples": "Bowling for Columbine (2002), Fahrenheit 9/11 (2004).",
+              "keyFacts": [
+                "Participatory and performative mode",
+                "Openly takes sides",
+                "Amy is polemical in a hidden way: it argues through editing, not presence"
+              ],
+              "examTip": "Use to show Amy still makes an argument without a presenter."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "B4",
+      "title": "Documentary concepts",
+      "subtopics": [
+        {
+          "code": "B4.1",
+          "title": "Ways of describing documentary",
+          "items": [
+            {
+              "code": "B4.1.1",
+              "term": "John Grierson: “the creative treatment of actuality”",
+              "definition": "Grierson’s 1930s definition: documentary shapes real material creatively; it is never a neutral record.",
+              "examples": "Amy creatively treats real footage to tell a tragedy.",
+              "keyFacts": [
+                "The founder of the British documentary movement",
+                "Selection and arrangement are always creative",
+                "A good opening definition in a documentary essay"
+              ],
+              "examTip": "Open with Grierson to frame the documentary as constructed."
+            },
+            {
+              "code": "B4.1.2",
+              "term": "Bill Nichols: documentary modes",
+              "definition": "Nichols’ six modes: poetic, expository, observational, participatory, reflexive and performative.",
+              "examples": "Amy mixes expository argument (without a narrator) with observational and poetic moments.",
+              "keyFacts": [
+                "Expository: argues a case, often with voiceover",
+                "Observational: “fly on the wall”, no intervention",
+                "Participatory/performative: the filmmaker is present and involved"
+              ],
+              "examTip": "Classify Amy, then explain why it resists one mode."
+            },
+            {
+              "code": "B4.1.3",
+              "term": "Fact, fiction and ethics",
+              "definition": "Modern documentaries blur fact and fiction; editing, music and structure shape what seems true.",
+              "examples": "The spec: set documentaries “make the division between fact and fiction ambiguous”.",
+              "keyFacts": [
+                "Consent: Amy cannot approve how she is shown",
+                "Family members disputed the film’s version",
+                "The spectator should actively question the evidence"
+              ],
+              "examTip": "Ethics adds depth to any documentary answer."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
