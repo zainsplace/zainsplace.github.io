@@ -39,28 +39,26 @@
             {
               "code": "B1.1.3",
               "term": "Institutional context",
-              "definition": "Directed by Asif Kapadia and produced by James Gay-Rees (On the Corner), with Universal Music and Film4 involvement.",
-              "examples": "It won the Oscar and BAFTA for Best Documentary and became one of the highest-grossing British documentaries.",
+              "definition": "Directed by Asif Kapadia, produced by James Gay-Rees; made with Film4, On the Corner Films and Universal Music.",
+              "examples": "It had the biggest-ever UK opening for a British documentary and became the highest-grossing British documentary, passing Kapadia’s own Senna; it won the Oscar and BAFTA for Best Documentary.",
               "keyFacts": [
-                "Premiered at Cannes in 2015",
+                "Premiered as a midnight screening at Cannes in 2015",
                 "Distributed by Altitude in the UK and A24 in the US",
-                "Universal Music owned much of the music, raising questions about independence"
+                "Universal Music, Amy’s record label, first approached Gay-Rees about the film: a question about independence"
               ],
-              "examTip": "Institutional context matters for the debate about who controls the story.",
-              "verify": true
+              "examTip": "Institutional context matters for the debate about who controls the story."
             },
             {
               "code": "B1.1.4",
               "term": "Kapadia’s method (from Senna)",
               "definition": "Kapadia’s Senna (2010) used only archive footage, no talking heads; Amy repeats and refines that method.",
-              "examples": "He recorded around 100 audio interviews, often in darkened rooms to help people speak openly.",
+              "examples": "He conducted over 100 audio-only interviews, sometimes in a darkened sound booth, so people would trust him and speak openly.",
               "keyFacts": [
                 "Audio-only interviews keep the screen on Amy",
-                "He trained as a fiction director: he wanted the film to feel like a drama",
-                "Editor Chris King and composer Antonio Pinto also worked on Senna"
+                "Many people close to Amy were reluctant at first; no camera made it easier to talk",
+                "Senna’s editors were Chris King and Gregers Sall (BAFTA for editing), with music by Antonio Pinto; King and Pinto also made Amy"
               ],
-              "examTip": "A clear auteur angle: Kapadia’s archive-only signature.",
-              "verify": true
+              "examTip": "A clear auteur angle: Kapadia’s archive-only signature."
             },
             {
               "code": "B1.1.5",
@@ -276,14 +274,13 @@
               "code": "B2.1.5",
               "term": "Counter-argument: little has changed",
               "definition": "Compilation documentaries existed long before digital, and Amy still uses a classic rise-and-fall narrative.",
-              "examples": "Archive compilation goes back to Soviet filmmaker Esfir Shub in the 1920s.",
+              "examples": "Esfir Shub’s The Fall of the Romanov Dynasty (1927) was built entirely from newsreels and the Romanovs’ own home movies; it is often called the first compilation film.",
               "keyFacts": [
+                "Shub gave archive footage new meaning through montage and intertitles, as Amy does with editing and on-screen text",
                 "Selection and editing always shaped documentary “truth”",
-                "The tragic structure is as old as the biopic",
-                "Ethical questions about consent are not new"
+                "The tragic rise-and-fall structure is as old as the biopic"
               ],
-              "examTip": "Needed for a balanced, top-band judgement.",
-              "verify": true
+              "examTip": "Needed for a balanced, top-band judgement."
             }
           ]
         }

@@ -60,26 +60,24 @@ const INLINE_UNITS = {
           "definition": "Casablanca is a waiting room for refugees fleeing Nazi Europe, desperate for exit visas to Lisbon and America.",
           "examples": "The opening map traces the refugee trail Paris → Marseilles → Oran → Casablanca → Lisbon → America.",
           "keyFacts": [
-           "Many of the cast were real European émigrés and refugees, which gave the café crowd scenes real emotion",
+           "Nearly all the cast were immigrants, many of them refugees from Nazi Europe: a film about refugees made by refugees",
            "The Bulgarian bride subplot (Annina) shows refugees forced into corruption; Rick rigs the roulette to save her",
            "America is presented as the promised land, a flattering self-image for 1942 audiences"
           ],
-          "examTip": "Social context + representation: refugees, gender roles and nationality all come from the same wartime moment.",
-          "verify": true
+          "examTip": "Social context + representation: refugees, gender roles and nationality all come from the same wartime moment."
          },
          {
           "code": "A1.1.5",
           "term": "Institutional context: Warner Bros. studio system",
           "definition": "A vertically integrated studio film made by contract staff: producer Hal B. Wallis, director Michael Curtiz.",
-          "examples": "Adapted from the unproduced play “Everybody Comes to Rick’s” (Murray Burnett and Joan Alison) by Julius and Philip Epstein and Howard Koch.",
+          "examples": "Warner Bros. bought the unproduced play “Everybody Comes to Rick’s” (Murray Burnett and Joan Alison) for $20,000; Julius and Philip Epstein and Howard Koch wrote the screenplay.",
           "keyFacts": [
-           "Contract stars (Humphrey Bogart), composer (Max Steiner) and cinematographer (Arthur Edeson) were studio employees assigned to the film",
-           "Shot almost entirely on Warner’s Burbank sound stages; the fog at the airport hides a small studio set",
-           "The script was famously being rewritten during shooting, with the ending settled late",
-           "The spec calls it a film that “began life as an unremarkable studio genre film”"
+           "Contract stars (Humphrey Bogart), composer (Max Steiner), cinematographer (Arthur Edeson) and editor (Owen Marks) were studio employees assigned to the film",
+           "Shot at Warner’s Burbank studios, not on location, from 25 May to 3 August 1942: 59 days, 11 over schedule",
+           "The script was still unfinished when cameras rolled; the writers were also shaping it to satisfy the Production Code",
+           "The release was moved forward to exploit the headlines after the Allies landed at Casablanca in November 1942"
           ],
-          "examTip": "Production-context questions: contrast this factory model with Beatty’s independent producing on Bonnie and Clyde.",
-          "verify": true
+          "examTip": "Production-context questions: contrast this factory model with Beatty’s independent producing on Bonnie and Clyde."
          },
          {
           "code": "A1.1.6",
@@ -153,12 +151,11 @@ const INLINE_UNITS = {
           "definition": "Invisible continuity editing (shot/reverse shot, eyeline matches, 180° rule) keeps the spectator absorbed in the story.",
           "examples": "The Rick–Ilsa conversations are built from matched close-ups; the Paris flashback is entered and left by dissolves.",
           "keyFacts": [
-           "Editor Owen Marks; the style hides the cut so meaning seems to come from the characters, not the filmmaker",
+           "Editor Owen Marks was Oscar-nominated for Best Film Editing; the style hides the cut so meaning seems to come from the characters",
            "The opening montage (map, globe, newsreel-style voiceover) borrows documentary techniques to set the context",
            "Contrast with Dede Allen’s jump cuts in Bonnie and Clyde, which make the editing visible"
           ],
-          "examTip": "Classical editing is a comparison goldmine: invisible vs visible editing = studio era vs New Hollywood.",
-          "verify": true
+          "examTip": "Classical editing is a comparison goldmine: invisible vs visible editing = studio era vs New Hollywood."
          },
          {
           "code": "A1.2.5",
@@ -282,10 +279,10 @@ const INLINE_UNITS = {
           "keyFacts": [
            "Signatures: crane and tracking shots through crowded sets, foreground objects in the frame, strong shadows",
            "He made films in almost every genre, which makes a single thematic signature hard to find",
-           "Sarris did not rank him among Hollywood’s greatest auteurs; critics now see him as a master craftsman of the studio system"
+           "Sarris put him in his “Lightly Likable” category, far below the Pantheon of true auteurs",
+           "Sarris saw him as reflecting “the strengths and weaknesses of the studio system”: a craftsman more than an author"
           ],
-          "examTip": "Argue “how far”: a strong STYLISTIC signature, a weak THEMATIC one.",
-          "verify": true
+          "examTip": "Argue “how far”: a strong STYLISTIC signature, a weak THEMATIC one."
          },
          {
           "code": "A1.5.2",
@@ -352,27 +349,25 @@ const INLINE_UNITS = {
           "code": "A2.1.3",
           "term": "Social and political context: the 1960s",
           "definition": "Vietnam on TV, civil rights struggles, assassinations and a youth counterculture distrusting authority shaped the film.",
-          "examples": "The slow-motion, bullet-ridden ending was read as a reflection of televised Vietnam violence and the Kennedy assassination footage.",
+          "examples": "Penn said TV images of the Vietnam War, broadcast daily while he was filming, shaped the climax; the piece of Clyde’s scalp shot away was meant to evoke the Zapruder film of Kennedy’s assassination.",
           "keyFacts": [
-           "Young audiences identified with outsiders rebelling against a corrupt establishment",
-           "Penn said he wanted violence to look real and costly, not clean as in older Hollywood",
-           "Released in 1967, the year of protests and the “Summer of Love”"
+           "Penn later said he considered the film to be “about Vietnam”: a film of the 1960s, not the 1930s",
+           "He said TV coverage of Vietnam was as bloody as anything in his film",
+           "Young audiences identified with outsiders rebelling against a corrupt establishment"
           ],
-          "examTip": "Social context + spectatorship: young audiences cheered the outlaws; older critics were appalled.",
-          "verify": true
+          "examTip": "Social context + spectatorship: young audiences cheered the outlaws; older critics were appalled."
          },
          {
           "code": "A2.1.4",
           "term": "Institutional context: the end of the studio system",
           "definition": "After the 1948 Paramount ruling and TV, studios lost power; independent producers and young directors gained it.",
-          "examples": "Warren Beatty bought the script, produced the film and negotiated a share of the profits; Warner Bros.–Seven Arts only distributed it.",
+          "examples": "Warner Bros.–Seven Arts had so little faith in the film that it gave first-time producer Warren Beatty 40% of the gross instead of a fee.",
           "keyFacts": [
-           "Jack Warner reportedly disliked the film and gave it a weak first release",
-           "After critical defence it was re-released in 1968 and became a huge hit",
+           "Jack Warner reportedly treated the project as a whim of Beatty’s",
+           "After a weak first run, Beatty pushed Warner into a wider release; the 1968 re-release made it one of the year’s biggest hits",
            "Shot largely on real Texas locations, not studio backlots: cheaper and more realistic"
           ],
-          "examTip": "Compare with Casablanca’s factory model for any production-context question.",
-          "verify": true
+          "examTip": "Compare with Casablanca’s factory model for any production-context question."
          },
          {
           "code": "A2.1.5",
@@ -402,14 +397,13 @@ const INLINE_UNITS = {
           "code": "A2.1.7",
           "term": "Reception: Crowther vs Kael",
           "definition": "The film split critics: Bosley Crowther attacked it, Pauline Kael defended it, and the younger view won.",
-          "examples": "Crowther called it “a cheap piece of bald-faced slapstick comedy”; Kael wrote a long defence in October 1967.",
+          "examples": "Bosley Crowther of the New York Times called it “a cheap piece of bald-faced slapstick comedy”; Pauline Kael wrote a 9,000-word defence published in The New Yorker in October 1967.",
           "keyFacts": [
            "Ten Oscar nominations; it won two: Estelle Parsons (Supporting Actress) and Burnett Guffey (Cinematography)",
-           "Crowther left his post as New York Times critic soon after, a symbolic changing of the guard",
-           "Its fashion (berets, midi skirts) became a craze, showing its cultural impact"
+           "McCall’s refused to run Kael’s review; The New Yorker printed it in full, and it became a landmark of film criticism",
+           "Some historians argue Kael’s review did not “save” the film alone: Beatty’s push for a re-release mattered too"
           ],
-          "examTip": "Reception splits by generation: perfect for a spectatorship angle in a context answer.",
-          "verify": true
+          "examTip": "Reception splits by generation: perfect for a spectatorship angle in a context answer."
          }
         ]
        },
@@ -811,15 +805,14 @@ const INLINE_UNITS = {
          {
           "code": "B1.1.4",
           "term": "Institutional context: a mainstream studio film",
-          "definition": "A Warner Bros./DC comic-book property made as a gritty, R-rated character study on a modest superhero budget.",
-          "examples": "It won the Golden Lion at Venice and Oscars for Joaquin Phoenix (Best Actor) and Hildur Guðnadóttir (Best Score).",
+          "definition": "A Warner Bros./DC comic-book property made as a gritty, R-rated character study rather than a superhero film.",
+          "examples": "It premiered at Venice in 2019 and won the Golden Lion, the first comic-book film to do so; Oscars followed for Joaquin Phoenix (Best Actor) and Hildur Guðnadóttir (Best Score).",
           "keyFacts": [
-           "Became the first R-rated film to gross over $1 billion worldwide",
+           "The first R-rated film to gross over $1 billion worldwide (about $1.07 billion)",
            "Mainstream in funding and IP, but art-house in tone: blurs the spec’s mainstream/independent divide",
            "Marketing used the brand to bring mass audiences to a challenging film"
           ],
-          "examTip": "Mainstream ≠ simple: a mass audience brings a wider range of readings.",
-          "verify": true
+          "examTip": "Mainstream ≠ simple: a mass audience brings a wider range of readings."
          }
         ]
        },
@@ -867,14 +860,13 @@ const INLINE_UNITS = {
           "code": "B1.2.4",
           "term": "Performance: Joaquin Phoenix",
           "definition": "An extreme physical performance: severe weight loss, a contorted body and a painful, uncontrollable laugh.",
-          "examples": "The bathroom dance after the subway killings was reportedly improvised.",
+          "examples": "The bathroom dance after the subway killings was not in the script: it replaced a scene of Arthur talking to himself in the mirror, improvised as Phillips played Guðnadóttir’s score on set.",
           "keyFacts": [
+           "Phoenix lost 52 pounds for the role and said the hunger brought vulnerability and weakness",
            "The body as a site of suffering makes the spectator wince and sympathise",
-           "Method-style commitment and star discourse shaped expectations",
            "Phoenix won the Oscar for Best Actor"
           ],
-          "examTip": "Performance is a “cue” to spectator response: name a gesture, not just “good acting”.",
-          "verify": true
+          "examTip": "Performance is a “cue” to spectator response: name a gesture, not just “good acting”."
          },
          {
           "code": "B1.2.5",
@@ -1015,11 +1007,11 @@ const INLINE_UNITS = {
           "examples": "Peele won the Oscar for Best Original Screenplay; the film was nominated for Best Picture.",
           "keyFacts": [
            "Blumhouse model: low budgets in return for creative control for the director",
-           "This let a first-time Black director make a radical film with full control",
-           "Released by Universal: independent production, mainstream distribution"
+           "This let a first-time director make a radical film with full control",
+           "Released by Universal: independent production, mainstream distribution",
+           "Four Oscar nominations (Picture, Director, Actor for Kaluuya, Original Screenplay); Best Picture went to The Shape of Water"
           ],
-          "examTip": "Institutional context explains WHY its ideology could be so pointed.",
-          "verify": true
+          "examTip": "Institutional context explains WHY its ideology could be so pointed."
          },
          {
           "code": "B2.1.4",
@@ -1347,12 +1339,12 @@ const INLINE_UNITS = {
           "definition": "1980s Edinburgh’s heroin epidemic, unemployment, HIV/AIDS and poverty, far from the tourist city.",
           "examples": "Tommy, the healthy one, becomes addicted after Allison leaves him, contracts HIV and dies.",
           "keyFacts": [
-           "Edinburgh had one of the highest HIV infection rates in Europe in the 1980s, linked to shared needles",
-           "Unemployment after deindustrialisation left young men with little purpose",
-           "The film shows the “other” Scotland behind the tourist image"
+           "By 1986 the press had branded Edinburgh the “AIDS capital of Europe”",
+           "A police crackdown on injecting equipment pushed users into sharing needles; over half of the city’s addicts were found to be HIV-positive",
+           "Edinburgh’s first needle exchange only opened in April 1987",
+           "Unemployment after deindustrialisation left young men with little purpose"
           ],
-          "examTip": "Use Tommy’s story to show the real cost beneath the cool style.",
-          "verify": true
+          "examTip": "Use Tommy’s story to show the real cost beneath the cool style."
          },
          {
           "code": "C1.1.3",
@@ -1369,15 +1361,15 @@ const INLINE_UNITS = {
          {
           "code": "C1.1.4",
           "term": "Cultural and institutional context",
-          "definition": "Adapted from Irvine Welsh’s novel; funded by Channel 4 Films on about £1.5 million; a Cool Britannia landmark.",
+          "definition": "Adapted from Irvine Welsh’s novel; made by Channel 4 Films and Figment Films for about £1.5 million.",
           "examples": "Its soundtrack (Iggy Pop, Underworld, Blur, Pulp) and poster style became part of 1990s Britpop culture.",
           "keyFacts": [
            "Made by the team behind Shallow Grave (1994): Boyle, producer Andrew Macdonald, writer John Hodge",
-           "PolyGram distribution helped it become a global hit",
-           "Showed low-budget British film could be commercial and stylish"
+           "PolyGram distributed it in the UK and Miramax in the US",
+           "It earned about £48 million worldwide, making it the biggest British film of 1996",
+           "Showed low-budget British film could be commercial and stylish: a Cool Britannia landmark"
           ],
-          "examTip": "Institutional context explains its freedom to be provocative.",
-          "verify": true
+          "examTip": "Institutional context explains its freedom to be provocative."
          }
         ]
        },
@@ -1407,8 +1399,7 @@ const INLINE_UNITS = {
            "Freeze-frames suggest Renton controlling his own story",
            "Rhythm makes the high exciting before the crash"
           ],
-          "examTip": "Editing as a NARRATIVE tool: freeze-frames show who is telling the story.",
-          "verify": true
+          "examTip": "Editing as a NARRATIVE tool: freeze-frames show who is telling the story."
          },
          {
           "code": "C1.2.3",
@@ -1560,25 +1551,23 @@ const INLINE_UNITS = {
           "definition": "A postmodern blend of horror, comedy and romance that pays loving homage to George A. Romero’s zombie films.",
           "examples": "Romero’s Dawn of the Dead (1978) satirised consumerism with zombies in a shopping mall.",
           "keyFacts": [
-           "Grew from Wright and Pegg’s Channel 4 sitcom Spaced",
+           "Grew from Wright and Pegg’s Channel 4 sitcom Spaced; they decided to write their own zombie film after Romero’s Dead trilogy",
            "Full of intertextual references for knowing fans",
-           "Romero liked it enough to cast Wright and Pegg as zombies in Land of the Dead (2005)"
+           "Romero was so impressed he cast Wright and Pegg as zombies in Land of the Dead (2005)"
           ],
-          "examTip": "Genre is part of the narrative specialist area: “genre in relation to narrative”.",
-          "verify": true
+          "examTip": "Genre is part of the narrative specialist area: “genre in relation to narrative”."
          },
          {
           "code": "C2.1.4",
-          "term": "Institutional context: Working Title and StudioCanal",
-          "definition": "A modest-budget British film from Working Title, with Universal distribution, that became a global cult hit.",
-          "examples": "Made for roughly £4 million, it took about $30 million worldwide.",
+          "term": "Institutional context: Working Title, StudioCanal and Big Talk",
+          "definition": "A £4 million British film from Working Title (WT2), StudioCanal and Big Talk, released by Universal.",
+          "examples": "It took about $30 million worldwide on that £4 million budget.",
           "keyFacts": [
+           "Wright and Pegg first pitched it to Film4, which dropped it when its budget was cut",
            "Working Title also made Four Weddings and Notting Hill: British films with transatlantic reach",
-           "Wright’s editing-led comedy could be done cheaply",
            "Launched the “Three Flavours Cornetto” trilogy"
           ],
-          "examTip": "Compare with Trainspotting’s Channel 4 funding.",
-          "verify": true
+          "examTip": "Compare with Trainspotting’s Channel 4 funding."
          }
         ]
        },
@@ -2535,39 +2524,53 @@ const INLINE_UNITS = {
      "id": "ha29",
      "section": "A",
      "code": "A2.1.4",
+     "front": "What deal did Warner give Beatty, and why?",
+     "back": "40% of the gross instead of a fee, because the studio had so little faith in the film."
+    },
+    {
+     "id": "ha30",
+     "section": "A",
+     "code": "A2.1.3",
+     "front": "How did Penn link the ending to the 1960s?",
+     "back": "TV images of Vietnam shaped it, and Clyde’s wound was meant to evoke the Zapruder film."
+    },
+    {
+     "id": "ha31",
+     "section": "A",
+     "code": "A2.1.4",
      "front": "Which 1948 ruling began the end of the studio system?",
      "back": "The Paramount Decree, which broke up studio ownership of cinemas."
     },
     {
-     "id": "ha30",
+     "id": "ha32",
      "section": "A",
      "code": "A2.5.1",
      "front": "Other Arthur Penn films?",
      "back": "The Left Handed Gun (1958), The Miracle Worker (1962), Little Big Man (1970)."
     },
     {
-     "id": "ha31",
+     "id": "ha33",
      "section": "A",
      "code": "A3.2.1",
      "front": "Who launched la politique des auteurs, where and when?",
      "back": "François Truffaut, Cahiers du Cinéma, 1954 (“A Certain Tendency of French Cinema”)."
     },
     {
-     "id": "ha32",
+     "id": "ha34",
      "section": "A",
      "code": "A3.2.2",
      "front": "Sarris’s three circles?",
      "back": "Technical competence, distinguishable personality (style) and interior meaning."
     },
     {
-     "id": "ha33",
+     "id": "ha35",
      "section": "A",
      "code": "A3.2.3",
      "front": "Kael’s attack on auteur theory?",
      "back": "“Circles and Squares” (1963): filmmaking is collaborative."
     },
     {
-     "id": "ha34",
+     "id": "ha36",
      "section": "A",
      "code": "A3.2.4",
      "front": "Barthes’ challenge to authorship?",
@@ -2801,95 +2804,109 @@ const INLINE_UNITS = {
      "id": "hc8",
      "section": "C",
      "code": "C1.1.2",
+     "front": "What was Edinburgh called by 1986, and why?",
+     "back": "The “AIDS capital of Europe”: heroin users sharing needles spread HIV."
+    },
+    {
+     "id": "hc9",
+     "section": "C",
+     "code": "C1.1.4",
+     "front": "Trainspotting’s budget and success?",
+     "back": "About £1.5 million; about £48 million worldwide, the biggest British film of 1996."
+    },
+    {
+     "id": "hc10",
+     "section": "C",
+     "code": "C1.1.2",
      "front": "What happens to Tommy?",
      "back": "He starts using after Allison leaves him, contracts HIV and dies."
     },
     {
-     "id": "hc9",
+     "id": "hc11",
      "section": "C",
      "code": "C2.1.1",
      "front": "Shaun of the Dead: director, year, co-writer?",
      "back": "Edgar Wright, 2004, co-written with Simon Pegg."
     },
     {
-     "id": "hc10",
+     "id": "hc12",
      "section": "C",
      "code": "C2.1.3",
      "front": "Which TV sitcom did Shaun grow out of?",
      "back": "Spaced (Channel 4)."
     },
     {
-     "id": "hc11",
+     "id": "hc13",
      "section": "C",
      "code": "C2.1.3",
      "front": "Whose films does Shaun pay homage to?",
      "back": "George A. Romero’s, especially Dawn of the Dead (1978)."
     },
     {
-     "id": "hc12",
+     "id": "hc14",
      "section": "C",
      "code": "C2.3.2",
      "front": "Song during the Winchester fight?",
      "back": "Queen’s “Don’t Stop Me Now”, on the jukebox."
     },
     {
-     "id": "hc13",
+     "id": "hc15",
      "section": "C",
      "code": "C2.3.1",
      "front": "What do the two walks to the shop prove?",
      "back": "Routine already made Shaun a zombie: the apocalypse changes nothing."
     },
     {
-     "id": "hc14",
+     "id": "hc16",
      "section": "C",
      "code": "C2.3.3",
      "front": "What does the ending montage show?",
      "back": "Zombies used as cheap labour and TV entertainment; Ed in the shed."
     },
     {
-     "id": "hc15",
+     "id": "hc17",
      "section": "C",
      "code": "C2.2.4",
      "front": "Very English weapons used in Shaun?",
      "back": "A cricket bat, a spade and vinyl records."
     },
     {
-     "id": "hc16",
+     "id": "hc18",
      "section": "C",
      "code": "C2.1.4",
-     "front": "Shaun’s production company?",
-     "back": "Working Title (with StudioCanal and Universal)."
+     "front": "Shaun’s production companies and budget?",
+     "back": "Working Title, StudioCanal and Big Talk, released by Universal; about £4 million."
     },
     {
-     "id": "hc17",
+     "id": "hc19",
      "section": "C",
      "code": "C3.1.1",
      "front": "Fabula and syuzhet?",
      "back": "Story (events in time order) and plot (how the film presents them)."
     },
     {
-     "id": "hc18",
+     "id": "hc20",
      "section": "C",
      "code": "C3.1.2",
      "front": "Todorov’s stages?",
      "back": "Equilibrium, disruption, recognition, repair, new equilibrium."
     },
     {
-     "id": "hc19",
+     "id": "hc21",
      "section": "C",
      "code": "C3.1.3",
      "front": "Lévi-Strauss’s narrative idea?",
      "back": "Binary oppositions structure meaning."
     },
     {
-     "id": "hc20",
+     "id": "hc22",
      "section": "C",
      "code": "C3.1.4",
      "front": "Five of Propp’s character functions?",
      "back": "Hero, villain, donor, helper, princess (also dispatcher, false hero)."
     },
     {
-     "id": "hc21",
+     "id": "hc23",
      "section": "C",
      "code": "C3.1.6",
      "front": "Steve Neale on genre?",
@@ -3388,7 +3405,7 @@ const INLINE_UNITS = {
      "section": "B",
      "code": "B1.1.4",
      "front": "Joker — Institutional context: a mainstream studio film: what is it and why does it matter?",
-     "back": "A Warner Bros./DC comic-book property made as a gritty, R-rated character study on a modest superhero budget.",
+     "back": "A Warner Bros./DC comic-book property made as a gritty, R-rated character study rather than a superhero film.",
      "auto": true
     },
     {
@@ -3700,7 +3717,7 @@ const INLINE_UNITS = {
      "section": "C",
      "code": "C1.1.4",
      "front": "Trainspotting — Cultural and institutional context: what is it and why does it matter?",
-     "back": "Adapted from Irvine Welsh’s novel; funded by Channel 4 Films on about £1.5 million; a Cool Britannia landmark.",
+     "back": "Adapted from Irvine Welsh’s novel; made by Channel 4 Films and Figment Films for about £1.5 million.",
      "auto": true
     },
     {
@@ -3811,8 +3828,8 @@ const INLINE_UNITS = {
      "id": "iC2.1.4",
      "section": "C",
      "code": "C2.1.4",
-     "front": "Shaun of the Dead — Institutional context: Working Title and StudioCanal: what is it and why does it matter?",
-     "back": "A modest-budget British film from Working Title, with Universal distribution, that became a global cult hit.",
+     "front": "Shaun of the Dead — Institutional context: Working Title, StudioCanal and Big Talk: what is it and why does it matter?",
+     "back": "A £4 million British film from Working Title (WT2), StudioCanal and Big Talk, released by Universal.",
      "auto": true
     },
     {
@@ -5542,14 +5559,13 @@ const INLINE_UNITS = {
           "code": "A1.1.4",
           "term": "Institutional context: co-production",
           "definition": "A Spanish–Mexican co-production costing about $19 million that grossed about $83 million worldwide.",
-          "examples": "Premiered at Cannes in 2006; won three Oscars: Cinematography, Art Direction and Makeup.",
+          "examples": "It premiered at Cannes in May 2006 to an ovation of over 20 minutes; it had six Oscar nominations and won three: Cinematography, Art Direction and Makeup.",
           "keyFacts": [
            "Del Toro is Mexican, making a Spanish film: a transnational auteur",
-           "Del Toro reportedly gave up his fee to keep the film going",
-           "Distributed in the US by Picturehouse, reaching a wide non-Spanish audience"
+           "Picturehouse opened it in the US on 29 December 2006, going wide in January 2007",
+           "Huge success for a Spanish-language film with English subtitles"
           ],
-          "examTip": "Global film often means transnational production: say so.",
-          "verify": true
+          "examTip": "Global film often means transnational production: say so."
          },
          {
           "code": "A1.1.5",
@@ -5755,25 +5771,24 @@ const INLINE_UNITS = {
           "definition": "Brazil’s 1960s Cinema Novo made raw films about poverty; City of God updates that tradition with MTV-era style.",
           "examples": "Critic Ivana Bentes called its style a “cosmetics of hunger”, attacking Glauber Rocha’s “aesthetics of hunger” turned glossy.",
           "keyFacts": [
-           "Rocha’s manifesto (1965) called for films as raw as hunger itself",
-           "Critics debated whether the slick style exploits or exposes the favela",
-           "Strong evaluative point for aesthetics questions"
+           "Rocha’s 1965 manifesto “An Aesthetic of Hunger” called for films as raw and political as hunger itself",
+           "Bentes argued City of God reduces violence to “video-clip action”: spectacle for a global audience",
+           "Meirelles answered that the hundreds of debates it provoked proved its social value"
           ],
-          "examTip": "Cite Bentes to evaluate the aesthetic: this impresses examiners.",
-          "verify": true
+          "examTip": "Cite Bentes to evaluate the aesthetic: this impresses examiners."
          },
          {
           "code": "A2.1.4",
           "term": "Institutional context and casting",
-          "definition": "A Brazilian production (O2 Filmes) distributed internationally by Miramax, with four Oscar nominations.",
-          "examples": "Non-professional cast trained in workshops (“Nós do Cinema”) with favela children.",
+          "definition": "Produced by O2 Filmes and VideoFilmes, distributed internationally by Miramax, with four Oscar nominations.",
+          "examples": "About 100 young non-actors from Rio favelas trained for months in workshops; the only experienced film actor was Matheus Nachtergaele (Carrot).",
           "keyFacts": [
-           "Nominations included Best Director and Best Cinematography (2004)",
-           "Put Brazilian cinema on the world map",
-           "Kátia Lund co-directed, especially working with the young cast"
+           "Nominated for Director, Adapted Screenplay, Cinematography and Editing (2004): the first Brazilian film with more than two Oscar nominations",
+           "Meirelles cast non-actors for authenticity and because few Black professional actors were available",
+           "Co-director Kátia Lund was left off the Oscar ballot",
+           "The workshop group, Nós do Cinema, kept training favela residents after filming"
           ],
-          "examTip": "Casting real favela youth is both institutional and performance evidence.",
-          "verify": true
+          "examTip": "Casting real favela youth is both institutional and performance evidence."
          }
         ]
        },
@@ -5824,11 +5839,10 @@ const INLINE_UNITS = {
           "examples": "Leandro Firmino’s terrifying Li’l Zé vs Alexandre Rodrigues’ watchful Rocket.",
           "keyFacts": [
            "Guns and gold chains as gangster iconography",
-           "Shot partly in a different, safer favela for practical reasons",
+           "The real Cidade de Deus was too dangerous during a drug war, so it was shot mainly in the Cidade Alta favela, with local security",
            "Performances feel improvised and authentic"
           ],
-          "examTip": "Performance + casting = authenticity argument.",
-          "verify": true
+          "examTip": "Performance + casting = authenticity argument."
          }
         ]
        },
@@ -5997,28 +6011,26 @@ const INLINE_UNITS = {
          {
           "code": "B1.1.3",
           "term": "Institutional context",
-          "definition": "Directed by Asif Kapadia and produced by James Gay-Rees (On the Corner), with Universal Music and Film4 involvement.",
-          "examples": "It won the Oscar and BAFTA for Best Documentary and became one of the highest-grossing British documentaries.",
+          "definition": "Directed by Asif Kapadia, produced by James Gay-Rees; made with Film4, On the Corner Films and Universal Music.",
+          "examples": "It had the biggest-ever UK opening for a British documentary and became the highest-grossing British documentary, passing Kapadia’s own Senna; it won the Oscar and BAFTA for Best Documentary.",
           "keyFacts": [
-           "Premiered at Cannes in 2015",
+           "Premiered as a midnight screening at Cannes in 2015",
            "Distributed by Altitude in the UK and A24 in the US",
-           "Universal Music owned much of the music, raising questions about independence"
+           "Universal Music, Amy’s record label, first approached Gay-Rees about the film: a question about independence"
           ],
-          "examTip": "Institutional context matters for the debate about who controls the story.",
-          "verify": true
+          "examTip": "Institutional context matters for the debate about who controls the story."
          },
          {
           "code": "B1.1.4",
           "term": "Kapadia’s method (from Senna)",
           "definition": "Kapadia’s Senna (2010) used only archive footage, no talking heads; Amy repeats and refines that method.",
-          "examples": "He recorded around 100 audio interviews, often in darkened rooms to help people speak openly.",
+          "examples": "He conducted over 100 audio-only interviews, sometimes in a darkened sound booth, so people would trust him and speak openly.",
           "keyFacts": [
            "Audio-only interviews keep the screen on Amy",
-           "He trained as a fiction director: he wanted the film to feel like a drama",
-           "Editor Chris King and composer Antonio Pinto also worked on Senna"
+           "Many people close to Amy were reluctant at first; no camera made it easier to talk",
+           "Senna’s editors were Chris King and Gregers Sall (BAFTA for editing), with music by Antonio Pinto; King and Pinto also made Amy"
           ],
-          "examTip": "A clear auteur angle: Kapadia’s archive-only signature.",
-          "verify": true
+          "examTip": "A clear auteur angle: Kapadia’s archive-only signature."
          },
          {
           "code": "B1.1.5",
@@ -6234,14 +6246,13 @@ const INLINE_UNITS = {
           "code": "B2.1.5",
           "term": "Counter-argument: little has changed",
           "definition": "Compilation documentaries existed long before digital, and Amy still uses a classic rise-and-fall narrative.",
-          "examples": "Archive compilation goes back to Soviet filmmaker Esfir Shub in the 1920s.",
+          "examples": "Esfir Shub’s The Fall of the Romanov Dynasty (1927) was built entirely from newsreels and the Romanovs’ own home movies; it is often called the first compilation film.",
           "keyFacts": [
+           "Shub gave archive footage new meaning through montage and intertitles, as Amy does with editing and on-screen text",
            "Selection and editing always shaped documentary “truth”",
-           "The tragic structure is as old as the biopic",
-           "Ethical questions about consent are not new"
+           "The tragic rise-and-fall structure is as old as the biopic"
           ],
-          "examTip": "Needed for a balanced, top-band judgement.",
-          "verify": true
+          "examTip": "Needed for a balanced, top-band judgement."
          }
         ]
        }
@@ -7022,33 +7033,47 @@ const INLINE_UNITS = {
     {
      "id": "ha22",
      "section": "A",
+     "code": "A2.2.4",
+     "front": "Where was City of God mainly filmed, and why?",
+     "back": "The Cidade Alta favela: the real Cidade de Deus was too dangerous during a drug war."
+    },
+    {
+     "id": "ha23",
+     "section": "A",
+     "code": "A2.1.4",
+     "front": "How was City of God’s cast found?",
+     "back": "About 100 favela non-actors trained for months in workshops (Nós do Cinema)."
+    },
+    {
+     "id": "ha24",
+     "section": "A",
      "code": "A2.2.3",
      "front": "Rocket’s line about the favela trap?",
      "back": "“If you run, the beast gets you; if you stay, the beast eats you.”"
     },
     {
-     "id": "ha23",
+     "id": "ha25",
      "section": "A",
      "code": "A2.3.1",
      "front": "Three techniques in the chicken chase?",
      "back": "Handheld camera, rapid editing, a 360° spin back in time."
     },
     {
-     "id": "ha24",
+     "id": "ha26",
      "section": "A",
      "code": "A2.3.2",
      "front": "What does the Story of the Apartment show?",
      "back": "The cycle: the flat stays, the dealers keep dying and being replaced."
     },
     {
-     "id": "ha25",
+     "id": "ha27",
      "section": "A",
      "code": "A2.3.3",
      "front": "Which photo does Rocket choose to publish?",
      "back": "The dead Li’l Zé, not the corrupt police: his career over the truth."
     },
     {
-     "id": "ha26",
+     "id": "ha28",
      "section": "A",
      "code": "A2.2.1",
      "front": "How does City of God’s colour change over time?",
@@ -7085,96 +7110,103 @@ const INLINE_UNITS = {
     {
      "id": "hb5",
      "section": "B",
+     "code": "B1.1.4",
+     "front": "How many interviews did Kapadia record for Amy?",
+     "back": "Over 100, audio only, sometimes in a darkened sound booth."
+    },
+    {
+     "id": "hb6",
+     "section": "B",
      "code": "B1.2.4",
      "front": "Who edited Amy and who composed its score?",
      "back": "Chris King (editor), Antonio Pinto (score)."
     },
     {
-     "id": "hb6",
+     "id": "hb7",
      "section": "B",
      "code": "B1.1.5",
      "front": "Who objected to Amy and why?",
      "back": "Mitch Winehouse: he said it was misleading about him."
     },
     {
-     "id": "hb7",
+     "id": "hb8",
      "section": "B",
      "code": "B1.2.3",
      "front": "What distinctive text appears on screen?",
      "back": "Amy’s handwritten lyrics as she sings."
     },
     {
-     "id": "hb8",
+     "id": "hb9",
      "section": "B",
      "code": "B1.3.3",
      "front": "Where is Amy booed in 2011?",
      "back": "Belgrade, weeks before her death."
     },
     {
-     "id": "hb9",
+     "id": "hb10",
      "section": "B",
      "code": "B1.1.2",
      "front": "When and how did Amy Winehouse die?",
      "back": "July 2011, aged 27, from alcohol poisoning."
     },
     {
-     "id": "hb10",
+     "id": "hb11",
      "section": "B",
      "code": "B2.1.2",
      "front": "Why is Amy a digital-era documentary?",
      "back": "Its footage comes from camcorders, phones and digital press cameras."
     },
     {
-     "id": "hb11",
+     "id": "hb12",
      "section": "B",
      "code": "B2.1.5",
      "front": "Counter-argument in the digital debate?",
      "back": "Compilation documentary and rise-and-fall structure existed long before digital."
     },
     {
-     "id": "hb12",
+     "id": "hb13",
      "section": "B",
      "code": "B3.1.1",
      "front": "Watkins’ key term?",
      "back": "The “monoform”: mainstream media’s fast, fragmented, single-voice style."
     },
     {
-     "id": "hb13",
+     "id": "hb14",
      "section": "B",
      "code": "B3.1.1",
      "front": "Two Peter Watkins films?",
      "back": "Culloden (1964) and The War Game (1965)."
     },
     {
-     "id": "hb14",
+     "id": "hb15",
      "section": "B",
      "code": "B3.1.2",
      "front": "Two Broomfield films?",
      "back": "Kurt and Courtney (1998); Whitney: Can I Be Me (2017)."
     },
     {
-     "id": "hb15",
+     "id": "hb16",
      "section": "B",
      "code": "B3.1.3",
      "front": "Longinotto’s style in one line?",
      "back": "Invisible filmmaker, no voiceover or captions, fiction-like identification, no conclusions."
     },
     {
-     "id": "hb16",
+     "id": "hb17",
      "section": "B",
      "code": "B3.1.4",
      "front": "Two Michael Moore films?",
      "back": "Bowling for Columbine (2002) and Fahrenheit 9/11 (2004)."
     },
     {
-     "id": "hb17",
+     "id": "hb18",
      "section": "B",
      "code": "B4.1.1",
      "front": "Grierson’s definition of documentary?",
      "back": "“The creative treatment of actuality.”"
     },
     {
-     "id": "hb18",
+     "id": "hb19",
      "section": "B",
      "code": "B4.1.2",
      "front": "Nichols’ six documentary modes?",
@@ -7365,7 +7397,7 @@ const INLINE_UNITS = {
      "section": "A",
      "code": "A2.1.4",
      "front": "City of God — Institutional context and casting: what is it and why does it matter?",
-     "back": "A Brazilian production (O2 Filmes) distributed internationally by Miramax, with four Oscar nominations.",
+     "back": "Produced by O2 Filmes and VideoFilmes, distributed internationally by Miramax, with four Oscar nominations.",
      "auto": true
     },
     {
@@ -7485,7 +7517,7 @@ const INLINE_UNITS = {
      "section": "B",
      "code": "B1.1.3",
      "front": "Amy — Institutional context: what is it and why does it matter?",
-     "back": "Directed by Asif Kapadia and produced by James Gay-Rees (On the Corner), with Universal Music and Film4 involvement.",
+     "back": "Directed by Asif Kapadia, produced by James Gay-Rees; made with Film4, On the Corner Films and Universal Music.",
      "auto": true
     },
     {

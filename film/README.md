@@ -25,7 +25,7 @@ Storage keys all start with `film_`, so this site never reads or overwrites the 
 - Sections (path + notes with red/amber/green ratings), Flashcards (spaced repetition), Exam Kit, Questions
   (practice, quiz, timed mock papers, Pure Past Papers, all marked with the five Eduqas bands), Extended writing
   (timed intro + paragraph), Games, Leaderboard, Profile and Search.
-- Notes with a **CHECK THIS** badge came from web research, not your class notes. Check them against your notes.
+- Web-researched notes (Casablanca, Bonnie and Clyde, Amy and some production facts) were checked against online sources in Nov 2026. Add `"verify": true` to any note to show a CHECK THIS badge on it.
 
 ## Edit content
 1. Notes: `data/unit1/{a,b,c}.json`, `data/unit2/{a,b}.json`, `data/shared/k.json`. Keep each `definition` under 120 characters and never use the `<` character.

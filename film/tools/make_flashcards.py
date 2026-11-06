@@ -38,6 +38,8 @@ U1 = [
  ('A','A2.3.2','What do the gang watch in the cinema after the first killing?','“We’re in the Money” from Gold Diggers of 1933: Depression escapism.'),
  ('A','A2.3.3','How is the ending shot and cut?','Multi-camera slow motion mixed with fast cuts, no music, then a sudden cut to black.'),
  ('A','A2.2.4','Who designed Bonnie’s costumes?','Theadora Van Runkle: the beret and midi skirts started a fashion craze.'),
+ ('A','A2.1.4','What deal did Warner give Beatty, and why?','40% of the gross instead of a fee, because the studio had so little faith in the film.'),
+ ('A','A2.1.3','How did Penn link the ending to the 1960s?','TV images of Vietnam shaped it, and Clyde’s wound was meant to evoke the Zapruder film.'),
  ('A','A2.1.4','Which 1948 ruling began the end of the studio system?','The Paramount Decree, which broke up studio ownership of cinemas.'),
  ('A','A2.5.1','Other Arthur Penn films?','The Left Handed Gun (1958), The Miracle Worker (1962), Little Big Man (1970).'),
  # --- auteur theory ---
@@ -81,6 +83,8 @@ U1 = [
  ('C','C1.3.3','Renton’s final promise?','“I’m going to be just like you”: the job, the family, the big television.'),
  ('C','C1.4.3','Who embodies toxic masculinity in Trainspotting?','Begbie (Robert Carlyle).'),
  ('C','C1.3.3','Who does Renton leave money for?','Spud.'),
+ ('C','C1.1.2','What was Edinburgh called by 1986, and why?','The “AIDS capital of Europe”: heroin users sharing needles spread HIV.'),
+ ('C','C1.1.4','Trainspotting’s budget and success?','About £1.5 million; about £48 million worldwide, the biggest British film of 1996.'),
  ('C','C1.1.2','What happens to Tommy?','He starts using after Allison leaves him, contracts HIV and dies.'),
  # --- Shaun ---
  ('C','C2.1.1','Shaun of the Dead: director, year, co-writer?','Edgar Wright, 2004, co-written with Simon Pegg.'),
@@ -90,7 +94,7 @@ U1 = [
  ('C','C2.3.1','What do the two walks to the shop prove?','Routine already made Shaun a zombie: the apocalypse changes nothing.'),
  ('C','C2.3.3','What does the ending montage show?','Zombies used as cheap labour and TV entertainment; Ed in the shed.'),
  ('C','C2.2.4','Very English weapons used in Shaun?','A cricket bat, a spade and vinyl records.'),
- ('C','C2.1.4','Shaun’s production company?','Working Title (with StudioCanal and Universal).'),
+ ('C','C2.1.4','Shaun’s production companies and budget?','Working Title, StudioCanal and Big Talk, released by Universal; about £4 million.'),
  # --- narrative theory ---
  ('C','C3.1.1','Fabula and syuzhet?','Story (events in time order) and plot (how the film presents them).'),
  ('C','C3.1.2','Todorov’s stages?','Equilibrium, disruption, recognition, repair, new equilibrium.'),
@@ -132,6 +136,8 @@ U2 = [
  ('A','A2.1.4','How many Oscar nominations did City of God receive?','Four, including Best Director and Best Cinematography.'),
  ('A','A2.1.3','Bentes’ critique of City of God?','A “cosmetics of hunger”: poverty made slick and glossy.'),
  ('A','A2.1.3','Glauber Rocha’s Cinema Novo manifesto?','“An Aesthetic of Hunger” (1965).'),
+ ('A','A2.2.4','Where was City of God mainly filmed, and why?','The Cidade Alta favela: the real Cidade de Deus was too dangerous during a drug war.'),
+ ('A','A2.1.4','How was City of God’s cast found?','About 100 favela non-actors trained for months in workshops (Nós do Cinema).'),
  ('A','A2.2.3','Rocket’s line about the favela trap?','“If you run, the beast gets you; if you stay, the beast eats you.”'),
  ('A','A2.3.1','Three techniques in the chicken chase?','Handheld camera, rapid editing, a 360° spin back in time.'),
  ('A','A2.3.2','What does the Story of the Apartment show?','The cycle: the flat stays, the dealers keep dying and being replaced.'),
@@ -142,6 +148,7 @@ U2 = [
  ('B','B1.1.3','Amy’s major awards?','Oscar and BAFTA for Best Documentary; also a Grammy for Best Music Film.'),
  ('B','B1.1.4','Kapadia’s earlier archive documentary?','Senna (2010), about the F1 driver Ayrton Senna.'),
  ('B','B1.1.4','How were Amy’s interviews used?','Audio only, laid over archive footage: no talking heads.'),
+ ('B','B1.1.4','How many interviews did Kapadia record for Amy?','Over 100, audio only, sometimes in a darkened sound booth.'),
  ('B','B1.2.4','Who edited Amy and who composed its score?','Chris King (editor), Antonio Pinto (score).'),
  ('B','B1.1.5','Who objected to Amy and why?','Mitch Winehouse: he said it was misleading about him.'),
  ('B','B1.2.3','What distinctive text appears on screen?','Amy’s handwritten lyrics as she sings.'),
