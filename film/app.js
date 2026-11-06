@@ -5348,20 +5348,83 @@ function ttSessionHTML(s, tt, opts = {}) {
   const done = !!tt.checks[s.id];
   const isICT = s.subject === 'ICT';
   const tag = isICT ? '<span class="tt-tag tt-ict">BTEC IT</span>' : '<span class="tt-tag tt-film">FILM</span>';
-  const action = isICT
-    ? `<a class="btn btn-secondary btn-sm" href="${TIMETABLE.ICT_SITE}">Open BTEC IT site ↗</a>`
-    : (s.unit ? `<button class="btn btn-secondary btn-sm" onclick="ttOpen('${s.unit}','${s.letter}')">Open section</button>` : '');
+  let action = '';
+  if (isICT) action = `<a class="btn btn-secondary btn-sm" href="${TIMETABLE.ICT_SITE}">Open BTEC IT site ↗</a>`;
+  else if (s.action === 'question' && s.qId) action = `<button class="btn btn-primary btn-sm" onclick="ttOpenQuestion('${s.unit}','${s.qId}')">Open this essay</button>`;
+  else if (s.action === 'section' && s.unit) action = `<button class="btn btn-secondary btn-sm" onclick="ttOpen('${s.unit}','${s.letter}')">Open section</button>`;
+  else if (s.action === 'flashcards') action = `<button class="btn btn-secondary btn-sm" onclick="ttGo('${s.unit || 'u1'}','flashcards')">Open flashcards</button>`;
+  else if (s.action === 'examkit') action = `<button class="btn btn-secondary btn-sm" onclick="ttGo('${s.unit || 'u1'}','examkit')">Open Exam Kit</button>`;
   const from = s.from ? `<span class="tt-from">catch-up from ${ttDayLabel(s.from)}</span>` : '';
+  const time = opts.catchup ? `${s.minutes} min` : `${s.start}–${s.end}`;
+  const sub = s.scene && s.pass === 1 ? `${escapeHTML(s.task)} · key scenes: ${escapeHTML(s.scene)}` : escapeHTML(s.task);
+  const steps = opts.compact ? '' : `<ol class="tt-steps">${(s.steps || []).map(st => `<li>${escapeHTML(st)}</li>`).join('')}</ol>`;
+  const ict = isICT && !opts.compact ? ttIctStatusHTML() : '';
   return `
     <div class="tt-session ${done ? 'done' : ''} ${isICT ? 'is-ict' : 'is-film'}">
       <input type="checkbox" id="tt-${opts.prefix || ''}${s.id}" ${done ? 'checked' : ''} onchange="ttTick('${s.id}', this.checked)" aria-label="Mark session done">
       <label for="tt-${opts.prefix || ''}${s.id}" class="tt-body">
-        <span class="tt-head">${tag}<span class="tt-mins">${s.minutes} min</span>${from}</span>
+        <span class="tt-head">${tag}<span class="tt-time">${time}</span>${from}</span>
         <span class="tt-title">${escapeHTML(s.title)}</span>
-        <span class="tt-task">${escapeHTML(s.task)}</span>
+        <span class="tt-task">${sub}</span>
       </label>
       ${opts.compact ? '' : `<div class="tt-act">${action}</div>`}
+      ${steps}${ict}
     </div>`;
+}
+
+/* The BTEC IT site keeps its progress under 'rev_state'. On zainsplace.github.io
+   both sites share an origin, so this reads it (never writes it) to put real
+   numbers on the ICT sessions. Anywhere else it simply isn't there. */
+function ttIctStatus() {
+  let raw = null;
+  try { raw = JSON.parse(lsGet('rev_state') || 'null'); } catch { raw = null; }
+  if (!raw || typeof raw !== 'object' || !raw.units || typeof raw.units !== 'object') return null;
+  const t = today();
+  const out = [];
+  [['u1', 'Unit 1'], ['u2', 'Unit 2']].forEach(([id, label]) => {
+    const u = raw.units[id];
+    if (!u || typeof u !== 'object') return;
+    const rag = (u.rag && typeof u.rag === 'object') ? Object.values(u.rag) : [];
+    const due = (u.flashcards && u.flashcards.nextDue && typeof u.flashcards.nextDue === 'object')
+      ? Object.values(u.flashcards.nextDue).filter(d => typeof d === 'string' && d <= t).length : 0;
+    const red = rag.filter(v => v === 'red').length, amber = rag.filter(v => v === 'amber').length;
+    if (rag.length || due) out.push({ label, red, amber, due });
+  });
+  return out.length ? out : null;
+}
+function ttIctStatusHTML() {
+  const st = ttIctStatus();
+  if (!st) return '<p class="tt-ict-status">Rate your topics red, amber or green on the BTEC IT site and your weak spots will show here.</p>';
+  return `<p class="tt-ict-status">On the BTEC IT site: ${st.map(s => `<strong>${s.label}</strong> ${s.red} red, ${s.amber} amber, ${s.due} card${s.due === 1 ? '' : 's'} due`).join(' · ')}. Start with the red topics.</p>`;
+}
+
+/* Essay questions for the timetable, per film section, from the open practice
+   bank (sealed Pure Past Papers stay sealed). */
+function ttBank() {
+  const map = { u1: { A: 'C1A', B: 'C1B', C: 'C1C' }, u2: { A: 'C2A', B: 'C2B' } };
+  const bank = {};
+  Object.keys(map).forEach(u => {
+    const qf = INLINE_UNITS[u] && INLINE_UNITS[u].questions;
+    if (!qf) return;
+    PPP.bankQuestions(qf).forEach(q => {
+      const sec = map[u][q.section];
+      if (sec) (bank[sec] = bank[sec] || []).push({ id: q.id, marks: q.marks, question: q.question.replace(/\s*\(sample paper\)\s*$/, '') });
+    });
+  });
+  return bank;
+}
+
+function ttGo(unit, page) {
+  if (store.activeUnit !== unit) switchUnit(unit);
+  navigate(page);
+}
+
+function ttOpenQuestion(unit, qId) {
+  if (store.activeUnit !== unit) switchUnit(unit);
+  qMode = 'practice'; qFilter = 'all'; qShow = 'all';
+  navigate('questions');
+  const i = practiceList().findIndex(q => q.id === qId);
+  if (i >= 0) practiceGo(i);
 }
 
 function ttOpen(unit, letter) {
@@ -5379,7 +5442,8 @@ function ttTick(id, val) {
 
 function ttSetting(key, val) {
   const tt = ttLoad();
-  tt.settings = TIMETABLE.coerceSettings(Object.assign({}, tt.settings, { [key]: parseInt(val, 10) }));
+  const v = /Start$/.test(key) ? String(val) : parseInt(val, 10);
+  tt.settings = TIMETABLE.coerceSettings(Object.assign({}, tt.settings, { [key]: v }));
   ttSave(tt);
   renderPlan();
 }
@@ -5388,7 +5452,7 @@ function ttTogglePast() { ttShowPast = !ttShowPast; renderPlan(); }
 
 function renderTimetableHTML() {
   const tt = ttLoad();
-  const days = TIMETABLE.build(tt.settings, ttWeakness());
+  const days = TIMETABLE.build(tt.settings, ttWeakness(), ttBank());
   const now = today();
   const todayDay = days.find(d => d.date === now);
   const ictLeft = TIMETABLE.daysUntil(now, TIMETABLE.ICT_EXAM);
@@ -5413,7 +5477,7 @@ function renderTimetableHTML() {
       ${todayDay.note ? `<div class="exam-tip" style="margin-bottom:10px">${escapeHTML(todayDay.note)}</div>` : ''}
       <p class="tt-progress">${doneN} of ${todayDay.sessions.length} done today</p>
       ${todayDay.sessions.map(s => ttSessionHTML(s, tt, { prefix: 't' })).join('')}
-      ${catchUp.length ? `<h4 class="tt-sub">Catch-up (missed earlier)</h4>${catchUp.map(s => ttSessionHTML(s, tt, { prefix: 'c' })).join('')}` : ''}`;
+      ${catchUp.length ? `<h4 class="tt-sub">Catch-up (missed earlier)</h4>${catchUp.map(s => ttSessionHTML(s, tt, { prefix: 'c', catchup: true })).join('')}` : ''}`;
   }
 
   const visible = days.filter(d => ttShowPast || d.date >= now);
@@ -5451,7 +5515,8 @@ function renderTimetableHTML() {
       <p class="ms-note" style="margin-bottom:10px">
         <span class="tt-tag tt-ict">BTEC IT</span> ${c.ICT} sessions ·
         <span class="tt-tag tt-film">FILM</span> ${c.FILM} sessions.
-        ICT gets about 60% until 15 Nov and 75% on 16–17 Nov, then 18 Nov is ICT only. From 20 Nov it is Film only. Film sessions put Casablanca, Bonnie and Clyde and Amy first, then your weakest-rated sections.
+        ICT gets about 60% until 15 Nov (when its sessions are a timed mock paper) and 75% on 16–17 Nov; 18 Nov is ICT final review. From 20 Nov it is Film only.
+        Film learning sessions put Casablanca, Bonnie and Clyde and Amy first and end with an exam paragraph on a key scene; then come timed essays, a different question each time, weakest-rated sections first.
       </p>
       <div class="tt-days">${rows}</div>
     </div>
@@ -5462,8 +5527,10 @@ function renderTimetableHTML() {
         <label>Weekday sessions ${opt('weekday', [1, 2, 3, 4], tt.settings.weekday, '')}</label>
         <label>Weekend sessions ${opt('weekend', [2, 3, 4, 5, 6], tt.settings.weekend, '')}</label>
         <label>Session length ${opt('minutes', [30, 45, 60, 90], tt.settings.minutes, ' min')}</label>
+        <label>Weekday start ${opt('weekdayStart', TIMETABLE.START_TIMES, tt.settings.weekdayStart, '')}</label>
+        <label>Weekend start ${opt('weekendStart', TIMETABLE.START_TIMES, tt.settings.weekendStart, '')}</label>
       </div>
-      <p class="ms-note" style="margin-top:8px">Missed sessions come back as catch-up (up to ${TIMETABLE.MAX_CATCHUP} a day) while their exam is still ahead. Rating topics red or amber in Sections moves those film sections earlier.</p>
+      <p class="ms-note" style="margin-top:8px">There is a ${TIMETABLE.BREAK}-minute break between sessions. Missed sessions come back as catch-up (up to ${TIMETABLE.MAX_CATCHUP} a day) while their exam is still ahead. Rating topics red or amber in Sections moves those film sections earlier.</p>
     </div>`;
 }
 
@@ -5478,7 +5545,7 @@ function renderPlan() {
       <h2>Revision Plan</h2>
       <div class="streak-badge">${currentStreak()}-day streak</div>
     </div>
-    <p style="color:var(--text2);font-size:14px;margin-bottom:16px">Your timetable says whether each session is Film Studies or BTEC IT, all the way to both mocks.</p>
+    <p style="color:var(--text2);font-size:14px;margin-bottom:16px">Target: an A in Film and a Distinction in BTEC IT. Follow today’s sessions in order, do every step, and tick each one off.</p>
     ${renderTimetableHTML()}
     <hr class="divider">
     <h3 style="margin-bottom:6px">Inside a Film session (${escapeHTML(u.label)})</h3>

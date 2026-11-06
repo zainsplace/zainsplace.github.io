@@ -128,3 +128,75 @@ test('countdowns', () => {
   assert.equal(T.daysUntil('2026-11-06', T.ICT_EXAM), 13);
   assert.equal(T.daysUntil('2026-11-06', T.FILM_EXAM), 19);
 });
+
+/* ---- sessions you can follow: times, steps, varied essays ---- */
+const BANK = {
+  C1A: [{ id: 'a1', marks: 40, question: 'A one' }, { id: 'a2', marks: 40, question: 'A two' }, { id: 'a3', marks: 40, question: 'A three' }],
+  C1B: [{ id: 'b1', marks: 40, question: 'B one' }, { id: 'b2', marks: 40, question: 'B two' }, { id: 'b3', marks: 40, question: 'B three' }],
+  C1C: [{ id: 'c1', marks: 40, question: 'C one' }, { id: 'c2', marks: 40, question: 'C two' }, { id: 'c3', marks: 40, question: 'C three' }],
+  C2A: [{ id: 'g1', marks: 40, question: 'G one' }, { id: 'g2', marks: 40, question: 'G two' }, { id: 'g3', marks: 40, question: 'G three' }],
+  C2B: [{ id: 'd1', marks: 20, question: 'D one' }, { id: 'd2', marks: 20, question: 'D two' }, { id: 'd3', marks: 20, question: 'D three' }]
+};
+const withBank = T.build(null, null, BANK);
+
+test('sessions have clock times: weekdays from 16:30, weekends from 10:00, never overlapping', () => {
+  assert.equal(withBank.find(d => d.date === '2026-11-09').sessions[0].start, '16:30');
+  assert.equal(withBank.find(d => d.date === '2026-11-07').sessions[0].start, '10:00');
+  withBank.forEach(d => {
+    for (let i = 1; i < d.sessions.length; i++) {
+      assert.ok(T.toMin(d.sessions[i].start) >= T.toMin(d.sessions[i - 1].end) + T.BREAK, d.date);
+    }
+  });
+  const custom = T.build({ weekdayStart: '18:00', weekendStart: '09:00' });
+  assert.equal(custom.find(d => d.date === '2026-11-09').sessions[0].start, '18:00');
+  assert.equal(custom.find(d => d.date === '2026-11-08').sessions[0].start, '09:00');
+});
+
+test('every session says what to do, step by step', () => {
+  withBank.forEach(d => d.sessions.forEach(s => {
+    assert.ok(Array.isArray(s.steps) && s.steps.length >= 1, s.id);
+    if (!s.light) assert.ok(s.steps.length >= 2, s.id);
+  }));
+});
+
+test('learning sessions end with an exam paragraph on a key scene, rotating through the scenes', () => {
+  const learn = [];
+  withBank.forEach(d => d.sessions.forEach(s => { if (s.pass === 1) learn.push(s); }));
+  learn.forEach(s => assert.match(s.steps[s.steps.length - 1], /exam paragraph on /));
+  const c1a = learn.filter(s => s.sec === 'C1A').map(s => s.scene);
+  assert.equal(new Set(c1a).size, c1a.length);
+});
+
+test('timed essays use a different question each time until the bank runs out', () => {
+  const bySec = {};
+  withBank.forEach(d => d.sessions.forEach(s => { if (s.pass === 2) (bySec[s.sec] = bySec[s.sec] || []).push(s.qId); }));
+  Object.entries(bySec).forEach(([sec, ids]) => {
+    const firstRound = ids.slice(0, BANK[sec].length);
+    assert.equal(new Set(firstRound).size, firstRound.length, sec + ': ' + ids.join(','));
+    assert.ok(ids.every(Boolean), sec);
+  });
+});
+
+test('essay timings fit the session and scale with session length', () => {
+  const sumMin = steps => steps.reduce((n, st) => n + parseInt(st, 10), 0);
+  withBank.forEach(d => d.sessions.forEach(s => {
+    if (s.pass === 2) assert.equal(sumMin(s.steps), s.minutes, s.id);
+  }));
+  const long = T.build({ minutes: 60 }, null, BANK);
+  const essay = long.flatMap(d => d.sessions).find(s => s.pass === 2 && s.marks === 40);
+  assert.match(essay.steps[1], /full essay/);
+});
+
+test('the last weekend’s ICT sessions are one mock paper in parts, and 18 Nov is final review', () => {
+  const sun = withBank.find(d => d.date === '2026-11-15').sessions.filter(s => s.subject === 'ICT');
+  assert.ok(sun.length >= 2);
+  sun.forEach((s, i) => assert.match(s.title, new RegExp('mock paper, part ' + (i + 1))));
+  withBank.find(d => d.date === '2026-11-18').sessions.forEach(s => assert.match(s.title, /Final review/));
+});
+
+test('ICT sessions link to the BTEC IT site; Film sessions open a section, question, flashcards or the Exam Kit', () => {
+  withBank.forEach(d => d.sessions.forEach(s => {
+    if (s.subject === 'ICT') assert.equal(s.link, T.ICT_SITE);
+    else assert.ok(['section', 'question', 'flashcards', 'examkit'].includes(s.action), s.id);
+  }));
+});
