@@ -85,7 +85,7 @@ const INLINE_UNITS = {
           "code": "A1.1.6",
           "term": "The Production Code (Hays Code)",
           "definition": "Hollywood’s self-censorship rules (from 1934): no sympathetic adultery, crime must be punished, sex kept off screen.",
-          "examples": "Rick and Ilsa’s night together is implied by a dissolve to the airport searchlight tower, then Rick smoking at the window.",
+          "examples": "The airport ending: as a married woman, Ilsa must leave with Laszlo, so the Code helps decide the resolution.",
           "keyFacts": [
            "Ilsa is married to Laszlo, so the Code made it almost impossible for her to leave with Rick",
            "The censors objected to Renault trading visas for sex; the dialogue keeps it implied",
@@ -188,7 +188,7 @@ const INLINE_UNITS = {
        },
        {
         "code": "A1.3",
-        "title": "Key scenes",
+        "title": "Key scenes (the three to learn)",
         "items": [
          {
           "code": "A1.3.1",
@@ -204,42 +204,6 @@ const INLINE_UNITS = {
          },
          {
           "code": "A1.3.2",
-          "term": "Rick’s entrance",
-          "definition": "The camera tracks through the café, then reveals Rick by his hand signing a cheque, before tilting up to his face.",
-          "examples": "We see “OK — Rick” written, his chess board, his cigarette, then Bogart’s face: a delayed star reveal.",
-          "keyFacts": [
-           "Delaying the face builds his power: he is the authority everyone talks about before we meet him",
-           "He plays chess alone: calculating, isolated, emotionally closed",
-           "His refusal to drink with customers and to help Ugarte establishes his neutrality"
-          ],
-          "examTip": "Pair with the ending to show his arc: isolated control → selfless commitment."
-         },
-         {
-          "code": "A1.3.3",
-          "term": "“Play it, Sam”: Ilsa returns",
-          "definition": "Ilsa asks Sam to play “As Time Goes By”; Rick storms over, sees her, and a music sting and close-ups freeze the moment.",
-          "examples": "Later that night Rick drinks alone in the dark café and the song triggers a dissolve into the Paris flashback.",
-          "keyFacts": [
-           "Shot/reverse shot of close-ups holds the shock on both faces: the past invades the present",
-           "The song bridges diegetic performance and memory, a classic sound motif",
-           "Rick’s drunk scene shows vulnerability under the tough persona"
-          ],
-          "examTip": "Great for sound and performance questions in one sequence."
-         },
-         {
-          "code": "A1.3.4",
-          "term": "The Paris flashback",
-          "definition": "A bright, high-key montage of Rick and Ilsa in pre-war Paris that ends with Rick abandoned at a rain-soaked station.",
-          "examples": "Ilsa’s goodbye letter gets wet and the ink runs, as if it were crying; the train pulls out with Rick and Sam.",
-          "keyFacts": [
-           "High-key lighting and open spaces contrast with Casablanca’s shadows: lost innocence and freedom",
-           "News of the German advance interrupts their romance: history crushes private happiness",
-           "Flashback is a classical narrative device to give psychological insight into Rick’s cynicism"
-          ],
-          "examTip": "Use lighting contrast (Paris high-key vs Casablanca low-key) as one clean point."
-         },
-         {
-          "code": "A1.3.5",
           "term": "The duel of the anthems",
           "definition": "Nazi officers sing “Die Wacht am Rhein”; Laszlo has the band play “La Marseillaise” and the whole café drowns them out.",
           "examples": "Rick nods to the bandleader: his first public act of commitment. Yvonne, who flirted with a German, sings in tears: “Vive la France!”",
@@ -251,19 +215,7 @@ const INLINE_UNITS = {
           "examTip": "The single best scene for political context + sound + editing in Casablanca."
          },
          {
-          "code": "A1.3.6",
-          "term": "Ilsa at gunpoint and the searchlight dissolve",
-          "definition": "Ilsa points a gun at Rick for the letters, breaks down and confesses her love; a dissolve hides what happens next.",
-          "examples": "Cut to the airport searchlight tower, then Rick at the window smoking: the Code’s way of implying sex.",
-          "keyFacts": [
-           "Ilsa: “You’ll have to think for both of us, for all of us” — she hands her choice to Rick",
-           "The ellipsis is a direct effect of the Production Code",
-           "The searchlight also reminds us they are watched: private love sits inside a police state"
-          ],
-          "examTip": "Use for gender (Ilsa’s lack of agency) and institutional context (the Code)."
-         },
-         {
-          "code": "A1.3.7",
+          "code": "A1.3.3",
           "term": "The airport ending",
           "definition": "In fog, Rick sends Ilsa away with Laszlo, shoots Strasser, and walks off with Renault: love sacrificed for the cause.",
           "examples": "“We’ll always have Paris.” “Here’s looking at you, kid.” Renault: “Round up the usual suspects.” “Louis, I think this is the beginning of a beautiful friendship.”",
@@ -469,7 +421,7 @@ const INLINE_UNITS = {
           "code": "A2.2.1",
           "term": "Cinematography: Burnett Guffey",
           "definition": "Real locations and soft natural light give a sun-faded, nostalgic 1930s look, broken by brutal close-ups.",
-          "examples": "The family picnic is shot hazy and washed out; the ending uses several cameras at different speeds for slow motion.",
+          "examples": "Bonnie’s lips in extreme close-up in the opening; the ending uses several cameras at different speeds for slow motion.",
           "keyFacts": [
            "Guffey won the Oscar for Best Cinematography",
            "Soft light romanticises the couple; harsh close-ups of wounds shatter the romance",
@@ -529,7 +481,7 @@ const INLINE_UNITS = {
        },
        {
         "code": "A2.3",
-        "title": "Key scenes",
+        "title": "Key scenes (the three to learn)",
         "items": [
          {
           "code": "A2.3.1",
@@ -545,30 +497,6 @@ const INLINE_UNITS = {
          },
          {
           "code": "A2.3.2",
-          "term": "The gun and the Coke bottle",
-          "definition": "Clyde shows Bonnie his gun in a low-angle two-shot; she fondles it, dares him, and he robs a store.",
-          "examples": "A Coca-Cola bottle and a gun are framed as obvious sexual symbols as their flirting turns into crime.",
-          "keyFacts": [
-           "Sex and violence are fused from the start: crime is their substitute for sex",
-           "Light comedy tone makes the first crime exciting",
-           "Low angles make Clyde look powerful; later scenes undercut this"
-          ],
-          "examTip": "Use with A2.4.1 on gender and Clyde’s impotence."
-         },
-         {
-          "code": "A2.3.3",
-          "term": "The foreclosed farm: “We rob banks”",
-          "definition": "Clyde lets an evicted farmer and his worker shoot at the bank’s repossession sign on their own farmhouse.",
-          "examples": "“We rob banks.” The gang see themselves as Robin Hoods of the Depression.",
-          "keyFacts": [
-           "Positions the bank, not the outlaws, as the villain of the Depression",
-           "Echoes 1960s anti-establishment feeling",
-           "Wide, bleak shots of the empty farm show the poverty around them"
-          ],
-          "examTip": "Best evidence for how the film reflects social context."
-         },
-         {
-          "code": "A2.3.4",
           "term": "The first killing",
           "definition": "During a robbery a bank employee jumps on the getaway car; Clyde shoots him in the face through the glass.",
           "examples": "A shocking close-up of the bloodied face; afterwards the gang hide in a cinema watching “We’re in the Money” from Gold Diggers of 1933.",
@@ -580,31 +508,7 @@ const INLINE_UNITS = {
           "examTip": "Strong for New Hollywood vs Classical: the film literally shows a 1930s musical inside itself."
          },
          {
-          "code": "A2.3.5",
-          "term": "The family reunion picnic",
-          "definition": "A hazy, desaturated, dreamlike picnic in the sand dunes where Bonnie’s mother warns them to keep running.",
-          "examples": "Filtered, washed-out images and wind make the scene feel like a fading memory or a dream of death.",
-          "keyFacts": [
-           "Soft focus = nostalgia and loss; Bonnie realises she can never go home",
-           "A pause in the action that deepens character before the violent end",
-           "Expressive cinematography rather than classical realism"
-          ],
-          "examTip": "Use for aesthetics and cinematography, and for Bonnie’s psychological insight."
-         },
-         {
-          "code": "A2.3.6",
-          "term": "The ambushes: Buck’s death",
-          "definition": "Police ambushes at night and in the woods leave Buck dying and Blanche blinded; the glamour is gone.",
-          "examples": "Chaotic handheld shots, screaming and blood replace the bluegrass getaways.",
-          "keyFacts": [
-           "Violence now has painful consequences for characters we like",
-           "Blanche’s capture leads to Hamer learning C.W.’s name, setting up the betrayal",
-           "The law appears in faceless, overwhelming numbers"
-          ],
-          "examTip": "Shows the film’s structure: comedy first half, tragedy second half."
-         },
-         {
-          "code": "A2.3.7",
+          "code": "A2.3.3",
           "term": "The ending: the ambush",
           "definition": "Birds scatter, the lovers exchange a look, and a hail of bullets plays in slow motion; then a sudden cut to black.",
           "examples": "Rapid cuts between their faces, then multi-speed slow motion as their bodies jerk under gunfire; no music, no resolution.",
@@ -988,22 +892,10 @@ const INLINE_UNITS = {
        },
        {
         "code": "B1.3",
-        "title": "Key scenes",
+        "title": "Key scenes (the three to learn)",
         "items": [
          {
           "code": "B1.3.1",
-          "term": "Opening: forcing a smile",
-          "definition": "Arthur, in clown make-up, pulls his mouth into a smile with his fingers as a tear runs his mascara.",
-          "examples": "Close-up in a dressing-room mirror; then he is beaten by teenagers in an alley.",
-          "keyFacts": [
-           "Visual thesis: a man forced to perform happiness in a society hurting him",
-           "Immediate sympathy: passive identification from the first image",
-           "The mirror suggests a split self"
-          ],
-          "examTip": "Quick, precise opening example for a sympathy/alignment point."
-         },
-         {
-          "code": "B1.3.2",
           "term": "The subway murders",
           "definition": "Three drunk Wall Street men harass and beat Arthur; he shoots them all.",
           "examples": "Low-key lighting, flickering carriage lights, claustrophobic framing; afterwards the bathroom dance to the cello.",
@@ -1015,19 +907,7 @@ const INLINE_UNITS = {
           "examTip": "Strongest single Joker sequence for both specialist areas."
          },
          {
-          "code": "B1.3.3",
-          "term": "The Sophie reveal",
-          "definition": "Arthur enters Sophie’s flat; she is terrified and doesn’t know him; earlier scenes replay without her in them.",
-          "examples": "Fast cuts back to the date, the hospital and the comedy club, now with Arthur alone.",
-          "keyFacts": [
-           "Unreliable narration exposed: our alignment is destabilised",
-           "Raises the question of whether he harms her (left off-screen)",
-           "Makes the spectator re-read the film actively"
-          ],
-          "examTip": "Pair with Get Out’s twist about Rose for a comparison of narrative reveals."
-         },
-         {
-          "code": "B1.3.4",
+          "code": "B1.3.2",
           "term": "Dancing on the stairs",
           "definition": "Fully transformed, Arthur dances triumphantly down the Bronx steps to a glam-rock anthem.",
           "examples": "Celebratory camera, slow motion and a bright palette contrast with the earlier trudges up the same steps.",
@@ -1039,7 +919,7 @@ const INLINE_UNITS = {
           "examTip": "Ask: does the spectator resist this pleasure? That is active spectatorship."
          },
          {
-          "code": "B1.3.5",
+          "code": "B1.3.3",
           "term": "The Murray Franklin show and the riot",
           "definition": "Arthur confesses live on TV, rants about society abandoning people like him, shoots Murray, and Gotham riots.",
           "examples": "Cross-cutting between the studio and burning streets; rioters lift Arthur onto a car bonnet like a messiah.",
@@ -1060,7 +940,7 @@ const INLINE_UNITS = {
           "code": "B1.4.1",
           "term": "Joker: passive and active spectatorship",
           "definition": "Subjective camera and score invite passive identification; the violence and unreliable narration push active judgement.",
-          "examples": "We feel with Arthur in the subway, then question everything after the Sophie reveal.",
+          "examples": "We feel with Arthur in the subway, then must resist the celebratory stair dance, and split over the Murray Franklin show.",
           "keyFacts": [
            "Passive = absorbed, aligned, swept along; active = questioning, resisting, bringing our own values",
            "Murray Smith: we are ALIGNED with Arthur (we see what he sees) without necessarily feeling ALLEGIANCE",
@@ -1120,7 +1000,7 @@ const INLINE_UNITS = {
           "code": "B2.1.2",
           "term": "Social and political context",
           "definition": "The “post-racial” myth after Obama; police violence and Black Lives Matter; racism hidden behind liberal smiles.",
-          "examples": "The ending’s police car plays on the spectator’s knowledge of real police shootings of Black Americans.",
+          "examples": "The garden-party auction evokes slavery behind liberal smiles; the opening abduction makes white suburbia the threat.",
           "keyFacts": [
            "Written during the Obama years, released weeks after Trump’s inauguration",
            "Fetishisation and commodification of Black bodies echo slavery",
@@ -1211,7 +1091,7 @@ const INLINE_UNITS = {
        },
        {
         "code": "B2.3",
-        "title": "Key scenes",
+        "title": "Key scenes (the three to learn)",
         "items": [
          {
           "code": "B2.3.1",
@@ -1248,30 +1128,6 @@ const INLINE_UNITS = {
            "Guests praise Tiger Woods and Black physique: fetishisation disguised as admiration"
           ],
           "examTip": "The ideological heart of the film."
-         },
-         {
-          "code": "B2.3.4",
-          "term": "Rod: the comic release",
-          "definition": "Chris’s TSA friend Rod phones in comic theories that are actually right, cutting the tension.",
-          "examples": "The police officers laugh at Rod’s “sex slaves” theory, then the film proves him right.",
-          "keyFacts": [
-           "Tension/release rhythm controls spectator dread",
-           "Rod is an audience surrogate: he says “get out!”",
-           "Satirises authorities that do not believe Black people"
-          ],
-          "examTip": "Useful for a shift between immersion (passive) and reflection (active)."
-         },
-         {
-          "code": "B2.3.5",
-          "term": "The ending: the police car",
-          "definition": "Chris kneels over Rose as police lights appear; the audience fears he will be shot or arrested, but it is Rod.",
-          "examples": "Rose reaches out pleading for help; the camera holds on Chris raising his hands.",
-          "keyFacts": [
-           "Exploits the spectator’s real-world knowledge of racist policing",
-           "An earlier, darker ending in which Chris is arrested was replaced after test screenings",
-           "Different audiences experience this moment very differently"
-          ],
-          "examTip": "Best evidence that spectators bring context to the film: active spectatorship."
          }
         ]
        },
@@ -1283,7 +1139,7 @@ const INLINE_UNITS = {
           "code": "B2.4.1",
           "term": "Get Out: passive and active spectatorship",
           "definition": "Restricted POV immerses us in Chris’s fear; clues, irony and real-world knowledge make us actively read the film.",
-          "examples": "Passive in the Sunken Place; active at the auction and the police-car ending.",
+          "examples": "Passive in the Sunken Place; active at the garden-party auction, where we know more than Chris.",
           "keyFacts": [
            "Black and white spectators may be positioned differently: some recognise the microaggressions instantly",
            "bell hooks’ “oppositional gaze”: Black spectators looking back critically",
@@ -1343,7 +1199,7 @@ const INLINE_UNITS = {
           "code": "B3.1.2",
           "term": "Active spectatorship",
           "definition": "The spectator questions, interprets and resists, bringing their own knowledge, values and context.",
-          "examples": "Doubting Arthur after the Sophie reveal; fearing the police car at the end of Get Out.",
+          "examples": "Resisting the celebration of Arthur’s stair dance; reading the dramatic irony of Get Out’s auction.",
           "keyFacts": [
            "David Bordwell: viewers actively build the story from cues (cognitive approach)",
            "Ambiguity, unreliable narrators and irony provoke active viewing",
@@ -1582,7 +1438,7 @@ const INLINE_UNITS = {
        },
        {
         "code": "C1.3",
-        "title": "Key scenes",
+        "title": "Key scenes (the three to learn)",
         "items": [
          {
           "code": "C1.3.1",
@@ -1598,30 +1454,6 @@ const INLINE_UNITS = {
          },
          {
           "code": "C1.3.2",
-          "term": "The worst toilet in Scotland",
-          "definition": "Renton dives into a filthy toilet for his opium suppositories and swims into a clear blue underwater world.",
-          "examples": "Squalor becomes dreamlike: the camera follows him down into calm water and music.",
-          "keyFacts": [
-           "Surreal, subjective sequence as a narrative device",
-           "Shows how addiction reframes degradation as escape",
-           "Boyle’s signature mix of the grotesque and the beautiful"
-          ],
-          "examTip": "Evidence of “stylisation” rather than social realism."
-         },
-         {
-          "code": "C1.3.3",
-          "term": "Baby Dawn’s death",
-          "definition": "Allison’s baby dies of neglect in the flat; the scene is stark and unstylised.",
-          "examples": "Silence, then Allison’s scream; the gang respond by cooking up more heroin.",
-          "keyFacts": [
-           "The film’s moral counterweight to its cool style",
-           "Shows the real cost of addiction on the innocent",
-           "Later the baby hallucination returns crawling on the ceiling during withdrawal"
-          ],
-          "examTip": "Use to evaluate: the film does not simply glamorise drugs."
-         },
-         {
-          "code": "C1.3.4",
           "term": "The overdose: “Perfect Day”",
           "definition": "Renton overdoses and sinks into a red, grave-like carpet, then is dumped outside a hospital.",
           "examples": "Low-angle shot from inside the hole; Lou Reed’s “Perfect Day” plays.",
@@ -1633,19 +1465,7 @@ const INLINE_UNITS = {
           "examTip": "One scene that covers cinematography, sound and narrative."
          },
          {
-          "code": "C1.3.5",
-          "term": "“It’s shite being Scottish”",
-          "definition": "In the Highlands, Renton rants that Scots are “colonised by wankers”, puncturing the romantic image of Scotland.",
-          "examples": "Spoken in a wide shot of green hills: the romantic Scotland image punctured.",
-          "keyFacts": [
-           "Anti-romantic national identity",
-           "Political frustration at powerlessness under Westminster",
-           "Representation of place: rejecting the tourist Highlands"
-          ],
-          "examTip": "Great for representation of place and national identity."
-         },
-         {
-          "code": "C1.3.6",
+          "code": "C1.3.3",
           "term": "The ending: Renton steals the money",
           "definition": "After a London drug deal, Renton takes the cash while his mates sleep and walks off promising to “choose life”.",
           "examples": "“Born Slippy” builds; Renton walks towards camera: “I’m going to be just like you.”",
@@ -1818,7 +1638,7 @@ const INLINE_UNITS = {
        },
        {
         "code": "C2.3",
-        "title": "Key scenes",
+        "title": "Key scenes (the three to learn)",
         "items": [
          {
           "code": "C2.3.1",
@@ -1834,31 +1654,6 @@ const INLINE_UNITS = {
          },
          {
           "code": "C2.3.2",
-          "term": "The pub plan: foreshadowing",
-          "definition": "In the first pub scene a drunk Ed lists tomorrow’s plans, a coded preview of the zombie plot to come.",
-          "examples": "Ed’s day (a “Bloody Mary” first thing, “a bite” at one pub, a stagger back to the Winchester) comes true in zombie form; Shaun’s own plan (“go to the Winchester, have a nice cold pint, and wait for all this to blow over”) becomes a running gag.",
-          "keyFacts": [
-           "Wright’s parodic, self-aware narrative structure",
-           "Rewards active spectators on rewatching",
-           "Postmodern playfulness with narrative"
-          ],
-          "examTip": "Evidence for any narrative structure question.",
-          "verify": true
-         },
-         {
-          "code": "C2.3.3",
-          "term": "Killing Mum",
-          "definition": "Shaun’s bitten mother turns in the Winchester, and Shaun must shoot her.",
-          "examples": "The comedy stops; close-ups and a quiet score hold on Shaun’s grief.",
-          "keyFacts": [
-           "Shaun’s moment of adult responsibility",
-           "Tonal shift shows the film’s emotional core",
-           "Completes his arc away from the man-child"
-          ],
-          "examTip": "Use to show the film is more than parody."
-         },
-         {
-          "code": "C2.3.4",
           "term": "The Winchester siege: “Don’t Stop Me Now”",
           "definition": "Shaun, Liz and Ed beat the zombie landlord with pool cues in time to Queen on the jukebox.",
           "examples": "Choreographed violence synced to the beat; the jukebox flashes.",
@@ -1870,7 +1665,7 @@ const INLINE_UNITS = {
           "examTip": "Aesthetics + narrative in one scene."
          },
          {
-          "code": "C2.3.5",
+          "code": "C2.3.3",
           "term": "The ending news montage",
           "definition": "Six months on, TV shows zombies used as cheap labour and game-show entertainment; zombie Ed lives in the shed.",
           "examples": "Channel-flicking montage of news and chat shows; Shaun plays video games with chained Ed.",
@@ -2133,7 +1928,7 @@ const INLINE_UNITS = {
           "code": "K1.2.1",
           "term": "Setting and props",
           "definition": "Locations and objects place the story and carry symbolic meaning, often as repeated motifs.",
-          "examples": "Vidal’s watch; Casablanca’s letters of transit; Get Out’s teacup.",
+          "examples": "The Pale Man’s feast; Casablanca’s letters of transit; Get Out’s teacup.",
           "keyFacts": [
            "Settings can be naturalistic or expressive",
            "Props can become motifs through patterned repetition",
@@ -2585,14 +2380,14 @@ const INLINE_UNITS = {
     {
      "id": "ha7",
      "section": "A",
-     "code": "A1.3.7",
+     "code": "A1.3.3",
      "front": "Rick’s line that puts the cause above love?",
      "back": "“The problems of three little people don’t amount to a hill of beans in this crazy world.”"
     },
     {
      "id": "ha8",
      "section": "A",
-     "code": "A1.3.7",
+     "code": "A1.3.3",
      "front": "Last line of Casablanca?",
      "back": "“Louis, I think this is the beginning of a beautiful friendship.”"
     },
@@ -2620,14 +2415,14 @@ const INLINE_UNITS = {
     {
      "id": "ha12",
      "section": "A",
-     "code": "A1.3.5",
+     "code": "A1.3.2",
      "front": "What happens in the duel of the anthems?",
      "back": "Laszlo has the band play “La Marseillaise” to drown out Nazis singing “Die Wacht am Rhein”."
     },
     {
      "id": "ha13",
      "section": "A",
-     "code": "A1.3.5",
+     "code": "A1.3.2",
      "front": "Renault’s hypocritical line when closing the café?",
      "back": "“I’m shocked, shocked to find that gambling is going on in here!”"
     },
@@ -2655,138 +2450,124 @@ const INLINE_UNITS = {
     {
      "id": "ha17",
      "section": "A",
-     "code": "A1.3.2",
-     "front": "How is Rick introduced?",
-     "back": "By his hand signing a cheque, then his chess board, then a tilt up to his face."
-    },
-    {
-     "id": "ha18",
-     "section": "A",
      "code": "A1.4.2",
      "front": "Ilsa’s line that gives Rick her choice?",
      "back": "“You’ll have to think for both of us, for all of us.”"
     },
     {
-     "id": "ha19",
+     "id": "ha18",
      "section": "A",
      "code": "A2.1.1",
      "front": "Bonnie and Clyde: director, year, star-producer?",
      "back": "Arthur Penn, 1967; Warren Beatty produced and starred."
     },
     {
-     "id": "ha20",
+     "id": "ha19",
      "section": "A",
      "code": "A2.1.6",
      "front": "Who wrote Bonnie and Clyde and what influenced them?",
      "back": "David Newman and Robert Benton, inspired by the French New Wave (offered to Truffaut and Godard)."
     },
     {
-     "id": "ha21",
+     "id": "ha20",
      "section": "A",
      "code": "A2.2.2",
      "front": "Who edited Bonnie and Clyde?",
      "back": "Dede Allen: elliptical cutting, jump cuts, the slow-motion ending."
     },
     {
-     "id": "ha22",
+     "id": "ha21",
      "section": "A",
      "code": "A2.2.1",
      "front": "Who shot Bonnie and Clyde?",
      "back": "Burnett Guffey, who won the Oscar for Best Cinematography."
     },
     {
-     "id": "ha23",
+     "id": "ha22",
      "section": "A",
      "code": "A2.1.7",
      "front": "Bonnie and Clyde’s two Oscars?",
      "back": "Estelle Parsons (Supporting Actress) and Burnett Guffey (Cinematography)."
     },
     {
-     "id": "ha24",
+     "id": "ha23",
      "section": "A",
      "code": "A2.2.3",
      "front": "What music plays over the getaways?",
      "back": "Flatt and Scruggs’ bluegrass “Foggy Mountain Breakdown”."
     },
     {
-     "id": "ha25",
+     "id": "ha24",
      "section": "A",
      "code": "A2.1.7",
      "front": "Which critic attacked Bonnie and Clyde, and who defended it?",
      "back": "Bosley Crowther (New York Times) attacked it; Pauline Kael defended it."
     },
     {
-     "id": "ha26",
+     "id": "ha25",
      "section": "A",
      "code": "A2.1.5",
      "front": "What replaced the Production Code, and when?",
      "back": "The MPAA age-ratings system, in November 1968."
     },
     {
-     "id": "ha27",
+     "id": "ha26",
      "section": "A",
-     "code": "A2.3.3",
-     "front": "Clyde’s line to the evicted farmer?",
-     "back": "“We rob banks.”"
-    },
-    {
-     "id": "ha28",
-     "section": "A",
-     "code": "A2.3.4",
+     "code": "A2.3.2",
      "front": "What do the gang watch in the cinema after the first killing?",
      "back": "“We’re in the Money” from Gold Diggers of 1933: Depression escapism."
     },
     {
-     "id": "ha29",
+     "id": "ha27",
      "section": "A",
-     "code": "A2.3.7",
+     "code": "A2.3.3",
      "front": "How is the ending shot and cut?",
      "back": "Multi-camera slow motion mixed with fast cuts, no music, then a sudden cut to black."
     },
     {
-     "id": "ha30",
+     "id": "ha28",
      "section": "A",
      "code": "A2.2.4",
      "front": "Who designed Bonnie’s costumes?",
      "back": "Theadora Van Runkle: the beret and midi skirts started a fashion craze."
     },
     {
-     "id": "ha31",
+     "id": "ha29",
      "section": "A",
      "code": "A2.1.4",
      "front": "Which 1948 ruling began the end of the studio system?",
      "back": "The Paramount Decree, which broke up studio ownership of cinemas."
     },
     {
-     "id": "ha32",
+     "id": "ha30",
      "section": "A",
      "code": "A2.5.1",
      "front": "Other Arthur Penn films?",
      "back": "The Left Handed Gun (1958), The Miracle Worker (1962), Little Big Man (1970)."
     },
     {
-     "id": "ha33",
+     "id": "ha31",
      "section": "A",
      "code": "A3.2.1",
      "front": "Who launched la politique des auteurs, where and when?",
      "back": "François Truffaut, Cahiers du Cinéma, 1954 (“A Certain Tendency of French Cinema”)."
     },
     {
-     "id": "ha34",
+     "id": "ha32",
      "section": "A",
      "code": "A3.2.2",
      "front": "Sarris’s three circles?",
      "back": "Technical competence, distinguishable personality (style) and interior meaning."
     },
     {
-     "id": "ha35",
+     "id": "ha33",
      "section": "A",
      "code": "A3.2.3",
      "front": "Kael’s attack on auteur theory?",
      "back": "“Circles and Squares” (1963): filmmaking is collaborative."
     },
     {
-     "id": "ha36",
+     "id": "ha34",
      "section": "A",
      "code": "A3.2.4",
      "front": "Barthes’ challenge to authorship?",
@@ -2830,152 +2611,138 @@ const INLINE_UNITS = {
     {
      "id": "hb6",
      "section": "B",
-     "code": "B1.3.3",
-     "front": "What does the Sophie reveal show?",
-     "back": "Their romance was imagined: an unreliable narrator."
-    },
-    {
-     "id": "hb7",
-     "section": "B",
-     "code": "B1.3.2",
+     "code": "B1.3.1",
      "front": "Who does Arthur kill on the subway?",
      "back": "Three drunk Wall Street men who harass and beat him."
     },
     {
-     "id": "hb8",
+     "id": "hb7",
      "section": "B",
-     "code": "B1.3.5",
+     "code": "B1.3.3",
      "front": "Who plays Murray Franklin, and why does it matter?",
      "back": "Robert De Niro, star of Taxi Driver and The King of Comedy."
     },
     {
-     "id": "hb9",
+     "id": "hb8",
      "section": "B",
      "code": "B1.1.2",
      "front": "Line showing welfare cuts in Joker?",
      "back": "His social worker: “They don’t give a shit about people like you, Arthur.”"
     },
     {
-     "id": "hb10",
+     "id": "hb9",
      "section": "B",
      "code": "B1.4.3",
      "front": "A viewing-conditions fact about Joker?",
      "back": "Fears of copycat violence led to extra security at US screenings."
     },
     {
-     "id": "hb11",
+     "id": "hb10",
      "section": "B",
      "code": "B2.1.1",
      "front": "Get Out: director, year, producer?",
      "back": "Jordan Peele, 2017, Blumhouse (the independent film)."
     },
     {
-     "id": "hb12",
+     "id": "hb11",
      "section": "B",
      "code": "B2.1.3",
      "front": "Get Out’s budget and box office?",
      "back": "About $4.5 million budget; about $255 million worldwide."
     },
     {
-     "id": "hb13",
+     "id": "hb12",
      "section": "B",
      "code": "B2.1.3",
      "front": "Get Out’s Oscar win?",
      "back": "Best Original Screenplay for Jordan Peele."
     },
     {
-     "id": "hb14",
+     "id": "hb13",
      "section": "B",
      "code": "B2.1.1",
      "front": "Dean Armitage’s liberal line?",
      "back": "“I would have voted for Obama a third time if I could.”"
     },
     {
-     "id": "hb15",
+     "id": "hb14",
      "section": "B",
      "code": "B2.3.2",
      "front": "What triggers Chris’s hypnosis?",
      "back": "Missy stirring a spoon in a teacup."
     },
     {
-     "id": "hb16",
+     "id": "hb15",
      "section": "B",
      "code": "B2.3.2",
      "front": "What does the Sunken Place represent?",
      "back": "Black silencing and marginalisation: watching your life, unable to act."
     },
     {
-     "id": "hb17",
+     "id": "hb16",
      "section": "B",
      "code": "B2.3.1",
      "front": "Song in the opening abduction?",
      "back": "“Run Rabbit Run”."
     },
     {
-     "id": "hb18",
+     "id": "hb17",
      "section": "B",
      "code": "B2.2.3",
      "front": "Swahili phrase in the score and its meaning?",
      "back": "“Sikiliza Kwa Wahenga”: listen to (your) ancestors."
     },
     {
-     "id": "hb19",
+     "id": "hb18",
      "section": "B",
      "code": "B2.3.3",
      "front": "What does the bingo auction evoke?",
      "back": "A slave auction: the Black body as commodity."
     },
     {
-     "id": "hb20",
-     "section": "B",
-     "code": "B2.3.5",
-     "front": "Why does the police car at the end matter?",
-     "back": "It plays on the audience’s knowledge of racist policing; it turns out to be Rod."
-    },
-    {
-     "id": "hb21",
+     "id": "hb19",
      "section": "B",
      "code": "B2.2.2",
      "front": "How does Chris free himself in the basement?",
      "back": "Plugging his ears with cotton from the chair: “picking cotton” to escape."
     },
     {
-     "id": "hb22",
+     "id": "hb20",
      "section": "B",
      "code": "B3.1.3",
      "front": "Hall’s four readings?",
      "back": "Preferred, negotiated, oppositional and aberrant."
     },
     {
-     "id": "hb23",
+     "id": "hb21",
      "section": "B",
      "code": "B3.1.4",
      "front": "Murray Smith’s structure of sympathy?",
      "back": "Recognition, alignment and allegiance."
     },
     {
-     "id": "hb24",
+     "id": "hb22",
      "section": "B",
      "code": "B3.1.5",
      "front": "Mulvey’s essay and year?",
      "back": "“Visual Pleasure and Narrative Cinema” (1975): the male gaze."
     },
     {
-     "id": "hb25",
+     "id": "hb23",
      "section": "B",
      "code": "B3.1.6",
      "front": "bell hooks’ concept?",
      "back": "The oppositional gaze: Black spectators looking back critically."
     },
     {
-     "id": "hb26",
+     "id": "hb24",
      "section": "B",
      "code": "B3.1.7",
      "front": "The six spectator cues in the spec?",
      "back": "Narrative, visual, musical, performance, genre and auteur cues."
     },
     {
-     "id": "hb27",
+     "id": "hb25",
      "section": "B",
      "code": "B3.2.2",
      "front": "Gramsci’s hegemony in one line?",
@@ -3012,124 +2779,117 @@ const INLINE_UNITS = {
     {
      "id": "hc5",
      "section": "C",
-     "code": "C1.3.6",
+     "code": "C1.3.3",
      "front": "Renton’s final promise?",
      "back": "“I’m going to be just like you”: the job, the family, the big television."
     },
     {
      "id": "hc6",
      "section": "C",
-     "code": "C1.3.5",
-     "front": "Renton’s Highlands rant?",
-     "back": "“It’s shite being Scottish!”"
-    },
-    {
-     "id": "hc7",
-     "section": "C",
      "code": "C1.4.3",
      "front": "Who embodies toxic masculinity in Trainspotting?",
      "back": "Begbie (Robert Carlyle)."
     },
     {
-     "id": "hc8",
+     "id": "hc7",
      "section": "C",
-     "code": "C1.3.6",
+     "code": "C1.3.3",
      "front": "Who does Renton leave money for?",
      "back": "Spud."
     },
     {
-     "id": "hc9",
+     "id": "hc8",
      "section": "C",
      "code": "C1.1.2",
      "front": "What happens to Tommy?",
      "back": "He starts using after Allison leaves him, contracts HIV and dies."
     },
     {
-     "id": "hc10",
+     "id": "hc9",
      "section": "C",
      "code": "C2.1.1",
      "front": "Shaun of the Dead: director, year, co-writer?",
      "back": "Edgar Wright, 2004, co-written with Simon Pegg."
     },
     {
-     "id": "hc11",
+     "id": "hc10",
      "section": "C",
      "code": "C2.1.3",
      "front": "Which TV sitcom did Shaun grow out of?",
      "back": "Spaced (Channel 4)."
     },
     {
-     "id": "hc12",
+     "id": "hc11",
      "section": "C",
      "code": "C2.1.3",
      "front": "Whose films does Shaun pay homage to?",
      "back": "George A. Romero’s, especially Dawn of the Dead (1978)."
     },
     {
-     "id": "hc13",
+     "id": "hc12",
      "section": "C",
-     "code": "C2.3.4",
+     "code": "C2.3.2",
      "front": "Song during the Winchester fight?",
      "back": "Queen’s “Don’t Stop Me Now”, on the jukebox."
     },
     {
-     "id": "hc14",
+     "id": "hc13",
      "section": "C",
      "code": "C2.3.1",
      "front": "What do the two walks to the shop prove?",
      "back": "Routine already made Shaun a zombie: the apocalypse changes nothing."
     },
     {
-     "id": "hc15",
+     "id": "hc14",
      "section": "C",
-     "code": "C2.3.5",
+     "code": "C2.3.3",
      "front": "What does the ending montage show?",
      "back": "Zombies used as cheap labour and TV entertainment; Ed in the shed."
     },
     {
-     "id": "hc16",
+     "id": "hc15",
      "section": "C",
      "code": "C2.2.4",
      "front": "Very English weapons used in Shaun?",
      "back": "A cricket bat, a spade and vinyl records."
     },
     {
-     "id": "hc17",
+     "id": "hc16",
      "section": "C",
      "code": "C2.1.4",
      "front": "Shaun’s production company?",
      "back": "Working Title (with StudioCanal and Universal)."
     },
     {
-     "id": "hc18",
+     "id": "hc17",
      "section": "C",
      "code": "C3.1.1",
      "front": "Fabula and syuzhet?",
      "back": "Story (events in time order) and plot (how the film presents them)."
     },
     {
-     "id": "hc19",
+     "id": "hc18",
      "section": "C",
      "code": "C3.1.2",
      "front": "Todorov’s stages?",
      "back": "Equilibrium, disruption, recognition, repair, new equilibrium."
     },
     {
-     "id": "hc20",
+     "id": "hc19",
      "section": "C",
      "code": "C3.1.3",
      "front": "Lévi-Strauss’s narrative idea?",
      "back": "Binary oppositions structure meaning."
     },
     {
-     "id": "hc21",
+     "id": "hc20",
      "section": "C",
      "code": "C3.1.4",
      "front": "Five of Propp’s character functions?",
      "back": "Hero, villain, donor, helper, princess (also dispatcher, false hero)."
     },
     {
-     "id": "hc22",
+     "id": "hc21",
      "section": "C",
      "code": "C3.1.6",
      "front": "Steve Neale on genre?",
@@ -3307,46 +3067,14 @@ const INLINE_UNITS = {
      "id": "iA1.3.2",
      "section": "A",
      "code": "A1.3.2",
-     "front": "Casablanca — Rick’s entrance: what is it and why does it matter?",
-     "back": "The camera tracks through the café, then reveals Rick by his hand signing a cheque, before tilting up to his face.",
+     "front": "Casablanca — The duel of the anthems: what is it and why does it matter?",
+     "back": "Nazi officers sing “Die Wacht am Rhein”; Laszlo has the band play “La Marseillaise” and the whole café drowns them out.",
      "auto": true
     },
     {
      "id": "iA1.3.3",
      "section": "A",
      "code": "A1.3.3",
-     "front": "Casablanca — “Play it, Sam”: Ilsa returns: what is it and why does it matter?",
-     "back": "Ilsa asks Sam to play “As Time Goes By”; Rick storms over, sees her, and a music sting and close-ups freeze the moment.",
-     "auto": true
-    },
-    {
-     "id": "iA1.3.4",
-     "section": "A",
-     "code": "A1.3.4",
-     "front": "Casablanca — The Paris flashback: what is it and why does it matter?",
-     "back": "A bright, high-key montage of Rick and Ilsa in pre-war Paris that ends with Rick abandoned at a rain-soaked station.",
-     "auto": true
-    },
-    {
-     "id": "iA1.3.5",
-     "section": "A",
-     "code": "A1.3.5",
-     "front": "Casablanca — The duel of the anthems: what is it and why does it matter?",
-     "back": "Nazi officers sing “Die Wacht am Rhein”; Laszlo has the band play “La Marseillaise” and the whole café drowns them out.",
-     "auto": true
-    },
-    {
-     "id": "iA1.3.6",
-     "section": "A",
-     "code": "A1.3.6",
-     "front": "Casablanca — Ilsa at gunpoint and the searchlight dissolve: what is it and why does it matter?",
-     "back": "Ilsa points a gun at Rick for the letters, breaks down and confesses her love; a dissolve hides what happens next.",
-     "auto": true
-    },
-    {
-     "id": "iA1.3.7",
-     "section": "A",
-     "code": "A1.3.7",
      "front": "Casablanca — The airport ending: what is it and why does it matter?",
      "back": "In fog, Rick sends Ilsa away with Laszlo, shoots Strasser, and walks off with Renault: love sacrificed for the cause.",
      "auto": true
@@ -3507,46 +3235,14 @@ const INLINE_UNITS = {
      "id": "iA2.3.2",
      "section": "A",
      "code": "A2.3.2",
-     "front": "Bonnie and Clyde — The gun and the Coke bottle: what is it and why does it matter?",
-     "back": "Clyde shows Bonnie his gun in a low-angle two-shot; she fondles it, dares him, and he robs a store.",
+     "front": "Bonnie and Clyde — The first killing: what is it and why does it matter?",
+     "back": "During a robbery a bank employee jumps on the getaway car; Clyde shoots him in the face through the glass.",
      "auto": true
     },
     {
      "id": "iA2.3.3",
      "section": "A",
      "code": "A2.3.3",
-     "front": "Bonnie and Clyde — The foreclosed farm: “We rob banks”: what is it and why does it matter?",
-     "back": "Clyde lets an evicted farmer and his worker shoot at the bank’s repossession sign on their own farmhouse.",
-     "auto": true
-    },
-    {
-     "id": "iA2.3.4",
-     "section": "A",
-     "code": "A2.3.4",
-     "front": "Bonnie and Clyde — The first killing: what is it and why does it matter?",
-     "back": "During a robbery a bank employee jumps on the getaway car; Clyde shoots him in the face through the glass.",
-     "auto": true
-    },
-    {
-     "id": "iA2.3.5",
-     "section": "A",
-     "code": "A2.3.5",
-     "front": "Bonnie and Clyde — The family reunion picnic: what is it and why does it matter?",
-     "back": "A hazy, desaturated, dreamlike picnic in the sand dunes where Bonnie’s mother warns them to keep running.",
-     "auto": true
-    },
-    {
-     "id": "iA2.3.6",
-     "section": "A",
-     "code": "A2.3.6",
-     "front": "Bonnie and Clyde — The ambushes: Buck’s death: what is it and why does it matter?",
-     "back": "Police ambushes at night and in the woods leave Buck dying and Blanche blinded; the glamour is gone.",
-     "auto": true
-    },
-    {
-     "id": "iA2.3.7",
-     "section": "A",
-     "code": "A2.3.7",
      "front": "Bonnie and Clyde — The ending: the ambush: what is it and why does it matter?",
      "back": "Birds scatter, the lovers exchange a look, and a hail of bullets plays in slow motion; then a sudden cut to black.",
      "auto": true
@@ -3739,38 +3435,22 @@ const INLINE_UNITS = {
      "id": "iB1.3.1",
      "section": "B",
      "code": "B1.3.1",
-     "front": "Joker — Opening: forcing a smile: what is it and why does it matter?",
-     "back": "Arthur, in clown make-up, pulls his mouth into a smile with his fingers as a tear runs his mascara.",
+     "front": "Joker — The subway murders: what is it and why does it matter?",
+     "back": "Three drunk Wall Street men harass and beat Arthur; he shoots them all.",
      "auto": true
     },
     {
      "id": "iB1.3.2",
      "section": "B",
      "code": "B1.3.2",
-     "front": "Joker — The subway murders: what is it and why does it matter?",
-     "back": "Three drunk Wall Street men harass and beat Arthur; he shoots them all.",
+     "front": "Joker — Dancing on the stairs: what is it and why does it matter?",
+     "back": "Fully transformed, Arthur dances triumphantly down the Bronx steps to a glam-rock anthem.",
      "auto": true
     },
     {
      "id": "iB1.3.3",
      "section": "B",
      "code": "B1.3.3",
-     "front": "Joker — The Sophie reveal: what is it and why does it matter?",
-     "back": "Arthur enters Sophie’s flat; she is terrified and doesn’t know him; earlier scenes replay without her in them.",
-     "auto": true
-    },
-    {
-     "id": "iB1.3.4",
-     "section": "B",
-     "code": "B1.3.4",
-     "front": "Joker — Dancing on the stairs: what is it and why does it matter?",
-     "back": "Fully transformed, Arthur dances triumphantly down the Bronx steps to a glam-rock anthem.",
-     "auto": true
-    },
-    {
-     "id": "iB1.3.5",
-     "section": "B",
-     "code": "B1.3.5",
      "front": "Joker — The Murray Franklin show and the riot: what is it and why does it matter?",
      "back": "Arthur confesses live on TV, rants about society abandoning people like him, shoots Murray, and Gotham riots.",
      "auto": true
@@ -3885,22 +3565,6 @@ const INLINE_UNITS = {
      "code": "B2.3.3",
      "front": "Get Out — The garden party and silent auction: what is it and why does it matter?",
      "back": "White guests inspect Chris’s body; later they bid silently with bingo cards while Dean stands by his portrait.",
-     "auto": true
-    },
-    {
-     "id": "iB2.3.4",
-     "section": "B",
-     "code": "B2.3.4",
-     "front": "Get Out — Rod: the comic release: what is it and why does it matter?",
-     "back": "Chris’s TSA friend Rod phones in comic theories that are actually right, cutting the tension.",
-     "auto": true
-    },
-    {
-     "id": "iB2.3.5",
-     "section": "B",
-     "code": "B2.3.5",
-     "front": "Get Out — The ending: the police car: what is it and why does it matter?",
-     "back": "Chris kneels over Rose as police lights appear; the audience fears he will be shot or arrested, but it is Rod.",
      "auto": true
     },
     {
@@ -4083,38 +3747,14 @@ const INLINE_UNITS = {
      "id": "iC1.3.2",
      "section": "C",
      "code": "C1.3.2",
-     "front": "Trainspotting — The worst toilet in Scotland: what is it and why does it matter?",
-     "back": "Renton dives into a filthy toilet for his opium suppositories and swims into a clear blue underwater world.",
+     "front": "Trainspotting — The overdose: “Perfect Day”: what is it and why does it matter?",
+     "back": "Renton overdoses and sinks into a red, grave-like carpet, then is dumped outside a hospital.",
      "auto": true
     },
     {
      "id": "iC1.3.3",
      "section": "C",
      "code": "C1.3.3",
-     "front": "Trainspotting — Baby Dawn’s death: what is it and why does it matter?",
-     "back": "Allison’s baby dies of neglect in the flat; the scene is stark and unstylised.",
-     "auto": true
-    },
-    {
-     "id": "iC1.3.4",
-     "section": "C",
-     "code": "C1.3.4",
-     "front": "Trainspotting — The overdose: “Perfect Day”: what is it and why does it matter?",
-     "back": "Renton overdoses and sinks into a red, grave-like carpet, then is dumped outside a hospital.",
-     "auto": true
-    },
-    {
-     "id": "iC1.3.5",
-     "section": "C",
-     "code": "C1.3.5",
-     "front": "Trainspotting — “It’s shite being Scottish”: what is it and why does it matter?",
-     "back": "In the Highlands, Renton rants that Scots are “colonised by wankers”, puncturing the romantic image of Scotland.",
-     "auto": true
-    },
-    {
-     "id": "iC1.3.6",
-     "section": "C",
-     "code": "C1.3.6",
      "front": "Trainspotting — The ending: Renton steals the money: what is it and why does it matter?",
      "back": "After a London drug deal, Renton takes the cash while his mates sleep and walks off promising to “choose life”.",
      "auto": true
@@ -4219,30 +3859,14 @@ const INLINE_UNITS = {
      "id": "iC2.3.2",
      "section": "C",
      "code": "C2.3.2",
-     "front": "Shaun of the Dead — The pub plan: foreshadowing: what is it and why does it matter?",
-     "back": "In the first pub scene a drunk Ed lists tomorrow’s plans, a coded preview of the zombie plot to come.",
+     "front": "Shaun of the Dead — The Winchester siege: “Don’t Stop Me Now”: what is it and why does it matter?",
+     "back": "Shaun, Liz and Ed beat the zombie landlord with pool cues in time to Queen on the jukebox.",
      "auto": true
     },
     {
      "id": "iC2.3.3",
      "section": "C",
      "code": "C2.3.3",
-     "front": "Shaun of the Dead — Killing Mum: what is it and why does it matter?",
-     "back": "Shaun’s bitten mother turns in the Winchester, and Shaun must shoot her.",
-     "auto": true
-    },
-    {
-     "id": "iC2.3.4",
-     "section": "C",
-     "code": "C2.3.4",
-     "front": "Shaun of the Dead — The Winchester siege: “Don’t Stop Me Now”: what is it and why does it matter?",
-     "back": "Shaun, Liz and Ed beat the zombie landlord with pool cues in time to Queen on the jukebox.",
-     "auto": true
-    },
-    {
-     "id": "iC2.3.5",
-     "section": "C",
-     "code": "C2.3.5",
      "front": "Shaun of the Dead — The ending news montage: what is it and why does it matter?",
      "back": "Six months on, TV shows zombies used as cheap labour and game-show entertainment; zombie Ed lives in the shed.",
      "auto": true
@@ -4782,7 +4406,7 @@ const INLINE_UNITS = {
       "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
       "focus": "Auteur signatures (stylistic and thematic) in both films, and how far each film reflects them; the tension between a single auteur and collaboration.",
       "indicative": [
-       "Curtiz’s stylistic signature: crane and tracking shots, expressive shadows, dense foregrounds (Rick’s entrance, the market crane)",
+       "Curtiz’s stylistic signature: crane and tracking shots, expressive shadows, dense foregrounds (the opening crane into the market, the fog-wrapped airport ending)",
        "Curtiz’s weak thematic signature: a versatile studio workhorse; Schatz’s “genius of the system” (Wallis, the Epsteins, Steiner, Edeson, Bogart)",
        "Penn’s thematic signature: sympathetic outsiders destroyed by a violent society (The Left Handed Gun, Little Big Man)",
        "Collaborators on Bonnie and Clyde: Beatty as producer-star, Dede Allen’s editing, Benton and Newman’s New Wave script",
@@ -4790,7 +4414,7 @@ const INLINE_UNITS = {
        "Band 5: constraints on the auteur (studio, Production Code, star persona vs director)"
       ]
      },
-     "modelAnswer": "Thesis: Bonnie and Clyde reflects its director’s signature far more than Casablanca, because Penn worked as the studio system collapsed while Curtiz worked inside it.\n\nP1 Style: Curtiz’s crane into the market and the delayed reveal of Rick show a fluid-camera signature, whereas Penn’s signature lies in performance and sudden violence (the clerk shot through the glass).\n\nP2 Themes: Penn returns to outsiders destroyed by society; Curtiz moved across genres, so Casablanca’s commitment theme comes from Wallis, the writers and wartime policy as much as from him.\n\nP3 Collaboration: Casablanca as Schatz’s “genius of the system”; Bonnie and Clyde shaped by Beatty and Dede Allen, so even New Hollywood auteurism was collaborative.\n\nConclusion: to a large extent for Penn, to a limited extent for Curtiz; the auteur approach is more useful for New Hollywood than for the studio era."
+     "modelAnswer": "Thesis: Bonnie and Clyde reflects its director’s signature far more than Casablanca, because Penn worked as the studio system collapsed while Curtiz worked inside it.\n\nP1 Style: Curtiz’s crane down into the market in the opening and the hard-backlit fog of the airport ending show a fluid, expressive signature, whereas Penn’s signature lies in performance and sudden violence (the clerk shot through the glass).\n\nP2 Themes: Penn returns to outsiders destroyed by society; Curtiz moved across genres, so Casablanca’s commitment theme comes from Wallis, the writers and wartime policy as much as from him.\n\nP3 Collaboration: Casablanca as Schatz’s “genius of the system”; Bonnie and Clyde shaped by Beatty and Dede Allen, so even New Hollywood auteurism was collaborative.\n\nConclusion: to a large extent for Penn, to a limited extent for Curtiz; the auteur approach is more useful for New Hollywood than for the studio era."
     },
     {
      "id": "a-production",
@@ -4814,14 +4438,14 @@ const INLINE_UNITS = {
       "focus": "How the studio system (1942) and its collapse (1967) shaped each film’s style, content and meaning.",
       "indicative": [
        "Warner Bros. vertical integration: contract stars, director, composer; studio sets and fog at the airport",
-       "Production Code shaping Casablanca’s narrative resolution (Ilsa cannot leave her husband) and the searchlight dissolve",
+       "Production Code shaping Casablanca’s narrative resolution (Ilsa cannot leave her husband, so the airport ending sends her away with Laszlo)",
        "1948 Paramount ruling, TV, and Beatty as independent producer; Warner–Seven Arts as reluctant distributor",
        "Collapse of the Code: graphic violence and sexuality in Bonnie and Clyde; ratings in 1968",
        "Location shooting and New Wave influence vs studio-built exoticism",
        "Judgement: both films are products of their institution, but Bonnie and Clyde ALSO helped change its context"
       ]
      },
-     "modelAnswer": "Thesis: both films reflect their production contexts to a significant extent, but Casablanca is shaped BY its institution, while Bonnie and Clyde helps reshape its own.\n\nP1 Studio system vs independent producing (Wallis assigning the team vs Beatty buying the script).\n\nP2 Censorship: the dissolve to the searchlight vs the clerk’s bloodied face.\n\nP3 Technology and place: studio fog and Edeson’s chiaroscuro vs Guffey’s location light and slow-motion multi-camera ending.\n\nConclusion: to a large extent for both; the endings are the clearest proof."
+     "modelAnswer": "Thesis: both films reflect their production contexts to a significant extent, but Casablanca is shaped BY its institution, while Bonnie and Clyde helps reshape its own.\n\nP1 Studio system vs independent producing (Wallis assigning the team vs Beatty buying the script).\n\nP2 Censorship: Ilsa sent away with her husband at the airport vs the clerk’s bloodied face.\n\nP3 Technology and place: studio fog and Edeson’s chiaroscuro vs Guffey’s location light and slow-motion multi-camera ending.\n\nConclusion: to a large extent for both; the endings are the clearest proof."
     },
     {
      "id": "a-social",
@@ -4852,7 +4476,7 @@ const INLINE_UNITS = {
        "Judgement on how far context explains meaning versus genre or authorship"
       ]
      },
-     "modelAnswer": "Thesis: both films reflect their contexts closely, but Casablanca speaks about its present directly while Bonnie and Clyde uses the past as an allegory for the present.\n\nP1 War vs counterculture through the heroes’ final choices.\n\nP2 The anthem duel vs the foreclosed farm.\n\nP3 Violence: Strasser’s clean death vs the bullet-ridden ending.\n\nConclusion: to a large extent; context shapes each film’s idea of heroism."
+     "modelAnswer": "Thesis: both films reflect their contexts closely, but Casablanca speaks about its present directly while Bonnie and Clyde uses the past as an allegory for the present.\n\nP1 War vs counterculture through the heroes’ final choices.\n\nP2 The anthem duel vs Bonnie trapped behind the bed-rail “bars” in the opening.\n\nP3 Violence: Strasser’s clean death vs the bullet-ridden ending.\n\nConclusion: to a large extent; context shapes each film’s idea of heroism."
     },
     {
      "id": "a-collab",
@@ -4939,14 +4563,14 @@ const INLINE_UNITS = {
       "focus": "Passive identification and active questioning in both films, through specific sequences and techniques.",
       "indicative": [
        "Definitions: passive (absorbed, aligned) vs active (questioning, resisting, bringing context)",
-       "Joker: subway murders (subjective camera, cello) → guilty identification; Sophie reveal → active doubt",
-       "Get Out: Sunken Place (subjective camera, muffled sound) → immersion; auction and police-car ending → active reading",
+       "Joker: subway murders (subjective camera, cello) → guilty identification; Murray Franklin show → active judgement as spectators split",
+       "Get Out: Sunken Place (subjective camera, muffled sound) → immersion; garden-party auction (dramatic irony) → active reading",
        "Murray Smith: alignment vs allegiance; Hall’s readings; hooks’ oppositional gaze",
        "Viewing conditions and different spectators (Black and white audiences; fans vs critics)",
        "Judgement on “constant”: is the shift constant, or concentrated at key moments?"
       ]
      },
-     "modelAnswer": "Thesis: both films shift the spectator between passive and active positions to a significant extent, though Joker does so to unsettle sympathy and Get Out to sharpen suspicion.\n\nP1 Joker’s subway sequence (low-key lighting, claustrophobic framing, cello): passive alignment, then active horror.\n\nP2 The Sophie reveal: editing replays scenes without her, forcing active re-reading.\n\nP3 Get Out’s Sunken Place: restricted POV, falling motion, muffled sound = passive immersion; the teacup motif rewards active viewers.\n\nP4 The police-car ending relies on spectators’ real-world knowledge: active spectatorship.\n\nConclusion: constant to a large extent; the shifts ARE each film’s meaning."
+     "modelAnswer": "Thesis: both films shift the spectator between passive and active positions to a significant extent, though Joker does so to unsettle sympathy and Get Out to sharpen suspicion.\n\nP1 Joker’s subway sequence (low-key lighting, claustrophobic framing, cello): passive alignment, then active horror.\n\nP2 The stair dance: slow motion and music celebrate Arthur, so the spectator must actively resist siding with a murderer.\n\nP3 Get Out’s Sunken Place: restricted POV, falling motion, muffled sound = passive immersion; the teacup motif rewards active viewers.\n\nP4 The garden-party auction: intercutting gives the spectator knowledge Chris lacks, so dramatic irony makes viewing active.\n\nConclusion: constant to a large extent; the shifts ARE each film’s meaning."
     },
     {
      "id": "b-cues",
@@ -4978,7 +4602,7 @@ const INLINE_UNITS = {
        "Judgement on importance compared with other factors"
       ]
      },
-     "modelAnswer": "Thesis: visual and soundtrack cues are central in both films, but their effect depends on what the spectator brings.\n\nP1 Joker’s stair dance: palette, slow motion and music. P2 The cello after the subway. P3 Get Out’s teacup and Sunken Place. P4 The police lights at the end.\n\nConclusion: important to a significant extent, but not alone."
+     "modelAnswer": "Thesis: visual and soundtrack cues are central in both films, but their effect depends on what the spectator brings.\n\nP1 Joker’s stair dance: palette, slow motion and music. P2 The cello after the subway. P3 Get Out’s teacup and Sunken Place. P4 “Run Rabbit Run” over the opening abduction.\n\nConclusion: important to a significant extent, but not alone."
     },
     {
      "id": "b-ideology",
@@ -5167,7 +4791,7 @@ const INLINE_UNITS = {
        "Judgement"
       ]
      },
-     "modelAnswer": "Thesis: very useful for both, as masculinity in crisis is central to each film’s critique of British society.\n\nP1 Begbie’s pub brawl. P2 Shaun’s mum. P3 Women. P4 Limits.\n\nConclusion."
+     "modelAnswer": "Thesis: very useful for both, as masculinity in crisis is central to each film’s critique of British society.\n\nP1 Renton’s betrayal in the ending. P2 Shaun leading the group in the Winchester siege. P3 Women. P4 Limits.\n\nConclusion."
     },
     {
      "id": "c-devices",
@@ -5188,10 +4812,10 @@ const INLINE_UNITS = {
      "markScheme": {
       "type": "levels",
       "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
-      "focus": "Voiceover, repetition, foreshadowing and structure as carriers of ideology.",
+      "focus": "Voiceover, repetition and structure as carriers of ideology.",
       "indicative": [
        "Renton’s unreliable voiceover and bookending",
-       "Shaun’s foreshadowing and mirrored walks",
+       "Shaun’s mirrored walks (repetition as patterning)",
        "Episodic vs linear three-act structures",
        "Genre parody as narrative device",
        "Todorov’s new equilibria",
@@ -5221,7 +4845,7 @@ const INLINE_UNITS = {
       "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
       "focus": "Critique of Thatcherite and consumer Britain in both films; evaluation of the approach.",
       "indicative": [
-       "Trainspotting: “Choose Life”, Tommy’s HIV, “It’s shite being Scottish”",
+       "Trainspotting: “Choose Life”, Tommy’s HIV, the ending’s “just like you”",
        "Shaun: dead-end jobs, suburban routine, the pub as identity",
        "Representation of place: Edinburgh and suburban London",
        "Comedy and style as vehicles of critique",
@@ -5283,14 +4907,14 @@ const INLINE_UNITS = {
       "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
       "focus": "Genre cues (horror, comic-book, character study) and how they position the spectator.",
       "indicative": [
-       "Get Out: horror tropes flipped (opening abduction); comic release through Rod",
+       "Get Out: horror tropes flipped (opening abduction); the Sunken Place as a horror set-piece",
        "Joker: comic-book IP vs 1970s character study",
        "Genre expectation as an active-spectator cue",
        "Limits",
        "Judgement"
       ]
      },
-     "modelAnswer": "Thesis: genre is crucial to both, especially Get Out, which relies on horror literacy.\n\nP1 Opening. P2 Rod. P3 Joker’s genre mix.\n\nConclusion."
+     "modelAnswer": "Thesis: genre is crucial to both, especially Get Out, which relies on horror literacy.\n\nP1 Opening. P2 Sunken Place. P3 Joker’s genre mix.\n\nConclusion."
     },
     {
      "id": "m1-c",
@@ -5375,13 +4999,13 @@ const INLINE_UNITS = {
       "focus": "Reasons for uniformity or diversity of response: identity, context, viewing conditions.",
       "indicative": [
        "Hall’s readings applied to Joker’s riot",
-       "Black and white spectators and the police-car ending; hooks",
+       "Black and white spectators at the garden-party auction; hooks",
        "Viewing conditions: security at Joker screenings; rewatching Get Out",
        "Cues that create uniform response (jump scares)",
        "Judgement"
       ]
      },
-     "modelAnswer": "Thesis: response is diverse to a large extent, though both films use strong cues to unify reactions at key moments.\n\nP1 Joker riot. P2 Police car. P3 Shared jump scares.\n\nConclusion."
+     "modelAnswer": "Thesis: response is diverse to a large extent, though both films use strong cues to unify reactions at key moments.\n\nP1 Joker riot. P2 The auction. P3 Shared jump scares.\n\nConclusion."
     },
     {
      "id": "m2-c",
@@ -5556,8 +5180,8 @@ const INLINE_UNITS = {
       "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
       "focus": "Narrative cues: restricted narration, reveals, endings.",
       "indicative": [
-       "Sophie reveal",
-       "Rose’s reveal and the auction irony",
+       "Subway murders: alignment, then horror",
+       "The auction’s dramatic irony",
        "Endings",
        "Alignment",
        "Judgement"
@@ -5654,7 +5278,7 @@ const INLINE_UNITS = {
      "**Band 2 (9–16):** basic knowledge; partial analysis; little sense of “how far”.",
      "**Band 1 (1–8):** limited knowledge and terminology; little relevant analysis."
     ],
-    "modelAnswer": "Both films reflect their production contexts to a significant extent, but Casablanca is shaped by its institution, while Bonnie and Clyde helped to reshape its own.\n\nCensorship shows this most clearly. In Casablanca, the Production Code made it impossible for a married woman to leave her husband for her lover, so when Ilsa confesses her love the scene dissolves to the airport searchlight tower and then to Rick smoking at the window: an ellipsis that implies sex without showing it. By contrast, Bonnie and Clyde, made as the Code was collapsing, opens with an extreme close-up of Bonnie’s lips and her naked body behind the bed rails, and later shows a bank clerk shot in the face through glass. Where Casablanca’s form works around censorship, Bonnie and Clyde’s form exposes what the Code hid, and its success helped bring the 1968 ratings system. Production context therefore explains not only what each film shows but how it shows it."
+    "modelAnswer": "Both films reflect their production contexts to a significant extent, but Casablanca is shaped by its institution, while Bonnie and Clyde helped to reshape its own.\n\nCensorship shows this most clearly. In Casablanca, the Production Code made it impossible for a married woman to leave her husband for her lover, so the airport ending must send Ilsa away with Laszlo: Rick’s sacrifice, lit through studio fog and scored with “La Marseillaise”, turns a censorship requirement into a noble choice. By contrast, Bonnie and Clyde, made as the Code was collapsing, opens with an extreme close-up of Bonnie’s lips and her naked body behind the bed rails, and later shows a bank clerk shot in the face through glass. Where Casablanca’s form works around censorship, Bonnie and Clyde’s form exposes what the Code hid, and its success helped bring the 1968 ratings system. Production context therefore explains not only what each film shows but how it shows it."
    },
    {
     "id": "ext-a-ending",
@@ -5712,7 +5336,7 @@ const INLINE_UNITS = {
      "**Band 2 (9–16):** basic knowledge; partial analysis; little sense of “how far”.",
      "**Band 1 (1–8):** limited knowledge and terminology; little relevant analysis."
     ],
-    "modelAnswer": "Both films shift the spectator between passive and active positions to a significant extent, but Joker does so to make sympathy uncomfortable, whereas Get Out does so to sharpen the spectator’s suspicion of “liberal” whiteness.\n\nJoker’s subway murders show this shift within a single sequence. Low-key, flickering light and claustrophobic framing lock the spectator into the carriage with Arthur as three Wall Street men beat him, and Hildur Guðnadóttir’s cello swells afterwards as he dances, inviting passive identification and even relief. Yet the third shooting becomes an execution, and Murray Smith’s distinction between alignment and allegiance explains the shift: the spectator remains aligned with Arthur’s point of view while allegiance is withdrawn. The later Sophie reveal pushes this further, as editing replays earlier scenes without her and forces an active re-reading of everything. The shift is therefore constant to a large extent, because the film keeps rewarding and then punishing sympathy."
+    "modelAnswer": "Both films shift the spectator between passive and active positions to a significant extent, but Joker does so to make sympathy uncomfortable, whereas Get Out does so to sharpen the spectator’s suspicion of “liberal” whiteness.\n\nJoker’s subway murders show this shift within a single sequence. Low-key, flickering light and claustrophobic framing lock the spectator into the carriage with Arthur as three Wall Street men beat him, and Hildur Guðnadóttir’s cello swells afterwards as he dances, inviting passive identification and even relief. Yet the third shooting becomes an execution, and Murray Smith’s distinction between alignment and allegiance explains the shift: the spectator remains aligned with Arthur’s point of view while allegiance is withdrawn. The stair dance pushes this further: slow motion, a bright palette and a glam-rock anthem celebrate Arthur’s transformation, so the spectator must actively resist the pleasure the form offers. The shift is therefore constant to a large extent, because the film keeps rewarding and then punishing sympathy."
    },
    {
     "id": "ext-b-cues",
@@ -5857,7 +5481,7 @@ const INLINE_UNITS = {
      "**Band 2 (9–16):** basic knowledge; partial analysis; little sense of “how far”.",
      "**Band 1 (1–8):** limited knowledge and terminology; little relevant analysis."
     ],
-    "modelAnswer": "An ideological approach is very useful for both films, which present British masculinity in crisis after deindustrialisation, though they offer opposite resolutions.\n\nBegbie’s pub brawl shows Trainspotting’s toxic masculinity: he throws a pint glass over a balcony, injures a woman, and starts a brawl to cover his own action, filmed in chaotic close-ups that make his violence absurd as well as frightening. Shaun of the Dead instead presents men as man-children, and Shaun’s arc ends not in toughness but in care, when he must shoot his infected mother in a quiet, held close-up that suspends the comedy. A feminist reading explains both: one film shows masculinity turning destructive, the other shows it growing up. The approach is therefore very useful, though it pays less attention to the films’ genre pleasures."
+    "modelAnswer": "An ideological approach is very useful for both films, which present British masculinity in crisis after deindustrialisation, though they offer opposite resolutions.\n\nTrainspotting’s ending shows a self-serving masculinity: Renton steals the money while his friends sleep and walks towards the camera as “Born Slippy” builds, choosing individual gain over the gang’s loyalty, while Begbie’s violent rage when he wakes confirms the toxic alternative. Shaun of the Dead instead presents men as man-children, and the Winchester siege marks Shaun’s turn to responsibility as he leads the group, the beating of the zombie landlord choreographed to Queen’s “Don’t Stop Me Now”. A feminist reading explains both: one film shows masculinity turning destructive, the other shows it growing up. The approach is therefore very useful, though it pays less attention to the films’ genre pleasures."
    }
   ],
   "lessons": {}
@@ -6009,34 +5633,10 @@ const INLINE_UNITS = {
        },
        {
         "code": "A1.3",
-        "title": "Key scenes",
+        "title": "Key scenes (the three to learn)",
         "items": [
          {
           "code": "A1.3.1",
-          "term": "Opening: into Ofelia’s eye",
-          "definition": "A canted close-up of the dying Ofelia, then the camera seems to move into her eye as a fairytale voiceover begins.",
-          "examples": "Blood runs back into her nose; the cold blue image gives way to the fantasy kingdom.",
-          "keyFacts": [
-           "Starting with her death frames the whole film as circular",
-           "Entering through her eye makes the fantasy her perspective",
-           "Sets up the ambiguity of the ending"
-          ],
-          "examTip": "Strong evidence for cinematography and narrative structure."
-         },
-         {
-          "code": "A1.3.2",
-          "term": "Vidal’s watch",
-          "definition": "Vidal’s first close shots show him checking his dead father’s watch, its glass cracked.",
-          "examples": "He insists his son be born where he is; he times everything.",
-          "keyFacts": [
-           "Symbolises order, control and the burden of macho inheritance",
-           "Pays off when he asks Mercedes to tell his son the time of his death, and she refuses",
-           "Shots of mirrors and shaving show his self-obsession"
-          ],
-          "examTip": "Track the watch across the film for a motif paragraph."
-         },
-         {
-          "code": "A1.3.3",
           "term": "The bottle murder",
           "definition": "Vidal beats a young farmer to death with a bottle, then shoots his father, wrongly accusing them of being rebels.",
           "examples": "Low-key lighting, no musical build-up, an exaggerated crunching sound.",
@@ -6048,7 +5648,7 @@ const INLINE_UNITS = {
           "examTip": "Strong editing + sound evidence."
          },
          {
-          "code": "A1.3.4",
+          "code": "A1.3.2",
           "term": "The Pale Man",
           "definition": "Ofelia enters a lair with a forbidden feast; the eyeless Pale Man wakes after she eats two grapes and chases her.",
           "examples": "Murals of him eating children; a shallow-focus close-up of a pile of victims’ shoes.",
@@ -6060,7 +5660,7 @@ const INLINE_UNITS = {
           "examTip": "The best scene to prove the fantasy is political."
          },
          {
-          "code": "A1.3.5",
+          "code": "A1.3.3",
           "term": "The ending: the flower blooms",
           "definition": "Vidal shoots Ofelia; the rebels kill Vidal; Ofelia wakes, or imagines waking, as a princess in a golden kingdom.",
           "examples": "Mercedes: “He won’t even know your name.” A flower blooms on a dead branch.",
@@ -6234,7 +5834,7 @@ const INLINE_UNITS = {
        },
        {
         "code": "A2.3",
-        "title": "Key scenes",
+        "title": "Key scenes (the three to learn)",
         "items": [
          {
           "code": "A2.3.1",
@@ -6262,30 +5862,6 @@ const INLINE_UNITS = {
          },
          {
           "code": "A2.3.3",
-          "term": "Li’l Zé’s rise",
-          "definition": "Li’l Dice becomes Li’l Zé, kills rivals and takes over the favela’s drug trade.",
-          "examples": "The motel massacre: young Dice smiles as he kills; a rapid montage shows Zé claiming territory.",
-          "keyFacts": [
-           "Stylised violence glamorises power even as it horrifies",
-           "A child’s smile while killing: innocence already lost",
-           "The spectator is seduced and implicated"
-          ],
-          "examTip": "Use for spectator response and the “cosmetics of hunger” debate."
-         },
-         {
-          "code": "A2.3.4",
-          "term": "The Runts: a child forced to kill",
-          "definition": "Zé makes a young boy choose which of two small children to shoot.",
-          "examples": "Shot starkly, with less stylisation; the camera holds on the children’s faces.",
-          "keyFacts": [
-           "The film’s bleakest moment",
-           "Violence has consumed the youngest generation",
-           "The cycle of poverty made literal"
-          ],
-          "examTip": "Use to show the style changes when the film wants to shock."
-         },
-         {
-          "code": "A2.3.5",
           "term": "The ending: Rocket’s photo",
           "definition": "Rocket photographs the dying Zé and police corruption; the Runts walk away listing who they will kill next.",
           "examples": "Rocket chooses to publish the gang photo for his career, not the corrupt-police photo.",
@@ -6526,7 +6102,7 @@ const INLINE_UNITS = {
        },
        {
         "code": "B1.3",
-        "title": "Key sequences",
+        "title": "Key scenes (the three to learn)",
         "items": [
          {
           "code": "B1.3.1",
@@ -6542,18 +6118,6 @@ const INLINE_UNITS = {
          },
          {
           "code": "B1.3.2",
-          "term": "“Rehab” and the father",
-          "definition": "The film links the song “Rehab” to Amy refusing rehab after her father said she did not need to go.",
-          "examples": "Audio interviews from Nick Shymansky recall the moment; the song plays over performance footage.",
-          "keyFacts": [
-           "Implies Mitch’s influence on a fatal decision",
-           "The song becomes evidence",
-           "The basis of Mitch’s objections to the film"
-          ],
-          "examTip": "Strong for representation and the ethics of selection."
-         },
-         {
-          "code": "B1.3.3",
           "term": "The paparazzi sequences",
           "definition": "Amy is surrounded by photographers; flashes white out the image and shutter noise fills the soundtrack.",
           "examples": "Fast cutting, strobing flashes and shouted questions as she tries to get home.",
@@ -6565,32 +6129,7 @@ const INLINE_UNITS = {
           "examTip": "Your best digital-debate evidence."
          },
          {
-          "code": "B1.3.4",
-          "term": "The Grammys 2008",
-          "definition": "Performing via satellite from London, Amy wins Record of the Year and looks stunned and fragile.",
-          "examples": "Close-ups of her reaction; friends recall her saying the moment felt empty without drugs.",
-          "keyFacts": [
-           "The peak of success shown as hollow",
-           "Satellite link: a digital-era image of global fame",
-           "Shifts the spectator from celebration to sorrow"
-          ],
-          "examTip": "Good for structure: triumph placed right before decline.",
-          "verify": true
-         },
-         {
-          "code": "B1.3.5",
-          "term": "Recording with Tony Bennett",
-          "definition": "In the studio for the duet “Body and Soul”, Amy is anxious and self-critical; Bennett is patient and kind.",
-          "examples": "Observational footage in close-up; she apologises and restarts.",
-          "keyFacts": [
-           "Shows her vulnerability and musicianship",
-           "A rare moment of respect from the industry",
-           "Feels like observational documentary in the Longinotto style"
-          ],
-          "examTip": "Useful when applying Longinotto."
-         },
-         {
-          "code": "B1.3.6",
+          "code": "B1.3.3",
           "term": "Belgrade and the ending",
           "definition": "Amy stumbles through a 2011 concert in Belgrade and is booed; weeks later her body is carried from her home.",
           "examples": "Overhead press footage of the body bag; the film then returns to images of young Amy.",
@@ -6926,7 +6465,7 @@ const INLINE_UNITS = {
           "code": "K1.2.1",
           "term": "Setting and props",
           "definition": "Locations and objects place the story and carry symbolic meaning, often as repeated motifs.",
-          "examples": "Vidal’s watch; Casablanca’s letters of transit; Get Out’s teacup.",
+          "examples": "The Pale Man’s feast; Casablanca’s letters of transit; Get Out’s teacup.",
           "keyFacts": [
            "Settings can be naturalistic or expressive",
            "Props can become motifs through patterned repetition",
@@ -7385,138 +6924,131 @@ const INLINE_UNITS = {
     {
      "id": "ha8",
      "section": "A",
-     "code": "A1.3.4",
+     "code": "A1.3.2",
      "front": "What does the pile of shoes in the Pale Man’s lair evoke?",
      "back": "The Holocaust: victims of a devouring elite."
     },
     {
      "id": "ha9",
      "section": "A",
-     "code": "A1.3.2",
-     "front": "What does Vidal’s watch symbolise?",
-     "back": "Order, control and his dead father’s macho legacy."
-    },
-    {
-     "id": "ha10",
-     "section": "A",
-     "code": "A1.3.5",
+     "code": "A1.3.3",
      "front": "What does Mercedes tell Vidal before he dies?",
      "back": "His son will not even know his name."
     },
     {
-     "id": "ha11",
+     "id": "ha10",
      "section": "A",
-     "code": "A1.3.5",
+     "code": "A1.3.3",
      "front": "What blooms at the end?",
      "back": "A flower on a dead branch: imagination and innocence survive."
     },
     {
-     "id": "ha12",
+     "id": "ha11",
      "section": "A",
      "code": "A1.4.1",
      "front": "Vidal’s line dismissing women?",
      "back": "“She is just a woman.”"
     },
     {
-     "id": "ha13",
+     "id": "ha12",
      "section": "A",
      "code": "A1.4.2",
      "front": "Del Toro’s companion piece?",
      "back": "The Devil’s Backbone (2001), also set in the Spanish Civil War."
     },
     {
-     "id": "ha14",
+     "id": "ha13",
      "section": "A",
      "code": "A1.2.1",
      "front": "Pan’s Labyrinth colour scheme?",
      "back": "Cold blue-grey for the fascist reality; warm amber-gold for the fantasy."
     },
     {
-     "id": "ha15",
+     "id": "ha14",
      "section": "A",
-     "code": "A1.3.3",
+     "code": "A1.3.1",
      "front": "Three techniques in the bottle murder?",
      "back": "Low-key lighting, no musical build-up, exaggerated (sweetened) sound."
     },
     {
-     "id": "ha16",
+     "id": "ha15",
      "section": "A",
      "code": "A2.1.1",
      "front": "City of God: directors, year, country?",
      "back": "Fernando Meirelles and Kátia Lund, 2002, Brazil."
     },
     {
-     "id": "ha17",
+     "id": "ha16",
      "section": "A",
      "code": "A2.1.2",
      "front": "What is City of God based on?",
      "back": "Paulo Lins’ novel about the real Cidade de Deus housing project."
     },
     {
-     "id": "ha18",
+     "id": "ha17",
      "section": "A",
      "code": "A2.2.1",
      "front": "Who shot City of God?",
      "back": "César Charlone."
     },
     {
-     "id": "ha19",
+     "id": "ha18",
      "section": "A",
      "code": "A2.2.2",
      "front": "Who edited City of God?",
      "back": "Daniel Rezende."
     },
     {
-     "id": "ha20",
+     "id": "ha19",
      "section": "A",
      "code": "A2.1.4",
      "front": "How many Oscar nominations did City of God receive?",
      "back": "Four, including Best Director and Best Cinematography."
     },
     {
-     "id": "ha21",
+     "id": "ha20",
      "section": "A",
      "code": "A2.1.3",
      "front": "Bentes’ critique of City of God?",
      "back": "A “cosmetics of hunger”: poverty made slick and glossy."
     },
     {
-     "id": "ha22",
+     "id": "ha21",
      "section": "A",
      "code": "A2.1.3",
      "front": "Glauber Rocha’s Cinema Novo manifesto?",
      "back": "“An Aesthetic of Hunger” (1965)."
     },
     {
-     "id": "ha23",
+     "id": "ha22",
      "section": "A",
      "code": "A2.2.3",
      "front": "Rocket’s line about the favela trap?",
      "back": "“If you run, the beast gets you; if you stay, the beast eats you.”"
     },
     {
-     "id": "ha24",
+     "id": "ha23",
      "section": "A",
      "code": "A2.3.1",
      "front": "Three techniques in the chicken chase?",
      "back": "Handheld camera, rapid editing, a 360° spin back in time."
     },
     {
-     "id": "ha25",
+     "id": "ha24",
      "section": "A",
      "code": "A2.3.2",
      "front": "What does the Story of the Apartment show?",
      "back": "The cycle: the flat stays, the dealers keep dying and being replaced."
     },
     {
-     "id": "ha26",
+     "id": "ha25",
      "section": "A",
-     "code": "A2.3.5",
+     "code": "A2.3.3",
      "front": "Which photo does Rocket choose to publish?",
      "back": "The dead Li’l Zé, not the corrupt police: his career over the truth."
     },
     {
-     "id": "ha27",
+     "id": "ha26",
      "section": "A",
      "code": "A2.2.1",
      "front": "How does City of God’s colour change over time?",
@@ -7574,82 +7106,75 @@ const INLINE_UNITS = {
     {
      "id": "hb8",
      "section": "B",
-     "code": "B1.3.5",
-     "front": "Which duet does Amy record with Tony Bennett?",
-     "back": "“Body and Soul”."
-    },
-    {
-     "id": "hb9",
-     "section": "B",
-     "code": "B1.3.6",
+     "code": "B1.3.3",
      "front": "Where is Amy booed in 2011?",
      "back": "Belgrade, weeks before her death."
     },
     {
-     "id": "hb10",
+     "id": "hb9",
      "section": "B",
      "code": "B1.1.2",
      "front": "When and how did Amy Winehouse die?",
      "back": "July 2011, aged 27, from alcohol poisoning."
     },
     {
-     "id": "hb11",
+     "id": "hb10",
      "section": "B",
      "code": "B2.1.2",
      "front": "Why is Amy a digital-era documentary?",
      "back": "Its footage comes from camcorders, phones and digital press cameras."
     },
     {
-     "id": "hb12",
+     "id": "hb11",
      "section": "B",
      "code": "B2.1.5",
      "front": "Counter-argument in the digital debate?",
      "back": "Compilation documentary and rise-and-fall structure existed long before digital."
     },
     {
-     "id": "hb13",
+     "id": "hb12",
      "section": "B",
      "code": "B3.1.1",
      "front": "Watkins’ key term?",
      "back": "The “monoform”: mainstream media’s fast, fragmented, single-voice style."
     },
     {
-     "id": "hb14",
+     "id": "hb13",
      "section": "B",
      "code": "B3.1.1",
      "front": "Two Peter Watkins films?",
      "back": "Culloden (1964) and The War Game (1965)."
     },
     {
-     "id": "hb15",
+     "id": "hb14",
      "section": "B",
      "code": "B3.1.2",
      "front": "Two Broomfield films?",
      "back": "Kurt and Courtney (1998); Whitney: Can I Be Me (2017)."
     },
     {
-     "id": "hb16",
+     "id": "hb15",
      "section": "B",
      "code": "B3.1.3",
      "front": "Longinotto’s style in one line?",
      "back": "Invisible filmmaker, no voiceover or captions, fiction-like identification, no conclusions."
     },
     {
-     "id": "hb17",
+     "id": "hb16",
      "section": "B",
      "code": "B3.1.4",
      "front": "Two Michael Moore films?",
      "back": "Bowling for Columbine (2002) and Fahrenheit 9/11 (2004)."
     },
     {
-     "id": "hb18",
+     "id": "hb17",
      "section": "B",
      "code": "B4.1.1",
      "front": "Grierson’s definition of documentary?",
      "back": "“The creative treatment of actuality.”"
     },
     {
-     "id": "hb19",
+     "id": "hb18",
      "section": "B",
      "code": "B4.1.2",
      "front": "Nichols’ six documentary modes?",
@@ -7767,38 +7292,22 @@ const INLINE_UNITS = {
      "id": "iA1.3.1",
      "section": "A",
      "code": "A1.3.1",
-     "front": "Pan’s Labyrinth — Opening: into Ofelia’s eye: what is it and why does it matter?",
-     "back": "A canted close-up of the dying Ofelia, then the camera seems to move into her eye as a fairytale voiceover begins.",
+     "front": "Pan’s Labyrinth — The bottle murder: what is it and why does it matter?",
+     "back": "Vidal beats a young farmer to death with a bottle, then shoots his father, wrongly accusing them of being rebels.",
      "auto": true
     },
     {
      "id": "iA1.3.2",
      "section": "A",
      "code": "A1.3.2",
-     "front": "Pan’s Labyrinth — Vidal’s watch: what is it and why does it matter?",
-     "back": "Vidal’s first close shots show him checking his dead father’s watch, its glass cracked.",
+     "front": "Pan’s Labyrinth — The Pale Man: what is it and why does it matter?",
+     "back": "Ofelia enters a lair with a forbidden feast; the eyeless Pale Man wakes after she eats two grapes and chases her.",
      "auto": true
     },
     {
      "id": "iA1.3.3",
      "section": "A",
      "code": "A1.3.3",
-     "front": "Pan’s Labyrinth — The bottle murder: what is it and why does it matter?",
-     "back": "Vidal beats a young farmer to death with a bottle, then shoots his father, wrongly accusing them of being rebels.",
-     "auto": true
-    },
-    {
-     "id": "iA1.3.4",
-     "section": "A",
-     "code": "A1.3.4",
-     "front": "Pan’s Labyrinth — The Pale Man: what is it and why does it matter?",
-     "back": "Ofelia enters a lair with a forbidden feast; the eyeless Pale Man wakes after she eats two grapes and chases her.",
-     "auto": true
-    },
-    {
-     "id": "iA1.3.5",
-     "section": "A",
-     "code": "A1.3.5",
      "front": "Pan’s Labyrinth — The ending: the flower blooms: what is it and why does it matter?",
      "back": "Vidal shoots Ofelia; the rebels kill Vidal; Ofelia wakes, or imagines waking, as a princess in a golden kingdom.",
      "auto": true
@@ -7911,22 +7420,6 @@ const INLINE_UNITS = {
      "id": "iA2.3.3",
      "section": "A",
      "code": "A2.3.3",
-     "front": "City of God — Li’l Zé’s rise: what is it and why does it matter?",
-     "back": "Li’l Dice becomes Li’l Zé, kills rivals and takes over the favela’s drug trade.",
-     "auto": true
-    },
-    {
-     "id": "iA2.3.4",
-     "section": "A",
-     "code": "A2.3.4",
-     "front": "City of God — The Runts: a child forced to kill: what is it and why does it matter?",
-     "back": "Zé makes a young boy choose which of two small children to shoot.",
-     "auto": true
-    },
-    {
-     "id": "iA2.3.5",
-     "section": "A",
-     "code": "A2.3.5",
      "front": "City of God — The ending: Rocket’s photo: what is it and why does it matter?",
      "back": "Rocket photographs the dying Zé and police corruption; the Runts walk away listing who they will kill next.",
      "auto": true
@@ -8063,38 +7556,14 @@ const INLINE_UNITS = {
      "id": "iB1.3.2",
      "section": "B",
      "code": "B1.3.2",
-     "front": "Amy — “Rehab” and the father: what is it and why does it matter?",
-     "back": "The film links the song “Rehab” to Amy refusing rehab after her father said she did not need to go.",
+     "front": "Amy — The paparazzi sequences: what is it and why does it matter?",
+     "back": "Amy is surrounded by photographers; flashes white out the image and shutter noise fills the soundtrack.",
      "auto": true
     },
     {
      "id": "iB1.3.3",
      "section": "B",
      "code": "B1.3.3",
-     "front": "Amy — The paparazzi sequences: what is it and why does it matter?",
-     "back": "Amy is surrounded by photographers; flashes white out the image and shutter noise fills the soundtrack.",
-     "auto": true
-    },
-    {
-     "id": "iB1.3.4",
-     "section": "B",
-     "code": "B1.3.4",
-     "front": "Amy — The Grammys 2008: what is it and why does it matter?",
-     "back": "Performing via satellite from London, Amy wins Record of the Year and looks stunned and fragile.",
-     "auto": true
-    },
-    {
-     "id": "iB1.3.5",
-     "section": "B",
-     "code": "B1.3.5",
-     "front": "Amy — Recording with Tony Bennett: what is it and why does it matter?",
-     "back": "In the studio for the duet “Body and Soul”, Amy is anxious and self-critical; Bennett is patient and kind.",
-     "auto": true
-    },
-    {
-     "id": "iB1.3.6",
-     "section": "B",
-     "code": "B1.3.6",
      "front": "Amy — Belgrade and the ending: what is it and why does it matter?",
      "back": "Amy stumbles through a 2011 concert in Belgrade and is booed; weeks later her body is carried from her home.",
      "auto": true
@@ -8630,14 +8099,14 @@ const INLINE_UNITS = {
       "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
       "focus": "Choose ONE element and analyse how it creates meaning in both films.",
       "indicative": [
-       "Mise-en-scène: Vidal’s watch and uniform; the Pale Man’s banquet and shoes; the labyrinth motif",
+       "Mise-en-scène: Vidal’s uniform and the farmhouse in the bottle murder; the Pale Man’s banquet and shoes; the labyrinth motif",
        "City of God: the favela growing cramped; the apartment; guns and gold",
        "Performance: López’s chilling precision; Baquero’s stillness; City of God’s non-professional cast",
        "Meaning linked to context: fascism; state neglect",
        "Aesthetic dimension: gothic fairytale vs kinetic realism"
       ]
      },
-     "modelAnswer": "Thesis (mise-en-scène): in both films mise-en-scène turns setting into argument: the fantasy mirrors fascism, the favela shows the cycle of neglect.\n\nP1 Vidal’s watch and the mirror. P2 The Pale Man’s feast and shoes. P3 The Story of the Apartment. P4 The favela closing in over the decades.\n\nConclusion: mise-en-scène is where each film’s politics becomes visible."
+     "modelAnswer": "Thesis (mise-en-scène): in both films mise-en-scène turns setting into argument: the fantasy mirrors fascism, the favela shows the cycle of neglect.\n\nP1 The bottle murder: Vidal’s uniform and the cold farmhouse. P2 The Pale Man’s feast and shoes. P3 The Story of the Apartment. P4 The favela closing in over the decades.\n\nConclusion: mise-en-scène is where each film’s politics becomes visible."
     },
     {
      "id": "g-edit",
@@ -8990,7 +8459,7 @@ const INLINE_UNITS = {
       "focus": "Children in violent worlds.",
       "indicative": [
        "Ofelia’s disobedience",
-       "The Runts",
+       "Rocket and the Runts in the ending",
        "Observer children: Ofelia and Rocket",
        "Form in key scenes",
        "Judgement"
@@ -9261,7 +8730,7 @@ const INLINE_UNITS = {
      "**Band 2 (5–8):** basic knowledge; partial analysis; little sense of “how far”.",
      "**Band 1 (1–4):** limited knowledge and terminology; little relevant analysis."
     ],
-    "modelAnswer": "Kim Longinotto’s theory increases understanding of Amy to a large extent, because Kapadia shares her invisibility and her aim of fiction-like identification, although Amy’s editing reaches conclusions Longinotto would avoid.\n\nLonginotto stays invisible, avoids voiceover and captions, and wants viewers to “jump into someone else’s experience”. Amy follows this closely: Kapadia never appears, and interviewees are heard only as audio over footage of Amy, so the screen stays with her from the opening camcorder video of a teenager singing “Happy Birthday”. The handwritten lyrics that appear as she sings make her seem the author of her story. However, Antonio Pinto’s score and the juxtaposition of “Rehab” with Mitch’s interview imply blame, a conclusion Longinotto would refuse."
+    "modelAnswer": "Kim Longinotto’s theory increases understanding of Amy to a large extent, because Kapadia shares her invisibility and her aim of fiction-like identification, although Amy’s editing reaches conclusions Longinotto would avoid.\n\nLonginotto stays invisible, avoids voiceover and captions, and wants viewers to “jump into someone else’s experience”. Amy follows this closely: Kapadia never appears, and interviewees are heard only as audio over footage of Amy, so the screen stays with her from the opening camcorder video of a teenager singing “Happy Birthday”. The handwritten lyrics that appear as she sings make her seem the author of her story. However, Antonio Pinto’s score and the flash-filled paparazzi sequences, cut to make the spectator feel hounded, push an argument about who failed her, a conclusion Longinotto would refuse."
    },
    {
     "id": "ext-d-digital",

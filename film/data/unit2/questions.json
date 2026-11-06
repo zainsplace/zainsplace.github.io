@@ -127,14 +127,14 @@
         "rule": "Levels-based: five bands, AO1 (knowledge, 20) and AO2 (application, 20) weighted equally. Pick the band that best fits the whole answer.",
         "focus": "Choose ONE element and analyse how it creates meaning in both films.",
         "indicative": [
-          "Mise-en-scène: Vidal’s watch and uniform; the Pale Man’s banquet and shoes; the labyrinth motif",
+          "Mise-en-scène: Vidal’s uniform and the farmhouse in the bottle murder; the Pale Man’s banquet and shoes; the labyrinth motif",
           "City of God: the favela growing cramped; the apartment; guns and gold",
           "Performance: López’s chilling precision; Baquero’s stillness; City of God’s non-professional cast",
           "Meaning linked to context: fascism; state neglect",
           "Aesthetic dimension: gothic fairytale vs kinetic realism"
         ]
       },
-      "modelAnswer": "Thesis (mise-en-scène): in both films mise-en-scène turns setting into argument: the fantasy mirrors fascism, the favela shows the cycle of neglect.\n\nP1 Vidal’s watch and the mirror. P2 The Pale Man’s feast and shoes. P3 The Story of the Apartment. P4 The favela closing in over the decades.\n\nConclusion: mise-en-scène is where each film’s politics becomes visible."
+      "modelAnswer": "Thesis (mise-en-scène): in both films mise-en-scène turns setting into argument: the fantasy mirrors fascism, the favela shows the cycle of neglect.\n\nP1 The bottle murder: Vidal’s uniform and the cold farmhouse. P2 The Pale Man’s feast and shoes. P3 The Story of the Apartment. P4 The favela closing in over the decades.\n\nConclusion: mise-en-scène is where each film’s politics becomes visible."
     },
     {
       "id": "g-edit",
@@ -487,7 +487,7 @@
         "focus": "Children in violent worlds.",
         "indicative": [
           "Ofelia’s disobedience",
-          "The Runts",
+          "Rocket and the Runts in the ending",
           "Observer children: Ofelia and Rocket",
           "Form in key scenes",
           "Judgement"

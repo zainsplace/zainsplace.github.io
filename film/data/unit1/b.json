@@ -132,22 +132,10 @@
         },
         {
           "code": "B1.3",
-          "title": "Key scenes",
+          "title": "Key scenes (the three to learn)",
           "items": [
             {
               "code": "B1.3.1",
-              "term": "Opening: forcing a smile",
-              "definition": "Arthur, in clown make-up, pulls his mouth into a smile with his fingers as a tear runs his mascara.",
-              "examples": "Close-up in a dressing-room mirror; then he is beaten by teenagers in an alley.",
-              "keyFacts": [
-                "Visual thesis: a man forced to perform happiness in a society hurting him",
-                "Immediate sympathy: passive identification from the first image",
-                "The mirror suggests a split self"
-              ],
-              "examTip": "Quick, precise opening example for a sympathy/alignment point."
-            },
-            {
-              "code": "B1.3.2",
               "term": "The subway murders",
               "definition": "Three drunk Wall Street men harass and beat Arthur; he shoots them all.",
               "examples": "Low-key lighting, flickering carriage lights, claustrophobic framing; afterwards the bathroom dance to the cello.",
@@ -159,19 +147,7 @@
               "examTip": "Strongest single Joker sequence for both specialist areas."
             },
             {
-              "code": "B1.3.3",
-              "term": "The Sophie reveal",
-              "definition": "Arthur enters Sophie’s flat; she is terrified and doesn’t know him; earlier scenes replay without her in them.",
-              "examples": "Fast cuts back to the date, the hospital and the comedy club, now with Arthur alone.",
-              "keyFacts": [
-                "Unreliable narration exposed: our alignment is destabilised",
-                "Raises the question of whether he harms her (left off-screen)",
-                "Makes the spectator re-read the film actively"
-              ],
-              "examTip": "Pair with Get Out’s twist about Rose for a comparison of narrative reveals."
-            },
-            {
-              "code": "B1.3.4",
+              "code": "B1.3.2",
               "term": "Dancing on the stairs",
               "definition": "Fully transformed, Arthur dances triumphantly down the Bronx steps to a glam-rock anthem.",
               "examples": "Celebratory camera, slow motion and a bright palette contrast with the earlier trudges up the same steps.",
@@ -183,7 +159,7 @@
               "examTip": "Ask: does the spectator resist this pleasure? That is active spectatorship."
             },
             {
-              "code": "B1.3.5",
+              "code": "B1.3.3",
               "term": "The Murray Franklin show and the riot",
               "definition": "Arthur confesses live on TV, rants about society abandoning people like him, shoots Murray, and Gotham riots.",
               "examples": "Cross-cutting between the studio and burning streets; rioters lift Arthur onto a car bonnet like a messiah.",
@@ -204,7 +180,7 @@
               "code": "B1.4.1",
               "term": "Joker: passive and active spectatorship",
               "definition": "Subjective camera and score invite passive identification; the violence and unreliable narration push active judgement.",
-              "examples": "We feel with Arthur in the subway, then question everything after the Sophie reveal.",
+              "examples": "We feel with Arthur in the subway, then must resist the celebratory stair dance, and split over the Murray Franklin show.",
               "keyFacts": [
                 "Passive = absorbed, aligned, swept along; active = questioning, resisting, bringing our own values",
                 "Murray Smith: we are ALIGNED with Arthur (we see what he sees) without necessarily feeling ALLEGIANCE",
@@ -264,7 +240,7 @@
               "code": "B2.1.2",
               "term": "Social and political context",
               "definition": "The “post-racial” myth after Obama; police violence and Black Lives Matter; racism hidden behind liberal smiles.",
-              "examples": "The ending’s police car plays on the spectator’s knowledge of real police shootings of Black Americans.",
+              "examples": "The garden-party auction evokes slavery behind liberal smiles; the opening abduction makes white suburbia the threat.",
               "keyFacts": [
                 "Written during the Obama years, released weeks after Trump’s inauguration",
                 "Fetishisation and commodification of Black bodies echo slavery",
@@ -355,7 +331,7 @@
         },
         {
           "code": "B2.3",
-          "title": "Key scenes",
+          "title": "Key scenes (the three to learn)",
           "items": [
             {
               "code": "B2.3.1",
@@ -392,30 +368,6 @@
                 "Guests praise Tiger Woods and Black physique: fetishisation disguised as admiration"
               ],
               "examTip": "The ideological heart of the film."
-            },
-            {
-              "code": "B2.3.4",
-              "term": "Rod: the comic release",
-              "definition": "Chris’s TSA friend Rod phones in comic theories that are actually right, cutting the tension.",
-              "examples": "The police officers laugh at Rod’s “sex slaves” theory, then the film proves him right.",
-              "keyFacts": [
-                "Tension/release rhythm controls spectator dread",
-                "Rod is an audience surrogate: he says “get out!”",
-                "Satirises authorities that do not believe Black people"
-              ],
-              "examTip": "Useful for a shift between immersion (passive) and reflection (active)."
-            },
-            {
-              "code": "B2.3.5",
-              "term": "The ending: the police car",
-              "definition": "Chris kneels over Rose as police lights appear; the audience fears he will be shot or arrested, but it is Rod.",
-              "examples": "Rose reaches out pleading for help; the camera holds on Chris raising his hands.",
-              "keyFacts": [
-                "Exploits the spectator’s real-world knowledge of racist policing",
-                "An earlier, darker ending in which Chris is arrested was replaced after test screenings",
-                "Different audiences experience this moment very differently"
-              ],
-              "examTip": "Best evidence that spectators bring context to the film: active spectatorship."
             }
           ]
         },
@@ -427,7 +379,7 @@
               "code": "B2.4.1",
               "term": "Get Out: passive and active spectatorship",
               "definition": "Restricted POV immerses us in Chris’s fear; clues, irony and real-world knowledge make us actively read the film.",
-              "examples": "Passive in the Sunken Place; active at the auction and the police-car ending.",
+              "examples": "Passive in the Sunken Place; active at the garden-party auction, where we know more than Chris.",
               "keyFacts": [
                 "Black and white spectators may be positioned differently: some recognise the microaggressions instantly",
                 "bell hooks’ “oppositional gaze”: Black spectators looking back critically",
@@ -487,7 +439,7 @@
               "code": "B3.1.2",
               "term": "Active spectatorship",
               "definition": "The spectator questions, interprets and resists, bringing their own knowledge, values and context.",
-              "examples": "Doubting Arthur after the Sophie reveal; fearing the police car at the end of Get Out.",
+              "examples": "Resisting the celebration of Arthur’s stair dance; reading the dramatic irony of Get Out’s auction.",
               "keyFacts": [
                 "David Bordwell: viewers actively build the story from cues (cognitive approach)",
                 "Ambiguity, unreliable narrators and irony provoke active viewing",

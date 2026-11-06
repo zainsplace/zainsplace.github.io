@@ -52,14 +52,14 @@ u1_q += [
  Q('a-auteur', 'pa', '1', 'A', 'A3.2.4', 'Compare',
    'Compare how far your chosen films reflect the auteur signature features of their filmmakers. (sample paper)',
    'Auteur signatures (stylistic and thematic) in both films, and how far each film reflects them; the tension between a single auteur and collaboration.',
-   ['Curtiz’s stylistic signature: crane and tracking shots, expressive shadows, dense foregrounds (Rick’s entrance, the market crane)',
+   ['Curtiz’s stylistic signature: crane and tracking shots, expressive shadows, dense foregrounds (the opening crane into the market, the fog-wrapped airport ending)',
     'Curtiz’s weak thematic signature: a versatile studio workhorse; Schatz’s “genius of the system” (Wallis, the Epsteins, Steiner, Edeson, Bogart)',
     'Penn’s thematic signature: sympathetic outsiders destroyed by a violent society (The Left Handed Gun, Little Big Man)',
     'Collaborators on Bonnie and Clyde: Beatty as producer-star, Dede Allen’s editing, Benton and Newman’s New Wave script',
     'Judgement on degree: Bonnie and Clyde reflects a stronger personal signature than Casablanca because New Hollywood gave directors more control',
     'Band 5: constraints on the auteur (studio, Production Code, star persona vs director)'],
    'Thesis: Bonnie and Clyde reflects its director’s signature far more than Casablanca, because Penn worked as the studio system collapsed while Curtiz worked inside it.\n\n'
-   'P1 Style: Curtiz’s crane into the market and the delayed reveal of Rick show a fluid-camera signature, whereas Penn’s signature lies in performance and sudden violence (the clerk shot through the glass).\n\n'
+   'P1 Style: Curtiz’s crane down into the market in the opening and the hard-backlit fog of the airport ending show a fluid, expressive signature, whereas Penn’s signature lies in performance and sudden violence (the clerk shot through the glass).\n\n'
    'P2 Themes: Penn returns to outsiders destroyed by society; Curtiz moved across genres, so Casablanca’s commitment theme comes from Wallis, the writers and wartime policy as much as from him.\n\n'
    'P3 Collaboration: Casablanca as Schatz’s “genius of the system”; Bonnie and Clyde shaped by Beatty and Dede Allen, so even New Hollywood auteurism was collaborative.\n\n'
    'Conclusion: to a large extent for Penn, to a limited extent for Curtiz; the auteur approach is more useful for New Hollywood than for the studio era.', traps=TA),
@@ -67,14 +67,14 @@ u1_q += [
    'Compare how far your chosen films reflect their different production contexts. (sample paper)',
    'How the studio system (1942) and its collapse (1967) shaped each film’s style, content and meaning.',
    ['Warner Bros. vertical integration: contract stars, director, composer; studio sets and fog at the airport',
-    'Production Code shaping Casablanca’s narrative resolution (Ilsa cannot leave her husband) and the searchlight dissolve',
+    'Production Code shaping Casablanca’s narrative resolution (Ilsa cannot leave her husband, so the airport ending sends her away with Laszlo)',
     '1948 Paramount ruling, TV, and Beatty as independent producer; Warner–Seven Arts as reluctant distributor',
     'Collapse of the Code: graphic violence and sexuality in Bonnie and Clyde; ratings in 1968',
     'Location shooting and New Wave influence vs studio-built exoticism',
     'Judgement: both films are products of their institution, but Bonnie and Clyde ALSO helped change its context'],
    'Thesis: both films reflect their production contexts to a significant extent, but Casablanca is shaped BY its institution, while Bonnie and Clyde helps reshape its own.\n\n'
    'P1 Studio system vs independent producing (Wallis assigning the team vs Beatty buying the script).\n\n'
-   'P2 Censorship: the dissolve to the searchlight vs the clerk’s bloodied face.\n\n'
+   'P2 Censorship: Ilsa sent away with her husband at the airport vs the clerk’s bloodied face.\n\n'
    'P3 Technology and place: studio fog and Edeson’s chiaroscuro vs Guffey’s location light and slow-motion multi-camera ending.\n\n'
    'Conclusion: to a large extent for both; the endings are the clearest proof.', traps=TA),
  Q('a-social', 'pa', '3', 'A', 'A1.1.3', 'Compare',
@@ -87,7 +87,7 @@ u1_q += [
     'Contemporary setting (Casablanca) vs period setting (Bonnie and Clyde): the double layer of context',
     'Judgement on how far context explains meaning versus genre or authorship'],
    'Thesis: both films reflect their contexts closely, but Casablanca speaks about its present directly while Bonnie and Clyde uses the past as an allegory for the present.\n\n'
-   'P1 War vs counterculture through the heroes’ final choices.\n\nP2 The anthem duel vs the foreclosed farm.\n\nP3 Violence: Strasser’s clean death vs the bullet-ridden ending.\n\nConclusion: to a large extent; context shapes each film’s idea of heroism.', traps=TA),
+   'P1 War vs counterculture through the heroes’ final choices.\n\nP2 The anthem duel vs Bonnie trapped behind the bed-rail “bars” in the opening.\n\nP3 Violence: Strasser’s clean death vs the bullet-ridden ending.\n\nConclusion: to a large extent; context shapes each film’s idea of heroism.', traps=TA),
  Q('a-collab', 'pa', '4', 'A', 'A1.5.2', 'Compare',
    '“Hollywood films are the product of collaboration, not of a single author.” Compare how far this is true of your chosen films.',
    'Evaluate the auteur approach against collaborative authorship in both films.',
@@ -117,16 +117,16 @@ u1_q += [
    'How far do your chosen films demonstrate a constant shift between passive and active spectatorship? Refer in detail to at least one sequence from each film. (sample paper)',
    'Passive identification and active questioning in both films, through specific sequences and techniques.',
    ['Definitions: passive (absorbed, aligned) vs active (questioning, resisting, bringing context)',
-    'Joker: subway murders (subjective camera, cello) → guilty identification; Sophie reveal → active doubt',
-    'Get Out: Sunken Place (subjective camera, muffled sound) → immersion; auction and police-car ending → active reading',
+    'Joker: subway murders (subjective camera, cello) → guilty identification; Murray Franklin show → active judgement as spectators split',
+    'Get Out: Sunken Place (subjective camera, muffled sound) → immersion; garden-party auction (dramatic irony) → active reading',
     'Murray Smith: alignment vs allegiance; Hall’s readings; hooks’ oppositional gaze',
     'Viewing conditions and different spectators (Black and white audiences; fans vs critics)',
     'Judgement on “constant”: is the shift constant, or concentrated at key moments?'],
    'Thesis: both films shift the spectator between passive and active positions to a significant extent, though Joker does so to unsettle sympathy and Get Out to sharpen suspicion.\n\n'
    'P1 Joker’s subway sequence (low-key lighting, claustrophobic framing, cello): passive alignment, then active horror.\n\n'
-   'P2 The Sophie reveal: editing replays scenes without her, forcing active re-reading.\n\n'
+   'P2 The stair dance: slow motion and music celebrate Arthur, so the spectator must actively resist siding with a murderer.\n\n'
    'P3 Get Out’s Sunken Place: restricted POV, falling motion, muffled sound = passive immersion; the teacup motif rewards active viewers.\n\n'
-   'P4 The police-car ending relies on spectators’ real-world knowledge: active spectatorship.\n\n'
+   'P4 The garden-party auction: intercutting gives the spectator knowledge Chris lacks, so dramatic irony makes viewing active.\n\n'
    'Conclusion: constant to a large extent; the shifts ARE each film’s meaning.', traps=TB),
  Q('b-cues', 'pb', '2', 'B', 'B3.1.7', 'How far',
    'How far do your chosen films demonstrate the importance of visual and soundtrack cues in influencing spectator response? Refer in detail to at least one sequence from each film. (sample paper)',
@@ -138,7 +138,7 @@ u1_q += [
     'Limits: spectators’ identity and context also shape response',
     'Judgement on importance compared with other factors'],
    'Thesis: visual and soundtrack cues are central in both films, but their effect depends on what the spectator brings.\n\n'
-   'P1 Joker’s stair dance: palette, slow motion and music. P2 The cello after the subway. P3 Get Out’s teacup and Sunken Place. P4 The police lights at the end.\n\nConclusion: important to a significant extent, but not alone.', traps=TB),
+   'P1 Joker’s stair dance: palette, slow motion and music. P2 The cello after the subway. P3 Get Out’s teacup and Sunken Place. P4 “Run Rabbit Run” over the opening abduction.\n\nConclusion: important to a significant extent, but not alone.', traps=TB),
  Q('b-ideology', 'pb', '3', 'B', 'B3.2.1', 'How far',
    'How far is the spectator’s response to your chosen films shaped by their ideology? Refer in detail to at least one sequence from each film.',
    'Ideology (class neglect; liberal racism) and how it shapes response through form.',
@@ -191,17 +191,17 @@ u1_q += [
    'Feminist/ideological readings of masculinity in crisis in both films.',
    ['Begbie’s toxic violence; Renton’s evasion; Spud’s gentleness', 'Shaun and Ed as man-children; Shaun’s arc to care',
     'Deindustrialisation and Gen-X contexts', 'Women as peripheral or as agents of change (Liz, Diane)',
-    'Evaluation of the approach', 'Judgement'], 'Thesis: very useful for both, as masculinity in crisis is central to each film’s critique of British society.\n\nP1 Begbie’s pub brawl. P2 Shaun’s mum. P3 Women. P4 Limits.\n\nConclusion.', traps=TC),
+    'Evaluation of the approach', 'Judgement'], 'Thesis: very useful for both, as masculinity in crisis is central to each film’s critique of British society.\n\nP1 Renton’s betrayal in the ending. P2 Shaun leading the group in the Winchester siege. P3 Women. P4 Limits.\n\nConclusion.', traps=TC),
  Q('c-devices', 'pc', '4', 'C', 'C3.1.5', 'How far',
    'How far do narrative devices in your chosen films shape their ideological meaning?',
-   'Voiceover, repetition, foreshadowing and structure as carriers of ideology.',
-   ['Renton’s unreliable voiceover and bookending', 'Shaun’s foreshadowing and mirrored walks',
+   'Voiceover, repetition and structure as carriers of ideology.',
+   ['Renton’s unreliable voiceover and bookending', 'Shaun’s mirrored walks (repetition as patterning)',
     'Episodic vs linear three-act structures', 'Genre parody as narrative device',
     'Todorov’s new equilibria', 'Judgement'], 'Thesis: to a great extent; in both films the ideology lives in the structure.\n\nP1 Voiceover. P2 Repetition. P3 Endings.\n\nConclusion.', traps=TC),
  Q('c-society', 'pc', '5', 'C', 'C1.1.3', 'How useful',
    '“British film offers a critique of its society.” How useful has an ideological critical approach been in exploring this in your chosen films?',
    'Critique of Thatcherite and consumer Britain in both films; evaluation of the approach.',
-   ['Trainspotting: “Choose Life”, Tommy’s HIV, “It’s shite being Scottish”', 'Shaun: dead-end jobs, suburban routine, the pub as identity',
+   ['Trainspotting: “Choose Life”, Tommy’s HIV, the ending’s “just like you”', 'Shaun: dead-end jobs, suburban routine, the pub as identity',
     'Representation of place: Edinburgh and suburban London', 'Comedy and style as vehicles of critique',
     'Limits: entertainment and genre', 'Judgement'], 'Thesis: very useful, as both films satirise consumer Britain, though one through heroin and one through zombies.\n\nP1 Consumerism. P2 Place. P3 Endings.\n\nConclusion.', traps=TC),
 ]
@@ -216,9 +216,9 @@ u1_q += [
  Q('m1-b', 'm1b', '2', 'B', 'B2.4.3', 'How far',
    'How far do your chosen films use genre to shape spectator response? Refer in detail to at least one sequence from each film.',
    'Genre cues (horror, comic-book, character study) and how they position the spectator.',
-   ['Get Out: horror tropes flipped (opening abduction); comic release through Rod', 'Joker: comic-book IP vs 1970s character study',
+   ['Get Out: horror tropes flipped (opening abduction); the Sunken Place as a horror set-piece', 'Joker: comic-book IP vs 1970s character study',
     'Genre expectation as an active-spectator cue', 'Limits', 'Judgement'],
-   'Thesis: genre is crucial to both, especially Get Out, which relies on horror literacy.\n\nP1 Opening. P2 Rod. P3 Joker’s genre mix.\n\nConclusion.', traps=TB),
+   'Thesis: genre is crucial to both, especially Get Out, which relies on horror literacy.\n\nP1 Opening. P2 Sunken Place. P3 Joker’s genre mix.\n\nConclusion.', traps=TB),
  Q('m1-c', 'm1c', '3', 'C', 'C3.1.6', 'How far',
    'How far do your chosen films use genre conventions in their narratives?',
    'Genre and narrative (spec Area 5) in both films.',
@@ -234,9 +234,9 @@ u1_q += [
  Q('m2-b', 'm2b', '2', 'B', 'B3.1.3', 'How far',
    'How far do different spectators respond differently to your chosen films? Refer in detail to at least one sequence from each film.',
    'Reasons for uniformity or diversity of response: identity, context, viewing conditions.',
-   ['Hall’s readings applied to Joker’s riot', 'Black and white spectators and the police-car ending; hooks',
+   ['Hall’s readings applied to Joker’s riot', 'Black and white spectators at the garden-party auction; hooks',
     'Viewing conditions: security at Joker screenings; rewatching Get Out', 'Cues that create uniform response (jump scares)', 'Judgement'],
-   'Thesis: response is diverse to a large extent, though both films use strong cues to unify reactions at key moments.\n\nP1 Joker riot. P2 Police car. P3 Shared jump scares.\n\nConclusion.', traps=TB),
+   'Thesis: response is diverse to a large extent, though both films use strong cues to unify reactions at key moments.\n\nP1 Joker riot. P2 The auction. P3 Shared jump scares.\n\nConclusion.', traps=TB),
  Q('m2-c', 'm2c', '3', 'C', 'C1.3.1', 'How useful',
    'How useful has an ideological critical approach been in understanding the opening sequences of your chosen films?',
    'Openings as ideological statements.',
@@ -269,7 +269,7 @@ u1_q += [
  Q('s4-b', 'p4b', '2', 'B', 'B1.2.5', 'How far',
    'How far do the narratives of your chosen films position the spectator? Refer in detail to at least one sequence from each film.',
    'Narrative cues: restricted narration, reveals, endings.',
-   ['Sophie reveal', 'Rose’s reveal and the auction irony', 'Endings', 'Alignment', 'Judgement'],
+   ['Subway murders: alignment, then horror', 'The auction’s dramatic irony', 'Endings', 'Alignment', 'Judgement'],
    'Thesis: narrative is the main positioning tool in both films.', traps=TB),
  Q('s4-c', 'p4c', '3', 'C', 'C2.4.3', 'How useful',
    'How useful has an ideological critical approach been in understanding character relationships in your chosen films?',
@@ -312,13 +312,13 @@ u2_q = [
  Q('g-perf', 'ga', '1', 'A', 'A1.2.2', 'Explore',
    'With close reference to the two films you have studied, explore how either performance or mise-en-scène create meaning. (sample paper)',
    'Choose ONE element and analyse how it creates meaning in both films.',
-   ['Mise-en-scène: Vidal’s watch and uniform; the Pale Man’s banquet and shoes; the labyrinth motif',
+   ['Mise-en-scène: Vidal’s uniform and the farmhouse in the bottle murder; the Pale Man’s banquet and shoes; the labyrinth motif',
     'City of God: the favela growing cramped; the apartment; guns and gold',
     'Performance: López’s chilling precision; Baquero’s stillness; City of God’s non-professional cast',
     'Meaning linked to context: fascism; state neglect',
     'Aesthetic dimension: gothic fairytale vs kinetic realism'],
    'Thesis (mise-en-scène): in both films mise-en-scène turns setting into argument: the fantasy mirrors fascism, the favela shows the cycle of neglect.\n\n'
-   'P1 Vidal’s watch and the mirror. P2 The Pale Man’s feast and shoes. P3 The Story of the Apartment. P4 The favela closing in over the decades.\n\nConclusion: mise-en-scène is where each film’s politics becomes visible.', traps=TG),
+   'P1 The bottle murder: Vidal’s uniform and the cold farmhouse. P2 The Pale Man’s feast and shoes. P3 The Story of the Apartment. P4 The favela closing in over the decades.\n\nConclusion: mise-en-scène is where each film’s politics becomes visible.', traps=TG),
  Q('g-edit', 'ga', '2', 'A', 'A2.2.2', 'Explore',
    'With close reference to the two films you have studied, explore how either editing or sound create meaning. (sample paper)',
    'Choose ONE element and analyse how it creates meaning in both films.',
@@ -383,7 +383,7 @@ u2_q = [
    'Thesis: Longinotto explains the sympathy; Watkins explains the critique of media.', marks=20, traps=TD),
  Q('m2-ga', 'gm2', '1', 'A', 'A3.1.1', 'Explore',
    'With close reference to the two films you have studied, explore how they create meaning through the representation of childhood.',
-   'Children in violent worlds.', ['Ofelia’s disobedience', 'The Runts', 'Observer children: Ofelia and Rocket', 'Form in key scenes', 'Judgement'],
+   'Children in violent worlds.', ['Ofelia’s disobedience', 'Rocket and the Runts in the ending', 'Observer children: Ofelia and Rocket', 'Form in key scenes', 'Judgement'],
    'Thesis: both use children to measure the cruelty of adult systems.', traps=TG),
  Q('m2-db', 'dm2', '2', 'B', 'B2.1.3', 'How far',
    'How far has digital editing shaped the meaning of your chosen documentary?',
