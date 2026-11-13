@@ -1,4 +1,13 @@
-# BTEC IT Revision
+# zainsplace.github.io
+
+My personal site, hosted on GitHub Pages.
+
+- [Portfolio](https://zainsplace.github.io): projects, write-ups and contact
+- [Write-ups](https://zainsplace.github.io/writeups/): bug bounty findings and a security review
+- [Trailsight case study](https://zainsplace.github.io/projects/trailsight/)
+- [BTEC IT Revision](https://zainsplace.github.io/revision/): the revision app below, in `revision/`
+
+## BTEC IT Revision
 
 A revision site for the BTEC National in Information Technology (Extended
 Certificate), covering both externally examined units:
@@ -9,7 +18,7 @@ Certificate), covering both externally examined units:
 Built as a single-page app in vanilla JavaScript. Made for my own revision and
 for anyone in the years below who wants it.
 
-**Live site:** [zainsplace.github.io](https://zainsplace.github.io)
+**Live site:** [zainsplace.github.io/revision](https://zainsplace.github.io/revision/). File paths below are relative to `revision/`.
 
 ## Features
 
