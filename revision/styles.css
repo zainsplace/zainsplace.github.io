@@ -1915,6 +1915,10 @@ body.round-open main { overflow: hidden; }
 .rv-why.ok { background: var(--right-bg); color: var(--right-text); }
 .rv-why.bad { background: var(--wrong-bg); color: var(--wrong); }
 .rv-why span { color: var(--text); font-size: 14px; }
+.rv-miss-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.rv-miss-row strong { min-width: 0; overflow-wrap: anywhere; }
+.rv-was-right { flex: none; min-height: 40px; padding: 8px 14px; font-size: 14px; color: var(--right-text); border-color: var(--right-text); background: var(--surface); }
+.rv-was-right:hover { background: var(--right-bg); border-color: var(--right-text); }
 
 /* Hint · Reveal · Explain · Simpler */
 .rv-tools { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }

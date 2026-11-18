@@ -399,6 +399,14 @@ function recordTermResult(code, ok) {
   return r.days;
 }
 
+/* Put a term's memory record back as it was ("I was right" undoing a wrong
+   answer). rec null: the term had no record, so delete it. */
+function restoreTermMemory(code, rec) {
+  if (rec) state.memory[code] = JSON.parse(JSON.stringify(rec));
+  else delete state.memory[code];
+  saveState();
+}
+
 /* A term shown with a hint: counts as seen, not as a right or wrong answer. */
 function recordHinted(code) {
   state.memory[code] = MEMORY.touch(state.memory[code], today());

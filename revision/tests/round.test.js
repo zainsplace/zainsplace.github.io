@@ -382,3 +382,111 @@ test('overtaken: the highest-placed rival who was above you and is now below', (
   assert.equal(R.overtakenRival(b2, a2).name, 'Ava');
   assert.equal(R.overtakenRival(null, a2), null);
 });
+
+/* ---------- fairer typed checking and "I was right" ---------- */
+
+test('typed checking ignores "and", "&", commas and slashes, and accepts each part of "X and Y (Z)"', () => {
+  const term = 'Passwords and Multi-Factor Authentication (MFA)';
+  const acc = R.acceptedAnswers(term);
+  assert.ok(R.checkTyped('Passwords, Multi-factor Authentication', acc));
+  assert.ok(R.checkTyped('Passwords & Multi-Factor Authentication', acc));
+  assert.ok(R.checkTyped('Passwords / Multi-Factor Authentication', acc));
+  assert.ok(R.checkTyped('MFA', acc));
+  assert.ok(R.checkTyped('Passwords', acc));
+  assert.ok(R.checkTyped('Multi-Factor Authentication', acc));
+  assert.equal(R.checkTyped('Firewall', acc), false);
+  // Only "X and Y (Z)" terms split on "and": "Command and Control" alone needs both words.
+  assert.equal(R.checkTyped('Command', R.acceptedAnswers('Command and Control')), false);
+  assert.equal(R.checkTyped('Command & Control', R.acceptedAnswers('Command and Control')), 'exact');
+});
+
+function typedRound(memory = {}) {
+  const it = findItem('A1.1.2');
+  const node = byId('A1.1');
+  const card = R.makeCard(it, 'mastered', 'memorize', { ...SET, style: 'typing' }, { node });
+  card.q = { kind: 'type', code: it.code, label: 'Type the term', prompt: 'x', answer: it.term, accepts: R.acceptedAnswers(it.term), why: '' };
+  return R.makeRound({ node, nodes, memory, todayStr: TODAY, settings: SET, cards: [card] });
+}
+
+function overrideCtx(memory) {
+  const ctx = fakeCtx();
+  ctx.calls.restore = [];
+  ctx.banked = [];
+  ctx.getMemory = code => memory[code] || null;
+  ctx.restoreMemory = (code, rec) => { ctx.calls.restore.push([code, rec]); };
+  ctx.recordTermResult = (code, ok) => {
+    ctx.calls.result.push([code, ok]);
+    memory[code] = { s: ok ? 4 : 1, due: 'x', seen: TODAY, lapses: ok ? 0 : 1 };
+    return ok ? 6 : 1;
+  };
+  ctx.gainXP = n => ctx.banked.push(n);
+  return ctx;
+}
+
+test('"I was right" undoes a wrong typed answer and counts it right first time', () => {
+  const saved = { s: 3, due: '2026-11-18', seen: '2026-11-10', lapses: 0 };
+  const memory = { 'A1.1.2': Object.assign({}, saved) };
+  const ctx = overrideCtx(memory);
+  const r = typedRound(memory);
+  const ev = R.answerCard(r, 'Routing box', ctx);
+  assert.equal(ev.right, false);
+  assert.equal(r.cards.length, 2, 'a Retry copy was queued');
+  assert.equal(r.run, 0);
+
+  const o = R.overrideRight(r, r.cards[0], ctx);
+  assert.ok(o);
+  assert.deepEqual(ctx.calls.restore, [['A1.1.2', saved]], 'memory restored to the record from before the wrong answer');
+  assert.deepEqual(ctx.calls.result, [['A1.1.2', false], ['A1.1.2', true]]);
+  assert.equal(o.days, 6);
+  assert.equal(o.xp, 5);
+  assert.deepEqual(ctx.banked, [5], 'XP 5 banked once');
+  assert.equal(r.xp, 5);
+  assert.equal(r.cards.length, 1, 'the Retry copy is gone');
+  assert.equal(r.cards[0].outcome, 'right');
+  assert.equal(r.cards[0].overridden, true);
+  assert.equal(r.cards[0].done, true);
+  assert.equal(r.run, 1, 'the run is not reset: the right-first-time step is applied');
+
+  assert.equal(R.overrideRight(r, r.cards[0], ctx), null, 'only once');
+  assert.deepEqual(ctx.banked, [5]);
+});
+
+test('"I was right" keeps the combo from before the wrong answer', () => {
+  const memory = {};
+  const ctx = overrideCtx(memory);
+  const r = typedRound(memory);
+  r.run = 3;
+  R.answerCard(r, 'nope', ctx);
+  assert.equal(r.run, 0);
+  const o = R.overrideRight(r, r.cards[0], ctx);
+  assert.deepEqual(ctx.calls.restore, [['A1.1.2', null]], 'a term with no record goes back to none');
+  assert.equal(o.xp, Math.round(5 * 1.5));
+  assert.equal(r.run, 4);
+});
+
+test('"I was right" is not offered for multiple choice, hinted, revealed, explained or right cards', () => {
+  const memory = {};
+  const mcq = roundOf('A1.1.1');
+  const ctx = overrideCtx(memory);
+  R.answerCard(mcq, 'Router', ctx);
+  assert.equal(R.overrideRight(mcq, mcq.cards[0], ctx), null, 'multiple choice');
+
+  const hinted = typedRound(memory);
+  R.hintCard(hinted);
+  R.answerCard(hinted, 'nope', ctx);
+  assert.equal(R.overrideRight(hinted, hinted.cards[0], ctx), null, 'hinted');
+
+  const revealed = typedRound(memory);
+  R.revealCard(revealed, ctx);
+  assert.equal(R.overrideRight(revealed, revealed.cards[0], ctx), null, 'revealed');
+
+  const explained = typedRound(memory);
+  R.explainCard(explained, ctx);
+  R.answerCard(explained, 'nope', ctx);
+  assert.equal(R.overrideRight(explained, explained.cards[0], ctx), null, 'explained');
+
+  const right = typedRound(memory);
+  R.answerCard(right, 'Router', ctx);
+  assert.equal(R.overrideRight(right, right.cards[0], ctx), null, 'already right');
+  assert.equal(ctx.calls.restore.length, 0);
+});

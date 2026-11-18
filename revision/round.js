@@ -53,19 +53,27 @@ function termParts(term) {
    Like Gizmo's "Mixed" style: once a term has been met in a multiple-choice
    question, it comes back later as one you have to type. Small spelling
    mistakes are forgiven, and any accepted name for the term counts
-   (e.g. "IaaS" or "Infrastructure as a Service"). */
+   (e.g. "IaaS" or "Infrastructure as a Service"). "and", "&", commas and
+   slashes are ignored, so "Passwords, MFA" = "Passwords and MFA"; a term
+   shaped "X and Y (Z)" also accepts X, Y or Z on its own. */
 
 function acceptedAnswers(term) {
-  const out = new Set(termParts(term));
-  termParts(term).forEach(p => String(p).split(/\s+[–—-]\s+|\s*\/\s*/).forEach(x => out.add(x)));
+  const parts = termParts(term);
+  const out = new Set(parts);
+  parts.forEach(p => String(p).split(/\s+[–—-]\s+|\s*\/\s*/).forEach(x => out.add(x)));
+  // "Passwords and Multi-Factor Authentication (MFA)": each half counts too.
+  const m = String(term).match(/^(.*?)\s*\(([^)]+)\)\s*$/);
+  if (m) {
+    const halves = m[1].split(/\s+and\s+|\s*&\s*/i);
+    if (halves.length === 2) halves.forEach(x => out.add(x));
+  }
   return [...out].map(x => x.trim()).filter(x => x.length > 1);
 }
 
 function normAnswer(s) {
   return String(s).toLowerCase()
-    .replace(/&/g, ' and ')
-    .replace(/[^a-z0-9]+/g, ' ')
-    .replace(/\b(the|a|an)\b/g, ' ')
+    .replace(/[^a-z0-9]+/g, ' ')    // "&", commas, slashes, hyphens -> spaces
+    .replace(/\b(the|a|an|and)\b/g, ' ')
     .replace(/s\b/g, '')            // "VPNs" = "VPN", "Viruses" ~ "Virus"
     .replace(/\s+/g, ' ')
     .trim();
@@ -513,15 +521,24 @@ function checkResponse(q, response, settings) {
   }
 }
 
-/* Wrong (or revealed): record it once, reset the run, send a Retry copy to the end. */
+/* Wrong (or revealed): record it once, reset the run, send a Retry copy to the end.
+   The memory record and run from before are kept (prevMem, prevRun) so
+   "I was right" can undo it. */
 function markWrong(r, card, ctx, ev) {
   card.outcome = 'wrong';
+  card.prevRun = r.run;
   r.run = 0;
-  if (!card.retry && ctx && ctx.recordTermResult) ev.days = ctx.recordTermResult(card.code, false);
-  r.cards.push(Object.assign({}, card, {
+  if (!card.retry && ctx && ctx.recordTermResult) {
+    const rec = ctx.getMemory ? ctx.getMemory(card.code) : null;
+    card.prevMem = rec ? JSON.parse(JSON.stringify(rec)) : null;
+    ev.days = ctx.recordTermResult(card.code, false);
+  }
+  const copy = Object.assign({}, card, {
     retry: true, outcome: null, hinted: false, attempted: false, done: false,
-    tried: [], greyed: [], teach: null
-  }));
+    tried: [], greyed: [], teach: null, retryCopy: null
+  });
+  card.retryCopy = copy;
+  r.cards.push(copy);
   ev.requeued = true;
 }
 
@@ -557,6 +574,40 @@ function answerCard(r, response, ctx) {
     // Two-way questions can't be tried again on the same card.
     if (card.q.kind === 'tf' || card.q.kind === 'flip') card.done = true;
   }
+  ev.combo = RMEM.combo(r.run);
+  return ev;
+}
+
+/* "I was right" on a typed or gap card marked wrong first time: undo the
+   wrong result in memory (restore the record from before, then record a
+   right answer), bank the usual XP at the combo from before the miss, drop
+   the Retry copy and count the card right first time. Once per card; not
+   after a hint, Reveal or Explain, nor on a Retry copy.
+   ctx: { restoreMemory(code, rec|null), recordTermResult, gainXP }.
+   Returns { right, overridden, xp, days, combo, ... } or null. */
+function canOverride(card) {
+  return !!card && !!card.q && (card.q.kind === 'type' || card.q.kind === 'gap')
+    && card.outcome === 'wrong' && card.attempted && !card.retry && !card.overridden
+    && !card.hinted && !card.revealed && !card.explained && 'prevMem' in card;
+}
+
+function overrideRight(r, card, ctx) {
+  if (!r || !canOverride(card)) return null;
+  const c = ctx || {};
+  if (c.restoreMemory) c.restoreMemory(card.code, card.prevMem);
+  const ev = { right: true, overridden: true, close: false, first: true, xp: 0, days: null, requeued: false, answer: card.q.answer };
+  if (c.recordTermResult) ev.days = c.recordTermResult(card.code, true);
+  const run = card.prevRun || 0;
+  ev.xp = Math.round(ROUND_XP * RMEM.combo(run));
+  r.xp += ev.xp;
+  if (c.gainXP && ev.xp) c.gainXP(ev.xp);
+  r.run = run + 1;
+  const i = r.cards.indexOf(card.retryCopy);
+  if (i > r.pos) r.cards.splice(i, 1);
+  card.retryCopy = null;
+  card.outcome = 'right';
+  card.overridden = true;
+  card.done = true;
   ev.combo = RMEM.combo(r.run);
   return ev;
 }
@@ -661,6 +712,8 @@ let round = null;
 function roundContext() {
   return {
     recordTermResult, recordHinted,
+    getMemory: code => state.memory[code] || null,
+    restoreMemory: restoreTermMemory,
     gainXP: n => awardXP(n, true),   // league XP, activity and save; no toast per card
     settings: round ? round.settings : loadRoundSettings()
   };
@@ -685,7 +738,7 @@ if (typeof module !== 'undefined' && module.exports) {
     maskTerm, typeHint, shuffled, distractorTerms, firstSentence, questionsForItem,
     defaultRoundSettings, coerceRoundSettings, loadRoundSettings, saveRoundSettings,
     questionFor, tfQuestion, multiQuestion, makeCard, makeRound, checkResponse,
-    currentRoundCard, answerCard, hintCard, revealCard, explainCard, nextCard, roundFinished,
+    currentRoundCard, answerCard, canOverride, overrideRight, hintCard, revealCard, explainCard, nextCard, roundFinished,
     streakMoved, streakWeek, overtakenRival
   };
 }

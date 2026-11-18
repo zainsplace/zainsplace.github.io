@@ -6,7 +6,9 @@
    Per card:   teach notes (new terms, card.teach) -> question -> answer.
      right     option turns mint, a "+N days / +N XP" flash, next card after 1 s
      wrong     red shake (300 ms), then the option greys out; try again on the
-               same card, which also comes back at the end as Retry
+               same card, which also comes back at the end as Retry. A typed
+               answer marked wrong shows the answer and "✓ I was right"
+               (overrideRight: counted right first time, then moves on)
      Hint      greys one wrong option (typed cards: first letters)
      Reveal    shows the answer; counts as wrong
      Explain   the term's notes word for word under the card; before answering
@@ -470,7 +472,9 @@ function rvQuestionHTML(card, s, past) {
   html += rvAnswerArea(card, s, past);
 
   if (s.wrongNote && !card.done && !past) {
-    html += '<p class="rv-note rv-note--bad" role="status">Not quite. Try again. This card comes back at the end as ↻ Retry.</p>';
+    html += (q.kind === 'type' || q.kind === 'gap')
+      ? rvTypedMissHTML(card)
+      : '<p class="rv-note rv-note--bad" role="status">Not quite. Try again. This card comes back at the end as ↻ Retry.</p>';
   }
   if (s.explainNote && !card.done && !past) {
     html += '<p class="rv-note">Opening the notes first counts as a miss, so this card comes back as ↻ Retry. You can still answer it now.</p>';
@@ -482,6 +486,20 @@ function rvQuestionHTML(card, s, past) {
   if (!s.explain) html += rvToolsHTML(card, s, past);
   if (s.explain) html += rvExplainHTML(card, s);
   return html;
+}
+
+/* A typed answer marked wrong: the answer, and "I was right" when the
+   checker may have been unfair (once per card, not after a hint, Reveal or
+   Explain). Typing the answer out still moves on, without XP. */
+function rvTypedMissHTML(card) {
+  const pill = canOverride(card)
+    ? '<button class="g-pill rv-was-right" id="rv-was-right" onclick="roundWasRight()"><span aria-hidden="true">✓</span> I was right</button>'
+    : '';
+  return `
+    <div class="rv-why bad rv-miss" role="status">
+      <div class="rv-miss-row"><strong>Marked wrong. Answer: ${escapeHTML(card.q.answer)}</strong>${pill}</div>
+      <span>Type it to carry on. This card comes back at the end as ↻ Retry.</span>
+    </div>`;
 }
 
 function rvFlashHTML(f, q) {
@@ -855,7 +873,9 @@ function rvApply(ev, card, s) {
     return;
   }
   s.wrongNote = true;
-  rvAnnounce('Not quite. Try again.');
+  if (card.q.kind === 'type' || card.q.kind === 'gap') {
+    rvAnnounce(`Marked wrong. The answer is ${card.q.answer}.${canOverride(card) ? ' Press I was right if your answer meant the same.' : ''}`);
+  } else rvAnnounce('Not quite. Try again.');
 }
 
 function roundPick(i) {
@@ -953,6 +973,17 @@ function roundType() {
     return;
   }
   rvApply(ev, card, s);
+}
+
+/* "I was right": count the typed card right first time and move on like a
+   right answer (flash with +N days and XP, then the next card). */
+function roundWasRight() {
+  const a = rvAnswerable();
+  if (!a) return;
+  const ev = overrideRight(round, a.card, rvCtx());
+  if (!ev) return;
+  a.s.typedWrong = false;
+  rvApply(ev, a.card, a.s);
 }
 
 function roundHint() {
