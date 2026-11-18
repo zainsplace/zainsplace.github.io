@@ -47,6 +47,9 @@
                 "Touch interface running iOS or Android, so they are easy to use without a keyboard or mouse",
                 "Sensors (GPS, camera, NFC) enable maps, photos and contactless payments",
                 "Apps come from app stores, which check them, so users are less likely to install malware"
+              ],
+              "confusable": [
+                "A1.1.8"
               ]
             },
             {
@@ -118,6 +121,9 @@
                 "Modem converts signals for phone or cable lines, so digital data can travel over them",
                 "Router connects the LAN to the internet, sending data between the two networks",
                 "VoIP phones make calls over the internet, which is cheaper than traditional phone lines"
+              ],
+              "confusable": [
+                "A1.1.3"
               ]
             },
             {
@@ -130,6 +136,14 @@
                 "Single purpose with little or no interface, so they are cheap, reliable and use little power",
                 "IoT devices send data to the cloud, so they can be monitored and controlled remotely",
                 "Weak default passwords and rare updates make them easy to hack, e.g. to recruit them into a botnet"
+              ],
+              "accepts": [
+                "IoT",
+                "Internet of Things",
+                "Embedded system"
+              ],
+              "confusable": [
+                "A1.2.8"
               ]
             }
           ]
@@ -192,6 +206,9 @@
                 "CNC machines cut parts precisely, so every part is identical and waste is reduced",
                 "Robots assemble, weld and paint, so production runs faster and staff avoid dangerous jobs",
                 "Sensors monitor machines in real time, so faults are spotted before they cause breakdowns"
+              ],
+              "confusable": [
+                "A1.2.8"
               ]
             },
             {
@@ -228,6 +245,10 @@
                 "Takes on dangerous tasks, so workers are kept away from harm",
                 "Can replace jobs, especially repetitive manual work, which can increase unemployment",
                 "Needs new skills, so staff must be retrained to program and maintain the machines"
+              ],
+              "confusable": [
+                "A1.2.5",
+                "A1.1.9"
               ]
             }
           ]
@@ -290,12 +311,15 @@
               "code": "A2.1.1",
               "term": "Input Devices",
               "definition": "Hardware for getting data into a computer.",
-              "examples": "Keyboard; mouse; microphone; barcode scanner; touchscreen.",
+              "examples": "Keyboard; mouse; microphone; barcode scanner; graphics tablet.",
               "examTip": "Input = data going IN. Manual (keyboard) or automatic (sensor, scanner).",
               "keyFacts": [
                 "Manual input (keyboard, mouse, touchscreen) is controlled by a person, so it suits entering varied data",
                 "Optical input (scanner, barcode and QR readers, camera) reads data by light, so it is quick and accurate",
                 "Automatic input (sensors, RFID, biometrics) collects data with no human effort, so it can run 24/7"
+              ],
+              "confusable": [
+                "A2.1.2"
               ]
             },
             {
@@ -309,6 +333,9 @@
                 "Audio output (speakers, headphones) gives sound, e.g. alerts, music or screen-reader speech",
                 "Tactile output (braille display) lets blind users read by touch",
                 "Plotters produce large drawings, so they suit architects and engineers"
+              ],
+              "confusable": [
+                "A2.1.1"
               ]
             },
             {
@@ -353,6 +380,9 @@
                 "Reads text, menus and buttons aloud, so blind users can use a computer independently",
                 "Used with the keyboard, not a mouse, because users can't see the pointer",
                 "Needs accessible design (WCAG), otherwise unlabelled buttons and images can't be read out"
+              ],
+              "confusable": [
+                "A2.2.10"
               ]
             },
             {
@@ -445,6 +475,9 @@
                 "Helps with dyslexia and visual impairment, because users can listen instead of reading",
                 "Built into all major operating systems, so it is free and easy to turn on",
                 "AI voices sound increasingly natural, so listening for long periods is less tiring"
+              ],
+              "confusable": [
+                "A2.2.2"
               ]
             }
           ]
@@ -650,7 +683,7 @@
               "examples": "An ATM; a self-service kiosk.",
               "examTip": "Reliable and secure, but can't be used for anything else.",
               "keyFacts": [
-                "One function only, e.g. a smart TV or cash machine, so it is simple and reliable",
+                "One function only, e.g. a cash machine or a ticket kiosk, so it is simple and reliable",
                 "Fewer vulnerabilities, because there is less software for attackers to exploit",
                 "Can't run other software, so it can't be repurposed if needs change"
               ]
@@ -690,13 +723,14 @@
             {
               "code": "A3.2.1",
               "term": "Networking",
-              "definition": "The OS handles network protocols, connections, sending and receiving data, and bandwidth.",
+              "definition": "The OS handles network protocols, connections, sending and receiving data, and allocating and monitoring resources.",
               "examTip": "Four parts: protocols, connections, transmission, resource monitoring.",
               "keyFacts": [
                 "Runs protocols such as TCP/IP, so the computer can communicate with any other device on the network",
                 "Sets up and ends connections, so data reaches the right program on the right device",
                 "Splits data into packets and reassembles them, so large files can travel across the network reliably",
-                "Assigns IP settings (e.g. via DHCP), so devices join the network without manual set-up"
+                "Assigns IP settings (e.g. via DHCP), so devices join the network without manual set-up",
+                "Allocates and monitors bandwidth and other network resources, so one program can't hog the connection and problems are spotted"
               ]
             },
             {
@@ -709,6 +743,9 @@
                 "Malware protection (e.g. Windows Defender) is built in, so the device is protected without extra software",
                 "Drive encryption (e.g. BitLocker), so data on a lost or stolen device can't be read",
                 "Built-in firewall blocks unwanted network traffic, protecting the device on any network"
+              ],
+              "confusable": [
+                "A3.2.6"
               ]
             },
             {
@@ -756,6 +793,9 @@
                 "Log in with a password, PIN, biometric or MFA, so the OS knows who is using the computer",
                 "Each user has their own profile and files, so people sharing a computer keep their work private",
                 "Account types (administrator, standard, guest) limit what each user can change, protecting the system"
+              ],
+              "confusable": [
+                "A3.2.2"
               ]
             }
           ]
@@ -847,6 +887,10 @@
                 "Must do every required task, or staff will need extra software or workarounds",
                 "Interface should suit users' skills, so staff can use it without lots of training",
                 "Industry-standard software may be needed, so files can be shared with clients and partners"
+              ],
+              "accepts": [
+                "User Needs",
+                "Business Needs"
               ]
             },
             {
@@ -902,6 +946,9 @@
                 "Intuitive visual design, so new users learn it quickly",
                 "Needs more processing power, because it must draw graphics on screen",
                 "Slower than CLI for repetitive tasks, because each step needs clicking through"
+              ],
+              "confusable": [
+                "A3.5.4"
               ]
             },
             {
@@ -914,6 +961,9 @@
                 "Tap, swipe and pinch gestures are natural, so even young children can use it",
                 "Larger touch targets, because fingers are less precise than a mouse pointer",
                 "Used on phones, tablets and kiosks, where there is no room for a keyboard or mouse"
+              ],
+              "confusable": [
+                "A3.5.3"
               ]
             }
           ]
@@ -1146,6 +1196,9 @@
                 "Low stock triggers reorders, so shelves are never empty",
                 "Less manual counting, which saves staff time and cuts errors",
                 "Managers see stock from anywhere, so they can make decisions without visiting each shop"
+              ],
+              "confusable": [
+                "A4.2.9"
               ]
             },
             {
@@ -1159,6 +1212,9 @@
                 "Each reading is time-stamped, so changes can be tracked over time",
                 "Produces large amounts of data, so storage and analysis tools are needed",
                 "Analysed later for trends, e.g. finding when a machine tends to overheat"
+              ],
+              "confusable": [
+                "A4.2.9"
               ]
             },
             {
@@ -1171,6 +1227,9 @@
                 "Dashboards and reports show key figures clearly, so managers see problems quickly",
                 "Forecasts from past data predict future demand, so stock and staff can be planned",
                 "Decisions based on evidence, not guesswork, so they are more likely to succeed"
+              ],
+              "confusable": [
+                "A4.2.8"
               ]
             },
             {
@@ -1216,6 +1275,9 @@
                 "CAM turns designs into machine instructions, so there is no manual programming step",
                 "CNC gives precise automated machining, so every part comes out identical",
                 "Sensors spot defects, so faulty products are caught before they reach customers"
+              ],
+              "confusable": [
+                "A4.2.9"
               ]
             },
             {
@@ -1228,6 +1290,9 @@
                 "Swipe cards and biometrics control who enters, and log every entry",
                 "Security monitoring software spots attacks on the network quickly",
                 "Creates lots of data to store, e.g. CCTV footage and access logs"
+              ],
+              "confusable": [
+                "A4.2.3"
               ]
             },
             {
@@ -1239,6 +1304,11 @@
                 "Cuts labour costs, because machines do work people used to be paid for",
                 "Consistent every time, so quality doesn't drop with tiredness",
                 "Can replace jobs, especially repetitive roles, which affects staff and the local community"
+              ],
+              "confusable": [
+                "A4.2.1",
+                "A4.2.2",
+                "A4.2.7"
               ]
             }
           ]
@@ -1332,6 +1402,10 @@
                 "Train everyone before go-live, so staff can use the system from day one",
                 "Refresher training after updates, so staff keep up with new features",
                 "Different users need different training, e.g. admins need more than everyday users"
+              ],
+              "accepts": [
+                "Staff Training",
+                "Training Needs"
               ]
             },
             {
@@ -1364,6 +1438,7 @@
       "title": "Emerging Technologies",
       "subtopics": [
         {
+          "code": "A5",
           "title": "Emerging Technologies and AI",
           "items": [
             {
@@ -1377,7 +1452,8 @@
                 "Edge computing processes data near its source, cutting delay because it doesn't travel to a far-off server",
                 "5G is very fast with very low latency, so it suits live video and self-driving cars",
                 "AI tunes systems by learning from use, e.g. adjusting performance to save battery"
-              ]
+              ],
+              "overview": true
             },
             {
               "code": "A5.2",
@@ -1390,7 +1466,8 @@
                 "Personalised recommendations save time, but can trap users in filter bubbles",
                 "Deepfakes spread misinformation, because fake video and audio look and sound real",
                 "Needs lots of personal data, which raises privacy concerns about how it is used and stored"
-              ]
+              ],
+              "overview": true
             },
             {
               "code": "A5.3",
@@ -1403,7 +1480,8 @@
                 "Better, faster decisions from data, because AI spots patterns humans miss",
                 "Jobs lost, including office roles, so staff may need retraining",
                 "Bias in training data leads to unfair decisions, and attackers use AI too, e.g. for convincing phishing"
-              ]
+              ],
+              "overview": true
             }
           ]
         }

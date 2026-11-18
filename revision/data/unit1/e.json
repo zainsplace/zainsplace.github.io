@@ -68,7 +68,7 @@
               "code": "E1.1.5",
               "term": "Online Entertainment and Leisure",
               "definition": "Music, films, TV and games delivered on demand over the internet.",
-              "examples": "Netflix; Spotify; Steam.",
+              "examples": "Netflix; Spotify; Disney+.",
               "examTip": "Streaming has disrupted DVDs, CDs and broadcast TV. Watch for piracy and age checks.",
               "keyFacts": [
                 "Streaming needs internet, but downloads work offline, e.g. for watching on a flight",
@@ -145,6 +145,9 @@
                 "Version history tracks changes, so mistakes can be undone and everyone sees who changed what",
                 "Chat, video and files in one place, so teams don't switch between tools",
                 "Needs internet and can blur work and home, because staff can be reached at any time"
+              ],
+              "confusable": [
+                "E1.2.4"
               ]
             },
             {
@@ -172,7 +175,10 @@
                   ["Privacy concern", "Individual purchases linked to named persons — GDPR applies", "Tracking across websites; consent often unclear; feels intrusive"],
                   ["GDPR requirement", "Store securely, use only for stated purpose, retain no longer than necessary", "Explicit cookie consent; right to opt out of tracking"]
                 ]
-              }
+              },
+              "confusable": [
+                "E1.2.3"
+              ]
             }
           ]
         }
@@ -244,7 +250,8 @@
                 "Check the author, date and publisher, so you know the information is current and from an expert",
                 "Prefer peer-reviewed or official sources, because experts have checked them",
                 "Compare with past data to spot anomalies, so unusual figures are questioned before being used"
-              ]
+              ],
+              "overview": true
             }
           ]
         },
@@ -255,20 +262,23 @@
             {
               "code": "E2.3.1",
               "term": "Survey",
-              "definition": "Structured questions sent to many people to gather measurable data.",
-              "examples": "An email survey after a purchase.",
+              "definition": "A method of gathering data from a large sample of people, which may use a questionnaire, interviews or an online form.",
+              "examples": "Sending a feedback link to 5,000 customers after a purchase.",
               "examTip": "Best for large numbers and statistics. Watch for bias in who replies.",
               "keyFacts": [
                 "Online surveys are cheap and fast, so they reach many people with little effort",
                 "Closed questions are easy to analyse, because answers can be counted and graphed",
                 "Response rates are often low, so results may not represent everyone",
                 "Leading questions skew results, because they push people towards a particular answer"
+              ],
+              "confusable": [
+                "E2.3.2"
               ]
             },
             {
               "code": "E2.3.2",
               "term": "Questionnaire",
-              "definition": "A fixed set of written questions, on paper or online.",
+              "definition": "The document itself: a fixed list of written questions that people fill in on their own.",
               "examples": "A feedback form handed to shoppers.",
               "examTip": "Very close to a survey: the questionnaire is the document itself.",
               "keyFacts": [
@@ -276,6 +286,9 @@
                 "Rating scales measure opinions, so feelings can be turned into numbers and compared",
                 "Cannot follow up answers, so unclear or interesting replies can't be explored",
                 "Low response rates, because many people ignore questionnaires"
+              ],
+              "confusable": [
+                "E2.3.1"
               ]
             },
             {
@@ -330,7 +343,8 @@
                 "Wrong data leads to wrong decisions, e.g. targeting the wrong customers",
                 "Errors damage customer trust, e.g. wrong bills or orders sent to the wrong address",
                 "Wrong stock data leads to over- or under-ordering, wasting money or losing sales"
-              ]
+              ],
+              "overview": true
             }
           ]
         },

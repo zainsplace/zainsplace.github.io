@@ -16,7 +16,7 @@
               "code": "B1.1.1",
               "term": "Bluetooth",
               "definition": "Short-range, low-power wireless for connecting devices directly, usually up to about 10 m.",
-              "examples": "Wireless earbuds; a Bluetooth keyboard; a smartwatch.",
+              "examples": "Wireless earbuds; a wireless mouse paired with a laptop; a smartwatch.",
               "examTip": "Short range, low power, pairing. Slower than Wi-Fi.",
               "keyFacts": [
                 "Range about 10 m (up to 100 m on newer versions), so it suits devices kept close to the user",
@@ -29,7 +29,7 @@
               "code": "B1.1.2",
               "term": "USB (Universal Serial Bus)",
               "definition": "A wired standard that transfers data and power between a device and a computer.",
-              "examples": "A flash drive; charging a phone over USB-C; a printer.",
+              "examples": "A flash drive; charging a phone with a Type-C cable; a wired keyboard.",
               "examTip": "Wired, direct, fast, no network needed. Newer versions are much faster.",
               "keyFacts": [
                 "USB 2.0 runs at 480 Mbps and USB 3.x at 5–10 Gbps, so newer ports move large files much faster",
@@ -42,7 +42,7 @@
               "code": "B1.1.3",
               "term": "Wi-Fi",
               "definition": "Wireless networking by radio, connecting devices to a router or access point.",
-              "examples": "Office or school Wi-Fi; a café hotspot.",
+              "examples": "An office or school wireless network; a café hotspot.",
               "examTip": "Mobility vs Ethernet's speed, reliability and security. Public Wi-Fi is a risk.",
               "keyFacts": [
                 "Range about 30–50 m indoors, reduced by walls, so large buildings need several access points",
@@ -68,7 +68,7 @@
                 "headers": ["Feature", "Bluetooth", "USB", "Wi-Fi", "Ethernet"],
                 "rows": [
                   ["Type", "Wireless", "Wired", "Wireless", "Wired"],
-                  ["Typical speed", "Up to 50 Mbps", "Up to 10 Gbps (USB 3.1)", "Up to 9.6 Gbps (Wi-Fi 6)", "Up to 10 Gbps+ (10GbE)"],
+                  ["Typical speed", "Up to about 2–3 Mbps", "Up to 10 Gbps (USB 3.1)", "Up to 9.6 Gbps (Wi-Fi 6)", "Up to 10 Gbps+ (10GbE)"],
                   ["Range", "~10 m (up to 100 m)", "Length of cable only", "30–50 m indoors", "Up to 100 m (copper); km (fibre)"],
                   ["Mobility", "High — no cables", "None — physically tethered", "High — within coverage area", "None — physically tethered"],
                   ["Reliability", "Good; affected by interference", "Excellent — direct connection", "Good; affected by interference/walls", "Excellent — consistent"],
@@ -96,7 +96,8 @@
                 "Fixed, reliable workstations suit Ethernet, because a cable gives steady speed with no interference",
                 "Short-range peripherals suit Bluetooth, because it is low power and needs no cables",
                 "Servers and the backbone suit fibre, because they carry the most traffic and need the highest speed"
-              ]
+              ],
+              "overview": true
             }
           ]
         },
@@ -115,7 +116,8 @@
                 "Ethernet needs costly cabling but is reliable, so it costs more up front but gives fewer problems",
                 "USB may need blocking to stop malware, which can inconvenience staff who rely on memory sticks",
                 "Wireless depends on signal quality, so walls and distance can cause slow or dropped connections"
-              ]
+              ],
+              "overview": true
             }
           ]
         },
@@ -134,7 +136,8 @@
                 "Wired is more reliable because there is no interference, so connections don't drop",
                 "Wi-Fi bandwidth is shared between users, so each person gets less speed as more people connect",
                 "Jitter on Wi-Fi hurts calls, because uneven delay makes voices break up"
-              ]
+              ],
+              "overview": true
             }
           ]
         }
@@ -399,7 +402,8 @@
                 "Cable type matters: fibre > Cat6 > Cat5e, so better cable gives higher speeds over longer runs",
                 "More users means less bandwidth each, so a network that is fine for 10 may struggle with 100",
                 "Access point placement affects Wi-Fi coverage, so badly placed APs leave dead spots"
-              ]
+              ],
+              "overview": true
             }
           ]
         }
@@ -509,7 +513,8 @@
                 "Man-in-the-middle intercepts and relays traffic, so the attacker can read or change it unnoticed",
                 "Evil twin is a fake Wi-Fi hotspot, so users who connect send all their traffic through the attacker",
                 "Fix with HTTPS and a VPN on public Wi-Fi, so intercepted data is encrypted and useless"
-              ]
+              ],
+              "overview": true
             }
           ]
         },
@@ -528,7 +533,8 @@
                 "Latency comes from distance, hops and congestion, so far-away servers respond more slowly",
                 "Low latency matters for calls and gaming, because delay makes them hard to use",
                 "Jitter is varying latency, which makes calls choppy because packets arrive unevenly"
-              ]
+              ],
+              "overview": true
             }
           ]
         },
@@ -539,53 +545,61 @@
             {
               "code": "B3.4.1",
               "term": "Image File Formats",
-              "definition": "Image formats differ in file size, quality and features such as transparency.",
+              "definition": "Image format affects how long a picture takes to send, how much bandwidth it uses and whether the receiver can open it.",
               "examples": "JPEG photos; PNG logos; GIF animations.",
-              "examTip": "Choose for the scenario: JPEG for photos, PNG for transparency, SVG for scalable logos.",
+              "examTip": "Implications = time to send, bandwidth used, attachment limits and whether the receiver can open it. JPEG for photos, PNG for transparency.",
               "keyFacts": [
                 "JPEG is lossy and small, so it suits photos on websites where fast loading matters",
                 "PNG is lossless with transparency, so it suits logos and graphics that need sharp edges",
                 "GIF has only 256 colours but supports simple animation, so it suits small animated images",
-                "RAW is huge but keeps maximum quality, so photographers use it for editing"
+                "RAW is huge but keeps maximum quality, so photographers use it for editing",
+                "Large RAW or PNG photos take longer to upload and can exceed email attachment limits, so JPEG is usually used for sending",
+                "The receiver needs software that opens the format, so common formats such as JPEG and PNG are the safest to send"
               ]
             },
             {
               "code": "B3.4.2",
               "term": "Audio File Formats",
-              "definition": "Audio formats differ in quality and size depending on compression.",
+              "definition": "Choice of audio format affects upload and streaming time, bandwidth used and whether the listener's device can play it.",
               "examples": "MP3 streaming; WAV in a recording studio.",
               "examTip": "MP3 = small, for streaming. WAV/FLAC = full quality, for production.",
               "keyFacts": [
                 "MP3 is lossy, small and widely supported, so it plays on almost any device",
                 "AAC is lossy but sounds better than MP3 at the same size, so streaming services use it",
                 "WAV is uncompressed and large, so it suits editing where full quality is needed",
-                "FLAC is lossless but smaller than WAV, so it suits storing music at full quality"
+                "FLAC is lossless but smaller than WAV, so it suits storing music at full quality",
+                "Streaming lossy MP3 or AAC uses far less bandwidth than WAV, so music plays without buffering on mobile data",
+                "Not every device plays every format (e.g. FLAC on some phones), so the sender should pick a widely supported one"
               ]
             },
             {
               "code": "B3.4.3",
               "term": "Video File Formats",
-              "definition": "A video file is a container (e.g. MP4) holding streams compressed by a codec.",
+              "definition": "Video format and bitrate affect how long a video takes to send or stream, the bandwidth used and which devices play it.",
               "examples": "MP4 on YouTube; MOV from an iPhone.",
               "examTip": "Container holds the streams; the codec compresses them.",
               "keyFacts": [
                 "MP4 is the most compatible, so it plays on almost every device and website",
                 "MKV holds multiple audio and subtitle tracks, so it suits films in several languages",
                 "MOV is Apple's high-quality format, so it suits editing on Apple devices",
-                "Higher bitrate gives better quality but needs more bandwidth and storage"
+                "Higher bitrate gives better quality but needs more bandwidth and storage",
+                "Video is the largest kind of data to send, so it is compressed and streamed at a bitrate that suits the connection to avoid buffering",
+                "Large videos exceed email attachment limits, so they are shared by a cloud link instead"
               ]
             },
             {
               "code": "B3.4.4",
               "term": "Application Software File Formats",
-              "definition": "Installer and program files specific to each operating system.",
+              "definition": "Installer formats affect download size and time, which operating system can run them, and the risk of sending malware.",
               "examples": ".exe on Windows; .apk on Android; .dmg on macOS.",
               "examTip": "Large downloads; malware is often disguised as software.",
               "keyFacts": [
                 "EXE/MSI are Windows installers, so they won't run on other operating systems",
                 "APK installs Android apps, usually from the Play Store",
                 "DMG is used for macOS apps, so Mac users can install software",
-                "Check the source and digital signature before running, because installers can contain malware"
+                "Check the source and digital signature before running, because installers can contain malware",
+                "Installers can be hundreds of megabytes, so downloads take time and use up data allowances",
+                "Email filters often block executable attachments, because they are a common way to send malware"
               ],
               "comparisonTable": {
                 "title": "File Formats Summary by Media Type",
@@ -639,7 +653,8 @@
                   ["Re-save impact", "Quality degrades each time (generation loss)", "No quality degradation on re-saving"],
                   ["Best for", "Images (web/social), audio (streaming), video (streaming)", "Text, code, executables, archives, where accuracy matters"],
                   ["NOT suitable for", "Medical images, legal documents, scientific data, text", "Cases where file size is critical and quality loss acceptable"],
-                  ["Example formats", "JPEG, MP3, MP4 (H.264), AAC", "PNG, FLAC, WAV, ZIP, RAR, GIF (images)"],
+                  ["Example formats", "JPEG, MP3, MP4 (H.264), AAC", "PNG, FLAC, ZIP, RAR, GIF (images)"],
+                  ["Uncompressed (neither)", "Not lossy: WAV and BMP are not compressed at all", "Not lossless compression either: WAV is uncompressed, so it is larger than FLAC"],
                   ["File size example", "3 MB photo → ~300 KB JPEG", "3 MB photo → ~2.5 MB PNG"]
                 ]
               }

@@ -23,20 +23,26 @@
                 "Higher set-up and running costs, because it must buy, house and maintain its own servers and pay staff to run them",
                 "Suits sensitive data (medical, financial), as nothing sits on hardware shared with other customers",
                 "Not shared with other organisations, so performance is predictable and never slowed by someone else's demand"
-              ]
+              ],
+              "group": "deployment"
             },
             {
               "code": "C1.1.2",
               "term": "Public Cloud",
               "definition": "Cloud services shared by many organisations, run by a provider such as AWS or Azure.",
-              "examples": "A school using Microsoft 365; a start-up hosting its app on AWS.",
+              "examples": "A school storing its files on Azure servers shared with thousands of other customers; a start-up hosting its app on AWS.",
               "examTip": "Low cost and scalable, but less control over where data is stored.",
               "keyFacts": [
                 "Pay-as-you-go, so small organisations avoid buying servers and only pay for what they actually use",
                 "Scales up or down instantly, so a business can cope with a busy period without buying extra hardware",
                 "Provider maintains and secures the hardware, so the organisation needs fewer IT staff of its own",
                 "Data sits on shared infrastructure, so the organisation has less control and must trust the provider's security"
-              ]
+              ],
+              "confusable": [
+                "C1.1.5",
+                "C1.1.4"
+              ],
+              "group": "deployment"
             },
             {
               "code": "C1.1.3",
@@ -49,7 +55,8 @@
                 "Cheaper public cloud for everything else, so it avoids paying private-cloud costs for non-sensitive work",
                 "Can burst to public cloud when demand spikes, so busy periods are handled without buying extra servers",
                 "More complex to manage, because staff must run two systems and keep data moving securely between them"
-              ]
+              ],
+              "group": "deployment"
             },
             {
               "code": "C1.1.4",
@@ -61,7 +68,11 @@
                 "Full control over the OS and installed software, so it can be set up exactly as the organisation needs",
                 "No hardware to buy, so there is no large upfront cost: the organisation pays only for what it uses",
                 "Suits custom infrastructure needs, but needs skilled IT staff because the organisation still manages the OS"
-              ]
+              ],
+              "confusable": [
+                "C1.1.2"
+              ],
+              "group": "service"
             },
             {
               "code": "C1.1.5",
@@ -74,7 +85,11 @@
                 "Works on any device with internet, so staff can work from home or on the move",
                 "Provider handles updates, so everyone is always on the latest, patched version without IT staff doing it",
                 "Monthly or annual subscription, so costs are spread out but keep going for as long as the software is used"
-              ]
+              ],
+              "confusable": [
+                "C1.1.2"
+              ],
+              "group": "service"
             },
             {
               "code": "C1.1.6",
@@ -101,7 +116,8 @@
                   ["Example", "Amazon EC2, Azure VMs", "Google App Engine, Heroku", "Microsoft 365, Salesforce, Spotify"],
                   ["Typical cost", "Pay per resource used", "Pay per resource/API calls", "Subscription (monthly/annual)"]
                 ]
-              }
+              },
+              "group": "service"
             },
             {
               "code": "C1.1.1-C1.1.3",
@@ -142,7 +158,8 @@
                 "Drawbacks: no internet means no access, and data is held by a third party the organisation must trust",
                 "Vendor lock-in makes switching provider hard, and data stored abroad may fall under other countries' laws"
               ],
-              "extendedAnswer": "Cloud computing offers significant benefits for organisations, including reduced capital expenditure on hardware and the ability to scale resources up or down based on demand. Employees can access data and applications from any location, supporting remote working and improving productivity. However, organisations face risks: if internet connectivity is lost, access to cloud systems is unavailable, causing disruption. Security concerns arise as data is stored on third-party servers, potentially in different countries, raising data protection compliance issues under GDPR. There is also risk of vendor lock-in, where migrating data away from one provider is costly and complex."
+              "extendedAnswer": "Cloud computing offers significant benefits for organisations, including reduced capital expenditure on hardware and the ability to scale resources up or down based on demand. Employees can access data and applications from any location, supporting remote working and improving productivity. However, organisations face risks: if internet connectivity is lost, access to cloud systems is unavailable, causing disruption. Security concerns arise as data is stored on third-party servers, potentially in different countries, raising data protection compliance issues under GDPR. There is also risk of vendor lock-in, where migrating data away from one provider is costly and complex.",
+              "overview": true
             }
           ]
         },
@@ -284,6 +301,9 @@
                 "Used for marketing, customer service and brand building, because customers can talk to the business directly",
                 "Negative comments spread fast, so one bad experience can damage the brand's reputation publicly",
                 "Platforms collect personal data, which raises privacy concerns about how it is used and shared"
+              ],
+              "confusable": [
+                "C2.1.2"
               ]
             },
             {
@@ -297,13 +317,16 @@
                 "Can earn advertising revenue, so a popular blog or vlog can become a source of income",
                 "Comments allow interaction, so the author gets feedback and readers feel part of a community",
                 "Used for content marketing: useful posts draw in customers who may then buy the product"
+              ],
+              "confusable": [
+                "C2.1.1"
               ]
             },
             {
               "code": "C2.1.3",
               "term": "Wiki",
               "definition": "A website that many users can create and edit together, e.g. Wikipedia.",
-              "examples": "Wikipedia; a company's internal knowledge wiki.",
+              "examples": "Wikipedia; a company's internal knowledge base that any employee can edit.",
               "examTip": "Anyone can edit, so accuracy can be a problem.",
               "keyFacts": [
                 "Built and updated by the community, so information can be added and corrected quickly",
@@ -322,6 +345,9 @@
                 "Real-time group conversation, so several people can discuss and get answers immediately",
                 "Public or invite-only, so organisations can keep private discussions limited to chosen members",
                 "Risks include cyberbullying, grooming and inappropriate content, so chatrooms need moderation"
+              ],
+              "confusable": [
+                "C2.1.5"
               ]
             },
             {
@@ -335,13 +361,16 @@
                 "Supports files, voice and video, so a quick chat can turn into a call without switching app",
                 "Can blur work and personal time, because staff feel they must reply to messages out of hours",
                 "Often end-to-end encrypted, so only the sender and recipient can read the messages"
+              ],
+              "confusable": [
+                "C2.1.4"
               ]
             },
             {
               "code": "C2.1.6",
               "term": "Podcasts",
               "definition": "Audio (sometimes video) episodes published online to listen to on demand.",
-              "examples": "BBC podcasts; exam revision podcasts.",
+              "examples": "BBC Sounds series; an exam revision audio series.",
               "examTip": "On-demand, one-way, one-to-many.",
               "keyFacts": [
                 "Listener chooses when to listen, so people fit episodes around commuting, exercise or chores",
@@ -353,7 +382,7 @@
               "code": "C2.1.7",
               "term": "Forums",
               "definition": "Discussion boards where users post and reply in threads in their own time.",
-              "examples": "Reddit; Stack Overflow; product support forums.",
+              "examples": "Reddit; Stack Overflow; a product's community help board.",
               "examTip": "Forums are asynchronous and searchable; chatrooms are real-time.",
               "keyFacts": [
                 "Posts stay up and are searchable, so answers to common problems can be found again later",

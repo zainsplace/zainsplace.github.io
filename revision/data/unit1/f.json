@@ -59,6 +59,9 @@
                 "Linked to income, location, age and education, so the people already disadvantaged are most likely to miss out",
                 "Pupils without devices fall behind, because homework and resources are increasingly online",
                 "Millions of UK adults lack basic digital skills, so they struggle with online banking, jobs and services"
+              ],
+              "confusable": [
+                "F1.1.4"
               ]
             },
             {
@@ -71,6 +74,9 @@
                 "Employers must make reasonable adjustments, such as providing screen readers, so disabled staff can work",
                 "WCAG is the web accessibility standard, so sites that follow it work with assistive technology",
                 "Specialist kit is expensive, so some disabled people can't afford the technology they need"
+              ],
+              "confusable": [
+                "F1.1.3"
               ]
             },
             {
@@ -142,6 +148,10 @@
                 "S2: access with intent to commit further crime (up to 5 years), e.g. hacking in to steal money",
                 "S3: unauthorised modification (up to 10 years), e.g. spreading malware or launching a DDoS",
                 "Covers any computer, including phones, so the law applies to modern devices too"
+              ],
+              "accepts": [
+                "Computer Misuse Act",
+                "CMA"
               ]
             },
             {
@@ -155,18 +165,28 @@
                 "Lasts the creator's life + 70 years, so work can't be freely copied for a long time",
                 "Licences (EULAs) set how software may be used, so installing it on extra PCs can break the law",
                 "Limited exceptions for study and review, so small extracts can be used fairly, e.g. in coursework"
+              ],
+              "accepts": [
+                "CDPA",
+                "Copyright Designs and Patents Act"
+              ],
+              "confusable": [
+                "F2.1.3"
               ]
             },
             {
               "code": "F2.1.3",
               "term": "Copyright Regulations (Computer Programs) 1992",
-              "definition": "Regulations that specifically protect computer programs as literary works.",
-              "examples": "Copying another company's source code and selling it as your own.",
+              "definition": "Regulations updating software copyright: a lawful user may make a back-up copy and decompile only for interoperability.",
+              "examples": "Making one back-up copy of software you bought; decompiling a program only so your own product can work with it.",
               "examTip": "Adds to the 1988 Act for software: a backup copy is allowed; decompiling only for compatibility.",
               "keyFacts": [
-                "Programs are literary works, so code is protected by copyright just like a book",
+                "Protects preparatory design material for a program as well as the code, so plans and designs can't be copied either",
                 "Decompiling only allowed for compatibility, so rivals can't reverse-engineer code to copy it",
                 "Owners may make one backup copy, so a legitimate user can protect against loss without breaking the law"
+              ],
+              "confusable": [
+                "F2.1.2"
               ]
             },
             {
@@ -183,8 +203,7 @@
                   ["Regular breaks from DSE work (at least 5-10 mins per hour)", "Eye strain, headaches, fatigue from prolonged screen use"],
                   ["Free eye tests for DSE workers (annually or as needed)", "Visual fatigue, uncorrected vision problems worsened by screen work"],
                   ["Provide corrective glasses if required specifically for DSE work", "Vision deterioration linked directly to screen use"],
-                  ["Training on safe workstation setup and correct posture", "Repetitive Strain Injury (RSI), carpal tunnel syndrome from poor technique"],
-                  ["Report DSE-related illness under RIDDOR if absence > 7 days", "Work-related upper limb disorder (WRULD) — employer accountability"]
+                  ["Training on safe workstation setup and correct posture", "Repetitive Strain Injury (RSI), carpal tunnel syndrome from poor technique"]
                 ]
               },
               "keyFacts": [
@@ -218,6 +237,12 @@
                 "Rights: access, correct, erase, object, so people stay in control of their own data",
                 "Report serious breaches to the ICO within 72 hours, so affected people can be warned quickly",
                 "Fines up to £17.5m or 4% of global turnover, so ignoring the law can be very costly"
+              ],
+              "accepts": [
+                "Data Protection Act",
+                "DPA",
+                "GDPR",
+                "UK GDPR"
               ]
             }
           ]

@@ -109,8 +109,8 @@
       "id": "c16",
       "section": "C",
       "code": "C2.2.10",
-      "front": "What is an Acceptable Use Policy (AUP)?",
-      "back": "Rules for how staff use IT and behave online, e.g. no sharing confidential data."
+      "front": "How do working practices and company policies affect an organisation using online communities?",
+      "back": "Policies such as an AUP set rules for staff posts. Staff represent the company, so careless posts harm its reputation. Follow GDPR."
     },
     {
       "id": "c17",
@@ -215,7 +215,7 @@
       "section": "D",
       "code": "D2.1.1-2",
       "front": "What are file permissions and access levels? How do they protect data?",
-      "back": "Control who can read, write or run files, so users only access what they need."
+      "back": "Permissions: what a user may do to a file (read/write/execute). Access levels: which systems a role can reach. Both = least privilege."
     },
     {
       "id": "d12",
@@ -327,7 +327,7 @@
       "section": "B",
       "code": "B2.1.2",
       "front": "Describe a ring network topology. Give ONE advantage and ONE disadvantage.",
-      "back": "Devices in a loop, data flows one way. Advantage: copes with heavy load. Disadvantage: one failure breaks it."
+      "back": "Devices in a loop, data flows one way. Advantage: token passing means data never collides. Disadvantage: one failure breaks it."
     },
     {
       "id": "b12",
@@ -641,8 +641,8 @@
       "id": "a19",
       "section": "A",
       "code": "A3.1",
-      "front": "Name SIX types of operating system and briefly describe each.",
-      "back": "Batch (jobs in groups), multitasking, network, real-time (instant, e.g. aircraft), mobile, multi-user."
+      "front": "Name the EIGHT types of operating system.",
+      "back": "Batch (grouped jobs), distributed (many PCs), multitasking, network, real-time (instant), mobile, single use (one job), multi-user."
     },
     {
       "id": "a20",
@@ -922,7 +922,7 @@
       "section": "B",
       "code": "B2.3",
       "front": "Give FOUR factors that affect an organisation's choice of network.",
-      "back": "Cost, security, performance and scalability."
+      "back": "e.g. user needs, cost, security, compatibility (also specifications, connectivity, efficiency, implementation, productivity)."
     },
     {
       "id": "b20",
@@ -951,6 +951,118 @@
       "code": "F1.1.6",
       "front": "What is an Acceptable Use Policy (AUP) and why is it important ethically?",
       "back": "Rules for using company IT. It protects people from misuse and sets clear expectations."
+    },
+    {
+      "id": "a35",
+      "section": "A",
+      "code": "A1.2.1",
+      "front": "How are digital devices used for personal tasks?",
+      "back": "Phones for messaging, maps and media; laptops for shopping and banking; smart speakers and thermostats controlled by voice."
+    },
+    {
+      "id": "a36",
+      "section": "A",
+      "code": "A1.2.3",
+      "front": "How are digital devices used socially? Give ONE risk.",
+      "back": "Social media, messaging and online gaming keep people in touch. Risks: cyberbullying, loss of privacy, addiction."
+    },
+    {
+      "id": "a37",
+      "section": "A",
+      "code": "A1.2.4",
+      "front": "Give TWO ways digital devices support retail.",
+      "back": "EPOS tills update stock automatically; barcode/RFID scanners speed up checkout; self-checkouts cut staff costs."
+    },
+    {
+      "id": "a38",
+      "section": "A",
+      "code": "A1.2.7",
+      "front": "Why do creative tasks need high-specification devices?",
+      "back": "Video and 3D editing need a powerful CPU, GPU and RAM, and RAW/4K files need lots of fast storage."
+    },
+    {
+      "id": "a39",
+      "section": "A",
+      "code": "A1.2.8",
+      "front": "Give ONE benefit and ONE drawback of automation and robotics.",
+      "back": "Benefit: works 24/7 with consistent quality and takes on dangerous tasks. Drawback: can replace jobs, so staff need retraining."
+    },
+    {
+      "id": "a40",
+      "section": "A",
+      "code": "A3.7.4",
+      "front": "Name THREE application software file formats and the OS each runs on.",
+      "back": "EXE/MSI: Windows. DMG: macOS. APK: Android. Only install from trusted sources."
+    },
+    {
+      "id": "a41",
+      "section": "A",
+      "code": "A4.2.3",
+      "front": "How do organisations use IT for data analysis?",
+      "back": "Dashboards, reports and forecasts turn raw data into evidence-based decisions, e.g. which products to promote."
+    },
+    {
+      "id": "a42",
+      "section": "A",
+      "code": "A4.2.4",
+      "front": "Give TWO features of IT systems for general office tasks.",
+      "back": "Standard office suites staff already know; cloud versions so several people can edit at once; version control."
+    },
+    {
+      "id": "a43",
+      "section": "A",
+      "code": "A4.2.5",
+      "front": "Give TWO implications of IT systems for creative tasks.",
+      "back": "Need powerful hardware and large, fast storage; software is often a subscription (e.g. Adobe), so costs continue."
+    },
+    {
+      "id": "a44",
+      "section": "A",
+      "code": "A4.2.7",
+      "front": "How is IT used in manufacturing?",
+      "back": "CAD designs on screen; CAM turns designs into machine instructions; CNC cuts identical parts; sensors spot defects."
+    },
+    {
+      "id": "a45",
+      "section": "A",
+      "code": "A4.2.8",
+      "front": "Give TWO ways organisations use IT systems for security.",
+      "back": "Networked CCTV viewed remotely; swipe cards and biometrics that log every entry; monitoring software that spots attacks."
+    },
+    {
+      "id": "a46",
+      "section": "A",
+      "code": "A4.2.9",
+      "front": "Give ONE benefit and ONE drawback of automation for an organisation.",
+      "back": "Benefit: lower labour costs and consistent quality. Drawback: can replace repetitive jobs, affecting staff and the community."
+    },
+    {
+      "id": "b23",
+      "section": "B",
+      "code": "B1.2",
+      "front": "How do you match a connection type to a user's needs?",
+      "back": "Link a feature to the need: Wi-Fi for mobility, Ethernet for fixed reliable PCs, Bluetooth for short-range peripherals."
+    },
+    {
+      "id": "b24",
+      "section": "B",
+      "code": "B1.3",
+      "front": "Give TWO implications of choosing Wi-Fi instead of Ethernet.",
+      "back": "Cheaper and easier to install, with mobility; but less secure (signals leave the building) and affected by walls."
+    },
+    {
+      "id": "b25",
+      "section": "B",
+      "code": "B1.4",
+      "front": "How does the connection type affect system performance?",
+      "back": "Wired: lower latency, no interference, steady speed. Wi-Fi: bandwidth shared between users, and jitter breaks up calls."
+    },
+    {
+      "id": "c32",
+      "section": "C",
+      "code": "C2.1.7",
+      "front": "How does a forum differ from a chatroom?",
+      "back": "A forum is asynchronous: threaded posts stay up and can be searched later. A chatroom is a real-time conversation."
     }
   ]
 }

@@ -52,6 +52,9 @@ const INLINE_UNITS = {
                       "Touch interface running iOS or Android, so they are easy to use without a keyboard or mouse",
                       "Sensors (GPS, camera, NFC) enable maps, photos and contactless payments",
                       "Apps come from app stores, which check them, so users are less likely to install malware"
+                    ],
+                    "confusable": [
+                      "A1.1.8"
                     ]
                   },
                   {
@@ -143,6 +146,9 @@ const INLINE_UNITS = {
                       "Modem converts signals for phone or cable lines, so digital data can travel over them",
                       "Router connects the LAN to the internet, sending data between the two networks",
                       "VoIP phones make calls over the internet, which is cheaper than traditional phone lines"
+                    ],
+                    "confusable": [
+                      "A1.1.3"
                     ]
                   },
                   {
@@ -155,6 +161,14 @@ const INLINE_UNITS = {
                       "Single purpose with little or no interface, so they are cheap, reliable and use little power",
                       "IoT devices send data to the cloud, so they can be monitored and controlled remotely",
                       "Weak default passwords and rare updates make them easy to hack, e.g. to recruit them into a botnet"
+                    ],
+                    "accepts": [
+                      "IoT",
+                      "Internet of Things",
+                      "Embedded system"
+                    ],
+                    "confusable": [
+                      "A1.2.8"
                     ]
                   }
                 ]
@@ -217,6 +231,9 @@ const INLINE_UNITS = {
                       "CNC machines cut parts precisely, so every part is identical and waste is reduced",
                       "Robots assemble, weld and paint, so production runs faster and staff avoid dangerous jobs",
                       "Sensors monitor machines in real time, so faults are spotted before they cause breakdowns"
+                    ],
+                    "confusable": [
+                      "A1.2.8"
                     ]
                   },
                   {
@@ -253,6 +270,10 @@ const INLINE_UNITS = {
                       "Takes on dangerous tasks, so workers are kept away from harm",
                       "Can replace jobs, especially repetitive manual work, which can increase unemployment",
                       "Needs new skills, so staff must be retrained to program and maintain the machines"
+                    ],
+                    "confusable": [
+                      "A1.2.5",
+                      "A1.1.9"
                     ]
                   }
                 ]
@@ -339,12 +360,15 @@ const INLINE_UNITS = {
                     "code": "A2.1.1",
                     "term": "Input Devices",
                     "definition": "Hardware for getting data into a computer.",
-                    "examples": "Keyboard; mouse; microphone; barcode scanner; touchscreen.",
+                    "examples": "Keyboard; mouse; microphone; barcode scanner; graphics tablet.",
                     "examTip": "Input = data going IN. Manual (keyboard) or automatic (sensor, scanner).",
                     "keyFacts": [
                       "Manual input (keyboard, mouse, touchscreen) is controlled by a person, so it suits entering varied data",
                       "Optical input (scanner, barcode and QR readers, camera) reads data by light, so it is quick and accurate",
                       "Automatic input (sensors, RFID, biometrics) collects data with no human effort, so it can run 24/7"
+                    ],
+                    "confusable": [
+                      "A2.1.2"
                     ]
                   },
                   {
@@ -358,6 +382,9 @@ const INLINE_UNITS = {
                       "Audio output (speakers, headphones) gives sound, e.g. alerts, music or screen-reader speech",
                       "Tactile output (braille display) lets blind users read by touch",
                       "Plotters produce large drawings, so they suit architects and engineers"
+                    ],
+                    "confusable": [
+                      "A2.1.1"
                     ]
                   },
                   {
@@ -402,6 +429,9 @@ const INLINE_UNITS = {
                       "Reads text, menus and buttons aloud, so blind users can use a computer independently",
                       "Used with the keyboard, not a mouse, because users can't see the pointer",
                       "Needs accessible design (WCAG), otherwise unlabelled buttons and images can't be read out"
+                    ],
+                    "confusable": [
+                      "A2.2.10"
                     ]
                   },
                   {
@@ -494,6 +524,9 @@ const INLINE_UNITS = {
                       "Helps with dyslexia and visual impairment, because users can listen instead of reading",
                       "Built into all major operating systems, so it is free and easy to turn on",
                       "AI voices sound increasingly natural, so listening for long periods is less tiring"
+                    ],
+                    "confusable": [
+                      "A2.2.2"
                     ]
                   }
                 ]
@@ -785,7 +818,7 @@ const INLINE_UNITS = {
                     "examples": "An ATM; a self-service kiosk.",
                     "examTip": "Reliable and secure, but can't be used for anything else.",
                     "keyFacts": [
-                      "One function only, e.g. a smart TV or cash machine, so it is simple and reliable",
+                      "One function only, e.g. a cash machine or a ticket kiosk, so it is simple and reliable",
                       "Fewer vulnerabilities, because there is less software for attackers to exploit",
                       "Can't run other software, so it can't be repurposed if needs change"
                     ]
@@ -870,13 +903,14 @@ const INLINE_UNITS = {
                   {
                     "code": "A3.2.1",
                     "term": "Networking",
-                    "definition": "The OS handles network protocols, connections, sending and receiving data, and bandwidth.",
+                    "definition": "The OS handles network protocols, connections, sending and receiving data, and allocating and monitoring resources.",
                     "examTip": "Four parts: protocols, connections, transmission, resource monitoring.",
                     "keyFacts": [
                       "Runs protocols such as TCP/IP, so the computer can communicate with any other device on the network",
                       "Sets up and ends connections, so data reaches the right program on the right device",
                       "Splits data into packets and reassembles them, so large files can travel across the network reliably",
-                      "Assigns IP settings (e.g. via DHCP), so devices join the network without manual set-up"
+                      "Assigns IP settings (e.g. via DHCP), so devices join the network without manual set-up",
+                      "Allocates and monitors bandwidth and other network resources, so one program can't hog the connection and problems are spotted"
                     ]
                   },
                   {
@@ -889,6 +923,9 @@ const INLINE_UNITS = {
                       "Malware protection (e.g. Windows Defender) is built in, so the device is protected without extra software",
                       "Drive encryption (e.g. BitLocker), so data on a lost or stolen device can't be read",
                       "Built-in firewall blocks unwanted network traffic, protecting the device on any network"
+                    ],
+                    "confusable": [
+                      "A3.2.6"
                     ]
                   },
                   {
@@ -936,6 +973,9 @@ const INLINE_UNITS = {
                       "Log in with a password, PIN, biometric or MFA, so the OS knows who is using the computer",
                       "Each user has their own profile and files, so people sharing a computer keep their work private",
                       "Account types (administrator, standard, guest) limit what each user can change, protecting the system"
+                    ],
+                    "confusable": [
+                      "A3.2.2"
                     ]
                   }
                 ]
@@ -1027,6 +1067,10 @@ const INLINE_UNITS = {
                       "Must do every required task, or staff will need extra software or workarounds",
                       "Interface should suit users' skills, so staff can use it without lots of training",
                       "Industry-standard software may be needed, so files can be shared with clients and partners"
+                    ],
+                    "accepts": [
+                      "User Needs",
+                      "Business Needs"
                     ]
                   },
                   {
@@ -1082,6 +1126,9 @@ const INLINE_UNITS = {
                       "Intuitive visual design, so new users learn it quickly",
                       "Needs more processing power, because it must draw graphics on screen",
                       "Slower than CLI for repetitive tasks, because each step needs clicking through"
+                    ],
+                    "confusable": [
+                      "A3.5.4"
                     ]
                   },
                   {
@@ -1094,6 +1141,9 @@ const INLINE_UNITS = {
                       "Tap, swipe and pinch gestures are natural, so even young children can use it",
                       "Larger touch targets, because fingers are less precise than a mouse pointer",
                       "Used on phones, tablets and kiosks, where there is no room for a keyboard or mouse"
+                    ],
+                    "confusable": [
+                      "A3.5.3"
                     ]
                   }
                 ]
@@ -1370,6 +1420,9 @@ const INLINE_UNITS = {
                       "Low stock triggers reorders, so shelves are never empty",
                       "Less manual counting, which saves staff time and cuts errors",
                       "Managers see stock from anywhere, so they can make decisions without visiting each shop"
+                    ],
+                    "confusable": [
+                      "A4.2.9"
                     ]
                   },
                   {
@@ -1383,6 +1436,9 @@ const INLINE_UNITS = {
                       "Each reading is time-stamped, so changes can be tracked over time",
                       "Produces large amounts of data, so storage and analysis tools are needed",
                       "Analysed later for trends, e.g. finding when a machine tends to overheat"
+                    ],
+                    "confusable": [
+                      "A4.2.9"
                     ]
                   },
                   {
@@ -1395,6 +1451,9 @@ const INLINE_UNITS = {
                       "Dashboards and reports show key figures clearly, so managers see problems quickly",
                       "Forecasts from past data predict future demand, so stock and staff can be planned",
                       "Decisions based on evidence, not guesswork, so they are more likely to succeed"
+                    ],
+                    "confusable": [
+                      "A4.2.8"
                     ]
                   },
                   {
@@ -1440,6 +1499,9 @@ const INLINE_UNITS = {
                       "CAM turns designs into machine instructions, so there is no manual programming step",
                       "CNC gives precise automated machining, so every part comes out identical",
                       "Sensors spot defects, so faulty products are caught before they reach customers"
+                    ],
+                    "confusable": [
+                      "A4.2.9"
                     ]
                   },
                   {
@@ -1452,6 +1514,9 @@ const INLINE_UNITS = {
                       "Swipe cards and biometrics control who enters, and log every entry",
                       "Security monitoring software spots attacks on the network quickly",
                       "Creates lots of data to store, e.g. CCTV footage and access logs"
+                    ],
+                    "confusable": [
+                      "A4.2.3"
                     ]
                   },
                   {
@@ -1463,6 +1528,11 @@ const INLINE_UNITS = {
                       "Cuts labour costs, because machines do work people used to be paid for",
                       "Consistent every time, so quality doesn't drop with tiredness",
                       "Can replace jobs, especially repetitive roles, which affects staff and the local community"
+                    ],
+                    "confusable": [
+                      "A4.2.1",
+                      "A4.2.2",
+                      "A4.2.7"
                     ]
                   }
                 ]
@@ -1556,6 +1626,10 @@ const INLINE_UNITS = {
                       "Train everyone before go-live, so staff can use the system from day one",
                       "Refresher training after updates, so staff keep up with new features",
                       "Different users need different training, e.g. admins need more than everyday users"
+                    ],
+                    "accepts": [
+                      "Staff Training",
+                      "Training Needs"
                     ]
                   },
                   {
@@ -1588,6 +1662,7 @@ const INLINE_UNITS = {
             "title": "Emerging Technologies",
             "subtopics": [
               {
+                "code": "A5",
                 "title": "Emerging Technologies and AI",
                 "items": [
                   {
@@ -1601,7 +1676,8 @@ const INLINE_UNITS = {
                       "Edge computing processes data near its source, cutting delay because it doesn't travel to a far-off server",
                       "5G is very fast with very low latency, so it suits live video and self-driving cars",
                       "AI tunes systems by learning from use, e.g. adjusting performance to save battery"
-                    ]
+                    ],
+                    "overview": true
                   },
                   {
                     "code": "A5.2",
@@ -1614,7 +1690,8 @@ const INLINE_UNITS = {
                       "Personalised recommendations save time, but can trap users in filter bubbles",
                       "Deepfakes spread misinformation, because fake video and audio look and sound real",
                       "Needs lots of personal data, which raises privacy concerns about how it is used and stored"
-                    ]
+                    ],
+                    "overview": true
                   },
                   {
                     "code": "A5.3",
@@ -1627,7 +1704,8 @@ const INLINE_UNITS = {
                       "Better, faster decisions from data, because AI spots patterns humans miss",
                       "Jobs lost, including office roles, so staff may need retraining",
                       "Bias in training data leads to unfair decisions, and attackers use AI too, e.g. for convincing phishing"
-                    ]
+                    ],
+                    "overview": true
                   }
                 ]
               }
@@ -1653,7 +1731,7 @@ const INLINE_UNITS = {
                     "code": "B1.1.1",
                     "term": "Bluetooth",
                     "definition": "Short-range, low-power wireless for connecting devices directly, usually up to about 10 m.",
-                    "examples": "Wireless earbuds; a Bluetooth keyboard; a smartwatch.",
+                    "examples": "Wireless earbuds; a wireless mouse paired with a laptop; a smartwatch.",
                     "examTip": "Short range, low power, pairing. Slower than Wi-Fi.",
                     "keyFacts": [
                       "Range about 10 m (up to 100 m on newer versions), so it suits devices kept close to the user",
@@ -1666,7 +1744,7 @@ const INLINE_UNITS = {
                     "code": "B1.1.2",
                     "term": "USB (Universal Serial Bus)",
                     "definition": "A wired standard that transfers data and power between a device and a computer.",
-                    "examples": "A flash drive; charging a phone over USB-C; a printer.",
+                    "examples": "A flash drive; charging a phone with a Type-C cable; a wired keyboard.",
                     "examTip": "Wired, direct, fast, no network needed. Newer versions are much faster.",
                     "keyFacts": [
                       "USB 2.0 runs at 480 Mbps and USB 3.x at 5–10 Gbps, so newer ports move large files much faster",
@@ -1679,7 +1757,7 @@ const INLINE_UNITS = {
                     "code": "B1.1.3",
                     "term": "Wi-Fi",
                     "definition": "Wireless networking by radio, connecting devices to a router or access point.",
-                    "examples": "Office or school Wi-Fi; a café hotspot.",
+                    "examples": "An office or school wireless network; a café hotspot.",
                     "examTip": "Mobility vs Ethernet's speed, reliability and security. Public Wi-Fi is a risk.",
                     "keyFacts": [
                       "Range about 30–50 m indoors, reduced by walls, so large buildings need several access points",
@@ -1719,7 +1797,7 @@ const INLINE_UNITS = {
                         ],
                         [
                           "Typical speed",
-                          "Up to 50 Mbps",
+                          "Up to about 2–3 Mbps",
                           "Up to 10 Gbps (USB 3.1)",
                           "Up to 9.6 Gbps (Wi-Fi 6)",
                           "Up to 10 Gbps+ (10GbE)"
@@ -1793,7 +1871,8 @@ const INLINE_UNITS = {
                       "Fixed, reliable workstations suit Ethernet, because a cable gives steady speed with no interference",
                       "Short-range peripherals suit Bluetooth, because it is low power and needs no cables",
                       "Servers and the backbone suit fibre, because they carry the most traffic and need the highest speed"
-                    ]
+                    ],
+                    "overview": true
                   }
                 ]
               },
@@ -1812,7 +1891,8 @@ const INLINE_UNITS = {
                       "Ethernet needs costly cabling but is reliable, so it costs more up front but gives fewer problems",
                       "USB may need blocking to stop malware, which can inconvenience staff who rely on memory sticks",
                       "Wireless depends on signal quality, so walls and distance can cause slow or dropped connections"
-                    ]
+                    ],
+                    "overview": true
                   }
                 ]
               },
@@ -1831,7 +1911,8 @@ const INLINE_UNITS = {
                       "Wired is more reliable because there is no interference, so connections don't drop",
                       "Wi-Fi bandwidth is shared between users, so each person gets less speed as more people connect",
                       "Jitter on Wi-Fi hurts calls, because uneven delay makes voices break up"
-                    ]
+                    ],
+                    "overview": true
                   }
                 ]
               }
@@ -2194,7 +2275,8 @@ const INLINE_UNITS = {
                       "Cable type matters: fibre > Cat6 > Cat5e, so better cable gives higher speeds over longer runs",
                       "More users means less bandwidth each, so a network that is fine for 10 may struggle with 100",
                       "Access point placement affects Wi-Fi coverage, so badly placed APs leave dead spots"
-                    ]
+                    ],
+                    "overview": true
                   }
                 ]
               }
@@ -2389,7 +2471,8 @@ const INLINE_UNITS = {
                       "Man-in-the-middle intercepts and relays traffic, so the attacker can read or change it unnoticed",
                       "Evil twin is a fake Wi-Fi hotspot, so users who connect send all their traffic through the attacker",
                       "Fix with HTTPS and a VPN on public Wi-Fi, so intercepted data is encrypted and useless"
-                    ]
+                    ],
+                    "overview": true
                   }
                 ]
               },
@@ -2408,7 +2491,8 @@ const INLINE_UNITS = {
                       "Latency comes from distance, hops and congestion, so far-away servers respond more slowly",
                       "Low latency matters for calls and gaming, because delay makes them hard to use",
                       "Jitter is varying latency, which makes calls choppy because packets arrive unevenly"
-                    ]
+                    ],
+                    "overview": true
                   }
                 ]
               },
@@ -2419,53 +2503,61 @@ const INLINE_UNITS = {
                   {
                     "code": "B3.4.1",
                     "term": "Image File Formats",
-                    "definition": "Image formats differ in file size, quality and features such as transparency.",
+                    "definition": "Image format affects how long a picture takes to send, how much bandwidth it uses and whether the receiver can open it.",
                     "examples": "JPEG photos; PNG logos; GIF animations.",
-                    "examTip": "Choose for the scenario: JPEG for photos, PNG for transparency, SVG for scalable logos.",
+                    "examTip": "Implications = time to send, bandwidth used, attachment limits and whether the receiver can open it. JPEG for photos, PNG for transparency.",
                     "keyFacts": [
                       "JPEG is lossy and small, so it suits photos on websites where fast loading matters",
                       "PNG is lossless with transparency, so it suits logos and graphics that need sharp edges",
                       "GIF has only 256 colours but supports simple animation, so it suits small animated images",
-                      "RAW is huge but keeps maximum quality, so photographers use it for editing"
+                      "RAW is huge but keeps maximum quality, so photographers use it for editing",
+                      "Large RAW or PNG photos take longer to upload and can exceed email attachment limits, so JPEG is usually used for sending",
+                      "The receiver needs software that opens the format, so common formats such as JPEG and PNG are the safest to send"
                     ]
                   },
                   {
                     "code": "B3.4.2",
                     "term": "Audio File Formats",
-                    "definition": "Audio formats differ in quality and size depending on compression.",
+                    "definition": "Choice of audio format affects upload and streaming time, bandwidth used and whether the listener's device can play it.",
                     "examples": "MP3 streaming; WAV in a recording studio.",
                     "examTip": "MP3 = small, for streaming. WAV/FLAC = full quality, for production.",
                     "keyFacts": [
                       "MP3 is lossy, small and widely supported, so it plays on almost any device",
                       "AAC is lossy but sounds better than MP3 at the same size, so streaming services use it",
                       "WAV is uncompressed and large, so it suits editing where full quality is needed",
-                      "FLAC is lossless but smaller than WAV, so it suits storing music at full quality"
+                      "FLAC is lossless but smaller than WAV, so it suits storing music at full quality",
+                      "Streaming lossy MP3 or AAC uses far less bandwidth than WAV, so music plays without buffering on mobile data",
+                      "Not every device plays every format (e.g. FLAC on some phones), so the sender should pick a widely supported one"
                     ]
                   },
                   {
                     "code": "B3.4.3",
                     "term": "Video File Formats",
-                    "definition": "A video file is a container (e.g. MP4) holding streams compressed by a codec.",
+                    "definition": "Video format and bitrate affect how long a video takes to send or stream, the bandwidth used and which devices play it.",
                     "examples": "MP4 on YouTube; MOV from an iPhone.",
                     "examTip": "Container holds the streams; the codec compresses them.",
                     "keyFacts": [
                       "MP4 is the most compatible, so it plays on almost every device and website",
                       "MKV holds multiple audio and subtitle tracks, so it suits films in several languages",
                       "MOV is Apple's high-quality format, so it suits editing on Apple devices",
-                      "Higher bitrate gives better quality but needs more bandwidth and storage"
+                      "Higher bitrate gives better quality but needs more bandwidth and storage",
+                      "Video is the largest kind of data to send, so it is compressed and streamed at a bitrate that suits the connection to avoid buffering",
+                      "Large videos exceed email attachment limits, so they are shared by a cloud link instead"
                     ]
                   },
                   {
                     "code": "B3.4.4",
                     "term": "Application Software File Formats",
-                    "definition": "Installer and program files specific to each operating system.",
+                    "definition": "Installer formats affect download size and time, which operating system can run them, and the risk of sending malware.",
                     "examples": ".exe on Windows; .apk on Android; .dmg on macOS.",
                     "examTip": "Large downloads; malware is often disguised as software.",
                     "keyFacts": [
                       "EXE/MSI are Windows installers, so they won't run on other operating systems",
                       "APK installs Android apps, usually from the Play Store",
                       "DMG is used for macOS apps, so Mac users can install software",
-                      "Check the source and digital signature before running, because installers can contain malware"
+                      "Check the source and digital signature before running, because installers can contain malware",
+                      "Installers can be hundreds of megabytes, so downloads take time and use up data allowances",
+                      "Email filters often block executable attachments, because they are a common way to send malware"
                     ],
                     "comparisonTable": {
                       "title": "File Formats Summary by Media Type",
@@ -2579,7 +2671,12 @@ const INLINE_UNITS = {
                         [
                           "Example formats",
                           "JPEG, MP3, MP4 (H.264), AAC",
-                          "PNG, FLAC, WAV, ZIP, RAR, GIF (images)"
+                          "PNG, FLAC, ZIP, RAR, GIF (images)"
+                        ],
+                        [
+                          "Uncompressed (neither)",
+                          "Not lossy: WAV and BMP are not compressed at all",
+                          "Not lossless compression either: WAV is uncompressed, so it is larger than FLAC"
                         ],
                         [
                           "File size example",
@@ -2639,20 +2736,26 @@ const INLINE_UNITS = {
                       "Higher set-up and running costs, because it must buy, house and maintain its own servers and pay staff to run them",
                       "Suits sensitive data (medical, financial), as nothing sits on hardware shared with other customers",
                       "Not shared with other organisations, so performance is predictable and never slowed by someone else's demand"
-                    ]
+                    ],
+                    "group": "deployment"
                   },
                   {
                     "code": "C1.1.2",
                     "term": "Public Cloud",
                     "definition": "Cloud services shared by many organisations, run by a provider such as AWS or Azure.",
-                    "examples": "A school using Microsoft 365; a start-up hosting its app on AWS.",
+                    "examples": "A school storing its files on Azure servers shared with thousands of other customers; a start-up hosting its app on AWS.",
                     "examTip": "Low cost and scalable, but less control over where data is stored.",
                     "keyFacts": [
                       "Pay-as-you-go, so small organisations avoid buying servers and only pay for what they actually use",
                       "Scales up or down instantly, so a business can cope with a busy period without buying extra hardware",
                       "Provider maintains and secures the hardware, so the organisation needs fewer IT staff of its own",
                       "Data sits on shared infrastructure, so the organisation has less control and must trust the provider's security"
-                    ]
+                    ],
+                    "confusable": [
+                      "C1.1.5",
+                      "C1.1.4"
+                    ],
+                    "group": "deployment"
                   },
                   {
                     "code": "C1.1.3",
@@ -2665,7 +2768,8 @@ const INLINE_UNITS = {
                       "Cheaper public cloud for everything else, so it avoids paying private-cloud costs for non-sensitive work",
                       "Can burst to public cloud when demand spikes, so busy periods are handled without buying extra servers",
                       "More complex to manage, because staff must run two systems and keep data moving securely between them"
-                    ]
+                    ],
+                    "group": "deployment"
                   },
                   {
                     "code": "C1.1.4",
@@ -2677,7 +2781,11 @@ const INLINE_UNITS = {
                       "Full control over the OS and installed software, so it can be set up exactly as the organisation needs",
                       "No hardware to buy, so there is no large upfront cost: the organisation pays only for what it uses",
                       "Suits custom infrastructure needs, but needs skilled IT staff because the organisation still manages the OS"
-                    ]
+                    ],
+                    "confusable": [
+                      "C1.1.2"
+                    ],
+                    "group": "service"
                   },
                   {
                     "code": "C1.1.5",
@@ -2690,7 +2798,11 @@ const INLINE_UNITS = {
                       "Works on any device with internet, so staff can work from home or on the move",
                       "Provider handles updates, so everyone is always on the latest, patched version without IT staff doing it",
                       "Monthly or annual subscription, so costs are spread out but keep going for as long as the software is used"
-                    ]
+                    ],
+                    "confusable": [
+                      "C1.1.2"
+                    ],
+                    "group": "service"
                   },
                   {
                     "code": "C1.1.6",
@@ -2762,7 +2874,8 @@ const INLINE_UNITS = {
                           "Subscription (monthly/annual)"
                         ]
                       ]
-                    }
+                    },
+                    "group": "service"
                   },
                   {
                     "code": "C1.1.1-C1.1.3",
@@ -2843,7 +2956,8 @@ const INLINE_UNITS = {
                       "Drawbacks: no internet means no access, and data is held by a third party the organisation must trust",
                       "Vendor lock-in makes switching provider hard, and data stored abroad may fall under other countries' laws"
                     ],
-                    "extendedAnswer": "Cloud computing offers significant benefits for organisations, including reduced capital expenditure on hardware and the ability to scale resources up or down based on demand. Employees can access data and applications from any location, supporting remote working and improving productivity. However, organisations face risks: if internet connectivity is lost, access to cloud systems is unavailable, causing disruption. Security concerns arise as data is stored on third-party servers, potentially in different countries, raising data protection compliance issues under GDPR. There is also risk of vendor lock-in, where migrating data away from one provider is costly and complex."
+                    "extendedAnswer": "Cloud computing offers significant benefits for organisations, including reduced capital expenditure on hardware and the ability to scale resources up or down based on demand. Employees can access data and applications from any location, supporting remote working and improving productivity. However, organisations face risks: if internet connectivity is lost, access to cloud systems is unavailable, causing disruption. Security concerns arise as data is stored on third-party servers, potentially in different countries, raising data protection compliance issues under GDPR. There is also risk of vendor lock-in, where migrating data away from one provider is costly and complex.",
+                    "overview": true
                   }
                 ]
               },
@@ -3013,6 +3127,9 @@ const INLINE_UNITS = {
                       "Used for marketing, customer service and brand building, because customers can talk to the business directly",
                       "Negative comments spread fast, so one bad experience can damage the brand's reputation publicly",
                       "Platforms collect personal data, which raises privacy concerns about how it is used and shared"
+                    ],
+                    "confusable": [
+                      "C2.1.2"
                     ]
                   },
                   {
@@ -3026,13 +3143,16 @@ const INLINE_UNITS = {
                       "Can earn advertising revenue, so a popular blog or vlog can become a source of income",
                       "Comments allow interaction, so the author gets feedback and readers feel part of a community",
                       "Used for content marketing: useful posts draw in customers who may then buy the product"
+                    ],
+                    "confusable": [
+                      "C2.1.1"
                     ]
                   },
                   {
                     "code": "C2.1.3",
                     "term": "Wiki",
                     "definition": "A website that many users can create and edit together, e.g. Wikipedia.",
-                    "examples": "Wikipedia; a company's internal knowledge wiki.",
+                    "examples": "Wikipedia; a company's internal knowledge base that any employee can edit.",
                     "examTip": "Anyone can edit, so accuracy can be a problem.",
                     "keyFacts": [
                       "Built and updated by the community, so information can be added and corrected quickly",
@@ -3051,6 +3171,9 @@ const INLINE_UNITS = {
                       "Real-time group conversation, so several people can discuss and get answers immediately",
                       "Public or invite-only, so organisations can keep private discussions limited to chosen members",
                       "Risks include cyberbullying, grooming and inappropriate content, so chatrooms need moderation"
+                    ],
+                    "confusable": [
+                      "C2.1.5"
                     ]
                   },
                   {
@@ -3064,13 +3187,16 @@ const INLINE_UNITS = {
                       "Supports files, voice and video, so a quick chat can turn into a call without switching app",
                       "Can blur work and personal time, because staff feel they must reply to messages out of hours",
                       "Often end-to-end encrypted, so only the sender and recipient can read the messages"
+                    ],
+                    "confusable": [
+                      "C2.1.4"
                     ]
                   },
                   {
                     "code": "C2.1.6",
                     "term": "Podcasts",
                     "definition": "Audio (sometimes video) episodes published online to listen to on demand.",
-                    "examples": "BBC podcasts; exam revision podcasts.",
+                    "examples": "BBC Sounds series; an exam revision audio series.",
                     "examTip": "On-demand, one-way, one-to-many.",
                     "keyFacts": [
                       "Listener chooses when to listen, so people fit episodes around commuting, exercise or chores",
@@ -3082,7 +3208,7 @@ const INLINE_UNITS = {
                     "code": "C2.1.7",
                     "term": "Forums",
                     "definition": "Discussion boards where users post and reply in threads in their own time.",
-                    "examples": "Reddit; Stack Overflow; product support forums.",
+                    "examples": "Reddit; Stack Overflow; a product's community help board.",
                     "examTip": "Forums are asynchronous and searchable; chatrooms are real-time.",
                     "keyFacts": [
                       "Posts stay up and are searchable, so answers to common problems can be found again later",
@@ -3349,7 +3475,12 @@ const INLINE_UNITS = {
                           "Often technically 'legal' if buried in terms"
                         ]
                       ]
-                    }
+                    },
+                    "accepts": [
+                      "Malware",
+                      "Virus",
+                      "Viruses"
+                    ]
                   },
                   {
                     "code": "D1.1.2",
@@ -3490,6 +3621,10 @@ const INLINE_UNITS = {
                       "Motives include money and grudges, e.g. selling customer data or getting revenge after being disciplined",
                       "Hard to spot among normal work, because copying files looks like the person doing their job",
                       "Reduce with least privilege and removing access promptly, so leavers and staff can't reach data they don't need"
+                    ],
+                    "accepts": [
+                      "Stealing Information",
+                      "Leaking Information"
                     ]
                   },
                   {
@@ -3610,6 +3745,9 @@ const INLINE_UNITS = {
                       "Write: change or create, given only to people who need to update the files",
                       "Execute: run programs, so users can't run unknown software that could be malware",
                       "Set for individuals or groups, so a whole department can be given the right access in one step"
+                    ],
+                    "confusable": [
+                      "D2.1.2"
                     ]
                   },
                   {
@@ -3663,7 +3801,10 @@ const INLINE_UNITS = {
                           "Limits blast radius if account is compromised"
                         ]
                       ]
-                    }
+                    },
+                    "confusable": [
+                      "D2.1.1"
+                    ]
                   },
                   {
                     "code": "D2.1.3",
@@ -3718,8 +3859,8 @@ const INLINE_UNITS = {
                   },
                   {
                     "code": "D2.1.4",
-                    "term": "Passwords and Multi-Factor Authentication (MFA)",
-                    "definition": "Passwords check who you are; MFA adds a second factor on top.",
+                    "term": "Passwords / Multi-Factor Authentication (MFA)",
+                    "definition": "A secret the user knows, which can be backed up by a second factor such as a code sent to their phone.",
                     "examples": "A password plus a code from an authenticator app.",
                     "examTip": "Name the factors: something you know, have and are.",
                     "keyFacts": [
@@ -3727,19 +3868,32 @@ const INLINE_UNITS = {
                       "A stolen password alone is not enough with MFA, because the attacker also needs the second factor",
                       "Methods include an SMS code, app, hardware token or biometric, each something only the user has or is",
                       "Password managers stop reuse, so one leaked password doesn't unlock the user's other accounts"
+                    ],
+                    "accepts": [
+                      "Passwords",
+                      "MFA",
+                      "Multi-Factor Authentication",
+                      "2FA"
+                    ],
+                    "confusable": [
+                      "D2.1.5"
                     ]
                   },
                   {
                     "code": "D2.1.5",
                     "term": "Biometrics",
                     "definition": "Identifying people by unique body features such as fingerprint, face, iris or voice.",
-                    "examples": "Face unlock on a phone; fingerprint entry to an office.",
+                    "examples": "Face unlock on a phone; fingerprint login on a work laptop.",
                     "examTip": "\"Something you are\": cannot be forgotten, but cannot be changed if stolen.",
                     "keyFacts": [
                       "Unique and cannot be shared, so access can't be passed on like a password or swipe card",
                       "Faster than typing a password, so staff log in quickly without writing passwords down",
                       "Cannot be reset if the data is stolen, because you can't change your fingerprint like a password",
                       "Privacy concerns under GDPR, because biometric data is sensitive and must be stored securely"
+                    ],
+                    "confusable": [
+                      "D2.1.4",
+                      "D2.1.6"
                     ]
                   },
                   {
@@ -3753,6 +3907,9 @@ const INLINE_UNITS = {
                       "Biometric locks on secure rooms, so only authorised people can reach servers or sensitive data",
                       "CCTV and guards deter intruders, and footage gives evidence if equipment is stolen",
                       "Clear desk policy, so papers and unlocked screens can't be read or photographed by visitors"
+                    ],
+                    "confusable": [
+                      "D2.1.5"
                     ]
                   },
                   {
@@ -3868,6 +4025,10 @@ const INLINE_UNITS = {
                       "Full disk encryption (e.g. BitLocker) encrypts the whole drive, so nothing on it is readable without the key",
                       "Protects stolen laptops, USBs and backups, so a theft does not become a data breach",
                       "Keep the key separate and secure, because anyone with the key can decrypt the data"
+                    ],
+                    "accepts": [
+                      "Encryption at rest",
+                      "Data at rest"
                     ]
                   },
                   {
@@ -3881,6 +4042,13 @@ const INLINE_UNITS = {
                       "Symmetric uses one shared key, so it is fast, but the key must be shared safely first",
                       "Asymmetric: the public key encrypts and the private key decrypts, so no secret key needs sharing",
                       "Public Wi-Fi is risky without it, because others on the network can intercept unencrypted traffic"
+                    ],
+                    "accepts": [
+                      "Encryption in transit",
+                      "Data in transit"
+                    ],
+                    "confusable": [
+                      "D2.4.3"
                     ]
                   },
                   {
@@ -3940,7 +4108,10 @@ const INLINE_UNITS = {
                           "Web server admin (certificate) + browser"
                         ]
                       ]
-                    }
+                    },
+                    "confusable": [
+                      "D2.4.2"
+                    ]
                   }
                 ]
               }
@@ -4018,7 +4189,7 @@ const INLINE_UNITS = {
                     "code": "E1.1.5",
                     "term": "Online Entertainment and Leisure",
                     "definition": "Music, films, TV and games delivered on demand over the internet.",
-                    "examples": "Netflix; Spotify; Steam.",
+                    "examples": "Netflix; Spotify; Disney+.",
                     "examTip": "Streaming has disrupted DVDs, CDs and broadcast TV. Watch for piracy and age checks.",
                     "keyFacts": [
                       "Streaming needs internet, but downloads work offline, e.g. for watching on a flight",
@@ -4130,6 +4301,9 @@ const INLINE_UNITS = {
                       "Version history tracks changes, so mistakes can be undone and everyone sees who changed what",
                       "Chat, video and files in one place, so teams don't switch between tools",
                       "Needs internet and can blur work and home, because staff can be reached at any time"
+                    ],
+                    "confusable": [
+                      "E1.2.4"
                     ]
                   },
                   {
@@ -4193,7 +4367,10 @@ const INLINE_UNITS = {
                           "Explicit cookie consent; right to opt out of tracking"
                         ]
                       ]
-                    }
+                    },
+                    "confusable": [
+                      "E1.2.3"
+                    ]
                   }
                 ]
               }
@@ -4305,7 +4482,8 @@ const INLINE_UNITS = {
                       "Check the author, date and publisher, so you know the information is current and from an expert",
                       "Prefer peer-reviewed or official sources, because experts have checked them",
                       "Compare with past data to spot anomalies, so unusual figures are questioned before being used"
-                    ]
+                    ],
+                    "overview": true
                   }
                 ]
               },
@@ -4316,20 +4494,23 @@ const INLINE_UNITS = {
                   {
                     "code": "E2.3.1",
                     "term": "Survey",
-                    "definition": "Structured questions sent to many people to gather measurable data.",
-                    "examples": "An email survey after a purchase.",
+                    "definition": "A method of gathering data from a large sample of people, which may use a questionnaire, interviews or an online form.",
+                    "examples": "Sending a feedback link to 5,000 customers after a purchase.",
                     "examTip": "Best for large numbers and statistics. Watch for bias in who replies.",
                     "keyFacts": [
                       "Online surveys are cheap and fast, so they reach many people with little effort",
                       "Closed questions are easy to analyse, because answers can be counted and graphed",
                       "Response rates are often low, so results may not represent everyone",
                       "Leading questions skew results, because they push people towards a particular answer"
+                    ],
+                    "confusable": [
+                      "E2.3.2"
                     ]
                   },
                   {
                     "code": "E2.3.2",
                     "term": "Questionnaire",
-                    "definition": "A fixed set of written questions, on paper or online.",
+                    "definition": "The document itself: a fixed list of written questions that people fill in on their own.",
                     "examples": "A feedback form handed to shoppers.",
                     "examTip": "Very close to a survey: the questionnaire is the document itself.",
                     "keyFacts": [
@@ -4337,6 +4518,9 @@ const INLINE_UNITS = {
                       "Rating scales measure opinions, so feelings can be turned into numbers and compared",
                       "Cannot follow up answers, so unclear or interesting replies can't be explored",
                       "Low response rates, because many people ignore questionnaires"
+                    ],
+                    "confusable": [
+                      "E2.3.1"
                     ]
                   },
                   {
@@ -4426,7 +4610,8 @@ const INLINE_UNITS = {
                       "Wrong data leads to wrong decisions, e.g. targeting the wrong customers",
                       "Errors damage customer trust, e.g. wrong bills or orders sent to the wrong address",
                       "Wrong stock data leads to over- or under-ordering, wasting money or losing sales"
-                    ]
+                    ],
+                    "overview": true
                   }
                 ]
               },
@@ -4686,6 +4871,9 @@ const INLINE_UNITS = {
                       "Linked to income, location, age and education, so the people already disadvantaged are most likely to miss out",
                       "Pupils without devices fall behind, because homework and resources are increasingly online",
                       "Millions of UK adults lack basic digital skills, so they struggle with online banking, jobs and services"
+                    ],
+                    "confusable": [
+                      "F1.1.4"
                     ]
                   },
                   {
@@ -4698,6 +4886,9 @@ const INLINE_UNITS = {
                       "Employers must make reasonable adjustments, such as providing screen readers, so disabled staff can work",
                       "WCAG is the web accessibility standard, so sites that follow it work with assistive technology",
                       "Specialist kit is expensive, so some disabled people can't afford the technology they need"
+                    ],
+                    "confusable": [
+                      "F1.1.3"
                     ]
                   },
                   {
@@ -4825,6 +5016,10 @@ const INLINE_UNITS = {
                       "S2: access with intent to commit further crime (up to 5 years), e.g. hacking in to steal money",
                       "S3: unauthorised modification (up to 10 years), e.g. spreading malware or launching a DDoS",
                       "Covers any computer, including phones, so the law applies to modern devices too"
+                    ],
+                    "accepts": [
+                      "Computer Misuse Act",
+                      "CMA"
                     ]
                   },
                   {
@@ -4838,18 +5033,28 @@ const INLINE_UNITS = {
                       "Lasts the creator's life + 70 years, so work can't be freely copied for a long time",
                       "Licences (EULAs) set how software may be used, so installing it on extra PCs can break the law",
                       "Limited exceptions for study and review, so small extracts can be used fairly, e.g. in coursework"
+                    ],
+                    "accepts": [
+                      "CDPA",
+                      "Copyright Designs and Patents Act"
+                    ],
+                    "confusable": [
+                      "F2.1.3"
                     ]
                   },
                   {
                     "code": "F2.1.3",
                     "term": "Copyright Regulations (Computer Programs) 1992",
-                    "definition": "Regulations that specifically protect computer programs as literary works.",
-                    "examples": "Copying another company's source code and selling it as your own.",
+                    "definition": "Regulations updating software copyright: a lawful user may make a back-up copy and decompile only for interoperability.",
+                    "examples": "Making one back-up copy of software you bought; decompiling a program only so your own product can work with it.",
                     "examTip": "Adds to the 1988 Act for software: a backup copy is allowed; decompiling only for compatibility.",
                     "keyFacts": [
-                      "Programs are literary works, so code is protected by copyright just like a book",
+                      "Protects preparatory design material for a program as well as the code, so plans and designs can't be copied either",
                       "Decompiling only allowed for compatibility, so rivals can't reverse-engineer code to copy it",
                       "Owners may make one backup copy, so a legitimate user can protect against loss without breaking the law"
+                    ],
+                    "confusable": [
+                      "F2.1.2"
                     ]
                   },
                   {
@@ -4884,10 +5089,6 @@ const INLINE_UNITS = {
                         [
                           "Training on safe workstation setup and correct posture",
                           "Repetitive Strain Injury (RSI), carpal tunnel syndrome from poor technique"
-                        ],
-                        [
-                          "Report DSE-related illness under RIDDOR if absence > 7 days",
-                          "Work-related upper limb disorder (WRULD) — employer accountability"
                         ]
                       ]
                     },
@@ -4954,6 +5155,12 @@ const INLINE_UNITS = {
                       "Rights: access, correct, erase, object, so people stay in control of their own data",
                       "Report serious breaches to the ICO within 72 hours, so affected people can be warned quickly",
                       "Fines up to £17.5m or 4% of global turnover, so ignoring the law can be very costly"
+                    ],
+                    "accepts": [
+                      "Data Protection Act",
+                      "DPA",
+                      "GDPR",
+                      "UK GDPR"
                     ]
                   }
                 ]
@@ -5074,8 +5281,8 @@ const INLINE_UNITS = {
           "id": "c16",
           "section": "C",
           "code": "C2.2.10",
-          "front": "What is an Acceptable Use Policy (AUP)?",
-          "back": "Rules for how staff use IT and behave online, e.g. no sharing confidential data."
+          "front": "How do working practices and company policies affect an organisation using online communities?",
+          "back": "Policies such as an AUP set rules for staff posts. Staff represent the company, so careless posts harm its reputation. Follow GDPR."
         },
         {
           "id": "c17",
@@ -5180,7 +5387,7 @@ const INLINE_UNITS = {
           "section": "D",
           "code": "D2.1.1-2",
           "front": "What are file permissions and access levels? How do they protect data?",
-          "back": "Control who can read, write or run files, so users only access what they need."
+          "back": "Permissions: what a user may do to a file (read/write/execute). Access levels: which systems a role can reach. Both = least privilege."
         },
         {
           "id": "d12",
@@ -5292,7 +5499,7 @@ const INLINE_UNITS = {
           "section": "B",
           "code": "B2.1.2",
           "front": "Describe a ring network topology. Give ONE advantage and ONE disadvantage.",
-          "back": "Devices in a loop, data flows one way. Advantage: copes with heavy load. Disadvantage: one failure breaks it."
+          "back": "Devices in a loop, data flows one way. Advantage: token passing means data never collides. Disadvantage: one failure breaks it."
         },
         {
           "id": "b12",
@@ -5606,8 +5813,8 @@ const INLINE_UNITS = {
           "id": "a19",
           "section": "A",
           "code": "A3.1",
-          "front": "Name SIX types of operating system and briefly describe each.",
-          "back": "Batch (jobs in groups), multitasking, network, real-time (instant, e.g. aircraft), mobile, multi-user."
+          "front": "Name the EIGHT types of operating system.",
+          "back": "Batch (grouped jobs), distributed (many PCs), multitasking, network, real-time (instant), mobile, single use (one job), multi-user."
         },
         {
           "id": "a20",
@@ -5887,7 +6094,7 @@ const INLINE_UNITS = {
           "section": "B",
           "code": "B2.3",
           "front": "Give FOUR factors that affect an organisation's choice of network.",
-          "back": "Cost, security, performance and scalability."
+          "back": "e.g. user needs, cost, security, compatibility (also specifications, connectivity, efficiency, implementation, productivity)."
         },
         {
           "id": "b20",
@@ -5916,6 +6123,118 @@ const INLINE_UNITS = {
           "code": "F1.1.6",
           "front": "What is an Acceptable Use Policy (AUP) and why is it important ethically?",
           "back": "Rules for using company IT. It protects people from misuse and sets clear expectations."
+        },
+        {
+          "id": "a35",
+          "section": "A",
+          "code": "A1.2.1",
+          "front": "How are digital devices used for personal tasks?",
+          "back": "Phones for messaging, maps and media; laptops for shopping and banking; smart speakers and thermostats controlled by voice."
+        },
+        {
+          "id": "a36",
+          "section": "A",
+          "code": "A1.2.3",
+          "front": "How are digital devices used socially? Give ONE risk.",
+          "back": "Social media, messaging and online gaming keep people in touch. Risks: cyberbullying, loss of privacy, addiction."
+        },
+        {
+          "id": "a37",
+          "section": "A",
+          "code": "A1.2.4",
+          "front": "Give TWO ways digital devices support retail.",
+          "back": "EPOS tills update stock automatically; barcode/RFID scanners speed up checkout; self-checkouts cut staff costs."
+        },
+        {
+          "id": "a38",
+          "section": "A",
+          "code": "A1.2.7",
+          "front": "Why do creative tasks need high-specification devices?",
+          "back": "Video and 3D editing need a powerful CPU, GPU and RAM, and RAW/4K files need lots of fast storage."
+        },
+        {
+          "id": "a39",
+          "section": "A",
+          "code": "A1.2.8",
+          "front": "Give ONE benefit and ONE drawback of automation and robotics.",
+          "back": "Benefit: works 24/7 with consistent quality and takes on dangerous tasks. Drawback: can replace jobs, so staff need retraining."
+        },
+        {
+          "id": "a40",
+          "section": "A",
+          "code": "A3.7.4",
+          "front": "Name THREE application software file formats and the OS each runs on.",
+          "back": "EXE/MSI: Windows. DMG: macOS. APK: Android. Only install from trusted sources."
+        },
+        {
+          "id": "a41",
+          "section": "A",
+          "code": "A4.2.3",
+          "front": "How do organisations use IT for data analysis?",
+          "back": "Dashboards, reports and forecasts turn raw data into evidence-based decisions, e.g. which products to promote."
+        },
+        {
+          "id": "a42",
+          "section": "A",
+          "code": "A4.2.4",
+          "front": "Give TWO features of IT systems for general office tasks.",
+          "back": "Standard office suites staff already know; cloud versions so several people can edit at once; version control."
+        },
+        {
+          "id": "a43",
+          "section": "A",
+          "code": "A4.2.5",
+          "front": "Give TWO implications of IT systems for creative tasks.",
+          "back": "Need powerful hardware and large, fast storage; software is often a subscription (e.g. Adobe), so costs continue."
+        },
+        {
+          "id": "a44",
+          "section": "A",
+          "code": "A4.2.7",
+          "front": "How is IT used in manufacturing?",
+          "back": "CAD designs on screen; CAM turns designs into machine instructions; CNC cuts identical parts; sensors spot defects."
+        },
+        {
+          "id": "a45",
+          "section": "A",
+          "code": "A4.2.8",
+          "front": "Give TWO ways organisations use IT systems for security.",
+          "back": "Networked CCTV viewed remotely; swipe cards and biometrics that log every entry; monitoring software that spots attacks."
+        },
+        {
+          "id": "a46",
+          "section": "A",
+          "code": "A4.2.9",
+          "front": "Give ONE benefit and ONE drawback of automation for an organisation.",
+          "back": "Benefit: lower labour costs and consistent quality. Drawback: can replace repetitive jobs, affecting staff and the community."
+        },
+        {
+          "id": "b23",
+          "section": "B",
+          "code": "B1.2",
+          "front": "How do you match a connection type to a user's needs?",
+          "back": "Link a feature to the need: Wi-Fi for mobility, Ethernet for fixed reliable PCs, Bluetooth for short-range peripherals."
+        },
+        {
+          "id": "b24",
+          "section": "B",
+          "code": "B1.3",
+          "front": "Give TWO implications of choosing Wi-Fi instead of Ethernet.",
+          "back": "Cheaper and easier to install, with mobility; but less secure (signals leave the building) and affected by walls."
+        },
+        {
+          "id": "b25",
+          "section": "B",
+          "code": "B1.4",
+          "front": "How does the connection type affect system performance?",
+          "back": "Wired: lower latency, no interference, steady speed. Wi-Fi: bandwidth shared between users, and jitter breaks up calls."
+        },
+        {
+          "id": "c32",
+          "section": "C",
+          "code": "C2.1.7",
+          "front": "How does a forum differ from a chatroom?",
+          "back": "A forum is asynchronous: threaded posts stay up and can be searched later. A chatroom is a real-time conversation."
         }
       ]
     },
@@ -6210,6 +6529,7 @@ const INLINE_UNITS = {
               "Speed / read-write / access time",
               "Cost (per GB)",
               "Reliability / durability / lifespan",
+              "Compatibility (e.g. works with the practice's X-ray software / ports / operating system)",
               "Portability",
               "Security (e.g. supports encryption)"
             ],
@@ -6473,7 +6793,7 @@ const INLINE_UNITS = {
           "scenario": "s2",
           "part": "(c)",
           "section": "E",
-          "code": "E2.1",
+          "code": "E1.2",
           "marks": 4,
           "commandWord": "Explain",
           "context": "Every hire records the customer, start and end docks, times, distance and payment.",
@@ -6699,14 +7019,14 @@ const INLINE_UNITS = {
             ],
             "points": [
               [
-                "Graphical user interface (GUI) with touch input",
-                "uses large icons and pictures instead of text, as young pupils cannot read well yet",
-                "so they can tap to open apps without needing to use a mouse or type"
+                "Touchscreen graphical user interface",
+                "pupils tap large icons and pictures instead of reading text",
+                "so they can open apps without needing to use a mouse or type"
               ],
               [
-                "Speech / voice interface",
-                "pupils can speak commands instead of reading or typing",
-                "which suits children whose reading and spelling are still developing"
+                "Graphical user interface (GUI)",
+                "uses pictures and icons instead of typed commands",
+                "so pupils who cannot read well can still recognise what to click"
               ],
               [
                 "Menu-driven interface",
@@ -6717,7 +7037,8 @@ const INLINE_UNITS = {
             "accept": [],
             "reject": [
               "Command-line interface (needs typed commands)",
-              "More than one interface: only the first is marked"
+              "More than one interface: only the first is marked",
+              "Speech / voice interface (not one of the user interface types in the specification)"
             ]
           },
           "modelAnswer": "A touch-screen GUI would suit them because it uses large icons and pictures rather than text, which matters because many pupils this age cannot read well. They can simply tap an icon to open an app, so they do not need mouse skills."
@@ -6759,8 +7080,8 @@ const INLINE_UNITS = {
           "id": "s4-a",
           "scenario": "s4",
           "part": "(a)",
-          "section": "B",
-          "code": "B2.2",
+          "section": "A",
+          "code": "A1.3",
           "marks": 6,
           "commandWord": "Draw",
           "context": "",
@@ -6992,8 +7313,8 @@ const INLINE_UNITS = {
           "id": "s5-b",
           "scenario": "s5",
           "part": "(b)",
-          "section": "C",
-          "code": "C1.2",
+          "section": "A",
+          "code": "A4.3",
           "marks": 4,
           "commandWord": "Explain",
           "context": "",
@@ -7060,7 +7381,7 @@ const INLINE_UNITS = {
             ],
             "points": [
               [
-                "Video calls between residents and families",
+                "Video calling within an instant-messaging app / social media group",
                 "so relatives who live far away can see residents regularly"
               ],
               [
@@ -7085,7 +7406,7 @@ const INLINE_UNITS = {
               "Email or phone calls alone (not online communities)"
             ]
           },
-          "modelAnswer": "1. Staff could set up video calls, so relatives who live far away can see and talk to residents regularly.\n2. A private social media group could share photos of activities, so families feel involved in residents’ daily lives."
+          "modelAnswer": "1. A private instant-messaging group could give families quick updates, e.g. after a doctor’s visit, so they don’t have to phone the home.\n2. A private social media group could share photos of activities, so families feel involved in residents’ daily lives."
         },
         {
           "id": "s5-d",
@@ -7174,7 +7495,6 @@ const INLINE_UNITS = {
               "Phishing (email)",
               "Vishing (phone call)",
               "Smishing (text message)",
-              "Pharming / fake website",
               "Pretexting / impersonating staff",
               "Shoulder surfing",
               "Baiting"
@@ -7523,7 +7843,7 @@ const INLINE_UNITS = {
           "scenario": "s8",
           "part": "(b)",
           "section": "A",
-          "code": "A5.3",
+          "code": "A1.1",
           "marks": 4,
           "commandWord": "Explain",
           "context": "Coastline plans to fit Internet of Things (IoT) sensors to its delivery vans.",
@@ -7571,7 +7891,7 @@ const INLINE_UNITS = {
           "scenario": "s8",
           "part": "(c)",
           "section": "A",
-          "code": "A4.3",
+          "code": "A5.3",
           "marks": 4,
           "commandWord": "Explain",
           "context": "Coastline is introducing an artificial intelligence (AI) system that plans delivery routes automatically.",
@@ -8176,8 +8496,8 @@ const INLINE_UNITS = {
           "id": "jun26-3-a",
           "scenario": "j3",
           "part": "(a)",
-          "section": "B",
-          "code": "B2.2",
+          "section": "A",
+          "code": "A1.3",
           "marks": 6,
           "commandWord": "Draw",
           "context": "",
@@ -8449,8 +8769,8 @@ const INLINE_UNITS = {
           "id": "jun26-4-c",
           "scenario": "j4",
           "part": "(c)",
-          "section": "B",
-          "code": "B2.4",
+          "section": "A",
+          "code": "A1.1",
           "marks": 12,
           "commandWord": "Evaluate",
           "context": "Just U Games uses a file server to store gaming data and is considering installing a web server to host games.",
@@ -9039,8 +9359,8 @@ const INLINE_UNITS = {
           "id": "p3-3-a",
           "scenario": "p3s3",
           "part": "(a)",
-          "section": "B",
-          "code": "B2.2",
+          "section": "A",
+          "code": "A1.3",
           "marks": 6,
           "commandWord": "Draw",
           "context": "",
@@ -9757,8 +10077,8 @@ const INLINE_UNITS = {
           "id": "p4-3-a",
           "scenario": "p4s3",
           "part": "(a)",
-          "section": "B",
-          "code": "B2.2",
+          "section": "A",
+          "code": "A1.3",
           "marks": 6,
           "commandWord": "Draw",
           "context": "",
@@ -10053,7 +10373,9 @@ const INLINE_UNITS = {
             "rule": "One mark for each correct answer, up to 2 marks.",
             "points": [
               "Speakers / headphones (e.g. a beep when an item scans)",
-              "Braille display"
+              "Braille display",
+              "Cash drawer (opened automatically by the till)",
+              "Buzzer"
             ],
             "accept": [
               "Any other output device that fits a till, other than a monitor or printer"
@@ -10064,7 +10386,7 @@ const INLINE_UNITS = {
               "Plotters (a type of printer) and projectors (not used with a till)"
             ]
           },
-          "modelAnswer": "1. Speakers\n2. Braille display"
+          "modelAnswer": "1. Speaker\n2. Cash drawer"
         },
         {
           "id": "p5-1-a-ii",
@@ -10480,8 +10802,8 @@ const INLINE_UNITS = {
           "id": "p5-3-a",
           "scenario": "p5s3",
           "part": "(a)",
-          "section": "B",
-          "code": "B2.2",
+          "section": "A",
+          "code": "A1.3",
           "marks": 6,
           "commandWord": "Draw",
           "context": "",
@@ -10728,6 +11050,213 @@ const INLINE_UNITS = {
             ]
           },
           "modelAnswer": "Wired vs Wi-Fi: players need wired Cat6 connections for low latency and no interference; Wi-Fi jitter would make matches unfair.\nSwitches and cables: 200 players at once need fast switches and fibre between them, or throughput becomes a bottleneck.\nBandwidth: players and the live stream share the venue's capacity, so QoS should put game traffic and the stream first.\nSegmentation: separating players, stream and spectator Wi-Fi stops spectators slowing the matches.\nReliability: one failed switch could stop a match, so backup kit and monitoring are needed.\nConclusion: wired, segmented and QoS-controlled network for players and the stream; spectators on separate Wi-Fi."
+        },
+        {
+          "id": "a-extra-1",
+          "part": "",
+          "section": "A",
+          "code": "A1.2",
+          "marks": 4,
+          "commandWord": "Explain",
+          "slots": 2,
+          "context": "A GP surgery is giving its doctors tablets to use on home visits to elderly patients.",
+          "question": "Explain **two** ways the doctors could use the tablets to support healthcare during home visits.",
+          "traps": [
+            "\"during home visits\": the use must happen on the visit, not back at the surgery."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "View the patient's electronic record",
+                "so they know the patient's history, allergies and medication before treating them"
+              ],
+              [
+                "Record notes and prescriptions during the visit",
+                "so the record is up to date straight away and the pharmacy gets the prescription without delay"
+              ],
+              [
+                "Video call a specialist or colleague",
+                "so the patient gets expert advice without travelling to hospital"
+              ],
+              [
+                "Photograph a wound or skin condition",
+                "so changes can be compared at the next visit or shared with a specialist"
+              ],
+              [
+                "Read data from monitoring devices (e.g. blood pressure, glucose)",
+                "so the doctor sees trends and can change treatment early"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Benefits to the surgery's finances only",
+              "Uses unrelated to healthcare"
+            ]
+          },
+          "modelAnswer": "1. The doctor can open the patient's electronic record, so they know about allergies and current medication before treating them.\n2. The doctor can video call a specialist from the patient's home, so the patient gets expert advice without travelling to hospital."
+        },
+        {
+          "id": "a-extra-2",
+          "part": "",
+          "section": "A",
+          "code": "A5.2",
+          "marks": 4,
+          "commandWord": "Explain",
+          "slots": 2,
+          "context": "A family uses a smart speaker with an AI voice assistant at home, and the children use an AI chatbot for homework.",
+          "question": "Explain **two** implications of AI for the family’s personal use of IT.",
+          "traps": [
+            "Personal use: implications for businesses are not credited.",
+            "Give a reason for each point, not just \"it is easier\"."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "Hands-free control by voice",
+                "so family members with limited sight or mobility can control devices more easily"
+              ],
+              [
+                "The speaker is always listening and stores voice data",
+                "so the family's conversations and habits may be recorded, raising privacy concerns"
+              ],
+              [
+                "Chatbot answers can be wrong or made up",
+                "so the children may learn false information unless they check it"
+              ],
+              [
+                "Over-reliance on the chatbot for homework",
+                "so the children may not develop their own understanding, or may be accused of cheating"
+              ],
+              [
+                "Personalised recommendations",
+                "save time but can trap the family in a filter bubble"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Implications for businesses or employers",
+              "\"It is easier\" with no reason"
+            ]
+          },
+          "modelAnswer": "1. The smart speaker is always listening, so the family's conversations could be recorded and stored, which is a privacy risk.\n2. The chatbot can give wrong answers, so the children could copy false information into their homework unless they check it."
+        },
+        {
+          "id": "e-extra-1",
+          "part": "",
+          "section": "E",
+          "code": "E2.6",
+          "marks": 4,
+          "commandWord": "Explain",
+          "slots": 2,
+          "context": "A gym is building an online form for new members to sign up and enter their personal and payment details.",
+          "question": "Explain **two** features of the form’s user interface that would reduce errors in the data entered.",
+          "traps": [
+            "Features must reduce errors. Security features such as encryption protect data but do not stop mistakes."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "Drop-down lists / date pickers",
+                "so members can only choose valid options, e.g. a real date of birth"
+              ],
+              [
+                "Error messages shown as the member types",
+                "so mistakes such as a missing @ in an email address are fixed straight away"
+              ],
+              [
+                "Clear labels and examples in each field",
+                "so members know exactly what format to use, e.g. for a phone number"
+              ],
+              [
+                "Entering the email address twice (verification)",
+                "so typing mistakes are caught before the account is created"
+              ],
+              [
+                "Required fields marked and checked",
+                "so the form cannot be sent with important details missing"
+              ],
+              [
+                "Address filled in from the postcode",
+                "so there is less typing and fewer spelling mistakes"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Features that do not reduce errors, e.g. a colourful logo",
+              "Security features such as encryption"
+            ]
+          },
+          "modelAnswer": "1. A date picker for the date of birth means members can only pick a real date, so impossible dates are not entered.\n2. The form shows an error message straight away if the email address has no @, so the member fixes it before submitting."
+        },
+        {
+          "id": "b-extra-1",
+          "part": "",
+          "section": "B",
+          "code": "B1.4",
+          "marks": 4,
+          "commandWord": "Explain",
+          "slots": 2,
+          "context": "A video production company's editors move large video files between their PCs and a file server over the office Wi-Fi.",
+          "question": "Explain **two** ways changing the editors’ PCs to a wired Ethernet connection would affect the performance of the system.",
+          "traps": [
+            "The question is about performance: security and cabling cost are not credited."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "Higher, steadier speed / bandwidth",
+                "so large video files transfer to and from the server faster"
+              ],
+              [
+                "Lower latency",
+                "so opening and saving files on the server feels quicker"
+              ],
+              [
+                "No radio interference or dropped connections",
+                "so long transfers do not fail part-way through"
+              ],
+              [
+                "Bandwidth is not shared over the air with other Wi-Fi users",
+                "so speed does not drop when other staff connect"
+              ],
+              [
+                "Editors lose mobility",
+                "because they can only work where there is a network socket"
+              ]
+            ],
+            "accept": [
+              "A drawback such as loss of mobility, if explained"
+            ],
+            "reject": [
+              "Security benefits only (the question is about performance)",
+              "Cost of cabling on its own"
+            ]
+          },
+          "modelAnswer": "1. Ethernet gives a faster, steadier connection, so the editors’ large video files copy to the server much more quickly.\n2. A cable has no radio interference, so long transfers do not drop part-way through and have to be restarted."
         }
       ]
     },
@@ -11757,7 +12286,7 @@ const INLINE_UNITS = {
             "Proprietary",
             "Open source",
             "Utility",
-            "Freeware embedded"
+            "Shareware"
           ],
           "answer": 0,
           "why": "Proprietary software is closed source and paid for, but comes with official support."
@@ -12229,6 +12758,28 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Bluetooth is short-range (about 10 m) and low-power, for linking devices directly."
+        },
+        {
+          "q": "A runner wants their smartwatch to pair directly with the phone in their pocket and send heart-rate data all day without draining either battery. Which connection is used?",
+          "options": [
+            "Bluetooth",
+            "Ethernet",
+            "USB",
+            "Wi-Fi"
+          ],
+          "answer": 0,
+          "why": "Bluetooth pairs devices directly over a short range and uses very little power, so it suits wearables."
+        },
+        {
+          "q": "Which security risk comes from leaving Bluetooth switched on in a busy public place?",
+          "options": [
+            "Bluesnarfing: someone nearby stealing data from the device",
+            "An infected memory stick bringing in malware",
+            "Someone plugging into a spare network socket",
+            "Café hotspot users slowing down the connection"
+          ],
+          "answer": 0,
+          "why": "Bluejacking and bluesnarfing target discoverable Bluetooth devices, so it should be turned off when not in use."
         }
       ],
       "B1.1.2": [
@@ -12242,6 +12793,28 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "USB is a wired standard that carries both data and power."
+        },
+        {
+          "q": "A school stops staff plugging memory sticks into its PCs. Which connection type is being restricted, and why?",
+          "options": [
+            "USB, because infected sticks can bring in malware",
+            "Bluetooth, because of bluejacking",
+            "Wi-Fi, because signals leave the building",
+            "Ethernet, because cables can be tapped"
+          ],
+          "answer": 0,
+          "why": "USB sticks can carry malware onto the network (and data out of it), so some organisations block USB ports."
+        },
+        {
+          "q": "A user plugs a new webcam into a laptop. It works straight away with no set-up, and the same cable powers it. Which connection is this?",
+          "options": [
+            "USB",
+            "Bluetooth",
+            "Wi-Fi",
+            "Ethernet"
+          ],
+          "answer": 0,
+          "why": "USB is plug and play and carries power as well as data."
         }
       ],
       "B1.1.3": [
@@ -12255,6 +12828,28 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Wi-Fi connects many devices wirelessly to a router or access point."
+        },
+        {
+          "q": "Staff say the office wireless network slows down every lunchtime when everyone streams video. Which feature explains this?",
+          "options": [
+            "Wi-Fi bandwidth is shared between all connected devices",
+            "Devices must pair before they connect",
+            "The range is only about 10 m",
+            "The connection also carries power"
+          ],
+          "answer": 0,
+          "why": "Wi-Fi speed is shared, so each device gets less as more people connect."
+        },
+        {
+          "q": "A hotel's wireless network still uses WEP security. What should the IT manager change, and why?",
+          "options": [
+            "Switch to WPA3, because WEP can be cracked in minutes",
+            "Switch guests to USB, because it is faster",
+            "Turn on Bluetooth pairing, because it encrypts the traffic",
+            "Use only 2.4 GHz, because it is more secure"
+          ],
+          "answer": 0,
+          "why": "WEP is obsolete and easily cracked; WPA3 is the current secure standard for Wi-Fi."
         }
       ],
       "B1.1.4": [
@@ -12268,6 +12863,28 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Wired Ethernet (copper or fibre) is faster, more reliable and harder to intercept than wireless."
+        },
+        {
+          "q": "A hospital wants its patient monitors networked so that radio interference from medical equipment can never drop the link. Which connection should it use?",
+          "options": [
+            "Ethernet",
+            "Wi-Fi",
+            "Bluetooth",
+            "USB"
+          ],
+          "answer": 0,
+          "why": "A cable is free of radio interference, so Ethernet gives the most reliable connection."
+        },
+        {
+          "q": "Which is a DRAWBACK of using Ethernet rather than Wi-Fi in an office?",
+          "options": [
+            "Devices are tied to where the network sockets are",
+            "Outsiders can pick up the signal from the car park",
+            "Speed drops as more people connect over the air",
+            "Devices must be paired first"
+          ],
+          "answer": 0,
+          "why": "Ethernet needs cabling, so it is less flexible; the other options describe wireless connections."
         }
       ],
       "B1.2": [
@@ -12552,6 +13169,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "SMTP sends email; IMAP and POP3 retrieve it."
+        },
+        {
+          "q": "A user downloads their email to their home PC, then finds the messages have gone from the server when they check on their phone. Which protocol was the PC using?",
+          "options": [
+            "POP3",
+            "IMAP",
+            "SMTP",
+            "HTTPS"
+          ],
+          "answer": 0,
+          "why": "POP3 downloads mail to one device and usually deletes it from the server; IMAP keeps it on the server."
         }
       ],
       "B3.1.2": [
@@ -12565,6 +13193,28 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "VoIP sends voice and video as data packets over the internet."
+        },
+        {
+          "q": "During internet video calls, voices keep arriving late so people talk over each other, even though the download speed is high. What is the most likely cause?",
+          "options": [
+            "High latency",
+            "Lossless compression",
+            "Using POP3",
+            "A missing digital certificate"
+          ],
+          "answer": 0,
+          "why": "Voice and video calls need low latency as well as bandwidth; delay makes people talk over each other."
+        },
+        {
+          "q": "A company with offices in five countries wants to cut its international phone bill. Which technology should it adopt?",
+          "options": [
+            "Voice calls over the internet (VoIP)",
+            "IMAP",
+            "HTTP",
+            "Tokenisation"
+          ],
+          "answer": 0,
+          "why": "VoIP sends calls as ordinary internet data, so international calls cost far less."
         }
       ],
       "B3.1.3": [
@@ -12578,6 +13228,28 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "HTTPS adds TLS encryption to HTTP."
+        },
+        {
+          "q": "A browser shows 'Not Secure' next to a shop's login page. What does this tell the user?",
+          "options": [
+            "The page uses HTTP, so details typed in are sent unencrypted",
+            "The page is using IMAP",
+            "The page is making a VoIP call",
+            "Payments on the page are tokenised"
+          ],
+          "answer": 0,
+          "why": "Browsers mark HTTP pages 'Not Secure' because logins sent over HTTP can be read if intercepted."
+        },
+        {
+          "q": "A firewall blocks port 80 but allows port 443. Which web traffic still gets through?",
+          "options": [
+            "HTTPS",
+            "HTTP",
+            "Both HTTP and HTTPS",
+            "Neither"
+          ],
+          "answer": 0,
+          "why": "HTTP uses port 80 and HTTPS uses port 443."
         }
       ],
       "B3.1.4": [
@@ -12591,6 +13263,28 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Secure payment systems protect card data using encryption and tokenisation."
+        },
+        {
+          "q": "At an online checkout, a customer must enter a code sent by their bank before the card payment goes through. What is this?",
+          "options": [
+            "3D Secure, an extra authentication check",
+            "IMAP",
+            "HTTP",
+            "Lossy compression"
+          ],
+          "answer": 0,
+          "why": "3D Secure adds a check from the bank, so a stolen card number alone is not enough."
+        },
+        {
+          "q": "A small online shop starts taking card payments. Which set of rules must it follow when handling card data?",
+          "options": [
+            "PCI DSS",
+            "SMTP",
+            "QoS",
+            "WEP"
+          ],
+          "answer": 0,
+          "why": "PCI DSS sets the rules every business that takes card payments must follow."
         }
       ],
       "B3.2": [
@@ -12731,6 +13425,16 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "The organisation must buy, house and maintain its own servers and staff to run them."
+        },
+        {
+          "q": "A bank must keep its systems on servers that no other organisation uses, in its own data centre, to meet strict regulations. Which cloud model is this?",
+          "options": [
+            "Private cloud",
+            "Public cloud",
+            "Hybrid cloud"
+          ],
+          "answer": 0,
+          "why": "A private cloud is used by one organisation only, so it gives full control over sensitive data."
         }
       ],
       "C1.1.2": [
@@ -12745,7 +13449,7 @@ const INLINE_UNITS = {
           "why": "Public cloud is pay-as-you-go and scales easily, so it suits small organisations with changing demand."
         },
         {
-          "q": "A school uses Microsoft 365, run on servers shared by thousands of other organisations. What is a risk of this model?",
+          "q": "A school stores its files on cloud servers shared by thousands of other organisations. What is a risk of this model?",
           "options": [
             "Less control over where its data is physically stored",
             "Very high up-front hardware costs",
@@ -12754,6 +13458,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "In a public cloud the provider controls the hardware and data location, so the school has less control."
+        },
+        {
+          "q": "Which is an ADVANTAGE of a public cloud for a small charity?",
+          "options": [
+            "It pays only for what it uses and needs no servers of its own",
+            "It has full control over where its data is stored",
+            "No other organisations share the hardware",
+            "It never relies on an internet connection"
+          ],
+          "answer": 0,
+          "why": "Public cloud is pay-as-you-go on shared provider hardware, so small organisations avoid buying servers."
         }
       ],
       "C1.1.3": [
@@ -12766,6 +13481,27 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Hybrid cloud mixes private (sensitive data) and public (scalable, cheaper workloads)."
+        },
+        {
+          "q": "A school keeps pupil records on its own servers but uses public cloud capacity during results week when demand spikes. Which cloud model is this?",
+          "options": [
+            "Hybrid cloud",
+            "Private cloud",
+            "Public cloud"
+          ],
+          "answer": 0,
+          "why": "Hybrid keeps sensitive data private and bursts to public cloud when demand spikes."
+        },
+        {
+          "q": "Which is a DRAWBACK of a hybrid cloud?",
+          "options": [
+            "It is more complex to manage, because data and systems are split across two environments",
+            "All of the data is held by a third party",
+            "It cannot cope with busy periods",
+            "No sensitive data can be kept in-house"
+          ],
+          "answer": 0,
+          "why": "Staff must run two systems and move data securely between them, which adds complexity."
         }
       ],
       "C1.1.4": [
@@ -12778,6 +13514,26 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "With IaaS the provider supplies the hardware; the customer manages the OS and software."
+        },
+        {
+          "q": "A company's IT team wants full control of the operating system and software on its servers, but does not want to buy physical hardware. Which service model fits?",
+          "options": [
+            "IaaS",
+            "PaaS",
+            "SaaS"
+          ],
+          "answer": 0,
+          "why": "IaaS rents virtual servers; the customer manages the OS and software, the provider the hardware."
+        },
+        {
+          "q": "With IaaS, who is responsible for patching the operating system on the rented virtual servers?",
+          "options": [
+            "The customer",
+            "The cloud provider",
+            "No one: IaaS servers have no operating system"
+          ],
+          "answer": 0,
+          "why": "In IaaS the provider runs the hardware, but the customer installs and maintains the OS."
         }
       ],
       "C1.1.5": [
@@ -12790,6 +13546,27 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "SaaS delivers finished software over the internet; the provider manages everything."
+        },
+        {
+          "q": "Which is a DRAWBACK of SaaS for a business?",
+          "options": [
+            "Subscription fees continue for as long as it uses the software",
+            "Staff must install and update it on every PC",
+            "It only works on one device",
+            "The business must manage the servers"
+          ],
+          "answer": 0,
+          "why": "SaaS is paid by subscription, so the cost never stops; the provider handles installs, updates and servers."
+        },
+        {
+          "q": "A charity wants email and documents that work in a web browser on any device, with no servers or installations to manage. Which service model fits?",
+          "options": [
+            "SaaS",
+            "IaaS",
+            "PaaS"
+          ],
+          "answer": 0,
+          "why": "SaaS delivers finished software over the internet, with the provider managing everything."
         }
       ],
       "C1.1.6": [
@@ -12802,6 +13579,27 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "PaaS gives developers a ready-made platform to build and deploy apps on."
+        },
+        {
+          "q": "Developers use a cloud service that provides the operating system, database and tools; they only upload their own code. Which service model is this?",
+          "options": [
+            "PaaS",
+            "IaaS",
+            "SaaS"
+          ],
+          "answer": 0,
+          "why": "PaaS gives developers a ready-made platform, so they build and deploy apps without managing servers."
+        },
+        {
+          "q": "Which is a DRAWBACK of PaaS for developers?",
+          "options": [
+            "They must work within the provider's tools and settings, so it is less flexible",
+            "They must buy and maintain physical servers",
+            "End users must install it on each PC",
+            "They must patch the operating system themselves"
+          ],
+          "answer": 0,
+          "why": "PaaS is less flexible than IaaS because developers are limited to what the platform offers."
         }
       ],
       "C1.2": [
@@ -13164,6 +13962,28 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Ransomware is malware that encrypts data and demands payment to release it."
+        },
+        {
+          "q": "A program hidden inside a free game download secretly records everything the user types and sends it to a criminal. What threat is this?",
+          "options": [
+            "Malware (spyware)",
+            "Natural disaster",
+            "Accidental damage",
+            "Social engineering"
+          ],
+          "answer": 0,
+          "why": "Spyware is malware that secretly records activity such as keystrokes, so passwords can be stolen."
+        },
+        {
+          "q": "Which protection is aimed MOST directly at viruses and other malware?",
+          "options": [
+            "Up-to-date antivirus software",
+            "Off-site backups in case of floods",
+            "Training staff to spot fake phone calls",
+            "Fire suppression in the server room"
+          ],
+          "answer": 0,
+          "why": "Antivirus detects and removes malware; the others mainly protect against natural disasters, social engineering and fire."
         }
       ],
       "D1.1.2": [
@@ -13177,6 +13997,28 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Hacking is gaining access to a system without permission, often through unpatched weaknesses."
+        },
+        {
+          "q": "Someone outside a company guesses an administrator's weak password and logs in to change prices on the website. Which threat is this?",
+          "options": [
+            "Unauthorised access (hacking)",
+            "Accidental damage",
+            "Natural disaster",
+            "Malware"
+          ],
+          "answer": 0,
+          "why": "Getting into a system without permission, e.g. by guessing a password, is unauthorised access."
+        },
+        {
+          "q": "Which is the best defence against hackers exploiting known flaws in a web server?",
+          "options": [
+            "Installing security patches promptly",
+            "Keeping off-site backups",
+            "Fitting fire suppression",
+            "Encrypting printed documents"
+          ],
+          "answer": 0,
+          "why": "Attackers target unpatched software, so applying updates closes the known flaws."
         }
       ],
       "D1.1.3": [
@@ -13190,6 +14032,28 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Accidental damage is unintentional harm from human error or physical accidents."
+        },
+        {
+          "q": "A cleaner unplugs a server to use the socket, and the database on it is corrupted. Which threat is this?",
+          "options": [
+            "Accidental damage",
+            "Hacking",
+            "Social engineering",
+            "Malware"
+          ],
+          "answer": 0,
+          "why": "Unintentional harm caused by human error is accidental damage."
+        },
+        {
+          "q": "Which of these is accidental damage rather than a deliberate attack?",
+          "options": [
+            "A laptop dropped down the stairs",
+            "A ransomware infection",
+            "A phishing email",
+            "A hacker deleting files"
+          ],
+          "answer": 0,
+          "why": "Accidental damage is unintentional; the others are deliberate attacks."
         }
       ],
       "D1.1.4": [
@@ -13203,19 +14067,52 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Social engineering tricks people, not systems, into giving away information or access."
+        },
+        {
+          "q": "Someone phones reception pretending to be from the IT supplier and asks for the admin password 'to fix a fault'. What is this?",
+          "options": [
+            "Social engineering (vishing / pretexting)",
+            "Malware",
+            "Accidental damage",
+            "A natural disaster"
+          ],
+          "answer": 0,
+          "why": "A phone call with a made-up story to get information is vishing and pretexting: social engineering."
+        },
+        {
+          "q": "Why are social engineering attacks hard to stop with firewalls and antivirus alone?",
+          "options": [
+            "They trick people rather than technology, so staff training is needed",
+            "They only happen during floods",
+            "They always arrive on USB sticks",
+            "They only damage hardware"
+          ],
+          "answer": 0,
+          "why": "Social engineering attacks the human, so training (plus filtering and MFA) is the main defence."
         }
       ],
       "D1.1.5": [
         {
-          "q": "A river floods a company's ground-floor server room, destroying all its on-site storage. What should the company have had to survive this?",
+          "q": "Lightning causes a power surge that destroys a company's server and the data on it. Which type of external threat is this?",
           "options": [
-            "An off-site or cloud backup",
-            "Stronger passwords",
-            "A firewall",
-            "Antivirus software"
+            "Natural disaster",
+            "Accidental damage",
+            "Unauthorised access",
+            "Social engineering"
           ],
           "answer": 0,
-          "why": "Natural disasters destroy hardware on site, so only a copy kept somewhere else lets you recover."
+          "why": "Floods, fires, earthquakes and lightning are natural disasters: they cannot be prevented, only prepared for."
+        },
+        {
+          "q": "Which of these is a natural disaster threat to data?",
+          "options": [
+            "An earthquake damaging a data centre",
+            "A virus spreading through email attachments",
+            "A member of staff emailing data to the wrong person",
+            "A hacker logging in with a stolen password"
+          ],
+          "answer": 0,
+          "why": "An earthquake is a natural disaster. The others are malware, accidental disclosure and unauthorised access."
         }
       ],
       "D1.2.1": [
@@ -13320,6 +14217,27 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "File permissions control who can read, write, run or delete a file."
+        },
+        {
+          "q": "A teacher can open the shared mark sheet but gets 'access denied' when trying to save changes. What is controlling this?",
+          "options": [
+            "File permissions (read-only)",
+            "Biometrics",
+            "A digital certificate",
+            "Physical access control"
+          ],
+          "answer": 0,
+          "why": "File permissions decide who can read, write or run each file; this teacher has read but not write."
+        },
+        {
+          "q": "Which file permission lets a user run a program but not change it?",
+          "options": [
+            "Execute",
+            "Write",
+            "Delete"
+          ],
+          "answer": 0,
+          "why": "Execute lets a user run a program; write would let them change it."
         }
       ],
       "D2.1.2": [
@@ -13333,6 +14251,28 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Access levels give each user only the privileges their role needs."
+        },
+        {
+          "q": "A new receptionist gets a standard account that can use the booking system but can't install software or change settings. Which protection is this?",
+          "options": [
+            "Access levels",
+            "Biometrics",
+            "Backups",
+            "Digital certificates"
+          ],
+          "answer": 0,
+          "why": "Access levels give each role only the systems and privileges its job needs."
+        },
+        {
+          "q": "Why should IT staff use a standard account for everyday work and an admin account only when needed?",
+          "options": [
+            "If the everyday account is hacked, the attacker gets less access",
+            "Standard accounts make backups run faster",
+            "Admin accounts cannot open email",
+            "It removes the need for passwords"
+          ],
+          "answer": 0,
+          "why": "Least privilege limits the damage if an account is compromised."
         }
       ],
       "D2.1.3": [
@@ -13346,6 +14286,28 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Backups are copies kept elsewhere that can be restored after data loss."
+        },
+        {
+          "q": "A river floods a company's ground-floor server room, destroying all its on-site storage. What should the company have had to survive this?",
+          "options": [
+            "An off-site or cloud backup",
+            "Stronger passwords",
+            "A firewall",
+            "Antivirus software"
+          ],
+          "answer": 0,
+          "why": "Natural disasters destroy hardware on site, so only a copy kept somewhere else lets you recover."
+        },
+        {
+          "q": "A company has backed up every night for a year, but nobody has ever tried restoring from a backup. What is the risk?",
+          "options": [
+            "The backups may turn out to be corrupt or incomplete when they are needed",
+            "Backups slow down the antivirus",
+            "File permissions will be lost",
+            "Biometric data will be exposed"
+          ],
+          "answer": 0,
+          "why": "A backup that has never been tested may not restore, so backups should be tested regularly."
         }
       ],
       "D2.1.4": [
@@ -13359,6 +14321,28 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "MFA adds a second factor, so a password alone is not enough."
+        },
+        {
+          "q": "A website asks for a password and then a code from the user's phone. Why is this more secure than a password alone?",
+          "options": [
+            "It uses two different factors, so a stolen password is not enough",
+            "Codes can be reused on any site",
+            "It means the password can be short",
+            "It removes the need for encryption"
+          ],
+          "answer": 0,
+          "why": "MFA needs something you know plus something you have, so an attacker needs both."
+        },
+        {
+          "q": "How does a password manager improve security?",
+          "options": [
+            "Each account can have a different strong password, so one leak does not unlock the others",
+            "It removes the need for multi-factor authentication",
+            "It stores passwords in plain text for easy access",
+            "It makes every password the same"
+          ],
+          "answer": 0,
+          "why": "Password managers stop password reuse, so one leaked password only affects one account."
         }
       ],
       "D2.1.5": [
@@ -13372,6 +14356,28 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Biometrics use unique body features, which can't easily be shared or forgotten."
+        },
+        {
+          "q": "Which is a DRAWBACK of biometrics compared with passwords?",
+          "options": [
+            "A stolen fingerprint template can't be changed like a password",
+            "They are easy to share with colleagues",
+            "They are slow to type",
+            "They are easy to forget"
+          ],
+          "answer": 0,
+          "why": "You can't change your fingerprint, so stolen biometric data can't be reset."
+        },
+        {
+          "q": "A phone unlocks only when it recognises its owner's face. Which protection is this?",
+          "options": [
+            "Biometrics",
+            "File permissions",
+            "A digital certificate",
+            "Access levels"
+          ],
+          "answer": 0,
+          "why": "Biometrics identify people by unique body features such as their face."
         }
       ],
       "D2.1.6": [
@@ -13385,6 +14391,28 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Physical measures stop unauthorised people reaching IT equipment."
+        },
+        {
+          "q": "A company makes visitors sign in, wear a badge and be escorted, and keeps the server room locked. Which protection is this?",
+          "options": [
+            "Physical access control",
+            "File permissions",
+            "Encryption",
+            "Antivirus"
+          ],
+          "answer": 0,
+          "why": "Physical access control stops unauthorised people reaching IT equipment and data."
+        },
+        {
+          "q": "How does a swipe-card door system help after a theft from the server room?",
+          "options": [
+            "It logs who entered and when, giving a record to investigate",
+            "It encrypts the data on the server",
+            "It scans the server for malware",
+            "It blocks phishing emails"
+          ],
+          "answer": 0,
+          "why": "Swipe cards both restrict entry and record every entry, so there is evidence if something goes wrong."
         }
       ],
       "D2.1.7": [
@@ -13398,6 +14426,28 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Digital certificates prove a website is genuine and enable encryption."
+        },
+        {
+          "q": "A browser warns that a site's digital certificate has expired. What should the user conclude?",
+          "options": [
+            "The site's identity can't be confirmed, so they should not enter personal details",
+            "The site has definitely been infected by a virus",
+            "Their own password has been stolen",
+            "The site is using biometrics"
+          ],
+          "answer": 0,
+          "why": "Certificates prove a site is genuine; an expired one means the browser cannot confirm that."
+        },
+        {
+          "q": "Who issues the digital certificates that browsers trust?",
+          "options": [
+            "A Certificate Authority",
+            "The user's internet provider",
+            "The antivirus vendor",
+            "Any website owner"
+          ],
+          "answer": 0,
+          "why": "A trusted Certificate Authority checks the owner's identity before issuing a certificate."
         }
       ],
       "D2.2": [
@@ -13487,6 +14537,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Online shopping is convenient, but you can't handle goods and returns take effort."
+        },
+        {
+          "q": "Which is an impact of online retail on society?",
+          "options": [
+            "High-street shops close, but warehouse and delivery jobs grow",
+            "Customers can no longer compare prices",
+            "Retailers' costs always rise",
+            "Shopping is limited to opening hours"
+          ],
+          "answer": 0,
+          "why": "Online retail moves jobs from shops to warehouses and delivery, and has contributed to high-street closures."
         }
       ],
       "E1.1.2": [
@@ -13500,6 +14561,28 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Banking, insurance and payments done online are online financial services."
+        },
+        {
+          "q": "Which is a RISK of online banking for customers?",
+          "options": [
+            "Phishing emails that trick them into giving away their login details",
+            "They can only bank during branch opening hours",
+            "They can't check their balance",
+            "They must visit a branch to pay bills"
+          ],
+          "answer": 0,
+          "why": "Fraud and phishing are the main risks; the others are things online banking removes."
+        },
+        {
+          "q": "A bank closes many branches as customers move to its app. Who is most disadvantaged?",
+          "options": [
+            "Older people and those without internet access or skills",
+            "Customers who already use smartphones",
+            "Staff who build the app",
+            "Online retailers"
+          ],
+          "answer": 0,
+          "why": "Customers who are less digital can be excluded as branches close."
         }
       ],
       "E1.1.3": [
@@ -13513,6 +14596,28 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Courses and qualifications delivered over the internet are online education."
+        },
+        {
+          "q": "Which is a BENEFIT of online training for an organisation with staff across the country?",
+          "options": [
+            "Staff can learn at their own pace without travelling",
+            "It needs no internet connection",
+            "Learners can always ask the tutor face to face",
+            "It needs no devices"
+          ],
+          "answer": 0,
+          "why": "Online courses can be taken anywhere and self-paced, saving travel time and cost."
+        },
+        {
+          "q": "A pupil without broadband at home keeps falling behind with online homework. Which issue of online education does this show?",
+          "options": [
+            "Unequal access (the digital divide)",
+            "Targeted marketing",
+            "Double booking",
+            "Piracy"
+          ],
+          "answer": 0,
+          "why": "Learners without devices or internet are disadvantaged, which widens the digital divide."
         }
       ],
       "E1.1.4": [
@@ -13526,6 +14631,28 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Online news is instant, but unchecked stories can spread misinformation."
+        },
+        {
+          "q": "A news app shows each reader stories like the ones they clicked on before. What is a possible implication?",
+          "options": [
+            "Readers may only see one side of an issue (a filter bubble)",
+            "News takes longer to be published",
+            "Readers must pay for each article",
+            "Stories can no longer include video"
+          ],
+          "answer": 0,
+          "why": "Algorithms recommend what users already like, so they can end up in a filter bubble."
+        },
+        {
+          "q": "Which is an ADVANTAGE of online news over printed newspapers?",
+          "options": [
+            "It can be updated within minutes as a story develops",
+            "It is always fact-checked before publishing",
+            "It never contains adverts",
+            "It needs no internet connection"
+          ],
+          "answer": 0,
+          "why": "Online news is published within minutes; but because anyone can publish, it is not always checked."
         }
       ],
       "E1.1.5": [
@@ -13539,6 +14666,28 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Music, films, TV and games delivered on demand count as online entertainment."
+        },
+        {
+          "q": "A family's 4K film keeps dropping to a lower picture quality while streaming. What is the most likely cause?",
+          "options": [
+            "Their broadband is too slow for 4K streaming",
+            "They bought the film on DVD",
+            "Their subscription has too many films",
+            "They downloaded the film before the flight"
+          ],
+          "answer": 0,
+          "why": "4K streaming needs about 25 Mbps, so slower broadband gets lower quality."
+        },
+        {
+          "q": "Which is a DRAWBACK of subscription streaming compared with buying films?",
+          "options": [
+            "Users don't own the content, so it can be removed from the library",
+            "Users must store every film themselves",
+            "Films can only be watched on a TV",
+            "It needs a separate payment for every film"
+          ],
+          "answer": 0,
+          "why": "Subscriptions give a large library for a monthly fee, but users own nothing."
         }
       ],
       "E1.1.6": [
@@ -13552,6 +14701,28 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Booking systems let customers check availability and reserve in real time."
+        },
+        {
+          "q": "Two customers try to book the last seat at a concert at the same moment, but only one succeeds. Which feature of the online booking system makes sure of this?",
+          "options": [
+            "Live availability that updates in real time",
+            "Targeted adverts",
+            "Lossy compression",
+            "Offline downloads"
+          ],
+          "answer": 0,
+          "why": "Booking systems show live availability and confirm instantly, which prevents double booking."
+        },
+        {
+          "q": "Which is a RISK of an online booking system for a small cinema?",
+          "options": [
+            "If it is not synced with the box office, the same seat can be sold twice",
+            "Customers can book outside opening hours",
+            "Queues at the box office get shorter",
+            "Customers get instant confirmation"
+          ],
+          "answer": 0,
+          "why": "The system must stay in sync with internal systems, or it will double-book; the others are benefits."
         }
       ],
       "E1.2.1": [
@@ -13953,7 +15124,7 @@ const INLINE_UNITS = {
       ],
       "F2.1.3": [
         {
-          "q": "A developer copies another company's source code and sells the program as their own. Which regulations specifically protect the program as a literary work?",
+          "q": "A user makes one back-up copy of software they bought, and a rival decompiles a program only so its own product can work with it. Which regulations specifically allow these acts?",
           "options": [
             "Copyright Regulations (Computer Programs) 1992",
             "Computer Misuse Act 1990",
@@ -13961,7 +15132,7 @@ const INLINE_UNITS = {
             "DSE Regulations"
           ],
           "answer": 0,
-          "why": "The 1992 regulations extend copyright to computer programs as literary works."
+          "why": "The 1992 Regulations let a lawful user make a back-up copy and allow decompiling only for interoperability."
         }
       ],
       "F2.1.4": [

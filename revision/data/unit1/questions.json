@@ -289,6 +289,7 @@
           "Speed / read-write / access time",
           "Cost (per GB)",
           "Reliability / durability / lifespan",
+          "Compatibility (e.g. works with the practice's X-ray software / ports / operating system)",
           "Portability",
           "Security (e.g. supports encryption)"
         ],
@@ -552,7 +553,7 @@
       "scenario": "s2",
       "part": "(c)",
       "section": "E",
-      "code": "E2.1",
+      "code": "E1.2",
       "marks": 4,
       "commandWord": "Explain",
       "context": "Every hire records the customer, start and end docks, times, distance and payment.",
@@ -778,14 +779,14 @@
         ],
         "points": [
           [
-            "Graphical user interface (GUI) with touch input",
-            "uses large icons and pictures instead of text, as young pupils cannot read well yet",
-            "so they can tap to open apps without needing to use a mouse or type"
+            "Touchscreen graphical user interface",
+            "pupils tap large icons and pictures instead of reading text",
+            "so they can open apps without needing to use a mouse or type"
           ],
           [
-            "Speech / voice interface",
-            "pupils can speak commands instead of reading or typing",
-            "which suits children whose reading and spelling are still developing"
+            "Graphical user interface (GUI)",
+            "uses pictures and icons instead of typed commands",
+            "so pupils who cannot read well can still recognise what to click"
           ],
           [
             "Menu-driven interface",
@@ -796,7 +797,8 @@
         "accept": [],
         "reject": [
           "Command-line interface (needs typed commands)",
-          "More than one interface: only the first is marked"
+          "More than one interface: only the first is marked",
+          "Speech / voice interface (not one of the user interface types in the specification)"
         ]
       },
       "modelAnswer": "A touch-screen GUI would suit them because it uses large icons and pictures rather than text, which matters because many pupils this age cannot read well. They can simply tap an icon to open an app, so they do not need mouse skills."
@@ -838,8 +840,8 @@
       "id": "s4-a",
       "scenario": "s4",
       "part": "(a)",
-      "section": "B",
-      "code": "B2.2",
+      "section": "A",
+      "code": "A1.3",
       "marks": 6,
       "commandWord": "Draw",
       "context": "",
@@ -1071,8 +1073,8 @@
       "id": "s5-b",
       "scenario": "s5",
       "part": "(b)",
-      "section": "C",
-      "code": "C1.2",
+      "section": "A",
+      "code": "A4.3",
       "marks": 4,
       "commandWord": "Explain",
       "context": "",
@@ -1139,7 +1141,7 @@
         ],
         "points": [
           [
-            "Video calls between residents and families",
+            "Video calling within an instant-messaging app / social media group",
             "so relatives who live far away can see residents regularly"
           ],
           [
@@ -1164,7 +1166,7 @@
           "Email or phone calls alone (not online communities)"
         ]
       },
-      "modelAnswer": "1. Staff could set up video calls, so relatives who live far away can see and talk to residents regularly.\n2. A private social media group could share photos of activities, so families feel involved in residents’ daily lives."
+      "modelAnswer": "1. A private instant-messaging group could give families quick updates, e.g. after a doctor’s visit, so they don’t have to phone the home.\n2. A private social media group could share photos of activities, so families feel involved in residents’ daily lives."
     },
     {
       "id": "s5-d",
@@ -1253,7 +1255,6 @@
           "Phishing (email)",
           "Vishing (phone call)",
           "Smishing (text message)",
-          "Pharming / fake website",
           "Pretexting / impersonating staff",
           "Shoulder surfing",
           "Baiting"
@@ -1602,7 +1603,7 @@
       "scenario": "s8",
       "part": "(b)",
       "section": "A",
-      "code": "A5.3",
+      "code": "A1.1",
       "marks": 4,
       "commandWord": "Explain",
       "context": "Coastline plans to fit Internet of Things (IoT) sensors to its delivery vans.",
@@ -1650,7 +1651,7 @@
       "scenario": "s8",
       "part": "(c)",
       "section": "A",
-      "code": "A4.3",
+      "code": "A5.3",
       "marks": 4,
       "commandWord": "Explain",
       "context": "Coastline is introducing an artificial intelligence (AI) system that plans delivery routes automatically.",
@@ -2255,8 +2256,8 @@
       "id": "jun26-3-a",
       "scenario": "j3",
       "part": "(a)",
-      "section": "B",
-      "code": "B2.2",
+      "section": "A",
+      "code": "A1.3",
       "marks": 6,
       "commandWord": "Draw",
       "context": "",
@@ -2528,8 +2529,8 @@
       "id": "jun26-4-c",
       "scenario": "j4",
       "part": "(c)",
-      "section": "B",
-      "code": "B2.4",
+      "section": "A",
+      "code": "A1.1",
       "marks": 12,
       "commandWord": "Evaluate",
       "context": "Just U Games uses a file server to store gaming data and is considering installing a web server to host games.",
@@ -3118,8 +3119,8 @@
       "id": "p3-3-a",
       "scenario": "p3s3",
       "part": "(a)",
-      "section": "B",
-      "code": "B2.2",
+      "section": "A",
+      "code": "A1.3",
       "marks": 6,
       "commandWord": "Draw",
       "context": "",
@@ -3836,8 +3837,8 @@
       "id": "p4-3-a",
       "scenario": "p4s3",
       "part": "(a)",
-      "section": "B",
-      "code": "B2.2",
+      "section": "A",
+      "code": "A1.3",
       "marks": 6,
       "commandWord": "Draw",
       "context": "",
@@ -4132,7 +4133,9 @@
         "rule": "One mark for each correct answer, up to 2 marks.",
         "points": [
           "Speakers / headphones (e.g. a beep when an item scans)",
-          "Braille display"
+          "Braille display",
+          "Cash drawer (opened automatically by the till)",
+          "Buzzer"
         ],
         "accept": [
           "Any other output device that fits a till, other than a monitor or printer"
@@ -4143,7 +4146,7 @@
           "Plotters (a type of printer) and projectors (not used with a till)"
         ]
       },
-      "modelAnswer": "1. Speakers\n2. Braille display"
+      "modelAnswer": "1. Speaker\n2. Cash drawer"
     },
     {
       "id": "p5-1-a-ii",
@@ -4559,8 +4562,8 @@
       "id": "p5-3-a",
       "scenario": "p5s3",
       "part": "(a)",
-      "section": "B",
-      "code": "B2.2",
+      "section": "A",
+      "code": "A1.3",
       "marks": 6,
       "commandWord": "Draw",
       "context": "",
@@ -4807,6 +4810,213 @@
         ]
       },
       "modelAnswer": "Wired vs Wi-Fi: players need wired Cat6 connections for low latency and no interference; Wi-Fi jitter would make matches unfair.\nSwitches and cables: 200 players at once need fast switches and fibre between them, or throughput becomes a bottleneck.\nBandwidth: players and the live stream share the venue's capacity, so QoS should put game traffic and the stream first.\nSegmentation: separating players, stream and spectator Wi-Fi stops spectators slowing the matches.\nReliability: one failed switch could stop a match, so backup kit and monitoring are needed.\nConclusion: wired, segmented and QoS-controlled network for players and the stream; spectators on separate Wi-Fi."
+    },
+    {
+      "id": "a-extra-1",
+      "part": "",
+      "section": "A",
+      "code": "A1.2",
+      "marks": 4,
+      "commandWord": "Explain",
+      "slots": 2,
+      "context": "A GP surgery is giving its doctors tablets to use on home visits to elderly patients.",
+      "question": "Explain **two** ways the doctors could use the tablets to support healthcare during home visits.",
+      "traps": [
+        "\"during home visits\": the use must happen on the visit, not back at the surgery."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+        "points": [
+          [
+            "View the patient's electronic record",
+            "so they know the patient's history, allergies and medication before treating them"
+          ],
+          [
+            "Record notes and prescriptions during the visit",
+            "so the record is up to date straight away and the pharmacy gets the prescription without delay"
+          ],
+          [
+            "Video call a specialist or colleague",
+            "so the patient gets expert advice without travelling to hospital"
+          ],
+          [
+            "Photograph a wound or skin condition",
+            "so changes can be compared at the next visit or shared with a specialist"
+          ],
+          [
+            "Read data from monitoring devices (e.g. blood pressure, glucose)",
+            "so the doctor sees trends and can change treatment early"
+          ]
+        ],
+        "accept": [],
+        "reject": [
+          "Benefits to the surgery's finances only",
+          "Uses unrelated to healthcare"
+        ]
+      },
+      "modelAnswer": "1. The doctor can open the patient's electronic record, so they know about allergies and current medication before treating them.\n2. The doctor can video call a specialist from the patient's home, so the patient gets expert advice without travelling to hospital."
+    },
+    {
+      "id": "a-extra-2",
+      "part": "",
+      "section": "A",
+      "code": "A5.2",
+      "marks": 4,
+      "commandWord": "Explain",
+      "slots": 2,
+      "context": "A family uses a smart speaker with an AI voice assistant at home, and the children use an AI chatbot for homework.",
+      "question": "Explain **two** implications of AI for the family’s personal use of IT.",
+      "traps": [
+        "Personal use: implications for businesses are not credited.",
+        "Give a reason for each point, not just \"it is easier\"."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+        "points": [
+          [
+            "Hands-free control by voice",
+            "so family members with limited sight or mobility can control devices more easily"
+          ],
+          [
+            "The speaker is always listening and stores voice data",
+            "so the family's conversations and habits may be recorded, raising privacy concerns"
+          ],
+          [
+            "Chatbot answers can be wrong or made up",
+            "so the children may learn false information unless they check it"
+          ],
+          [
+            "Over-reliance on the chatbot for homework",
+            "so the children may not develop their own understanding, or may be accused of cheating"
+          ],
+          [
+            "Personalised recommendations",
+            "save time but can trap the family in a filter bubble"
+          ]
+        ],
+        "accept": [],
+        "reject": [
+          "Implications for businesses or employers",
+          "\"It is easier\" with no reason"
+        ]
+      },
+      "modelAnswer": "1. The smart speaker is always listening, so the family's conversations could be recorded and stored, which is a privacy risk.\n2. The chatbot can give wrong answers, so the children could copy false information into their homework unless they check it."
+    },
+    {
+      "id": "e-extra-1",
+      "part": "",
+      "section": "E",
+      "code": "E2.6",
+      "marks": 4,
+      "commandWord": "Explain",
+      "slots": 2,
+      "context": "A gym is building an online form for new members to sign up and enter their personal and payment details.",
+      "question": "Explain **two** features of the form’s user interface that would reduce errors in the data entered.",
+      "traps": [
+        "Features must reduce errors. Security features such as encryption protect data but do not stop mistakes."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+        "points": [
+          [
+            "Drop-down lists / date pickers",
+            "so members can only choose valid options, e.g. a real date of birth"
+          ],
+          [
+            "Error messages shown as the member types",
+            "so mistakes such as a missing @ in an email address are fixed straight away"
+          ],
+          [
+            "Clear labels and examples in each field",
+            "so members know exactly what format to use, e.g. for a phone number"
+          ],
+          [
+            "Entering the email address twice (verification)",
+            "so typing mistakes are caught before the account is created"
+          ],
+          [
+            "Required fields marked and checked",
+            "so the form cannot be sent with important details missing"
+          ],
+          [
+            "Address filled in from the postcode",
+            "so there is less typing and fewer spelling mistakes"
+          ]
+        ],
+        "accept": [],
+        "reject": [
+          "Features that do not reduce errors, e.g. a colourful logo",
+          "Security features such as encryption"
+        ]
+      },
+      "modelAnswer": "1. A date picker for the date of birth means members can only pick a real date, so impossible dates are not entered.\n2. The form shows an error message straight away if the email address has no @, so the member fixes it before submitting."
+    },
+    {
+      "id": "b-extra-1",
+      "part": "",
+      "section": "B",
+      "code": "B1.4",
+      "marks": 4,
+      "commandWord": "Explain",
+      "slots": 2,
+      "context": "A video production company's editors move large video files between their PCs and a file server over the office Wi-Fi.",
+      "question": "Explain **two** ways changing the editors’ PCs to a wired Ethernet connection would affect the performance of the system.",
+      "traps": [
+        "The question is about performance: security and cabling cost are not credited."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+        "points": [
+          [
+            "Higher, steadier speed / bandwidth",
+            "so large video files transfer to and from the server faster"
+          ],
+          [
+            "Lower latency",
+            "so opening and saving files on the server feels quicker"
+          ],
+          [
+            "No radio interference or dropped connections",
+            "so long transfers do not fail part-way through"
+          ],
+          [
+            "Bandwidth is not shared over the air with other Wi-Fi users",
+            "so speed does not drop when other staff connect"
+          ],
+          [
+            "Editors lose mobility",
+            "because they can only work where there is a network socket"
+          ]
+        ],
+        "accept": [
+          "A drawback such as loss of mobility, if explained"
+        ],
+        "reject": [
+          "Security benefits only (the question is about performance)",
+          "Cost of cabling on its own"
+        ]
+      },
+      "modelAnswer": "1. Ethernet gives a faster, steadier connection, so the editors’ large video files copy to the server much more quickly.\n2. A cable has no radio interference, so long transfers do not drop part-way through and have to be restarted."
     }
   ]
 }
