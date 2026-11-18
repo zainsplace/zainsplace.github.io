@@ -342,6 +342,25 @@ test('round settings load with defaults and survive bad storage', () => {
   assert.equal(R.coerceRoundSettings({ style: 'nonsense' }).style, 'mixed');
 });
 
+test('a styleOverride round builds only flip cards and leaves the saved settings alone', () => {
+  const mem = {};
+  const store = { getItem: k => (k in mem ? mem[k] : null), setItem: (k, v) => { mem[k] = String(v); } };
+  R.saveRoundSettings({ style: 'mixed', hideOptions: true, spelling: false }, store);
+  const before = mem.rev_round_settings;
+  const settings = R.roundSettingsFor({ styleOverride: 'flash' }, store);
+  assert.equal(settings.style, 'flash');
+  assert.equal(settings.spelling, false);
+  const r = R.makeRound({ node: byId('A1.1'), nodes, memory: {}, todayStr: TODAY, mode: 'memorize', settings, bank: BANK });
+  assert.ok(r.cards.length > 0);
+  assert.ok(r.cards.every(c => c.q.kind === 'flip'));
+  assert.equal(mem.rev_round_settings, before);
+  assert.equal(R.loadRoundSettings(store).style, 'mixed');
+  // No override, or a bad one: the saved style.
+  assert.equal(R.roundSettingsFor({}, store).style, 'mixed');
+  assert.equal(R.roundSettingsFor({ styleOverride: 'nope' }, store).style, 'mixed');
+  assert.equal(R.roundSettingsFor(undefined, store).style, 'mixed');
+});
+
 /* ---------- end of round ---------- */
 
 test('a round records the step ring at its start', () => {

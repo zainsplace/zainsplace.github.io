@@ -1103,14 +1103,23 @@ function roundContext() {
   };
 }
 
-function startRound(nodeId, mode) {
+/* The settings one round runs with: the saved ones, with this round's style
+   swapped in when opts.styleOverride names a valid style (the Study dialog's
+   Flashcards). Never writes the saved settings. */
+function roundSettingsFor(opts, storage) {
+  const saved = loadRoundSettings(storage);
+  const o = opts && opts.styleOverride;
+  return ROUND_STYLES.includes(o) ? Object.assign({}, saved, { style: o }) : saved;
+}
+
+function startRound(nodeId, mode, opts) {
   const m = mode || 'memorize';
   const nodes = pathNodes();
   const node = nodes.find(n => n.id === nodeId) || null;
   if (!node && m !== 'review') return null;
   round = makeRound({
     node, nodes, memory: state.memory, todayStr: today(), mode: m,
-    settings: loadRoundSettings(), bank: lessonBank()
+    settings: roundSettingsFor(opts), bank: lessonBank()
   });
   return round;
 }
@@ -1121,7 +1130,7 @@ if (typeof module !== 'undefined' && module.exports) {
     isLessonItem, termParts, acceptedAnswers, normAnswer, editDistance, checkTyped, isTypeable,
     maskTerm, typeHint, shuffled, distractorTerms, firstSentence, questionsForItem,
     isRecapItem, isAbbrevOf, exampleParts, gapCandidates, typedQuestion, mcqQuestion, tfClash, relatedItems,
-    defaultRoundSettings, coerceRoundSettings, loadRoundSettings, saveRoundSettings,
+    defaultRoundSettings, coerceRoundSettings, loadRoundSettings, saveRoundSettings, roundSettingsFor,
     questionFor, tfQuestion, multiQuestion, makeCard, makeRound, checkResponse,
     currentRoundCard, answerCard, canOverride, overrideRight, hintCard, revealCard, explainCard, nextCard, roundFinished,
     streakMoved, streakWeek, overtakenRival

@@ -92,10 +92,12 @@ function rvSnapshot() {
   return snap;
 }
 
-function openRound(nodeId, mode) {
+/* opts.styleOverride: run this round in another question style ('flash' for
+   Flashcards) without touching the saved round settings. */
+function openRound(nodeId, mode, opts) {
   if (rv) closeRound();
   const before = rvSnapshot();
-  const r = startRound(nodeId, mode);
+  const r = startRound(nodeId, mode, opts);
   if (!r || !r.cards.length) {
     toast(mode === 'review' ? 'Nothing forgotten to review right now' : 'No cards to study here yet');
     return null;

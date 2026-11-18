@@ -250,6 +250,7 @@ function learnJumpToCurrent() {
 
 const STUDY_OPTIONS = [
   { id: 'memorize', emoji: '🧠', name: 'Memorize', sub: 'Learn and recall this step\'s cards' },
+  { id: 'flash', emoji: '🃏', name: 'Flashcards', sub: 'Flip each card, then mark yourself' },
   { id: 'battle', emoji: '⚔️', name: 'Battle', sub: 'Race a league rival' },
   { id: 'hard', emoji: '😈', name: 'Hard round', sub: 'Every answer typed, no hints', more: true },
   { id: 'speed', emoji: '⚡', name: 'Speed-run', sub: 'Beat the clock on every card', more: true },
@@ -350,6 +351,10 @@ function studyGo() {
     if (typeof battle !== 'undefined' && battle) { leaveBattle(); if (battleOnScreen()) renderBattleView(); }
     // Focus goes back to the opener first, so the round returns to it.
     openRound(nodeId, choice);
+  } else if (choice === 'flash') {
+    if (typeof battle !== 'undefined' && battle) { leaveBattle(); if (battleOnScreen()) renderBattleView(); }
+    // Flip cards for this round only: the saved round settings stay as they are.
+    openRound(nodeId, 'memorize', { styleOverride: 'flash' });
   } else if (choice === 'battle') {
     // A Duel against the rival rated just above you, on this node's section.
     navigate('learn', { tab: 'leaderboard' });
