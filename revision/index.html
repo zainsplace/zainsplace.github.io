@@ -6,15 +6,15 @@
   <!-- The app uses inline onclick handlers, so scripts need 'unsafe-inline'. The policy stops any injected script sending data off-site (connect-src, img-src). -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <title>BTEC IT Revision</title>
-  <meta name="description" content="Revision hub for BTEC National IT — Unit 1 and Unit 2. Flashcards with spaced repetition, exam-style questions, model answers, games and progress tracking.">
+  <meta name="description" content="Revision hub for BTEC National IT — Unit 1 and Unit 2. Learn path with spaced memory, exam-style questions, past papers, mocks, battles and progress tracking.">
   <meta name="theme-color" content="#0F172A">
   <meta property="og:title" content="BTEC IT Revision">
-  <meta property="og:description" content="Flashcards, exam questions, games and progress tracking for BTEC National IT, Units 1 and 2.">
+  <meta property="og:description" content="Learn path, exam questions, past papers and battles for BTEC National IT, Units 1 and 2.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zainsplace.github.io/revision/">
   <link rel="canonical" href="https://zainsplace.github.io/revision/">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230F172A'/%3E%3Ctext x='50' y='70' font-size='54' font-family='system-ui,sans-serif' font-weight='800' fill='%23F8FAFC' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css?v=31">
+  <link rel="stylesheet" href="styles.css?v=32">
 </head>
 <body>
 
@@ -41,19 +41,9 @@
   </div>
   <nav class="sidebar-nav" aria-label="Main">
     <button class="sidebar-btn" data-page="home" onclick="sidebarNav('home')"><span class="sb-emoji" aria-hidden="true">🏠</span><span>Home</span></button>
-    <button class="sidebar-btn" data-page="plan" title="Today's plan" onclick="sidebarNav('plan')"><span class="sb-emoji" aria-hidden="true">📅</span><span>Plan</span></button>
-    <button class="sidebar-btn" data-page="search" onclick="sidebarNav('search')"><span class="sb-emoji" aria-hidden="true">🔍</span><span>Search</span></button>
-    <p class="sidebar-group" aria-hidden="true">Learn</p>
     <button class="sidebar-btn" data-page="learn" onclick="sidebarNav('learn', {tab:'path'})"><span class="sb-emoji" aria-hidden="true">📚</span><span>Learn</span></button>
-    <button class="sidebar-btn" data-page="flashcards" onclick="sidebarNav('flashcards')"><span class="sb-emoji" aria-hidden="true">🃏</span><span>Flashcards</span></button>
-    <button class="sidebar-btn" data-page="examkit" onclick="sidebarNav('examkit')"><span class="sb-emoji" aria-hidden="true">🧰</span><span>Exam Kit</span></button>
-    <p class="sidebar-group" aria-hidden="true">Practise</p>
-    <button class="sidebar-btn" data-page="questions" onclick="sidebarNav('questions')"><span class="sb-emoji" aria-hidden="true">📝</span><span>Questions</span></button>
-    <button class="sidebar-btn" data-page="extended" title="Extended writing" onclick="sidebarNav('extended')"><span class="sb-emoji" aria-hidden="true">✍️</span><span>Extended</span></button>
-    <button class="sidebar-btn" data-page="games" onclick="sidebarNav('games')"><span class="sb-emoji" aria-hidden="true">🎯</span><span>Games</span></button>
-    <button class="sidebar-btn" data-page="aptitude" title="Reasoning test" onclick="sidebarNav('aptitude')"><span class="sb-emoji" aria-hidden="true">🧩</span><span>Reasoning</span></button>
-    <p class="sidebar-group" aria-hidden="true">Progress</p>
-    <button class="sidebar-btn" data-page="learn-leaderboard" onclick="sidebarNav('learn', {tab:'leaderboard'})"><span class="sb-emoji" aria-hidden="true">🏆</span><span>Leaderboard</span></button>
+    <button class="sidebar-btn" data-page="exam" onclick="sidebarNav('exam')"><span class="sb-emoji" aria-hidden="true">📝</span><span>Exam</span></button>
+    <button class="sidebar-btn" data-page="search" onclick="sidebarNav('search')"><span class="sb-emoji" aria-hidden="true">🔍</span><span>Search</span></button>
     <button class="sidebar-btn" data-page="profile" onclick="sidebarNav('profile')"><span class="sb-emoji" aria-hidden="true">👤</span><span>Profile</span></button>
   </nav>
   <button class="g-btn g-btn-block sidebar-study" onclick="studyNow()"><span aria-hidden="true">🎮</span> Study</button>
@@ -105,8 +95,8 @@
       <h3 class="today-title" id="today-title">Today's revision</h3>
       <ol class="today-tasks" id="today-tasks"></ol>
       <div class="today-foot">
-        <button class="today-link" onclick="navigate('plan')">Full plan for today <span aria-hidden="true">&rarr;</span></button>
-        <button class="today-link" onclick="navigate('games')">Games &amp; battles <span aria-hidden="true">&rarr;</span></button>
+        <button class="today-link" onclick="navigate('exam')">Exam practice <span aria-hidden="true">&rarr;</span></button>
+        <button class="today-link" onclick="navigate('learn', {tab:'leaderboard'})">Battles &amp; league <span aria-hidden="true">&rarr;</span></button>
       </div>
     </section>
 
@@ -141,24 +131,14 @@
     <div id="learn-content"></div>
   </div>
 
-  <!-- FLASHCARDS -->
-  <div class="page" id="page-flashcards">
-    <div id="flashcards-content"></div>
+  <!-- EXAM: links to the six exam pages below -->
+  <div class="page" id="page-exam">
+    <div id="exam-content"></div>
   </div>
 
-  <!-- QUESTIONS -->
+  <!-- QUESTIONS (also Past papers and Mocks) -->
   <div class="page" id="page-questions">
     <div id="questions-content"></div>
-  </div>
-
-  <!-- GAMES -->
-  <div class="page" id="page-games">
-    <div id="games-content"></div>
-  </div>
-
-  <!-- LEADERBOARD -->
-  <div class="page" id="page-leaderboard">
-    <div id="leaderboard-content"></div>
   </div>
 
   <!-- EXTENDED RESPONSE -->
@@ -181,11 +161,6 @@
     <div id="search-content"></div>
   </div>
 
-  <!-- PLAN -->
-  <div class="page" id="page-plan">
-    <div id="plan-content"></div>
-  </div>
-
   <!-- PROFILE -->
   <div class="page" id="page-profile">
     <div id="profile-content"></div>
@@ -197,7 +172,7 @@
 <nav class="tabbar" aria-label="Main">
   <button class="tabbar-btn" data-page="home" onclick="sidebarNav('home')"><span class="sb-emoji" aria-hidden="true">🏠</span><span>Home</span></button>
   <button class="tabbar-btn" data-page="learn" onclick="sidebarNav('learn', {tab:'path'})"><span class="sb-emoji" aria-hidden="true">📚</span><span>Learn</span></button>
-  <button class="tabbar-btn" data-page="questions" onclick="sidebarNav('questions')"><span class="sb-emoji" aria-hidden="true">📝</span><span>Exam</span></button>
+  <button class="tabbar-btn" data-page="exam" onclick="sidebarNav('exam')"><span class="sb-emoji" aria-hidden="true">📝</span><span>Exam</span></button>
   <button class="tabbar-btn" data-page="search" onclick="sidebarNav('search')"><span class="sb-emoji" aria-hidden="true">🔍</span><span>Search</span></button>
   <button class="tabbar-btn" data-page="profile" onclick="sidebarNav('profile')"><span class="sb-emoji" aria-hidden="true">👤</span><span>Profile</span></button>
 </nav>
@@ -229,9 +204,9 @@
 <script src="ppp.js?v=2"></script>
 <script src="league.js?v=2"></script>
 <script src="memory.js?v=1"></script>
-<script src="app.js?v=36"></script>
+<script src="app.js?v=37"></script>
 <script src="round.js?v=5"></script>
 <script src="round-view.js?v=3"></script>
-<script src="learn.js?v=1"></script>
+<script src="learn.js?v=2"></script>
 </body>
 </html>

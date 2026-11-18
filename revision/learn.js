@@ -9,7 +9,8 @@
                   is locked. Clicking a node opens the study dialog.
      Materials    the full notes (renderSectionList / renderSectionContent in
                   app.js).
-     Leaderboard  a Battle card and the league (renderLeaderboardPage).
+     Leaderboard  battles (the mode picker, or the battle being played) over
+                  the league (renderBattleView / renderLeaderboardPage, app.js).
    The study dialog picks how to study a node: Memorize, Battle, and under
    "More ways to study" Hard round, Speed-run and Practice test. Rounds run in
    round-view.js (openRound); after one closes, learnAfterRound() redraws the
@@ -134,16 +135,9 @@ function learnAfterRound() {
 
 function renderLearnLeaderboard(container) {
   container.innerHTML = learnHeaderHTML('leaderboard') + `
-    <div class="g-card learn-battle">
-      <span class="learn-battle-icon" aria-hidden="true">⚔️</span>
-      <div class="learn-battle-text">
-        <h3>Battle</h3>
-        <p>Race a league rival on this unit's terms.</p>
-      </div>
-      <button class="g-btn" onclick="navigate('games')">Start</button>
-    </div>
+    <div id="learn-battle" class="learn-battle-area" tabindex="-1" aria-label="Battle"></div>
     <div id="learn-lb"></div>`;
-  renderLeaderboardPage(el('learn-lb'), true);
+  renderBattleView();
 }
 
 /* Tabs follow the ARIA tabs pattern: arrows move between them. */
@@ -352,10 +346,14 @@ function studyGo() {
   closeStudyDialog(true);
   if (!node) return;
   if (choice === 'memorize' || choice === 'hard' || choice === 'speed') {
+    // A round over a live battle ends the battle (its clock would answer for you).
+    if (typeof battle !== 'undefined' && battle) { leaveBattle(); if (battleOnScreen()) renderBattleView(); }
     // Focus goes back to the opener first, so the round returns to it.
     openRound(nodeId, choice);
   } else if (choice === 'battle') {
-    navigate('games');          // battles move to Learn -> Leaderboard in Task 9
+    // A Duel against the rival rated just above you, on this node's section.
+    navigate('learn', { tab: 'leaderboard' });
+    startBattle('duel', null, node.letter);
   } else if (choice === 'practice') {
     qMode = 'practice';
     qShow = 'all';

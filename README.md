@@ -14,19 +14,20 @@ for anyone in the years below who wants it.
 ## Features
 
 - Switch units from the sidebar; the whole site reframes to that unit
-- Flashcards with spaced repetition and RAG (red/amber/green) self-rating; Space flips, ← / → grade
+- Three main pages, as in Gizmo: Home, Learn (path, materials, leaderboard) and Exam (a hub
+  linking to Questions, Past papers, Mocks, Extended, Exam kit and the Reasoning test)
 - Exam-style questions for both units, set out like the real AAQ paper: numbered scenarios,
   part-by-part context and the same command words and mark tariffs. Students mark themselves
   against a structured mark scheme (tick points, identify + expand chains, reason → justify →
   expand chains, or levels for 6/9/12-markers) instead of guessing a number
-- Practice works like flashcards: one question at a time, Previous / Next or ← / →, filtered by
+- Practice shows one question at a time, Previous / Next or ← / →, filtered by
   section and by Not tried / Needs work. Answers are saved as you type until they are marked
 - A progress summary (tried, average mark, weakest section and command word) and a quiz that
   targets weak spots, untried questions or a mix
 - Timed mock papers: two for Unit 1 (paced like the real 90 marks in 2 hours) and one 90-mark
   paper for Unit 2. Sit every scenario against the clock, then mark each answer and get a
   breakdown by question and question type
-- Match, True/False Blitz, Fill in the Blank and Battle revision games
+- Battles against the league rivals (Duel, Race to 10, Elimination, Blitz 60) in Learn → Leaderboard
 - Extended-writing practice with timers and model answers
 - Leaderboard with daily-progressing rivals
 - A reasoning test shared by both units: number and letter series, verbal analogies, syllogisms,
