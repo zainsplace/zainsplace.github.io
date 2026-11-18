@@ -322,6 +322,8 @@ let store = loadStore();
 /* ---- Per-term memory ----
    Terms come from the lesson path (same node ids as lessons.js pathNodes) so
    older progress can be turned into memory before lessons.js has loaded. */
+/* Keep in step with pathNodes() in lessons.js: same node ids and the same
+   lesson-item filter. Change them together. */
 function unitTermItems(unitId) {
   const def = unitDef(unitId);
   const data = (INLINE_UNITS[unitId] || INLINE_UNITS.u1).sections;
@@ -342,29 +344,33 @@ function unitTermItems(unitId) {
   return items;
 }
 
-/* Build memory once for any unit saved before memory existed. Reads lessons,
-   ratings and flashcard boxes; never changes them. */
+/* Build memory for a unit saved before memory existed. Reads lessons, ratings
+   and flashcard boxes, never changes them, and only fills codes that have no
+   record yet so anything already recorded is kept. Does not save. */
+function seedUnitMemory(id) {
+  const u = store.units[id];
+  if (!u || u.memorySeeded) return false;
+  const cards = ((INLINE_UNITS[id] || {}).flashcards || {}).cards || [];
+  const flashBoxes = {};
+  cards.forEach(c => {
+    const box = u.flashcards.boxes[c.id];
+    if (c.code && box && !(flashBoxes[c.code] >= box)) flashBoxes[c.code] = box;
+  });
+  const seeded = MEMORY.seed({
+    items: unitTermItems(id),
+    lessonsDone: new Set(Object.keys(u.lessons).filter(k => u.lessons[k] && u.lessons[k].done)),
+    rag: u.rag,
+    flashBoxes,
+    todayStr: today()
+  });
+  Object.keys(seeded).forEach(code => { if (!u.memory[code]) u.memory[code] = seeded[code]; });
+  u.memorySeeded = true;
+  return true;
+}
+
 function seedMemoryIfNeeded() {
   let changed = false;
-  Object.keys(store.units).forEach(id => {
-    const u = store.units[id];
-    if (u.memorySeeded) return;
-    const cards = ((INLINE_UNITS[id] || {}).flashcards || {}).cards || [];
-    const flashBoxes = {};
-    cards.forEach(c => {
-      const box = u.flashcards.boxes[c.id];
-      if (c.code && box && !(flashBoxes[c.code] >= box)) flashBoxes[c.code] = box;
-    });
-    u.memory = MEMORY.seed({
-      items: unitTermItems(id),
-      lessonsDone: new Set(Object.keys(u.lessons).filter(k => u.lessons[k] && u.lessons[k].done)),
-      rag: u.rag,
-      flashBoxes,
-      todayStr: today()
-    });
-    u.memorySeeded = true;
-    changed = true;
-  });
+  Object.keys(store.units).forEach(id => { if (seedUnitMemory(id)) changed = true; });
   if (changed) saveState();
 }
 seedMemoryIfNeeded();
@@ -5883,6 +5889,7 @@ function importData() {
             return;
           }
           store = coerceStore(imported);
+          seedMemoryIfNeeded();
           message = 'Progress imported.';
         } else if (looksLikeLegacyBackup(imported)) {
           // A pre-merge backup: progress at the top level, no `units` key, and
@@ -5895,6 +5902,7 @@ function importData() {
             return;
           }
           store.units[target] = coerceUnit(imported);
+          seedUnitMemory(target);
           if (typeof imported.theme === 'string') store.theme = imported.theme;
           if (isPlainObject(imported.profile)) {
             store.profile = coerceLike(defaultStore().profile, imported.profile);
@@ -5927,6 +5935,7 @@ function confirmReset() {
   const u = unitDef();
   if (confirm(`Reset all ${u.label} progress? This cannot be undone. Your other unit is not affected.`)) {
     store.units[store.activeUnit] = defaultUnitState();
+    seedUnitMemory(store.activeUnit);
     saveState();
     resetTransientState();
     toast(u.label + ' progress reset.');

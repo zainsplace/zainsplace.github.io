@@ -31,7 +31,8 @@ function lessonBank() {
    up a range of terms. They belong in the notes, not in a quiz as a "term". */
 function isLessonItem(it) { return it && it.term && it.definition && !String(it.code).includes('-'); }
 
-/* Every node of the active unit's path, in the unit's section order. */
+/* Every node of the active unit's path, in the unit's section order.
+   Keep in step with unitTermItems() in app.js (same node ids, same filter). */
 function pathNodes() {
   const nodes = [];
   unitLetters().forEach(l => {
