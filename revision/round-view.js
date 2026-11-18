@@ -127,8 +127,11 @@ function closeRound() {
   document.body.classList.remove('round-open');
   document.querySelectorAll('.app-shell, #sidebar, #right-rail, #sidebar-backdrop').forEach(n => { n.inert = false; });
   // The path's rings and counts read memory, which the round has just changed.
-  if (typeof currentPage !== 'undefined' && currentPage === 'sections' && !currentSection) renderSections(null);
-  if (back && document.contains(back) && typeof back.focus === 'function') back.focus({ preventScroll: true });
+  // Redrawing replaces the node that opened the round, so find it again by id.
+  const backId = back && back.id;
+  if (typeof learnAfterRound === 'function') learnAfterRound();
+  const target = back && document.contains(back) ? back : (backId ? el(backId) : null);
+  if (target && typeof target.focus === 'function') target.focus({ preventScroll: true });
 }
 
 /* ---------- end of round ----------
@@ -997,14 +1000,14 @@ function roundSimpler() {
   renderRound();
 }
 
-/* More detail: the term in the section's notes. (Task 8 moves this to Learn -> Materials.) */
+/* More detail: the term in the section's notes (Learn -> Materials). */
 function roundMoreDetail() {
   const card = rvShown();
   if (!card) return;
   const code = card.item.code;
   const letter = (card.node && card.node.letter) || String(code).charAt(0).toUpperCase();
   closeRound();
-  navigate('sections', { section: letter });
+  navigate('learn', { section: letter });
   requestAnimationFrame(() => {
     const item = el('item-' + code);
     if (!item) return;

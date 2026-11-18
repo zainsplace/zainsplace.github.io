@@ -319,28 +319,44 @@ function loadStore() {
 
 let store = loadStore();
 
-/* ---- Per-term memory ----
-   Terms come from the lesson path (same node ids as lessons.js pathNodes) so
-   older progress can be turned into memory before lessons.js has loaded. */
-/* Keep in step with pathNodes() in lessons.js: same node ids and the same
-   lesson-item filter. Change them together. */
-function unitTermItems(unitId) {
-  const def = unitDef(unitId);
-  const data = (INLINE_UNITS[unitId] || INLINE_UNITS.u1).sections;
-  const items = [];
-  def.order.forEach(l => {
+/* ---- The Learn path's nodes ----
+   One node per spec subtopic that has lesson terms, in the unit's section
+   order. This is the only place node ids are made: learn.js pathNodes() and
+   the memory seeding below both read it. It lives here, not in learn.js,
+   because memory is seeded while app.js loads, before the later scripts.
+   The term filter is round.js isLessonItem() (loaded later): recap entries
+   such as "C1.1.1-C1.1.3" are notes, not terms. */
+function unitPathNodes(unitId) {
+  const key = isUnitId(unitId) ? unitId : 'u1';
+  const data = (INLINE_UNITS[key] || INLINE_UNITS.u1).sections;
+  const nodes = [];
+  unitDef(key).order.forEach(l => {
     const sec = data[l];
     if (!sec) return;
     const letter = l.toUpperCase();
     sec.topics.forEach((topic, ti) => {
       (topic.subtopics || []).forEach((sub, si) => {
-        const nodeItems = (sub.items || []).filter(it => it && it.term && it.definition && !String(it.code).includes('-'));
-        if (!nodeItems.length) return;
-        const nodeId = sub.code || `${topic.code || letter + (ti + 1)}-${si + 1}`;
-        nodeItems.forEach(it => items.push({ code: it.code, nodeId }));
+        const items = (sub.items || []).filter(it => it && it.term && it.definition && !String(it.code).includes('-'));
+        if (!items.length) return;
+        nodes.push({
+          id: sub.code || `${topic.code || letter + (ti + 1)}-${si + 1}`,
+          letter,
+          title: sub.title || topic.title,
+          topicTitle: topic.title,
+          items,
+          section: sec, topic, sub
+        });
       });
     });
   });
+  return nodes;
+}
+
+/* ---- Per-term memory ----
+   Every lesson term of a unit with the path node it sits in. */
+function unitTermItems(unitId) {
+  const items = [];
+  unitPathNodes(unitId).forEach(n => n.items.forEach(it => items.push({ code: it.code, nodeId: n.id })));
   return items;
 }
 
@@ -507,8 +523,8 @@ function resetTransientState() {
   searchQuery = '';
   currentSection = null;
   notesFilter = 'all';
-  sectionsTab = 'path';
-  if (typeof lesson !== 'undefined') lesson = null;
+  learnTab = 'path';
+  if (typeof closeStudyDialog === 'function') closeStudyDialog(false);
   flashFilter = 'all';
   qFilter = 'all';
   if (typeof flashPracticeMode !== 'undefined') flashPracticeMode = false;
@@ -593,19 +609,20 @@ function applyUnitChrome() {
   const secs = el('sidebar-sections');
   if (secs) {
     secs.innerHTML = '<p class="sidebar-group" aria-hidden="true">Sections</p>' + sectionList().map(s =>
-      `<button class="sidebar-btn sidebar-sec" style="--sec:${s.col}" onclick="navigate('sections', {section:'${s.letter}'}); if (window.innerWidth < SIDEBAR_BREAKPOINT) closeSidebar()" title="Section ${s.letter}: ${s.name}"><span class="sec-sq" aria-hidden="true"></span><span>${s.name}</span></button>`
+      `<button class="sidebar-btn sidebar-sec" style="--sec:${s.col}" onclick="navigate('learn', {section:'${s.letter}'}); if (window.innerWidth < SIDEBAR_BREAKPOINT) closeSidebar()" title="Section ${s.letter}: ${s.name}"><span class="sec-sq" aria-hidden="true"></span><span>${s.name}</span></button>`
     ).join('');
   }
 }
 
 /* ---- NAVIGATION ---- */
-const PAGES = ['home', 'sections', 'flashcards', 'questions', 'games', 'leaderboard', 'extended', 'examkit', 'aptitude', 'search', 'plan', 'profile'];
+const PAGES = ['home', 'learn', 'flashcards', 'questions', 'games', 'leaderboard', 'extended', 'examkit', 'aptitude', 'search', 'plan', 'profile'];
+const LEARN_TABS = ['path', 'materials', 'leaderboard'];
 let currentPage = 'home';
-let currentSection = null;
-let sectionsTab = 'path';   // 'path' | 'materials'
+let currentSection = null;  // a section letter while its notes are open (Learn -> Materials)
+let learnTab = 'path';      // 'path' | 'materials' | 'leaderboard'
 
 const PAGE_TITLES = {
-  home: 'Home', sections: 'Sections', flashcards: 'Flashcards',
+  home: 'Home', learn: 'Learn', flashcards: 'Flashcards',
   questions: 'Questions', games: 'Games', leaderboard: 'Leaderboard',
   extended: 'Extended Writing', examkit: 'Exam Kit', aptitude: 'Reasoning Test', search: 'Search',
   plan: "Today's Plan", profile: 'Profile'
@@ -640,19 +657,23 @@ function navigate(page, opts = {}) {
 }
 
 /* ---- ROUTING ----
-   The page lives in the URL hash (#flashcards, #sections/C), so the browser's
-   Back button moves between pages instead of leaving the site, a refresh stays
-   put, and a page can be bookmarked. Which unit is showing stays in saved state,
-   not the URL. */
+   The page lives in the URL hash (#questions, #learn/materials/C), so the
+   browser's Back button moves between pages instead of leaving the site, a
+   refresh stays put, and a page can be bookmarked. Which unit is showing stays
+   in saved state, not the URL.
+   Learn: #learn (path), #learn/materials, #learn/materials/C (a section's
+   notes), #learn/leaderboard. */
 function routeHash(page, section) {
-  if (page === 'sections' && section) return '#sections/' + section;
-  if (page === 'sections' && sectionsTab === 'materials') return '#sections/materials';
+  if (page === 'learn') {
+    if (section) return '#learn/materials/' + section;
+    return learnTab === 'path' ? '#learn' : '#learn/' + learnTab;
+  }
   return page === 'home' ? '' : '#' + page;
 }
 
 function syncRoute(page, opts) {
   if (opts.fromHistory) return;
-  const hash = routeHash(page, page === 'sections' ? currentSection : null);
+  const hash = routeHash(page, page === 'learn' ? currentSection : null);
   if (hash === location.hash) return;
   const url = location.pathname + location.search + hash;
   try {
@@ -661,19 +682,42 @@ function syncRoute(page, opts) {
   } catch { /* history blocked (file:// in some browsers): the page still works */ }
 }
 
+/* Old links still land somewhere sensible. `redirected` tells the caller to
+   rewrite the address bar to the new hash. */
 function parseRoute() {
-  const [page, arg] = decodeURIComponent(location.hash.replace(/^#\/?/, '')).split('/');
-  if (!PAGES.includes(page)) return { page: 'home' };
-  const L = (arg || '').toUpperCase();
-  const section = page === 'sections' && unitLettersUpper().includes(L) ? L : undefined;
-  // #sections is the lesson path, #sections/materials the list of notes.
-  const tab = page === 'sections' && !section ? (arg === 'materials' ? 'materials' : 'path') : undefined;
-  return { page, section, tab };
+  let [page, arg, arg2] = decodeURIComponent(location.hash.replace(/^#\/?/, '')).split('/');
+  const letter = v => {
+    const L = String(v || '').toUpperCase();
+    return unitLettersUpper().includes(L) ? L : undefined;
+  };
+  let redirected = false;
+  if (page === 'sections') {
+    // #sections -> path, #sections/materials -> materials, #sections/C -> C's notes
+    redirected = true;
+    page = 'learn';
+    if (letter(arg)) { arg2 = arg; arg = 'materials'; }
+    else if (arg !== 'materials') arg = '';
+  } else if (page === 'flashcards') {
+    redirected = true; page = 'learn'; arg = '';
+  } else if (page === 'games' || page === 'leaderboard') {
+    redirected = true; page = 'learn'; arg = 'leaderboard';
+  } else if (page === 'plan') {
+    return { page: 'home', redirected: true };
+  }
+  if (!PAGES.includes(page)) return { page: 'home', redirected: !!page };
+  if (page !== 'learn') return { page, redirected };
+  const tab = LEARN_TABS.includes(arg) ? arg : 'path';
+  const section = tab === 'materials' ? letter(arg2) : undefined;
+  return { page, tab, section, redirected };
+}
+
+/* A redirected old hash replaces its history entry with the new one. */
+function navigateToRoute(r, opts) {
+  navigate(r.page, Object.assign({ section: r.section, tab: r.tab }, r.redirected ? { replaceRoute: true } : opts));
 }
 
 window.addEventListener('popstate', () => {
-  const r = parseRoute();
-  navigate(r.page, { section: r.section, tab: r.tab, fromHistory: true });
+  navigateToRoute(parseRoute(), { fromHistory: true });
 });
 
 /* Page content scrolls inside <main>, not the window, so window.scrollTo() on
@@ -687,7 +731,7 @@ function scrollContentTop() {
 function renderPage(page, opts) {
   switch (page) {
     case 'home': renderHome(); break;
-    case 'sections': renderSections(opts.section, opts.tab); break;
+    case 'learn': renderLearn(opts.section, opts.tab); break;
     case 'flashcards': renderFlashcards(); break;
     case 'questions': renderQuestions(); break;
     case 'games': renderGames(); break;
@@ -738,8 +782,8 @@ function closeSidebar() {
   applySidebarState();
 }
 
-function sidebarNav(page) {
-  navigate(page);
+function sidebarNav(page, opts) {
+  navigate(page, opts);
   // On mobile, close sidebar after navigation
   if (window.innerWidth < SIDEBAR_BREAKPOINT) closeSidebar();
 }
@@ -1121,7 +1165,7 @@ function renderTodayCard() {
 }
 
 function openHeroSection() {
-  navigate('sections', { section: heroLetter() });
+  navigate('learn', { section: heroLetter() });
 }
 
 function renderHome() {
@@ -1293,7 +1337,7 @@ function renderSectionTiles() {
     const tier = sectionTierClass(s.letter);
     const col = sectionColour(s.letter);
     return `
-      <div role="button" tabindex="0" class="section-tile" onclick="navigate('sections', {section:'${s.letter}'})">
+      <div role="button" tabindex="0" class="section-tile" onclick="navigate('learn', {section:'${s.letter}'})">
         <div class="tile-accent" style="background:${col}"></div>
         <div class="tile-code" style="color:${col}">${s.letter}</div>
         <div class="badge ${tier}" style="margin-bottom:6px">${tier === 'tier1' ? 'Tier 1' : tier === 'tier2' ? 'Tier 2' : 'Tier 3'}</div>
@@ -1310,42 +1354,19 @@ function renderSectionTiles() {
   }));
 }
 
-/* ---- SECTIONS PAGE ---- */
-/* Sections has two tabs: the Path of lessons (lessons.js) and the Materials,
-   which are the full notes. A letter always means a section's notes, so links
-   from Home and Search still land on the notes they point at. */
-function renderSections(letter, tab) {
-  const container = el('sections-content');
-
-  if (!letter) {
-    currentSection = null;
-    if (tab) sectionsTab = tab;
-    if (sectionsTab === 'materials') renderSectionList(container);
-    else renderPath(container);
-    return;
-  }
-  sectionsTab = 'materials';
-
-  currentSection = letter;
-  loadData([letter.toLowerCase()]);
-  const data = DATA[letter.toLowerCase()];
-
-  if (!data) {
-    container.innerHTML = `<div class="empty-state"><div class="icon">🚧</div><p>Section ${letter} content coming soon!</p></div>`;
-    return;
-  }
-
-  renderSectionContent(container, data, letter);
-}
-
+/* ---- LEARN -> MATERIALS ----
+   The Learn page (learn.js renderLearn) has three tabs: Path, Materials and
+   Leaderboard. Materials is the full notes: the list of sections, and one
+   section's notes (#learn/materials/C). A letter always means a section's
+   notes, so links from Home and Search land on the notes they point at. */
 function renderSectionList(container) {
   const sections = sectionList();
   container.innerHTML = `
-    ${sectionsTabsHTML('materials')}
+    ${learnHeaderHTML('materials')}
     <p class="path-intro">The full notes for every section. Open one to read it and rate each term.</p>
     <div class="grid2">
       ${sections.map(s => `
-        <div role="button" tabindex="0" class="section-tile" onclick="navigate('sections',{section:'${s.letter}'})">
+        <div role="button" tabindex="0" class="section-tile" onclick="navigate('learn',{section:'${s.letter}'})">
           <div class="tile-accent" style="background:${s.col}"></div>
           <div class="tile-code" style="color:${s.col}">${s.letter}</div>
           <h3>${s.name}</h3>
@@ -1384,9 +1405,9 @@ function renderSectionContent(container, data, letter) {
     counts[state.rag[item.code] || 'unrated']++;
   })));
 
-  let html = `
+  let html = learnHeaderHTML('materials') + `
     <div class="section-header">
-      <button class="section-header-back" onclick="navigate('sections',{tab:'materials'})" title="All sections" aria-label="Back to all sections">←</button>
+      <button class="section-header-back" onclick="navigate('learn',{tab:'materials'})" title="All sections" aria-label="Back to all sections">←</button>
       <h2><span style="color:${col}">${data.section}</span> — ${data.title}</h2>
       <span class="badge ${sectionTierClass(letter)}">Tier ${sectionTier(letter)}</span>
     </div>
@@ -1429,8 +1450,8 @@ function renderSectionContent(container, data, letter) {
 
   html += `
     <nav class="section-pager" aria-label="Other sections">
-      ${prev ? `<button class="btn btn-secondary" onclick="navigate('sections',{section:'${prev}'})">← ${prev} ${sectionShortName(prev)}</button>` : '<span></span>'}
-      ${next ? `<button class="btn btn-secondary" onclick="navigate('sections',{section:'${next}'})">${next} ${sectionShortName(next)} →</button>` : '<span></span>'}
+      ${prev ? `<button class="btn btn-secondary" onclick="navigate('learn',{section:'${prev}'})">← ${prev} ${sectionShortName(prev)}</button>` : '<span></span>'}
+      ${next ? `<button class="btn btn-secondary" onclick="navigate('learn',{section:'${next}'})">${next} ${sectionShortName(next)} →</button>` : '<span></span>'}
     </nav>`;
 
   container.innerHTML = html;
@@ -1440,7 +1461,7 @@ function setNotesFilter(f) {
   notesFilter = f;
   const main = el('main-content');
   const y = main.scrollTop;
-  renderSections(currentSection);
+  renderLearn(currentSection);
   main.scrollTop = Math.min(y, main.scrollHeight);
 }
 
@@ -1453,7 +1474,7 @@ function jumpToTopic(code) {
 }
 
 function expandAllCards(open) {
-  document.querySelectorAll('#sections-content .card-body').forEach(body => {
+  document.querySelectorAll('#learn-content .card-body').forEach(body => {
     body.classList.toggle('hidden', !open);
     const header = body.previousElementSibling;
     if (header) header.setAttribute('aria-expanded', String(open));
@@ -1537,7 +1558,7 @@ function setRAG(code, val, letter) {
     dot.title = RAG_LABELS[val];
     dot.setAttribute('aria-label', RAG_LABELS[val]);
   }
-  if (currentPage === 'sections') updateNotesCounts(letter);
+  if (currentPage === 'learn') updateNotesCounts(letter);
   toast(val === 'green' ? '✓ Marked confident' : val === 'amber' ? 'Noted — keep practising' : 'Added to revision priority');
 }
 
@@ -3430,7 +3451,7 @@ function pppTip(q, r) {
   return 'Leave five minutes at the end to re-read every answer against its question.';
 }
 
-function pppOpenNotes(L) { navigate('sections', { section: L }); }
+function pppOpenNotes(L) { navigate('learn', { section: L }); }
 let pppCardsOpened = false;   // Fix opened flashcards on one section; undone on return
 
 function pppOpenCards(L) {
@@ -4672,7 +4693,7 @@ function renderLeaderboardHTML() {
     <h3 style="margin:24px 0 4px;font-size:14px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">${t.icon} Your ${t.name} League · ${weekLeftText()}</h3>
     <p style="color:var(--text2);font-size:13px;margin-bottom:12px">${leagueStatus(rows)} <span class="sim-inline">(Simulated rivals, not real students.)</span></p>
     <div class="lb-board">${view.map(r => lbRowHTML(r, move)).join('')}</div>
-    <button class="btn btn-secondary btn-sm" style="margin-top:10px" onclick="navigate('leaderboard')">View full league →</button>`;
+    <button class="btn btn-secondary btn-sm" style="margin-top:10px" onclick="navigate('learn', {tab:'leaderboard'})">View full league →</button>`;
 }
 
 /* -- BATTLE RATING (Elo) -- */
@@ -4727,17 +4748,21 @@ let lbView = 'league';   // 'league' | 'rating'
 
 function setLbView(v) {
   lbView = v;
-  renderLeaderboardPage();
+  if (currentPage === 'learn') renderLearn(null, 'leaderboard');
+  else renderLeaderboardPage();
 }
 
-function renderLeaderboardPage() {
+/* The league and battle rating. Drawn into the Learn page's Leaderboard tab
+   (learn.js passes its container and its own heading), or the old
+   #page-leaderboard, which only a redirect used to reach. */
+function renderLeaderboardPage(container, inTab) {
   const isLeague = lbView !== 'rating';
   const rows = leagueRows();
   const move = lbMovementMap();
   const banner = isLeague ? lastWeekBannerHTML() : '';
 
-  el('leaderboard-content').innerHTML = `
-    <h2 style="margin-bottom:6px">Leaderboard</h2>
+  (container || el('leaderboard-content')).innerHTML = `
+    ${inTab ? '' : '<h2 style="margin-bottom:6px">Leaderboard</h2>'}
     <p class="sim-note">The other players are simulated practice rivals, not real students. Your progress stays on this device.</p>
     <div class="tabs" role="group" aria-label="Leaderboard" style="max-width:420px">
       <button class="tab-btn ${isLeague ? 'active' : ''}" aria-pressed="${isLeague}" onclick="setLbView('league')">🏆 Weekly league</button>
@@ -5699,7 +5724,7 @@ function highlight(text, query) {
 
 function goToResult(section, code) {
   notesFilter = 'all';   // a confidence filter could hide the card searched for
-  navigate('sections', { section });
+  navigate('learn', { section });
   setTimeout(() => {
     const el_item = el('item-' + code);
     if (el_item) {
@@ -6005,6 +6030,8 @@ function refreshStaleView() {
   if (!staleView) return;
   staleView = false;
   if (['home', 'plan', 'leaderboard'].includes(currentPage)) renderPage(currentPage, {});
+  // Learn's path and league only show progress; its notes are left alone.
+  else if (currentPage === 'learn' && !currentSection && learnTab !== 'materials' && typeof learnRefresh === 'function') learnRefresh();
 }
 
 window.addEventListener('storage', e => {
@@ -6096,8 +6123,7 @@ document.addEventListener('DOMContentLoaded', () => {
   syncThemeButtons();
   loadData(unitLetters());
   updateNavAvatar();
-  const r = parseRoute();
-  navigate(r.page, { section: r.section, tab: r.tab, replaceRoute: true });
+  navigateToRoute(parseRoute(), { replaceRoute: true });
   el('main-content').addEventListener('scroll', syncToTopButton, { passive: true });
   if (storeWasCorrupt) {
     toast('Your saved progress could not be read, so the site started fresh. A copy of the old data was kept in this browser.', 8000, 'error');

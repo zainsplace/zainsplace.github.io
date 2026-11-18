@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://zainsplace.github.io/revision/">
   <link rel="canonical" href="https://zainsplace.github.io/revision/">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230F172A'/%3E%3Ctext x='50' y='70' font-size='54' font-family='system-ui,sans-serif' font-weight='800' fill='%23F8FAFC' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css?v=30">
+  <link rel="stylesheet" href="styles.css?v=31">
 </head>
 <body>
 
@@ -44,7 +44,7 @@
     <button class="sidebar-btn" data-page="plan" title="Today's plan" onclick="sidebarNav('plan')"><span class="sb-emoji" aria-hidden="true">📅</span><span>Plan</span></button>
     <button class="sidebar-btn" data-page="search" onclick="sidebarNav('search')"><span class="sb-emoji" aria-hidden="true">🔍</span><span>Search</span></button>
     <p class="sidebar-group" aria-hidden="true">Learn</p>
-    <button class="sidebar-btn" data-page="sections" onclick="sidebarNav('sections')"><span class="sb-emoji" aria-hidden="true">📚</span><span>Sections</span></button>
+    <button class="sidebar-btn" data-page="learn" onclick="sidebarNav('learn', {tab:'path'})"><span class="sb-emoji" aria-hidden="true">📚</span><span>Learn</span></button>
     <button class="sidebar-btn" data-page="flashcards" onclick="sidebarNav('flashcards')"><span class="sb-emoji" aria-hidden="true">🃏</span><span>Flashcards</span></button>
     <button class="sidebar-btn" data-page="examkit" onclick="sidebarNav('examkit')"><span class="sb-emoji" aria-hidden="true">🧰</span><span>Exam Kit</span></button>
     <p class="sidebar-group" aria-hidden="true">Practise</p>
@@ -53,10 +53,10 @@
     <button class="sidebar-btn" data-page="games" onclick="sidebarNav('games')"><span class="sb-emoji" aria-hidden="true">🎯</span><span>Games</span></button>
     <button class="sidebar-btn" data-page="aptitude" title="Reasoning test" onclick="sidebarNav('aptitude')"><span class="sb-emoji" aria-hidden="true">🧩</span><span>Reasoning</span></button>
     <p class="sidebar-group" aria-hidden="true">Progress</p>
-    <button class="sidebar-btn" data-page="leaderboard" onclick="sidebarNav('leaderboard')"><span class="sb-emoji" aria-hidden="true">🏆</span><span>Leaderboard</span></button>
+    <button class="sidebar-btn" data-page="learn-leaderboard" onclick="sidebarNav('learn', {tab:'leaderboard'})"><span class="sb-emoji" aria-hidden="true">🏆</span><span>Leaderboard</span></button>
     <button class="sidebar-btn" data-page="profile" onclick="sidebarNav('profile')"><span class="sb-emoji" aria-hidden="true">👤</span><span>Profile</span></button>
   </nav>
-  <button class="g-btn g-btn-block sidebar-study" onclick="sidebarNav('sections')"><span aria-hidden="true">🎮</span> Study</button>
+  <button class="g-btn g-btn-block sidebar-study" onclick="studyNow()"><span aria-hidden="true">🎮</span> Study</button>
   <!-- The active unit's sections, filled by applyUnitChrome() -->
   <div class="sidebar-sections" id="sidebar-sections"></div>
   <div class="sidebar-bottom">
@@ -136,9 +136,9 @@
     <div class="grid2" id="section-tiles"></div>
   </div>
 
-  <!-- SECTIONS -->
-  <div class="page" id="page-sections">
-    <div id="sections-content"></div>
+  <!-- LEARN: Path, Materials, Leaderboard (learn.js) -->
+  <div class="page" id="page-learn">
+    <div id="learn-content"></div>
   </div>
 
   <!-- FLASHCARDS -->
@@ -196,7 +196,7 @@
 <!-- Phone bottom tab bar (under 768px) -->
 <nav class="tabbar" aria-label="Main">
   <button class="tabbar-btn" data-page="home" onclick="sidebarNav('home')"><span class="sb-emoji" aria-hidden="true">🏠</span><span>Home</span></button>
-  <button class="tabbar-btn" data-page="sections" onclick="sidebarNav('sections')"><span class="sb-emoji" aria-hidden="true">📚</span><span>Learn</span></button>
+  <button class="tabbar-btn" data-page="learn" onclick="sidebarNav('learn', {tab:'path'})"><span class="sb-emoji" aria-hidden="true">📚</span><span>Learn</span></button>
   <button class="tabbar-btn" data-page="questions" onclick="sidebarNav('questions')"><span class="sb-emoji" aria-hidden="true">📝</span><span>Exam</span></button>
   <button class="tabbar-btn" data-page="search" onclick="sidebarNav('search')"><span class="sb-emoji" aria-hidden="true">🔍</span><span>Search</span></button>
   <button class="tabbar-btn" data-page="profile" onclick="sidebarNav('profile')"><span class="sb-emoji" aria-hidden="true">👤</span><span>Profile</span></button>
@@ -208,6 +208,9 @@
 
 <!-- Full-screen round (round-view.js). Outside the shell so the shell can be made inert while it is open. -->
 <div class="round-view" id="round-view" role="dialog" aria-modal="true" aria-label="Round" tabindex="-1" hidden></div>
+
+<!-- Study dialog (learn.js): how to study a path node. Clicking the backdrop closes it. -->
+<div class="study-overlay" id="study-dialog" hidden onclick="if(event.target===this)closeStudyDialog()"></div>
 
 <!-- Right rail (1100px and up): stats card added by later screens; hidden while empty -->
 <aside class="right-rail" id="right-rail" aria-label="Your stats"></aside>
@@ -226,9 +229,9 @@
 <script src="ppp.js?v=2"></script>
 <script src="league.js?v=2"></script>
 <script src="memory.js?v=1"></script>
-<script src="app.js?v=35"></script>
-<script src="round.js?v=4"></script>
-<script src="round-view.js?v=2"></script>
-<script src="lessons.js?v=7"></script>
+<script src="app.js?v=36"></script>
+<script src="round.js?v=5"></script>
+<script src="round-view.js?v=3"></script>
+<script src="learn.js?v=1"></script>
 </body>
 </html>

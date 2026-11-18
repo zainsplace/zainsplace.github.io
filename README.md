@@ -87,14 +87,13 @@ will fail if:
   exception is a plain link to Pearson's past-papers page, which is opened by the
   student, not loaded by the site)
 
-### Sections path (lessons)
+### Learn path and rounds
 
-The Sections tab is a path of lessons, one per spec subtopic (`lessons.js`).
-A lesson teaches terms in batches of three on "New" cards, then asks the batch in
-shuffled order, so the answer is never just the card you read last. The rest of
-the questions come in a final mixed round where the same term never appears twice
-in a row. A few review questions from lessons you've already finished are mixed
-in, weakest terms first. Everything repeats until it has been answered correctly.
+The Learn page (`learn.js`) has three tabs: Path, Materials and Leaderboard. The path
+has one node per spec subtopic; each shows a mastery ring (the average memory strength
+of its terms) and a red badge counting Forgotten terms. Clicking a node opens the study
+dialog (Memorize, Battle, Hard round, Speed-run, Practice test). Rounds are built by
+`round.js` and drawn by `round-view.js`.
 Two questions per term are built automatically from the section JSON. The
 `definition` one is a typed answer, which forgives small spelling mistakes and
 accepts any name for the term, e.g. "IaaS". It falls back to multiple choice for
@@ -109,7 +108,7 @@ The scenario questions are written by hand in
 `answer` is the index of the right option (options are shuffled on screen).
 `validate_data.py` fails if any term has no scenario question, if a question has
 fewer than 3 or more than 4 options, or if `answer` doesn't point at one of them.
-The Materials tab still shows each section's full notes.
+The Materials tab shows each section's full notes.
 
 ### Reasoning test questions
 

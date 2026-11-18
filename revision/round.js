@@ -17,8 +17,8 @@
    app globals (state, today, recordTermResult, ...) are only touched by the
    browser hooks at the bottom, at call time.
 
-   The question helpers (termParts ... questionsForItem) moved here from
-   lessons.js, which still calls them. */
+   The question helpers (termParts ... questionsForItem) moved here from the
+   old lessons.js. pathNodes() and lessonBank() come from learn.js. */
 
 const RMEM = (typeof MEMORY !== 'undefined') ? MEMORY : require('./memory.js');
 
@@ -35,7 +35,7 @@ function roundEscape(v) {
                   .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
-/* ---------- question helpers (moved from lessons.js) ---------- */
+/* ---------- question helpers ---------- */
 
 /* Recap entries such as "C1.1.1-C1.1.3 Cloud Deployment Models Compared" sum
    up a range of terms. They belong in the notes, not in a quiz as a "term". */
@@ -161,7 +161,7 @@ function exampleParts(item) {
     : [];
 }
 
-/* The Sections lesson's questions for one term (used by lessons.js). */
+/* The questions for one term on a path node. */
 function questionsForItem(item, node, bank) {
   const qs = [];
   const why = itemWhy(item);
@@ -398,7 +398,7 @@ function roundCodes({ node, nodes, memory, todayStr, mode, max }) {
   const earlierCodes = nodes.slice(0, Math.max(0, idx)).flatMap(n => n.items.map(it => it.code));
   const codes = RMEM.buildRound({ nodeCodes: node.items.map(it => it.code), earlierCodes, memory, todayStr, max });
   // A one- or two-term step would ask "the thing you just read". Borrow
-  // earlier mastered terms, weakest first, as lessons.js used to.
+  // earlier mastered terms, weakest first, as the old lessons did.
   if (codes.length < MIN_ROUND) {
     const have = new Set(codes);
     earlierCodes
