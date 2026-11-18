@@ -378,9 +378,9 @@ body {
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--text);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  min-width: 0;
 }
 
 .sidebar-nav {
@@ -547,7 +547,9 @@ body {
 .top-bar-avatar:hover { border-color: var(--sky); }
 
 /* ─── MAIN ─── */
+.shell-body { flex: 1; min-height: 0; display: flex; }
 main {
+  min-width: 0;
   flex: 1;
   overflow-y: auto;
   padding: 32px clamp(16px, 4vw, 48px) 80px;
@@ -560,6 +562,7 @@ main {
   flex-shrink: 0;
   overflow-y: auto;
   padding: 32px 24px 24px 0;
+  min-height: 0;
 }
 
 /* ─── PHONE TAB BAR ─── */
@@ -2167,6 +2170,11 @@ body.round-open main { overflow: hidden; }
 .home-league-sub { font-size: 12.5px !important; margin-top: 2px; }
 .home-league .g-pill { flex: none; }
 #page-home .mock-resume { margin-bottom: 16px; }
+@media (min-width: 768px) {
+  .home-jump { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); overflow: visible; scroll-snap-type: none; }
+  .home-jump > [role="listitem"] { flex: none; }
+  .home-jump-card { width: 100%; }
+}
 @media (max-width: 520px) {
   .home-forgot, .home-league { flex-wrap: wrap; }
   .home-forgot .g-btn, .home-league .g-pill { width: 100%; }
