@@ -1,8 +1,9 @@
 # Unit 1: Information Technology Systems — Official Pearson Content
 
-**Source:** Pearson Level 3 Alternative Academic Qualification BTEC National in Information Technology (Extended Certificate), Specification Issue 4 – October 2025.
+**Source:** Pearson Level 3 Alternative Academic Qualification BTEC National in Information Technology (Extended Certificate), Specification Issue 5 – November 2025. https://qualifications.pearson.com/content/dam/pdf/btec-aaqs/information-technology/2025/specification-and-sample-assessments/btec-level-3-national-ext-cert-in-it-aaq-spec.pdf
 
 **Unit weight:** 120 GLH | External examination | 90 marks | 2 hours
+**Assessment availability:** January and May/June
 **First assessment:** May/June 2026
 
 ## Assessment Outcomes
@@ -10,6 +11,18 @@
 - **AO1** — Demonstrate knowledge and understanding of information technology systems, terminology, concepts and processes.
 - **AO2** — Apply knowledge and understanding of information technology systems, terminology, concepts and processes.
 - **AO3** — Analyse and evaluate the factors and implications of information technology systems.
+
+## Key terms typically used in assessment
+
+- **Describe** — Students provide an account of something or highlight several key features of a given topic. May also be used in relation to the stages of a process.
+- **Discuss** — Students consider the different aspects in detail of an issue, situation, problem or argument and how they interrelate.
+- **Draw** — Students represent understanding using a diagram or flowchart.
+- **Explain** — Students identify a point and give a linked justification/exemplification of that point. The answer must contain some linked reasoning.
+- **Evaluate** — Students consider various aspects of a subject's qualities in relation to its context such as: strengths or weaknesses, advantages or disadvantages. They come to a judgement supported by evidence which will often be in the form of a conclusion.
+- **Identify** — Students select some key information from a given stimulus/resource.
+- **State, name, give** — Students recall one or more pieces of information.
+
+(The PDF's text layer jumbles this two-column table; definitions are matched to terms in the order printed.)
 
 ---
 
@@ -26,7 +39,7 @@
 - A1.1.6 digital cameras (still, video)
 - A1.1.7 navigation systems
 - A1.1.8 communication devices and systems
-- A1.1.9 embedded systems (sensors, Internet of Things)
+- A1.1.9 embedded systems (sensors, Internet of Things (IoT))
 
 **A1.2 Function and use of the above digital devices for:**
 - A1.2.1 personal
@@ -39,12 +52,12 @@
 - A1.2.8 automation and robotics
 
 **A1.3 Forms of notation used to design IT systems:**
-- A1.3.1 system diagrams
+- A1.3.1 network diagrams
 - A1.3.2 flowcharts
 
 ### A2 Peripheral devices and media
 
-**A2.1 Features and uses of peripheral devices:**
+**A2.1 Features and uses of peripheral devices used with other digital devices to form part of an IT system:**
 - A2.1.1 input devices
 - A2.1.2 output devices
 - A2.1.3 storage devices
@@ -61,7 +74,7 @@
 - A2.2.9 eye-tracking software
 - A2.2.10 text-to-speech software
 
-**A2.3 Characteristics and implications of storage media:**
+**A2.3 Characteristics and implications of storage media used to form part of an IT system:**
 - A2.3.1 capacity
 - A2.3.2 cost
 - A2.3.3 speed
@@ -95,7 +108,7 @@
 - A3.3.1 utility
 - A3.3.2 application
 
-**A3.4 Factors impacting choice of OS and application software:**
+**A3.4 Factors impacting the choice and use of operating system and application software:**
 - A3.4.1 cost
 - A3.4.2 security
 - A3.4.3 hardware and software compatibility
@@ -103,7 +116,7 @@
 - A3.4.5 business and/or user needs
 - A3.4.6 performance
 
-**A3.5 Types of user interface:**
+**A3.5 Types of user interface and factors affecting the choice of user interface:**
 - A3.5.1 command line
 - A3.5.2 menu-driven
 - A3.5.3 graphical user
@@ -147,7 +160,7 @@
 - A4.3.1 user experience (ease of use, performance, availability, accessibility)
 - A4.3.2 employee and customer needs
 - A4.3.3 cost
-- A4.3.4 implementation (timescales, testing, migration, downtime)
+- A4.3.4 implementation (timescales, testing, migration to new system(s), downtime)
 - A4.3.5 replacement or integration with current systems
 - A4.3.6 productivity
 - A4.3.7 working practices
@@ -157,9 +170,9 @@
 
 ### A5 Emerging technologies
 
-- A5.1 Concepts and implications of how emerging technologies and AI affect performance of IT systems
-- A5.2 Implications of emerging technologies and AI on personal use of IT systems
-- A5.3 Implications of emerging technologies and AI on use of IT systems in organisations
+- A5.1 The concepts and implications of how emerging technologies and artificial intelligence (AI) affect the performance of IT systems
+- A5.2 Implications of emerging technologies and AI on the personal use of IT systems
+- A5.3 Implications of emerging technologies and AI on the use of IT systems in organisations
 
 ---
 
@@ -167,15 +180,15 @@
 
 ### B1 Connectivity
 
-**B1.1 Wireless and wired methods:**
+**B1.1 Wireless and wired methods of connecting devices and transmitting data within and between IT systems:**
 - B1.1.1 Bluetooth
 - B1.1.2 USB
 - B1.1.3 Wi-Fi
 - B1.1.4 Ethernet
 
-- B1.2 How features of connection types meet user/organisation needs
+- B1.2 How the features of connection types can meet the needs of individuals and organisations
 - B1.3 Implications of selecting and using different connection types
-- B1.4 Impact of connection types on IT system performance
+- B1.4 Impact of connection types on the performance of an IT system
 
 ### B2 Networks
 
@@ -190,7 +203,7 @@
 - B2.2.3 Wide Area Network (WAN)
 - B2.2.4 Virtual Private Network (VPN)
 
-**B2.3 Factors affecting choice of network:**
+**B2.3 Factors affecting the choice of network:**
 - B2.3.1 user needs
 - B2.3.2 specifications
 - B2.3.3 connectivity
@@ -201,17 +214,17 @@
 - B2.3.8 productivity
 - B2.3.9 security
 
-- B2.4 How features of a network and component parts affect performance
+- B2.4 How the features of a network and its component parts affect the performance of an IT system
 
 ### B3 Issues relating to transmission of data
 
-**B3.1 Protocols for common tasks:**
+**B3.1 Protocols used to govern and control data transmission for common tasks:**
 - B3.1.1 email (SMTP, POP, IMAP)
 - B3.1.2 voice and video call over the internet
 - B3.1.3 web pages (HTTP, HTTPS)
 - B3.1.4 secure payment systems
 
-- B3.2 Security issues when transmitting data over different connection types and networks
+- B3.2 Security issues and considerations when transmitting data over different connection types and networks
 - B3.3 Factors affecting and implications of bandwidth and latency
 
 **B3.4 Implications of common file types and formats used for:**
@@ -220,7 +233,7 @@
 - B3.4.3 videos
 - B3.4.4 application software
 
-**B3.5 Factors affecting choice of compression types:**
+**B3.5 Factors affecting the choice of compression types:**
 - B3.5.1 lossy
 - B3.5.2 lossless
 
@@ -246,7 +259,7 @@
 - C1.3.1 VPNs
 - C1.3.2 remote desktop technologies
 
-**C1.4 Factors affecting use and selection of online systems:**
+**C1.4 The way factors affect the use and selection of online systems:**
 - C1.4.1 security
 - C1.4.2 cost
 - C1.4.3 ease of use
@@ -265,7 +278,7 @@
 - C2.1.6 podcasts
 - C2.1.7 forums
 
-**C2.2 Considerations for individuals and organisations:**
+**C2.2 Considerations for individuals and organisations of using and accessing online communities:**
 - C2.2.1 user experience (ease of use, performance, availability, accessibility)
 - C2.2.2 meeting user needs
 - C2.2.3 cost
@@ -296,7 +309,7 @@
 - D1.2.3 stealing/leaking information
 - D1.2.4 use of portable devices
 
-**D1.3 Impact on individuals and organisations:**
+**D1.3 Impact on individuals and organisations from threats to data, information and systems:**
 - D1.3.1 loss of data
 - D1.3.2 financial loss due to legal action
 - D1.3.3 loss of customers due to public image
@@ -312,8 +325,8 @@
 - D2.1.6 physical access control
 - D2.1.7 digital certificates
 
-- D2.2 Features and functions of antivirus software
-- D2.3 Features and functions of firewalls
+- D2.2 Features and functions of using antivirus software to protect data
+- D2.3 Features and functions of using firewalls to protect data
 
 **D2.4 Features and functions of encryption methods to protect:**
 - D2.4.1 stored data
@@ -374,7 +387,7 @@
 
 ### F1 Moral and ethical issues
 
-**F1.1 Moral and ethical factors and implications of the use of IT:**
+**F1.1 Moral and ethical factors and implications of the use of information technology:**
 - F1.1.1 privacy
 - F1.1.2 environmental impact
 - F1.1.3 unequal access to information technology
@@ -384,7 +397,7 @@
 
 ### F2 Legal issues
 
-**F2.1 Role and impact of current legislation in protecting IT systems, users and their data:**
+**F2.1 Role and impact of current legislation in protecting IT systems, users and their data from attack and misuse:**
 - F2.1.1 computer misuse legislation
 - F2.1.2 copyright, designs and patents legislation
 - F2.1.3 copyright regulations (computer programs)
@@ -393,7 +406,7 @@
 
 ---
 
-## Priority Tiers (from class revision pack — exam likelihood)
+## Priority Tiers (from class revision pack — exam likelihood; not part of the Pearson specification)
 
 **🔥 Tier 1 — VERY LIKELY:**
 - C1 — Cloud computing (a 9-mark cloud suitability question is almost certain)

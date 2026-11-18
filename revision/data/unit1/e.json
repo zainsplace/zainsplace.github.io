@@ -73,7 +73,7 @@
               "keyFacts": [
                 "Streaming needs internet, but downloads work offline, e.g. for watching on a flight",
                 "Subscriptions replaced buying, so users get large libraries for a monthly fee but own nothing",
-                "4K streaming needs about 25 Mbps, so homes with slow broadband get lower quality",
+                "4K streaming needs about 15–25 Mbps, so homes with slow broadband get lower quality",
                 "Piracy breaks copyright law and takes income away from creators"
               ]
             },
@@ -118,7 +118,8 @@
                 "Used for forecasting and restocking, so shops hold the right stock at the right time",
                 "Powers recommendations and targeted adverts, which increase sales",
                 "Loyalty cards link it to named people, so the organisation learns each customer's habits",
-                "Must be stored securely under GDPR, because it is personal data"
+                "Must be stored securely under GDPR, because it is personal data",
+                "Unusual spending patterns flag possible fraud, so a bank can block a card used in two countries within an hour"
               ]
             },
             {
@@ -375,7 +376,8 @@
                 "Presence check stops a field being left empty, so required data is always entered",
                 "Format check matches a pattern (e.g. postcode), so data is entered in the right shape",
                 "Type and length checks stop text in number fields and over-long entries",
-                "Valid data can still be wrong, because a sensible-looking value may still be incorrect"
+                "Valid data can still be wrong, because a sensible-looking value may still be incorrect",
+                "Lookup check compares the input with a list of allowed values, e.g. a country picked from a drop-down"
               ],
               "comparisonTable": {
                 "title": "Verification vs Validation",

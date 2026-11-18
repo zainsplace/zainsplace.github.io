@@ -58,7 +58,8 @@
               "keyFacts": [
                 "Linked to income, location, age and education, so the people already disadvantaged are most likely to miss out",
                 "Pupils without devices fall behind, because homework and resources are increasingly online",
-                "Millions of UK adults lack basic digital skills, so they struggle with online banking, jobs and services"
+                "Millions of UK adults lack basic digital skills, so they struggle with online banking, jobs and services",
+                "Free library computers, digital skills courses and cheaper broadband schemes help close the gap, so fewer people are left out"
               ],
               "confusable": [
                 "F1.1.4"
@@ -147,7 +148,8 @@
                 "S1: unauthorised access (up to 2 years), e.g. logging in with someone else's password",
                 "S2: access with intent to commit further crime (up to 5 years), e.g. hacking in to steal money",
                 "S3: unauthorised modification (up to 10 years), e.g. spreading malware or launching a DDoS",
-                "Covers any computer, including phones, so the law applies to modern devices too"
+                "Covers any computer, including phones, so the law applies to modern devices too",
+                "S3A: making, supplying or obtaining hacking tools (up to 2 years), e.g. selling malware kits"
               ],
               "accepts": [
                 "Computer Misuse Act",
@@ -210,7 +212,8 @@
                 "Assess every workstation, so problems like poor seating or screen glare are found and fixed",
                 "Regular breaks from the screen, to reduce eye strain and repetitive strain injury",
                 "Free eye tests on request, paid for by the employer, for staff who use screens regularly",
-                "Prevents back pain, eye strain and RSI, so fewer staff are off sick"
+                "Prevents back pain, eye strain and RSI, so fewer staff are off sick",
+                "Employers must give DSE training and information, so staff know how to set up their workstation safely"
               ]
             },
             {
@@ -236,7 +239,8 @@
                 "Principles: lawful, set purpose, minimal, accurate, not kept too long, secure: every organisation must follow them",
                 "Rights: access, correct, erase, object, so people stay in control of their own data",
                 "Report serious breaches to the ICO within 72 hours, so affected people can be warned quickly",
-                "Fines up to £17.5m or 4% of global turnover, so ignoring the law can be very costly"
+                "Fines up to £17.5m or 4% of global turnover, so ignoring the law can be very costly",
+                "Subject access request: anyone can ask for a copy of the data held about them, normally answered free within one month"
               ],
               "accepts": [
                 "Data Protection Act",

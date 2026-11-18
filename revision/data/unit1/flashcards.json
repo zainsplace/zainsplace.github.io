@@ -900,8 +900,8 @@
       "id": "a33",
       "section": "A",
       "code": "A1.3.1",
-      "front": "What is a system diagram and what is it used for?",
-      "back": "A diagram of a system's components and connections, used to plan and explain it."
+      "front": "What is a network diagram and what is it used for?",
+      "back": "A diagram of the devices on a network (PCs, switches, routers, servers) and how they link, used to plan and document it."
     },
     {
       "id": "a34",
@@ -1063,6 +1063,13 @@
       "code": "C2.1.7",
       "front": "How does a forum differ from a chatroom?",
       "back": "A forum is asynchronous: threaded posts stay up and can be searched later. A chatroom is a real-time conversation."
+    },
+    {
+      "id": "a47",
+      "section": "A",
+      "code": "A3.5",
+      "front": "Give FOUR factors that affect the choice of user interface.",
+      "back": "The users' skill and experience, the task, the device and its hardware (screen, RAM, input), and accessibility needs."
     }
   ]
 }

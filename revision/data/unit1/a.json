@@ -259,15 +259,15 @@
           "items": [
             {
               "code": "A1.3.1",
-              "term": "System Diagrams",
-              "definition": "Diagrams showing a system's components and how they connect.",
-              "examples": "A network diagram of PCs, switch, router, server and internet.",
+              "term": "Network Diagrams",
+              "definition": "Diagrams showing the devices on a network, such as PCs, switches, routers and servers, and the links between them.",
+              "examples": "An office plan of PCs, a switch, a router, a server and the internet; a home Wi-Fi router linking laptops and a printer.",
               "examTip": "Exam diagrams (6 marks): include every device from the scenario and label each connection type.",
               "keyFacts": [
-                "Show every device and connection, so anyone can see how the whole system fits together",
+                "Show every device and connection, so anyone can see how the whole network fits together",
                 "Label connection types (Ethernet, Wi-Fi, 4G), so it is clear how data travels between devices",
                 "Use a cloud shape for the internet, which is the standard way to show it",
-                "Annotate what each part does, so the reader understands each part's role"
+                "Use a clear icon or labelled box for each device (PC, switch, router, server, access point), so the reader can tell them apart"
               ]
             },
             {
@@ -281,17 +281,18 @@
                 "Rectangle shows a process: an action or step that happens",
                 "Diamond shows a yes/no decision, with one arrow out for each answer",
                 "Parallelogram shows input or output, e.g. entering data or printing a receipt",
-                "Arrows show the flow, so the steps are followed in the right order"
+                "Arrows show the flow, so the steps are followed in the right order",
+                "Label each decision arrow Yes or No and make sure every path reaches an End symbol, so the process can't get stuck"
               ],
               "comparisonTable": {
-                "title": "System Diagram vs Flowchart",
-                "headers": ["Feature", "System Diagram", "Flowchart"],
+                "title": "Network Diagram vs Flowchart",
+                "headers": ["Feature", "Network Diagram", "Flowchart"],
                 "rows": [
-                  ["Shows", "Components of an IT system and their connections", "Steps in a process or algorithm and their sequence"],
-                  ["Main focus", "Hardware, devices, networks, architecture", "Logic, decisions, data flow through a process"],
-                  ["Key symbols", "Boxes (devices), cylinders (databases), clouds (internet), arrows (connections)", "Ovals (start/end), rectangles (process), diamonds (decision), parallelograms (I/O)"],
-                  ["When used", "Designing or documenting IT infrastructure", "Designing or documenting processes, algorithms, programs"],
-                  ["Exam context", "Draw a network/system showing how components connect", "Complete or draw a process showing steps and decisions"]
+                  ["Shows", "Devices on a network and the links between them", "Steps in a process or algorithm and their sequence"],
+                  ["Main focus", "Hardware: PCs, switches, routers, servers and the internet", "Logic, decisions, data flow through a process"],
+                  ["Key symbols", "Device icons or labelled boxes, a cloud for the internet, lines for cables or wireless links", "Ovals (start/end), rectangles (process), diamonds (decision), parallelograms (I/O)"],
+                  ["When used", "Designing or documenting a network", "Designing or documenting processes, algorithms, programs"],
+                  ["Exam context", "Draw a network showing how devices connect, labelling each link", "Complete or draw a process showing steps and decisions"]
                 ]
               }
             }
@@ -493,8 +494,8 @@
               "examTip": "Match capacity to the use: video editing needs TBs; documents need GBs.",
               "keyFacts": [
                 "USB sticks hold tens to hundreds of GB, so they suit moving documents and small media files",
-                "HDDs hold up to about 20 TB, so they suit large archives and backups",
-                "SSDs hold up to about 8 TB, so very large stores usually still use HDDs",
+                "HDDs hold 20 TB or more, so they suit large archives and backups",
+                "Most SSDs hold up to about 4–8 TB and cost more per GB, so very large stores usually still use HDDs",
                 "HDDs are cheapest per GB, so they are chosen when lots of storage is needed on a budget"
               ]
             },
@@ -920,7 +921,8 @@
                 "No mouse needed, so commands can be typed quickly by experienced users",
                 "Tasks can be scripted, so repetitive jobs are automated and run the same way each time",
                 "Uses few resources, so it suits servers and older hardware",
-                "Hard for beginners, because commands must be remembered and typed exactly"
+                "Hard for beginners, because commands must be remembered and typed exactly",
+                "Chosen when users are experts and speed or scripting matters, e.g. server admins, but not for beginners"
               ]
             },
             {
@@ -932,7 +934,8 @@
               "keyFacts": [
                 "No prior knowledge needed, because users just pick from the options shown",
                 "Can't do anything not on the menu, so it is limited but hard to get wrong",
-                "Slow for experts, because they must go through several menus to reach an option"
+                "Slow for experts, because they must go through several menus to reach an option",
+                "Suits users with no IT skills and devices with only a few buttons or a keypad, e.g. kiosks and phone lines"
               ]
             },
             {
@@ -945,7 +948,8 @@
                 "Windows, Icons, Menus, Pointer (WIMP) let users point and click instead of typing commands",
                 "Intuitive visual design, so new users learn it quickly",
                 "Needs more processing power, because it must draw graphics on screen",
-                "Slower than CLI for repetitive tasks, because each step needs clicking through"
+                "Slower than CLI for repetitive tasks, because each step needs clicking through",
+                "Needs a mouse or trackpad, a decent screen and more RAM, so the hardware available affects the choice"
               ],
               "confusable": [
                 "A3.5.4"
@@ -960,7 +964,8 @@
               "keyFacts": [
                 "Tap, swipe and pinch gestures are natural, so even young children can use it",
                 "Larger touch targets, because fingers are less precise than a mouse pointer",
-                "Used on phones, tablets and kiosks, where there is no room for a keyboard or mouse"
+                "Used on phones, tablets and kiosks, where there is no room for a keyboard or mouse",
+                "Suits mobile devices and occasional or young users, but is less precise for detailed work such as editing spreadsheets"
               ],
               "confusable": [
                 "A3.5.3"
@@ -1067,7 +1072,8 @@
                 "EXE runs programs and MSI installs them on Windows, so they won't run on other OSs",
                 "APK installs Android apps, usually from the Play Store",
                 "DMG installs macOS apps, so it is used only on Macs",
-                "ZIP must be extracted first, because it is a compressed folder, not a program"
+                "ZIP must be extracted first, because it is a compressed folder, not a program",
+                "Applications also save work in their own formats (e.g. DOCX, XLSX), while PDF keeps the layout the same on any device, so it suits sharing final copies"
               ]
             }
           ]
@@ -1451,7 +1457,8 @@
                 "AI chips run AI tasks much faster, so features like voice recognition work on the device itself",
                 "Edge computing processes data near its source, cutting delay because it doesn't travel to a far-off server",
                 "5G is very fast with very low latency, so it suits live video and self-driving cars",
-                "AI tunes systems by learning from use, e.g. adjusting performance to save battery"
+                "AI tunes systems by learning from use, e.g. adjusting performance to save battery",
+                "Machine learning improves from data without being reprogrammed, e.g. a spam filter that gets better as it sees more emails"
               ],
               "overview": true
             },

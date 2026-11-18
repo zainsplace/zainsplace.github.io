@@ -259,7 +259,8 @@
                 "Data inside the tunnel is encrypted, so it can't be read if intercepted on the internet",
                 "Users must authenticate, so only authorised people can reach the private network",
                 "Cheaper than leased WAN lines, because it uses the ordinary internet connection",
-                "Encryption adds some delay, because every packet must be encrypted and decrypted"
+                "Encryption adds some delay, because every packet must be encrypted and decrypted",
+                "Not a separate physical network: it runs over an existing one such as the internet, so it stops working if that connection drops"
               ],
               "comparisonTable": {
                 "title": "Network Types Compared: PAN vs LAN vs WAN vs VPN",

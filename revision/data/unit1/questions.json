@@ -4737,9 +4737,9 @@
             "so designers can check every route, such as a tournament being full"
           ],
           [
-            "System diagram",
-            "shows the system's components and the connections between them, labelled",
-            "so the team can see how bookings, payments and the database link together"
+            "Network diagram",
+            "shows the devices (booking terminals, servers, router, internet) and the labelled links between them",
+            "so the team can plan how the booking terminals reach the server and the online payment service"
           ]
         ],
         "accept": [],

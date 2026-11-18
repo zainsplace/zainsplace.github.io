@@ -284,15 +284,15 @@ const INLINE_UNITS = {
                 "items": [
                   {
                     "code": "A1.3.1",
-                    "term": "System Diagrams",
-                    "definition": "Diagrams showing a system's components and how they connect.",
-                    "examples": "A network diagram of PCs, switch, router, server and internet.",
+                    "term": "Network Diagrams",
+                    "definition": "Diagrams showing the devices on a network, such as PCs, switches, routers and servers, and the links between them.",
+                    "examples": "An office plan of PCs, a switch, a router, a server and the internet; a home Wi-Fi router linking laptops and a printer.",
                     "examTip": "Exam diagrams (6 marks): include every device from the scenario and label each connection type.",
                     "keyFacts": [
-                      "Show every device and connection, so anyone can see how the whole system fits together",
+                      "Show every device and connection, so anyone can see how the whole network fits together",
                       "Label connection types (Ethernet, Wi-Fi, 4G), so it is clear how data travels between devices",
                       "Use a cloud shape for the internet, which is the standard way to show it",
-                      "Annotate what each part does, so the reader understands each part's role"
+                      "Use a clear icon or labelled box for each device (PC, switch, router, server, access point), so the reader can tell them apart"
                     ]
                   },
                   {
@@ -306,39 +306,40 @@ const INLINE_UNITS = {
                       "Rectangle shows a process: an action or step that happens",
                       "Diamond shows a yes/no decision, with one arrow out for each answer",
                       "Parallelogram shows input or output, e.g. entering data or printing a receipt",
-                      "Arrows show the flow, so the steps are followed in the right order"
+                      "Arrows show the flow, so the steps are followed in the right order",
+                      "Label each decision arrow Yes or No and make sure every path reaches an End symbol, so the process can't get stuck"
                     ],
                     "comparisonTable": {
-                      "title": "System Diagram vs Flowchart",
+                      "title": "Network Diagram vs Flowchart",
                       "headers": [
                         "Feature",
-                        "System Diagram",
+                        "Network Diagram",
                         "Flowchart"
                       ],
                       "rows": [
                         [
                           "Shows",
-                          "Components of an IT system and their connections",
+                          "Devices on a network and the links between them",
                           "Steps in a process or algorithm and their sequence"
                         ],
                         [
                           "Main focus",
-                          "Hardware, devices, networks, architecture",
+                          "Hardware: PCs, switches, routers, servers and the internet",
                           "Logic, decisions, data flow through a process"
                         ],
                         [
                           "Key symbols",
-                          "Boxes (devices), cylinders (databases), clouds (internet), arrows (connections)",
+                          "Device icons or labelled boxes, a cloud for the internet, lines for cables or wireless links",
                           "Ovals (start/end), rectangles (process), diamonds (decision), parallelograms (I/O)"
                         ],
                         [
                           "When used",
-                          "Designing or documenting IT infrastructure",
+                          "Designing or documenting a network",
                           "Designing or documenting processes, algorithms, programs"
                         ],
                         [
                           "Exam context",
-                          "Draw a network/system showing how components connect",
+                          "Draw a network showing how devices connect, labelling each link",
                           "Complete or draw a process showing steps and decisions"
                         ]
                       ]
@@ -542,8 +543,8 @@ const INLINE_UNITS = {
                     "examTip": "Match capacity to the use: video editing needs TBs; documents need GBs.",
                     "keyFacts": [
                       "USB sticks hold tens to hundreds of GB, so they suit moving documents and small media files",
-                      "HDDs hold up to about 20 TB, so they suit large archives and backups",
-                      "SSDs hold up to about 8 TB, so very large stores usually still use HDDs",
+                      "HDDs hold 20 TB or more, so they suit large archives and backups",
+                      "Most SSDs hold up to about 4–8 TB and cost more per GB, so very large stores usually still use HDDs",
                       "HDDs are cheapest per GB, so they are chosen when lots of storage is needed on a budget"
                     ]
                   },
@@ -1100,7 +1101,8 @@ const INLINE_UNITS = {
                       "No mouse needed, so commands can be typed quickly by experienced users",
                       "Tasks can be scripted, so repetitive jobs are automated and run the same way each time",
                       "Uses few resources, so it suits servers and older hardware",
-                      "Hard for beginners, because commands must be remembered and typed exactly"
+                      "Hard for beginners, because commands must be remembered and typed exactly",
+                      "Chosen when users are experts and speed or scripting matters, e.g. server admins, but not for beginners"
                     ]
                   },
                   {
@@ -1112,7 +1114,8 @@ const INLINE_UNITS = {
                     "keyFacts": [
                       "No prior knowledge needed, because users just pick from the options shown",
                       "Can't do anything not on the menu, so it is limited but hard to get wrong",
-                      "Slow for experts, because they must go through several menus to reach an option"
+                      "Slow for experts, because they must go through several menus to reach an option",
+                      "Suits users with no IT skills and devices with only a few buttons or a keypad, e.g. kiosks and phone lines"
                     ]
                   },
                   {
@@ -1125,7 +1128,8 @@ const INLINE_UNITS = {
                       "Windows, Icons, Menus, Pointer (WIMP) let users point and click instead of typing commands",
                       "Intuitive visual design, so new users learn it quickly",
                       "Needs more processing power, because it must draw graphics on screen",
-                      "Slower than CLI for repetitive tasks, because each step needs clicking through"
+                      "Slower than CLI for repetitive tasks, because each step needs clicking through",
+                      "Needs a mouse or trackpad, a decent screen and more RAM, so the hardware available affects the choice"
                     ],
                     "confusable": [
                       "A3.5.4"
@@ -1140,7 +1144,8 @@ const INLINE_UNITS = {
                     "keyFacts": [
                       "Tap, swipe and pinch gestures are natural, so even young children can use it",
                       "Larger touch targets, because fingers are less precise than a mouse pointer",
-                      "Used on phones, tablets and kiosks, where there is no room for a keyboard or mouse"
+                      "Used on phones, tablets and kiosks, where there is no room for a keyboard or mouse",
+                      "Suits mobile devices and occasional or young users, but is less precise for detailed work such as editing spreadsheets"
                     ],
                     "confusable": [
                       "A3.5.3"
@@ -1291,7 +1296,8 @@ const INLINE_UNITS = {
                       "EXE runs programs and MSI installs them on Windows, so they won't run on other OSs",
                       "APK installs Android apps, usually from the Play Store",
                       "DMG installs macOS apps, so it is used only on Macs",
-                      "ZIP must be extracted first, because it is a compressed folder, not a program"
+                      "ZIP must be extracted first, because it is a compressed folder, not a program",
+                      "Applications also save work in their own formats (e.g. DOCX, XLSX), while PDF keeps the layout the same on any device, so it suits sharing final copies"
                     ]
                   }
                 ]
@@ -1675,7 +1681,8 @@ const INLINE_UNITS = {
                       "AI chips run AI tasks much faster, so features like voice recognition work on the device itself",
                       "Edge computing processes data near its source, cutting delay because it doesn't travel to a far-off server",
                       "5G is very fast with very low latency, so it suits live video and self-driving cars",
-                      "AI tunes systems by learning from use, e.g. adjusting performance to save battery"
+                      "AI tunes systems by learning from use, e.g. adjusting performance to save battery",
+                      "Machine learning improves from data without being reprogrammed, e.g. a spam filter that gets better as it sees more emails"
                     ],
                     "overview": true
                   },
@@ -2084,7 +2091,8 @@ const INLINE_UNITS = {
                       "Data inside the tunnel is encrypted, so it can't be read if intercepted on the internet",
                       "Users must authenticate, so only authorised people can reach the private network",
                       "Cheaper than leased WAN lines, because it uses the ordinary internet connection",
-                      "Encryption adds some delay, because every packet must be encrypted and decrypted"
+                      "Encryption adds some delay, because every packet must be encrypted and decrypted",
+                      "Not a separate physical network: it runs over an existing one such as the internet, so it stops working if that connection drops"
                     ],
                     "comparisonTable": {
                       "title": "Network Types Compared: PAN vs LAN vs WAN vs VPN",
@@ -3420,7 +3428,7 @@ const INLINE_UNITS = {
                     "code": "D1.1.1",
                     "term": "Viruses and Other Malware",
                     "definition": "Malicious software designed to damage systems, steal data or gain unauthorised access.",
-                    "examples": "Ransomware locking hospital records; spyware logging banking passwords.",
+                    "examples": "Ransomware locking hospital records; spyware logging banking passwords; WannaCry spreading across NHS computers in 2017.",
                     "examTip": "Describe how the specific type works, not just \"malware\".",
                     "keyFacts": [
                       "Virus: attaches to files and spreads when they are run, so sharing one infected file can infect many PCs",
@@ -3518,7 +3526,8 @@ const INLINE_UNITS = {
                       "Vishing uses phone calls and smishing uses texts, so attackers reach people away from email filters",
                       "Pretexting: a made-up story to get information, e.g. posing as IT support to get a password",
                       "Baiting: infected USB sticks left lying around, so a curious finder plugs one in and installs malware",
-                      "Defend with training, email filtering and MFA, so fewer attacks arrive and stolen passwords are useless alone"
+                      "Defend with training, email filtering and MFA, so fewer attacks arrive and stolen passwords are useless alone",
+                      "Tailgating: following a member of staff through a secure door, so the attacker gets in without a pass"
                     ],
                     "comparisonTable": {
                       "title": "Social Engineering Techniques Compared",
@@ -3961,7 +3970,8 @@ const INLINE_UNITS = {
                       "Can block sites, apps and IP ranges, so known malicious sources can't reach the network",
                       "Hardware firewall protects the whole network, guarding every device behind it at once",
                       "Software firewall protects one device, so a laptop stays protected on other networks too",
-                      "Cannot stop insider threats, because staff are already inside the network the firewall guards"
+                      "Cannot stop insider threats, because staff are already inside the network the firewall guards",
+                      "Cannot stop phishing, because a tricked user hands over details without breaking any traffic rule"
                     ],
                     "comparisonTable": {
                       "title": "Hardware Firewall vs Software Firewall",
@@ -4054,6 +4064,9 @@ const INLINE_UNITS = {
                   {
                     "code": "D2.4.3",
                     "term": "Encryption in Secure Websites (HTTPS)",
+                    "aka": [
+                      "HTTPS"
+                    ],
                     "definition": "HTTP secured with TLS: encrypts traffic between browser and server and proves the server is genuine.",
                     "examples": "Online banking and checkout pages.",
                     "examTip": "HTTPS gives encryption, integrity and authentication.",
@@ -4194,7 +4207,7 @@ const INLINE_UNITS = {
                     "keyFacts": [
                       "Streaming needs internet, but downloads work offline, e.g. for watching on a flight",
                       "Subscriptions replaced buying, so users get large libraries for a monthly fee but own nothing",
-                      "4K streaming needs about 25 Mbps, so homes with slow broadband get lower quality",
+                      "4K streaming needs about 15–25 Mbps, so homes with slow broadband get lower quality",
                       "Piracy breaks copyright law and takes income away from creators"
                     ]
                   },
@@ -4274,7 +4287,8 @@ const INLINE_UNITS = {
                       "Used for forecasting and restocking, so shops hold the right stock at the right time",
                       "Powers recommendations and targeted adverts, which increase sales",
                       "Loyalty cards link it to named people, so the organisation learns each customer's habits",
-                      "Must be stored securely under GDPR, because it is personal data"
+                      "Must be stored securely under GDPR, because it is personal data",
+                      "Unusual spending patterns flag possible fraud, so a bank can block a card used in two countries within an hour"
                     ]
                   },
                   {
@@ -4642,7 +4656,8 @@ const INLINE_UNITS = {
                       "Presence check stops a field being left empty, so required data is always entered",
                       "Format check matches a pattern (e.g. postcode), so data is entered in the right shape",
                       "Type and length checks stop text in number fields and over-long entries",
-                      "Valid data can still be wrong, because a sensible-looking value may still be incorrect"
+                      "Valid data can still be wrong, because a sensible-looking value may still be incorrect",
+                      "Lookup check compares the input with a list of allowed values, e.g. a country picked from a drop-down"
                     ],
                     "comparisonTable": {
                       "title": "Verification vs Validation",
@@ -4870,7 +4885,8 @@ const INLINE_UNITS = {
                     "keyFacts": [
                       "Linked to income, location, age and education, so the people already disadvantaged are most likely to miss out",
                       "Pupils without devices fall behind, because homework and resources are increasingly online",
-                      "Millions of UK adults lack basic digital skills, so they struggle with online banking, jobs and services"
+                      "Millions of UK adults lack basic digital skills, so they struggle with online banking, jobs and services",
+                      "Free library computers, digital skills courses and cheaper broadband schemes help close the gap, so fewer people are left out"
                     ],
                     "confusable": [
                       "F1.1.4"
@@ -5015,7 +5031,8 @@ const INLINE_UNITS = {
                       "S1: unauthorised access (up to 2 years), e.g. logging in with someone else's password",
                       "S2: access with intent to commit further crime (up to 5 years), e.g. hacking in to steal money",
                       "S3: unauthorised modification (up to 10 years), e.g. spreading malware or launching a DDoS",
-                      "Covers any computer, including phones, so the law applies to modern devices too"
+                      "Covers any computer, including phones, so the law applies to modern devices too",
+                      "S3A: making, supplying or obtaining hacking tools (up to 2 years), e.g. selling malware kits"
                     ],
                     "accepts": [
                       "Computer Misuse Act",
@@ -5096,7 +5113,8 @@ const INLINE_UNITS = {
                       "Assess every workstation, so problems like poor seating or screen glare are found and fixed",
                       "Regular breaks from the screen, to reduce eye strain and repetitive strain injury",
                       "Free eye tests on request, paid for by the employer, for staff who use screens regularly",
-                      "Prevents back pain, eye strain and RSI, so fewer staff are off sick"
+                      "Prevents back pain, eye strain and RSI, so fewer staff are off sick",
+                      "Employers must give DSE training and information, so staff know how to set up their workstation safely"
                     ]
                   },
                   {
@@ -5154,7 +5172,8 @@ const INLINE_UNITS = {
                       "Principles: lawful, set purpose, minimal, accurate, not kept too long, secure: every organisation must follow them",
                       "Rights: access, correct, erase, object, so people stay in control of their own data",
                       "Report serious breaches to the ICO within 72 hours, so affected people can be warned quickly",
-                      "Fines up to £17.5m or 4% of global turnover, so ignoring the law can be very costly"
+                      "Fines up to £17.5m or 4% of global turnover, so ignoring the law can be very costly",
+                      "Subject access request: anyone can ask for a copy of the data held about them, normally answered free within one month"
                     ],
                     "accepts": [
                       "Data Protection Act",
@@ -6072,8 +6091,8 @@ const INLINE_UNITS = {
           "id": "a33",
           "section": "A",
           "code": "A1.3.1",
-          "front": "What is a system diagram and what is it used for?",
-          "back": "A diagram of a system's components and connections, used to plan and explain it."
+          "front": "What is a network diagram and what is it used for?",
+          "back": "A diagram of the devices on a network (PCs, switches, routers, servers) and how they link, used to plan and document it."
         },
         {
           "id": "a34",
@@ -6235,6 +6254,13 @@ const INLINE_UNITS = {
           "code": "C2.1.7",
           "front": "How does a forum differ from a chatroom?",
           "back": "A forum is asynchronous: threaded posts stay up and can be searched later. A chatroom is a real-time conversation."
+        },
+        {
+          "id": "a47",
+          "section": "A",
+          "code": "A3.5",
+          "front": "Give FOUR factors that affect the choice of user interface.",
+          "back": "The users' skill and experience, the task, the device and its hardware (screen, RAM, input), and accessibility needs."
         }
       ]
     },
@@ -10977,9 +11003,9 @@ const INLINE_UNITS = {
                 "so designers can check every route, such as a tournament being full"
               ],
               [
-                "System diagram",
-                "shows the system's components and the connections between them, labelled",
-                "so the team can see how bookings, payments and the database link together"
+                "Network diagram",
+                "shows the devices (booking terminals, servers, router, internet) and the labelled links between them",
+                "so the team can plan how the booking terminals reach the server and the online payment service"
               ]
             ],
             "accept": [],
@@ -11659,13 +11685,13 @@ const INLINE_UNITS = {
         {
           "q": "An IT technician draws how the office PCs, switch, router, server and internet connect together. What kind of diagram is this?",
           "options": [
-            "System diagram",
+            "Network diagram",
             "Flowchart",
             "Comparison table",
             "Spreadsheet"
           ],
           "answer": 0,
-          "why": "System diagrams show a system's components and how they connect."
+          "why": "Network diagrams show the devices on a network and how they connect."
         }
       ],
       "A1.3.2": [
@@ -11673,8 +11699,8 @@ const INLINE_UNITS = {
           "q": "A developer plans the steps of a login process with decision diamonds such as 'Password correct?'. What is this?",
           "options": [
             "Flowchart",
-            "System diagram",
-            "Network topology",
+            "Network diagram",
+            "Comparison table",
             "User interface"
           ],
           "answer": 0,
@@ -12238,6 +12264,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Menu-driven interfaces let users choose from a list of options. They are simple, with limited choices."
+        },
+        {
+          "q": "A council picks a menu-driven interface rather than a GUI for its phone payment line. Which factor most likely decided this?",
+          "options": [
+            "Callers only have a keypad and need simple, guided choices",
+            "Callers are expert users who want to write scripts",
+            "Menus need the most RAM and graphics power",
+            "Menus let callers do anything the system can do"
+          ],
+          "answer": 0,
+          "why": "The device (a phone keypad) and users with no training suit a menu: a few numbered choices at each step."
         }
       ],
       "A3.5.3": [

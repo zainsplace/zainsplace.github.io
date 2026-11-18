@@ -16,7 +16,7 @@
               "code": "D1.1.1",
               "term": "Viruses and Other Malware",
               "definition": "Malicious software designed to damage systems, steal data or gain unauthorised access.",
-              "examples": "Ransomware locking hospital records; spyware logging banking passwords.",
+              "examples": "Ransomware locking hospital records; spyware logging banking passwords; WannaCry spreading across NHS computers in 2017.",
               "examTip": "Describe how the specific type works, not just \"malware\".",
               "keyFacts": [
                 "Virus: attaches to files and spreads when they are run, so sharing one infected file can infect many PCs",
@@ -79,7 +79,8 @@
                 "Vishing uses phone calls and smishing uses texts, so attackers reach people away from email filters",
                 "Pretexting: a made-up story to get information, e.g. posing as IT support to get a password",
                 "Baiting: infected USB sticks left lying around, so a curious finder plugs one in and installs malware",
-                "Defend with training, email filtering and MFA, so fewer attacks arrive and stolen passwords are useless alone"
+                "Defend with training, email filtering and MFA, so fewer attacks arrive and stolen passwords are useless alone",
+                "Tailgating: following a member of staff through a secure door, so the attacker gets in without a pass"
               ],
               "comparisonTable": {
                 "title": "Social Engineering Techniques Compared",
@@ -401,7 +402,8 @@
                 "Can block sites, apps and IP ranges, so known malicious sources can't reach the network",
                 "Hardware firewall protects the whole network, guarding every device behind it at once",
                 "Software firewall protects one device, so a laptop stays protected on other networks too",
-                "Cannot stop insider threats, because staff are already inside the network the firewall guards"
+                "Cannot stop insider threats, because staff are already inside the network the firewall guards",
+                "Cannot stop phishing, because a tricked user hands over details without breaking any traffic rule"
               ],
               "comparisonTable": {
                 "title": "Hardware Firewall vs Software Firewall",
@@ -462,6 +464,7 @@
             {
               "code": "D2.4.3",
               "term": "Encryption in Secure Websites (HTTPS)",
+              "aka": ["HTTPS"],
               "definition": "HTTP secured with TLS: encrypts traffic between browser and server and proves the server is genuine.",
               "examples": "Online banking and checkout pages.",
               "examTip": "HTTPS gives encryption, integrity and authentication.",
