@@ -173,13 +173,34 @@ function finishRound() {
     }
   } catch (e) { /* league unavailable: skip the screen */ }
   end.phases.push('complete');
+  end.coins = rvPayCoins(r, end);
 
   round = null;
   rv.view = null;
   rv.settingsOpen = false;
   rv.end = end;
-  rvAnnounce(`Round complete. ${end.xp} XP earned.`);
+  rvAnnounce(`Round complete. ${end.xp} XP${end.coins ? ` and ${end.coins} coin${end.coins === 1 ? '' : 's'}` : ''} earned.`);
   rvRenderEnd();
+}
+
+/* Coins for a finished round, paid once here (a round closed halfway pays
+   none). Right first time: the first copy of a card answered right without a
+   hint ("I was right" counts; Reveal and Explain before answering make it
+   wrong). A mistake: a first copy that stayed wrong. */
+function rvPayCoins(r, end) {
+  if (typeof COINS === 'undefined' || typeof earnCoins !== 'function') return 0;
+  const firsts = r.cards.filter(c => !c.retry);
+  const day = today();
+  const n = COINS.forRound({
+    firstTry: firsts.filter(c => c.outcome === 'right' && !c.hinted && !c.revealed).length,
+    mistakes: firsts.filter(c => c.outcome === 'wrong').length,
+    stepHit100: end.ring === 100 && end.startRing < 100,
+    firstRoundToday: store.wallet.lastRoundDay !== day
+  });
+  store.wallet.lastRoundDay = day;
+  const paid = earnCoins(n, '', true);
+  if (!paid) saveState();
+  return paid;
 }
 
 /* One row per term, in the order met. Retry copies fold into their card:
@@ -264,7 +285,7 @@ function rvOvertakenHTML(e) {
 
 function rvCompleteHTML(e) {
   const unit = typeof unitDef === 'function' ? unitDef().label : '';
-  const coins = typeof COINS !== 'undefined'
+  const coins = typeof COINS !== 'undefined' && e.coins > 0
     ? `<span class="g-chip g-chip--coin"><span aria-hidden="true">🪙</span> +${e.coins}</span>` : '';
   const gain = e.ring != null ? e.ring - e.startRing : 0;
   const confetti = e.ring === 100 && e.startRing < 100 ? rvConfettiHTML() : '';

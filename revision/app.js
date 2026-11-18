@@ -59,15 +59,16 @@ function unitData() {
 }
 
 /* ---- STATE ----
-   Persisted shape: { activeUnit, theme, profile, units: { u1: {...}, u2: {...} } }
-   Everything except theme and profile is per unit: topic codes, flashcard ids
+   Persisted shape: { activeUnit, theme, profile, wallet, pets, wardrobe, units: { u1: {...}, u2: {...} } }
+   Everything except the GLOBAL_KEYS is per unit: topic codes, flashcard ids
    and question ids all collide between the two units.
    `state` below is a live view onto the active unit so the rest of the app can
    keep using state.rag / state.xp / state.theme unchanged. */
 const STATE_KEY = 'rev_state';
 const CORRUPT_KEY = 'rev_state_corrupt';
 let storeWasCorrupt = false;
-const GLOBAL_KEYS = new Set(['theme', 'profile', 'activeUnit']);
+// Coins, pets and accessories are global too: one wallet across both units.
+const GLOBAL_KEYS = new Set(['theme', 'profile', 'activeUnit', 'wallet', 'pets', 'wardrobe']);
 
 function defaultUnitState() {
   return {
@@ -110,6 +111,9 @@ function defaultStore() {
     // First visit follows the device's light/dark setting; after that, the student's choice.
     theme: (typeof matchMedia === 'function' && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
     profile: { emoji: '📘', col: '#1B5A5F' },
+    wallet: COINS.defaultWallet(),   // { coins, seeded, spent, lastRoundDay } (see coins.js)
+    pets: { owned: {}, active: null },
+    wardrobe: { owned: {}, avatar: {}, pet: {} },
     units: { u1: defaultUnitState(), u2: defaultUnitState() }
   };
 }
@@ -288,6 +292,15 @@ function coerceStore(raw) {
   const out = defaultStore();
   if (typeof raw.theme === 'string') out.theme = raw.theme;
   if (isPlainObject(raw.profile)) out.profile = coerceLike(base.profile, raw.profile);
+  out.wallet = COINS.coerceWallet(raw.wallet);
+  // Plain objects only for now; the shop (Task 13) checks the ids inside.
+  if (isPlainObject(raw.pets)) {
+    out.pets.owned = isPlainObject(raw.pets.owned) ? raw.pets.owned : {};
+    out.pets.active = typeof raw.pets.active === 'string' ? raw.pets.active : null;
+  }
+  if (isPlainObject(raw.wardrobe)) {
+    ['owned', 'avatar', 'pet'].forEach(k => { if (isPlainObject(raw.wardrobe[k])) out.wardrobe[k] = raw.wardrobe[k]; });
+  }
   if (isPlainObject(raw.units)) {
     Object.keys(out.units).forEach(id => {
       if (isPlainObject(raw.units[id])) {
@@ -390,6 +403,30 @@ function seedMemoryIfNeeded() {
   if (changed) saveState();
 }
 seedMemoryIfNeeded();
+
+/* Past work counts: the first load with coins (or an imported backup without
+   a wallet) starts the wallet at 1 coin per 10 XP across both units. Once. */
+function seedWalletIfNeeded() {
+  if (store.wallet.seeded) return false;
+  const xp = (store.units.u1.xp || 0) + (store.units.u2.xp || 0);
+  store.wallet = COINS.earn(store.wallet, COINS.seedFromXP(xp));
+  store.wallet.seeded = true;
+  saveState();
+  return true;
+}
+seedWalletIfNeeded();
+
+/* Every coin goes through here. Rounds show theirs on Round Complete, so they
+   pass quiet; everything else gets a toast. Returns the coins paid. */
+function earnCoins(n, reason, quiet) {
+  const amount = Math.max(0, Math.floor(Number(n) || 0));
+  if (!amount) return 0;
+  store.wallet = COINS.earn(store.wallet, amount);
+  saveState();
+  if (!quiet && typeof toast === 'function') toast(`+${amount} 🪙${reason ? ' · ' + reason : ''}`, 2500, 'success');
+  if (typeof renderRightRail === 'function') renderRightRail();
+  return amount;
+}
 
 /* Record a quiz answer for a term (not recordResult: that one marks exam questions). Returns the days until it is asked again. */
 function recordTermResult(code, ok) {
@@ -1074,8 +1111,7 @@ function statsCardHTML() {
   const me = rows.find(r => r.me);
   const t = TIERS[state.league.tier];
   const forgot = forgottenToday();
-  // Coins (Task 11): this slot stays empty until coins.js defines COINS.
-  const coins = typeof COINS !== 'undefined' && typeof COINS.railHTML === 'function' ? COINS.railHTML() : '';
+  const coins = typeof COINS !== 'undefined' && typeof COINS.railHTML === 'function' ? COINS.railHTML(store.wallet) : '';
   return `
     <div class="g-card stats-card">
       <div class="stats-grid">
@@ -2701,6 +2737,8 @@ function showMockResults() {
   qs.forEach(q => state.questions.history.push({ qId: q.id, marks: q.marks, date: today(),
                                                   selfScore: Math.round(mock.scores[q.id] / q.marks * 100) }));
   gainXP(score * 2);
+  // Paid only when something was marked: "see results" on a blank paper earns nothing.
+  if (unmarked < qs.length) earnCoins(COINS.RULES.examPart, 'mock finished');
   bumpActivity();
   saveState();
   mock.phase = 'done';
@@ -3339,7 +3377,8 @@ function pppFinish() {
   PPP.recordSitting(st, { id: ppp.id, kind: ppp.kind, ref: ppp.ref, date: d, status: 'done',
                           score, max, minutesUsed, parts });
   gainXP(score * 2);
-  ppp.result = { score, max, parts, minutesUsed, xp: score * 2 };
+  const coins = earnCoins(COINS.RULES.examPart, 'past paper practice finished');
+  ppp.result = { score, max, parts, minutesUsed, xp: score * 2, coins };
   ppp.step = 'done';
   persistPPP(true);
   bumpActivity();
@@ -4008,7 +4047,10 @@ function ensureLeague() {
   saveState();
   if (result) {
     const t = TIERS[league.tier];
-    toast(result.zone === 'up' ? `Promoted to the ${t.name} League!` : result.zone === 'down' ? `New week: you're in the ${t.name} League` : `New week in the ${t.name} League`, 4000, result.zone === 'up' ? 'success' : 'info');
+    // Moving up and a top-3 finish pay coins, told in the same toast.
+    const coins = earnCoins(COINS.forLeague(result, league.tier), '', true);
+    const paid = coins ? ` +${coins} 🪙${result.place <= 3 ? ` for finishing #${result.place}` : ''}` : '';
+    toast((result.zone === 'up' ? `Promoted to the ${t.name} League!` : result.zone === 'down' ? `New week: you're in the ${t.name} League` : `New week in the ${t.name} League`) + paid, 4000, result.zone === 'up' || coins ? 'success' : 'info');
   }
 }
 
@@ -4777,6 +4819,8 @@ function finishBattle() {
   bm.played++;
   if (standings[0] === me) { state.battles.won++; bm.won++; }
   if (battle.mode === 'blitz') bm.best = Math.max(bm.best || 0, me.score);
+  // A win is finishing first; a forfeit never reaches here, so it pays nothing.
+  battle.coins = earnCoins(COINS.forBattle(standings[0] === me), standings[0] === me ? 'battle won' : 'battle played');
   if (xp > 0) awardXP(xp, true);
   else saveState();
 }
@@ -4787,7 +4831,7 @@ function renderBattleEnd(container) {
     <div class="quiz-wrap" style="max-width:680px">
       <div style="text-align:center;padding:18px 0 6px">
         <h2 style="margin-bottom:4px">${battle.headline}</h2>
-        <p style="color:var(--text2);font-size:14px;margin-bottom:14px">+${battle.xpEarned} XP earned${battle.rating ? ` · Battle rating ${battle.rating.before} → <strong>${battle.rating.after}</strong> (<span class="rating-delta ${battle.rating.delta >= 0 ? 'up' : 'down'}">${battle.rating.delta >= 0 ? '+' : ''}${battle.rating.delta}</span>)` : ''}</p>
+        <p style="color:var(--text2);font-size:14px;margin-bottom:14px">+${battle.xpEarned} XP${battle.coins ? ` · +${battle.coins} 🪙` : ''} earned${battle.rating ? ` · Battle rating ${battle.rating.before} → <strong>${battle.rating.after}</strong> (<span class="rating-delta ${battle.rating.delta >= 0 ? 'up' : 'down'}">${battle.rating.delta >= 0 ? '+' : ''}${battle.rating.delta}</span>)` : ''}</p>
       </div>
       <div class="lb-board" style="max-width:100%">
         ${battle.standings.map((p, i) => `
@@ -5283,6 +5327,7 @@ function importData() {
           }
           store = coerceStore(imported);
           seedMemoryIfNeeded();
+          seedWalletIfNeeded();
           message = 'Progress imported.';
         } else if (looksLikeLegacyBackup(imported)) {
           // A pre-merge backup: progress at the top level, no `units` key, and
