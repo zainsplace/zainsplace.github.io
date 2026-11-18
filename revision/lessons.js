@@ -138,7 +138,8 @@ function renderPath(container) {
           <span class="path-title">${escapeHTML(n.title)}</span>
           <span class="path-meta">${n.sub.code ? escapeHTML(n.sub.code) + ' · ' : ''}${n.items.length} term${n.items.length === 1 ? '' : 's'} · ${qCount} questions</span>
         </span>
-      </button>`;
+      </button>
+      <button class="g-chip path-try" style="--x:${PATH_WAVE[i % PATH_WAVE.length]}" onclick="openRound('${n.id}')" aria-label="Try the new round for ${escapeHTML(n.title)}">🎮 Try new round</button>`;
     i++;
   });
   if (lastLetter) html += '</div>';

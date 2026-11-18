@@ -618,9 +618,8 @@ function nextCard(r) {
 function roundFinished(r) { return !!r && r.pos >= r.cards.length; }
 
 /* ---------- browser hooks ----------
-   Temporary: the round screen (Task 6) will draw these. For now a round can
-   be started and played from the console:
-     startRound(pathNodes()[0].id); roundAnswer('...'); roundNext();       */
+   startRound builds the global `round`; round-view.js draws it and calls the
+   engine functions above with roundContext().                              */
 
 let round = null;
 
@@ -643,12 +642,6 @@ function startRound(nodeId, mode) {
   });
   return round;
 }
-
-function roundAnswer(response) { return answerCard(round, response, roundContext()); }
-function roundHint() { return hintCard(round); }
-function roundReveal() { return revealCard(round, roundContext()); }
-function roundExplain() { return explainCard(round, roundContext()); }
-function roundNext() { return nextCard(round); }
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
