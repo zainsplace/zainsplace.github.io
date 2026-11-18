@@ -10,15 +10,14 @@
      - a "which term matches this description" question built from the definition
      - a "which is this an example of" question built from the examples, if any
    Distractors are other terms from the same subtopic first, so the choices are
-   the ones a student actually confuses. */
+   the ones a student actually confuses. The question helpers (questionsForItem,
+   checkTyped, typeHint, TEACH_BATCH ...) live in round.js, loaded first. */
 
 let lesson = null;            // the running lesson, or null on the path
 let lessonAdvanceTimer = null;
 
 const LESSON_XP = 5;          // per question right first time
 const REQUEUE_GAP = 3;        // a missed question returns this many cards later
-const TEACH_BATCH = 3;        // terms taught together before any of them is asked
-const TYPE_MAX_LEN = 28;      // longest answer we'll ask anyone to type
 
 /* ---------- building the path ---------- */
 
@@ -26,10 +25,6 @@ function lessonBank() {
   const u = unitData();
   return (u && u.lessons) || {};
 }
-
-/* Recap entries such as "C1.1.1-C1.1.3 Cloud Deployment Models Compared" sum
-   up a range of terms. They belong in the notes, not in a quiz as a "term". */
-function isLessonItem(it) { return it && it.term && it.definition && !String(it.code).includes('-'); }
 
 /* Every node of the active unit's path, in the unit's section order.
    Keep in step with unitTermItems() in app.js (same node ids, same filter). */
@@ -71,151 +66,6 @@ function nodeDone(id) {
 
 function nodeQuestionCount(node) {
   return node.items.reduce((n, item) => n + questionsForItem(item, node).length, 0);
-}
-
-/* ---------- questions ---------- */
-
-function termParts(term) {
-  // "Infrastructure as a Service (IaaS)" -> ["Infrastructure as a Service", "IaaS"]
-  const parts = [term];
-  const m = String(term).match(/^(.*?)\s*\(([^)]+)\)\s*$/);
-  if (m) parts.push(m[1], m[2]);
-  return parts.filter(p => p && p.trim().length > 1);
-}
-
-/* ---------- typed answers ----------
-   Like Gizmo's "Mixed" style: once a term has been met in a multiple-choice
-   question, it comes back later as one you have to type. Small spelling
-   mistakes are forgiven, and any accepted name for the term counts
-   (e.g. "IaaS" or "Infrastructure as a Service"). */
-
-function acceptedAnswers(term) {
-  const out = new Set(termParts(term));
-  termParts(term).forEach(p => String(p).split(/\s+[–—-]\s+|\s*\/\s*/).forEach(x => out.add(x)));
-  return [...out].map(x => x.trim()).filter(x => x.length > 1);
-}
-
-function normAnswer(s) {
-  return String(s).toLowerCase()
-    .replace(/&/g, ' and ')
-    .replace(/[^a-z0-9]+/g, ' ')
-    .replace(/\b(the|a|an)\b/g, ' ')
-    .replace(/s\b/g, '')            // "VPNs" = "VPN", "Viruses" ~ "Virus"
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
-function editDistance(a, b) {
-  const d = Array.from({ length: a.length + 1 }, (_, i) => [i]);
-  for (let j = 1; j <= b.length; j++) d[0][j] = j;
-  for (let i = 1; i <= a.length; i++) {
-    for (let j = 1; j <= b.length; j++) {
-      d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
-    }
-  }
-  return d[a.length][b.length];
-}
-
-/* 'exact' | 'close' (right, but misspelt) | false */
-function checkTyped(typed, accepts) {
-  const t = normAnswer(typed);
-  if (!t) return false;
-  let best = false;
-  accepts.forEach(a => {
-    const n = normAnswer(a);
-    if (!n) return;
-    if (n === t) { best = 'exact'; return; }
-    const tol = n.length <= 4 ? 0 : n.length <= 9 ? 1 : 2;
-    if (!best && editDistance(t, n) <= tol) best = 'close';
-  });
-  return best;
-}
-
-function isTypeable(term) {
-  return acceptedAnswers(term).some(a => a.length <= TYPE_MAX_LEN);
-}
-
-/* Hide the answer if the prompt text gives it away. */
-function maskTerm(text, term) {
-  let out = String(text);
-  termParts(term)
-    .sort((a, b) => b.length - a.length)
-    .forEach(p => { out = out.replace(new RegExp(escapeRe(p), 'gi'), '___'); });
-  return out;
-}
-
-function shuffled(arr) {
-  const a = arr.slice();
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-/* Other terms to use as wrong answers: same subtopic, then topic, then section. */
-function distractorTerms(item, node, n) {
-  const seen = new Set([item.term.toLowerCase()]);
-  const out = [];
-  const take = list => shuffled(list).forEach(it => {
-    const t = it.term;
-    if (out.length < n && !seen.has(t.toLowerCase())) { seen.add(t.toLowerCase()); out.push(t); }
-  });
-  take(node.items);
-  if (out.length < n) take(node.topic.subtopics.flatMap(s => s.items || []).filter(isLessonItem));
-  if (out.length < n) take(node.section.topics.flatMap(t => (t.subtopics || []).flatMap(s => s.items || [])).filter(isLessonItem));
-  return out;
-}
-
-function firstSentence(text) {
-  const s = String(text || '').split(/(?<=[.!?])\s/)[0];
-  return s.length > 220 ? s.slice(0, 217) + '…' : s;
-}
-
-function questionsForItem(item, node) {
-  const qs = [];
-  const why = item.examTip || (item.keyFacts && item.keyFacts[0]) || firstSentence(item.definition);
-
-  // Written scenario questions come first: they are the point of the lesson.
-  (lessonBank()[item.code] || []).forEach((q, i) => {
-    if (!q || !Array.isArray(q.options) || !q.options[q.answer]) return;
-    qs.push({
-      id: `${item.code}#s${i}`, code: item.code, kind: q.type === 'gap' ? 'Fill the gap' : 'Scenario',
-      q: q.q, answer: q.options[q.answer], options: q.options.slice(), why: q.why || why
-    });
-  });
-
-  const wrong = distractorTerms(item, node, 3);
-  const defText = `<span class="lq-quote">${escapeHTML(maskTerm(item.definition, item.term))}</span>`;
-  if (isTypeable(item.term)) {
-    // The hardest check: no options to pick from, you have to recall it.
-    qs.push({
-      id: `${item.code}#t`, code: item.code, kind: 'Type the term', typed: true,
-      q: `Which term matches this description?${defText}`, html: true,
-      answer: item.term, accepts: acceptedAnswers(item.term), why
-    });
-  } else if (wrong.length >= 2) {
-    qs.push({
-      id: `${item.code}#d`, code: item.code, kind: 'Definition',
-      q: `Which term matches this description?${defText}`,
-      html: true, answer: item.term, options: [item.term, ...wrong], why
-    });
-  }
-  if (wrong.length >= 2) {
-    if (item.examples) {
-      const ex = String(item.examples).split(/;\s*/).map(s => s.trim().replace(/\.$/, '')).filter(Boolean);
-      if (ex.length) {
-        const pick = ex[Math.floor(Math.random() * ex.length)];
-        qs.push({
-          id: `${item.code}#e`, code: item.code, kind: 'Example',
-          q: `<span class="lq-quote">${escapeHTML(maskTerm(pick, item.term))}</span>Which of these is this an example of?`,
-          html: true, answer: item.term, options: [item.term, ...shuffled(wrong).slice(0, 2)],
-          why: `${item.term}: ${firstSentence(item.definition)}`
-        });
-      }
-    }
-  }
-  return qs;
 }
 
 /* ---------- path view ---------- */
@@ -526,12 +376,6 @@ function renderLesson() {
       <div class="lesson-q">${prompt}</div>
     </div>` + below;
   focusLesson(L.phase === 'options' ? null : L.phase === 'typing' ? 'lesson-type' : 'lesson-go');
-}
-
-/* "Private Cloud" -> "P______ C____" */
-function typeHint(answer) {
-  const a = acceptedAnswers(answer).filter(x => x.length <= TYPE_MAX_LEN).sort((x, y) => x.length - y.length)[0] || answer;
-  return a.split(' ').map(w => w.charAt(0) + w.slice(1).replace(/[A-Za-z0-9]/g, '_')).join(' ');
 }
 
 function lessonTypeHint() {
