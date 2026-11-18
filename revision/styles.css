@@ -2236,3 +2236,31 @@ button.stats-tile:disabled { cursor: default; }
   .battle-picker-head { flex-wrap: wrap; }
   .battle-start { width: 100%; }
 }
+
+/* ─── HOME ON WIDE SCREENS: fill the space, scale up with clamp() (phones unchanged) ─── */
+@media (min-width: 1100px) {
+  #page-home { max-width: 1200px; }
+  .right-rail { width: clamp(360px, 22vw, 440px); padding-left: 0; }
+  .home-head { margin-bottom: clamp(18px, 1.6vw, 28px); }
+  .home-greet { font-size: clamp(34px, 3.2vw, 56px); }
+  .home-unit { font-size: clamp(14px, 1.15vw, 18px); }
+  .home-h { font-size: clamp(18px, 1.5vw, 24px); margin-bottom: 14px; }
+  .home-jump { grid-template-columns: repeat(auto-fill, minmax(clamp(170px, 14vw, 240px), 1fr)); gap: clamp(12px, 1.2vw, 20px); }
+  .home-jump-card { padding: clamp(16px, 1.3vw, 22px); gap: 10px; }
+  .home-jump-ring { --ring-size: clamp(58px, 4.4vw, 80px); --ring-width: clamp(6px, .45vw, 8px); font-size: clamp(13px, 1vw, 16px); }
+  .home-jump-title { font-size: clamp(15px, 1.2vw, 19px); }
+  .home-jump-meta { font-size: clamp(12.5px, .95vw, 14.5px); }
+  .home-jump-top .g-chip { font-size: clamp(11.5px, .9vw, 13.5px); }
+  .home-forgot, .home-league { padding: clamp(18px, 1.6vw, 28px) clamp(20px, 2vw, 32px); gap: clamp(14px, 1.4vw, 22px); }
+  .home-forgot-emoji, .home-league-icon { font-size: clamp(34px, 3vw, 52px); }
+  .home-forgot h3, .home-league h3 { font-size: clamp(17px, 1.5vw, 24px); }
+  .home-forgot p, .home-league p { font-size: clamp(14px, 1.1vw, 17px); }
+  .home-league-sub { font-size: clamp(12.5px, .95vw, 15px) !important; }
+  .home-forgot .g-btn, .home-league .g-pill { font-size: clamp(14px, 1.1vw, 17px); padding-block: clamp(10px, .9vw, 14px); padding-inline: clamp(24px, 2vw, 34px); }
+  .stats-card { padding: clamp(14px, 1.2vw, 20px); }
+  .stats-grid { gap: clamp(8px, .7vw, 12px); }
+  .stats-text b { font-size: clamp(17px, 1.6vw, 26px); }
+  .stats-text small { font-size: clamp(12px, .95vw, 14.5px); }
+  .stats-emoji { font-size: clamp(22px, 1.9vw, 32px); }
+  .stats-tile { padding: clamp(8px, .8vw, 14px) clamp(10px, 1vw, 16px); }
+}
