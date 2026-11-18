@@ -80,18 +80,22 @@
     {"q": "Who issues the digital certificates that browsers trust?", "options": ["A Certificate Authority", "The user's internet provider", "The antivirus vendor", "Any website owner"], "answer": 0, "why": "A trusted Certificate Authority checks the owner's identity before issuing a certificate."}
   ],
   "D2.2": [
-    {"q": "A downloaded file matches a known trojan's signature and is moved somewhere it can't run. Which software did this, and what action did it take?", "options": ["Antivirus: quarantine", "Firewall: port blocking", "Encryption: data at rest", "Backup: restore"], "answer": 0, "why": "Antivirus finds malware using signatures and behaviour checks, then quarantines or removes it."}
+    {"q": "A downloaded file matches a known trojan's signature and is moved somewhere it can't run. Which software did this, and what action did it take?", "options": ["Antivirus: quarantine", "Firewall: port blocking", "Encryption: data at rest", "Backup: restore"], "answer": 0, "why": "Antivirus finds malware using signatures and behaviour checks, then quarantines or removes it."},
+    {"q": "Brand-new malware with no known signature is stopped because the antivirus notices it trying to encrypt hundreds of files. Which feature caught it?", "options": ["Heuristic (behaviour) analysis", "Signature matching", "Quarantine", "Firewall port blocking"], "answer": 0, "why": "Heuristics look for suspicious behaviour, so new malware can be caught before a signature exists."}
   ],
   "D2.3": [
-    {"q": "A business wants to block all incoming network traffic on ports it does not use. What should it configure?", "options": ["A firewall", "Antivirus software", "File permissions", "A backup"], "answer": 0, "why": "A firewall monitors traffic in and out and blocks it according to rules."}
+    {"q": "A business wants to block all incoming network traffic on ports it does not use. What should it configure?", "options": ["A firewall", "Antivirus software", "File permissions", "A backup"], "answer": 0, "why": "A firewall monitors traffic in and out and blocks it according to rules."},
+    {"q": "Which of these would a firewall NOT stop?", "options": ["A member of staff tricked by a phone call into reading out their password", "Incoming traffic on a port the business has closed", "Connections from a blocked IP address", "An app trying to reach a banned website"], "answer": 0, "why": "A firewall filters network traffic by rules. Social engineering tricks a person and breaks no traffic rule."}
   ],
   "D2.4.1": [
     {"q": "A sales rep's laptop is stolen, but the thief cannot read any of the files on the drive because BitLocker is turned on. What protected the data?", "options": ["Encryption of data at rest", "Encryption of data in transit", "A firewall", "Antivirus"], "answer": 0, "why": "Encrypting stored data means a stolen device or drive can't be read."}
   ],
   "D2.4.2": [
-    {"q": "Messages are intercepted on public Wi-Fi as they travel, but the attacker sees only scrambled data. What protected them?", "options": ["Encryption of data in transit", "Encryption of data at rest", "File permissions", "Physical access control"], "answer": 0, "why": "Encrypting data as it travels means it can't be read if it is intercepted."}
+    {"q": "Messages are intercepted on public Wi-Fi as they travel, but the attacker sees only scrambled data. What protected them?", "options": ["Encryption of data in transit", "Encryption of data at rest", "File permissions", "Physical access control"], "answer": 0, "why": "Encrypting data as it travels means it can't be read if it is intercepted."},
+    {"q": "A website publishes a key that anyone can use to encrypt messages to it, but only the website's own secret key can decrypt them. Which type of encryption is this?", "options": ["Asymmetric encryption", "Symmetric encryption", "Encryption of stored data", "File permissions"], "answer": 0, "why": "Asymmetric encryption uses a public key to encrypt and a matching private key to decrypt, so no secret key has to be shared."}
   ],
   "D2.4.3": [
-    {"q": "An online shop's checkout page must encrypt card details between the browser and server and prove the site is genuine. What should it use?", "options": ["HTTPS (TLS)", "HTTP", "FTP", "A screen reader"], "answer": 0, "why": "HTTPS is HTTP secured with TLS: it encrypts the traffic and proves the server is genuine."}
+    {"q": "An online shop's checkout page must encrypt card details between the browser and server and prove the site is genuine. What should it use?", "options": ["HTTPS (TLS)", "HTTP", "FTP", "A screen reader"], "answer": 0, "why": "HTTPS is HTTP secured with TLS: it encrypts the traffic and proves the server is genuine."},
+    {"q": "A shopper sees a padlock and https:// in the address bar. What does this confirm?", "options": ["The connection is encrypted and the site has a valid certificate for that address", "The shop is honest and will deliver the goods", "The site contains no malware", "Payments will be refunded if fraud happens"], "answer": 0, "why": "HTTPS proves the connection is encrypted and the certificate matches the site. It says nothing about whether the business is trustworthy."}
   ]
 }

@@ -26,16 +26,20 @@
     {"q": "A school removes all network cables and goes Wi-Fi only to save money. What is a likely implication?", "options": ["More security risk and possible slowdowns at busy times", "No devices can move between rooms", "It must buy more switches", "Bluetooth will stop working"], "answer": 0, "why": "Choosing a connection affects security, cost and performance, not just convenience."}
   ],
   "B1.4": [
-    {"q": "Video editors complain that large file transfers over Wi-Fi are slow and sometimes fail. What change would most improve performance?", "options": ["Switch them to wired Ethernet", "Use Bluetooth instead", "Add a second monitor", "Compress files with lossy compression"], "answer": 0, "why": "Wired connections give higher speed, lower latency and more reliability than shared Wi-Fi."}
+    {"q": "Video editors complain that large file transfers over Wi-Fi are slow and sometimes fail. What change would most improve performance?", "options": ["Switch them to wired Ethernet", "Use Bluetooth instead", "Add a second monitor", "Compress files with lossy compression"], "answer": 0, "why": "Wired connections give higher speed, lower latency and more reliability than shared Wi-Fi."},
+    {"q": "Staff on Wi-Fi say their VoIP calls keep breaking up, while staff on Ethernet have clear calls. What is the most likely reason?", "options": ["Wi-Fi suffers interference and jitter, so voice packets arrive unevenly", "Ethernet uses lossy compression for voice", "Wi-Fi always has more bandwidth than Ethernet", "VoIP only works properly over Bluetooth"], "answer": 0, "why": "Wired links have no radio interference and steadier latency. Uneven delay (jitter) on Wi-Fi makes voices break up."}
   ],
   "B2.1.1": [
-    {"q": "In an office network, each PC has its own cable to one central switch. One cable breaks. What happens?", "options": ["Only that PC loses its connection", "The whole network goes down", "Data travels the other way round the loop", "All PCs slow to a stop"], "answer": 0, "why": "In a star topology each device has its own link, but if the central switch fails, everything stops."}
+    {"q": "In an office network, each PC has its own cable to one central switch. One cable breaks. What happens?", "options": ["Only that PC loses its connection", "The whole network goes down", "Data travels the other way round the loop", "All PCs slow to a stop"], "answer": 0, "why": "In a star topology each device has its own link, but if the central switch fails, everything stops."},
+    {"q": "In an office star network, the central switch fails. What happens?", "options": ["Every device loses the network", "Only one PC loses its connection", "Data travels round the loop the other way", "The network slows down but keeps working"], "answer": 0, "why": "The central switch is a star network's single point of failure: every device connects through it."}
   ],
   "B2.1.2": [
-    {"q": "In a network, devices are connected in a closed loop and data passes around it in one direction. Which topology is this?", "options": ["Ring", "Star", "Bus", "Mesh"], "answer": 0, "why": "A ring links devices in a loop, so one break can stop the whole ring."}
+    {"q": "In a network, devices are connected in a closed loop and data passes around it in one direction. Which topology is this?", "options": ["Ring", "Star", "Bus", "Mesh"], "answer": 0, "why": "A ring links devices in a loop, so one break can stop the whole ring."},
+    {"q": "In a single ring network, the cable between two PCs is cut. What happens?", "options": ["Data can no longer get round the loop, so the network stops", "Only those two PCs lose their connection", "The central switch sends the data another way", "Nothing, because a ring has no single point of failure"], "answer": 0, "why": "Data passes through every device on its way round, so one break stops the whole ring unless it is a dual ring."}
   ],
   "B2.1.3": [
-    {"q": "All devices share one backbone cable, and every device receives all the data sent. Traffic grows and collisions increase. Which topology is this?", "options": ["Bus", "Star", "Ring", "PAN"], "answer": 0, "why": "In a bus topology everything shares one cable, so heavy traffic causes collisions and one break stops the network."}
+    {"q": "All devices share one backbone cable, and every device receives all the data sent. Traffic grows and collisions increase. Which topology is this?", "options": ["Bus", "Star", "Ring", "PAN"], "answer": 0, "why": "In a bus topology everything shares one cable, so heavy traffic causes collisions and one break stops the network."},
+    {"q": "A small office uses a bus network. The backbone cable is cut in the middle. What happens?", "options": ["The whole network stops working properly", "Only the PC nearest the break is affected", "The switch reroutes the data", "Data travels round the loop the other way"], "answer": 0, "why": "Every device shares the one backbone cable, so damage to it brings down the whole network."}
   ],
   "B2.2.1": [
     {"q": "A runner's phone connects to their wireless earbuds and smartwatch by Bluetooth. What type of network is this?", "options": ["PAN", "LAN", "WAN", "VPN"], "answer": 0, "why": "A Personal Area Network links one person's devices over a short range."}
@@ -47,7 +51,8 @@
     {"q": "A bank links the networks in all its branches across the UK using lines leased from a telecoms company. What type of network is this?", "options": ["WAN", "LAN", "PAN", "Star topology"], "answer": 0, "why": "A WAN covers a large area and links LANs using third-party lines."}
   ],
   "B2.2.4": [
-    {"q": "A company with two offices wants to link them securely over the public internet rather than paying for leased lines. What should it use?", "options": ["VPN", "PAN", "Bluetooth", "Bus topology"], "answer": 0, "why": "A VPN creates an encrypted tunnel through the internet to a private network."}
+    {"q": "A company with two offices wants to link them securely over the public internet rather than paying for leased lines. What should it use?", "options": ["VPN", "PAN", "Bluetooth", "Bus topology"], "answer": 0, "why": "A VPN creates an encrypted tunnel through the internet to a private network."},
+    {"q": "A remote worker's home broadband stops working. Can she still use the company VPN?", "options": ["No, because a VPN runs over an existing internet connection", "Yes, because a VPN is its own physical network", "Yes, as long as her laptop has antivirus", "Yes, because Bluetooth takes over"], "answer": 0, "why": "A VPN is an encrypted tunnel through an existing network such as the internet, not a separate network."}
   ],
   "B2.3.1": [
     {"q": "Nurses need to move between wards with tablets and stay connected the whole time. Which network factor is the designer considering?", "options": ["User needs", "Cost", "Compatibility", "Efficiency"], "answer": 0, "why": "User needs cover mobility, the applications users run and how many connect at once."}
@@ -100,10 +105,12 @@
     {"q": "A small online shop starts taking card payments. Which set of rules must it follow when handling card data?", "options": ["PCI DSS", "SMTP", "QoS", "WEP"], "answer": 0, "why": "PCI DSS sets the rules every business that takes card payments must follow."}
   ],
   "B3.2": [
-    {"q": "Someone on an open café Wi-Fi network captures another customer's unencrypted login details. Which security issue is this?", "options": ["Interception of data in transit", "Accidental damage", "Natural disaster", "Data loss at rest"], "answer": 0, "why": "Unencrypted data in transit can be intercepted, altered or blocked."}
+    {"q": "Someone on an open café Wi-Fi network captures another customer's unencrypted login details. Which security issue is this?", "options": ["Interception of data in transit", "Accidental damage", "Natural disaster", "Data loss at rest"], "answer": 0, "why": "Unencrypted data in transit can be intercepted, altered or blocked."},
+    {"q": "On café Wi-Fi, an attacker secretly relays traffic between a customer and their bank, reading and changing it. What attack is this?", "options": ["Man-in-the-middle", "Brute force attack", "Phishing", "Accidental damage"], "answer": 0, "why": "A man-in-the-middle sits between two devices and relays their traffic. HTTPS and a VPN make the data useless to them."}
   ],
   "B3.3": [
-    {"q": "A gamer has very fast broadband for downloads but still sees a lag between pressing a button and the game reacting. What is the problem?", "options": ["High latency", "Low bandwidth", "Lossless compression", "Too much storage"], "answer": 0, "why": "Bandwidth is how much data per second; latency is the delay. High latency causes lag even on fast connections."}
+    {"q": "A gamer has very fast broadband for downloads but still sees a lag between pressing a button and the game reacting. What is the problem?", "options": ["High latency", "Low bandwidth", "Lossless compression", "Too much storage"], "answer": 0, "why": "Bandwidth is how much data per second; latency is the delay. High latency causes lag even on fast connections."},
+    {"q": "A school's Wi-Fi gets slow at lunchtime when 600 students go online at once. What is the main cause?", "options": ["The bandwidth is shared between many more users", "Latency falls when more people connect", "Files are sent with lossless compression", "A codec is missing"], "answer": 0, "why": "Bandwidth is shared, so each person gets less of it as more people use the network at the same time."}
   ],
   "B3.4.1": [
     {"q": "A designer needs the company logo to have a transparent background on the website without losing sharpness. Which format suits it?", "options": ["PNG", "JPEG", "MP3", "WAV"], "answer": 0, "why": "PNG is lossless and supports transparency. JPEG suits photos."}
@@ -124,6 +131,7 @@
     {"q": "A company zips its spreadsheets before emailing them, and every number must come back exactly as it was. Which compression must it use?", "options": ["Lossless", "Lossy", "MP3", "JPEG"], "answer": 0, "why": "Lossless compression restores the original exactly, which is essential for documents and data."}
   ],
   "B3.6": [
-    {"q": "During a video call, software compresses the video before sending it and decompresses it for playback on the other side. What is this software?", "options": ["Codec", "Protocol", "Firewall", "Topology"], "answer": 0, "why": "A codec (coder-decoder) compresses media for sending and decompresses it for playback."}
+    {"q": "During a video call, software compresses the video before sending it and decompresses it for playback on the other side. What is this software?", "options": ["Codec", "Protocol", "Firewall", "Topology"], "answer": 0, "why": "A codec (coder-decoder) compresses media for sending and decompresses it for playback."},
+    {"q": "A video downloads fine, but the media player says it can't play it, although other videos play. What is most likely missing?", "options": ["The right codec", "More bandwidth", "A digital certificate", "A firewall rule"], "answer": 0, "why": "Sender and receiver need the same codec: without it the player cannot decode (decompress) the video."}
   ]
 }

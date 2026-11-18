@@ -34,16 +34,19 @@
     {"q": "Which is a disadvantage of an organisation relying on cloud computing?", "options": ["Services stop if the internet connection fails", "Software can never be updated", "Data cannot be shared between staff", "It must buy extra servers every year"], "answer": 0, "why": "Cloud services are reached over the internet, so poor connectivity stops work."}
   ],
   "C1.3.1": [
-    {"q": "Staff working from home need to reach the company's internal file server securely over their home broadband. What should the company provide?", "options": ["A VPN", "A wiki", "A public cloud account", "A chatroom"], "answer": 0, "why": "A VPN creates an encrypted tunnel over the internet into the organisation's network."}
+    {"q": "Staff working from home need to reach the company's internal file server securely over their home broadband. What should the company provide?", "options": ["A VPN", "A wiki", "A public cloud account", "A chatroom"], "answer": 0, "why": "A VPN creates an encrypted tunnel over the internet into the organisation's network."},
+    {"q": "A sales rep often works on hotel Wi-Fi. Why should she connect to the office through a VPN?", "options": ["It encrypts her traffic, so others on the hotel network can't read it", "It makes the hotel Wi-Fi faster", "It removes every virus from her laptop", "It lets the company see her location"], "answer": 0, "why": "A VPN encrypts everything between her device and the office network, so snooping on public Wi-Fi only sees scrambled data."}
   ],
   "C1.3.2": [
     {"q": "An IT technician in head office takes control of a branch employee's PC to fix a settings problem without travelling. What technology are they using?", "options": ["Remote desktop", "VPN only", "Instant messaging", "SaaS"], "answer": 0, "why": "Remote desktop software lets one computer view and control another computer's desktop over a network."}
   ],
   "C1.4.1": [
-    {"q": "A bank is choosing an online system. Its top concern is that customer data is encrypted and that the system meets UK GDPR. Which selection factor is this?", "options": ["Security", "Ease of use", "Scalability", "Features"], "answer": 0, "why": "Security covers encryption, access control and legal compliance."}
+    {"q": "A bank is choosing an online system. Its top concern is that customer data is encrypted and that the system meets UK GDPR. Which selection factor is this?", "options": ["Security", "Ease of use", "Scalability", "Features"], "answer": 0, "why": "Security covers encryption, access control and legal compliance."},
+    {"q": "A UK company finds its cloud provider stores customer data in a country with weaker privacy laws. Which selection factor is most at risk?", "options": ["Security (including legal compliance)", "Ease of use", "Scalability", "Features"], "answer": 0, "why": "The company is still responsible under UK GDPR, so where and how the provider keeps data is a security and compliance concern."}
   ],
   "C1.4.2": [
-    {"q": "A charity compares systems by adding up subscription fees, staff training and the effort of moving its old data across. Which factor is it judging?", "options": ["Cost", "Connectivity", "Features", "Security"], "answer": 0, "why": "Cost includes subscriptions, data transfer, training and migration, not just the price tag."}
+    {"q": "A charity compares systems by adding up subscription fees, staff training and the effort of moving its old data across. Which factor is it judging?", "options": ["Cost", "Connectivity", "Features", "Security"], "answer": 0, "why": "Cost includes subscriptions, data transfer, training and migration, not just the price tag."},
+    {"q": "A firm expects steady demand and plans to keep the same servers for ten years. Why might buying its own servers cost less overall than cloud?", "options": ["High upfront cost but low running costs, while cloud fees never stop", "Its own servers need no maintenance at all", "Cloud services have no ongoing fees", "Its own servers can scale up instantly"], "answer": 0, "why": "On-premise costs a lot at the start but less each year; cloud is cheap to start but its subscription keeps going."}
   ],
   "C1.4.3": [
     {"q": "A care home's staff have limited IT skills, so the manager wants a rota system they can learn in a few minutes. Which factor matters most?", "options": ["Ease of use", "Scalability", "Cost", "Connectivity"], "answer": 0, "why": "Ease of use is how quickly staff and customers can learn and use the system."}
@@ -64,7 +67,8 @@
     {"q": "A tech reviewer posts regular video reviews of new phones on YouTube. What is this an example of?", "options": ["Vlog", "Wiki", "Chatroom", "Forum"], "answer": 0, "why": "A vlog is the video version of a blog: regularly updated content from one creator."}
   ],
   "C2.1.3": [
-    {"q": "A company wants a knowledge base that any member of staff can add to and edit, so procedures stay up to date. What should it set up?", "options": ["Wiki", "Blog", "Podcast", "Instant messaging"], "answer": 0, "why": "A wiki is a website that many users can create and edit together."}
+    {"q": "A company wants a knowledge base that any member of staff can add to and edit, so procedures stay up to date. What should it set up?", "options": ["Wiki", "Blog", "Podcast", "Instant messaging"], "answer": 0, "why": "A wiki is a website that many users can create and edit together."},
+    {"q": "Why should a student double-check facts taken from a wiki?", "options": ["Anyone can edit it, so content may be wrong or vandalised", "Wikis are always several years out of date", "Wikis cannot be searched", "It is illegal to quote a wiki"], "answer": 0, "why": "Wikis are written and edited by the community, so edits may be unverified and need checking against other sources."}
   ],
   "C2.1.4": [
     {"q": "A gaming community wants a space where many members can type to each other live at the same time in themed rooms. Which tool fits?", "options": ["Chatroom", "Forum", "Blog", "Podcast"], "answer": 0, "why": "Chatrooms let several users talk in real time by text."}

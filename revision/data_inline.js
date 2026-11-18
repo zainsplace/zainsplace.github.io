@@ -11591,6 +11591,877 @@ const INLINE_UNITS = {
             ]
           },
           "modelAnswer": "1. Ethernet gives a faster, steadier connection, so the editors’ large video files copy to the server much more quickly.\n2. A cable has no radio interference, so long transfers do not drop part-way through and have to be restarted."
+        },
+        {
+          "id": "a-extra-3",
+          "part": "",
+          "section": "A",
+          "code": "A3.1",
+          "marks": 4,
+          "commandWord": "Explain",
+          "slots": 2,
+          "context": "An airport is installing self-service check-in kiosks. Each kiosk will run a single-use operating system.",
+          "question": "Explain **two** reasons why a single-use operating system is suitable for the check-in kiosks.",
+          "traps": [
+            "Reasons must be about the kiosks: \"it is cheap\" with no link to check-in scores only the identification mark."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "It only does one job / runs only the check-in software",
+                "so it is simple and reliable, and the kiosk is less likely to crash during a busy period"
+              ],
+              [
+                "Passengers cannot open other programs or settings",
+                "so the kiosk cannot be misused or changed by members of the public"
+              ],
+              [
+                "It is stripped down, with less software installed",
+                "so there are fewer vulnerabilities for attackers to exploit"
+              ],
+              [
+                "It needs little processing power or memory",
+                "so cheaper hardware can be used across many kiosks"
+              ],
+              [
+                "It starts straight into the check-in program",
+                "so kiosks are quickly back in service after a restart or power cut"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Points about multi-user or multitasking features (the opposite of single use)"
+            ]
+          },
+          "modelAnswer": "1. It only runs the check-in software, so it is simple and reliable and is less likely to crash when the airport is busy.\n2. Passengers cannot reach other programs or settings, so they cannot misuse or change the kiosk."
+        },
+        {
+          "id": "a-extra-4",
+          "part": "",
+          "section": "A",
+          "code": "A3.2",
+          "marks": 4,
+          "commandWord": "Explain",
+          "slots": 2,
+          "context": "Staff at an accountancy firm run accounts software, email and a web browser at the same time on each PC.",
+          "question": "Explain **two** ways the operating system manages CPU time so these programs can run at the same time.",
+          "traps": [
+            "The question is about CPU time (multi-tasking), not memory: virtual memory points are not credited."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "Process scheduling decides which program uses the CPU next",
+                "so every program gets CPU time and none is left waiting"
+              ],
+              [
+                "Time slicing / round robin gives each program a short turn in rotation",
+                "so the programs appear to run at the same time"
+              ],
+              [
+                "Priorities let important processes go first",
+                "so urgent work, e.g. responding to the user's typing, is not held up by background tasks"
+              ],
+              [
+                "Context switching saves the state of a paused process and restores it later",
+                "so each program carries on exactly where it stopped"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Virtual memory / paging (memory management, not CPU time)",
+              "\"It runs them all at once\" with no technique named"
+            ]
+          },
+          "modelAnswer": "1. Scheduling decides which program gets the CPU next, so the accounts software, email and browser all get a fair share.\n2. Context switching saves where a paused program was and restores it later, so it carries on exactly where it stopped."
+        },
+        {
+          "id": "a-extra-5",
+          "part": "",
+          "section": "A",
+          "code": "A3.6",
+          "marks": 9,
+          "commandWord": "Evaluate",
+          "slots": 0,
+          "context": "Hargreaves Catering has 40 staff. It pays a yearly licence for proprietary catering-management software that handles orders, stock and invoices. The manager has found an open-source alternative with similar features and no licence fee.",
+          "question": "Evaluate whether Hargreaves Catering should switch from proprietary to open-source catering-management software.",
+          "traps": [
+            "Evaluate needs both sides and a judgement at the end that follows from your points.",
+            "Link every point to Hargreaves: 40 staff, orders, stock and invoices."
+          ],
+          "markScheme": {
+            "type": "levels",
+            "focus": "Open-source versus proprietary software for this catering business, weighing benefits and drawbacks and ending with a supported judgement.",
+            "indicative": [
+              "No licence fee, so the yearly cost is saved",
+              "Source code can be viewed and changed, so features could be customised for catering",
+              "Community support and fixes; vulnerabilities can be found and patched quickly by many people",
+              "Not locked into one vendor's prices and upgrade cycle",
+              "Proprietary has official vendor support / a helpline and service agreement; open source may rely on forums or paid third parties",
+              "Hidden costs of switching: migrating orders, stock and invoice data, retraining 40 staff, lost productivity during changeover",
+              "Compatibility with existing hardware, printers and accounting/other software must be checked",
+              "Open-source project may be less polished or could stop being maintained",
+              "Conclusion weighing licence savings against switching costs and support risk"
+            ],
+            "reject": [
+              "Points about operating systems only, with no link to the catering software"
+            ]
+          },
+          "modelAnswer": "Switching to open source would save Hargreaves its yearly licence fee, which matters for a 40-person business. Because the source code is open, the software could also be adapted to the way Hargreaves handles orders and stock, and the community can find and fix security flaws quickly. Hargreaves would no longer be tied to one vendor's price rises.\n\nHowever, the move is not free. All the order, stock and invoice data would have to be migrated, with a risk of errors, and 40 staff would need retraining, so productivity would drop for a while. The proprietary vendor provides a helpline and guaranteed fixes; with open source, help may come only from forums unless Hargreaves pays a third party for support. The software must also work with the existing printers and accounts system.\n\nOverall, Hargreaves should switch only if the open-source product is well maintained and a support contract is available, because over several years the licence saving outweighs the one-off migration and training costs. If no reliable support exists, the risk to invoicing and orders is too high and it should stay with the proprietary software."
+        },
+        {
+          "id": "a-extra-6",
+          "part": "",
+          "section": "A",
+          "code": "A3.7",
+          "marks": 2,
+          "commandWord": "Explain",
+          "slots": 0,
+          "context": "A web designer is adding a florist's logo to pages with different coloured backgrounds.",
+          "question": "Explain **one** reason why the designer should save the logo as a PNG rather than a JPEG.",
+          "traps": [
+            "Give a feature of PNG AND why it matters for the logo on this website."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 2 marks.",
+            "points": [
+              [
+                "PNG supports transparency",
+                "so the logo sits on any coloured background without a white box around it"
+              ],
+              [
+                "PNG uses lossless compression",
+                "so the sharp edges and text of the logo stay crisp, with no blurring or artefacts"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "\"PNG is smaller\" (a PNG logo is usually larger than a JPEG)",
+              "\"Better quality\" with no reason"
+            ]
+          },
+          "modelAnswer": "PNG supports transparency, so the logo can be placed on any coloured background without a white box around it."
+        },
+        {
+          "id": "a-extra-7",
+          "part": "",
+          "section": "A",
+          "code": "A4.1",
+          "marks": 4,
+          "commandWord": "Explain",
+          "slots": 2,
+          "context": "Streamline Productions is buying new computers for editing 4K video.",
+          "question": "Explain **two** hardware specifications that are most important when choosing these computers.",
+          "traps": [
+            "Name a specification AND link it to editing 4K video. \"A good computer\" scores nothing."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "A powerful multi-core CPU",
+                "so video renders and exports faster and editors are not left waiting"
+              ],
+              [
+                "A large amount of RAM (e.g. 32 GB or more)",
+                "so large 4K files and effects can be worked on without the system slowing down"
+              ],
+              [
+                "A dedicated graphics card (GPU)",
+                "so effects and smooth playback of 4K footage are handled quickly"
+              ],
+              [
+                "Large, fast storage such as an NVMe SSD",
+                "because 4K files are very large and must load and save quickly"
+              ],
+              [
+                "A high-resolution, colour-accurate monitor",
+                "so editors can see 4K detail and true colours while editing"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Peripherals with no link to editing, e.g. \"a keyboard\""
+            ]
+          },
+          "modelAnswer": "1. A lot of RAM, at least 32 GB, so large 4K files and effects can be edited without the computer slowing down.\n2. A large, fast SSD, because 4K footage takes up a lot of space and must load quickly."
+        },
+        {
+          "id": "a-extra-8",
+          "part": "",
+          "section": "A",
+          "code": "A4.2",
+          "marks": 6,
+          "commandWord": "Discuss",
+          "slots": 0,
+          "context": "Poplar Retail Group has 35 stores. It plans to bring together the sales data from every store's tills and analyse it centrally.",
+          "question": "Discuss the implications for Poplar Retail Group of using IT systems to analyse its sales data.",
+          "traps": [
+            "Discuss means consider different aspects: benefits AND drawbacks or issues, linked to a chain of 35 stores."
+          ],
+          "markScheme": {
+            "type": "levels",
+            "focus": "Implications of IT-based data analysis for a 35-store retail chain, covering benefits and drawbacks.",
+            "indicative": [
+              "Dashboards and reports show best-selling and slow-selling products across all stores",
+              "Forecasting demand from past sales so each store holds the right stock, reducing waste and empty shelves",
+              "Spotting trends by store, region or season, e.g. to plan promotions or staffing",
+              "Decisions based on evidence rather than guesswork",
+              "Cost of analysis software, central servers or cloud services, and skilled staff",
+              "Results only as good as the data: errors at the tills lead to wrong decisions",
+              "Staff and managers need training to use and interpret reports",
+              "If customer or loyalty data is analysed, it must be handled under the Data Protection Act / UK GDPR",
+              "Data from 35 stores must be transferred securely and integrated into one system"
+            ],
+            "reject": []
+          },
+          "modelAnswer": "Analysing the sales data from all 35 stores would let Poplar see which products sell well and which do not, by store and by season. Managers could forecast demand so each store orders the right amount, cutting waste and avoiding empty shelves, and promotions could be planned using evidence rather than guesswork.\n\nHowever, the system has costs: analysis software, a central server or cloud service, and possibly a data analyst. The results are only as good as the data, so mistakes at the tills would lead to wrong decisions. Managers would need training to understand the reports. If loyalty-card data is linked to sales, Poplar must handle it lawfully under the Data Protection Act and keep it secure as it is sent from the stores."
+        },
+        {
+          "id": "a-extra-9",
+          "part": "",
+          "section": "A",
+          "code": "A5.1",
+          "marks": 4,
+          "commandWord": "Explain",
+          "slots": 2,
+          "context": "A parcel delivery company uses servers, handheld scanners and in-van tablets to track deliveries.",
+          "question": "Explain **two** ways emerging technologies could improve the performance of the company's IT systems.",
+          "traps": [
+            "The question is about the performance of the IT systems: general points about jobs or ethics are not credited."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "AI can plan delivery routes from traffic and order data",
+                "so routes are calculated faster and vans spend less time on the road"
+              ],
+              [
+                "5G gives high speed and very low latency",
+                "so tracking updates reach the servers in real time"
+              ],
+              [
+                "Edge computing processes data on the device or in the van",
+                "so responses are quicker because data does not travel to a distant server"
+              ],
+              [
+                "AI chips in handheld scanners run recognition on the device",
+                "so labels and signatures are read instantly, even with a weak signal"
+              ],
+              [
+                "Machine learning predicts faults (predictive maintenance)",
+                "so servers or devices are repaired before they fail, reducing downtime"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Job losses or other implications not about system performance"
+            ]
+          },
+          "modelAnswer": "1. 5G has very low latency, so a parcel's status reaches the tracking servers as soon as it is scanned.\n2. AI can work out the best routes from live traffic data, so routes are planned faster and drivers spend less time on the road."
+        },
+        {
+          "id": "b-extra-2",
+          "part": "",
+          "section": "B",
+          "code": "B1.1",
+          "marks": 9,
+          "commandWord": "Evaluate",
+          "slots": 0,
+          "context": "Nexus Logistics is building an automated warehouse. Robots, handheld scanners, the stock-control server and office PCs all need to be connected.",
+          "question": "Evaluate the suitability of Wi-Fi compared with Ethernet for connecting the devices in the warehouse.",
+          "traps": [
+            "Compare the two: describing Wi-Fi alone stays in the lower levels.",
+            "Different devices may suit different connections: a mixed answer can be a strong judgement."
+          ],
+          "markScheme": {
+            "type": "levels",
+            "focus": "Wi-Fi compared with Ethernet for the warehouse's moving and fixed devices, ending with a supported judgement.",
+            "indicative": [
+              "Wi-Fi lets robots and handheld scanners move freely: they cannot be cabled",
+              "Wi-Fi is quicker and cheaper to install across a large building, but needs many access points for coverage",
+              "Metal racking and machinery can interfere with Wi-Fi, causing dropped connections",
+              "Wi-Fi bandwidth is shared, so it slows as more devices connect",
+              "Wi-Fi signals can be intercepted, so WPA3 and strong security are needed",
+              "Ethernet gives higher, steadier speed and lower latency, with no interference",
+              "Ethernet is more secure because the cable must be physically accessed",
+              "Ethernet needs cabling, which costs more and ties devices to fixed points",
+              "Judgement: Ethernet for the server and fixed PCs, Wi-Fi for robots and scanners"
+            ],
+            "reject": []
+          },
+          "modelAnswer": "Wi-Fi is essential for the robots and handheld scanners because they move around the warehouse and cannot be cabled. It is also quicker to install across a large building. However, metal racking can block or reflect signals, so Nexus would need many access points, and a dropped connection could stop a robot. The bandwidth is shared, so performance falls as more devices connect, and the network must be secured with WPA3 because signals can be picked up outside.\n\nEthernet gives fast, steady speeds with low latency and no interference, and it is harder to intercept. This suits the stock-control server and the office PCs, which stay in one place and move a lot of data. Its drawback is the cost of cabling and the lack of mobility.\n\nOverall, neither suits everything. Nexus should cable the server and office PCs with Ethernet for speed, reliability and security, and use a well-planned, secured Wi-Fi network for the robots and scanners, because mobility is essential for them."
+        },
+        {
+          "id": "b-extra-3",
+          "part": "",
+          "section": "B",
+          "code": "B1.3",
+          "marks": 4,
+          "commandWord": "Explain",
+          "slots": 2,
+          "context": "A hospital plans to block USB memory sticks on all of its computers.",
+          "question": "Explain **two** implications for the hospital of blocking USB memory sticks.",
+          "traps": [
+            "Implications can be good or bad, but each needs a consequence for the hospital."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "Malware cannot be brought in on infected memory sticks",
+                "so patient systems are less likely to be infected or hit by ransomware"
+              ],
+              [
+                "Staff cannot copy patient records onto sticks",
+                "so the risk of data being lost or stolen, and of a data protection breach, falls"
+              ],
+              [
+                "Staff who move files by USB must use another method",
+                "so they need network drives or secure email, which is inconvenient at first and needs training"
+              ],
+              [
+                "Some USB devices are still needed (e.g. keyboards, medical equipment)",
+                "so IT staff must set up and manage exceptions, which takes time and costs money"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Points about USB speed or charging with no link to blocking"
+            ]
+          },
+          "modelAnswer": "1. Infected sticks cannot be plugged in, so the hospital's systems are less likely to be hit by malware.\n2. Staff who used sticks to move files must use the network instead, which is inconvenient at first and needs training."
+        },
+        {
+          "id": "b-extra-4",
+          "part": "",
+          "section": "B",
+          "code": "B2.1",
+          "marks": 2,
+          "commandWord": "Give",
+          "slots": 2,
+          "context": "A college is considering a ring topology for a small computer room.",
+          "question": "Give **two** disadvantages of a ring topology.",
+          "traps": [
+            "Disadvantages only: \"no collisions\" is an advantage."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "1 mark for each correct answer, up to 2 marks.",
+            "points": [
+              "A break in the cable / one failed device can stop the whole network",
+              "Adding or removing a device disrupts the network",
+              "Data passes through every device, so it can be slow with many devices",
+              "Faults are hard to find"
+            ],
+            "accept": [],
+            "reject": [
+              "\"Expensive\" with no reason",
+              "Advantages such as token passing preventing collisions"
+            ]
+          },
+          "modelAnswer": "1. One broken cable can stop the whole network.\n2. Adding a device means breaking the ring, which disrupts everyone."
+        },
+        {
+          "id": "b-extra-5",
+          "part": "",
+          "section": "B",
+          "code": "B2.1",
+          "marks": 4,
+          "commandWord": "Explain",
+          "slots": 2,
+          "context": "A community centre is setting up a network of 12 PCs and two printers.",
+          "question": "Explain **two** reasons why a star topology would be more suitable than a bus topology for the community centre.",
+          "traps": [
+            "Compare with bus: each reason should say why star is better, not just describe star."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "Each device has its own cable to the switch",
+                "so if one cable fails only that device is affected, whereas a broken bus backbone stops everything"
+              ],
+              [
+                "Devices can be added or removed easily",
+                "so new PCs can be plugged in without taking the network down"
+              ],
+              [
+                "Faults are easy to find",
+                "because each link can be checked separately"
+              ],
+              [
+                "A switch sends data only to the device it is for",
+                "so there are fewer collisions and performance stays good as devices are added"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "\"Star is cheaper\" (it uses more cable)",
+              "Describing star with no comparison or reason"
+            ]
+          },
+          "modelAnswer": "1. Each PC has its own cable to the switch, so one faulty cable only affects one PC, while a break in a bus backbone stops the whole network.\n2. The switch sends data only to the right device, so there are fewer collisions and the network does not slow as much as a bus."
+        },
+        {
+          "id": "b-extra-6",
+          "part": "",
+          "section": "B",
+          "code": "B2.2",
+          "marks": 2,
+          "commandWord": "Explain",
+          "slots": 0,
+          "context": "Brightstar Courier Services has depots in eight cities across the UK. All depots use the same parcel-tracking system.",
+          "question": "Explain **one** reason why Brightstar needs a WAN rather than a LAN.",
+          "traps": [
+            "Name the feature of a WAN AND link it to the depots."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 2 marks.",
+            "points": [
+              [
+                "A LAN only covers one site, but the depots are in different cities",
+                "so a WAN is needed to link them so every depot uses the same tracking system"
+              ],
+              [
+                "A WAN connects LANs over long distances using leased lines or the internet",
+                "so data about parcels can be shared between depots in real time"
+              ]
+            ],
+            "accept": [],
+            "reject": []
+          },
+          "modelAnswer": "The depots are in different cities and a LAN only covers one site, so a WAN is needed to link them and let every depot use the same tracking system."
+        },
+        {
+          "id": "b-extra-7",
+          "part": "",
+          "section": "B",
+          "code": "B2.2",
+          "marks": 6,
+          "commandWord": "Discuss",
+          "slots": 0,
+          "context": "Coastal Property Group has six estate agency branches. Each branch has its own LAN. The company is thinking of connecting the branches with a WAN.",
+          "question": "Discuss the implications for Coastal Property Group of connecting its branches with a WAN rather than keeping each branch's LAN separate.",
+          "traps": [
+            "Consider both sides: what the WAN makes possible and what it costs or risks."
+          ],
+          "markScheme": {
+            "type": "levels",
+            "focus": "Connecting separate branch LANs with a WAN: benefits, drawbacks and issues for an estate agency chain.",
+            "indicative": [
+              "Shared property listings, client records and files across all branches",
+              "Central servers and backups instead of separate ones at each branch",
+              "Staff can work from any branch and see the same information",
+              "Ongoing cost of leased lines or a managed WAN service, plus equipment",
+              "A VPN over the internet could be a cheaper option than leased lines",
+              "WAN links are slower and have higher latency than a LAN",
+              "If the WAN link fails, branches may lose access to central systems (downtime)",
+              "More security risk as data travels between sites: needs encryption and firewalls",
+              "Client personal data shared between sites must be protected under the Data Protection Act"
+            ],
+            "reject": []
+          },
+          "modelAnswer": "A WAN would let all six branches share the same property listings and client records, so a buyer who registers in one branch can be helped by any other. Servers and backups could be centralised, which is easier to manage than six separate systems.\n\nHowever, a WAN has ongoing costs for leased lines or a managed service, although a VPN over the internet would be cheaper. WAN links are slower than a LAN, and if the link fails a branch could lose access to central systems during working hours. Client data travelling between branches must be encrypted and protected by firewalls, because the company is responsible for it under the Data Protection Act."
+        },
+        {
+          "id": "b-extra-8",
+          "part": "",
+          "section": "B",
+          "code": "B2.3",
+          "marks": 2,
+          "commandWord": "Give",
+          "slots": 2,
+          "context": "A bookshop is choosing a network for its shop and office.",
+          "question": "Give **two** factors, other than cost, that the bookshop should consider when choosing a network.",
+          "traps": [
+            "\"Other than cost\": cost or price scores nothing."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "1 mark for each correct answer, up to 2 marks.",
+            "points": [
+              "User needs (e.g. number of users, mobility)",
+              "Specifications (e.g. speed / bandwidth)",
+              "Connectivity",
+              "Efficiency",
+              "Compatibility with existing devices",
+              "Implementation (timescales, testing, downtime)",
+              "Productivity",
+              "Security"
+            ],
+            "accept": [],
+            "reject": [
+              "Cost / price (excluded by the question)"
+            ]
+          },
+          "modelAnswer": "1. Security\n2. Compatibility with its existing tills and PCs"
+        },
+        {
+          "id": "b-extra-9",
+          "part": "",
+          "section": "B",
+          "code": "B2.4",
+          "marks": 4,
+          "commandWord": "Describe",
+          "slots": 0,
+          "context": "Staff at a call centre complain that their VoIP calls often break up and have delays, especially at busy times.",
+          "question": "Describe how features of the network could be causing the poor-quality VoIP calls.",
+          "traps": [
+            "Describe the cause AND how it affects the calls; four separate points earn the marks."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "1 mark for each correct answer, up to 4 marks.",
+            "points": [
+              "Not enough bandwidth for the number of calls at busy times",
+              "Congestion means voice packets are delayed or dropped, so words go missing",
+              "High latency causes delays, so callers talk over each other",
+              "Jitter (uneven delay), e.g. on Wi-Fi, makes the audio choppy",
+              "Slow or old switches / routers act as a bottleneck",
+              "No Quality of Service, so voice traffic competes with downloads",
+              "Too many devices on one Wi-Fi access point or interference from walls"
+            ],
+            "accept": [],
+            "reject": []
+          },
+          "modelAnswer": "At busy times there may not be enough bandwidth for all the calls, so the network becomes congested and voice packets are delayed or dropped, making words go missing. An old switch could be a bottleneck. Without Quality of Service, voice traffic has to compete with downloads, and staff on Wi-Fi may suffer jitter, which makes the audio choppy."
+        },
+        {
+          "id": "b-extra-10",
+          "part": "",
+          "section": "B",
+          "code": "B3.2",
+          "marks": 4,
+          "commandWord": "Explain",
+          "slots": 2,
+          "context": "A chain of hair salons takes card payments on tablets that connect to the internet over each salon's Wi-Fi. Customers can also use the Wi-Fi while they wait.",
+          "question": "Explain **two** security issues the salons should consider when transmitting payment data over Wi-Fi.",
+          "traps": [
+            "Issues must be about data being transmitted: \"the tablet could be stolen\" is not credited."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "Unencrypted data can be intercepted (sniffed)",
+                "so card details could be read by someone on the same network"
+              ],
+              [
+                "Weak Wi-Fi security, e.g. WEP or the default password",
+                "so outsiders could join the network and reach the tablets"
+              ],
+              [
+                "Customers share the same Wi-Fi as the payment tablets",
+                "so a customer could attack the tablets unless a separate guest network is used"
+              ],
+              [
+                "Man-in-the-middle or a fake (evil twin) hotspot",
+                "so data could be read or changed before it reaches the payment provider"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Physical theft of the tablet",
+              "\"Hacking\" with no explanation"
+            ]
+          },
+          "modelAnswer": "1. If payment data is not encrypted it can be intercepted on the Wi-Fi, so card details could be stolen; payments should use HTTPS.\n2. Customers use the same Wi-Fi, so one could try to reach the tablets; a separate guest network keeps them apart."
+        },
+        {
+          "id": "b-extra-11",
+          "part": "",
+          "section": "B",
+          "code": "B3.4",
+          "marks": 4,
+          "commandWord": "Explain",
+          "slots": 2,
+          "context": "A school media department records students' video projects. It is deciding whether to store and share them in an uncompressed format or a compressed format such as MP4.",
+          "question": "Explain **two** implications of storing and sharing the videos in an uncompressed format.",
+          "traps": [
+            "Implications can be positive or negative; each needs a consequence for the department."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "Files are much larger",
+                "so the department's storage fills quickly and more must be bought"
+              ],
+              [
+                "Large files take longer to upload, download or stream",
+                "so sharing is slow and uses a lot of the school's bandwidth"
+              ],
+              [
+                "Files may be too big for email or upload limits",
+                "so they must be shared another way, e.g. a cloud link"
+              ],
+              [
+                "No quality is lost",
+                "so the footage can be edited and re-saved without getting worse"
+              ],
+              [
+                "Not every device can play every uncompressed format",
+                "so some students or parents may be unable to watch the videos"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Points about lossy compression that do not answer the question"
+            ]
+          },
+          "modelAnswer": "1. Uncompressed video files are huge, so the department's storage will fill quickly.\n2. No quality is lost, so students can edit their footage without it getting worse each time it is saved."
+        },
+        {
+          "id": "b-extra-12",
+          "part": "",
+          "section": "B",
+          "code": "B3.6",
+          "marks": 4,
+          "commandWord": "Explain",
+          "slots": 2,
+          "context": "An internet radio station broadcasts live audio to listeners on phones, computers and smart speakers.",
+          "question": "Explain **two** reasons why the radio station uses a codec when broadcasting.",
+          "traps": [
+            "A codec compresses and decompresses: each reason needs a consequence for the station or its listeners."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "The codec compresses the audio",
+                "so it uses less bandwidth and listeners on mobile data can stream without buffering"
+              ],
+              [
+                "Smaller audio streams need less data to send",
+                "so the station's server and bandwidth costs are lower and it can serve more listeners"
+              ],
+              [
+                "Listeners' devices use the same codec to decode the stream",
+                "so the audio can be played back in real time on their devices"
+              ],
+              [
+                "A modern codec such as AAC keeps good quality at a low bitrate",
+                "so the broadcast still sounds good on slow connections"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Protocols such as HTTPS described as codecs"
+            ]
+          },
+          "modelAnswer": "1. The codec compresses the audio, so the stream needs less bandwidth and listeners on mobile data can listen without buffering.\n2. Listeners' devices use the same codec to decode the stream, so it can be played back live."
+        },
+        {
+          "id": "c-extra-1",
+          "part": "",
+          "section": "C",
+          "code": "C2.2",
+          "marks": 4,
+          "commandWord": "Explain",
+          "slots": 2,
+          "context": "Sunridge Primary School plans to use a Facebook group to share news, photos and reminders with parents.",
+          "question": "Explain **two** privacy considerations for the school when using the Facebook group.",
+          "traps": [
+            "Privacy, not security: hacking points score only if linked to personal information being exposed."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "Photos of pupils could be seen or shared beyond the school community",
+                "so the school needs parents' consent before posting and must make the group private"
+              ],
+              [
+                "Parents' names and comments are visible to other members",
+                "so the group must be closed and members checked before joining"
+              ],
+              [
+                "Facebook collects data about everyone who uses the group",
+                "so parents' personal data may be used for advertising, which they may not want"
+              ],
+              [
+                "The school is responsible for personal data it posts",
+                "so it must follow the Data Protection Act / UK GDPR and have a clear policy"
+              ],
+              [
+                "Posts can be screenshotted and shared",
+                "so private information should never be posted, even in a closed group"
+              ]
+            ],
+            "accept": [],
+            "reject": [
+              "Cost or ease-of-use points with no link to privacy"
+            ]
+          },
+          "modelAnswer": "1. Photos of pupils could be shared outside the school, so the school must get parents' consent and make the group private.\n2. Facebook collects data on members for advertising, so parents who join may lose control of their personal data."
+        },
+        {
+          "id": "d-extra-1",
+          "part": "",
+          "section": "D",
+          "code": "D2.3",
+          "marks": 4,
+          "commandWord": "Describe",
+          "slots": 0,
+          "context": "A sports centre connects its booking PCs, a server and staff Wi-Fi to the internet.",
+          "question": "Describe how a firewall could be set up to protect the sports centre's network.",
+          "traps": [
+            "Describe the set-up (rules, ports, addresses), not just \"it blocks hackers\"."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "1 mark for each correct answer, up to 4 marks.",
+            "points": [
+              "Rules decide which traffic is allowed in or out",
+              "Checks the source/destination address and port of each packet against the rules",
+              "Blocks incoming traffic by default unless a rule allows it",
+              "Closes ports the centre does not use",
+              "Blocks known malicious IP addresses or websites",
+              "Logs blocked traffic and alerts staff to suspicious activity",
+              "A hardware firewall at the internet connection protects every device behind it",
+              "Software firewalls on each PC add protection, e.g. on laptops used elsewhere"
+            ],
+            "accept": [],
+            "reject": [
+              "Antivirus functions such as scanning files for viruses",
+              "\"Stops hackers\" with no description of how"
+            ]
+          },
+          "modelAnswer": "A hardware firewall would sit between the internet connection and the network. It would be set with rules that block all incoming traffic unless it is allowed, and ports the centre does not use would be closed. Each packet's address and port is checked against the rules, known malicious addresses are blocked, and blocked attempts are logged so staff can spot attacks."
+        },
+        {
+          "id": "e-extra-2",
+          "part": "",
+          "section": "E",
+          "code": "E2.1",
+          "marks": 2,
+          "commandWord": "Give",
+          "slots": 2,
+          "context": "A gym is researching whether to open a new branch in a nearby town.",
+          "question": "Give **two** sources of secondary data the gym could use.",
+          "traps": [
+            "Secondary data already exists: a survey the gym runs itself is primary data."
+          ],
+          "markScheme": {
+            "type": "points",
+            "rule": "1 mark for each correct answer, up to 2 marks.",
+            "points": [
+              "Census / Office for National Statistics population data",
+              "Published market research reports",
+              "Competitors' websites or price lists",
+              "Council or government reports",
+              "Industry or trade association reports",
+              "News articles"
+            ],
+            "accept": [],
+            "reject": [
+              "Surveys, questionnaires, interviews or focus groups run by the gym (primary data)"
+            ]
+          },
+          "modelAnswer": "1. Census data about the town's population\n2. A published market research report on the fitness industry"
+        },
+        {
+          "id": "e-extra-3",
+          "part": "",
+          "section": "E",
+          "code": "E2.1",
+          "marks": 2,
+          "commandWord": "Explain",
+          "slots": 0,
+          "context": "The gym is planning a new timetable of fitness classes.",
+          "question": "Explain **one** advantage for the gym of collecting primary data rather than using secondary data.",
+          "traps": [
+            "Give an advantage of primary data AND link it to planning the timetable."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 2 marks.",
+            "points": [
+              [
+                "It is collected for this exact purpose",
+                "so the gym can ask its own members which classes and times they want"
+              ],
+              [
+                "It is up to date",
+                "so the timetable reflects what members want now, not what people wanted years ago"
+              ],
+              [
+                "The gym controls how it is collected",
+                "so it knows the data is reliable and who it came from"
+              ]
+            ],
+            "accept": [],
+            "reject": []
+          },
+          "modelAnswer": "Primary data is collected for this exact purpose, so the gym can ask its own members which classes and times they want."
         }
       ]
     },
@@ -11818,6 +12689,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Servers provide files, apps or web pages to other computers on a network."
+        },
+        {
+          "q": "A company needs a machine that sends pages to customers' browsers whenever they visit its online shop. What is it?",
+          "options": [
+            "A web server",
+            "A file server",
+            "A multifunctional device",
+            "An embedded system"
+          ],
+          "answer": 0,
+          "why": "A web server delivers web pages over HTTP/HTTPS to users' browsers. A file server stores shared files for staff."
         }
       ],
       "A1.1.5": [
@@ -12013,6 +12895,28 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Flowcharts use standard symbols to show the steps and decisions in a process."
+        },
+        {
+          "q": "A flowchart step asks 'Is the password correct?' and splits into a Yes path and a No path. Which symbol should it use?",
+          "options": [
+            "Diamond",
+            "Rectangle",
+            "Parallelogram",
+            "Oval"
+          ],
+          "answer": 0,
+          "why": "A diamond is a decision, with one labelled arrow out for each answer. Rectangles are processes, parallelograms input/output, ovals start/end."
+        },
+        {
+          "q": "In a flowchart of a login process, which symbol shows the user typing in their username?",
+          "options": [
+            "Parallelogram",
+            "Rectangle",
+            "Diamond",
+            "Oval"
+          ],
+          "answer": 0,
+          "why": "Typing data in is input, and input/output is shown with a parallelogram."
         }
       ],
       "A2.1.1": [
@@ -12052,6 +12956,16 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Storage devices keep data so it can be used again later."
+        },
+        {
+          "q": "A field researcher's laptop gets knocked about in a backpack and must open large files quickly. Which storage suits it best?",
+          "options": [
+            "SSD",
+            "HDD",
+            "Optical disc (DVD)"
+          ],
+          "answer": 0,
+          "why": "An SSD has no moving parts, so it survives knocks, and it reads data much faster than an HDD or a DVD."
         }
       ],
       "A2.2.1": [
@@ -12403,6 +13317,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "The OS allocates RAM, keeps programs apart, and uses virtual memory when RAM runs out."
+        },
+        {
+          "q": "A web browser crashes, but the word processor running next to it keeps working because the browser could not touch its memory. Which OS feature protected it?",
+          "options": [
+            "Memory protection",
+            "Virtual memory",
+            "Device drivers",
+            "Context switching"
+          ],
+          "answer": 0,
+          "why": "Memory management keeps each program's memory separate, so one crashing program cannot damage the others."
         }
       ],
       "A3.2.4": [
@@ -12416,6 +13341,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "The OS shares CPU time between programs by scheduling and switching between them."
+        },
+        {
+          "q": "The OS pauses a game, saves exactly where it was, runs a virus scan for a moment, then restores the game where it stopped. What is this called?",
+          "options": [
+            "Context switching",
+            "Virtual memory",
+            "Paging",
+            "Installing a device driver"
+          ],
+          "answer": 0,
+          "why": "Context switching saves one process's state and restores it later, so it carries on exactly where it stopped."
         }
       ],
       "A3.2.5": [
@@ -12455,6 +13391,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Utility software maintains and looks after the computer system."
+        },
+        {
+          "q": "An old office PC with a hard disk drive is slow to open files because each file is split into pieces across the disk. Which utility would help?",
+          "options": [
+            "Disk defragmenter",
+            "Antivirus software",
+            "File compression software",
+            "Backup software"
+          ],
+          "answer": 0,
+          "why": "A defragmenter puts each file's pieces back together on an HDD so it reads faster. SSDs do not need it."
         }
       ],
       "A3.3.2": [
@@ -12661,6 +13608,16 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "MP3 uses lossy compression for small files. WAV is uncompressed and large."
+        },
+        {
+          "q": "A music producer must keep a recording at full quality for editing, with no compression at all, whatever the file size. Which format fits?",
+          "options": [
+            "WAV",
+            "MP3",
+            "AAC"
+          ],
+          "answer": 0,
+          "why": "WAV is uncompressed, so nothing is lost. MP3 and AAC are lossy, so some sound is thrown away to make files smaller."
         }
       ],
       "A3.7.3": [
@@ -12778,6 +13735,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Implementation covers timescales, testing, data migration and downtime."
+        },
+        {
+          "q": "A company runs its old and new systems side by side for a month after go-live. What is the main reason?",
+          "options": [
+            "If the new system fails, the old one is still there as a fallback",
+            "It halves the cost of the new system",
+            "Staff then need no training",
+            "It means the new system does not need testing"
+          ],
+          "answer": 0,
+          "why": "Running both reduces the risk of implementation: work carries on with the old system if problems appear in the new one."
         }
       ],
       "A4.1.8": [
@@ -13269,6 +14237,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Wired connections give higher speed, lower latency and more reliability than shared Wi-Fi."
+        },
+        {
+          "q": "Staff on Wi-Fi say their VoIP calls keep breaking up, while staff on Ethernet have clear calls. What is the most likely reason?",
+          "options": [
+            "Wi-Fi suffers interference and jitter, so voice packets arrive unevenly",
+            "Ethernet uses lossy compression for voice",
+            "Wi-Fi always has more bandwidth than Ethernet",
+            "VoIP only works properly over Bluetooth"
+          ],
+          "answer": 0,
+          "why": "Wired links have no radio interference and steadier latency. Uneven delay (jitter) on Wi-Fi makes voices break up."
         }
       ],
       "B2.1.1": [
@@ -13282,6 +14261,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "In a star topology each device has its own link, but if the central switch fails, everything stops."
+        },
+        {
+          "q": "In an office star network, the central switch fails. What happens?",
+          "options": [
+            "Every device loses the network",
+            "Only one PC loses its connection",
+            "Data travels round the loop the other way",
+            "The network slows down but keeps working"
+          ],
+          "answer": 0,
+          "why": "The central switch is a star network's single point of failure: every device connects through it."
         }
       ],
       "B2.1.2": [
@@ -13295,6 +14285,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "A ring links devices in a loop, so one break can stop the whole ring."
+        },
+        {
+          "q": "In a single ring network, the cable between two PCs is cut. What happens?",
+          "options": [
+            "Data can no longer get round the loop, so the network stops",
+            "Only those two PCs lose their connection",
+            "The central switch sends the data another way",
+            "Nothing, because a ring has no single point of failure"
+          ],
+          "answer": 0,
+          "why": "Data passes through every device on its way round, so one break stops the whole ring unless it is a dual ring."
         }
       ],
       "B2.1.3": [
@@ -13308,6 +14309,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "In a bus topology everything shares one cable, so heavy traffic causes collisions and one break stops the network."
+        },
+        {
+          "q": "A small office uses a bus network. The backbone cable is cut in the middle. What happens?",
+          "options": [
+            "The whole network stops working properly",
+            "Only the PC nearest the break is affected",
+            "The switch reroutes the data",
+            "Data travels round the loop the other way"
+          ],
+          "answer": 0,
+          "why": "Every device shares the one backbone cable, so damage to it brings down the whole network."
         }
       ],
       "B2.2.1": [
@@ -13360,6 +14372,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "A VPN creates an encrypted tunnel through the internet to a private network."
+        },
+        {
+          "q": "A remote worker's home broadband stops working. Can she still use the company VPN?",
+          "options": [
+            "No, because a VPN runs over an existing internet connection",
+            "Yes, because a VPN is its own physical network",
+            "Yes, as long as her laptop has antivirus",
+            "Yes, because Bluetooth takes over"
+          ],
+          "answer": 0,
+          "why": "A VPN is an encrypted tunnel through an existing network such as the internet, not a separate network."
         }
       ],
       "B2.3.1": [
@@ -13643,6 +14666,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Unencrypted data in transit can be intercepted, altered or blocked."
+        },
+        {
+          "q": "On café Wi-Fi, an attacker secretly relays traffic between a customer and their bank, reading and changing it. What attack is this?",
+          "options": [
+            "Man-in-the-middle",
+            "Brute force attack",
+            "Phishing",
+            "Accidental damage"
+          ],
+          "answer": 0,
+          "why": "A man-in-the-middle sits between two devices and relays their traffic. HTTPS and a VPN make the data useless to them."
         }
       ],
       "B3.3": [
@@ -13656,6 +14690,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Bandwidth is how much data per second; latency is the delay. High latency causes lag even on fast connections."
+        },
+        {
+          "q": "A school's Wi-Fi gets slow at lunchtime when 600 students go online at once. What is the main cause?",
+          "options": [
+            "The bandwidth is shared between many more users",
+            "Latency falls when more people connect",
+            "Files are sent with lossless compression",
+            "A codec is missing"
+          ],
+          "answer": 0,
+          "why": "Bandwidth is shared, so each person gets less of it as more people use the network at the same time."
         }
       ],
       "B3.4.1": [
@@ -13747,6 +14792,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "A codec (coder-decoder) compresses media for sending and decompresses it for playback."
+        },
+        {
+          "q": "A video downloads fine, but the media player says it can't play it, although other videos play. What is most likely missing?",
+          "options": [
+            "The right codec",
+            "More bandwidth",
+            "A digital certificate",
+            "A firewall rule"
+          ],
+          "answer": 0,
+          "why": "Sender and receiver need the same codec: without it the player cannot decode (decompress) the video."
         }
       ],
       "C1.1.1": [
@@ -13982,6 +15038,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "A VPN creates an encrypted tunnel over the internet into the organisation's network."
+        },
+        {
+          "q": "A sales rep often works on hotel Wi-Fi. Why should she connect to the office through a VPN?",
+          "options": [
+            "It encrypts her traffic, so others on the hotel network can't read it",
+            "It makes the hotel Wi-Fi faster",
+            "It removes every virus from her laptop",
+            "It lets the company see her location"
+          ],
+          "answer": 0,
+          "why": "A VPN encrypts everything between her device and the office network, so snooping on public Wi-Fi only sees scrambled data."
         }
       ],
       "C1.3.2": [
@@ -14008,6 +15075,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Security covers encryption, access control and legal compliance."
+        },
+        {
+          "q": "A UK company finds its cloud provider stores customer data in a country with weaker privacy laws. Which selection factor is most at risk?",
+          "options": [
+            "Security (including legal compliance)",
+            "Ease of use",
+            "Scalability",
+            "Features"
+          ],
+          "answer": 0,
+          "why": "The company is still responsible under UK GDPR, so where and how the provider keeps data is a security and compliance concern."
         }
       ],
       "C1.4.2": [
@@ -14021,6 +15099,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Cost includes subscriptions, data transfer, training and migration, not just the price tag."
+        },
+        {
+          "q": "A firm expects steady demand and plans to keep the same servers for ten years. Why might buying its own servers cost less overall than cloud?",
+          "options": [
+            "High upfront cost but low running costs, while cloud fees never stop",
+            "Its own servers need no maintenance at all",
+            "Cloud services have no ongoing fees",
+            "Its own servers can scale up instantly"
+          ],
+          "answer": 0,
+          "why": "On-premise costs a lot at the start but less each year; cloud is cheap to start but its subscription keeps going."
         }
       ],
       "C1.4.3": [
@@ -14112,6 +15201,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "A wiki is a website that many users can create and edit together."
+        },
+        {
+          "q": "Why should a student double-check facts taken from a wiki?",
+          "options": [
+            "Anyone can edit it, so content may be wrong or vandalised",
+            "Wikis are always several years out of date",
+            "Wikis cannot be searched",
+            "It is illegal to quote a wiki"
+          ],
+          "answer": 0,
+          "why": "Wikis are written and edited by the community, so edits may be unverified and need checking against other sources."
         }
       ],
       "C2.1.4": [
@@ -14806,6 +15906,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Antivirus finds malware using signatures and behaviour checks, then quarantines or removes it."
+        },
+        {
+          "q": "Brand-new malware with no known signature is stopped because the antivirus notices it trying to encrypt hundreds of files. Which feature caught it?",
+          "options": [
+            "Heuristic (behaviour) analysis",
+            "Signature matching",
+            "Quarantine",
+            "Firewall port blocking"
+          ],
+          "answer": 0,
+          "why": "Heuristics look for suspicious behaviour, so new malware can be caught before a signature exists."
         }
       ],
       "D2.3": [
@@ -14819,6 +15930,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "A firewall monitors traffic in and out and blocks it according to rules."
+        },
+        {
+          "q": "Which of these would a firewall NOT stop?",
+          "options": [
+            "A member of staff tricked by a phone call into reading out their password",
+            "Incoming traffic on a port the business has closed",
+            "Connections from a blocked IP address",
+            "An app trying to reach a banned website"
+          ],
+          "answer": 0,
+          "why": "A firewall filters network traffic by rules. Social engineering tricks a person and breaks no traffic rule."
         }
       ],
       "D2.4.1": [
@@ -14845,6 +15967,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Encrypting data as it travels means it can't be read if it is intercepted."
+        },
+        {
+          "q": "A website publishes a key that anyone can use to encrypt messages to it, but only the website's own secret key can decrypt them. Which type of encryption is this?",
+          "options": [
+            "Asymmetric encryption",
+            "Symmetric encryption",
+            "Encryption of stored data",
+            "File permissions"
+          ],
+          "answer": 0,
+          "why": "Asymmetric encryption uses a public key to encrypt and a matching private key to decrypt, so no secret key has to be shared."
         }
       ],
       "D2.4.3": [
@@ -14858,6 +15991,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "HTTPS is HTTP secured with TLS: it encrypts the traffic and proves the server is genuine."
+        },
+        {
+          "q": "A shopper sees a padlock and https:// in the address bar. What does this confirm?",
+          "options": [
+            "The connection is encrypted and the site has a valid certificate for that address",
+            "The shop is honest and will deliver the goods",
+            "The site contains no malware",
+            "Payments will be refunded if fraud happens"
+          ],
+          "answer": 0,
+          "why": "HTTPS proves the connection is encrypted and the certificate matches the site. It says nothing about whether the business is trustworthy."
         }
       ],
       "E1.1.1": [
@@ -15081,6 +16225,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Transactional data is recorded each time a customer interacts with an organisation."
+        },
+        {
+          "q": "A bank's system blocks a card after spotting purchases in two countries within an hour, unlike the customer's normal spending. What is the bank analysing?",
+          "options": [
+            "Transactional data",
+            "Secondary data",
+            "Targeted marketing",
+            "Collaborative working"
+          ],
+          "answer": 0,
+          "why": "Every card payment creates transactional data. Unusual patterns in it are used to detect fraud."
         }
       ],
       "E1.2.2": [
@@ -15094,6 +16249,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Targeted marketing uses data about your behaviour to show personalised adverts."
+        },
+        {
+          "q": "A website wants to use cookies to track visitors and target adverts at them. What must it do under data protection law?",
+          "options": [
+            "Ask for consent and let users refuse tracking",
+            "Nothing, because cookies are never personal data",
+            "Only use HTTPS",
+            "Register the adverts under copyright law"
+          ],
+          "answer": 0,
+          "why": "GDPR rules mean tracking cookies need consent, with a way for users to opt out."
         }
       ],
       "E1.2.3": [
@@ -15248,6 +16414,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Verification checks data was copied or entered correctly, e.g. by entering it twice."
+        },
+        {
+          "q": "A clerk checks each record typed into the system against the paper form it came from. Which accuracy method is this?",
+          "options": [
+            "Verification",
+            "Validation",
+            "Encryption",
+            "Authentication"
+          ],
+          "answer": 0,
+          "why": "Verification checks the data was copied correctly from its source, e.g. by proofreading or double entry."
         }
       ],
       "E2.5.2": [
@@ -15363,6 +16540,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Privacy is a person's right to control how their personal information is collected, used and shared."
+        },
+        {
+          "q": "An employer secretly records every keystroke staff make, without telling them. Which ethical issue does this most directly raise?",
+          "options": [
+            "Privacy",
+            "Environmental impact",
+            "Unequal access to IT",
+            "Netiquette"
+          ],
+          "answer": 0,
+          "why": "Hidden monitoring intrudes on staff privacy. Monitoring should be proportionate and disclosed, e.g. in the AUP."
         }
       ],
       "F1.1.2": [
@@ -15376,6 +16564,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "E-waste, energy use and manufacturing emissions are the environmental impact of IT."
+        },
+        {
+          "q": "A company moves its servers to a cloud provider whose shared data centres run on renewable energy. Which issue does this help address?",
+          "options": [
+            "Environmental impact",
+            "Privacy",
+            "Unequal access to IT",
+            "Online behaviour"
+          ],
+          "answer": 0,
+          "why": "Large shared data centres use energy more efficiently, and renewable power cuts the carbon cost of IT."
         }
       ],
       "F1.1.3": [
@@ -15415,6 +16614,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Cyberbullying and trolling break the standards of respectful online behaviour."
+        },
+        {
+          "q": "A manager writes a whole email to staff in capital letters. Why is this poor netiquette?",
+          "options": [
+            "Capitals read as shouting, which comes across as rude",
+            "It breaks the Computer Misuse Act",
+            "Capitals make the email much larger",
+            "Email servers reject capital letters"
+          ],
+          "answer": 0,
+          "why": "Netiquette is about respectful online communication, and all capitals is read as shouting."
         }
       ],
       "F1.1.6": [
@@ -15428,6 +16638,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "An AUP sets out what users may and may not do on an organisation's IT systems."
+        },
+        {
+          "q": "Why should an acceptable use policy tell staff that their use of IT may be monitored?",
+          "options": [
+            "So monitoring is lawful and acts as a deterrent",
+            "So staff may install any software they like",
+            "Because the DSE Regulations require it",
+            "So the firewall can work"
+          ],
+          "answer": 0,
+          "why": "Telling users in the AUP makes monitoring fair and lawful, and knowing about it discourages misuse."
         }
       ],
       "F2.1.1": [
@@ -15452,6 +16673,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Section 2 covers unauthorised access with intent to commit or help commit a further offence, such as fraud."
+        },
+        {
+          "q": "A student plants malware that deletes files on the school network. Which Computer Misuse Act offence covers deleting the files?",
+          "options": [
+            "Unauthorised modification (Section 3)",
+            "Unauthorised access only (Section 1)",
+            "Breach of copyright",
+            "Keeping inaccurate data"
+          ],
+          "answer": 0,
+          "why": "Changing or deleting data, or spreading malware, without permission is unauthorised modification under Section 3 (up to 10 years)."
         }
       ],
       "F2.1.2": [
@@ -15465,6 +16697,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "The CDPA protects creators' work from being copied or shared without permission."
+        },
+        {
+          "q": "A teacher installs one single-user licensed app on 30 classroom PCs without permission. Which law is broken?",
+          "options": [
+            "Copyright, Designs and Patents Act 1988",
+            "Computer Misuse Act 1990",
+            "Data Protection Act 2018",
+            "DSE Regulations"
+          ],
+          "answer": 0,
+          "why": "Installing software beyond what the licence allows is copying it without permission, which breaks copyright law."
         }
       ],
       "F2.1.3": [
@@ -15491,6 +16734,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "The DSE Regulations require employers to protect staff who use screens regularly."
+        },
+        {
+          "q": "A firm must check each new employee's desk, chair, screen position and lighting. Which law requires this?",
+          "options": [
+            "Health and Safety (Display Screen Equipment) Regulations",
+            "Data Protection Act 2018",
+            "Computer Misuse Act 1990",
+            "Copyright, Designs and Patents Act 1988"
+          ],
+          "answer": 0,
+          "why": "The DSE Regulations require employers to assess the workstations of staff who use screens regularly."
         }
       ],
       "F2.1.5": [
@@ -15515,6 +16769,17 @@ const INLINE_UNITS = {
           ],
           "answer": 0,
           "why": "Personal data must not be kept longer than necessary for its purpose."
+        },
+        {
+          "q": "A customer asks a gym for a copy of all the personal data it holds about her. What is this, and how long does the gym normally have to reply?",
+          "options": [
+            "A subject access request: one month",
+            "A subject access request: 72 hours",
+            "A right to erasure request: one year",
+            "A copyright claim: 30 days"
+          ],
+          "answer": 0,
+          "why": "The right of access lets people request their data, and the organisation normally has one month to reply, usually free of charge."
         }
       ]
     }
