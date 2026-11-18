@@ -106,6 +106,7 @@ function openRound(nodeId, mode, opts) {
   if (!box) return null;
   rv = {
     node: pathNodes().find(n => n.id === nodeId) || null,
+    styleOverride: (opts && opts.styleOverride) || null,
     view: null, settingsOpen: false, cs: new WeakMap(), timer: null, speedTick: null,
     returnFocus: document.activeElement, before, end: null
   };
@@ -389,7 +390,9 @@ function rvEndNext() {
 function rvEndMode(mode) {
   if (!rv || !rv.end) return;
   const id = rv.end.nodeId;
-  openRound(id, id ? mode : 'review');
+  // A Flashcards round's Next round is another Flashcards round.
+  const ov = mode === 'memorize' && id && rv.styleOverride ? { styleOverride: rv.styleOverride } : undefined;
+  openRound(id, id ? mode : 'review', ov);
 }
 
 /* Round Complete's Explain pill: the term's notes inline, under its row. */
@@ -746,6 +749,7 @@ function rvStickyHTML(card, s, past, teaching) {
 
 function rvSettingsHTML() {
   const st = loadRoundSettings();
+  if (rv && rv.styleOverride) st.style = rv.styleOverride;   // this round's style, until he changes it
   const sw = (key, label, note) => `
     <div class="rv-switch-row">
       <span><span class="rv-switch-label" id="rv-sw-${key}">${label}</span><span class="rv-switch-note">${note}</span></span>
@@ -1087,8 +1091,9 @@ function roundSettings(open) {
 function roundSetSetting(key, value) {
   if (!rv) return;
   const next = Object.assign(loadRoundSettings(), { [key]: value });
+  if (key === 'style') rv.styleOverride = null;   // his pick replaces the override, and is saved
   const clean = saveRoundSettings(next);
-  round.settings = clean;   // spelling counts from the next answer
+  round.settings = rv.styleOverride ? Object.assign({}, clean, { style: rv.styleOverride }) : clean;   // spelling counts from the next answer
   if (key === 'hideOptions') {
     round.cards.slice(round.pos).forEach(c => { if (c.q && c.q.kind === 'mcq' && !c.attempted) c.q.hidden = clean.hideOptions; });
   }
