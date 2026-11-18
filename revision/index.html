@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://zainsplace.github.io/revision/">
   <link rel="canonical" href="https://zainsplace.github.io/revision/">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230F172A'/%3E%3Ctext x='50' y='70' font-size='54' font-family='system-ui,sans-serif' font-weight='800' fill='%23F8FAFC' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css?v=32">
+  <link rel="stylesheet" href="styles.css?v=33">
 </head>
 <body>
 
@@ -78,52 +78,9 @@
   <!-- One h1 for the whole app, for screen readers and outlines. applyUnitChrome() keeps it on the active unit. -->
   <h1 class="sr-only" id="app-title">BTEC IT Revision</h1>
 
-  <!-- HOME: about today. One card says what to do now; progress and topics follow. -->
+  <!-- HOME: greeting, Jump back in, Forgotten today, league (renderHome) -->
   <div class="page" id="page-home">
-    <div class="dash-header">
-      <div class="dash-header-info">
-        <p class="dash-greeting" id="home-greeting">Good morning</p>
-        <h2 class="dash-title" id="dash-title">Unit 2 Cyber Security</h2>
-        <p class="dash-sub" id="dash-sub">BTEC National · Cyber Security &amp; Incident Management</p>
-      </div>
-    </div>
-
-    <div id="home-mock-resume"></div>
-
-    <section class="today-card" aria-labelledby="today-title">
-      <p class="today-kicker" id="today-date">Today</p>
-      <h3 class="today-title" id="today-title">Today's revision</h3>
-      <ol class="today-tasks" id="today-tasks"></ol>
-      <div class="today-foot">
-        <button class="today-link" onclick="navigate('exam')">Exam practice <span aria-hidden="true">&rarr;</span></button>
-        <button class="today-link" onclick="navigate('learn', {tab:'leaderboard'})">Battles &amp; league <span aria-hidden="true">&rarr;</span></button>
-      </div>
-    </section>
-
-    <section class="confidence" aria-labelledby="confidence-title">
-      <div class="confidence-head">
-        <h3 class="confidence-title" id="confidence-title">Where you are</h3>
-        <span class="confidence-count" id="home-topic-count">—</span>
-      </div>
-      <div class="strip" id="home-strip" role="img" aria-label="Confidence across the syllabus"></div>
-      <ul class="strip-key">
-        <li><i class="sw sw-green"></i>Confident <b id="home-stat-green">0</b></li>
-        <li><i class="sw sw-amber"></i>Getting there <b id="home-stat-amber">0</b></li>
-        <li><i class="sw sw-red"></i>Need work <b id="home-stat-red">0</b></li>
-        <li><i class="sw sw-none"></i>Not rated <b id="home-stat-unrated">0</b></li>
-      </ul>
-    </section>
-
-    <div class="stat-chips">
-      <span class="stat-chip"><b id="home-stat-streak">0</b> day streak</span>
-      <span class="stat-chip"><span id="home-stat-level" aria-hidden="true"></span><span id="home-stat-xp">Bronze · 0 season XP</span></span>
-      <span class="stat-chip"><b id="home-overall-pct">0%</b> confident overall</span>
-    </div>
-
-    <div id="priority-topics"></div>
-
-    <h3 class="home-section-title">Sections</h3>
-    <div class="grid2" id="section-tiles"></div>
+    <div id="home-content"></div>
   </div>
 
   <!-- LEARN: Path, Materials, Leaderboard (learn.js) -->
@@ -187,7 +144,7 @@
 <!-- Study dialog (learn.js): how to study a path node. Clicking the backdrop closes it. -->
 <div class="study-overlay" id="study-dialog" hidden onclick="if(event.target===this)closeStudyDialog()"></div>
 
-<!-- Right rail (1100px and up): stats card added by later screens; hidden while empty -->
+<!-- Right rail (1100px and up): the stats card (renderRightRail); hidden while empty. On phones the same card tops Home. -->
 <aside class="right-rail" id="right-rail" aria-label="Your stats"></aside>
 
 <div class="modal-overlay" id="player-modal-overlay" onclick="if(event.target===this)closeModal()">
@@ -204,9 +161,9 @@
 <script src="ppp.js?v=2"></script>
 <script src="league.js?v=2"></script>
 <script src="memory.js?v=1"></script>
-<script src="app.js?v=37"></script>
+<script src="app.js?v=38"></script>
 <script src="round.js?v=5"></script>
-<script src="round-view.js?v=3"></script>
+<script src="round-view.js?v=4"></script>
 <script src="learn.js?v=2"></script>
 </body>
 </html>

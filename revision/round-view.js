@@ -130,6 +130,9 @@ function closeRound() {
   // Redrawing replaces the node that opened the round, so find it again by id.
   const backId = back && back.id;
   if (typeof learnAfterRound === 'function') learnAfterRound();
+  // Home's rings and Forgotten count, and the stats rail, read memory too.
+  if (typeof currentPage !== 'undefined' && currentPage === 'home') renderHome();
+  if (typeof renderRightRail === 'function') renderRightRail();
   const target = back && document.contains(back) ? back : (backId ? el(backId) : null);
   if (target && typeof target.focus === 'function') target.focus({ preventScroll: true });
 }

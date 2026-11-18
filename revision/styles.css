@@ -695,7 +695,6 @@ main {
 @media (max-width: 600px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
 
 /* ─── SECTION TILES ─── */
-#section-tiles { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
 
 .section-tile {
   background: var(--bg2);
@@ -731,33 +730,6 @@ button:active, .clickable:active {
   overflow: hidden;
 }
 .tile-progress-bar { height: 100%; border-radius: var(--radius-pill); transition: width 0.4s ease-out; }
-
-/* ─── DASHBOARD HEADER ─── */
-.dash-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px 16px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-}
-.dash-greeting {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 4px;
-}
-.dash-title {
-  font-size: clamp(1.35rem, 3vw, 1.75rem);
-  font-weight: 800;
-  color: var(--text);
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-  margin-bottom: 3px;
-}
-.dash-sub { font-size: 13px; color: var(--text2); }
 
 /* ─── PROGRESS BAR ─── */
 .progress-bar-wrap { background: var(--bg3); border-radius: var(--radius-pill); height: 10px; overflow: hidden; }
@@ -1496,74 +1468,6 @@ h3[style*="text-transform:uppercase"], p[style*="text-transform:uppercase"] {
 .unit-switch-code { font-size: 13px; font-weight: 800; }
 .unit-switch-name { font-size: 11.5px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
 
-/* ─── Confidence strip (home signature) ─── */
-.confidence { margin-bottom: 18px; }
-.confidence-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 7px;
-}
-.confidence-title {
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--text2);
-  margin: 0;
-}
-.confidence-count { font-family: var(--mono); font-size: 12px; color: var(--text2); }
-
-.strip {
-  display: flex;
-  height: 34px;
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  background: var(--bg3);
-}
-.strip .seg {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 700;
-  color: #fff;
-  transition: width .5s cubic-bezier(.4, 0, .2, 1);
-  min-width: 0;
-}
-.strip .s-green { background: var(--right-fill); }
-.strip .s-amber { background: #B45309; }
-.strip .s-red   { background: var(--wrong-fill); }
-.strip .s-none  {
-  background: repeating-linear-gradient(135deg, transparent 0 5px, rgba(145,136,120,.22) 5px 10px);
-  color: var(--text3);
-}
-[data-theme="dark"] .strip .s-none {
-  background: repeating-linear-gradient(135deg, transparent 0 5px, rgba(242,237,228,.12) 5px 10px);
-}
-
-.strip-key {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 18px;
-  list-style: none;
-  padding: 0;
-  margin: 9px 0 0;
-  font-size: 12.5px;
-  color: var(--text2);
-}
-.strip-key li { display: flex; align-items: center; gap: 6px; }
-.strip-key b { color: var(--text); font-variant-numeric: tabular-nums; }
-.sw { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
-.sw-green { background: var(--green); }
-.sw-amber { background: var(--amber); }
-.sw-red   { background: var(--red); }
-.sw-none  { background: var(--border-strong); }
-
-/* ─── Compact meta row (replaced the six-box stat grid) ─── */
 
 /* ─── Calmer surfaces ───
    One 16px radius on everything gave no hierarchy. Section cards now carry a
@@ -1588,7 +1492,7 @@ h3[style*="text-transform:uppercase"], p[style*="text-transform:uppercase"] {
 /* ─── AUDIT FIXES ─── */
 /* M1: finger-sized targets on touch screens (44px is the usual guidance). */
 @media (pointer: coarse) {
-  .btn, .btn-sm, .tab-btn, .rag-btn, .mcq-opt, .today-task, .today-link, .sidebar-btn, .card-header, select { min-height: 44px; }
+  .btn, .btn-sm, .tab-btn, .rag-btn, .mcq-opt, .sidebar-btn, .card-header, select { min-height: 44px; }
   .q-chip, .apt-dot { min-width: 40px; height: 40px; }
   /* Heatmap year arrows are sized inline at 28px; min-* wins over width/height. */
   [aria-label="Previous year"], [aria-label="Next year"] { min-width: 44px; min-height: 44px; }
@@ -1602,58 +1506,15 @@ h3[style*="text-transform:uppercase"], p[style*="text-transform:uppercase"] {
 .sim-note { font-size: 12.5px; color: var(--text2); background: var(--bg3); border-radius: var(--radius-sm); padding: 8px 12px; margin-bottom: 14px; }
 .sim-inline { color: var(--text2); font-size: 12px; }
 
-/* ─── HOME (design pass 2) ─── */
+/* ─── PAGE WIDTH ─── */
 /* Design 3: every page shares one centred reading width. Questions used to be
    880px while Home and Sections stretched to ~1100px, so pages jumped around. */
 main > .page { max-width: 960px; margin-inline: auto; }
 /* Reserve the scrollbar's space so short and long pages are the same width. */
 main { scrollbar-gutter: stable; }
 
-/* Today card: what to do now, in one place. */
-/* Dark slate in both themes (white text on it); it is the page's primary card. */
-.today-card { background: #0F172A; color: #fff; border-radius: var(--r-card); padding: 22px 22px 14px;
-  margin-bottom: 24px; box-shadow: var(--shadow-float); }
-[data-theme="dark"] .today-card { background: #1E293B; }
-.today-kicker { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.88); }
-.today-title { font-size: 22px; font-weight: 800; color: #fff; margin: 2px 0 14px; }
-.today-tasks { list-style: none; display: grid; gap: 8px; }
-.today-task { width: 100%; display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 12px 14px;
-  text-align: left; font: inherit; color: #fff; cursor: pointer; border-radius: var(--radius);
-  border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.08); transition: background 0.15s; }
-.today-task:hover { background: rgba(255,255,255,0.14); }
-.today-num { flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
-  background: rgba(255,255,255,0.2); font-size: 13px; font-weight: 800; }
-.today-text { flex: 1; min-width: 0; display: grid; gap: 1px; }
-.today-task-title { font-size: 15.5px; font-weight: 800; line-height: 1.3; }
-.today-task-sub { font-size: 13px; color: rgba(255,255,255,0.94); }
-.today-arrow { flex: none; font-size: 18px; transition: transform 0.2s; }
-.today-task:hover .today-arrow { transform: translateX(4px); }
-.today-foot { display: flex; flex-wrap: wrap; gap: 4px 20px; margin-top: 10px; }
-.today-link { background: none; border: none; padding: 8px 0; font: inherit; font-size: 13.5px; font-weight: 700;
-  color: rgba(255,255,255,0.92); cursor: pointer; }
-.today-link:hover { color: #fff; text-decoration: underline; }
-/* The default focus ring is the teal accent, invisible on this teal card. */
-.today-card :focus-visible { outline-color: var(--sky); }
-
-/* Stats as chips: the old row wrapped with stray "|" separators on phones. */
-.stat-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: -4px 0 26px; }
-.stat-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: var(--radius-pill);
-  background: var(--bg2); border: 1px solid var(--border); font-size: 13px; color: var(--text2); }
-.stat-chip b { color: var(--text); font-weight: 800; }
-
-.home-section-title { margin-bottom: 12px; font-size: 14px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; }
-
-/* Topic ratings from theme tokens (were hard-coded light pinks, glaring in dark mode). */
-.rag-badge { display: inline-flex; align-items: center; gap: 6px; border-color: transparent; }
-.rag-badge.red { background: var(--red-light); color: var(--red); }
-.rag-badge.amber { background: var(--amber-light); color: var(--amber-text); }
 .rag-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; flex: none; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
-
-@media (max-width: 520px) {
-  .today-card { padding: 16px 14px 10px; }
-  .today-title { font-size: 20px; }
-}
 
 /* ─── PPP: PURE PAST PAPERS ─── */
 .ppp-next { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 16px 18px; margin: 4px 0 12px; }
@@ -2260,3 +2121,106 @@ body.round-open main { overflow: hidden; }
 .battle-mode-text b { font-size: 15px; }
 .battle-mode-text small { font-size: 12.5px; color: var(--text2); line-height: 1.4; }
 .battle-picker-note { margin: 12px 0 0; font-size: 12px; color: var(--text2); }
+
+/* ─── HOME (Task 10) ───
+   Greeting in the display font, Jump back in as a row of step cards with
+   rings, Forgotten today with a dark Review pill, then the league card. */
+#page-home { max-width: 680px; }
+.home-head { margin-bottom: 18px; }
+.home-greet { font-size: clamp(30px, 6vw, 40px); }
+.home-unit { margin-top: 4px; font-size: 14px; color: var(--text2); }
+.home-block { margin: 22px 0 18px; }
+.home-h { font-size: 18px; margin-bottom: 10px; }
+.home-none { color: var(--text2); font-size: 14px; }
+
+.home-jump {
+  display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory;
+  padding: 4px 4px 12px; margin: 0 -4px; scrollbar-width: thin;
+}
+.home-jump > [role="listitem"] { flex: 0 0 auto; scroll-snap-align: start; display: flex; }
+.home-jump-card {
+  width: 176px; display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+  padding: 16px; border: none; text-align: left; font: inherit; color: var(--text); cursor: pointer;
+  transition: transform .15s, box-shadow .15s;
+}
+.home-jump-card:hover { transform: translateY(-2px); }
+.home-jump-card.current { box-shadow: 0 0 0 3px var(--sky), var(--shadow-float); }
+.home-jump-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 6px; width: 100%; }
+.home-jump-ring { --ring-size: 58px; --ring-width: 6px; font-size: 13px; }
+.home-jump-top .g-chip { font-size: 11.5px; padding: 2px 8px; }
+.home-jump-title { font-weight: 800; font-size: 15px; line-height: 1.25; }
+.home-jump-meta { display: flex; align-items: center; gap: 6px; margin-top: auto; font-size: 12.5px; color: var(--text2); }
+.home-jump-sq { width: 10px; height: 10px; border-radius: 3px; background: var(--sec); flex: none; }
+
+.home-forgot, .home-league { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.home-forgot-emoji, .home-league-icon { font-size: 34px; line-height: 1; flex: none; }
+.home-forgot-text, .home-league-text { flex: 1; min-width: 0; }
+.home-forgot h3, .home-league h3 { font-size: 17px; margin-bottom: 2px; }
+.home-forgot p, .home-league p { font-size: 14px; color: var(--text2); line-height: 1.45; }
+.home-forgot p b { color: var(--text); }
+.home-forgot .g-btn { flex: none; padding-inline: 24px; }
+.home-league p .g-chip { padding: 1px 8px; font-size: 12.5px; }
+.home-league-sub { font-size: 12.5px !important; margin-top: 2px; }
+.home-league .g-pill { flex: none; }
+#page-home .mock-resume { margin-bottom: 16px; }
+@media (max-width: 520px) {
+  .home-forgot, .home-league { flex-wrap: wrap; }
+  .home-forgot .g-btn, .home-league .g-pill { width: 100%; }
+}
+
+/* ─── STATS CARD: right rail (1100px and up) or top of Home (below) ─── */
+.right-rail .stats-card { position: sticky; top: 0; }
+.home-stats { margin-bottom: 18px; }
+@media (min-width: 1100px) { .home-stats { display: none; } }
+.stats-card { padding: 14px; }
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.stats-tile {
+  display: flex; align-items: center; gap: 10px; padding: 10px 12px; min-height: 56px;
+  border-radius: var(--r-sm); background: var(--fill); border: none; font: inherit; color: var(--text); text-align: left;
+}
+button.stats-tile { cursor: pointer; transition: background .15s; }
+button.stats-tile:hover:not(:disabled) { background: var(--nav-active); }
+button.stats-tile:disabled { cursor: default; }
+.stats-tile.has-forgot { background: var(--forgot-bg); }
+.stats-emoji { font-size: 22px; line-height: 1; flex: none; }
+.stats-text { display: flex; flex-direction: column; min-width: 0; line-height: 1.2; }
+.stats-text b { font-size: 17px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.stats-text small { font-size: 12px; color: var(--text2); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.stats-coins:empty { display: none; }
+.stats-coins { margin-top: 8px; }
+
+/* ─── MATERIALS: term cards (Task 10) ───
+   Term in bold on top, a dashed divider, then the definition. Other spec
+   terms in the text are mint chips (applyGlossaryChips; display only). */
+.spec-card { border: none; box-shadow: var(--shadow-float); padding: 18px 20px; margin-bottom: 12px; }
+.spec-card .card-header { gap: 8px; }
+.spec-card .spec-term { font-size: 17px; font-weight: 800; letter-spacing: -0.01em; }
+.spec-card .spec-code { font-size: 11px; padding: 2px 8px; }
+.spec-card > .definition-text { border-top: 2px dashed var(--line); margin: 12px 0 0; padding-top: 12px; }
+.spec-card .card-body { margin-top: 10px; }
+.g-chip--term {
+  display: inline; padding: 1px 4px; border-radius: 6px;
+  background: var(--right-bg); color: var(--right-text);
+  font: inherit; font-weight: 600; white-space: normal;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+.key-facts li .g-chip--term, .examples-text .g-chip--term { font-style: normal; }
+
+/* ─── LEADERBOARD (Task 10) ─── */
+.battle-picker-text { flex: 1; min-width: 0; }
+.battle-start { flex: none; padding-inline: 26px; }
+.battle-picker-or { margin: 0 0 10px; font-size: 13px; color: var(--text2); }
+.lb-switch { display: flex; gap: 8px; flex-wrap: wrap; margin: 4px 0 16px; }
+.lb-switch .g-pill { min-height: 40px; padding: 8px 16px; font-size: 14px; }
+.lb-switch .g-pill.on { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+.lb-board { gap: 8px; }
+.lb-row { border: none; border-radius: var(--r-sm); box-shadow: var(--shadow-float); }
+.lb-row.me { border: none; background: var(--right-bg); box-shadow: 0 0 0 2px var(--right), var(--shadow-float); }
+.lb-row.me .lb-you { color: var(--right-text); }
+.lb-rank--me { display: flex; flex-direction: column; align-items: center; line-height: 1.1; font-size: 20px; }
+.lb-rank--me small { font-size: 11px; font-weight: 800; color: var(--right-text); }
+.lb-row .g-chip--xp { flex: none; }
+@media (max-width: 520px) {
+  .battle-picker-head { flex-wrap: wrap; }
+  .battle-start { width: 100%; }
+}

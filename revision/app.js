@@ -559,8 +559,6 @@ function applyUnitChrome() {
   set('app-title', u.label + ' ' + u.name + ' revision');
   set('brand-mark', u.short);
   set('brand-text', u.label + ' ' + u.name.split(' ')[0]);
-  set('dash-title', u.label + ' · ' + u.name);
-  set('dash-sub', u.headerSub);
   const desc = document.querySelector('meta[name="description"]');
   if (desc) desc.setAttribute('content', u.label + ': ' + u.name + ' — revision hub with a learn path, exam questions, past papers, battles and progress tracking.');
   document.querySelectorAll('.unit-switch-btn').forEach(b => {
@@ -612,6 +610,7 @@ function navigate(page, opts = {}) {
   // scroll content to top on navigation
   scrollContentTop();
   renderPage(page, opts);
+  renderRightRail();
   syncRoute(page, opts);
 }
 
@@ -880,36 +879,6 @@ function getSectionCodes(letter) {
   return [...new Set(codes)];
 }
 
-function overallProgress() {
-  const letters = unitLettersUpper();
-  const built = letters.filter(l => DATA[l.toLowerCase()]);
-  if (!built.length) return 0;
-  let total = 0, done = 0;
-  built.forEach(l => {
-    const codes = getSectionCodes(l);
-    total += codes.length;
-    done += codes.filter(c => state.rag[c] === 'green').length;
-  });
-  return total ? Math.round((done / total) * 100) : 0;
-}
-
-/* Whole-unit RAG spread, including topics never rated. Feeds the confidence
-   strip on the home page. */
-function ragSpread() {
-  loadData(unitLetters());
-  let total = 0, green = 0, amber = 0, red = 0;
-  unitLettersUpper().forEach(l => {
-    getSectionCodes(l).forEach(c => {
-      total++;
-      const v = state.rag[c];
-      if (v === 'green') green++;
-      else if (v === 'amber') amber++;
-      else if (v === 'red') red++;
-    });
-  });
-  return { total, green, amber, red, unrated: total - green - amber - red };
-}
-
 function ragCounts() {
   const vals = Object.values(state.rag);
   return {
@@ -1027,170 +996,172 @@ function bumpActivity(n = 1) {
   saveState();
 }
 
-/* ---- HOME ---- */
-/* The confidence strip: one honest picture of the whole syllabus, including
-   the topics never rated — which the old four-number stat row could not show. */
-function renderConfidenceStrip() {
-  const sp = ragSpread();
-  const strip = el('home-strip');
-  const count = el('home-topic-count');
-  if (count) count.textContent = sp.total + (sp.total === 1 ? ' topic' : ' topics');
-  if (!strip) return;
-  if (!sp.total) { strip.innerHTML = ''; return; }
-  const seg = (cls, n) => n ? `<span class="seg ${cls}" style="width:${(n / sp.total) * 100}%">${
-    (n / sp.total) > 0.06 ? n : ''}</span>` : '';
-  strip.innerHTML = seg('s-green', sp.green) + seg('s-amber', sp.amber) +
-                    seg('s-red', sp.red) + seg('s-none', sp.unrated);
-  strip.setAttribute('aria-label',
-    `${sp.green} confident, ${sp.amber} getting there, ${sp.red} need work, ${sp.unrated} not yet rated, of ${sp.total} topics`);
-  const set = (id, v) => { const n = el(id); if (n) n.textContent = v; };
-  set('home-stat-green', sp.green);
-  set('home-stat-amber', sp.amber);
-  set('home-stat-red', sp.red);
-  set('home-stat-unrated', sp.unrated);
+/* ---- HOME ----
+   Gizmo's home: a greeting, "Jump back in" (the steps studied most recently
+   and the next step on the path, each with its ring), "Forgotten today" with
+   one Review button, the league card, and a resume card for a mock or past
+   paper in progress. The stats card sits in the right rail on desktop and at
+   the top of Home on phones (statsCardHTML). */
+
+/* Every term of the active unit that is due again (MEMORY status forgotten).
+   A review round asks these (round.js roundCodes, mode 'review'). */
+function forgottenToday() {
+  const t = today();
+  return pathNodes().reduce((n, node) =>
+    n + node.items.filter(it => MEMORY.status(state.memory[it.code], t) === 'forgotten').length, 0);
 }
 
-/* The hero points at the weakest-rated section, falling back to the unit's
-   first section in its own display order. */
-function heroLetter() {
-  const ranked = unitLettersUpper()
-    .map(L => ({ L, p: sectionProgress(L) }))
-    .sort((a, b) => a.p - b.p);
-  return ranked.length ? ranked[0].L : unitLettersUpper()[0];
-}
-
-/* ---- TODAY CARD ----
-   Home leads with what to do now, worked out from the student's own progress:
-   today's flashcards, exam questions to retry (or one to try), and the weakest
-   section. Each row is one tap into that task. */
-function openPracticeFiltered(show) {
-  qMode = 'practice';
-  qShow = show;
-  qFilter = 'all';
-  qIdx = 0;
-  navigate('questions');
-}
-
-function todayTasks() {
-  const tasks = [];
-  const plural = (n, w) => `${n} ${w}${n === 1 ? '' : 's'}`;
-
-  // The Learn path's current step (today's flashcards used to sit here).
-  const stepId = typeof currentNodeId === 'function' ? currentNodeId() : null;
-  const step = stepId && unitPathNodes(store.activeUnit).find(n => n.id === stepId);
-  if (step) {
-    tasks.push({
-      title: `Study ${escapeHTML(step.title)}`,
-      sub: `Your next step on the Learn path · ${plural(step.items.length, 'card')}`,
-      action: 'studyNow()'
-    });
-  }
-
-  const qs = PPP.bankQuestions(loadJSON('data/questions.json'));
-  const latest = latestScores();
-  const weak = qs.filter(q => q.id in latest && latest[q.id] < WEAK_PCT).length;
-  const untried = qs.filter(q => !(q.id in latest)).length;
-  if (weak) {
-    tasks.push({ title: `Retry ${plural(weak, 'question')}`, sub: `You scored under ${WEAK_PCT}% last time`, action: "openPracticeFiltered('weak')" });
-  } else if (untried) {
-    tasks.push({ title: 'Practise an exam question', sub: `${untried} not tried yet`, action: "openPracticeFiltered('new')" });
-  }
-
-  // With nothing rated yet every section is 0%, so "weakest" would mean nothing.
-  const L = heroLetter();
-  const rated = Object.keys(state.rag).length > 0;
-  tasks.push({
-    title: `Section ${L} · ${sectionShortName(L)}`,
-    sub: rated ? `${sectionProgress(L)}% confident · your weakest section` : `Start here · ${sectionBlurb(L)}`,
-    action: 'openHeroSection()'
+/* When a node was last studied: the latest `seen` among its terms, else the
+   date its old lesson was done. '' if never. */
+function nodeLastSeen(node) {
+  let last = '';
+  node.items.forEach(it => {
+    const r = state.memory[it.code];
+    if (r && r.seen > last) last = r.seen;
   });
-  return tasks;
+  const lesson = state.lessons && state.lessons[node.id];
+  if (lesson && typeof lesson.date === 'string' && lesson.date > last) last = lesson.date.slice(0, 10);
+  return last;
 }
 
-function renderTodayCard() {
-  const list = el('today-tasks');
-  if (!list) return;
-  const d = el('today-date');
-  if (d) d.textContent = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
-  const tasks = todayTasks();
-  el('today-title').textContent = `${tasks.length} thing${tasks.length === 1 ? '' : 's'} to do today`;
-  list.innerHTML = tasks.map((t, i) => `
-    <li><button class="today-task" onclick="${t.action}">
-      <span class="today-num" aria-hidden="true">${i + 1}</span>
-      <span class="today-text"><span class="today-task-title">${t.title}</span><span class="today-task-sub">${t.sub}</span></span>
-      <span class="today-arrow" aria-hidden="true">&rarr;</span>
-    </button></li>`).join('');
+/* The three most recently studied steps (newest first; on a tie the one
+   further along the path), then the current step if it isn't one of them. */
+function jumpBackNodes() {
+  const nodes = pathNodes();
+  const recent = nodes
+    .map((n, i) => ({ n, i, d: nodeLastSeen(n) }))
+    .filter(x => x.d)
+    .sort((a, b) => b.d.localeCompare(a.d) || b.i - a.i)
+    .slice(0, 3)
+    .map(x => x.n);
+  const curId = currentNodeId();
+  const cur = curId && nodes.find(n => n.id === curId);
+  if (cur && !recent.includes(cur)) recent.push(cur);
+  return { list: recent, curId };
 }
 
-function openHeroSection() {
-  navigate('learn', { section: heroLetter() });
+function homeDomId(id) { return 'home-jump-' + String(id).replace(/[^A-Za-z0-9_-]/g, '_'); }
+
+function jumpCardHTML(n, curId) {
+  const pct = nodeRing(n);
+  const cards = n.items.length;
+  const isCur = n.id === curId;
+  const label = `${n.title}, section ${n.letter}, ${cards} card${cards === 1 ? '' : 's'}, ${pct}% learned${isCur ? ', next step' : ''}`;
+  return `
+    <button class="g-card home-jump-card${isCur ? ' current' : ''}" id="${homeDomId(n.id)}" style="--sec:${sectionColour(n.letter)}" onclick="openStudyDialog('${escapeHTML(n.id)}')" aria-label="${escapeHTML(label)}">
+      <span class="home-jump-top">
+        <span class="g-ring home-jump-ring" style="--pct:${pct}"><span>${pct}%</span></span>
+        ${isCur ? '<span class="g-chip g-chip--xp">Next step</span>' : ''}
+      </span>
+      <span class="home-jump-title">${escapeHTML(n.title)}</span>
+      <span class="home-jump-meta"><span class="home-jump-sq" aria-hidden="true"></span>Section ${n.letter} · ${cards} card${cards === 1 ? '' : 's'}</span>
+    </button>`;
+}
+
+/* The stats card: streak, XP, league tier and place, Forgotten count, and the
+   coin balance once coins exist. Used by the right rail and the top of Home. */
+function statsCardHTML() {
+  const streak = currentStreak();
+  const rows = leagueRows();
+  const me = rows.find(r => r.me);
+  const t = TIERS[state.league.tier];
+  const forgot = forgottenToday();
+  // Coins (Task 11): this slot stays empty until coins.js defines COINS.
+  const coins = typeof COINS !== 'undefined' && typeof COINS.railHTML === 'function' ? COINS.railHTML() : '';
+  return `
+    <div class="g-card stats-card">
+      <div class="stats-grid">
+        <div class="stats-tile">
+          <span class="stats-emoji" aria-hidden="true">🔥</span>
+          <span class="stats-text"><b>${streak}</b><small>day streak</small></span>
+        </div>
+        <div class="stats-tile">
+          <span class="stats-emoji" aria-hidden="true">⚡</span>
+          <span class="stats-text"><b>${(state.xp || 0).toLocaleString()}</b><small>total XP</small></span>
+        </div>
+        <button class="stats-tile" onclick="navigate('learn',{tab:'leaderboard'})" title="Open the leaderboard">
+          <span class="stats-emoji" aria-hidden="true">${t.icon}</span>
+          <span class="stats-text"><b>#${me.place}</b><small>${escapeHTML(t.name)} League</small></span>
+        </button>
+        <button class="stats-tile${forgot ? ' has-forgot' : ''}" onclick="openRound(null,'review')" ${forgot ? '' : 'disabled'} title="${forgot ? 'Review your forgotten terms' : 'Nothing forgotten right now'}">
+          <span class="stats-emoji" aria-hidden="true">⏰</span>
+          <span class="stats-text"><b>${forgot}</b><small>forgotten</small></span>
+        </button>
+      </div>
+      ${coins ? `<div class="stats-coins">${coins}</div>` : ''}
+    </div>`;
+}
+
+/* Fill the right rail (shown from 1100px). Called after every page change,
+   after a round and when XP changes; coalesced to one draw per frame. */
+let railQueued = false;
+function renderRightRail() {
+  if (railQueued) return;
+  railQueued = true;
+  requestAnimationFrame(() => {
+    railQueued = false;
+    const rail = el('right-rail');
+    if (rail) rail.innerHTML = statsCardHTML();
+  });
+}
+
+function homeLeagueHTML() {
+  const rows = leagueRows();
+  const me = rows.find(r => r.me);
+  const t = TIERS[state.league.tier];
+  const ahead = rows.find(r => r.place === me.place - 1);
+  const gap = ahead ? ahead.xp - me.xp + 1 : 0;
+  return `
+    <section class="g-card home-league" style="--rank:${t.col}" aria-labelledby="home-league-title">
+      <span class="home-league-icon" aria-hidden="true">${t.icon}</span>
+      <div class="home-league-text">
+        <h3 id="home-league-title">${escapeHTML(t.name)} League</h3>
+        <p>#${me.place} of ${rows.length} · <span class="g-chip g-chip--xp">${me.xp.toLocaleString()} XP</span> this week</p>
+        <p class="home-league-sub">${ahead ? `${gap.toLocaleString()} XP to pass ${escapeHTML(ahead.name)}` : 'You lead the league this week'} · ${weekLeftText()}</p>
+      </div>
+      <button class="g-pill" onclick="navigate('learn',{tab:'leaderboard'})">Leaderboard</button>
+    </section>`;
 }
 
 function renderHome() {
+  const box = el('home-content');
+  if (!box) return;
   loadData(unitLetters());
-
-  const prog = overallProgress();
-
+  const u = unitDef();
   const hour = new Date().getHours();
   const greet = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
-  const greetEl = el('home-greeting');
-  if (greetEl) greetEl.textContent = greet;
+  const { list, curId } = jumpBackNodes();
+  const forgot = forgottenToday();
 
-  el('home-overall-pct').textContent = prog + '%';
-  renderConfidenceStrip();
-  el('home-stat-streak').textContent = currentStreak();
-  const wk = weekXP();
-  const myLeague = TIERS[state.league.tier];
-  el('home-stat-level').textContent = myLeague.icon;
-  el('home-stat-level').style.color = myLeague.col;
-  el('home-stat-xp').textContent = `${myLeague.name} League · ${wk.toLocaleString()} XP this week`;
-  renderTodayCard();
-  renderSectionTiles();
-  renderPriorityTopics();
-  // A refresh always lands on Home, so an interrupted paper is offered here too.
-  const resume = el('home-mock-resume');
-  if (resume) resume.innerHTML = mockResumeHTML() + pppResumeHTML();
-}
+  box.innerHTML = `
+    <header class="home-head">
+      <h2 class="g-display g-wavy home-greet" aria-label="${greet}">${greet.split('').map(c => `<span aria-hidden="true">${c === ' ' ? '&nbsp;' : c}</span>`).join('')}</h2>
+      <p class="home-unit">${escapeHTML(u.label)} · ${escapeHTML(u.name)}</p>
+    </header>
 
-/* ---- PRIORITY TOPICS (weakest first: red, then amber) ---- */
-function findItemByCode(code) {
-  for (const key of unitLetters()) {
-    const d = DATA[key];
-    if (!d) continue;
-    let found = null;
-    (function walk(obj) {
-      if (found || !obj || typeof obj !== 'object') return;
-      if (obj.code === code && obj.term) { found = { term: obj.term, section: d.section }; return; }
-      Object.values(obj).forEach(v => { if (typeof v === 'object') walk(v); });
-    })(d);
-    if (found) return found;
-  }
-  return null;
-}
+    <div class="home-stats">${statsCardHTML()}</div>
 
-function renderPriorityTopics() {
-  const container = el('priority-topics');
-  if (!container) return;
-  const reds = Object.entries(state.rag).filter(([, v]) => v === 'red').map(([k]) => k);
-  const ambers = Object.entries(state.rag).filter(([, v]) => v === 'amber').map(([k]) => k);
-  const rows = [...reds, ...ambers].map(code => {
-    const item = findItemByCode(code);
-    if (!item) return '';
-    const level = state.rag[code] === 'red' ? 'red' : 'amber';
-    return `
-      <div role="button" tabindex="0" class="search-result" onclick="goToResult('${item.section}', '${code}')">
-        <div style="display:flex;align-items:center;gap:8px">
-          <span class="badge rag-badge ${level}"><span class="rag-dot" aria-hidden="true"></span>${code}</span>
-          <h4 style="flex:1">${item.term}</h4>
-          <span class="sr-only">${level === 'red' ? 'Need work' : 'Getting there'}</span>
-          <span class="chevron" aria-hidden="true">→</span>
-        </div>
-      </div>`;
-  }).filter(Boolean).slice(0, 5);
+    ${examResumeHTML()}
 
-  container.innerHTML = rows.length ? `
-    <h3 class="home-section-title">Topics to revisit</h3>
-    <div class="search-results" style="margin-bottom:24px">${rows.join('')}</div>` : '';
+    <section class="home-block" aria-labelledby="home-jump-title">
+      <h3 class="home-h" id="home-jump-title">Jump back in</h3>
+      ${list.length
+        ? `<div class="home-jump" role="list">${list.map(n => `<div role="listitem">${jumpCardHTML(n, curId)}</div>`).join('')}</div>`
+        : '<p class="home-none">Every step is mastered. Open Learn to keep them fresh.</p>'}
+    </section>
+
+    <section class="g-card home-forgot" aria-labelledby="home-forgot-title">
+      <span class="home-forgot-emoji" aria-hidden="true">⏰</span>
+      <div class="home-forgot-text">
+        <h3 id="home-forgot-title">Forgotten today</h3>
+        <p>${forgot
+          ? `<b id="home-forgot-count">${forgot}</b> term${forgot === 1 ? ' is' : 's are'} due again${forgot > ROUND_MAX ? `. A review round asks ${ROUND_MAX} at a time` : ''}.`
+          : '<b id="home-forgot-count">0</b> terms due. Nothing to review right now.'}</p>
+      </div>
+      <button class="g-btn" id="home-review" onclick="openRound(null,'review')" ${forgot ? '' : 'disabled'}>Review</button>
+    </section>
+
+    ${homeLeagueHTML()}`;
 }
 
 let profileHeatmapYear = new Date().getFullYear();
@@ -1284,32 +1255,6 @@ function scrollHeatmapToToday(container, year) {
   const col = Math.floor((startPad + dayOfYear) / 7);
   // 16px per week column, plus the day-label gutter; keep today near the right edge.
   sc.scrollLeft = Math.max(0, col * 16 + 60 - sc.clientWidth + 40);
-}
-
-function renderSectionTiles() {
-  const container = el('section-tiles');
-  const sections = sectionList();
-
-  container.innerHTML = sections.map(s => {
-    const prog = sectionProgress(s.letter);
-    const tier = sectionTierClass(s.letter);
-    const col = sectionColour(s.letter);
-    return `
-      <div role="button" tabindex="0" class="section-tile" onclick="navigate('learn', {section:'${s.letter}'})">
-        <div class="tile-accent" style="background:${col}"></div>
-        <div class="tile-code" style="color:${col}">${s.letter}</div>
-        <div class="badge ${tier}" style="margin-bottom:6px">${tier === 'tier1' ? 'Tier 1' : tier === 'tier2' ? 'Tier 2' : 'Tier 3'}</div>
-        <h3>${s.name}</h3>
-        <p>${s.topics}</p>
-        <div class="tile-progress"><div class="tile-progress-bar" data-target="${prog}" style="width:0%;background:${col};transition:width 0.6s ease-out"></div></div>
-        <div style="font-size:12px;color:var(--text2);margin-top:4px">${prog}% confident</div>
-      </div>`;
-  }).join('');
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    container.querySelectorAll('.tile-progress-bar[data-target]').forEach(bar => {
-      bar.style.width = bar.dataset.target + '%';
-    });
-  }));
 }
 
 /* ---- LEARN -> MATERIALS ----
@@ -1413,6 +1358,123 @@ function renderSectionContent(container, data, letter) {
     </nav>`;
 
   container.innerHTML = html;
+  applyGlossaryChips(container);
+}
+
+/* ---- GLOSSARY CHIPS ----
+   In the notes, other spec terms of the same unit are shown as mint chips
+   inside the text (display only: the words are exactly the JSON's). Names come
+   from each item's term: the full term, the part before any brackets, and an
+   acronym in the brackets ("Local Area Network (LAN)") or, for an acronym
+   term, the expansion in them ("USB (Universal Serial Bus)"). Single-word
+   acronyms match case-sensitively, so "IT" never chips "it"; everything else
+   matches whole words, any case. Longer names win, a card never chips its own
+   term, and each term is chipped once per card (its first appearance). Only
+   text nodes are touched, after the HTML is parsed, so tags, attributes and
+   entities are never split. */
+let glossaryCache = null;   // { unit, entries } for the active unit
+
+function glossaryIsAcronym(s) {
+  return /^[A-Za-z0-9]+$/.test(s) && (s.match(/[A-Z]/g) || []).length >= 2;
+}
+
+function glossaryNames(term) {
+  const t = String(term || '').trim();
+  const out = [t];
+  const m = t.match(/^(.*?)\s*\(([^)]+)\)\s*$/);
+  if (m) {
+    const main = m[1].trim(), inner = m[2].trim();
+    out.push(main);
+    if (glossaryIsAcronym(main)) {
+      if (/\s/.test(inner) && /^[A-Z]/.test(inner) && !/,/.test(inner)) out.push(inner);
+    } else if (glossaryIsAcronym(inner)) {
+      out.push(inner);
+    }
+  }
+  return out.filter(p => p.length > 2 || glossaryIsAcronym(p));
+}
+
+function glossaryEntries() {
+  const unit = store.activeUnit;
+  if (glossaryCache && glossaryCache.unit === unit) return glossaryCache.entries;
+  const byName = new Map();
+  const sections = unitData().sections || {};
+  Object.values(sections).forEach(sec => (sec && sec.topics || []).forEach(t => t.subtopics.forEach(sub => sub.items.forEach(item => {
+    if (!item.term) return;
+    glossaryNames(item.term).forEach(name => {
+      const cs = glossaryIsAcronym(name);
+      const k = cs ? name : name.toLowerCase();
+      if (!byName.has(k)) byName.set(k, { name, lower: glossaryLower(name), cs, key: item.code });
+    });
+  }))));
+  const entries = [...byName.values()].sort((a, b) => b.name.length - a.name.length);
+  glossaryCache = { unit, entries };
+  return entries;
+}
+
+// ASCII-only lower case, so indexes line up with the original string.
+function glossaryLower(s) { return s.replace(/[A-Z]/g, c => c.toLowerCase()); }
+
+function glossaryWordChar(ch) { return !!ch && /[A-Za-z0-9-]/.test(ch); }
+
+/* Matches in one text node: [{ i, j }] in order, not overlapping. */
+function glossaryFind(text, entries, own, used) {
+  const lower = glossaryLower(text);
+  const taken = [];
+  for (const e of entries) {
+    if (used.has(e.key) || own.has(e.name.toLowerCase())) continue;
+    const hay = e.cs ? text : lower;
+    const needle = e.cs ? e.name : e.lower;
+    let i = hay.indexOf(needle);
+    while (i >= 0) {
+      const j = i + needle.length;
+      if (!glossaryWordChar(text[i - 1]) && !glossaryWordChar(text[j]) && !taken.some(r => i < r.j && j > r.i)) {
+        taken.push({ i, j });
+        used.add(e.key);
+        break;
+      }
+      i = hay.indexOf(needle, i + 1);
+    }
+  }
+  return taken.sort((a, b) => a.i - b.i);
+}
+
+function applyGlossaryChips(root) {
+  if (!root) return;
+  const entries = glossaryEntries();
+  root.querySelectorAll('.spec-card').forEach(card => {
+    const termEl = card.querySelector('.spec-term');
+    // The card's own names, singular and plural: 'VPNs (...)' does not chip 'VPN'.
+    const own = new Set();
+    glossaryNames(termEl ? termEl.textContent : '').forEach(n => {
+      const l = n.toLowerCase();
+      own.add(l); own.add(l.replace(/s$/, '')); own.add(l + 's');
+    });
+    const used = new Set();
+    card.querySelectorAll('.definition-text, .examples-text, .key-facts li, .exam-tip').forEach(box => {
+      const walker = document.createTreeWalker(box, NodeFilter.SHOW_TEXT);
+      const nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+      nodes.forEach(node => {
+        if (node.parentElement && node.parentElement.closest('.g-chip--term')) return;
+        const text = node.data;
+        const hits = glossaryFind(text, entries, own, used);
+        if (!hits.length) return;
+        const frag = document.createDocumentFragment();
+        let at = 0;
+        hits.forEach(({ i, j }) => {
+          if (i > at) frag.appendChild(document.createTextNode(text.slice(at, i)));
+          const chip = document.createElement('span');
+          chip.className = 'g-chip g-chip--term';
+          chip.textContent = text.slice(i, j);
+          frag.appendChild(chip);
+          at = j;
+        });
+        if (at < text.length) frag.appendChild(document.createTextNode(text.slice(at)));
+        node.parentNode.replaceChild(frag, node);
+      });
+    });
+  });
 }
 
 function setNotesFilter(f) {
@@ -1434,7 +1496,7 @@ function jumpToTopic(code) {
 function expandAllCards(open) {
   document.querySelectorAll('#learn-content .card-body').forEach(body => {
     body.classList.toggle('hidden', !open);
-    const header = body.previousElementSibling;
+    const header = body.parentElement.querySelector('.card-header');
     if (header) header.setAttribute('aria-expanded', String(open));
     const chev = header && header.querySelector('.chevron');
     if (chev) chev.classList.toggle('open', open);
@@ -1460,16 +1522,16 @@ function renderSpecItem(item, letter) {
   const isReviewed = state.reviewed[reviewedKey];
 
   return `
-    <div class="card" id="item-${item.code}">
+    <div class="card spec-card" id="item-${item.code}">
       <div role="button" tabindex="0" class="card-header" aria-expanded="false" aria-controls="body-${item.code}" onclick="toggleCard('${item.code}')">
-        <span class="badge" style="min-width:65px;text-align:center">${item.code}</span>
-        <i class="rag-dot rag-dot-${ragVal || 'unrated'}" id="rag-dot-${item.code}" title="${RAG_LABELS[ragVal || 'unrated']}" aria-label="${RAG_LABELS[ragVal || 'unrated']}" role="img"></i>
-        <h3>${item.term}</h3>
+        <h3 class="spec-term">${item.term}</h3>
         ${isReviewed ? '<span class="reviewed-tick" style="color:var(--green);font-size:12px">✓</span>' : ''}
-        <span class="chevron" id="chev-${item.code}">▼</span>
+        <i class="rag-dot rag-dot-${ragVal || 'unrated'}" id="rag-dot-${item.code}" title="${RAG_LABELS[ragVal || 'unrated']}" aria-label="${RAG_LABELS[ragVal || 'unrated']}" role="img"></i>
+        <span class="badge spec-code">${item.code}</span>
+        <span class="chevron" id="chev-${item.code}" aria-hidden="true">▼</span>
       </div>
+      <p class="definition-text">${item.definition}</p>
       <div class="card-body hidden" id="body-${item.code}">
-        <p class="definition-text">${item.definition}</p>
         ${item.examples ? `<p class="examples-text">Examples: ${item.examples}</p>` : ''}
         ${item.comparisonTable ? renderComparisonTable(item.comparisonTable) : ''}
         ${item.keyFacts && item.keyFacts.length ? `
@@ -1493,8 +1555,8 @@ function toggleCard(code) {
   if (!body) return;
   const open = body.classList.toggle('hidden') === false;
   if (chev) chev.classList.toggle('open', open);
-  const header = body.previousElementSibling;
-  if (header && header.classList.contains('card-header')) header.setAttribute('aria-expanded', String(open));
+  const header = body.parentElement.querySelector('.card-header');
+  if (header) header.setAttribute('aria-expanded', String(open));
 }
 
 function setRAG(code, val, letter) {
@@ -3866,6 +3928,7 @@ function awardXP(n, quiet) {
   gainXP(n);
   bumpActivity();
   saveState();
+  renderRightRail();
   if (!quiet) toast(`+${n} XP`);
 }
 
@@ -3989,15 +4052,22 @@ function lbMoveHTML(delta) {
 
 const LB_MEDALS = { 1: '🥇', 2: '🥈', 3: '🥉' };
 
+/* The place cell: a medal for the top three; your own row always gets one
+   (🏅 below third) with the place under it. */
+function lbRankHTML(r) {
+  if (!r.me) return `<span class="lb-rank">${LB_MEDALS[r.place] || '#' + r.place}</span>`;
+  return `<span class="lb-rank lb-rank--me"><span aria-hidden="true">${LB_MEDALS[r.place] || '🏅'}</span><small>#${r.place}</small></span>`;
+}
+
 function lbRowHTML(r, moveMap) {
   const delta = moveMap ? (moveMap[r.name] || 0) : 0;
   return `
     <div role="button" tabindex="0" class="lb-row${r.me ? ' me' : ''} clickable" onclick="${r.me ? "navigate('profile')" : `showPlayerCard('${r.name}')`}" title="${r.me ? 'View your profile' : 'View player'}">
-      <span class="lb-rank">${LB_MEDALS[r.place] || '#' + r.place}</span>
+      ${lbRankHTML(r)}
       ${lbMoveHTML(delta)}
       <span class="lb-av" style="background:${r.col}">${r.me ? meAvInner() : r.name.charAt(0)}</span>
       <span class="lb-name">${r.name}${r.me ? ' <span class="lb-you">(you)</span>' : ''}<span class="lb-tag">${r.tag}</span></span>
-      <span class="lb-xp">${r.xp.toLocaleString()} XP</span>
+      <span class="${r.me ? 'g-chip g-chip--xp' : 'lb-xp'}">${r.xp.toLocaleString()} XP</span>
     </div>`;
 }
 
@@ -4139,10 +4209,10 @@ function ratingBoardHTML() {
   const provisional = b.rated < LEAGUE.PROVISIONAL;
   const row = r => `
     <div role="button" tabindex="0" class="lb-row${r.me ? ' me' : ' clickable'}" onclick="${r.me ? "navigate('profile')" : `showPlayerCard('${r.name}')`}">
-      <span class="lb-rank">${LB_MEDALS[r.place] || '#' + r.place}</span>
+      ${lbRankHTML(r)}
       <span class="lb-av" style="background:${r.col}">${r.me ? meAvInner() : r.name.charAt(0)}</span>
       <span class="lb-name">${r.name}${r.me ? ' <span class="lb-you">(you)</span>' : ''}<span class="lb-tag">${r.tag}</span></span>
-      <span class="lb-xp">${r.rating}</span>
+      <span class="${r.me ? 'g-chip g-chip--xp' : 'lb-xp'}">${r.rating}</span>
     </div>`;
   const top = rows.slice(0, 10);
   return `
@@ -4182,9 +4252,9 @@ function renderLeaderboardPage(container, inTab) {
   container.innerHTML = `
     ${inTab ? '' : '<h2 style="margin-bottom:6px">Leaderboard</h2>'}
     <p class="sim-note">The other players are simulated practice rivals, not real students. Your progress stays on this device.</p>
-    <div class="tabs" role="group" aria-label="Leaderboard" style="max-width:420px">
-      <button class="tab-btn ${isLeague ? 'active' : ''}" aria-pressed="${isLeague}" onclick="setLbView('league')">🏆 Weekly league</button>
-      <button class="tab-btn ${isLeague ? '' : 'active'}" aria-pressed="${!isLeague}" onclick="setLbView('rating')">⚔️ Battle rating</button>
+    <div class="lb-switch" role="group" aria-label="Leaderboard">
+      <button class="g-pill${isLeague ? ' on' : ''}" aria-pressed="${isLeague}" onclick="setLbView('league')">🏆 Weekly league</button>
+      <button class="g-pill${isLeague ? '' : ' on'}" aria-pressed="${!isLeague}" onclick="setLbView('rating')">⚔️ Battle rating</button>
     </div>
     ${isLeague ? `
       ${banner}
@@ -4433,11 +4503,13 @@ function battlePickerHTML() {
     <div class="g-card battle-picker">
       <div class="battle-picker-head">
         <span class="learn-battle-icon" aria-hidden="true">⚔️</span>
-        <div>
+        <div class="battle-picker-text">
           <h3 id="battle-picker-title">Battle</h3>
           <p>Race league rivals on this unit's terms. Battle rating ${b.rating} · ${b.won} won of ${b.played}.</p>
         </div>
+        <button class="g-btn battle-start" onclick="startBattle('duel')" aria-describedby="battle-picker-title">Start</button>
       </div>
+      <p class="battle-picker-or">Start is a Duel against the rival rated just above you. Or pick a mode:</p>
       <div class="battle-modes" role="group" aria-labelledby="battle-picker-title">
         ${Object.entries(BATTLE_MODES).map(([key, m]) => `
           <button class="battle-mode" onclick="startBattle('${key}')">
@@ -5139,7 +5211,7 @@ function goToResult(section, code) {
       if (body && body.classList.contains('hidden')) {
         body.classList.remove('hidden');
         if (chev) chev.classList.add('open');
-        const header = body.previousElementSibling;
+        const header = body.parentElement.querySelector('.card-header');
         if (header) header.setAttribute('aria-expanded', 'true');
       }
     }
@@ -5317,6 +5389,7 @@ function adoptStoreFrom(raw) {
 function refreshStaleView() {
   if (!staleView) return;
   staleView = false;
+  renderRightRail();
   if (['home', 'exam'].includes(currentPage)) renderPage(currentPage, {});
   // Learn's path and league only show progress; its notes, and a live battle, are left alone.
   else if (currentPage === 'learn' && !currentSection && learnTab !== 'materials' && !battle && typeof learnRefresh === 'function') learnRefresh();
