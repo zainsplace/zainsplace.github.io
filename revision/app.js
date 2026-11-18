@@ -515,6 +515,13 @@ function applyUnitChrome() {
     b.classList.toggle('active', b.dataset.unit === u.id);
     b.setAttribute('aria-pressed', String(b.dataset.unit === u.id));
   });
+  // The unit's sections under the Study button, each with its colour square.
+  const secs = el('sidebar-sections');
+  if (secs) {
+    secs.innerHTML = '<p class="sidebar-group" aria-hidden="true">Sections</p>' + sectionList().map(s =>
+      `<button class="sidebar-btn sidebar-sec" style="--sec:${s.col}" onclick="navigate('sections', {section:'${s.letter}'}); if (window.innerWidth < SIDEBAR_BREAKPOINT) closeSidebar()" title="Section ${s.letter}: ${s.name}"><span class="sec-sq" aria-hidden="true"></span><span>${s.name}</span></button>`
+    ).join('');
+  }
 }
 
 /* ---- NAVIGATION ---- */
@@ -547,7 +554,7 @@ function navigate(page, opts = {}) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const pageEl = document.getElementById('page-' + page);
   if (pageEl) pageEl.classList.add('active');
-  document.querySelectorAll('.sidebar-btn').forEach(b => {
+  document.querySelectorAll('.sidebar-btn, .tabbar-btn').forEach(b => {
     b.classList.toggle('active', b.dataset.page === page);
   });
   const titleEl = el('top-bar-title');
@@ -623,23 +630,20 @@ function renderPage(page, opts) {
 /* ---- SIDEBAR ---- */
 let sidebarOpen = null; // null = not yet initialised
 
-/* localStorage throws when storage is blocked. Everything else guards it, and an
-   unguarded read here ran inside DOMContentLoaded and stopped the app starting. */
-function lsGet(key) { try { return localStorage.getItem(key); } catch { return null; } }
-function lsSet(key, val) { try { localStorage.setItem(key, val); } catch { /* not persisted */ } }
+/* From 768px the sidebar is a fixed column and CSS ignores .open. Under 768px
+   it is a drawer behind the hamburger (the tab bar holds the main five pages),
+   and the drawer always starts closed. */
+const SIDEBAR_BREAKPOINT = 768;
 
 function initSidebar() {
-  // With no saved choice, a wide screen starts with the labelled sidebar: the
-  // icon rail alone left first-time visitors guessing what each icon was.
-  const saved = lsGet('rev_sidebar') ?? lsGet('u2_sidebar');
-  sidebarOpen = saved !== null ? saved === 'true' : window.innerWidth >= 1200;
+  sidebarOpen = false;
   applySidebarState();
 }
 
 function applySidebarState() {
   const sidebar = el('sidebar');
   const backdrop = el('sidebar-backdrop');
-  const isDesktop = window.innerWidth >= 900;
+  const isDesktop = window.innerWidth >= SIDEBAR_BREAKPOINT;
   el('hamburger').setAttribute('aria-expanded', String(!!sidebarOpen));
   if (sidebarOpen) {
     sidebar.classList.add('open');
@@ -652,20 +656,18 @@ function applySidebarState() {
 
 function toggleSidebar() {
   sidebarOpen = !sidebarOpen;
-  lsSet('rev_sidebar', String(sidebarOpen));
   applySidebarState();
 }
 
 function closeSidebar() {
   sidebarOpen = false;
-  lsSet('rev_sidebar', 'false');
   applySidebarState();
 }
 
 function sidebarNav(page) {
   navigate(page);
   // On mobile, close sidebar after navigation
-  if (window.innerWidth < 900) closeSidebar();
+  if (window.innerWidth < SIDEBAR_BREAKPOINT) closeSidebar();
 }
 
 /* ---- HELPERS ---- */
@@ -5942,7 +5944,7 @@ document.addEventListener('keydown', e => {
   if (e.key !== 'Escape') return;
   const modal = el('player-modal-overlay');
   if (modal && modal.classList.contains('show')) { closeModal(); return; }
-  if (sidebarOpen && window.innerWidth < 900) closeSidebar();
+  if (sidebarOpen && window.innerWidth < SIDEBAR_BREAKPOINT) closeSidebar();
 });
 
 /* Site-wide keys: / jumps to Search, ? lists every shortcut. Never while typing,
@@ -6000,7 +6002,7 @@ document.addEventListener('keydown', e => {
   t.click();
 });
 
-/* The sidebar and its backdrop are driven by a 900px breakpoint; without this
+/* The sidebar and its backdrop are driven by a 768px breakpoint; without this
    they desync when the window is resized across it. */
 let resizeTick = null;
 window.addEventListener('resize', () => {
