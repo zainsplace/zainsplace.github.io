@@ -23,19 +23,20 @@ for anyone in the years below who wants it.
 ## Features
 
 - Switch units from the sidebar; the whole site reframes to that unit
-- Flashcards with spaced repetition and RAG (red/amber/green) self-rating; Space flips, ← / → grade
+- Three main pages, as in Gizmo: Home, Learn (path, materials, leaderboard) and Exam (a hub
+  linking to Questions, Past papers, Mocks, Extended, Exam kit and the Reasoning test)
 - Exam-style questions for both units, set out like the real AAQ paper: numbered scenarios,
   part-by-part context and the same command words and mark tariffs. Students mark themselves
   against a structured mark scheme (tick points, identify + expand chains, reason → justify →
   expand chains, or levels for 6/9/12-markers) instead of guessing a number
-- Practice works like flashcards: one question at a time, Previous / Next or ← / →, filtered by
+- Practice shows one question at a time, Previous / Next or ← / →, filtered by
   section and by Not tried / Needs work. Answers are saved as you type until they are marked
 - A progress summary (tried, average mark, weakest section and command word) and a quiz that
   targets weak spots, untried questions or a mix
 - Timed mock papers: two for Unit 1 (paced like the real 90 marks in 2 hours) and one 90-mark
   paper for Unit 2. Sit every scenario against the clock, then mark each answer and get a
   breakdown by question and question type
-- Match, True/False Blitz, Fill in the Blank and Battle revision games
+- Battles against the league rivals (Duel, Race to 10, Elimination, Blitz 60) in Learn → Leaderboard
 - Extended-writing practice with timers and model answers
 - Leaderboard with daily-progressing rivals
 - A reasoning test shared by both units: number and letter series, verbal analogies, syllogisms,
@@ -96,14 +97,13 @@ will fail if:
   exception is a plain link to Pearson's past-papers page, which is opened by the
   student, not loaded by the site)
 
-### Sections path (lessons)
+### Learn path and rounds
 
-The Sections tab is a path of lessons, one per spec subtopic (`lessons.js`).
-A lesson teaches terms in batches of three on "New" cards, then asks the batch in
-shuffled order, so the answer is never just the card you read last. The rest of
-the questions come in a final mixed round where the same term never appears twice
-in a row. A few review questions from lessons you've already finished are mixed
-in, weakest terms first. Everything repeats until it has been answered correctly.
+The Learn page (`learn.js`) has three tabs: Path, Materials and Leaderboard. The path
+has one node per spec subtopic; each shows a mastery ring (the average memory strength
+of its terms) and a red badge counting Forgotten terms. Clicking a node opens the study
+dialog (Memorize, Battle, Hard round, Speed-run, Practice test). Rounds are built by
+`round.js` and drawn by `round-view.js`.
 Two questions per term are built automatically from the section JSON. The
 `definition` one is a typed answer, which forgives small spelling mistakes and
 accepts any name for the term, e.g. "IaaS". It falls back to multiple choice for
@@ -118,7 +118,7 @@ The scenario questions are written by hand in
 `answer` is the index of the right option (options are shuffled on screen).
 `validate_data.py` fails if any term has no scenario question, if a question has
 fewer than 3 or more than 4 options, or if `answer` doesn't point at one of them.
-The Materials tab still shows each section's full notes.
+The Materials tab shows each section's full notes.
 
 ### Reasoning test questions
 

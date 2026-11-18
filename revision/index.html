@@ -6,15 +6,15 @@
   <!-- The app uses inline onclick handlers, so scripts need 'unsafe-inline'. The policy stops any injected script sending data off-site (connect-src, img-src). -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <title>BTEC IT Revision</title>
-  <meta name="description" content="Revision hub for BTEC National IT — Unit 1 and Unit 2. Flashcards with spaced repetition, exam-style questions, model answers, games and progress tracking.">
-  <meta name="theme-color" content="#1B5A5F">
+  <meta name="description" content="Revision hub for BTEC National IT — Unit 1 and Unit 2. Learn path with spaced memory, exam-style questions, past papers, mocks, battles and progress tracking.">
+  <meta name="theme-color" content="#0F172A">
   <meta property="og:title" content="BTEC IT Revision">
-  <meta property="og:description" content="Flashcards, exam questions, games and progress tracking for BTEC National IT, Units 1 and 2.">
+  <meta property="og:description" content="Learn path, exam questions, past papers and battles for BTEC National IT, Units 1 and 2.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zainsplace.github.io/revision/">
   <link rel="canonical" href="https://zainsplace.github.io/revision/">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231B5A5F'/%3E%3Ctext x='50' y='70' font-size='54' font-family='Georgia,serif' font-weight='700' fill='%23F5F1E8' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css?v=27">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230F172A'/%3E%3Ctext x='50' y='70' font-size='54' font-family='system-ui,sans-serif' font-weight='800' fill='%23F8FAFC' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css?v=34">
 </head>
 <body>
 
@@ -23,7 +23,7 @@
 <!-- Sidebar backdrop (mobile only) -->
 <div class="sidebar-backdrop" id="sidebar-backdrop" onclick="closeSidebar()"></div>
 
-<!-- Sidebar -->
+<!-- Sidebar: a fixed column from 768px; a drawer (hamburger) on phones -->
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-top">
     <div class="sidebar-wordmark">
@@ -40,24 +40,17 @@
     </div>
   </div>
   <nav class="sidebar-nav" aria-label="Main">
-    <button class="sidebar-btn" data-page="home" title="Home"       onclick="sidebarNav('home')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Home</span></button>
-    <button class="sidebar-btn" data-page="plan" title="Today's plan"       onclick="sidebarNav('plan')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg><span>Plan</span></button>
-    <button class="sidebar-btn" data-page="search" title="Search"     onclick="sidebarNav('search')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span>Search</span></button>
-    <p class="sidebar-group" aria-hidden="true"><span>Learn</span></p>
-    <button class="sidebar-btn" data-page="sections" title="Sections"   onclick="sidebarNav('sections')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg><span>Sections</span></button>
-    <button class="sidebar-btn" data-page="flashcards" title="Flashcards" onclick="sidebarNav('flashcards')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 9 5-9 5-9-5z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></svg><span>Flashcards</span></button>
-    <button class="sidebar-btn" data-page="examkit" title="Exam Kit"    onclick="sidebarNav('examkit')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg><span>Exam Kit</span></button>
-    <p class="sidebar-group" aria-hidden="true"><span>Practise</span></p>
-    <button class="sidebar-btn" data-page="questions" title="Questions"  onclick="sidebarNav('questions')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>Questions</span></button>
-    <button class="sidebar-btn" data-page="extended" title="Extended writing"   onclick="sidebarNav('extended')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg><span>Extended</span></button>
-    <button class="sidebar-btn" data-page="games" title="Games"      onclick="sidebarNav('games')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg><span>Games</span></button>
-    <button class="sidebar-btn" data-page="aptitude" title="Reasoning test" onclick="sidebarNav('aptitude')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z"/><rect x="3" y="14" width="7" height="7" rx="1"/><circle cx="17.5" cy="17.5" r="3.5"/></svg><span>Reasoning</span></button>
-    <p class="sidebar-group" aria-hidden="true"><span>Progress</span></p>
-    <button class="sidebar-btn" data-page="leaderboard" title="Leaderboard" onclick="sidebarNav('leaderboard')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0z"/></svg><span>Leaderboard</span></button>
-    <button class="sidebar-btn" data-page="profile" title="Profile"    onclick="sidebarNav('profile')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Profile</span></button>
+    <button class="sidebar-btn" data-page="home" onclick="sidebarNav('home')"><span class="sb-emoji" aria-hidden="true">🏠</span><span>Home</span></button>
+    <button class="sidebar-btn" data-page="learn" onclick="sidebarNav('learn', {tab:'path'})"><span class="sb-emoji" aria-hidden="true">📚</span><span>Learn</span></button>
+    <button class="sidebar-btn" data-page="exam" onclick="sidebarNav('exam')"><span class="sb-emoji" aria-hidden="true">📝</span><span>Exam</span></button>
+    <button class="sidebar-btn" data-page="search" onclick="sidebarNav('search')"><span class="sb-emoji" aria-hidden="true">🔍</span><span>Search</span></button>
+    <button class="sidebar-btn" data-page="profile" onclick="sidebarNav('profile')"><span class="sb-emoji" aria-hidden="true">👤</span><span>Profile</span></button>
   </nav>
+  <button class="g-btn g-btn-block sidebar-study" onclick="studyNow()"><span aria-hidden="true">🎮</span> Study</button>
+  <!-- The active unit's sections, filled by applyUnitChrome() -->
+  <div class="sidebar-sections" id="sidebar-sections"></div>
   <div class="sidebar-bottom">
-    <a class="sidebar-btn sidebar-home" href="/" title="Built by Zain: back to the portfolio"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg><span>Built by Zain</span></a>
+    <a class="sidebar-btn sidebar-home" href="/" title="Built by Zain: back to the portfolio"><span class="sb-emoji" aria-hidden="true">👋</span><span>Built by Zain</span></a>
     <button class="sidebar-av-btn" id="sidebar-avatar" onclick="sidebarNav('profile')" title="Your profile">
       <span class="sidebar-av-circle" id="sidebar-av-circle">Z</span>
       <span class="sidebar-av-label">Profile</span>
@@ -85,77 +78,24 @@
   <!-- One h1 for the whole app, for screen readers and outlines. applyUnitChrome() keeps it on the active unit. -->
   <h1 class="sr-only" id="app-title">BTEC IT Revision</h1>
 
-  <!-- HOME: about today. One card says what to do now; progress and topics follow. -->
+  <!-- HOME: greeting, Jump back in, Forgotten today, league (renderHome) -->
   <div class="page" id="page-home">
-    <div class="dash-header">
-      <div class="dash-header-info">
-        <p class="dash-greeting" id="home-greeting">Good morning</p>
-        <h2 class="dash-title" id="dash-title">Unit 2 Cyber Security</h2>
-        <p class="dash-sub" id="dash-sub">BTEC National · Cyber Security &amp; Incident Management</p>
-      </div>
-    </div>
-
-    <div id="home-mock-resume"></div>
-
-    <section class="today-card" aria-labelledby="today-title">
-      <p class="today-kicker" id="today-date">Today</p>
-      <h3 class="today-title" id="today-title">Today's revision</h3>
-      <ol class="today-tasks" id="today-tasks"></ol>
-      <div class="today-foot">
-        <button class="today-link" onclick="navigate('plan')">Full plan for today <span aria-hidden="true">&rarr;</span></button>
-        <button class="today-link" onclick="navigate('games')">Games &amp; battles <span aria-hidden="true">&rarr;</span></button>
-      </div>
-    </section>
-
-    <section class="confidence" aria-labelledby="confidence-title">
-      <div class="confidence-head">
-        <h3 class="confidence-title" id="confidence-title">Where you are</h3>
-        <span class="confidence-count" id="home-topic-count">—</span>
-      </div>
-      <div class="strip" id="home-strip" role="img" aria-label="Confidence across the syllabus"></div>
-      <ul class="strip-key">
-        <li><i class="sw sw-green"></i>Confident <b id="home-stat-green">0</b></li>
-        <li><i class="sw sw-amber"></i>Getting there <b id="home-stat-amber">0</b></li>
-        <li><i class="sw sw-red"></i>Need work <b id="home-stat-red">0</b></li>
-        <li><i class="sw sw-none"></i>Not rated <b id="home-stat-unrated">0</b></li>
-      </ul>
-    </section>
-
-    <div class="stat-chips">
-      <span class="stat-chip"><b id="home-stat-streak">0</b> day streak</span>
-      <span class="stat-chip"><span id="home-stat-level" aria-hidden="true"></span><span id="home-stat-xp">Bronze · 0 season XP</span></span>
-      <span class="stat-chip"><b id="home-overall-pct">0%</b> confident overall</span>
-    </div>
-
-    <div id="priority-topics"></div>
-
-    <h3 class="home-section-title">Sections</h3>
-    <div class="grid2" id="section-tiles"></div>
+    <div id="home-content"></div>
   </div>
 
-  <!-- SECTIONS -->
-  <div class="page" id="page-sections">
-    <div id="sections-content"></div>
+  <!-- LEARN: Path, Materials, Leaderboard (learn.js) -->
+  <div class="page" id="page-learn">
+    <div id="learn-content"></div>
   </div>
 
-  <!-- FLASHCARDS -->
-  <div class="page" id="page-flashcards">
-    <div id="flashcards-content"></div>
+  <!-- EXAM: links to the six exam pages below -->
+  <div class="page" id="page-exam">
+    <div id="exam-content"></div>
   </div>
 
-  <!-- QUESTIONS -->
+  <!-- QUESTIONS (also Past papers and Mocks) -->
   <div class="page" id="page-questions">
     <div id="questions-content"></div>
-  </div>
-
-  <!-- GAMES -->
-  <div class="page" id="page-games">
-    <div id="games-content"></div>
-  </div>
-
-  <!-- LEADERBOARD -->
-  <div class="page" id="page-leaderboard">
-    <div id="leaderboard-content"></div>
   </div>
 
   <!-- EXTENDED RESPONSE -->
@@ -178,11 +118,6 @@
     <div id="search-content"></div>
   </div>
 
-  <!-- PLAN -->
-  <div class="page" id="page-plan">
-    <div id="plan-content"></div>
-  </div>
-
   <!-- PROFILE -->
   <div class="page" id="page-profile">
     <div id="profile-content"></div>
@@ -190,9 +125,27 @@
 
 </main>
 
+<!-- Phone bottom tab bar (under 768px) -->
+<nav class="tabbar" aria-label="Main">
+  <button class="tabbar-btn" data-page="home" onclick="sidebarNav('home')"><span class="sb-emoji" aria-hidden="true">🏠</span><span>Home</span></button>
+  <button class="tabbar-btn" data-page="learn" onclick="sidebarNav('learn', {tab:'path'})"><span class="sb-emoji" aria-hidden="true">📚</span><span>Learn</span></button>
+  <button class="tabbar-btn" data-page="exam" onclick="sidebarNav('exam')"><span class="sb-emoji" aria-hidden="true">📝</span><span>Exam</span></button>
+  <button class="tabbar-btn" data-page="search" onclick="sidebarNav('search')"><span class="sb-emoji" aria-hidden="true">🔍</span><span>Search</span></button>
+  <button class="tabbar-btn" data-page="profile" onclick="sidebarNav('profile')"><span class="sb-emoji" aria-hidden="true">👤</span><span>Profile</span></button>
+</nav>
+
 <button class="to-top" id="to-top" onclick="backToTop()" aria-label="Back to top" title="Back to top"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button>
 
 </div><!-- /.app-shell -->
+
+<!-- Full-screen round (round-view.js). Outside the shell so the shell can be made inert while it is open. -->
+<div class="round-view" id="round-view" role="dialog" aria-modal="true" aria-label="Round" tabindex="-1" hidden></div>
+
+<!-- Study dialog (learn.js): how to study a path node. Clicking the backdrop closes it. -->
+<div class="study-overlay" id="study-dialog" hidden onclick="if(event.target===this)closeStudyDialog()"></div>
+
+<!-- Right rail (1100px and up): the stats card (renderRightRail); hidden while empty. On phones the same card tops Home. -->
+<aside class="right-rail" id="right-rail" aria-label="Your stats"></aside>
 
 <div class="modal-overlay" id="player-modal-overlay" onclick="if(event.target===this)closeModal()">
   <div class="modal" id="player-modal" role="dialog" aria-modal="true"></div>
@@ -207,7 +160,10 @@
 <script src="data_inline.js?v=26"></script>
 <script src="ppp.js?v=2"></script>
 <script src="league.js?v=2"></script>
-<script src="app.js?v=31"></script>
-<script src="lessons.js?v=3"></script>
+<script src="memory.js?v=1"></script>
+<script src="app.js?v=39"></script>
+<script src="round.js?v=6"></script>
+<script src="round-view.js?v=5"></script>
+<script src="learn.js?v=2"></script>
 </body>
 </html>

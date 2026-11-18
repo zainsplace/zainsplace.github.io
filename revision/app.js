@@ -74,6 +74,8 @@ function defaultUnitState() {
     rag: {},           // code -> 'red'|'amber'|'green'
     reviewed: {},      // code -> true
     lessons: {},       // path node id -> {done, date, firstTry, total}
+    memory: {},        // term code -> {s, due, seen, lapses} (see memory.js)
+    memorySeeded: false,   // true once memory was built from older progress
     flashcards: {
       boxes: {},       // cardId -> 1..5
       nextDue: {},     // cardId -> ISO date string
@@ -186,6 +188,8 @@ function coerceUnit(raw) {
     if (!DATE_KEY.test(r.date)) r.date = '';
     unit.lessons[k] = r;
   });
+  unit.memory = MEMORY.coerce(isPlainObject(raw) ? raw.memory : null);
+  unit.memorySeeded = isPlainObject(raw) && raw.memorySeeded === true;
   keepMap(unit.flashcards.boxes, SAFE_KEY, v => Number.isInteger(v) && v >= 1 && v <= 5);
   keepMap(unit.flashcards.nextDue, SAFE_KEY, v => typeof v === 'string' && DATE_KEY.test(v));
   keepMap(unit.activity, DATE_KEY, count);
@@ -315,6 +319,100 @@ function loadStore() {
 
 let store = loadStore();
 
+/* ---- The Learn path's nodes ----
+   One node per spec subtopic that has lesson terms, in the unit's section
+   order. This is the only place node ids are made: learn.js pathNodes() and
+   the memory seeding below both read it. It lives here, not in learn.js,
+   because memory is seeded while app.js loads, before the later scripts.
+   The term filter is round.js isLessonItem() (loaded later): recap entries
+   such as "C1.1.1-C1.1.3" are notes, not terms. */
+function unitPathNodes(unitId) {
+  const key = isUnitId(unitId) ? unitId : 'u1';
+  const data = (INLINE_UNITS[key] || INLINE_UNITS.u1).sections;
+  const nodes = [];
+  unitDef(key).order.forEach(l => {
+    const sec = data[l];
+    if (!sec) return;
+    const letter = l.toUpperCase();
+    sec.topics.forEach((topic, ti) => {
+      (topic.subtopics || []).forEach((sub, si) => {
+        const items = (sub.items || []).filter(it => it && it.term && it.definition && !String(it.code).includes('-'));
+        if (!items.length) return;
+        nodes.push({
+          id: sub.code || `${topic.code || letter + (ti + 1)}-${si + 1}`,
+          letter,
+          title: sub.title || topic.title,
+          topicTitle: topic.title,
+          items,
+          section: sec, topic, sub
+        });
+      });
+    });
+  });
+  return nodes;
+}
+
+/* ---- Per-term memory ----
+   Every lesson term of a unit with the path node it sits in. */
+function unitTermItems(unitId) {
+  const items = [];
+  unitPathNodes(unitId).forEach(n => n.items.forEach(it => items.push({ code: it.code, nodeId: n.id })));
+  return items;
+}
+
+/* Build memory for a unit saved before memory existed. Reads lessons, ratings
+   and flashcard boxes, never changes them, and only fills codes that have no
+   record yet so anything already recorded is kept. Does not save. */
+function seedUnitMemory(id) {
+  const u = store.units[id];
+  if (!u || u.memorySeeded) return false;
+  const cards = ((INLINE_UNITS[id] || {}).flashcards || {}).cards || [];
+  const flashBoxes = {};
+  cards.forEach(c => {
+    const box = u.flashcards.boxes[c.id];
+    if (c.code && box && !(flashBoxes[c.code] >= box)) flashBoxes[c.code] = box;
+  });
+  const seeded = MEMORY.seed({
+    items: unitTermItems(id),
+    lessonsDone: new Set(Object.keys(u.lessons).filter(k => u.lessons[k] && u.lessons[k].done)),
+    rag: u.rag,
+    flashBoxes,
+    todayStr: today()
+  });
+  Object.keys(seeded).forEach(code => { if (!u.memory[code]) u.memory[code] = seeded[code]; });
+  u.memorySeeded = true;
+  return true;
+}
+
+function seedMemoryIfNeeded() {
+  let changed = false;
+  Object.keys(store.units).forEach(id => { if (seedUnitMemory(id)) changed = true; });
+  if (changed) saveState();
+}
+seedMemoryIfNeeded();
+
+/* Record a quiz answer for a term (not recordResult: that one marks exam questions). Returns the days until it is asked again. */
+function recordTermResult(code, ok) {
+  const r = MEMORY.applyResult(state.memory[code], ok, today());
+  state.memory[code] = r.rec;
+  saveState();
+  return r.days;
+}
+
+/* Put a term's memory record back as it was ("I was right" undoing a wrong
+   answer). rec null: the term had no record, so delete it. */
+function restoreTermMemory(code, rec) {
+  if (rec) state.memory[code] = JSON.parse(JSON.stringify(rec));
+  else delete state.memory[code];
+  saveState();
+}
+
+/* A term shown with a hint: counts as seen, not as a right or wrong answer. */
+function recordHinted(code) {
+  state.memory[code] = MEMORY.touch(state.memory[code], today());
+  saveState();
+}
+
 /* A view onto store.units[activeUnit], with theme/profile passed through to the
    top level. Lets every existing state.* call site keep working after the split. */
 const state = new Proxy({}, {
@@ -384,45 +482,18 @@ function loadJSON(path) {
   return null;
 }
 
-function flashcardsForUnit() {
-  return (loadJSON('data/flashcards.json') || {}).cards || [];
-}
-
 function escapeRe(str) {
   return String(str).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-/* Game high scores are per unit: the question pools differ, so a Unit 1 score
-   is not comparable with a Unit 2 one. */
+/* Old game high scores (Match, True/False), per unit. The games are gone but
+   the Profile still shows a saved best, so state.bests stays readable. */
 function getBest(k) {
   return (state.bests && state.bests[k]) || 0;
 }
 
-function setBest(k, v) {
-  if (!state.bests) state.bests = { tf: 0, match: 0 };
-  state.bests[k] = v;
-  saveState();
-}
-
-/* Every spec item in the active unit: the objects carrying both a code and a
-   term. These are the term/definition pairs the games are built on. */
-function specItems() {
-  loadData(unitLetters());
-  const out = [];
-  unitLetters().forEach(letter => {
-    const d = DATA[letter];
-    if (!d) return;
-    (function walk(obj) {
-      if (!obj || typeof obj !== 'object') return;
-      if (obj.code && obj.term) out.push(obj);
-      Object.values(obj).forEach(v => { if (v && typeof v === 'object') walk(v); });
-    })(d);
-  });
-  return out;
-}
-
 /* ---- UNIT SWITCHING ----
-   DATA, the search index and every in-flight game hold content keyed by bare
+   DATA, the search index and any in-flight battle hold content keyed by bare
    section letter. None of it is unit-aware, so all of it must be discarded or
    the previous unit keeps rendering and its scores land in the wrong namespace. */
 function resetTransientState() {
@@ -433,11 +504,9 @@ function resetTransientState() {
   searchQuery = '';
   currentSection = null;
   notesFilter = 'all';
-  sectionsTab = 'path';
-  if (typeof lesson !== 'undefined') lesson = null;
-  flashFilter = 'all';
+  learnTab = 'path';
+  if (typeof closeStudyDialog === 'function') closeStudyDialog(false);
   qFilter = 'all';
-  if (typeof flashPracticeMode !== 'undefined') flashPracticeMode = false;
   qMode = 'practice';
   qShow = 'all';
   qIdx = 0;
@@ -445,24 +514,15 @@ function resetTransientState() {
   quizOpts.section = 'all';
   mock = null;
   ppp = null;
-  gamesMode = 'menu';
   quizQueue = [];
   quizIdx = 0;
-  mcq = null;
-  matchGame = null;
-  tfState = null;
-  fitbState = null;
   battle = null;
-  flashIdx = 0;
 }
 
-/* Every running interval must be cleared, not just the ones held in a named
-   variable. A live True/False timer fires endTrueFalse() up to 30s later and
-   would reset the page — or bank its score into the wrong unit. */
+/* The battle clock is the only game timer left. A live one would answer for
+   you, or bank a score into the wrong unit, after you had gone. */
 function stopGameTimers() {
-  if (matchInterval) { clearInterval(matchInterval); matchInterval = null; }
   if (battleTick) { clearInterval(battleTick); battleTick = null; }
-  if (tfState && tfState.timer) { clearInterval(tfState.timer); tfState.timer = null; }
 }
 
 /* Extended-writing timers are the student's own exam practice, not game state.
@@ -507,71 +567,79 @@ function applyUnitChrome() {
   set('app-title', u.label + ' ' + u.name + ' revision');
   set('brand-mark', u.short);
   set('brand-text', u.label + ' ' + u.name.split(' ')[0]);
-  set('dash-title', u.label + ' · ' + u.name);
-  set('dash-sub', u.headerSub);
   const desc = document.querySelector('meta[name="description"]');
-  if (desc) desc.setAttribute('content', u.label + ': ' + u.name + ' — revision hub with flashcards, exam questions, games and progress tracking.');
+  if (desc) desc.setAttribute('content', u.label + ': ' + u.name + ' — revision hub with a learn path, exam questions, past papers, battles and progress tracking.');
   document.querySelectorAll('.unit-switch-btn').forEach(b => {
     b.classList.toggle('active', b.dataset.unit === u.id);
     b.setAttribute('aria-pressed', String(b.dataset.unit === u.id));
   });
+  // The unit's sections under the Study button, each with its colour square.
+  const secs = el('sidebar-sections');
+  if (secs) {
+    secs.innerHTML = '<p class="sidebar-group" aria-hidden="true">Sections</p>' + sectionList().map(s =>
+      `<button class="sidebar-btn sidebar-sec" style="--sec:${s.col}" onclick="navigate('learn', {section:'${s.letter}'}); if (window.innerWidth < SIDEBAR_BREAKPOINT) closeSidebar()" title="Section ${s.letter}: ${s.name}"><span class="sec-sq" aria-hidden="true"></span><span>${s.name}</span></button>`
+    ).join('');
+  }
 }
 
 /* ---- NAVIGATION ---- */
-const PAGES = ['home', 'sections', 'flashcards', 'questions', 'games', 'leaderboard', 'extended', 'examkit', 'aptitude', 'search', 'plan', 'profile'];
+const PAGES = ['home', 'learn', 'exam', 'questions', 'extended', 'examkit', 'aptitude', 'search', 'profile'];
+// The Exam hub and the pages it links to: the Exam nav item stays lit on all of them.
+const EXAM_PAGES = ['exam', 'questions', 'extended', 'examkit', 'aptitude'];
+const LEARN_TABS = ['path', 'materials', 'leaderboard'];
 let currentPage = 'home';
-let currentSection = null;
-let sectionsTab = 'path';   // 'path' | 'materials'
+let currentSection = null;  // a section letter while its notes are open (Learn -> Materials)
+let learnTab = 'path';      // 'path' | 'materials' | 'leaderboard'
 
 const PAGE_TITLES = {
-  home: 'Home', sections: 'Sections', flashcards: 'Flashcards',
-  questions: 'Questions', games: 'Games', leaderboard: 'Leaderboard',
+  home: 'Home', learn: 'Learn', exam: 'Exam', questions: 'Questions',
   extended: 'Extended Writing', examkit: 'Exam Kit', aptitude: 'Reasoning Test', search: 'Search',
-  plan: "Today's Plan", profile: 'Profile'
+  profile: 'Profile'
 };
 
 function navigate(page, opts = {}) {
-  // Leaving the games page abandons whatever was running. Without this a live
-  // Blitz or Match timer keeps ticking and banks its score minutes later.
-  if (page !== 'games' && typeof stopGameTimers === 'function') {
-    forfeitBattle();
-    stopGameTimers();
-    gamesMode = 'menu';
-    tfState = null;
-    matchGame = null;
-    fitbState = null;
-    mcq = null;
-    battle = null;
-  }
+  // Battles live in Learn -> Leaderboard. Going anywhere else abandons a live
+  // one (a loss once it has started); without this its clock keeps ticking and
+  // banks a score minutes later.
+  const toBattles = page === 'learn' && !opts.section && (opts.tab || learnTab) === 'leaderboard';
+  if (!toBattles && typeof leaveBattle === 'function') leaveBattle();
   currentPage = page;
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const pageEl = document.getElementById('page-' + page);
   if (pageEl) pageEl.classList.add('active');
-  document.querySelectorAll('.sidebar-btn').forEach(b => {
-    b.classList.toggle('active', b.dataset.page === page);
+  const navPage = EXAM_PAGES.includes(page) ? 'exam' : page;
+  document.querySelectorAll('.sidebar-btn, .tabbar-btn').forEach(b => {
+    const on = b.dataset.page === navPage;
+    b.classList.toggle('active', on);
+    if (on) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current');
   });
   const titleEl = el('top-bar-title');
   if (titleEl) titleEl.textContent = PAGE_TITLES[page] || page;
   // scroll content to top on navigation
   scrollContentTop();
   renderPage(page, opts);
+  renderRightRail();
   syncRoute(page, opts);
 }
 
 /* ---- ROUTING ----
-   The page lives in the URL hash (#flashcards, #sections/C), so the browser's
-   Back button moves between pages instead of leaving the site, a refresh stays
-   put, and a page can be bookmarked. Which unit is showing stays in saved state,
-   not the URL. */
+   The page lives in the URL hash (#questions, #learn/materials/C), so the
+   browser's Back button moves between pages instead of leaving the site, a
+   refresh stays put, and a page can be bookmarked. Which unit is showing stays
+   in saved state, not the URL.
+   Learn: #learn (path), #learn/materials, #learn/materials/C (a section's
+   notes), #learn/leaderboard. */
 function routeHash(page, section) {
-  if (page === 'sections' && section) return '#sections/' + section;
-  if (page === 'sections' && sectionsTab === 'materials') return '#sections/materials';
+  if (page === 'learn') {
+    if (section) return '#learn/materials/' + section;
+    return learnTab === 'path' ? '#learn' : '#learn/' + learnTab;
+  }
   return page === 'home' ? '' : '#' + page;
 }
 
 function syncRoute(page, opts) {
   if (opts.fromHistory) return;
-  const hash = routeHash(page, page === 'sections' ? currentSection : null);
+  const hash = routeHash(page, page === 'learn' ? currentSection : null);
   if (hash === location.hash) return;
   const url = location.pathname + location.search + hash;
   try {
@@ -580,19 +648,42 @@ function syncRoute(page, opts) {
   } catch { /* history blocked (file:// in some browsers): the page still works */ }
 }
 
+/* Old links still land somewhere sensible. `redirected` tells the caller to
+   rewrite the address bar to the new hash. */
 function parseRoute() {
-  const [page, arg] = decodeURIComponent(location.hash.replace(/^#\/?/, '')).split('/');
-  if (!PAGES.includes(page)) return { page: 'home' };
-  const L = (arg || '').toUpperCase();
-  const section = page === 'sections' && unitLettersUpper().includes(L) ? L : undefined;
-  // #sections is the lesson path, #sections/materials the list of notes.
-  const tab = page === 'sections' && !section ? (arg === 'materials' ? 'materials' : 'path') : undefined;
-  return { page, section, tab };
+  let [page, arg, arg2] = decodeURIComponent(location.hash.replace(/^#\/?/, '')).split('/');
+  const letter = v => {
+    const L = String(v || '').toUpperCase();
+    return unitLettersUpper().includes(L) ? L : undefined;
+  };
+  let redirected = false;
+  if (page === 'sections') {
+    // #sections -> path, #sections/materials -> materials, #sections/C -> C's notes
+    redirected = true;
+    page = 'learn';
+    if (letter(arg)) { arg2 = arg; arg = 'materials'; }
+    else if (arg !== 'materials') arg = '';
+  } else if (page === 'flashcards') {
+    redirected = true; page = 'learn'; arg = '';
+  } else if (page === 'games' || page === 'leaderboard') {
+    redirected = true; page = 'learn'; arg = 'leaderboard';
+  } else if (page === 'plan') {
+    return { page: 'home', redirected: true };
+  }
+  if (!PAGES.includes(page)) return { page: 'home', redirected: !!page };
+  if (page !== 'learn') return { page, redirected };
+  const tab = LEARN_TABS.includes(arg) ? arg : 'path';
+  const section = tab === 'materials' ? letter(arg2) : undefined;
+  return { page, tab, section, redirected };
+}
+
+/* A redirected old hash replaces its history entry with the new one. */
+function navigateToRoute(r, opts) {
+  navigate(r.page, Object.assign({ section: r.section, tab: r.tab }, r.redirected ? { replaceRoute: true } : opts));
 }
 
 window.addEventListener('popstate', () => {
-  const r = parseRoute();
-  navigate(r.page, { section: r.section, tab: r.tab, fromHistory: true });
+  navigateToRoute(parseRoute(), { fromHistory: true });
 });
 
 /* Page content scrolls inside <main>, not the window, so window.scrollTo() on
@@ -606,16 +697,13 @@ function scrollContentTop() {
 function renderPage(page, opts) {
   switch (page) {
     case 'home': renderHome(); break;
-    case 'sections': renderSections(opts.section, opts.tab); break;
-    case 'flashcards': renderFlashcards(); break;
+    case 'learn': renderLearn(opts.section, opts.tab); break;
+    case 'exam': renderExam(); break;
     case 'questions': renderQuestions(); break;
-    case 'games': renderGames(); break;
-    case 'leaderboard': renderLeaderboardPage(); break;
     case 'extended': renderExtended(); break;
     case 'examkit': renderExamKit(); break;
     case 'aptitude': renderAptitude(); break;
     case 'search': renderSearch(); break;
-    case 'plan': renderPlan(); break;
     case 'profile': renderProfile(); break;
   }
 }
@@ -623,23 +711,20 @@ function renderPage(page, opts) {
 /* ---- SIDEBAR ---- */
 let sidebarOpen = null; // null = not yet initialised
 
-/* localStorage throws when storage is blocked. Everything else guards it, and an
-   unguarded read here ran inside DOMContentLoaded and stopped the app starting. */
-function lsGet(key) { try { return localStorage.getItem(key); } catch { return null; } }
-function lsSet(key, val) { try { localStorage.setItem(key, val); } catch { /* not persisted */ } }
+/* From 768px the sidebar is a fixed column and CSS ignores .open. Under 768px
+   it is a drawer behind the hamburger (the tab bar holds the main five pages),
+   and the drawer always starts closed. */
+const SIDEBAR_BREAKPOINT = 768;
 
 function initSidebar() {
-  // With no saved choice, a wide screen starts with the labelled sidebar: the
-  // icon rail alone left first-time visitors guessing what each icon was.
-  const saved = lsGet('rev_sidebar') ?? lsGet('u2_sidebar');
-  sidebarOpen = saved !== null ? saved === 'true' : window.innerWidth >= 1200;
+  sidebarOpen = false;
   applySidebarState();
 }
 
 function applySidebarState() {
   const sidebar = el('sidebar');
   const backdrop = el('sidebar-backdrop');
-  const isDesktop = window.innerWidth >= 900;
+  const isDesktop = window.innerWidth >= SIDEBAR_BREAKPOINT;
   el('hamburger').setAttribute('aria-expanded', String(!!sidebarOpen));
   if (sidebarOpen) {
     sidebar.classList.add('open');
@@ -652,20 +737,18 @@ function applySidebarState() {
 
 function toggleSidebar() {
   sidebarOpen = !sidebarOpen;
-  lsSet('rev_sidebar', String(sidebarOpen));
   applySidebarState();
 }
 
 function closeSidebar() {
   sidebarOpen = false;
-  lsSet('rev_sidebar', 'false');
   applySidebarState();
 }
 
-function sidebarNav(page) {
-  navigate(page);
+function sidebarNav(page, opts) {
+  navigate(page, opts);
   // On mobile, close sidebar after navigation
-  if (window.innerWidth < 900) closeSidebar();
+  if (window.innerWidth < SIDEBAR_BREAKPOINT) closeSidebar();
 }
 
 /* ---- HELPERS ---- */
@@ -804,36 +887,6 @@ function getSectionCodes(letter) {
   return [...new Set(codes)];
 }
 
-function overallProgress() {
-  const letters = unitLettersUpper();
-  const built = letters.filter(l => DATA[l.toLowerCase()]);
-  if (!built.length) return 0;
-  let total = 0, done = 0;
-  built.forEach(l => {
-    const codes = getSectionCodes(l);
-    total += codes.length;
-    done += codes.filter(c => state.rag[c] === 'green').length;
-  });
-  return total ? Math.round((done / total) * 100) : 0;
-}
-
-/* Whole-unit RAG spread, including topics never rated. Feeds the confidence
-   strip on the home page. */
-function ragSpread() {
-  loadData(unitLetters());
-  let total = 0, green = 0, amber = 0, red = 0;
-  unitLettersUpper().forEach(l => {
-    getSectionCodes(l).forEach(c => {
-      total++;
-      const v = state.rag[c];
-      if (v === 'green') green++;
-      else if (v === 'amber') amber++;
-      else if (v === 'red') red++;
-    });
-  });
-  return { total, green, amber, red, unrated: total - green - amber - red };
-}
-
 function ragCounts() {
   const vals = Object.values(state.rag);
   return {
@@ -951,168 +1004,172 @@ function bumpActivity(n = 1) {
   saveState();
 }
 
-/* ---- HOME ---- */
-/* The confidence strip: one honest picture of the whole syllabus, including
-   the topics never rated — which the old four-number stat row could not show. */
-function renderConfidenceStrip() {
-  const sp = ragSpread();
-  const strip = el('home-strip');
-  const count = el('home-topic-count');
-  if (count) count.textContent = sp.total + (sp.total === 1 ? ' topic' : ' topics');
-  if (!strip) return;
-  if (!sp.total) { strip.innerHTML = ''; return; }
-  const seg = (cls, n) => n ? `<span class="seg ${cls}" style="width:${(n / sp.total) * 100}%">${
-    (n / sp.total) > 0.06 ? n : ''}</span>` : '';
-  strip.innerHTML = seg('s-green', sp.green) + seg('s-amber', sp.amber) +
-                    seg('s-red', sp.red) + seg('s-none', sp.unrated);
-  strip.setAttribute('aria-label',
-    `${sp.green} confident, ${sp.amber} getting there, ${sp.red} need work, ${sp.unrated} not yet rated, of ${sp.total} topics`);
-  const set = (id, v) => { const n = el(id); if (n) n.textContent = v; };
-  set('home-stat-green', sp.green);
-  set('home-stat-amber', sp.amber);
-  set('home-stat-red', sp.red);
-  set('home-stat-unrated', sp.unrated);
+/* ---- HOME ----
+   Gizmo's home: a greeting, "Jump back in" (the steps studied most recently
+   and the next step on the path, each with its ring), "Forgotten today" with
+   one Review button, the league card, and a resume card for a mock or past
+   paper in progress. The stats card sits in the right rail on desktop and at
+   the top of Home on phones (statsCardHTML). */
+
+/* Every term of the active unit that is due again (MEMORY status forgotten).
+   A review round asks these (round.js roundCodes, mode 'review'). */
+function forgottenToday() {
+  const t = today();
+  return pathNodes().reduce((n, node) =>
+    n + node.items.filter(it => MEMORY.status(state.memory[it.code], t) === 'forgotten').length, 0);
 }
 
-/* The hero points at the weakest-rated section, falling back to the unit's
-   first section in its own display order. */
-function heroLetter() {
-  const ranked = unitLettersUpper()
-    .map(L => ({ L, p: sectionProgress(L) }))
-    .sort((a, b) => a.p - b.p);
-  return ranked.length ? ranked[0].L : unitLettersUpper()[0];
-}
-
-/* ---- TODAY CARD ----
-   Home leads with what to do now, worked out from the student's own progress:
-   today's flashcards, exam questions to retry (or one to try), and the weakest
-   section. Each row is one tap into that task. */
-function openPracticeFiltered(show) {
-  qMode = 'practice';
-  qShow = show;
-  qFilter = 'all';
-  qIdx = 0;
-  navigate('questions');
-}
-
-function todayTasks() {
-  const tasks = [];
-  const plural = (n, w) => `${n} ${w}${n === 1 ? '' : 's'}`;
-
-  const fc = dueFlashcards();
-  if (fc.all.length) {
-    tasks.push({
-      title: plural(fc.all.length, 'flashcard'),
-      sub: [fc.reviews.length && `${fc.reviews.length} to review`, fc.fresh.length && `${fc.fresh.length} new`].filter(Boolean).join(' · '),
-      action: "navigate('flashcards')"
-    });
-  }
-
-  const qs = PPP.bankQuestions(loadJSON('data/questions.json'));
-  const latest = latestScores();
-  const weak = qs.filter(q => q.id in latest && latest[q.id] < WEAK_PCT).length;
-  const untried = qs.filter(q => !(q.id in latest)).length;
-  if (weak) {
-    tasks.push({ title: `Retry ${plural(weak, 'question')}`, sub: `You scored under ${WEAK_PCT}% last time`, action: "openPracticeFiltered('weak')" });
-  } else if (untried) {
-    tasks.push({ title: 'Practise an exam question', sub: `${untried} not tried yet`, action: "openPracticeFiltered('new')" });
-  }
-
-  // With nothing rated yet every section is 0%, so "weakest" would mean nothing.
-  const L = heroLetter();
-  const rated = Object.keys(state.rag).length > 0;
-  tasks.push({
-    title: `Section ${L} · ${sectionShortName(L)}`,
-    sub: rated ? `${sectionProgress(L)}% confident · your weakest section` : `Start here · ${sectionBlurb(L)}`,
-    action: 'openHeroSection()'
+/* When a node was last studied: the latest `seen` among its terms, else the
+   date its old lesson was done. '' if never. */
+function nodeLastSeen(node) {
+  let last = '';
+  node.items.forEach(it => {
+    const r = state.memory[it.code];
+    if (r && r.seen > last) last = r.seen;
   });
-  return tasks;
+  const lesson = state.lessons && state.lessons[node.id];
+  if (lesson && typeof lesson.date === 'string' && lesson.date > last) last = lesson.date.slice(0, 10);
+  return last;
 }
 
-function renderTodayCard() {
-  const list = el('today-tasks');
-  if (!list) return;
-  const d = el('today-date');
-  if (d) d.textContent = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
-  const tasks = todayTasks();
-  el('today-title').textContent = `${tasks.length} thing${tasks.length === 1 ? '' : 's'} to do today`;
-  list.innerHTML = tasks.map((t, i) => `
-    <li><button class="today-task" onclick="${t.action}">
-      <span class="today-num" aria-hidden="true">${i + 1}</span>
-      <span class="today-text"><span class="today-task-title">${t.title}</span><span class="today-task-sub">${t.sub}</span></span>
-      <span class="today-arrow" aria-hidden="true">&rarr;</span>
-    </button></li>`).join('');
+/* The three most recently studied steps (newest first; on a tie the one
+   further along the path), then the current step if it isn't one of them. */
+function jumpBackNodes() {
+  const nodes = pathNodes();
+  const recent = nodes
+    .map((n, i) => ({ n, i, d: nodeLastSeen(n) }))
+    .filter(x => x.d)
+    .sort((a, b) => b.d.localeCompare(a.d) || b.i - a.i)
+    .slice(0, 3)
+    .map(x => x.n);
+  const curId = currentNodeId();
+  const cur = curId && nodes.find(n => n.id === curId);
+  if (cur && !recent.includes(cur)) recent.push(cur);
+  return { list: recent, curId };
 }
 
-function openHeroSection() {
-  navigate('sections', { section: heroLetter() });
+function homeDomId(id) { return 'home-jump-' + String(id).replace(/[^A-Za-z0-9_-]/g, '_'); }
+
+function jumpCardHTML(n, curId) {
+  const pct = nodeRing(n);
+  const cards = n.items.length;
+  const isCur = n.id === curId;
+  const label = `${n.title}, section ${n.letter}, ${cards} card${cards === 1 ? '' : 's'}, ${pct}% learned${isCur ? ', next step' : ''}`;
+  return `
+    <button class="g-card home-jump-card${isCur ? ' current' : ''}" id="${homeDomId(n.id)}" style="--sec:${sectionColour(n.letter)}" onclick="openStudyDialog('${escapeHTML(n.id)}')" aria-label="${escapeHTML(label)}">
+      <span class="home-jump-top">
+        <span class="g-ring home-jump-ring" style="--pct:${pct}"><span>${pct}%</span></span>
+        ${isCur ? '<span class="g-chip g-chip--xp">Next step</span>' : ''}
+      </span>
+      <span class="home-jump-title">${escapeHTML(n.title)}</span>
+      <span class="home-jump-meta"><span class="home-jump-sq" aria-hidden="true"></span>Section ${n.letter} · ${cards} card${cards === 1 ? '' : 's'}</span>
+    </button>`;
+}
+
+/* The stats card: streak, XP, league tier and place, Forgotten count, and the
+   coin balance once coins exist. Used by the right rail and the top of Home. */
+function statsCardHTML() {
+  const streak = currentStreak();
+  const rows = leagueRows();
+  const me = rows.find(r => r.me);
+  const t = TIERS[state.league.tier];
+  const forgot = forgottenToday();
+  // Coins (Task 11): this slot stays empty until coins.js defines COINS.
+  const coins = typeof COINS !== 'undefined' && typeof COINS.railHTML === 'function' ? COINS.railHTML() : '';
+  return `
+    <div class="g-card stats-card">
+      <div class="stats-grid">
+        <div class="stats-tile">
+          <span class="stats-emoji" aria-hidden="true">🔥</span>
+          <span class="stats-text"><b>${streak}</b><small>day streak</small></span>
+        </div>
+        <div class="stats-tile">
+          <span class="stats-emoji" aria-hidden="true">⚡</span>
+          <span class="stats-text"><b>${(state.xp || 0).toLocaleString()}</b><small>total XP</small></span>
+        </div>
+        <button class="stats-tile" onclick="navigate('learn',{tab:'leaderboard'})" title="Open the leaderboard">
+          <span class="stats-emoji" aria-hidden="true">${t.icon}</span>
+          <span class="stats-text"><b>#${me.place}</b><small>${escapeHTML(t.name)} League</small></span>
+        </button>
+        <button class="stats-tile${forgot ? ' has-forgot' : ''}" onclick="openRound(null,'review')" ${forgot ? '' : 'disabled'} title="${forgot ? 'Review your forgotten terms' : 'Nothing forgotten right now'}">
+          <span class="stats-emoji" aria-hidden="true">⏰</span>
+          <span class="stats-text"><b>${forgot}</b><small>forgotten</small></span>
+        </button>
+      </div>
+      ${coins ? `<div class="stats-coins">${coins}</div>` : ''}
+    </div>`;
+}
+
+/* Fill the right rail (shown from 1100px). Called after every page change,
+   after a round and when XP changes; coalesced to one draw per frame. */
+let railQueued = false;
+function renderRightRail() {
+  if (railQueued) return;
+  railQueued = true;
+  requestAnimationFrame(() => {
+    railQueued = false;
+    const rail = el('right-rail');
+    if (rail) rail.innerHTML = statsCardHTML();
+  });
+}
+
+function homeLeagueHTML() {
+  const rows = leagueRows();
+  const me = rows.find(r => r.me);
+  const t = TIERS[state.league.tier];
+  const ahead = rows.find(r => r.place === me.place - 1);
+  const gap = ahead ? ahead.xp - me.xp + 1 : 0;
+  return `
+    <section class="g-card home-league" style="--rank:${t.col}" aria-labelledby="home-league-title">
+      <span class="home-league-icon" aria-hidden="true">${t.icon}</span>
+      <div class="home-league-text">
+        <h3 id="home-league-title">${escapeHTML(t.name)} League</h3>
+        <p>#${me.place} of ${rows.length} · <span class="g-chip g-chip--xp">${me.xp.toLocaleString()} XP</span> this week</p>
+        <p class="home-league-sub">${ahead ? `${gap.toLocaleString()} XP to pass ${escapeHTML(ahead.name)}` : 'You lead the league this week'} · ${weekLeftText()}</p>
+      </div>
+      <button class="g-pill" onclick="navigate('learn',{tab:'leaderboard'})">Leaderboard</button>
+    </section>`;
 }
 
 function renderHome() {
+  const box = el('home-content');
+  if (!box) return;
   loadData(unitLetters());
-
-  const prog = overallProgress();
-
+  const u = unitDef();
   const hour = new Date().getHours();
   const greet = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
-  const greetEl = el('home-greeting');
-  if (greetEl) greetEl.textContent = greet;
+  const { list, curId } = jumpBackNodes();
+  const forgot = forgottenToday();
 
-  el('home-overall-pct').textContent = prog + '%';
-  renderConfidenceStrip();
-  el('home-stat-streak').textContent = currentStreak();
-  const wk = weekXP();
-  const myLeague = TIERS[state.league.tier];
-  el('home-stat-level').textContent = myLeague.icon;
-  el('home-stat-level').style.color = myLeague.col;
-  el('home-stat-xp').textContent = `${myLeague.name} League · ${wk.toLocaleString()} XP this week`;
-  renderTodayCard();
-  renderSectionTiles();
-  renderPriorityTopics();
-  // A refresh always lands on Home, so an interrupted paper is offered here too.
-  const resume = el('home-mock-resume');
-  if (resume) resume.innerHTML = mockResumeHTML() + pppResumeHTML();
-}
+  box.innerHTML = `
+    <header class="home-head">
+      <h2 class="g-display g-wavy home-greet" aria-label="${greet}">${greet.split('').map(c => `<span aria-hidden="true">${c === ' ' ? '&nbsp;' : c}</span>`).join('')}</h2>
+      <p class="home-unit">${escapeHTML(u.label)} · ${escapeHTML(u.name)}</p>
+    </header>
 
-/* ---- PRIORITY TOPICS (weakest first: red, then amber) ---- */
-function findItemByCode(code) {
-  for (const key of unitLetters()) {
-    const d = DATA[key];
-    if (!d) continue;
-    let found = null;
-    (function walk(obj) {
-      if (found || !obj || typeof obj !== 'object') return;
-      if (obj.code === code && obj.term) { found = { term: obj.term, section: d.section }; return; }
-      Object.values(obj).forEach(v => { if (typeof v === 'object') walk(v); });
-    })(d);
-    if (found) return found;
-  }
-  return null;
-}
+    <div class="home-stats">${statsCardHTML()}</div>
 
-function renderPriorityTopics() {
-  const container = el('priority-topics');
-  if (!container) return;
-  const reds = Object.entries(state.rag).filter(([, v]) => v === 'red').map(([k]) => k);
-  const ambers = Object.entries(state.rag).filter(([, v]) => v === 'amber').map(([k]) => k);
-  const rows = [...reds, ...ambers].map(code => {
-    const item = findItemByCode(code);
-    if (!item) return '';
-    const level = state.rag[code] === 'red' ? 'red' : 'amber';
-    return `
-      <div role="button" tabindex="0" class="search-result" onclick="goToResult('${item.section}', '${code}')">
-        <div style="display:flex;align-items:center;gap:8px">
-          <span class="badge rag-badge ${level}"><span class="rag-dot" aria-hidden="true"></span>${code}</span>
-          <h4 style="flex:1">${item.term}</h4>
-          <span class="sr-only">${level === 'red' ? 'Need work' : 'Getting there'}</span>
-          <span class="chevron" aria-hidden="true">→</span>
-        </div>
-      </div>`;
-  }).filter(Boolean).slice(0, 5);
+    ${examResumeHTML()}
 
-  container.innerHTML = rows.length ? `
-    <h3 class="home-section-title">Topics to revisit</h3>
-    <div class="search-results" style="margin-bottom:24px">${rows.join('')}</div>` : '';
+    <section class="home-block" aria-labelledby="home-jump-title">
+      <h3 class="home-h" id="home-jump-title">Jump back in</h3>
+      ${list.length
+        ? `<div class="home-jump" role="list">${list.map(n => `<div role="listitem">${jumpCardHTML(n, curId)}</div>`).join('')}</div>`
+        : '<p class="home-none">Every step is mastered. Open Learn to keep them fresh.</p>'}
+    </section>
+
+    <section class="g-card home-forgot" aria-labelledby="home-forgot-title">
+      <span class="home-forgot-emoji" aria-hidden="true">⏰</span>
+      <div class="home-forgot-text">
+        <h3 id="home-forgot-title">Forgotten today</h3>
+        <p>${forgot
+          ? `<b id="home-forgot-count">${forgot}</b> term${forgot === 1 ? ' is' : 's are'} due again${forgot > ROUND_MAX ? `. A review round asks ${ROUND_MAX} at a time` : ''}.`
+          : '<b id="home-forgot-count">0</b> terms due. Nothing to review right now.'}</p>
+      </div>
+      <button class="g-btn" id="home-review" onclick="openRound(null,'review')" ${forgot ? '' : 'disabled'}>Review</button>
+    </section>
+
+    ${homeLeagueHTML()}`;
 }
 
 let profileHeatmapYear = new Date().getFullYear();
@@ -1208,68 +1265,19 @@ function scrollHeatmapToToday(container, year) {
   sc.scrollLeft = Math.max(0, col * 16 + 60 - sc.clientWidth + 40);
 }
 
-function renderSectionTiles() {
-  const container = el('section-tiles');
-  const sections = sectionList();
-
-  container.innerHTML = sections.map(s => {
-    const prog = sectionProgress(s.letter);
-    const tier = sectionTierClass(s.letter);
-    const col = sectionColour(s.letter);
-    return `
-      <div role="button" tabindex="0" class="section-tile" onclick="navigate('sections', {section:'${s.letter}'})">
-        <div class="tile-accent" style="background:${col}"></div>
-        <div class="tile-code" style="color:${col}">${s.letter}</div>
-        <div class="badge ${tier}" style="margin-bottom:6px">${tier === 'tier1' ? 'Tier 1' : tier === 'tier2' ? 'Tier 2' : 'Tier 3'}</div>
-        <h3>${s.name}</h3>
-        <p>${s.topics}</p>
-        <div class="tile-progress"><div class="tile-progress-bar" data-target="${prog}" style="width:0%;background:${col};transition:width 0.6s ease-out"></div></div>
-        <div style="font-size:12px;color:var(--text2);margin-top:4px">${prog}% confident</div>
-      </div>`;
-  }).join('');
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    container.querySelectorAll('.tile-progress-bar[data-target]').forEach(bar => {
-      bar.style.width = bar.dataset.target + '%';
-    });
-  }));
-}
-
-/* ---- SECTIONS PAGE ---- */
-/* Sections has two tabs: the Path of lessons (lessons.js) and the Materials,
-   which are the full notes. A letter always means a section's notes, so links
-   from Home and Search still land on the notes they point at. */
-function renderSections(letter, tab) {
-  const container = el('sections-content');
-
-  if (!letter) {
-    currentSection = null;
-    if (tab) sectionsTab = tab;
-    if (sectionsTab === 'materials') renderSectionList(container);
-    else renderPath(container);
-    return;
-  }
-  sectionsTab = 'materials';
-
-  currentSection = letter;
-  loadData([letter.toLowerCase()]);
-  const data = DATA[letter.toLowerCase()];
-
-  if (!data) {
-    container.innerHTML = `<div class="empty-state"><div class="icon">🚧</div><p>Section ${letter} content coming soon!</p></div>`;
-    return;
-  }
-
-  renderSectionContent(container, data, letter);
-}
-
+/* ---- LEARN -> MATERIALS ----
+   The Learn page (learn.js renderLearn) has three tabs: Path, Materials and
+   Leaderboard. Materials is the full notes: the list of sections, and one
+   section's notes (#learn/materials/C). A letter always means a section's
+   notes, so links from Home and Search land on the notes they point at. */
 function renderSectionList(container) {
   const sections = sectionList();
   container.innerHTML = `
-    ${sectionsTabsHTML('materials')}
+    ${learnHeaderHTML('materials')}
     <p class="path-intro">The full notes for every section. Open one to read it and rate each term.</p>
     <div class="grid2">
       ${sections.map(s => `
-        <div role="button" tabindex="0" class="section-tile" onclick="navigate('sections',{section:'${s.letter}'})">
+        <div role="button" tabindex="0" class="section-tile" onclick="navigate('learn',{section:'${s.letter}'})">
           <div class="tile-accent" style="background:${s.col}"></div>
           <div class="tile-code" style="color:${s.col}">${s.letter}</div>
           <h3>${s.name}</h3>
@@ -1308,9 +1316,9 @@ function renderSectionContent(container, data, letter) {
     counts[state.rag[item.code] || 'unrated']++;
   })));
 
-  let html = `
+  let html = learnHeaderHTML('materials') + `
     <div class="section-header">
-      <button class="section-header-back" onclick="navigate('sections',{tab:'materials'})" title="All sections" aria-label="Back to all sections">←</button>
+      <button class="section-header-back" onclick="navigate('learn',{tab:'materials'})" title="All sections" aria-label="Back to all sections">←</button>
       <h2><span style="color:${col}">${data.section}</span> — ${data.title}</h2>
       <span class="badge ${sectionTierClass(letter)}">Tier ${sectionTier(letter)}</span>
     </div>
@@ -1353,18 +1361,135 @@ function renderSectionContent(container, data, letter) {
 
   html += `
     <nav class="section-pager" aria-label="Other sections">
-      ${prev ? `<button class="btn btn-secondary" onclick="navigate('sections',{section:'${prev}'})">← ${prev} ${sectionShortName(prev)}</button>` : '<span></span>'}
-      ${next ? `<button class="btn btn-secondary" onclick="navigate('sections',{section:'${next}'})">${next} ${sectionShortName(next)} →</button>` : '<span></span>'}
+      ${prev ? `<button class="btn btn-secondary" onclick="navigate('learn',{section:'${prev}'})">← ${prev} ${sectionShortName(prev)}</button>` : '<span></span>'}
+      ${next ? `<button class="btn btn-secondary" onclick="navigate('learn',{section:'${next}'})">${next} ${sectionShortName(next)} →</button>` : '<span></span>'}
     </nav>`;
 
   container.innerHTML = html;
+  applyGlossaryChips(container);
+}
+
+/* ---- GLOSSARY CHIPS ----
+   In the notes, other spec terms of the same unit are shown as mint chips
+   inside the text (display only: the words are exactly the JSON's). Names come
+   from each item's term: the full term, the part before any brackets, and an
+   acronym in the brackets ("Local Area Network (LAN)") or, for an acronym
+   term, the expansion in them ("USB (Universal Serial Bus)"). Single-word
+   acronyms match case-sensitively, so "IT" never chips "it"; everything else
+   matches whole words, any case. Longer names win, a card never chips its own
+   term, and each term is chipped once per card (its first appearance). Only
+   text nodes are touched, after the HTML is parsed, so tags, attributes and
+   entities are never split. */
+let glossaryCache = null;   // { unit, entries } for the active unit
+
+function glossaryIsAcronym(s) {
+  return /^[A-Za-z0-9]+$/.test(s) && (s.match(/[A-Z]/g) || []).length >= 2;
+}
+
+function glossaryNames(term) {
+  const t = String(term || '').trim();
+  const out = [t];
+  const m = t.match(/^(.*?)\s*\(([^)]+)\)\s*$/);
+  if (m) {
+    const main = m[1].trim(), inner = m[2].trim();
+    out.push(main);
+    if (glossaryIsAcronym(main)) {
+      if (/\s/.test(inner) && /^[A-Z]/.test(inner) && !/,/.test(inner)) out.push(inner);
+    } else if (glossaryIsAcronym(inner)) {
+      out.push(inner);
+    }
+  }
+  return out.filter(p => p.length > 2 || glossaryIsAcronym(p));
+}
+
+function glossaryEntries() {
+  const unit = store.activeUnit;
+  if (glossaryCache && glossaryCache.unit === unit) return glossaryCache.entries;
+  const byName = new Map();
+  const sections = unitData().sections || {};
+  Object.values(sections).forEach(sec => (sec && sec.topics || []).forEach(t => t.subtopics.forEach(sub => sub.items.forEach(item => {
+    if (!item.term) return;
+    glossaryNames(item.term).forEach(name => {
+      const cs = glossaryIsAcronym(name);
+      const k = cs ? name : name.toLowerCase();
+      if (!byName.has(k)) byName.set(k, { name, lower: glossaryLower(name), cs, key: item.code });
+    });
+  }))));
+  const entries = [...byName.values()].sort((a, b) => b.name.length - a.name.length);
+  glossaryCache = { unit, entries };
+  return entries;
+}
+
+// ASCII-only lower case, so indexes line up with the original string.
+function glossaryLower(s) { return s.replace(/[A-Z]/g, c => c.toLowerCase()); }
+
+function glossaryWordChar(ch) { return !!ch && /[A-Za-z0-9-]/.test(ch); }
+
+/* Matches in one text node: [{ i, j }] in order, not overlapping. */
+function glossaryFind(text, entries, own, used) {
+  const lower = glossaryLower(text);
+  const taken = [];
+  for (const e of entries) {
+    if (used.has(e.key) || own.has(e.name.toLowerCase())) continue;
+    const hay = e.cs ? text : lower;
+    const needle = e.cs ? e.name : e.lower;
+    let i = hay.indexOf(needle);
+    while (i >= 0) {
+      const j = i + needle.length;
+      if (!glossaryWordChar(text[i - 1]) && !glossaryWordChar(text[j]) && !taken.some(r => i < r.j && j > r.i)) {
+        taken.push({ i, j });
+        used.add(e.key);
+        break;
+      }
+      i = hay.indexOf(needle, i + 1);
+    }
+  }
+  return taken.sort((a, b) => a.i - b.i);
+}
+
+function applyGlossaryChips(root) {
+  if (!root) return;
+  const entries = glossaryEntries();
+  root.querySelectorAll('.spec-card').forEach(card => {
+    const termEl = card.querySelector('.spec-term');
+    // The card's own names, singular and plural: 'VPNs (...)' does not chip 'VPN'.
+    const own = new Set();
+    glossaryNames(termEl ? termEl.textContent : '').forEach(n => {
+      const l = n.toLowerCase();
+      own.add(l); own.add(l.replace(/s$/, '')); own.add(l + 's');
+    });
+    const used = new Set();
+    card.querySelectorAll('.definition-text, .examples-text, .key-facts li, .exam-tip').forEach(box => {
+      const walker = document.createTreeWalker(box, NodeFilter.SHOW_TEXT);
+      const nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+      nodes.forEach(node => {
+        if (node.parentElement && node.parentElement.closest('.g-chip--term')) return;
+        const text = node.data;
+        const hits = glossaryFind(text, entries, own, used);
+        if (!hits.length) return;
+        const frag = document.createDocumentFragment();
+        let at = 0;
+        hits.forEach(({ i, j }) => {
+          if (i > at) frag.appendChild(document.createTextNode(text.slice(at, i)));
+          const chip = document.createElement('span');
+          chip.className = 'g-chip g-chip--term';
+          chip.textContent = text.slice(i, j);
+          frag.appendChild(chip);
+          at = j;
+        });
+        if (at < text.length) frag.appendChild(document.createTextNode(text.slice(at)));
+        node.parentNode.replaceChild(frag, node);
+      });
+    });
+  });
 }
 
 function setNotesFilter(f) {
   notesFilter = f;
   const main = el('main-content');
   const y = main.scrollTop;
-  renderSections(currentSection);
+  renderLearn(currentSection);
   main.scrollTop = Math.min(y, main.scrollHeight);
 }
 
@@ -1377,9 +1502,9 @@ function jumpToTopic(code) {
 }
 
 function expandAllCards(open) {
-  document.querySelectorAll('#sections-content .card-body').forEach(body => {
+  document.querySelectorAll('#learn-content .card-body').forEach(body => {
     body.classList.toggle('hidden', !open);
-    const header = body.previousElementSibling;
+    const header = body.parentElement.querySelector('.card-header');
     if (header) header.setAttribute('aria-expanded', String(open));
     const chev = header && header.querySelector('.chevron');
     if (chev) chev.classList.toggle('open', open);
@@ -1405,16 +1530,16 @@ function renderSpecItem(item, letter) {
   const isReviewed = state.reviewed[reviewedKey];
 
   return `
-    <div class="card" id="item-${item.code}">
+    <div class="card spec-card" id="item-${item.code}">
       <div role="button" tabindex="0" class="card-header" aria-expanded="false" aria-controls="body-${item.code}" onclick="toggleCard('${item.code}')">
-        <span class="badge" style="min-width:65px;text-align:center">${item.code}</span>
-        <i class="rag-dot rag-dot-${ragVal || 'unrated'}" id="rag-dot-${item.code}" title="${RAG_LABELS[ragVal || 'unrated']}" aria-label="${RAG_LABELS[ragVal || 'unrated']}" role="img"></i>
-        <h3>${item.term}</h3>
+        <h3 class="spec-term">${item.term}</h3>
         ${isReviewed ? '<span class="reviewed-tick" style="color:var(--green);font-size:12px">✓</span>' : ''}
-        <span class="chevron" id="chev-${item.code}">▼</span>
+        <i class="rag-dot rag-dot-${ragVal || 'unrated'}" id="rag-dot-${item.code}" title="${RAG_LABELS[ragVal || 'unrated']}" aria-label="${RAG_LABELS[ragVal || 'unrated']}" role="img"></i>
+        <span class="badge spec-code">${item.code}</span>
+        <span class="chevron" id="chev-${item.code}" aria-hidden="true">▼</span>
       </div>
+      <p class="definition-text">${item.definition}</p>
       <div class="card-body hidden" id="body-${item.code}">
-        <p class="definition-text">${item.definition}</p>
         ${item.examples ? `<p class="examples-text">Examples: ${item.examples}</p>` : ''}
         ${item.comparisonTable ? renderComparisonTable(item.comparisonTable) : ''}
         ${item.keyFacts && item.keyFacts.length ? `
@@ -1438,8 +1563,8 @@ function toggleCard(code) {
   if (!body) return;
   const open = body.classList.toggle('hidden') === false;
   if (chev) chev.classList.toggle('open', open);
-  const header = body.previousElementSibling;
-  if (header && header.classList.contains('card-header')) header.setAttribute('aria-expanded', String(open));
+  const header = body.parentElement.querySelector('.card-header');
+  if (header) header.setAttribute('aria-expanded', String(open));
 }
 
 function setRAG(code, val, letter) {
@@ -1461,7 +1586,7 @@ function setRAG(code, val, letter) {
     dot.title = RAG_LABELS[val];
     dot.setAttribute('aria-label', RAG_LABELS[val]);
   }
-  if (currentPage === 'sections') updateNotesCounts(letter);
+  if (currentPage === 'learn') updateNotesCounts(letter);
   toast(val === 'green' ? '✓ Marked confident' : val === 'amber' ? 'Noted — keep practising' : 'Added to revision priority');
 }
 
@@ -1495,204 +1620,8 @@ function markReviewed(code, letter) {
 }
 
 /* ---- FLASHCARDS ---- */
-let flashQueue = [];
-let flashIdx = 0;
-let flashData = null;
-let flashFlipped = false;
-let flashFilter = 'all';
-let flashPracticeMode = false;
-
-const LEITNER_INTERVALS = [0, 1, 2, 4, 8, 16];
-
-function renderFlashcards() {
-  flashData = loadJSON('data/flashcards.json');
-  if (!flashData) {
-    el('flashcards-content').innerHTML = `<div class="empty-state"><p>Flashcard data loading...</p></div>`;
-    return;
-  }
-  buildFlashQueue();
-  renderFlashUI();
-}
-
-/* A card is NEW until it is first graded. New cards are introduced at most
-   NEW_CARDS_PER_DAY a day: before this a new student was handed all 136 at once,
-   while Home and the Plan, which only counted studied cards, said "0 due".
-   dueFlashcards() is the one definition of "due" that every page uses. */
-const NEW_CARDS_PER_DAY = 20;
-
-function newDayToday() {
-  const nd = state.flashcards.newDay;
-  if (!nd || nd.date !== today()) state.flashcards.newDay = { date: today(), count: 0, extra: 0 };
-  return state.flashcards.newDay;
-}
-
-function newCardsLeftToday() {
-  const nd = state.flashcards.newDay;
-  const isToday = nd && nd.date === today();
-  const used = isToday ? (nd.count || 0) : 0;
-  const extra = isToday ? (nd.extra || 0) : 0;
-  return Math.max(0, NEW_CARDS_PER_DAY + extra - used);
-}
-
-// Today's cards for a section filter: due reviews first, then new cards up to today's allowance.
-function dueFlashcards(filter = 'all') {
-  const cards = flashcardsForUnit().filter(c => filter === 'all' || c.section === filter);
-  const t = today();
-  const reviews = cards.filter(c => { const d = state.flashcards.nextDue[c.id]; return d && d <= t; });
-  const unseen = cards.filter(c => !state.flashcards.nextDue[c.id]);
-  const fresh = unseen.slice(0, newCardsLeftToday());
-  return { reviews, fresh, unseen: unseen.length, all: reviews.concat(fresh) };
-}
-
-function learnMoreNew() {
-  newDayToday().extra += NEW_CARDS_PER_DAY;
-  saveState();
-  flashPracticeMode = false;
-  buildFlashQueue();
-  renderFlashUI();
-}
-
-function buildFlashQueue() {
-  if (!flashData) return;
-  flashQueue = flashPracticeMode
-    ? flashData.cards.filter(card => flashFilter === 'all' || card.section === flashFilter)
-    : dueFlashcards(flashFilter).all;
-  flashIdx = 0;
-  flashFlipped = false;
-}
-
-function renderFlashUI() {
-  const container = el('flashcards-content');
-  const total = flashData ? flashData.cards.length : 0;
-  const due = flashQueue.length;
-  const today_ = dueFlashcards(flashFilter);
-  const dueLabel = flashPracticeMode
-    ? `${due} in practice / ${total} total`
-    : `${today_.reviews.length} to review · ${today_.fresh.length} new today / ${total} total`;
-  const moreNew = !flashPracticeMode && today_.unseen > today_.fresh.length
-    ? `<button class="btn btn-secondary btn-sm" onclick="learnMoreNew()">Learn ${Math.min(NEW_CARDS_PER_DAY, today_.unseen - today_.fresh.length)} more new</button>` : '';
-
-  const boxCounts = [0, 0, 0, 0, 0];
-  if (flashData) {
-    flashData.cards.forEach(c => {
-      const box = (state.flashcards.boxes[c.id] || 1) - 1;
-      if (box >= 0 && box < 5) boxCounts[box]++;
-    });
-  }
-
-  const boxNames     = ['New / Learning', 'Familiar', 'Confident', 'Strong', 'Mastered'];
-  const boxIntervals = ['every 1 day', 'every 2 days', 'every 4 days', 'every 8 days', 'every 16 days'];
-  const boxColors    = ['#B5443A', '#A85A3C', '#BE7A1C', '#3D7A4E', '#1B5A5F'];
-
-  container.innerHTML = `
-    <h2 style="margin-bottom:12px">Flashcards</h2>
-    <div class="leitner-boxes">
-      ${boxCounts.map((c, i) => `
-        <div class="leitner-box">
-          <div class="box-num" style="--hue:${boxColors[i]}">Box ${i + 1}</div>
-          <div class="box-name">${boxNames[i]}</div>
-          <div class="box-lbl">${boxIntervals[i]}</div>
-          <div class="box-count">${c} card${c !== 1 ? 's' : ''}</div>
-        </div>`).join('')}
-    </div>
-    <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center">
-      <select id="flash-filter" aria-label="Which section's cards" onchange="setFlashFilter(this.value)" style="background:var(--bg2);border:1px solid var(--border);color:var(--text);padding:9px 12px;border-radius:var(--radius-sm);font-size:14px;font-family:'Inter',sans-serif;font-weight:600;box-shadow:var(--shadow-sm);cursor:pointer">
-        <option value="all" ${flashFilter === 'all' ? 'selected' : ''}>All sections</option>
-        ${unitLettersUpper().map(l => `<option value="${l}" ${flashFilter === l ? 'selected' : ''}>${l} · ${sectionShortName(l)}</option>`).join('')}
-      </select>
-      <span style="font-size:14px;color:var(--text2)">${dueLabel}</span>
-      <button class="btn btn-secondary btn-sm" onclick="flashPracticeMode=false;buildFlashQueue();renderFlashUI()">Refresh queue</button>
-    </div>
-    ${flashPracticeMode ? `<div style="background:var(--accent-light);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:12px;font-size:13px;color:var(--text)"><strong>Practice mode</strong> — reviewing all ${flashQueue.length} cards. Leitner progress is not being saved. <button class="btn btn-secondary btn-sm" style="margin-left:8px" onclick="flashPracticeMode=false;buildFlashQueue();renderFlashUI()">Exit practice mode</button></div>` : ''}
-    ${due === 0 && !flashPracticeMode ? `
-      <div class="empty-state">
-        <div class="icon">🎉</div>
-        <p>${today_.unseen ? `Today's ${NEW_CARDS_PER_DAY} new cards are done and nothing is due for review. New cards stick better spread over days.` : 'No flashcards due! Check back tomorrow.'}</p>
-        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px">
-          ${moreNew}
-          <button class="btn btn-primary" onclick="flashPracticeMode=true;flashFilter='all';buildFlashQueue();renderFlashUI()">Study all cards anyway</button>
-        </div>
-      </div>` : renderCurrentFlashcard()}`;
-}
-
-function renderCurrentFlashcard() {
-  if (flashIdx >= flashQueue.length) {
-    const left = flashPracticeMode ? null : dueFlashcards(flashFilter);
-    const more = left && left.unseen > left.fresh.length && !left.all.length
-      ? `<button class="btn btn-secondary" onclick="learnMoreNew()">Learn ${Math.min(NEW_CARDS_PER_DAY, left.unseen)} more new</button>` : '';
-    return `<div class="empty-state"><div class="icon">🎉</div><p>Session complete! ${flashQueue.length} cards reviewed.</p>
-      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px">
-        ${more}
-        <button class="btn btn-primary" onclick="flashPracticeMode=false;buildFlashQueue();renderFlashUI()">${left && left.all.length ? 'Keep going' : 'Start again'}</button>
-      </div></div>`;
-  }
-  const card = flashQueue[flashIdx];
-  const box = state.flashcards.boxes[card.id] || 1;
-  const pct = Math.round((flashIdx / flashQueue.length) * 100);
-  return `
-    <div style="font-size:13px;color:var(--text2);margin-bottom:8px">Card ${flashIdx + 1} of ${flashQueue.length} — Box ${box}</div>
-    <div role="button" tabindex="0" class="flashcard-scene" onclick="flipFlashcard()" id="flash-scene">
-      <div class="flashcard-inner${flashFlipped ? ' flipped' : ''}" id="flash-inner">
-        <div class="flashcard-face front">
-          <span class="badge" style="margin-bottom:12px">${card.code}</span>
-          <div class="term">${card.front}</div>
-          <div class="hint">Tap to reveal</div>
-        </div>
-        <div class="flashcard-face back">
-          <span class="badge" style="margin-bottom:12px">${card.section}</span>
-          <div class="def">${card.back}</div>
-        </div>
-      </div>
-    </div>
-    <div class="rag-btns${flashFlipped ? '' : ' hidden'}" id="flash-answer-btns" style="margin-top:12px">
-      <button class="rag-btn active-red" onclick="answerFlash(false)">✗ Didn't know</button>
-      <button class="rag-btn active-green" onclick="answerFlash(true)">✓ Got it!</button>
-    </div>
-    <div class="progress-bar-wrap" style="margin-top:12px"><div class="progress-bar" id="flash-progress-bar" style="width:${pct}%"></div></div>
-    <div class="flash-keys"><kbd>Space</kbd> flip · <kbd>←</kbd> didn't know · <kbd>→</kbd> got it</div>`;
-}
-
-function flipFlashcard() {
-  flashFlipped = !flashFlipped;
-  const inner = el('flash-inner');
-  if (inner) inner.classList.toggle('flipped', flashFlipped);
-  const btns = el('flash-answer-btns');
-  if (btns) btns.classList.toggle('hidden', !flashFlipped);
-}
-
-function answerFlash(correct) {
-  const card = flashQueue[flashIdx];
-  if (!flashPracticeMode) {
-    if (!state.flashcards.nextDue[card.id]) newDayToday().count++;   // first grading: a new card used up
-    const curBox = state.flashcards.boxes[card.id] || 1;
-    const newBox = correct ? Math.min(5, curBox + 1) : 1;
-    state.flashcards.boxes[card.id] = newBox;
-    const interval = LEITNER_INTERVALS[newBox];
-    const due = new Date();
-    due.setDate(due.getDate() + interval);
-    state.flashcards.nextDue[card.id] = localDateStr(due);
-    gainXP(correct ? 5 : 2);
-    bumpActivity();
-    saveState();
-  }
-  flashIdx++;
-  flashFlipped = false;
-  renderFlashUI();
-}
-
-function setFlashFilter(val) {
-  flashFilter = val;
-  flashPracticeMode = false;
-  buildFlashQueue();
-  renderFlashUI();
-}
-
-function getFlashcardsDueCount() {
-  return dueFlashcards().all.length;
-}
-
 /* ---- QUESTIONS ----
-   Practice works like flashcards: one question on screen, Previous / Next (or
+   Practice shows one question on screen, Previous / Next (or
    ← / →) to move, filtered by section and by what you still need to do. Quiz
    mode runs a short set picked by focus; mock papers sit a whole paper. */
 let qData = null;
@@ -2532,7 +2461,7 @@ function discardMock() {
   mock = null;
   persistMock(true);
   toast('Paper discarded');
-  if (currentPage === 'home') renderHome(); else renderQuestions();
+  if (currentPage === 'home') renderHome(); else if (currentPage === 'exam') renderExam(); else renderQuestions();
 }
 
 function openMockMenu() {
@@ -2882,7 +2811,6 @@ function openPPP() {
 }
 
 function renderPPP(container) {
-  if (pppCardsOpened) { flashPracticeMode = false; flashFilter = 'all'; pppCardsOpened = false; }
   PPP.pruneUnknown(pppState(), new Set(qData.questions.map(q => q.id)));
   if (!ppp) return renderPPPHome(container);
   if (ppp.step === 'done') return renderPPPDone(container);
@@ -3044,7 +2972,7 @@ function abandonPPP() {
   }
   ppp = null;
   persistPPP(true);
-  if (currentPage === 'home') renderHome(); else renderQuestions();
+  if (currentPage === 'home') renderHome(); else if (currentPage === 'exam') renderExam(); else renderQuestions();
 }
 
 // The clock for the part on screen: a fixed end time in Phase 3, none otherwise.
@@ -3213,7 +3141,6 @@ function pppStepHtml(q) {
         <div class="question-meta">${rs.map(r => `<span class="badge">${PPP_REASON_LABELS[r]}</span>`).join('')}</div>
         <div class="ppp-fix-links">
           <button class="btn btn-secondary btn-sm" onclick="pppOpenNotes('${q.section}')">Section ${q.section} notes</button>
-          <button class="btn btn-secondary btn-sm" onclick="pppOpenCards('${q.section}')">Section ${q.section} flashcards</button>
         </div>
         ${pppSchemeSummary(q, true)}
         ${rs.filter(r => r !== 'knowledge').map(r => `<p class="ms-note"><strong>${PPP_REASON_LABELS[r]}:</strong> ${escapeHTML(pppTip(q, r))}</p>`).join('')}
@@ -3354,16 +3281,7 @@ function pppTip(q, r) {
   return 'Leave five minutes at the end to re-read every answer against its question.';
 }
 
-function pppOpenNotes(L) { navigate('sections', { section: L }); }
-let pppCardsOpened = false;   // Fix opened flashcards on one section; undone on return
-
-function pppOpenCards(L) {
-  flashPracticeMode = true;
-  flashFilter = L;
-  pppCardsOpened = true;
-  navigate('flashcards');
-}
-
+function pppOpenNotes(L) { navigate('learn', { section: L }); }
 function pppToRedo() {
   const q = pppQ();
   if (PPP.needsWrittenFix(ppp.reasons[q.id]) && !(ppp.fixes[q.id] || '').trim()) {
@@ -4018,327 +3936,12 @@ function awardXP(n, quiet) {
   gainXP(n);
   bumpActivity();
   saveState();
+  renderRightRail();
   if (!quiet) toast(`+${n} XP`);
 }
 
 function xpLevel() { return Math.floor((state.xp || 0) / XP_PER_LEVEL) + 1; }
 function xpIntoLevel() { return (state.xp || 0) % XP_PER_LEVEL; }
-
-/* ---- GAMES (MCQ quick-fire + match) ---- */
-let gamesMode = 'menu';
-let mcq = null;
-let matchGame = null;
-let matchInterval = null;
-
-/* ---- TRUE OR FALSE BLITZ ---- */
-let tfState = null;
-
-/* ---- FILL IN THE BLANK ---- */
-let fitbState = null;
-
-function buildFITBQuestions(count = 10) {
-  // Built from spec items, which carry term + definition. Flashcards hold
-  // question/answer pairs, so blanking a term out of those never matches.
-  // Only ~9% of items repeat their term inside the definition, so where that
-  // fails the blank stands in for the term itself rather than dropping the item.
-  const pool = specItems().filter(i => i.term && i.definition);
-  if (pool.length < 4) return [];
-
-  const shuffled = shuffle(pool).slice(0, count);
-  return shuffled.map(item => {
-    const re = new RegExp(escapeRe(item.term), 'gi');
-    const inline = re.test(item.definition);
-    const blanked = inline
-      ? item.definition.replace(new RegExp(escapeRe(item.term), 'gi'), '_____')
-      : '_____ — ' + item.definition;
-    // Distractors must be distinct from the answer AND from each other, or the
-    // board shows two identical buttons and one correct answer scores wrong.
-    const seen = new Set([item.term.toLowerCase()]);
-    const distractors = [];
-    for (const cand of shuffle(pool)) {
-      const key = String(cand.term).toLowerCase();
-      if (seen.has(key)) continue;
-      seen.add(key);
-      distractors.push(cand.term);
-      if (distractors.length === 3) break;
-    }
-    const options = shuffle([item.term, ...distractors]);
-    return { definition: blanked, answer: item.term, options, code: item.code };
-  });
-}
-
-function startFITB() {
-  stopGameTimers();
-  const qs = buildFITBQuestions(10);
-  if (!qs.length) { toast('No flashcard data loaded'); return; }
-  fitbState = { qs, idx: 0, correct: 0, selected: null, answered: false };
-  gamesMode = 'fitb';
-  renderGames();
-}
-
-function renderFITB(container) {
-  if (!fitbState) return;
-  const q = fitbState.qs[fitbState.idx];
-  const total = fitbState.qs.length;
-
-  container.innerHTML = `
-    <div class="quiz-wrap" style="max-width:620px">
-      <div class="quiz-progress" style="margin-bottom:16px">
-        <span>✏️ Fill in the Blank · ${fitbState.idx + 1}/${total}</span>
-        <div class="bar"><div class="bar-fill" style="width:${(fitbState.idx / total) * 100}%"></div></div>
-        <button class="btn btn-secondary btn-sm" onclick="gamesMode=null;fitbState=null;renderGames()">Quit</button>
-      </div>
-      <p style="font-size:12px;color:var(--text2);margin-bottom:8px">${q.code}</p>
-      <div class="card" style="padding:24px;font-size:16px;line-height:1.7;margin-bottom:20px">
-        ${q.definition}
-      </div>
-      <div class="grid2" style="gap:10px">
-        ${q.options.map(opt => {
-          let style = '';
-          if (fitbState.answered) {
-            if (opt === q.answer) style = 'background:var(--green-fill);color:#fff;border-color:var(--green-fill)';
-            else if (opt === fitbState.selected) style = 'background:var(--red-fill);color:#fff;border-color:var(--red-fill)';
-          }
-          return `<button class="btn btn-secondary" style="padding:14px;font-size:15px;${style}" onclick="answerFITB('${opt.replace(/'/g,"\\'")}') " ${fitbState.answered ? 'disabled' : ''}>${opt}</button>`;
-        }).join('')}
-      </div>
-      ${fitbState.answered ? `
-        <div style="text-align:center;margin-top:16px">
-          <p style="color:var(--text2);margin-bottom:10px">${fitbState.selected === q.answer ? '✅ Correct!' : `❌ The answer was: <strong>${q.answer}</strong>`}</p>
-          <button class="btn btn-primary" onclick="fitbNext()">Next →</button>
-        </div>` : ''}
-    </div>`;
-}
-
-function answerFITB(selected) {
-  if (!fitbState || fitbState.answered) return;
-  fitbState.selected = selected;
-  fitbState.answered = true;
-  if (selected === fitbState.qs[fitbState.idx].answer) fitbState.correct++;
-  renderGames();
-}
-
-function fitbNext() {
-  if (!fitbState) return;
-  fitbState.idx++;
-  fitbState.answered = false;
-  fitbState.selected = null;
-  if (fitbState.idx >= fitbState.qs.length) {
-    endFITB();
-  } else {
-    renderGames();
-  }
-}
-
-function endFITB() {
-  if (!fitbState) return;
-  const { correct, qs } = fitbState;
-  const xpEarned = correct * 8;
-  gainXP(xpEarned);
-  bumpActivity(correct);
-  saveState();
-
-  gamesMode = 'menu';
-  fitbState = null;
-  const container = el('games-content');
-  container.innerHTML = `
-    <div class="quiz-wrap" style="max-width:480px;text-align:center">
-      <h2 style="margin-bottom:8px">Round complete!</h2>
-      <p style="font-size:24px;font-weight:700;margin-bottom:4px">${correct} / ${qs.length} correct</p>
-      <p style="color:var(--text2);margin-bottom:16px">+${xpEarned} XP earned</p>
-      <div style="display:flex;gap:10px;justify-content:center">
-        <button class="btn btn-primary" onclick="startFITB()">Play again</button>
-        <button class="btn btn-secondary" onclick="renderGames()">Back to games</button>
-      </div>
-    </div>`;
-}
-
-function buildTFQuestions() {
-  // Spec items carry term + definition; flashcards hold question/answer pairs.
-  const items = specItems().filter(i => i.term && i.definition);
-  if (items.length < 4) return [];
-  const qs = [];
-
-  items.forEach((item, i) => {
-    // True statement: real definition
-    qs.push({ statement: `"${item.term}" — ${item.definition}`, answer: true, term: item.term });
-
-    // False statement: correct term, wrong definition. Two traps here.
-    // 1. The decoy must not share this item's term — Unit 1 repeats 17 terms,
-    //    and a term paired with another definition of itself reads as TRUE.
-    // 2. It must not simply be the next item. Breaking on the first candidate
-    //    made every decoy items[i+1], which is a sibling in the same subtopic
-    //    75% of the time — the most semantically overlapping content there is
-    //    ("Survey" paired with Questionnaire's "Similar to a survey…" reads as
-    //    true) — and made the whole round identical on every play.
-    const sub = c => String(c).split('.').slice(0, 2).join('.');
-    // Exact inequality is not enough: Unit 1 restates the same factor under a
-    // longer name in another section, so "Compatibility" would draw the
-    // definition of "Hardware and Software Compatibility" — a true statement
-    // keyed false. Reject any term that contains, or is contained by, this one.
-    const norm = t => String(t).toLowerCase().replace(/[^a-z0-9 ]/g, '').trim();
-    const mine = norm(item.term);
-    const overlaps = t => {
-      const o = norm(t);
-      return o === mine || o.includes(mine) || mine.includes(o);
-    };
-    const valid = items.filter(c =>
-      !overlaps(c.term) && c.definition !== item.definition);
-    const distant = valid.filter(c => sub(c.code) !== sub(item.code));
-    const pool = distant.length ? distant : valid;
-    const other = pool.length ? pool[Math.floor(Math.random() * pool.length)] : null;
-    if (other) {
-      qs.push({ statement: `"${item.term}" — ${other.definition}`, answer: false, term: item.term });
-    }
-  });
-
-  // Shuffle
-  for (let i = qs.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [qs[i], qs[j]] = [qs[j], qs[i]];
-  }
-  return qs;
-}
-
-function startTrueFalse() {
-  // Starting a second round without this leaks the first interval: tfState is
-  // reassigned, the old timer keeps firing, and it throws once tfState is null.
-  stopGameTimers();
-  const qs = buildTFQuestions();
-  if (!qs.length) { toast('No revision content loaded for this unit'); return; }
-  tfState = { qs, idx: 0, correct: 0, total: 0, timeLeft: 30, timer: null };
-  gamesMode = 'tf';
-  renderGames();
-  const timer = setInterval(() => {
-    if (!tfState || tfState.timer !== timer) { clearInterval(timer); return; }
-    tfState.timeLeft--;
-    const bar = el('tf-timer-bar');
-    if (bar) bar.style.width = (tfState.timeLeft / 30 * 100) + '%';
-    const label = el('tf-timer-label');
-    if (label) label.textContent = tfState.timeLeft + 's';
-    if (tfState.timeLeft <= 0) endTrueFalse();
-  }, 1000);
-  tfState.timer = timer;
-}
-
-function renderTrueFalse(container) {
-  if (!tfState) return;
-  const q = tfState.qs[tfState.idx];
-  container.innerHTML = `
-    <div class="quiz-wrap" style="max-width:600px">
-      <div class="quiz-progress" style="margin-bottom:16px">
-        <span>✅ True or False Blitz · <strong id="tf-timer-label">${tfState.timeLeft}s</strong></span>
-        <div class="bar"><div class="bar-fill" id="tf-timer-bar" style="width:${tfState.timeLeft / 30 * 100}%;background:var(--green)"></div></div>
-        <button class="btn btn-secondary btn-sm" onclick="endTrueFalse()">Quit</button>
-      </div>
-      <div class="card" style="text-align:center;padding:28px 24px;margin-bottom:20px;font-size:17px;line-height:1.6">
-        ${q ? q.statement : ''}
-      </div>
-      <div style="display:flex;gap:12px">
-        <button class="btn btn-primary" style="flex:1;padding:18px;font-size:18px;background:var(--green-fill)" onclick="answerTF(true)" id="tf-true-btn">✅ True</button>
-        <button class="btn btn-primary" style="flex:1;padding:18px;font-size:18px;background:var(--red-fill)" onclick="answerTF(false)" id="tf-false-btn">❌ False</button>
-      </div>
-      <p style="text-align:center;color:var(--text2);font-size:13px;margin-top:12px">Keyboard: ← False · True →</p>
-      <p style="text-align:center;color:var(--text2);font-size:13px;margin-top:4px">Score: ${tfState.correct}/${tfState.total}</p>
-    </div>`;
-}
-
-function answerTF(answer) {
-  if (!tfState || tfState.timeLeft <= 0) return;
-  const q = tfState.qs[tfState.idx];
-  const correct = q.answer === answer;
-  if (correct) tfState.correct++;
-  tfState.total++;
-  tfState.idx = (tfState.idx + 1) % tfState.qs.length;
-
-  // Brief visual feedback
-  const btn = el(answer ? 'tf-true-btn' : 'tf-false-btn');
-  if (btn) {
-    btn.style.opacity = '0.5';
-    setTimeout(() => { if (btn) btn.style.opacity = ''; }, 150);
-  }
-
-  renderGames();
-}
-
-function endTrueFalse() {
-  if (!tfState) return;
-  clearInterval(tfState.timer);
-  const { correct, total } = tfState;
-  const xpEarned = correct * 5;
-  gainXP(xpEarned);
-  bumpActivity(correct);
-
-  if (correct > getBest('tf')) setBest('tf', correct);
-
-  saveState();
-  gamesMode = 'menu';
-  tfState = null;
-
-  const container = el('games-content');
-  container.innerHTML = `
-    <div class="quiz-wrap" style="max-width:480px;text-align:center">
-      <h2 style="margin-bottom:8px">Blitz over!</h2>
-      <p style="font-size:24px;font-weight:700;margin-bottom:4px">${correct} / ${total} correct</p>
-      <p style="color:var(--text2);margin-bottom:16px">+${xpEarned} XP earned</p>
-      <div style="display:flex;gap:10px;justify-content:center">
-        <button class="btn btn-primary" onclick="startTrueFalse()">Play again</button>
-        <button class="btn btn-secondary" onclick="gamesMode=null;renderGames()">Back to games</button>
-      </div>
-    </div>`;
-}
-
-function renderGames() {
-  const container = el('games-content');
-  if (gamesMode === 'mcq') { renderMCQ(container); return; }
-  if (gamesMode === 'match') { renderMatch(container); return; }
-  if (gamesMode === 'tf') { renderTrueFalse(container); return; }
-  if (gamesMode === 'fitb') { renderFITB(container); return; }
-  if (gamesMode === 'battle' && battle) { renderBattleUI(container); return; }
-
-  const best = getBest('match') || null;
-  const tfBest = getBest('tf') || null;
-  container.innerHTML = `
-    <h2 style="margin-bottom:6px">Games</h2>
-    <p style="color:var(--text2);font-size:14px;margin-bottom:18px">Active recall, but fun. Earn XP for every game — you're Level ${xpLevel()} with ${state.xp || 0} XP.</p>
-    <div class="grid2">
-      <div role="button" tabindex="0" class="section-tile" onclick="startMCQ()">
-        <div class="tile-accent" style="background:var(--accent)"></div>
-        <div class="tile-code game-icon" aria-hidden="true">⚡</div>
-        <h3>Quick-fire MCQ</h3>
-        <p>10 multiple-choice questions generated from your flashcards. +10 XP per correct answer.</p>
-      </div>
-      <div role="button" tabindex="0" class="section-tile" onclick="startMatch()">
-        <div class="tile-accent" style="background:var(--pink)"></div>
-        <div class="tile-code game-icon" aria-hidden="true">🧩</div>
-        <h3>Match</h3>
-        <p>Pair terms with definitions against the clock. +30 XP per clear.${best ? ` Best time: <strong>${best}s</strong>` : ''}</p>
-      </div>
-      <div role="button" tabindex="0" class="section-tile" onclick="startTrueFalse()">
-        <div class="tile-accent" style="background:var(--green)"></div>
-        <div class="tile-code game-icon" aria-hidden="true">✅</div>
-        <h3>True or False Blitz</h3>
-        <p>30 seconds. Rapid-fire true/false statements from your flashcards. +5 XP per correct.${tfBest ? ` Best: <strong>${tfBest}</strong>` : ''}</p>
-      </div>
-      <div role="button" tabindex="0" class="section-tile" onclick="startFITB()">
-        <div class="tile-accent" style="background:var(--accent2)"></div>
-        <div class="tile-code game-icon" aria-hidden="true">✏️</div>
-        <h3>Fill in the Blank</h3>
-        <p>A definition with the key term removed — pick the right answer from 4 options. +8 XP per correct.</p>
-      </div>
-    </div>
-    <h3 style="margin:24px 0 12px;font-size:14px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">⚔️ Battle arena — vs the leaderboard</h3>
-    <div class="grid2">
-      ${Object.entries(BATTLE_MODES).map(([key, m]) => `
-        <div role="button" tabindex="0" class="section-tile" onclick="startBattle('${key}')">
-          <div class="tile-accent" style="background:${key === 'duel' ? 'var(--pink)' : 'var(--accent)'}"></div>
-          <div class="tile-code game-icon" aria-hidden="true">${m.icon}</div>
-          <h3>${m.name}</h3>
-          <p>${m.desc}</p>
-        </div>`).join('')}
-    </div>
-    ${renderLeaderboardHTML()}`;
-}
 
 /* -- LEADERBOARD: weekly leagues and the battle rating --
    The rules live in league.js. The rivals are simulated; LB_BOTS is their
@@ -4457,15 +4060,22 @@ function lbMoveHTML(delta) {
 
 const LB_MEDALS = { 1: '🥇', 2: '🥈', 3: '🥉' };
 
+/* The place cell: a medal for the top three; your own row always gets one
+   (🏅 below third) with the place under it. */
+function lbRankHTML(r) {
+  if (!r.me) return `<span class="lb-rank">${LB_MEDALS[r.place] || '#' + r.place}</span>`;
+  return `<span class="lb-rank lb-rank--me"><span aria-hidden="true">${LB_MEDALS[r.place] || '🏅'}</span><small>#${r.place}</small></span>`;
+}
+
 function lbRowHTML(r, moveMap) {
   const delta = moveMap ? (moveMap[r.name] || 0) : 0;
   return `
     <div role="button" tabindex="0" class="lb-row${r.me ? ' me' : ''} clickable" onclick="${r.me ? "navigate('profile')" : `showPlayerCard('${r.name}')`}" title="${r.me ? 'View your profile' : 'View player'}">
-      <span class="lb-rank">${LB_MEDALS[r.place] || '#' + r.place}</span>
+      ${lbRankHTML(r)}
       ${lbMoveHTML(delta)}
       <span class="lb-av" style="background:${r.col}">${r.me ? meAvInner() : r.name.charAt(0)}</span>
       <span class="lb-name">${r.name}${r.me ? ' <span class="lb-you">(you)</span>' : ''}<span class="lb-tag">${r.tag}</span></span>
-      <span class="lb-xp">${r.xp.toLocaleString()} XP</span>
+      <span class="${r.me ? 'g-chip g-chip--xp' : 'lb-xp'}">${r.xp.toLocaleString()} XP</span>
     </div>`;
 }
 
@@ -4583,22 +4193,6 @@ const LEAGUE_HOW = `
     </ul>
   </details>`;
 
-/* compact view: the 7 players around you (used on the Games page) */
-function renderLeaderboardHTML() {
-  const rows = leagueRows();
-  const move = lbMovementMap();
-  const i = rows.findIndex(r => r.me);
-  const start = Math.max(0, Math.min(i - 3, rows.length - 7));
-  const view = rows.slice(start, start + 7);
-  const t = TIERS[state.league.tier];
-
-  return `
-    <h3 style="margin:24px 0 4px;font-size:14px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">${t.icon} Your ${t.name} League · ${weekLeftText()}</h3>
-    <p style="color:var(--text2);font-size:13px;margin-bottom:12px">${leagueStatus(rows)} <span class="sim-inline">(Simulated rivals, not real students.)</span></p>
-    <div class="lb-board">${view.map(r => lbRowHTML(r, move)).join('')}</div>
-    <button class="btn btn-secondary btn-sm" style="margin-top:10px" onclick="navigate('leaderboard')">View full league →</button>`;
-}
-
 /* -- BATTLE RATING (Elo) -- */
 function rivalRating(bot) {
   return LEAGUE.rivalRating(bot, LEAGUE.weekId(Date.now()));
@@ -4623,10 +4217,10 @@ function ratingBoardHTML() {
   const provisional = b.rated < LEAGUE.PROVISIONAL;
   const row = r => `
     <div role="button" tabindex="0" class="lb-row${r.me ? ' me' : ' clickable'}" onclick="${r.me ? "navigate('profile')" : `showPlayerCard('${r.name}')`}">
-      <span class="lb-rank">${LB_MEDALS[r.place] || '#' + r.place}</span>
+      ${lbRankHTML(r)}
       <span class="lb-av" style="background:${r.col}">${r.me ? meAvInner() : r.name.charAt(0)}</span>
       <span class="lb-name">${r.name}${r.me ? ' <span class="lb-you">(you)</span>' : ''}<span class="lb-tag">${r.tag}</span></span>
-      <span class="lb-xp">${r.rating}</span>
+      <span class="${r.me ? 'g-chip g-chip--xp' : 'lb-xp'}">${r.rating}</span>
     </div>`;
   const top = rows.slice(0, 10);
   return `
@@ -4639,7 +4233,7 @@ function ratingBoardHTML() {
         </div>
       </div>
       <p class="league-status">An Elo rating from Duel, Race to 10, Elimination and Blitz 60. Beat higher-rated rivals for a big gain; lose to lower-rated ones and it drops. Matchmaking finds rivals near your rating.${provisional ? ` Your first ${LEAGUE.PROVISIONAL} battles move it twice as far, so it finds your level quickly.` : ''} Quitting a battle you've started counts as a loss.</p>
-      <button class="btn btn-primary btn-sm" onclick="navigate('games')">⚔️ Play a battle</button>
+      <button class="btn btn-primary btn-sm" onclick="focusBattlePicker()">⚔️ Play a battle</button>
     </div>
     <div class="lb-board">
       ${top.map(row).join('')}
@@ -4651,21 +4245,24 @@ let lbView = 'league';   // 'league' | 'rating'
 
 function setLbView(v) {
   lbView = v;
-  renderLeaderboardPage();
+  if (currentPage === 'learn') renderLearn(null, 'leaderboard');
 }
 
-function renderLeaderboardPage() {
+/* The league and battle rating, drawn into the Learn page's Leaderboard tab
+   under the battle picker (learn.js passes its container and its own heading). */
+function renderLeaderboardPage(container, inTab) {
+  if (!container) return;
   const isLeague = lbView !== 'rating';
   const rows = leagueRows();
   const move = lbMovementMap();
   const banner = isLeague ? lastWeekBannerHTML() : '';
 
-  el('leaderboard-content').innerHTML = `
-    <h2 style="margin-bottom:6px">Leaderboard</h2>
+  container.innerHTML = `
+    ${inTab ? '' : '<h2 style="margin-bottom:6px">Leaderboard</h2>'}
     <p class="sim-note">The other players are simulated practice rivals, not real students. Your progress stays on this device.</p>
-    <div class="tabs" role="group" aria-label="Leaderboard" style="max-width:420px">
-      <button class="tab-btn ${isLeague ? 'active' : ''}" aria-pressed="${isLeague}" onclick="setLbView('league')">🏆 Weekly league</button>
-      <button class="tab-btn ${isLeague ? '' : 'active'}" aria-pressed="${!isLeague}" onclick="setLbView('rating')">⚔️ Battle rating</button>
+    <div class="lb-switch" role="group" aria-label="Leaderboard">
+      <button class="g-pill${isLeague ? ' on' : ''}" aria-pressed="${isLeague}" onclick="setLbView('league')">🏆 Weekly league</button>
+      <button class="g-pill${isLeague ? '' : ' on'}" aria-pressed="${!isLeague}" onclick="setLbView('rating')">⚔️ Battle rating</button>
     </div>
     ${isLeague ? `
       ${banner}
@@ -4675,185 +4272,9 @@ function renderLeaderboardPage() {
       ${LEAGUE_HOW}
     ` : ratingBoardHTML()}
     <div style="margin-top:18px;display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn btn-primary" onclick="navigate('games')">⚡ Earn XP in Games</button>
-      <button class="btn btn-secondary" onclick="navigate('flashcards')">Review flashcards</button>
+      <button class="g-btn" onclick="studyNow()"><span aria-hidden="true">🎮</span> Study to earn XP</button>
     </div>`;
   if (banner) { state.league.seen = true; saveState(); }
-}
-
-/* -- Quick-fire MCQ -- */
-function startMCQ() {
-  stopGameTimers();
-  const cards = flashcardsForUnit();
-  const qs = shuffle(cards).slice(0, 10).map(c => {
-    let pool = cards.filter(x => x.id !== c.id && x.section === c.section);
-    if (pool.length < 3) pool = cards.filter(x => x.id !== c.id);
-    const opts = shuffle(pool).slice(0, 3).map(d => ({ text: d.back, correct: false }));
-    opts.push({ text: c.back, correct: true });
-    shuffleInPlace(opts);
-    return { front: c.front, code: c.code, opts };
-  });
-  mcq = { qs, idx: 0, score: 0, answered: false };
-  gamesMode = 'mcq';
-  renderGames();
-}
-
-function renderMCQ(container) {
-  if (mcq.idx >= mcq.qs.length) {
-    const pct = Math.round((mcq.score / mcq.qs.length) * 100);
-    container.innerHTML = `
-      <div class="empty-state">
-        <h2 style="margin-bottom:8px">${mcq.score}/${mcq.qs.length} correct (${pct}%)</h2>
-        <p>${pct >= 80 ? 'Outstanding — that knowledge is locked in.' : pct >= 50 ? 'Solid — review the ones you missed and go again.' : 'Good effort — hit the flashcards on these topics and retry.'}</p>
-        <div style="display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap">
-          <button class="btn btn-primary" onclick="startMCQ()">Play again</button>
-          <button class="btn btn-secondary" onclick="gamesMode='menu';renderGames()">Back to games</button>
-        </div>
-      </div>`;
-    return;
-  }
-  const q = mcq.qs[mcq.idx];
-  container.innerHTML = `
-    <div class="quiz-wrap">
-      <div class="quiz-progress">
-        <span>${mcq.idx + 1}/${mcq.qs.length} · Score ${mcq.score}</span>
-        <div class="bar"><div class="bar-fill" style="width:${Math.round((mcq.idx / mcq.qs.length) * 100)}%"></div></div>
-        <button class="btn btn-secondary btn-sm" onclick="gamesMode='menu';renderGames()">Exit</button>
-      </div>
-      <div class="card">
-        <span class="badge" style="margin-bottom:10px;display:inline-block">${q.code}</span>
-        <p class="quiz-q">${q.front}</p>
-        <div class="mcq-opts">
-          ${q.opts.map((o, i) => `<button class="mcq-opt" id="mcq-opt-${i}" onclick="answerMCQ(${i})">${o.text}</button>`).join('')}
-        </div>
-        <button class="btn btn-primary btn-full hidden" id="mcq-next" onclick="mcq.idx++;mcq.answered=false;renderGames()">Next →</button>
-      </div>
-    </div>`;
-}
-
-function answerMCQ(i) {
-  if (mcq.answered) return;
-  mcq.answered = true;
-  const q = mcq.qs[mcq.idx];
-  q.opts.forEach((o, j) => {
-    const btn = el('mcq-opt-' + j);
-    if (o.correct) btn.classList.add('right');
-    else if (j === i) btn.classList.add('wrong');
-    btn.disabled = true;
-  });
-  if (q.opts[i].correct) {
-    mcq.score++;
-    awardXP(10, true);
-  }
-  el('mcq-next').classList.remove('hidden');
-}
-
-/* -- Match game -- */
-function startMatch() {
-  stopGameTimers();
-  if (!searchBuilt) { loadData(unitLetters()); buildSearchIndex(); }
-  const pool = allSearchContent.filter(x => x.definition && x.definition.length > 20);
-  // Unit 1 repeats terms across items; two identical term tiles make the visible
-  // pairing ambiguous and score a correct match as wrong.
-  const usedTerms = new Set();
-  const pairs = [];
-  for (const cand of shuffle(pool)) {
-    const key = String(cand.term).toLowerCase();
-    if (usedTerms.has(key)) continue;
-    usedTerms.add(key);
-    pairs.push(cand);
-    if (pairs.length === 6) break;
-  }
-  const tiles = [];
-  pairs.forEach((p, i) => {
-    tiles.push({ pair: i, kind: 'term', text: p.term });
-    // Definitions are kept to about one line (validate_data.py caps them), so this only guards stray long ones.
-    tiles.push({ pair: i, kind: 'def', text: p.definition.length > 120 ? p.definition.substring(0, 120) + '…' : p.definition });
-  });
-  shuffleInPlace(tiles);
-  matchGame = { tiles, sel: null, done: new Set(), start: Date.now() };
-  gamesMode = 'match';
-  renderGames();
-  if (matchInterval) clearInterval(matchInterval);
-  matchInterval = setInterval(() => {
-    const t = el('match-clock');
-    if (t && matchGame) t.textContent = Math.floor((Date.now() - matchGame.start) / 1000) + 's';
-  }, 500);
-}
-
-function renderMatch(container) {
-  container.innerHTML = `
-    <div class="quiz-wrap" style="max-width:760px">
-      <div class="quiz-progress">
-        <span>🧩 Match — <span id="match-clock">0s</span></span>
-        <div class="bar"><div class="bar-fill" style="width:${Math.round((matchGame.done.size / 6) * 100)}%"></div></div>
-        <button class="btn btn-secondary btn-sm" onclick="clearInterval(matchInterval);gamesMode='menu';renderGames()">Exit</button>
-      </div>
-      <div class="match-grid">
-        ${matchGame.tiles.map((t, i) => `
-          <button class="match-tile ${t.kind} ${matchGame.done.has(t.pair) ? 'matched' : ''}" id="mt-${i}" onclick="pickTile(${i})">${t.text}</button>`).join('')}
-      </div>
-    </div>`;
-}
-
-function pickTile(i) {
-  const t = matchGame.tiles[i];
-  if (matchGame.done.has(t.pair)) return;
-  const btn = el('mt-' + i);
-
-  if (matchGame.sel === null) {
-    matchGame.sel = i;
-    btn.classList.add('sel');
-    return;
-  }
-  if (matchGame.sel === i) {
-    btn.classList.remove('sel');
-    matchGame.sel = null;
-    return;
-  }
-
-  const prev = matchGame.tiles[matchGame.sel];
-  const prevBtn = el('mt-' + matchGame.sel);
-
-  if (prev.pair === t.pair && prev.kind !== t.kind) {
-    matchGame.done.add(t.pair);
-    btn.classList.add('matched');
-    prevBtn.classList.remove('sel');
-    prevBtn.classList.add('matched');
-    matchGame.sel = null;
-    if (matchGame.done.size === 6) finishMatch();
-  } else {
-    btn.classList.add('wrong');
-    prevBtn.classList.add('wrong');
-    const a = i, b = matchGame.sel;
-    matchGame.sel = null;
-    setTimeout(() => {
-      const ba = el('mt-' + a), bb = el('mt-' + b);
-      if (ba) ba.classList.remove('wrong');
-      if (bb) { bb.classList.remove('wrong'); bb.classList.remove('sel'); }
-    }, 450);
-  }
-}
-
-function finishMatch() {
-  clearInterval(matchInterval);
-  const secs = Math.floor((Date.now() - matchGame.start) / 1000);
-  const best = getBest('match');
-  const isBest = !best || secs < best;
-  if (isBest) setBest('match', secs);
-  awardXP(30, true);
-  setTimeout(() => {
-    el('games-content').innerHTML = `
-      <div class="empty-state">
-        <div class="icon">${isBest ? '🥇' : '🎉'}</div>
-        <h2 style="margin-bottom:8px">Cleared in ${secs}s${isBest ? ' — new best time!' : ''}</h2>
-        <p>+30 XP earned. ${best && !isBest ? `Your best is ${best}s — can you beat it?` : ''}</p>
-        <div style="display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap">
-          <button class="btn btn-primary" onclick="startMatch()">Play again</button>
-          <button class="btn btn-secondary" onclick="gamesMode='menu';renderGames()">Back to games</button>
-        </div>
-      </div>`;
-  }, 500);
 }
 
 /* -- PLAYER CARD — click any rival on the league table or rating board -- */
@@ -4937,11 +4358,13 @@ document.addEventListener('keydown', e => {
 });
 
 function challengePlayer(name) {
-  navigate('games');
+  navigate('learn', { tab: 'leaderboard' });
   startBattle('duel', name);
 }
 
-/* -- QUIZ BATTLE — live competition vs leaderboard rivals -- */
+/* -- QUIZ BATTLE — live competition vs leaderboard rivals --
+   Played in Learn -> Leaderboard: #learn-battle holds the mode picker, or the
+   battle itself while one is on (the league below is hidden meanwhile). */
 let battle = null;
 let battleTick = null;
 const BATTLE_Q_SECS = 12;
@@ -4953,9 +4376,15 @@ const BATTLE_MODES = {
   blitz: { name: 'Blitz 60',    icon: '⚡', desc: '60 seconds, unlimited questions. Outscore your rivals before the clock dies.' }
 };
 
-function battleQuestionPool(n) {
+/* `letter` narrows the questions to one section (a battle started from a path
+   node), as long as it has enough distinct terms for four options. */
+function battleQuestionPool(n, letter) {
   if (!searchBuilt) { loadData(unitLetters()); buildSearchIndex(); }
-  const pool = allSearchContent.filter(x => x.definition && x.definition.length > 20);
+  let pool = allSearchContent.filter(x => x.definition && x.definition.length > 20);
+  if (letter) {
+    const inSec = pool.filter(x => x.section === letter);
+    if (new Set(inSec.map(x => x.term.toLowerCase())).size >= 8) pool = inSec;
+  }
   return shuffle(pool).slice(0, n).map(p => {
     // Distinct from the answer AND each other: Unit 1 repeats 17 terms, which put
     // two identical buttons on the board.
@@ -5013,7 +4442,9 @@ function botAnswer(skill) {
 
 function stopBattleTick() { if (battleTick) { clearInterval(battleTick); battleTick = null; } }
 
-function startBattle(mode, targetName) {
+function startBattle(mode, targetName, letter) {
+  if (!BATTLE_MODES[mode]) return;
+  forfeitBattle();   // a rematch or new battle over a live one ends the old one first
   stopGameTimers();
   stopBattleTick();
   const oppCount = mode === 'elim' ? 7 : mode === 'duel' ? 1 : 3;
@@ -5023,7 +4454,8 @@ function startBattle(mode, targetName) {
     idx: 0,
     over: false,
     answered: false,
-    qs: battleQuestionPool(mode === 'blitz' ? 40 : 30),
+    letter: letter || null,
+    qs: battleQuestionPool(mode === 'blitz' ? 40 : 30, letter),
     players: [
       { name: 'You', col: pCol(), me: true, alive: true, score: 0, totalTime: 0, out: 0 },
       ...opps.map(o => ({ name: o.name, col: o.col, me: false, rating: o.rating, skill: LEAGUE.rivalSkill(o.rating), alive: true, score: 0, totalTime: 0, out: 0 }))
@@ -5038,9 +4470,71 @@ function startBattle(mode, targetName) {
       if (!p.me) p.blitzFinal = Math.max(2, Math.round(6 + p.skill * 14 + (Math.random() * 6 - 3)));
     });
   }
-  gamesMode = 'battle';
-  renderGames();
+  renderBattleView();
   if (mode !== 'blitz') startBattleQuestion();
+  const box = el('learn-battle');
+  if (box) box.focus({ preventScroll: true });
+}
+
+/* True while the Learn -> Leaderboard tab, where battles are drawn, is showing. */
+function battleOnScreen() {
+  return currentPage === 'learn' && learnTab === 'leaderboard' && !currentSection;
+}
+
+/* Leaving the tab (or the unit) mid-battle: a loss if it had started. */
+function leaveBattle() {
+  // Over but not yet banked (left before "See results"): bank the real result.
+  if (battle && battle.over && !battle.standings) finishBattle();
+  forfeitBattle();
+  stopGameTimers();
+  battle = null;
+}
+
+/* The tab's battle area: the live battle, or the mode picker with the league
+   underneath. */
+function renderBattleView() {
+  const box = el('learn-battle');
+  if (!box) return;
+  const lb = el('learn-lb');
+  if (battle) {
+    if (lb) { lb.hidden = true; lb.innerHTML = ''; }
+    renderBattleUI(box);
+    return;
+  }
+  box.innerHTML = battlePickerHTML();
+  if (lb) { lb.hidden = false; renderLeaderboardPage(lb, true); }
+}
+
+function battlePickerHTML() {
+  const b = state.battles;
+  return `
+    <div class="g-card battle-picker">
+      <div class="battle-picker-head">
+        <span class="learn-battle-icon" aria-hidden="true">⚔️</span>
+        <div class="battle-picker-text">
+          <h3 id="battle-picker-title">Battle</h3>
+          <p>Race league rivals on this unit's terms. Battle rating ${b.rating} · ${b.won} won of ${b.played}.</p>
+        </div>
+        <button class="g-btn battle-start" onclick="startBattle('duel')" aria-describedby="battle-picker-title">Start</button>
+      </div>
+      <p class="battle-picker-or">Start is a Duel against the rival rated just above you. Or pick a mode:</p>
+      <div class="battle-modes" role="group" aria-labelledby="battle-picker-title">
+        ${Object.entries(BATTLE_MODES).map(([key, m]) => `
+          <button class="battle-mode" onclick="startBattle('${key}')">
+            <span class="battle-mode-icon" aria-hidden="true">${m.icon}</span>
+            <span class="battle-mode-text"><b>${m.name}</b><small>${m.desc}</small></span>
+          </button>`).join('')}
+      </div>
+      <p class="battle-picker-note">Simulated rivals. Quitting a battle you've started, or leaving this tab, counts as a loss.</p>
+    </div>`;
+}
+
+/* "Play a battle" on the rating board: the picker is at the top of the tab. */
+function focusBattlePicker() {
+  const first = document.querySelector('#learn-battle .battle-mode');
+  if (!first) return;
+  first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  first.focus({ preventScroll: true });
 }
 
 function blitzLeft() {
@@ -5053,7 +4547,7 @@ function blitzLeft() {
 function startBlitzTick() {
   stopBattleTick();
   battleTick = setInterval(() => {
-    if (currentPage !== 'games' || !battle || battle.mode !== 'blitz' || battle.over) { stopBattleTick(); return; }
+    if (!battleOnScreen() || !battle || battle.mode !== 'blitz' || battle.over) { stopBattleTick(); return; }
     const left = blitzLeft();
     const elapsed = (60000 - left) / 60000;
     battle.players.forEach(p => { if (!p.me) p.score = Math.min(p.blitzFinal, Math.floor(p.blitzFinal * elapsed)); });
@@ -5063,16 +4557,18 @@ function startBlitzTick() {
     if (clock) clock.textContent = Math.ceil(left / 1000) + 's';
     const strip = el('battle-strip');
     if (strip) strip.innerHTML = battleStripHTML();
-    if (left <= 0) { finishBattle(); renderGames(); }
+    if (left <= 0) { finishBattle(); renderBattleView(); }
   }, 250);
 }
 
 function startBattleQuestion() {
   battle.answered = false;
+  battle.pick = null;
+  battle.resultHTML = '';
   battle.qStart = Date.now();
   stopBattleTick();
   battleTick = setInterval(() => {
-    if (currentPage !== 'games' || !battle || battle.answered) { stopBattleTick(); return; }
+    if (!battleOnScreen() || !battle || battle.answered) { stopBattleTick(); return; }
     const left = Math.max(0, BATTLE_Q_SECS * 1000 - (Date.now() - battle.qStart));
     const bar = el('battle-bar');
     if (bar) bar.style.width = (left / (BATTLE_Q_SECS * 10)) + '%';
@@ -5089,7 +4585,7 @@ function battleStripHTML() {
 }
 
 function renderBattleUI(container) {
-  if (battle.over) { renderBattleEnd(container); return; }
+  if (battle.over) { finishBattle(); renderBattleEnd(container); return; }
   const q = battle.qs[battle.idx];
   if (!q) { finishBattle(); renderBattleEnd(container); return; }
   const target = battle.mode === 'race' ? ' · first to 10' : battle.mode === 'duel' ? ' · first to 4 points' : '';
@@ -5108,9 +4604,13 @@ function renderBattleUI(container) {
         <span class="badge" style="margin-bottom:10px;display:inline-block">${q.code}</span>
         <p class="quiz-q" style="font-size:15px">${q.prompt}</p>
         <div class="mcq-opts">
-          ${q.opts.map((o, i) => `<button class="mcq-opt" id="bopt-${i}" onclick="answerBattle(${i})">${o}</button>`).join('')}
+          ${q.opts.map((o, i) => {
+            const shown = battle.answered && battle.resultHTML;
+            const cls = !shown ? '' : o === q.answer ? ' right' : i === battle.pick ? ' wrong' : '';
+            return `<button class="mcq-opt${cls}" id="bopt-${i}" onclick="answerBattle(${i})"${shown ? ' disabled' : ''}>${o}</button>`;
+          }).join('')}
         </div>
-        <div id="battle-result"></div>
+        <div id="battle-result">${battle.answered && battle.resultHTML ? battle.resultHTML : ''}</div>
       </div>
     </div>`;
   if (blitz && !battleTick) startBlitzTick();
@@ -5126,6 +4626,7 @@ function forfeitBattle() {
   state.battles.played++;
   bm.played++;
   battle.over = true;
+  battle.forfeited = true;
   saveState();
   toast(`Battle abandoned: counted as a loss (rating ${ch.delta >= 0 ? '+' : ''}${ch.delta})`, 3500);
 }
@@ -5141,17 +4642,17 @@ function applyRating(results) {
 }
 
 function quitBattle() {
-  forfeitBattle();
-  stopBattleTick();
-  battle = null;
-  gamesMode = 'menu';
-  renderGames();
+  leaveBattle();
+  renderBattleView();
+  const first = document.querySelector('#learn-battle .battle-mode');
+  if (first) first.focus({ preventScroll: true });
 }
 
 function answerBattle(i) {
   if (!battle || battle.answered) return;
   battle.answered = true;
   battle.started = true;
+  battle.pick = i;
   // Only the per-question timer stops here. Blitz's clock is for the whole minute.
   if (battle.mode !== 'blitz') stopBattleTick();
   const q = battle.qs[battle.idx];
@@ -5172,8 +4673,8 @@ function answerBattle(i) {
     setTimeout(() => {
       if (!battle || battle.over) return;
       battle.idx++;
-      if (battle.idx >= battle.qs.length) battle.qs.push(...battleQuestionPool(20));
-      renderGames();
+      if (battle.idx >= battle.qs.length) battle.qs.push(...battleQuestionPool(20, battle.letter));
+      renderBattleView();
       battle.answered = false;
       battle.qStart = Date.now();
     }, 400);
@@ -5220,8 +4721,7 @@ function answerBattle(i) {
     if (battle.players.some(p => p.score >= 4)) battle.over = true;
   }
 
-  el('battle-strip').innerHTML = battleStripHTML();
-  el('battle-result').innerHTML = `
+  battle.resultHTML = `
     <div class="battle-log">
       ${results.map(r => `
         <div class="battle-log-row">
@@ -5230,12 +4730,24 @@ function answerBattle(i) {
         </div>`).join('')}
       ${note ? `<div style="font-size:13px;font-weight:700;color:var(--accent2);padding:6px 2px 0">${note}</div>` : ''}
     </div>
-    <button class="btn btn-primary btn-full" style="margin-top:10px" onclick="${battle.over ? 'finishBattle();renderGames()' : 'battle.idx++;renderGames();startBattleQuestion()'}">${battle.over ? 'See results →' : 'Next question →'}</button>`;
+    <button class="btn btn-primary btn-full" id="battle-next" style="margin-top:10px" onclick="${battle.over ? 'finishBattle();renderBattleView()' : 'battleNext()'}">${battle.over ? 'See results →' : 'Next question →'}</button>`;
+  const strip = el('battle-strip'), res = el('battle-result');
+  if (strip) strip.innerHTML = battleStripHTML();
+  if (res) res.innerHTML = battle.resultHTML;
+  const next = el('battle-next');
+  if (next) next.focus({ preventScroll: true });
+}
+
+function battleNext() {
+  if (!battle || battle.over) return;
+  battle.idx++;
+  startBattleQuestion();
+  renderBattleView();
 }
 
 function finishBattle() {
   stopBattleTick();
-  if (!battle) return;
+  if (!battle || battle.standings || battle.forfeited) return;   // already banked: never rate a battle twice
   battle.over = true;
   const me = battle.players[0];
   let standings, xp, headline;
@@ -5287,8 +4799,8 @@ function renderBattleEnd(container) {
           </div>`).join('')}
       </div>
       <div style="display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap">
-        <button class="btn btn-primary" onclick="startBattle('${battle.mode}')">Rematch</button>
-        <button class="btn btn-secondary" onclick="quitBattle()">Back to games</button>
+        <button class="btn btn-primary" onclick="startBattle('${battle.mode}', null, ${battle.letter ? `'${battle.letter}'` : 'null'})">Rematch</button>
+        <button class="btn btn-secondary" onclick="quitBattle()">Back to the leaderboard</button>
       </div>
     </div>`;
 }
@@ -5441,6 +4953,12 @@ function renderProfile() {
           ${state.theme === 'dark' ? '☀️ Light mode' : '🌙 Dark mode'}
         </button>
       </div>
+      <p style="font-size:14px;font-weight:500;margin:16px 0 8px">Your data</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-secondary btn-sm" onclick="exportData()">Export progress</button>
+        <button class="btn btn-secondary btn-sm" onclick="importData()">Import progress</button>
+        <button class="btn btn-sm" style="background:var(--red-fill);color:#fff" onclick="confirmReset()">Reset all progress</button>
+      </div>
     </div>`;
   renderProfileHeatmap();
 }
@@ -5462,6 +4980,72 @@ function setProfileAv(emoji, col) {
   renderProfile();
   const p = el('avatar-picker');
   if (p) p.classList.remove('hidden');
+}
+
+/* ---- EXAM HUB ----
+   One page linking to the six exam pages: Questions, Past papers (PPP) and
+   Mocks (all three are modes of the Questions page), Extended, Exam kit and
+   the Reasoning test. Each of those pages is unchanged. A paper or sitting in
+   progress is offered at the top. */
+function examGo(where) {
+  if (where === 'questions') { qMode = 'practice'; navigate('questions'); }
+  else if (where === 'ppp') openPPP();
+  else if (where === 'mock') { qMode = 'mock'; navigate('questions'); }   // a live paper carries on; otherwise the menu
+  else navigate(where);
+}
+
+// A paper still live in this tab (the student went to another page) continues;
+// a saved one resumes. A live or saved PPP sitting is pppResumeHTML()'s.
+function examResumeHTML() {
+  let html = '';
+  if (mock && mock.phase !== 'done') {
+    const p = mockPaper(mock.paperId);
+    html += `
+    <div class="card mock-resume" role="status">
+      <div><strong>${p ? p.title : 'Your mock paper'} is in progress</strong>
+        <div class="mock-paper-meta">${mock.phase === 'mark' ? 'Marking in progress.' : `${fmtClock(mock.endAt - Date.now())} left on the clock.`}</div></div>
+      <div class="q-head-btns"><button class="btn btn-primary btn-sm" onclick="examGo('mock')">Continue</button></div>
+    </div>`;
+  } else {
+    html += mockResumeHTML();
+  }
+  return html + pppResumeHTML();
+}
+
+function renderExam() {
+  const container = el('exam-content');
+  if (!container) return;
+  qData = loadJSON('data/questions.json');
+  const qs = qData ? PPP.bankQuestions(qData) : [];
+  const latest = latestScores();
+  const tried = qs.filter(q => q.id in latest).length;
+  const papers = qData && qData.papers ? qData.papers.filter(p => !p.sealed).length : 0;
+  const mocksDone = (state.questions.mocks || []).length;
+  const sittings = (pppState().sittings || []).filter(x => x.status !== 'abandoned').length;
+  const prompts = (loadJSON('data/extended.json') || []).length;
+  const plural = (n, w) => `${n} ${w}${n === 1 ? '' : 's'}`;
+  const cards = [
+    { go: 'questions', icon: '📝', name: 'Questions', sub: 'Exam-style questions, marked against the mark scheme', stat: `${tried} of ${qs.length} tried` },
+    { go: 'ppp', icon: '📄', name: 'Past papers', sub: 'Pure Past Papers: sit, mark, fix and redo', stat: sittings ? `${plural(sittings, 'sitting')} done` : 'Not started' },
+    { go: 'mock', icon: '⏱️', name: 'Mocks', sub: 'A whole paper against the clock', stat: `${plural(papers, 'paper')} · ${plural(mocksDone, 'attempt')}` },
+    { go: 'extended', icon: '✍️', name: 'Extended', sub: 'Long answers at exam pace', stat: prompts ? plural(prompts, 'prompt') : 'Coming soon' },
+    { go: 'examkit', icon: '🧰', name: 'Exam kit', sub: 'Command words, the 9-mark formula, keyword banks', stat: 'Technique' },
+    { go: 'aptitude', icon: '🧩', name: 'Reasoning', sub: 'A timed reasoning test, shared by both units', stat: 'Both units' }
+  ];
+  container.innerHTML = `
+    <div class="exam-head">
+      <h2 class="g-display">Exam</h2>
+      <p>Practise the way the paper is marked. ${escapeHTML(unitDef().label)} · ${escapeHTML(unitDef().name)}</p>
+    </div>
+    ${examResumeHTML()}
+    <div class="exam-grid">
+      ${cards.map(c => `
+        <button class="g-card exam-card" onclick="examGo('${c.go}')">
+          <span class="exam-card-icon" aria-hidden="true">${c.icon}</span>
+          <span class="exam-card-text"><b>${c.name}</b><small>${c.sub}</small></span>
+          <span class="g-chip exam-card-stat">${c.stat}</span>
+        </button>`).join('')}
+    </div>`;
 }
 
 /* ---- EXAM KIT ---- */
@@ -5623,7 +5207,7 @@ function highlight(text, query) {
 
 function goToResult(section, code) {
   notesFilter = 'all';   // a confidence filter could hide the card searched for
-  navigate('sections', { section });
+  navigate('learn', { section });
   setTimeout(() => {
     const el_item = el('item-' + code);
     if (el_item) {
@@ -5635,126 +5219,11 @@ function goToResult(section, code) {
       if (body && body.classList.contains('hidden')) {
         body.classList.remove('hidden');
         if (chev) chev.classList.add('open');
-        const header = body.previousElementSibling;
+        const header = body.parentElement.querySelector('.card-header');
         if (header) header.setAttribute('aria-expanded', 'true');
       }
     }
   }, 300);
-}
-
-/* ---- DAILY PLAN ---- */
-function renderPlan() {
-  loadData(unitLetters());
-  const container = el('plan-content');
-  const plan = buildDailyPlan();
-
-  container.innerHTML = `
-    <div class="plan-header">
-      <h2>Today's Study Plan</h2>
-      <div class="streak-badge">${currentStreak()}-day streak</div>
-    </div>
-    <p style="color:var(--text2);font-size:14px;margin-bottom:16px">Keep building your knowledge. Consistency now makes the difference.</p>
-    ${plan.map(block => `
-      <div class="plan-day">
-        <h3>${block.title}</h3>
-        ${block.items.map((item, i) => `
-          <div class="plan-item">
-            <input type="checkbox" id="plan-${block.id}-${i}" onchange="savePlanCheck('${block.id}-${i}', this.checked)" ${getPlanCheck(block.id + '-' + i) ? 'checked' : ''}>
-            <label for="plan-${block.id}-${i}" style="cursor:pointer;flex:1">${item}</label>
-          </div>`).join('')}
-      </div>`).join('')}
-    <hr class="divider">
-    <div class="card">
-      <h3 style="margin-bottom:12px">Progress Overview</h3>
-      ${renderRAGSummary()}
-    </div>
-    <hr class="divider">
-    <h3 style="margin-bottom:12px">Settings & Data</h3>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn btn-secondary btn-sm" onclick="exportData()">Export progress</button>
-      <button class="btn btn-secondary btn-sm" onclick="importData()">Import progress</button>
-      <button class="btn btn-sm" style="background:var(--red-fill);color:#fff" onclick="confirmReset()">Reset all progress</button>
-    </div>`;
-}
-
-function buildDailyPlan() {
-  const flashDue = getFlashcardsDueCount();
-
-  const weakCodes = Object.entries(state.rag)
-    .filter(([, v]) => v === 'red')
-    .map(([k]) => escapeHTML(k))   // plan items are rendered as HTML
-    .slice(0, 4);
-
-  const blocks = [];
-
-  if (flashDue > 0) {
-    blocks.push({
-      id: 'flash',
-      title: `Flashcards (${flashDue} today)`,
-      items: (() => {
-        const t = dueFlashcards();
-        const out = [];
-        if (t.reviews.length) out.push(`Review the ${t.reviews.length} card${t.reviews.length === 1 ? '' : 's'} due today, Box 1 (weakest) first`);
-        if (t.fresh.length) out.push(`Learn ${t.fresh.length} new card${t.fresh.length === 1 ? '' : 's'}`);
-        return out;
-      })()
-    });
-  }
-
-  blocks.push({
-    id: 'content',
-    title: '📖 Content Review',
-    items: [
-      ...tier1Letters().slice(0, 2).map(L => `Work through Section ${L} (${sectionShortName(L)}) — ${sectionBlurb(L)}`),
-      weakCodes.length ? `Revisit these red codes: ${weakCodes.join(', ')}` : 'Mark any uncertain codes as Amber or Red for tracking'
-    ]
-  });
-
-  blocks.push({
-    id: 'practice',
-    title: 'Practice Questions',
-    items: [
-      'Answer 2–3 practice questions on your weakest topic',
-      'Mark yourself against the mark scheme',
-      'Attempt a 4-mark "explain" question for any red-coded topic'
-    ]
-  });
-
-  return blocks;
-}
-
-function renderRAGSummary() {
-  const sections = unitLettersUpper();
-  return `<div class="stats-row" style="flex-wrap:wrap">
-    ${sections.map(l => {
-      const codes = getSectionCodes(l);
-      const g = codes.filter(c => state.rag[c] === 'green').length;
-      const a = codes.filter(c => state.rag[c] === 'amber').length;
-      const r = codes.filter(c => state.rag[c] === 'red').length;
-      const pct = codes.length ? Math.round((g / codes.length) * 100) : 0;
-      return `<div class="stat-box" style="min-width:100px">
-        <div class="num" style="color:${sectionColour(l)}">${l}</div>
-        <div style="font-size:12px;margin:4px 0"><span style="color:var(--green)">✓${g}</span> <span style="color:var(--amber-text)">~${a}</span> <span style="color:var(--red)">✗${r}</span></div>
-        <div class="progress-bar-wrap"><div class="progress-bar" style="width:${pct}%;background:${sectionColour(l)}"></div></div>
-        <div class="lbl">${pct}%</div>
-      </div>`;
-    }).join('')}
-  </div>`;
-}
-
-/* Plan ticks live in the unit namespace — a Unit 1 plan must not tick Unit 2's. */
-function getPlanCheck(key) {
-  const todayStr = today();
-  const checks = state.planChecks || {};
-  return checks[todayStr] && checks[todayStr][key];
-}
-
-function savePlanCheck(key, val) {
-  const todayStr = today();
-  if (!state.planChecks) state.planChecks = {};
-  if (!state.planChecks[todayStr]) state.planChecks[todayStr] = {};
-  state.planChecks[todayStr][key] = val;
-  saveState();
 }
 
 /* ---- STREAK ---- */
@@ -5813,6 +5282,7 @@ function importData() {
             return;
           }
           store = coerceStore(imported);
+          seedMemoryIfNeeded();
           message = 'Progress imported.';
         } else if (looksLikeLegacyBackup(imported)) {
           // A pre-merge backup: progress at the top level, no `units` key, and
@@ -5825,6 +5295,7 @@ function importData() {
             return;
           }
           store.units[target] = coerceUnit(imported);
+          seedUnitMemory(target);
           if (typeof imported.theme === 'string') store.theme = imported.theme;
           if (isPlainObject(imported.profile)) {
             store.profile = coerceLike(defaultStore().profile, imported.profile);
@@ -5857,6 +5328,7 @@ function confirmReset() {
   const u = unitDef();
   if (confirm(`Reset all ${u.label} progress? This cannot be undone. Your other unit is not affected.`)) {
     store.units[store.activeUnit] = defaultUnitState();
+    seedUnitMemory(store.activeUnit);
     saveState();
     resetTransientState();
     toast(u.label + ' progress reset.');
@@ -5925,7 +5397,10 @@ function adoptStoreFrom(raw) {
 function refreshStaleView() {
   if (!staleView) return;
   staleView = false;
-  if (['home', 'plan', 'leaderboard'].includes(currentPage)) renderPage(currentPage, {});
+  renderRightRail();
+  if (['home', 'exam'].includes(currentPage)) renderPage(currentPage, {});
+  // Learn's path and league only show progress; its notes, and a live battle, are left alone.
+  else if (currentPage === 'learn' && !currentSection && learnTab !== 'materials' && !battle && typeof learnRefresh === 'function') learnRefresh();
 }
 
 window.addEventListener('storage', e => {
@@ -5942,7 +5417,7 @@ document.addEventListener('keydown', e => {
   if (e.key !== 'Escape') return;
   const modal = el('player-modal-overlay');
   if (modal && modal.classList.contains('show')) { closeModal(); return; }
-  if (sidebarOpen && window.innerWidth < 900) closeSidebar();
+  if (sidebarOpen && window.innerWidth < SIDEBAR_BREAKPOINT) closeSidebar();
 });
 
 /* Site-wide keys: / jumps to Search, ? lists every shortcut. Never while typing,
@@ -5971,10 +5446,8 @@ function showShortcuts() {
     <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
     <h2 id="modal-title">Keyboard shortcuts</h2>
     ${group('Anywhere', [row(['/'], 'Search'), row(['?'], 'This list'), row(['Esc'], 'Close a dialog or the menu')])}
-    ${group('Flashcards', [row(['Space'], 'Flip the card'), row(['←'], "Didn't know"), row(['→'], 'Got it')])}
     ${group('Questions', [row(['←', '→'], 'Previous / next question')])}
-    ${group('Reasoning test', [row(['1–5'], 'Pick an option'), row(['←', '→'], 'Previous / next question')])}
-    ${group('True or False game', [row(['T', '→'], 'True'), row(['F', '←'], 'False')])}`);
+    ${group('Reasoning test', [row(['1–5'], 'Pick an option'), row(['←', '→'], 'Previous / next question')])}`);
 }
 
 /* Long pages (a section's notes run to 100 cards) get a way back to the top. */
@@ -6000,7 +5473,7 @@ document.addEventListener('keydown', e => {
   t.click();
 });
 
-/* The sidebar and its backdrop are driven by a 900px breakpoint; without this
+/* The sidebar and its backdrop are driven by a 768px breakpoint; without this
    they desync when the window is resized across it. */
 let resizeTick = null;
 window.addEventListener('resize', () => {
@@ -6017,35 +5490,14 @@ document.addEventListener('DOMContentLoaded', () => {
   syncThemeButtons();
   loadData(unitLetters());
   updateNavAvatar();
-  const r = parseRoute();
-  navigate(r.page, { section: r.section, tab: r.tab, replaceRoute: true });
+  navigateToRoute(parseRoute(), { replaceRoute: true });
   el('main-content').addEventListener('scroll', syncToTopButton, { passive: true });
   if (storeWasCorrupt) {
     toast('Your saved progress could not be read, so the site started fresh. A copy of the old data was kept in this browser.', 8000, 'error');
   }
 });
 
-/* Flashcards: Space flips, → is "Got it", ← is "Didn't know". The arrows only
-   grade once the card is flipped, matching the on-screen buttons. */
-document.addEventListener('keydown', e => {
-  if (currentPage !== 'flashcards' || e.repeat) return;
-  if (e.ctrlKey || e.metaKey || e.altKey) return;
-  const t = e.target;
-  if (t && (/^(INPUT|SELECT|TEXTAREA)$/.test(t.tagName) || t.isContentEditable)) return;
-  if (!el('flash-inner')) return;
-  if (e.key === ' ' || e.key === 'Spacebar') {
-    // A focused button or role="button" (the card itself) handles Space already.
-    if (e.defaultPrevented || (t && (t.tagName === 'BUTTON' || t.getAttribute('role') === 'button'))) return;
-    e.preventDefault();
-    flipFlashcard();
-  } else if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-    if (!flashFlipped) return;
-    e.preventDefault();
-    answerFlash(e.key === 'ArrowRight');
-  }
-});
-
-/* Practice questions: ← / → step between questions, as on the flashcards. Never
+/* Practice questions: ← / → step between questions. Never
    while typing, and never from a mark-scheme tick box or level radio. */
 document.addEventListener('keydown', e => {
   if (currentPage !== 'questions' || qMode !== 'practice' || e.repeat) return;
@@ -6076,12 +5528,5 @@ document.addEventListener('keydown', e => {
   if (e.key.length === 1 && i >= 0 && i < apt.items[apt.idx].opts.length) {
     e.preventDefault();
     aptChoose(i);
-  }
-});
-
-document.addEventListener('keydown', e => {
-  if (gamesMode === 'tf') {
-    if (e.key === 'ArrowRight' || e.key === 't' || e.key === 'T') { e.preventDefault(); answerTF(true); }
-    if (e.key === 'ArrowLeft'  || e.key === 'f' || e.key === 'F') { e.preventDefault(); answerTF(false); }
   }
 });
