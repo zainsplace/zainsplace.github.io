@@ -169,6 +169,12 @@ Each spec term (332 across both units) gets a record: `{ strength 0–5, due dat
 - **Explain** opens the term's notes under the card: the definition, then key facts, the example, the exam tip and the comparison table if its subtopic has one. "Simpler" shows the short flashcard wording; "More detail" opens that term in Materials. The card then returns as Retry.
 - Closing a round halfway keeps what was answered. *(Changed from today, where a half-finished lesson is thrown away.)*
 
+### "I was right" on typed answers (Zain, 18 November)
+
+Typed answers are sometimes marked wrong when he was right (seen: "Passwords, Multi-factor Authentication" rejected for "Passwords and Multi-Factor Authentication (MFA)"). So:
+- After a typed or fill-the-gap answer is marked wrong, an **"I was right"** button appears beside the correct answer. Pressing it counts the card as right first time: the wrong result is undone in memory (strength and due date go back to what they were, then the right result is applied), the usual XP is banked, the Retry copy is removed, and the combo is not reset. It is offered once per card and not after Reveal, Explain or a hint.
+- Typed checking is made fairer: "and", "&", commas and slashes are ignored when comparing, and for a term like "X and Y (Z)" each of "X", "Y" and "Z" is accepted on its own as well as together.
+
 ### Round settings
 
 Question style (Mixed, Multiple choice only, Typing preferred, Flashcards only), Hide options initially, Spelling mistakes allowed. Saved per browser. "Flashcards only" shows the term's flashcard to flip and self-mark, which is what remains of the old Flashcards tab.

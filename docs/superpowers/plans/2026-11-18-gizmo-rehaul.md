@@ -200,6 +200,21 @@ Path per spec: S-curve (keep `PATH_WAVE`), badge + ring (`.g-ring` with `--pct`)
 
 ---
 
+### Task 10b: "I was right" and fairer typed checking
+
+**Files:** Modify `revision/round.js`, `revision/round-view.js`, `revision/tests/round.test.js`, `revision/index.html` (?v=).
+
+**Interfaces:**
+- Engine: before recording a typed/gap card's first wrong answer, keep `card.prevMem` (a copy of the memory record, or `null`). New `overrideRight(round, card, ctx) -> ev|null`: only when `card.kind` is `'type'|'gap'`, the first attempt was wrong, not hinted/revealed/explained and not already overridden. It calls `ctx.restoreMemory(code, card.prevMem)` then `ctx.recordTermResult(code, true)`, banks `5 × combo(run)` XP via `ctx.gainXP`, removes this card's Retry copy from the queue, sets `outcome = 'right'`, `overridden = true`, and does not reset `run`.
+- app.js: `restoreTermMemory(code, rec)` (rec null deletes the record), saves.
+- `checkTyped`/`normAnswer`/`acceptedAnswers`: ignore "and", "&", commas and slashes; for terms shaped "X and Y (Z)" also accept X, Y and Z alone.
+- View: on a wrong typed/gap result, an outline pill "✓ I was right" next to the correct answer calls the override and advances like a right answer (flash shows "+N days" and XP).
+
+- [ ] **Step 1: Failing tests:** `checkTyped('Passwords, Multi-factor Authentication', acceptedAnswers('Passwords and Multi-Factor Authentication (MFA)'))` is truthy; `'MFA'` alone is accepted; `'Passwords'` alone is accepted; `'Firewall'` is not. `overrideRight` after a wrong typed answer: `restoreMemory` called with the saved record, `recordTermResult(code, true)` called, XP 5 banked, Retry copy gone, `run` unchanged; returns null for an MCQ card, for a hinted card and on a second call.
+- [ ] **Step 2:** Run → FAIL. **Step 3:** Implement. **Step 4:** Run → PASS; in the browser (rev_state backed up and restored) answer a typed card wrongly, press "I was right", confirm memory and XP as above. **Step 5:** Commit "Rounds: 'I was right' on typed answers, fairer typed checking".
+
+---
+
 ## Phase 4: Coins, pets, shop
 
 ### Task 11: Coins
