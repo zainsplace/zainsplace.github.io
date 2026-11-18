@@ -14,6 +14,8 @@
      Simpler   the flashcard wording (or the definition's first sentence)
    ◀ ▶ look back over cards already passed. XP is banked by the engine as each
    card is answered (ctx.gainXP), so round.xp is shown, never awarded here.
+   After the last card: streak screen (if the round moved the streak),
+   "You've just overtaken …" (if the league place improved), Round Complete.
 
    Every string from the engine except q.prompt is raw text and is escaped
    here. Exported (browser globals) for Task 7: openRound, closeRound,
@@ -40,7 +42,9 @@ const RV_CHEVRON_R = '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="c
 
 /* View state for the open round, or null when closed.
    { node, view (index being looked back at, or null for the live card),
-     settingsOpen, cs (per-card view state), timer, speedTick, returnFocus } */
+     settingsOpen, cs (per-card view state), timer, speedTick, returnFocus,
+     before (streak and league table at the start), end (set once the end
+     screens are showing; `round` is null by then) } */
 let rv = null;
 
 function rvReduced() {
@@ -74,8 +78,21 @@ function rvStopSpeed() {
 
 /* ---------- opening and closing ---------- */
 
+/* What the end screens compare against: the streak and the league table as
+   they were before the round's first answer banked any XP. */
+function rvSnapshot() {
+  const snap = { streak: { last: state.streak.last, count: state.streak.count }, week: null, rows: null };
+  try {
+    const rows = leagueRows();
+    snap.week = state.league.week;
+    snap.rows = rows.map(r => ({ name: r.name, place: r.place, me: r.me }));
+  } catch (e) { /* no league yet: no "overtaken" screen */ }
+  return snap;
+}
+
 function openRound(nodeId, mode) {
   if (rv) closeRound();
+  const before = rvSnapshot();
   const r = startRound(nodeId, mode);
   if (!r || !r.cards.length) {
     toast(mode === 'review' ? 'Nothing forgotten to review right now' : 'No cards to study here yet');
@@ -86,7 +103,7 @@ function openRound(nodeId, mode) {
   rv = {
     node: pathNodes().find(n => n.id === nodeId) || null,
     view: null, settingsOpen: false, cs: new WeakMap(), timer: null, speedTick: null,
-    returnFocus: document.activeElement
+    returnFocus: document.activeElement, before, end: null
   };
   box.innerHTML = '<div class="rv-stage" id="rv-stage"></div><div class="sr-only" id="rv-live" aria-live="polite"></div>';
   box.hidden = false;
@@ -114,10 +131,247 @@ function closeRound() {
   if (back && document.contains(back) && typeof back.focus === 'function') back.focus({ preventScroll: true });
 }
 
-/* Temporary end of round: Task 7 replaces this with the streak and Round Complete screens. */
+/* ---------- end of round ----------
+   The queue is empty: read everything needed from `round` (XP, cards, start
+   ring), then drop it and show, in order, the streak screen (only if this
+   round moved the streak), "You've just overtaken …" (only if the league
+   place improved) and Round Complete. XP was banked card by card, so
+   round.xp is only shown here. */
 function finishRound() {
-  closeRound();
-  toast('Round complete', 2500, 'success');
+  if (!rv || !round) { closeRound(); return; }
+  rvClearTimer();
+  rvStopSpeed();
+  const r = round;
+  const node = rv.node;
+  const end = {
+    nodeId: r.nodeId, mode: r.mode, xp: r.xp, coins: r.coins || 0,
+    title: node ? node.title : 'Review',
+    startRing: r.startRing,
+    ring: node ? MEMORY.ringPercent(node.items.map(it => it.code), state.memory) : null,
+    cards: rvAnsweredCards(r.cards),
+    phases: [], idx: 0, ringShown: false, rival: null
+  };
+  const b = rv.before || {};
+  if (streakMoved(b.streak, state.streak) && currentStreak() > 0) end.phases.push('streak');
+  try {
+    const rows = leagueRows();
+    if (b.rows && b.week === state.league.week) {
+      const passed = overtakenRival(b.rows, rows);
+      if (passed) {
+        const full = rows.find(x => x.name === passed.name);
+        end.rival = { rival: full, me: rows.find(x => x.me) };
+        end.phases.push('overtaken');
+      }
+    }
+  } catch (e) { /* league unavailable: skip the screen */ }
+  end.phases.push('complete');
+
+  round = null;
+  rv.view = null;
+  rv.settingsOpen = false;
+  rv.end = end;
+  rvAnnounce(`Round complete. ${end.xp} XP earned.`);
+  rvRenderEnd();
+}
+
+/* One row per term, in the order met. Retry copies fold into their card:
+   right first time, right on a retry, or missed. */
+function rvAnsweredCards(cards) {
+  const out = [];
+  const seen = new Map();
+  cards.forEach(c => {
+    if (!c.retry && !seen.has(c.code)) {
+      const row = { card: c, result: c.outcome === 'right' ? 'right' : 'missed' };
+      seen.set(c.code, row);
+      out.push(row);
+    } else if (c.retry && c.outcome === 'retry' && seen.has(c.code) && seen.get(c.code).result === 'missed') {
+      seen.get(c.code).result = 'retry';
+    }
+  });
+  return out;
+}
+
+function rvRenderEnd() {
+  const stage = el('rv-stage');
+  if (!stage || !rv || !rv.end) return;
+  const e = rv.end;
+  const phase = e.phases[e.idx];
+  const body = phase === 'streak' ? rvStreakHTML() : phase === 'overtaken' ? rvOvertakenHTML(e) : rvCompleteHTML(e);
+  const label = phase === 'complete' ? 'Next round' : 'Continue';
+  const fn = phase === 'complete' ? "rvEndMode('memorize')" : 'rvEndNext()';
+  stage.innerHTML = `
+    <header class="rv-top re-top">
+      <button class="rv-icon" onclick="closeRound()" aria-label="Close" title="Close (Esc)">✕</button>
+    </header>
+    <div class="rv-scroll" id="rv-scroll">
+      <div class="rv-col re-col re-col--${phase}">${body}</div>
+      <div class="g-sticky-bar rv-sticky"><button class="g-btn g-btn-block" id="rv-continue" onclick="${fn}">${label}</button></div>
+    </div>`;
+  const go = el('rv-continue');
+  if (go) go.focus({ preventScroll: true });
+  if (phase === 'complete' && e.ring != null) {
+    if (e.ringShown) rvSetRing(e.ring);
+    else { e.ringShown = true; rvAnimateRing(e.startRing, e.ring); }
+  }
+}
+
+/* Display text, each character in its own span so .g-wavy can tilt it. */
+function rvWavy(text) {
+  return Array.from(text).map(ch => `<span aria-hidden="true">${ch === ' ' ? '&nbsp;' : escapeHTML(ch)}</span>`).join('');
+}
+
+const RV_DAY_NAMES = { Su: 'Sunday', Mo: 'Monday', Tu: 'Tuesday', We: 'Wednesday', Th: 'Thursday', Fr: 'Friday', Sa: 'Saturday' };
+
+function rvStreakHTML() {
+  const n = currentStreak();
+  const title = `${n} day streak!`;
+  const days = streakWeek(today(), state.activity || {}).map(d => `
+      <li class="re-day${d.done ? ' done' : ''}${d.today ? ' today' : ''}">
+        <span class="re-dot" aria-hidden="true">${d.done ? '✓' : ''}</span>
+        <span class="re-day-label" aria-hidden="true">${d.label}</span>
+        <span class="sr-only">${RV_DAY_NAMES[d.label]}${d.today ? ' (today)' : ''}: ${d.done ? 'studied' : 'not studied'}</span>
+      </li>`).join('');
+  return `
+    <div class="re-hero" aria-hidden="true">🔥</div>
+    <h1 class="g-display g-wavy re-big" aria-label="${escapeHTML(title)}">${rvWavy(title)}</h1>
+    <p class="re-sub">${n === 1 ? 'Day one. Study again tomorrow to build it up.' : 'You kept it going. See you tomorrow.'}</p>
+    <ol class="re-week" aria-label="This week">${days}</ol>`;
+}
+
+function rvOvertakenHTML(e) {
+  const { rival, me } = e.rival;
+  const row = (r, isMe) => `
+      <div class="re-lb-row${isMe ? ' me' : ''}">
+        <span class="re-lb-place">#${r.place}</span>
+        <span class="re-lb-av" style="background:${escapeHTML(r.col || 'var(--text3)')}" aria-hidden="true">${isMe ? meAvInner() : escapeHTML(Array.from(r.name)[0] || '?')}</span>
+        <span class="re-lb-name">${isMe ? 'You' : escapeHTML(r.name)}</span>
+        <span class="re-lb-xp">${Number(r.xp || 0).toLocaleString()} XP</span>
+      </div>`;
+  return `
+    <div class="re-hero" aria-hidden="true">🏆</div>
+    <h1 class="g-display re-big">You've just overtaken ${escapeHTML(rival.name)}</h1>
+    <p class="re-sub">Weekly league, this week's XP</p>
+    <div class="g-card re-lb">${row(me, true)}${row(rival, false)}</div>`;
+}
+
+function rvCompleteHTML(e) {
+  const unit = typeof unitDef === 'function' ? unitDef().label : '';
+  const coins = typeof COINS !== 'undefined'
+    ? `<span class="g-chip g-chip--coin"><span aria-hidden="true">🪙</span> +${e.coins}</span>` : '';
+  const gain = e.ring != null ? e.ring - e.startRing : 0;
+  const confetti = e.ring === 100 && e.startRing < 100 ? rvConfettiHTML() : '';
+  const ring = e.ring == null ? '' : `
+      <div class="re-ring-wrap">
+        <div class="g-ring re-ring" id="re-ring" style="--pct:${e.startRing}" role="img" aria-label="Step ${e.ring}% learnt${gain > 0 ? `, up ${gain}%` : ''}">
+          <span id="re-ring-num" aria-hidden="true">${e.startRing}%</span>
+        </div>
+        ${gain > 0 ? `<span class="re-gain" aria-hidden="true">+${gain}%</span>` : ''}
+      </div>`;
+  const modes = e.nodeId ? `
+      <div class="re-modes">
+        <button class="g-pill" onclick="rvEndMode('hard')"><span aria-hidden="true">😈</span> Hard round</button>
+        <button class="g-pill" onclick="rvEndMode('speed')"><span aria-hidden="true">⚡</span> Speed-run</button>
+      </div>` : '';
+  const marks = { right: ['✓', 'Right'], retry: ['↻', 'Right on a retry'], missed: ['✗', 'Missed'] };
+  const items = e.cards.map((row, i) => {
+    const c = row.card;
+    const ans = rvAnswerText(c.q);
+    // A true/false "Answer: False" or an answer that is just the term says nothing: show the meaning.
+    const norm = v => String(v).trim().toLowerCase();
+    const same = c.q.kind === 'tf' || [c.item.term].concat(termParts(c.item.term)).some(p => norm(p) === norm(ans));
+    const sub = same ? rvSimplerText(c.item) : ans;
+    const [mark, markLabel] = marks[row.result];
+    return `
+      <li class="g-card re-item">
+        <div class="re-item-row">
+          <span class="re-mark re-mark--${row.result}" role="img" aria-label="${markLabel}">${mark}</span>
+          <div class="re-item-text">
+            <strong>${escapeHTML(c.item.term)}</strong>
+            <span>${same ? '' : '<span class="re-ans-label">Answer:</span> '}${escapeHTML(sub)}</span>
+          </div>
+          <button class="g-pill re-ex-btn" id="re-ex-btn-${i}" aria-expanded="false" aria-controls="re-ex-${i}" onclick="rvEndExplain(${i})"><span aria-hidden="true">🧠</span> Explain</button>
+        </div>
+        <div class="re-ex" id="re-ex-${i}" hidden></div>
+      </li>`;
+  }).join('');
+  return `
+    ${confetti}
+    <h1 class="g-display g-wavy re-title" aria-label="Round Complete">${rvWavy('Round Complete')}</h1>
+    <div class="re-chips"><span class="g-chip g-chip--xp">+${e.xp} XP</span>${coins}</div>
+    <section class="g-card re-step" aria-label="${escapeHTML(e.title)}">
+      <div class="re-step-text">
+        ${e.nodeId ? `<span class="re-unit">${escapeHTML(unit)}</span>` : ''}
+        <h2 class="re-step-title">${escapeHTML(e.title)}</h2>
+        ${e.nodeId ? '' : '<p class="re-sub">Forgotten terms, back in memory.</p>'}
+      </div>
+      ${ring}
+      ${modes}
+    </section>
+    <h2 class="re-h">Cards answered</h2>
+    <ul class="re-list">${items}</ul>`;
+}
+
+/* Confetti for a step reaching 100%: CSS animation only, hidden under reduced motion. */
+function rvConfettiHTML() {
+  const cols = ['var(--sky)', 'var(--right)', 'var(--forgot)', 'var(--mastered)', 'var(--wrong)'];
+  let bits = '';
+  for (let i = 0; i < 36; i++) {
+    bits += `<i style="--x:${(i * 37) % 100}%;--d:${(i % 9) * 0.12}s;--r:${(i * 53) % 360}deg;--c:${cols[i % cols.length]}"></i>`;
+  }
+  return `<div class="re-confetti" aria-hidden="true">${bits}</div>`;
+}
+
+function rvSetRing(v) {
+  const ring = el('re-ring');
+  const num = el('re-ring-num');
+  if (ring) ring.style.setProperty('--pct', v);
+  if (num) num.textContent = Math.round(v) + '%';
+}
+
+/* The step ring fills from where it was at the start of the round to now. */
+function rvAnimateRing(from, to) {
+  if (rvReduced() || from === to) { rvSetRing(to); return; }
+  rvSetRing(from);
+  const ring = el('re-ring');
+  const dur = 1100, delay = 250;
+  let t0 = null;
+  const step = now => {
+    if (!rv || !rv.end || !ring || !document.contains(ring)) return;
+    if (t0 == null) t0 = now + delay;
+    const k = Math.max(0, Math.min(1, (now - t0) / dur));
+    rvSetRing(from + (to - from) * (1 - Math.pow(1 - k, 3)));
+    if (k < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+function rvEndNext() {
+  if (!rv || !rv.end) return;
+  rv.end.idx = Math.min(rv.end.idx + 1, rv.end.phases.length - 1);
+  rvRenderEnd();
+  const sc = el('rv-scroll');
+  if (sc) sc.scrollTop = 0;
+}
+
+/* Next round (memorize), Hard round or Speed-run on the same step; a review
+   round's Next round is another review. */
+function rvEndMode(mode) {
+  if (!rv || !rv.end) return;
+  const id = rv.end.nodeId;
+  openRound(id, id ? mode : 'review');
+}
+
+/* Round Complete's Explain pill: the term's notes inline, under its row. */
+function rvEndExplain(i) {
+  if (!rv || !rv.end) return;
+  const row = rv.end.cards[i];
+  const box = el('re-ex-' + i);
+  const btn = el('re-ex-btn-' + i);
+  if (!row || !box) return;
+  const open = box.hidden;
+  if (open && !box.innerHTML) box.innerHTML = rvExplainBodyHTML(row.card);
+  box.hidden = !open;
+  if (btn) btn.setAttribute('aria-expanded', String(open));
 }
 
 /* ---------- drawing ---------- */
@@ -400,16 +654,23 @@ function rvComparisonTable(card) {
   });
 }
 
-function rvExplainHTML(card, s) {
+/* The term's notes word for word. Also used by Round Complete's Explain pills. */
+function rvExplainBodyHTML(card) {
   const it = card.item;
   return `
-    <section class="rv-explain" id="rv-explain" aria-label="Notes for ${escapeHTML(it.term)}">
       <h3 class="rv-ex-head"><span aria-hidden="true">🧠</span> ${escapeHTML(it.term)}</h3>
       <p class="rv-ex-def">${rvDefinitionHTML(it)}</p>
       ${rvFactsHTML(it.keyFacts)}
       ${it.examples ? `<p class="rv-line"><span aria-hidden="true">💼</span><span><strong>Example:</strong> ${escapeHTML(it.examples)}</span></p>` : ''}
       ${it.examTip ? `<p class="rv-line rv-tip"><span aria-hidden="true">🎯</span><span><strong>Key takeaway:</strong> ${escapeHTML(it.examTip)}</span></p>` : ''}
-      ${rvComparisonTable(card)}
+      ${rvComparisonTable(card)}`;
+}
+
+function rvExplainHTML(card, s) {
+  const it = card.item;
+  return `
+    <section class="rv-explain" id="rv-explain" aria-label="Notes for ${escapeHTML(it.term)}">
+      ${rvExplainBodyHTML(card)}
       ${s.simpler ? rvSimplerHTML(it) : ''}
       <div class="rv-ex-chips">
         <button class="g-chip rv-chip" onclick="roundSimpler()" ${s.simpler ? 'disabled' : ''}><span aria-hidden="true">🪶</span> Simpler</button>
@@ -784,6 +1045,17 @@ function rvKey(e) {
   if (e.key === 'Escape') {
     e.preventDefault();
     if (rv.settingsOpen) roundSettings(false); else closeRound();
+    return;
+  }
+  if (rv.end) {
+    // End screens: no card keys. Enter or Space with no button focused is Continue / Next round.
+    if (e.key === 'Tab') { rvTrapTab(e, el('round-view')); return; }
+    const onBtn = e.target && (e.target.tagName === 'BUTTON' || e.target.tagName === 'A');
+    if ((e.key === 'Enter' || e.key === ' ') && !onBtn && !e.repeat) {
+      e.preventDefault();
+      const go = el('rv-continue');
+      if (go) go.click();
+    }
     return;
   }
   if (rv.settingsOpen) {

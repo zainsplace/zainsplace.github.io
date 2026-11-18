@@ -341,3 +341,44 @@ test('round settings load with defaults and survive bad storage', () => {
   assert.doesNotThrow(() => R.saveRoundSettings({ style: 'mcq' }, broken));
   assert.equal(R.coerceRoundSettings({ style: 'nonsense' }).style, 'mixed');
 });
+
+/* ---------- end of round ---------- */
+
+test('a round records the step ring at its start', () => {
+  const memory = { 'A1.1.1': { s: 5 }, 'A1.1.2': { s: 5 } };   // 10 of 20 strength points
+  const r = R.makeRound({ node: byId('A1.1'), nodes, memory, todayStr: TODAY, settings: SET, bank: BANK });
+  assert.equal(r.startRing, 50);
+  const review = R.makeRound({ node: null, nodes, memory: {}, todayStr: TODAY, mode: 'review', settings: SET, cards: [] });
+  assert.equal(review.nodeId, null);
+});
+
+test('the streak moved only when its day or count changed', () => {
+  assert.equal(R.streakMoved({ last: '2026-11-17', count: 2 }, { last: '2026-11-18', count: 3 }), true);
+  assert.equal(R.streakMoved({ last: '2026-11-10', count: 4 }, { last: '2026-11-18', count: 1 }), true);
+  assert.equal(R.streakMoved({ last: '2026-11-18', count: 3 }, { last: '2026-11-18', count: 3 }), false);
+  assert.equal(R.streakMoved(null, { last: '2026-11-18', count: 3 }), false);
+});
+
+test('the streak week runs Sunday to Saturday with studied days filled', () => {
+  // 2026-11-18 is a Wednesday.
+  const wk = R.streakWeek('2026-11-18', { '2026-11-16': 3, '2026-11-18': 1, '2026-11-19': 2, '2026-11-14': 9 });
+  assert.deepEqual(wk.map(d => d.label), ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']);
+  assert.deepEqual(wk.map(d => d.date), ['2026-11-15', '2026-11-16', '2026-11-17', '2026-11-18', '2026-11-19', '2026-11-20', '2026-11-21']);
+  assert.deepEqual(wk.map(d => d.done), [false, true, false, true, true, false, false]);
+  assert.deepEqual(wk.map(d => d.today), [false, false, false, true, false, false, false]);
+  assert.equal(R.streakWeek('2026-11-15', {})[0].date, '2026-11-15');   // a Sunday starts its own week
+});
+
+test('overtaken: the highest-placed rival who was above you and is now below', () => {
+  const row = (name, place, me = false) => ({ name, place, me });
+  const before = [row('Ava', 1), row('Ben', 2), row('Cal', 3), row('Dee', 4), row('You', 5, true), row('Eli', 6)];
+  const after = [row('Ava', 1), row('Ben', 2), row('You', 3, true), row('Cal', 4), row('Dee', 5), row('Eli', 6)];
+  assert.equal(R.overtakenRival(before, after).name, 'Cal');
+  // No climb, no rival.
+  assert.equal(R.overtakenRival(before, before), null);
+  // Climbing past someone who was already below you doesn't count.
+  const b2 = [row('You', 2, true), row('Ava', 1), row('Ben', 3)];
+  const a2 = [row('You', 1, true), row('Ava', 2), row('Ben', 3)];
+  assert.equal(R.overtakenRival(b2, a2).name, 'Ava');
+  assert.equal(R.overtakenRival(null, a2), null);
+});

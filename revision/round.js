@@ -617,6 +617,41 @@ function nextCard(r) {
 
 function roundFinished(r) { return !!r && r.pos >= r.cards.length; }
 
+/* ---------- end of round ----------
+   Pure helpers for the screens after the last card. */
+
+/* Did the round move the streak? before/after are { last, count } copies of
+   state.streak taken at the start and at the end. */
+function streakMoved(before, after) {
+  return !!before && !!after && (before.last !== after.last || before.count !== after.count);
+}
+
+/* The week containing todayStr, Sunday to Saturday:
+   [{ date, label, done (studied that day, from state.activity), today }]. */
+function streakWeek(todayStr, activity) {
+  const [y, m, d] = todayStr.split('-').map(Number);
+  const start = new Date(y, m - 1, d - new Date(y, m - 1, d).getDay());
+  const pad = n => String(n).padStart(2, '0');
+  return ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map((label, i) => {
+    const day = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i);
+    const date = `${day.getFullYear()}-${pad(day.getMonth() + 1)}-${pad(day.getDate())}`;
+    return { date, label, done: !!(activity && activity[date] > 0), today: date === todayStr };
+  });
+}
+
+/* The rival passed this round: placed above you in the league table when the
+   round started and below you now. With several, the one highest on the table
+   now. Rows are LEAGUE.standings rows ({ name, place, me }). */
+function overtakenRival(beforeRows, afterRows) {
+  if (!beforeRows || !afterRows) return null;
+  const meB = beforeRows.find(r => r.me), meA = afterRows.find(r => r.me);
+  if (!meB || !meA || meA.place >= meB.place) return null;
+  const above = new Set(beforeRows.filter(r => !r.me && r.place < meB.place).map(r => r.name));
+  const passed = afterRows.filter(r => !r.me && r.place > meA.place && above.has(r.name))
+    .sort((a, b) => a.place - b.place);
+  return passed[0] || null;
+}
+
 /* ---------- browser hooks ----------
    startRound builds the global `round`; round-view.js draws it and calls the
    engine functions above with roundContext().                              */
@@ -650,6 +685,7 @@ if (typeof module !== 'undefined' && module.exports) {
     maskTerm, typeHint, shuffled, distractorTerms, firstSentence, questionsForItem,
     defaultRoundSettings, coerceRoundSettings, loadRoundSettings, saveRoundSettings,
     questionFor, tfQuestion, multiQuestion, makeCard, makeRound, checkResponse,
-    currentRoundCard, answerCard, hintCard, revealCard, explainCard, nextCard, roundFinished
+    currentRoundCard, answerCard, hintCard, revealCard, explainCard, nextCard, roundFinished,
+    streakMoved, streakWeek, overtakenRival
   };
 }

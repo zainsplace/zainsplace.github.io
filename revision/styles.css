@@ -2282,3 +2282,96 @@ body.round-open main { overflow: hidden; }
   .shake, .rv-flash, .rv-sheet { animation: none; }
   .rv-progress > div, .rv-opt, .rv-switch, .rv-switch span { transition: none; }
 }
+
+/* ============================================================
+   END OF ROUND (round-view.js finishRound)
+   Streak screen, "You've just overtaken …", Round Complete with
+   the step ring filling, the cards answered, and confetti.
+   ============================================================ */
+.re-top { grid-template-columns: 44px 1fr; }
+.re-col { gap: 16px; padding-top: 4px; }
+.re-col--streak, .re-col--overtaken { align-items: center; text-align: center; margin-block: auto; }
+.re-hero { font-size: 64px; line-height: 1; }
+.re-big { font-size: 40px; color: var(--text); max-width: 520px; }
+.re-sub { color: var(--text2); font-size: 16px; }
+
+/* Su–Sa circles */
+.re-week { list-style: none; display: flex; justify-content: center; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
+.re-day { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.re-dot {
+  width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+  border: 2px solid var(--line); background: var(--surface); color: #fff; font-weight: 800; font-size: 18px;
+}
+.re-day.done .re-dot { background: var(--forgot); border-color: var(--forgot); color: var(--on-primary); }
+.re-day.today .re-dot { box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--forgot); }
+.re-day-label { font-size: 13px; font-weight: 700; color: var(--text2); }
+.re-day.today .re-day-label { color: var(--text); }
+.re-day.today.done .re-dot { animation: re-bounce .45s cubic-bezier(.34, 1.56, .64, 1) .2s; }
+
+/* Overtaken */
+.re-lb { width: 100%; max-width: 420px; padding: 8px; display: flex; flex-direction: column; gap: 4px; }
+.re-lb-row { display: grid; grid-template-columns: 40px 36px 1fr auto; align-items: center; gap: 10px; padding: 10px 12px; border-radius: var(--r-sm); text-align: left; }
+.re-lb-row.me { background: var(--right-bg); }
+.re-lb-place { font-weight: 800; color: var(--text2); font-variant-numeric: tabular-nums; }
+.re-lb-av { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 800; overflow: hidden; }
+.re-lb-av .av-img { width: 100%; height: 100%; object-fit: cover; }
+.re-lb-name { font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.re-lb-xp { font-weight: 700; color: var(--text2); font-variant-numeric: tabular-nums; }
+
+/* Round Complete */
+.re-title { font-size: 40px; text-align: center; }
+.re-chips { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.re-chips .g-chip { font-size: 15px; padding: 6px 14px; }
+.re-step { display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; }
+.re-unit { display: block; font-size: 13px; font-weight: 700; color: var(--text2); }
+.re-step-title { font-size: 20px; }
+.re-ring-wrap { position: relative; }
+.re-ring { --ring-size: 132px; --ring-width: 13px; font-size: 26px; }
+.re-gain {
+  position: absolute; left: calc(100% - 14px); top: -8px; white-space: nowrap;
+  padding: 4px 10px; border-radius: var(--r-pill);
+  background: var(--right-fill); color: #fff; font-weight: 800; font-size: 14px;
+  animation: re-bounce .45s cubic-bezier(.34, 1.56, .64, 1) 1.3s;
+}
+.re-modes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; }
+.re-h { font-size: 18px; margin-top: 6px; }
+.re-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.re-item { padding: 14px 16px; }
+.re-item-row { display: flex; align-items: center; gap: 12px; }
+.re-mark { flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 15px; }
+.re-mark--right  { background: var(--right-bg); color: var(--right-text); }
+.re-mark--retry  { background: var(--forgot-bg); color: var(--forgot-text); }
+.re-mark--missed { background: var(--wrong-bg); color: var(--wrong); }
+.re-item-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; line-height: 1.4; }
+.re-item-text > span { font-size: 14px; color: var(--text2); }
+.re-ans-label { font-weight: 700; color: var(--text3); }
+.re-ex-btn { flex: none; min-height: 38px; padding: 6px 14px; font-size: 14px; }
+.re-ex-btn[aria-expanded="true"] { border-color: var(--sky); }
+.re-ex { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); text-align: left; }
+.re-ex .comparison-table-wrap { margin: 8px 0 4px; }
+
+/* Confetti: a step reaching 100% */
+.re-confetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 3; }
+.re-confetti i {
+  position: absolute; top: -16px; left: var(--x); width: 9px; height: 14px; border-radius: 2px;
+  background: var(--c); transform: rotate(var(--r)); opacity: 0;
+  animation: re-fall 2.4s ease-in var(--d) 1 both;
+}
+@keyframes re-fall {
+  0%   { opacity: 1; transform: translate3d(0, 0, 0) rotate(var(--r)); }
+  100% { opacity: 0; transform: translate3d(30px, 105vh, 0) rotate(calc(var(--r) + 540deg)); }
+}
+@keyframes re-bounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+
+@media (max-width: 520px) {
+  .re-big, .re-title { font-size: 32px; }
+  .re-dot { width: 36px; height: 36px; }
+  .re-week { gap: 6px; }
+  .re-ex-btn { padding: 6px 10px; }
+  .re-modes .g-pill { padding: 8px 10px; font-size: 14px; gap: 6px; white-space: nowrap; }
+  .re-step { padding: 18px 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .re-confetti { display: none; }
+  .re-gain, .re-day .re-dot { animation: none; }
+}
