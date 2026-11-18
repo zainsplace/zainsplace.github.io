@@ -337,8 +337,16 @@ let store = loadStore();
    order. This is the only place node ids are made: learn.js pathNodes() and
    the memory seeding below both read it. It lives here, not in learn.js,
    because memory is seeded while app.js loads, before the later scripts.
-   The term filter is round.js isLessonItem() (loaded later): recap entries
-   such as "C1.1.1-C1.1.3" are notes, not terms. */
+   The term filter repeats round.js isLessonItem() (loaded later): a recap
+   such as "C1.1.1-C1.1.3 ... Compared" (a range code that compares, by its
+   name or a comparison table) is notes, not a term. A merged item such as
+   "B3.1.2-3 Ports & Packets" is a term. */
+function isPathTerm(it) {
+  if (!it || !it.term || !it.definition) return false;
+  const recap = String(it.code).includes('-')
+    && (/\b(compared|comparison|recap|summary)\b/i.test(`${it.term} ${it.title || ''}`) || !!it.comparisonTable);
+  return !recap;
+}
 function unitPathNodes(unitId) {
   const key = isUnitId(unitId) ? unitId : 'u1';
   const data = (INLINE_UNITS[key] || INLINE_UNITS.u1).sections;
@@ -349,7 +357,7 @@ function unitPathNodes(unitId) {
     const letter = l.toUpperCase();
     sec.topics.forEach((topic, ti) => {
       (topic.subtopics || []).forEach((sub, si) => {
-        const items = (sub.items || []).filter(it => it && it.term && it.definition && !String(it.code).includes('-'));
+        const items = (sub.items || []).filter(isPathTerm);
         if (!items.length) return;
         nodes.push({
           id: sub.code || `${topic.code || letter + (ti + 1)}-${si + 1}`,

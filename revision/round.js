@@ -38,14 +38,149 @@ function roundEscape(v) {
 /* ---------- question helpers ---------- */
 
 /* Recap entries such as "C1.1.1-C1.1.3 Cloud Deployment Models Compared" sum
-   up a range of terms. They belong in the notes, not in a quiz as a "term". */
-function isLessonItem(it) { return it && it.term && it.definition && !String(it.code).includes('-'); }
+   up a range of terms. They belong in the notes, not in a quiz as a "term".
+   A merged item such as "B3.1.2-3 Ports & Packets" is a real term, so a recap
+   is a range code AND a comparison: its name says so, or it has a table.
+   app.js unitPathNodes() repeats this rule (it runs before this file loads). */
+function isRecapItem(it) {
+  return !!it && String(it.code).includes('-')
+    && (/\b(compared|comparison|recap|summary)\b/i.test(`${it.term} ${it.title || ''}`) || !!it.comparisonTable);
+}
+function isLessonItem(it) { return !!(it && it.term && it.definition && !isRecapItem(it)); }
+
+/* ---------- names for a term ----------
+   The spec audits found the generator marking right answers wrong and wrong
+   ones right. The rules now:
+   - "X (Y)": X is always a name. Y is a name only when one abbreviates the
+     other ("(IaaS)", "(MFA)", "(VoIP)", "BYOD (Bring Your Own Device)").
+     Qualifiers such as "(UK)" or "(deliberate & accidental)" are not answers.
+   - Slash lists: "Passwords / Multi-Factor Authentication" accepts each side,
+     "Stealing/Leaking Information" accepts "Stealing Information" and
+     "Leaking Information", "TCP/IP" accepts only "TCP/IP".
+   - " – ": the head before the dash ("Unauthorised Access – Hackers").
+   - Never split on "and": "Voice" is not "Voice and Video Calls".
+   - The item's own `accepts` / `aka` lists add spec wording and synonyms. */
+
+const INITIAL_STOP = new Set(['a', 'an', 'and', 'as', 'at', 'by', 'for', 'in', 'of', 'on', 'or', 'over', 'the', 'to', 'with', 'via']);
+// Words that carry no meaning in a prompt.
+const PROMPT_STOP = new Set([...INITIAL_STOP, 'vs', 'etc', 'its', 'it', 'into', 'how', 'other', 'use', 'used', 'uses',
+  'using', 'different', 'between', 'affect', 'affects', 'impact', 'implications', 'type', 'types', 'their', 'your', 'own',
+  'what', 'why', 'when', 'who', 'which', 'that', 'this', 'these', 'those', 'from', 'are', 'is', 'be', 'can', 'not', 'more',
+  'has', 'have', 'been', 'was', 'were']);
+// ...and words too vague to show what a term or definition is about.
+const CONTENT_STOP = new Set([...PROMPT_STOP,
+  'than', 'often', 'one', 'being', 'usually', 'through', 'rather', 'including', 'include', 'includes', 'making', 'make',
+  'made', 'such', 'also', 'them', 'they', 'there', 'where', 'all', 'any', 'each', 'only', 'some', 'without', 'within',
+  'after', 'before', 'about', 'will', 'but', 'so', 'if', 'then', 'you']);
+// Left visible in a prompt even when they are part of the term.
+const MASK_KEEP = new Set(['system', 'systems', 'data', 'information']);
+// Too common to show that two terms overlap.
+const GENERIC_WORDS = new Set([...MASK_KEEP, 'online', 'digital', 'device', 'devices', 'network', 'networks', 'computer',
+  'computers', 'security', 'cyber', 'user', 'users', 'service', 'services', 'technology', 'technologies', 'software',
+  'hardware', 'internet', 'organisation', 'organisations', 'people', 'needs', 'personal', 'business']);
+
+const reEsc = s => String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const asItem = x => (typeof x === 'string' ? { term: x } : (x || { term: '' }));
+const pickOne = arr => arr[Math.floor(Math.random() * arr.length)];
+
+function splitTerm(term) {
+  const m = String(term).match(/^(.*?)\s*\(([^)]+)\)\s*$/);
+  return m ? { outer: m[1].trim(), inner: m[2].trim() } : { outer: String(term).trim(), inner: null };
+}
+
+/* "IaaS", "PCs", "VoIP", "CDPA 1988": a short token with two or more capitals. */
+function isAcronymToken(s) {
+  const t = String(s).trim().replace(/\s+(19|20)\d\d$/, '');
+  return /^[A-Z0-9][A-Za-z0-9]{1,7}$/.test(t) && /[A-Z]/.test(t) && (t.match(/[A-Z0-9]/g) || []).length >= 2;
+}
+
+/* "PCs" -> "PC", "IaaS" -> "IAAS", "CDPA 1988" -> "CDPA" */
+function acronymKey(s) {
+  let t = String(s).trim().replace(/\s+(19|20)\d\d$/, '');
+  if (/[A-Z]s$/.test(t)) t = t.slice(0, -1);
+  return t.toUpperCase().replace(/[^A-Z0-9]/g, '');
+}
+
+/* Does `short` abbreviate `long`? Each word of `long` gives a prefix (small
+   words may give nothing): MFA = Multi-Factor Authentication, IaaS =
+   Infrastructure as a Service, Codec = Coder-Decoder. */
+function isAbbrevOf(short, long) {
+  const s0 = String(short).trim().replace(/\s+(19|20)\d\d$/, '');
+  if (!s0 || /\s/.test(s0) || s0.replace(/[^A-Za-z0-9]/g, '').length > 8) return false;
+  const words = String(long).toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
+  if (words.length < 2) return false;
+  const base = s0.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const fits = (t, i) => {
+    if (i === words.length) return t === '';
+    const w = words[i];
+    if (INITIAL_STOP.has(w) && fits(t, i + 1)) return true;
+    for (let k = 1; k <= Math.min(w.length, t.length); k++) {
+      if (t.slice(0, k) !== w.slice(0, k)) break;
+      if (fits(t.slice(k), i + 1)) return true;
+    }
+    return false;
+  };
+  return fits(base, 0) || (base.length > 2 && base.endsWith('s') && fits(base.slice(0, -1), 0));
+}
+
+/* The sides of a slash or dash list, as written. */
+function listSides(outer) {
+  return String(outer).replace(/\s+and\/or\s+/i, '/').split(/\s*\/\s*|\s+[–—-]\s+/).map(s => s.trim()).filter(Boolean);
+}
+
+/* Is the bracket in "X (Y)" another name for X? */
+function isBracketAlias(outer, inner) {
+  const heads = [outer, ...listSides(outer)];
+  if (heads.some(h => isAbbrevOf(inner, h)) || isAbbrevOf(outer, inner)) return true;
+  // "Voice and Video Calls over the Internet (VoIP)", "User Experience (UX)": an
+  // acronym starting with the same letter. "NCSC (UK)" and "NIST (USA)" do not.
+  return isAcronymToken(inner) && heads.some(h => h.charAt(0).toUpperCase() === inner.charAt(0).toUpperCase());
+}
+
+/* Names made from slash and dash lists (see the rules above). */
+function nameFragments(outer) {
+  const out = [];
+  const dash = String(outer).split(/\s+[–—-]\s+/);
+  if (dash.length > 1) {
+    out.push(dash[0]);
+    dash.slice(1).forEach(d => { if (d.trim().split(/\s+/).length >= 2) out.push(d); });
+  }
+  const main = dash[0].replace(/\s+and\/or\s+/i, '/');
+  if (!main.includes('/')) return out;
+  const spaced = /\s\/\s/.test(main);
+  const sides = main.split(/\s*\/\s*/).map(s => s.trim()).filter(Boolean);
+  const words = sides.map(s => s.split(/\s+/));
+  const caps = s => /^[A-Z0-9]+$/.test(s);
+  if (words.every(w => w.length === 1)) {            // Blog/Vlog yes, TCP/IP no
+    if (!sides.some(caps)) out.push(...sides);
+    return out;
+  }
+  if (spaced && !sides.some(s => !/\s/.test(s) && caps(s))) {   // Passwords / Multi-Factor Authentication
+    out.push(...sides);
+    return out;
+  }
+  const first = words[0], last = words[words.length - 1];
+  if (last.length > 1 && words.slice(0, -1).every(w => w.length === 1)) {
+    const tail = last.slice(1).join(' ');            // Stealing/Leaking Information, OS / GUI / CLI Vulnerabilities
+    sides.slice(0, -1).forEach(s => out.push(`${s} ${tail}`));
+    out.push(sides[sides.length - 1]);
+  } else if (first.length > 1 && words.slice(1).every(w => w.length === 1)) {
+    const head = first.slice(0, -1).join(' ');       // Network Features/Requirements
+    out.push(sides[0]);
+    sides.slice(1).forEach(s => out.push(`${head} ${s}`));
+  }
+  return out;
+}
 
 function termParts(term) {
-  // "Infrastructure as a Service (IaaS)" -> ["Infrastructure as a Service", "IaaS"]
-  const parts = [term];
-  const m = String(term).match(/^(.*?)\s*\(([^)]+)\)\s*$/);
-  if (m) parts.push(m[1], m[2]);
+  // "Infrastructure as a Service (IaaS)" -> ["Infrastructure as a Service (IaaS)", "Infrastructure as a Service", "IaaS"]
+  // "NCSC (UK)" -> ["NCSC (UK)", "NCSC"]
+  const { outer, inner } = splitTerm(term);
+  const parts = [String(term)];
+  if (inner !== null) {
+    parts.push(outer);
+    if (isBracketAlias(outer, inner)) parts.push(inner);
+  }
   return parts.filter(p => p && p.trim().length > 1);
 }
 
@@ -53,26 +188,30 @@ function termParts(term) {
    Like Gizmo's "Mixed" style: once a term has been met in a multiple-choice
    question, it comes back later as one you have to type. Small spelling
    mistakes are forgiven, and any accepted name for the term counts
-   (e.g. "IaaS" or "Infrastructure as a Service"). "and", "&", commas and
-   slashes are ignored, so "Passwords, MFA" = "Passwords and MFA"; a term
-   shaped "X and Y (Z)" also accepts X, Y or Z on its own. */
+   (e.g. "IaaS" or "Infrastructure as a Service"). "and", "&", commas,
+   slashes and years are ignored, so "Passwords, MFA" = "Passwords and MFA"
+   and "Computer Misuse Act 1990" = "Computer Misuse Act". */
 
-function acceptedAnswers(term) {
-  const parts = termParts(term);
-  const out = new Set(parts);
-  parts.forEach(p => String(p).split(/\s+[–—-]\s+|\s*\/\s*/).forEach(x => out.add(x)));
-  // "Passwords and Multi-Factor Authentication (MFA)": each half counts too.
-  const m = String(term).match(/^(.*?)\s*\(([^)]+)\)\s*$/);
-  if (m) {
-    const halves = m[1].split(/\s+and\s+|\s*&\s*/i);
-    if (halves.length === 2) halves.forEach(x => out.add(x));
+const answerCache = new Map();
+function acceptedAnswers(itemOrTerm) {
+  const item = asItem(itemOrTerm);
+  const key = [item.term, ...(item.accepts || []), '|', ...(item.aka || [])].join('\u0001');
+  if (!answerCache.has(key)) {
+    const all = [...termParts(item.term), ...nameFragments(splitTerm(item.term).outer), ...(item.accepts || []), ...(item.aka || [])];
+    const seen = new Set(), out = [];
+    all.map(x => String(x).trim()).filter(x => x.length > 1).forEach(x => {
+      const k = normAnswer(x);
+      if (k && !seen.has(k)) { seen.add(k); out.push(x); }
+    });
+    answerCache.set(key, out);
   }
-  return [...out].map(x => x.trim()).filter(x => x.length > 1);
+  return answerCache.get(key).slice();
 }
 
 function normAnswer(s) {
   return String(s).toLowerCase()
     .replace(/[^a-z0-9]+/g, ' ')    // "&", commas, slashes, hyphens -> spaces
+    .replace(/\b(19|20)\d\d\b/g, ' ') // "Computer Misuse Act 1990" = "Computer Misuse Act"
     .replace(/\b(the|a|an|and)\b/g, ' ')
     .replace(/s\b/g, '')            // "VPNs" = "VPN", "Viruses" ~ "Virus"
     .replace(/\s+/g, ' ')
@@ -105,22 +244,122 @@ function checkTyped(typed, accepts) {
   return best;
 }
 
-function isTypeable(term) {
-  return acceptedAnswers(term).some(a => a.length <= TYPE_MAX_LEN);
+/* Takes an item (its accepts / aka count) or a bare term. */
+function isTypeable(itemOrTerm) {
+  return acceptedAnswers(itemOrTerm).some(a => a.length <= TYPE_MAX_LEN);
 }
 
-/* Hide the answer if the prompt text gives it away. */
-function maskTerm(text, term) {
-  let out = String(text);
-  termParts(term)
-    .sort((a, b) => b.length - a.length)
-    .forEach(p => { out = out.replace(new RegExp(String(p).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'), '___'); });
+/* ---------- hiding the answer ---------- */
+
+/* A name as a whole word (never inside "Wikipedia" or "USB-C"). `exact` (for
+   gaps) also refuses plurals, so the verb "costs" is never blanked. */
+function nameRegex(name, exact, flags = 'gi') {
+  return new RegExp(`(?<![\\w-])${reEsc(name)}${exact ? '' : '(?:e?s)?'}(?![\\w-])`, flags);
+}
+
+function stemWord(w) {
+  let s = String(w).toLowerCase();
+  for (const suf of ['ations', 'ation', 'ities', 'ity', 'ings', 'ing', 'ions', 'ion', 'ies', 'es', 'ed', 'al', 's']) {
+    if (s.endsWith(suf) && s.length - suf.length >= 4) { s = s.slice(0, -suf.length); break; }
+  }
+  if (s.length >= 6 && s.endsWith('er')) s = s.slice(0, -2);   // readers ~ reads, printer ~ printing
+  return s;
+}
+
+/* The content words of a phrase, as stems: "Signs of System Compromise" ->
+   sign, system, compromise. Acronyms stay whole words. */
+function wordStems(phrase, skip) {
+  const out = [], seen = new Set();
+  (String(phrase).match(/[A-Za-z0-9]+/g) || []).forEach(tok => {
+    const low = tok.toLowerCase();
+    if (CONTENT_STOP.has(low) || (skip && skip.has(low))) return;
+    let st;
+    if (isAcronymToken(tok)) st = { w: acronymKey(tok), acr: true };
+    else if (tok.length >= 3 && /[a-z]/i.test(tok)) st = { w: stemWord(tok), acr: false };
+    if (st && !seen.has(st.w.toLowerCase())) { seen.add(st.w.toLowerCase()); out.push(st); }
+  });
   return out;
 }
 
-/* "Private Cloud" -> "P______ C____" */
-function typeHint(answer) {
-  const a = acceptedAnswers(answer).filter(x => x.length <= TYPE_MAX_LEN).sort((x, y) => x.length - y.length)[0] || answer;
+function stemRegex(st, flags = 'i') {
+  return st.acr
+    ? new RegExp(`(?<![A-Za-z0-9])${reEsc(st.w)}s?(?![A-Za-z0-9])`, flags)
+    : new RegExp(`(?<![A-Za-z0-9])${reEsc(st.w)}[A-Za-z0-9]*`, flags);
+}
+
+function wordSpans(text) {
+  const out = [], re = /[A-Za-z0-9]+/g;
+  let m;
+  while ((m = re.exec(text))) out.push({ w: m[0], s: m.index, e: m.index + m[0].length });
+  return out;
+}
+
+/* Runs of words whose initials spell the acronym: "National Cyber Security
+   Centre" for NCSC, "National Institute of Standards and Technology" for NIST. */
+function expansionRanges(text, acro) {
+  const key = acronymKey(acro);
+  if (key.length < 3) return [];
+  const ws = wordSpans(String(text)), out = [];
+  for (let i = 0; i < ws.length; i++) {
+    if (INITIAL_STOP.has(ws[i].w.toLowerCase())) continue;
+    let all = '', content = '';
+    for (let j = i; j < ws.length; j++) {
+      const w = ws[j].w, stop = INITIAL_STOP.has(w.toLowerCase());
+      all += w[0].toUpperCase();
+      if (!stop) content += w[0].toUpperCase();
+      if (j > i && !stop && (all === key || content === key)) { out.push([ws[i].s, ws[j].e]); i = j; break; }
+      if (all.length >= key.length && content.length >= key.length) break;
+    }
+  }
+  return out;
+}
+
+/* Acronyms a multi-word name would be shortened to: "Internet of Things" -> IOT. */
+function derivedAcronyms(names) {
+  const out = new Set();
+  names.forEach(n => {
+    const ws = String(n).split(/[^A-Za-z0-9]+/).filter(Boolean);
+    if (ws.length < 2) return;
+    const all = ws.map(w => w[0].toUpperCase()).join('');
+    const content = ws.filter(w => !INITIAL_STOP.has(w.toLowerCase())).map(w => w[0].toUpperCase()).join('');
+    [all, content].forEach(k => { if (k.length >= 3) out.add(k); });
+  });
+  return out;
+}
+
+function acronymNames(item) { return acceptedAnswers(item).filter(isAcronymToken); }
+
+/* Hide the answer if the prompt text gives it away: every name for the term,
+   the spelt-out form of its acronym (and the acronym of a spelt-out name), and
+   the term's own content words ("Signs that a system has been compromised"
+   -> "___ that a system has been ___"). opts.exact: names only, exact form. */
+function maskTerm(text, itemOrTerm, opts = {}) {
+  const item = asItem(itemOrTerm);
+  let out = String(text);
+  const names = acceptedAnswers(item).sort((a, b) => b.length - a.length);
+  names.forEach(p => { out = out.replace(nameRegex(p, !!opts.exact), '___'); });
+  if (opts.exact) return out;
+  acronymNames(item).forEach(a => {
+    expansionRanges(out, a).reverse().forEach(([s, e]) => { out = out.slice(0, s) + '___' + out.slice(e); });
+  });
+  const derived = derivedAcronyms(names);
+  out = out.replace(/(?<![\w-])[A-Za-z0-9]+(?![\w-])/g, tok => (isAcronymToken(tok) && derived.has(acronymKey(tok)) ? '___' : tok));
+  wordStems(splitTerm(item.term).outer, MASK_KEEP).forEach(st => { out = out.replace(stemRegex(st, 'gi'), '___'); });
+  return out.replace(/___(?:(?:[\s\-–—,&/]|\b(?:and|or)\b)+___)+/g, '___');
+}
+
+/* Enough left to answer from: two or more content words besides the blanks. */
+function promptHasContent(text) {
+  const words = String(text).replace(/___/g, ' ').match(/[A-Za-z0-9]+/g) || [];
+  return words.filter(w => w.length >= 3 && !PROMPT_STOP.has(w.toLowerCase())).length >= 2;
+}
+
+/* "Private Cloud" -> "P______ C____". Spells the main name (never a bracketed
+   qualifier) when it is short enough to type, else the shortest other name. */
+function typeHint(answer, accepts) {
+  const main = splitTerm(answer).outer;
+  const pool = [...(accepts || []), ...acceptedAnswers(answer)].filter(x => x.length <= TYPE_MAX_LEN).sort((x, y) => x.length - y.length);
+  const a = main.length <= TYPE_MAX_LEN ? main : (pool[0] || answer);
   return a.split(' ').map(w => w.charAt(0) + w.slice(1).replace(/[A-Za-z0-9]/g, '_')).join(' ');
 }
 
@@ -142,13 +381,87 @@ function nearbyItems(node) {
   return lists;
 }
 
-/* Other terms to use as wrong answers: same subtopic, then topic, then section. */
-function distractorTerms(item, node, n) {
-  const seen = new Set([item.term.toLowerCase()]);
+/* ---------- terms that overlap ----------
+   A wrong option must really be wrong. Items listed in each other's
+   `confusable`, items in different `group`s (cloud deployment vs service
+   models) and items whose text names the other are kept apart. */
+
+const isOverview = it => !!(it && it.overview);
+function listedConfusable(a, b) {
+  return (a.confusable || []).includes(b.code) || (b.confusable || []).includes(a.code);
+}
+const otherGroup = (a, b) => !!(a.group && b.group && a.group !== b.group);
+const itemText = it => [it.term, it.definition, ...(it.keyFacts || []), it.examTip, it.examples].filter(Boolean).join(' ');
+const notesText = it => [it.term, it.definition, ...(it.keyFacts || []), it.examTip].filter(Boolean).join(' ');
+const keyStems = it => wordStems(splitTerm(it.term).outer, GENERIC_WORDS);
+
+/* Does the text name the item (any name, or its acronym spelt out)? */
+function namesItem(text, it) {
+  const t = String(text || '');
+  if (!t) return false;
+  return acceptedAnswers(it).some(n => nameRegex(n, false, 'i').test(t)) || acronymNames(it).some(a => expansionRanges(t, a).length > 0);
+}
+
+/* ...or uses one of its key words ("Damage caused by insiders" for
+   "Accidental or Deliberate Damage"). */
+function touchesItem(text, it) {
+  return namesItem(text, it) || keyStems(it).some(st => stemRegex(st).test(String(text || '')));
+}
+
+/* Two definitions that say nearly the same thing: two or more key words in
+   common ("Weaknesses ... outdated" in both), or most of their words. */
+function nearParaphrase(d1, d2) {
+  const a = [...new Set(wordStems(d1, GENERIC_WORDS).map(s => s.w.toLowerCase()))];
+  const b = [...new Set(wordStems(d2, GENERIC_WORDS).map(s => s.w.toLowerCase()))];
+  if (!a.length || !b.length) return false;
+  const same = (x, y) => x === y || (Math.min(x.length, y.length) >= 4 && (x.startsWith(y) || y.startsWith(x)));
+  const both = a.filter(x => b.some(y => same(x, y))).length;
+  return both >= 2 || both / (a.length + b.length - both) >= 0.4;
+}
+
+/* True/false: the partner's definition must be plainly NOT about the item. */
+function tfClash(a, b) {
+  return listedConfusable(a, b) || isOverview(b) || otherGroup(a, b)
+    || touchesItem(a.definition, b) || touchesItem(b.definition, a)
+    || nearParaphrase(a.definition, b.definition);
+}
+
+/* Multi-select and multiple choice: the other item's examples or term must
+   not also fit this one. */
+function relatedItems(a, b) {
+  if (listedConfusable(a, b) || otherGroup(a, b)) return true;
+  if (namesItem(itemText(a), b) || namesItem(itemText(b), a)) return true;
+  if (nearParaphrase(a.definition, b.definition)) return true;
+  const head = it => keyStems(it)[0];
+  const ha = head(a), hb = head(b);
+  if ((hb && stemRegex(hb).test(a.definition || '')) || (ha && stemRegex(ha).test(b.definition || ''))) return true;
+  // One's examples named in the other's notes ("VPNs" in "Protecting a WLAN").
+  const exIn = (x, y) => exampleParts(x).some(p => p.length >= 3 && nameRegex(p, false, 'i').test(notesText(y)));
+  return exIn(a, b) || exIn(b, a);
+}
+
+/* Does another item's own text already cover this example? ("A DDoS taking a
+   website offline" is also about Bots, whose definition mentions DDoS.) */
+function exampleFits(example, it) {
+  if (namesItem(example, it)) return true;
+  const text = itemText(it);
+  const st = wordStems(example, GENERIC_WORDS);
+  if (st.some(s => s.acr && s.w.length >= 3 && stemRegex(s).test(text))) return true;
+  const hits = st.filter(s => stemRegex(s).test(text)).length;
+  return st.length >= 2 && hits * 2 >= st.length + 1;
+}
+
+/* Other terms to use as wrong answers: same subtopic, then topic, then section.
+   With `example`, terms whose own text covers that example are left out. */
+function distractorTerms(item, node, n, example) {
+  const seen = new Set([normAnswer(item.term)]);
   const out = [];
   const take = list => shuffled(list).forEach(it => {
-    const t = it.term;
-    if (out.length < n && !seen.has(t.toLowerCase())) { seen.add(t.toLowerCase()); out.push(t); }
+    if (out.length >= n || !it || !it.term || it.code === item.code) return;
+    const k = normAnswer(it.term);
+    if (seen.has(k) || relatedItems(item, it) || (example && exampleFits(example, it))) return;
+    seen.add(k);
+    out.push(it.term);
   });
   nearbyItems(node).forEach(list => { if (out.length < n) take(list); });
   return out;
@@ -163,10 +476,13 @@ function itemWhy(item) {
   return item.examTip || (item.keyFacts && item.keyFacts[0]) || firstSentence(item.definition);
 }
 
-function exampleParts(item) {
-  return item && item.examples
+/* opts.forPrompt: only examples that do not name the term ("BBC podcasts"
+   would ask "Which is this an example of? BBC ___"). */
+function exampleParts(item, opts = {}) {
+  const parts = item && item.examples
     ? String(item.examples).split(/;\s*/).map(s => s.trim().replace(/\.$/, '')).filter(Boolean)
     : [];
+  return opts.forPrompt ? parts.filter(p => maskTerm(p, item) === p) : parts;
 }
 
 /* The questions for one term on a path node. */
@@ -185,13 +501,14 @@ function questionsForItem(item, node, bank) {
   });
 
   const wrong = distractorTerms(item, node, 3);
-  const defText = `<span class="lq-quote">${roundEscape(maskTerm(item.definition, item.term))}</span>`;
-  if (isTypeable(item.term)) {
+  const def = maskTerm(item.definition, item);
+  const defText = `<span class="lq-quote">${roundEscape(def)}</span>`;
+  if (isTypeable(item) && promptHasContent(def)) {
     // The hardest check: no options to pick from, you have to recall it.
     qs.push({
       id: `${item.code}#t`, code: item.code, kind: 'Type the term', typed: true,
       q: `Which term matches this description?${defText}`, html: true,
-      answer: item.term, accepts: acceptedAnswers(item.term), why
+      answer: item.term, accepts: acceptedAnswers(item), why
     });
   } else if (wrong.length >= 2) {
     qs.push({
@@ -200,14 +517,15 @@ function questionsForItem(item, node, bank) {
       html: true, answer: item.term, options: [item.term, ...wrong], why
     });
   }
-  if (wrong.length >= 2) {
-    const ex = exampleParts(item);
-    if (ex.length) {
-      const pick = ex[Math.floor(Math.random() * ex.length)];
+  const ex = exampleParts(item, { forPrompt: true });
+  if (ex.length) {
+    const pick = pickOne(ex);
+    const exWrong = distractorTerms(item, node, 2, pick);
+    if (exWrong.length >= 2) {
       qs.push({
         id: `${item.code}#e`, code: item.code, kind: 'Example',
-        q: `<span class="lq-quote">${roundEscape(maskTerm(pick, item.term))}</span>Which of these is this an example of?`,
-        html: true, answer: item.term, options: [item.term, ...shuffled(wrong).slice(0, 2)],
+        q: `<span class="lq-quote">${roundEscape(pick)}</span>Which of these is this an example of?`,
+        html: true, answer: item.term, options: [item.term, ...exWrong],
         why: `${item.term}: ${firstSentence(item.definition)}`
       });
     }
@@ -266,52 +584,103 @@ function mcqQuestion(item, node, bank, settings) {
   const why = itemWhy(item);
   const written = ((bank || {})[item.code] || []).filter(q => q && Array.isArray(q.options) && q.options[q.answer]);
   if (written.length) {
-    const w = written[Math.floor(Math.random() * written.length)];
+    const w = pickOne(written);
     return {
       kind: 'mcq', code: item.code, label: w.type === 'gap' ? 'Fill the gap' : 'Scenario',
       prompt: roundEscape(w.q), answer: w.options[w.answer], options: shuffled(w.options),
       hidden: settings.hideOptions, why: w.why || why
     };
   }
+  const def = maskTerm(item.definition, item);
+  const ex = exampleParts(item, { forPrompt: true });
+  if (ex.length && (Math.random() < 0.35 || !promptHasContent(def))) {
+    const pick = pickOne(ex);
+    const exWrong = distractorTerms(item, node, 3, pick);
+    if (exWrong.length >= 2) {
+      return {
+        kind: 'mcq', code: item.code, label: 'Example',
+        prompt: `<span class="lq-quote">${roundEscape(pick)}</span>Which of these is this an example of?`,
+        answer: item.term, options: shuffled([item.term, ...exWrong]), hidden: settings.hideOptions,
+        why: `${item.term}: ${firstSentence(item.definition)}`
+      };
+    }
+  }
   const wrong = distractorTerms(item, node, 3);
   if (wrong.length < 2) return null;
-  const ex = exampleParts(item);
-  if (ex.length && Math.random() < 0.35) {
-    const pick = ex[Math.floor(Math.random() * ex.length)];
-    return {
-      kind: 'mcq', code: item.code, label: 'Example',
-      prompt: `<span class="lq-quote">${roundEscape(maskTerm(pick, item.term))}</span>Which of these is this an example of?`,
-      answer: item.term, options: shuffled([item.term, ...wrong]), hidden: settings.hideOptions,
-      why: `${item.term}: ${firstSentence(item.definition)}`
-    };
-  }
   return {
     kind: 'mcq', code: item.code, label: 'Definition',
-    prompt: `Which term matches this description?<span class="lq-quote">${roundEscape(maskTerm(item.definition, item.term))}</span>`,
+    prompt: `Which term matches this description?<span class="lq-quote">${roundEscape(def)}</span>`,
     answer: item.term, options: shuffled([item.term, ...wrong]), hidden: settings.hideOptions, why
   };
 }
 
-/* A sentence from the notes that names the term, for a typed fill-the-gap. */
-function gapSentence(item) {
-  const pool = [...(item.keyFacts || []), item.examTip].filter(Boolean).map(String);
-  const hits = pool.filter(s => maskTerm(s, item.term) !== s && s.length <= 240);
-  return hits.length ? hits[Math.floor(Math.random() * hits.length)] : null;
+/* What a gap's blank accepts: the name that was blanked and names that mean
+   the same ("MFA" = "Multi-Factor Authentication"), not the other half of a
+   compound term ("Passwords"). A blank that stands for the whole term
+   accepts every name for it. */
+function gapAnswer(item, hit) {
+  const all = acceptedAnswers(item);
+  const h = normAnswer(hit);
+  const { outer } = splitTerm(item.term);
+  const whole = [item.term, outer].some(x => normAnswer(x) === h || isAbbrevOf(hit, x) || isAbbrevOf(x, hit));
+  if (whole) return { answer: item.term, accepts: all };
+  const same = all.filter(a => normAnswer(a) === h || isAbbrevOf(a, hit) || isAbbrevOf(hit, a));
+  const accepts = [hit, ...same.filter(a => a !== hit)];
+  return { answer: same.find(a => normAnswer(a) === h) || hit, accepts };
 }
 
-function typedQuestion(item) {
-  const gap = gapSentence(item);
-  const base = { code: item.code, answer: item.term, accepts: acceptedAnswers(item.term), why: itemWhy(item) };
-  if (gap && Math.random() < 0.5) {
-    return Object.assign({
+/* Sentences from the notes that name the term once, as a whole word, for a
+   typed fill-the-gap. A sentence is skipped when the rest of it gives the
+   answer away: another name or a plural of it ("the interviewer", "costs"),
+   the acronym spelt out ("NCSC = National Cyber Security Centre"), or a
+   second blank. */
+function gapCandidates(item) {
+  const pool = [...(item.keyFacts || []), item.examTip].filter(Boolean).map(String).filter(s => s.length <= 240);
+  const names = acceptedAnswers(item).sort((a, b) => b.length - a.length);
+  const out = [];
+  pool.forEach(s => {
+    const hits = [];
+    let text = s;
+    names.forEach(p => { text = text.replace(nameRegex(p, true), m => { hits.push(m); return '___'; }); });
+    if (hits.length !== 1) return;
+    const rest = text.replace('___', ' ');
+    if (names.some(n => nameRegex(n, false, 'i').test(rest))) return;
+    const { answer, accepts } = gapAnswer(item, hits[0]);
+    if (acronymNames(item).some(a => expansionRanges(rest, a).length)) return;
+    const derived = derivedAcronyms(names);
+    if ((rest.match(/[A-Za-z0-9]+/g) || []).some(t => isAcronymToken(t) && derived.has(acronymKey(t)))) return;
+    // The answer's own word elsewhere, even inside another word ("antivirus").
+    if (wordStems(hits[0], GENERIC_WORDS).some(st => stemRegex(st).test(rest)
+      || (st.w.length >= 4 && rest.toLowerCase().includes(st.w.toLowerCase())))) return;
+    if (!promptHasContent(text)) return;
+    out.push({ text, answer, accepts });
+  });
+  return out;
+}
+
+/* A typed question: fill the gap, or type the term from its definition.
+   preferGap: true = a gap when there is one, false = the definition,
+   undefined = either. null when neither prompt is fair. */
+function typedQuestion(item, preferGap) {
+  const gaps = gapCandidates(item);
+  const def = maskTerm(item.definition, item);
+  const defOk = promptHasContent(def);
+  const why = itemWhy(item);
+  const useGap = gaps.length > 0 && (preferGap === true || !defOk || (preferGap === undefined && Math.random() < 0.5));
+  if (useGap) {
+    const g = pickOne(gaps);
+    return {
       kind: 'gap', label: 'Fill the gap',
-      prompt: `Type the missing term.<span class="lq-quote">${roundEscape(maskTerm(gap, item.term))}</span>`
-    }, base);
+      prompt: `Type the missing term.<span class="lq-quote">${roundEscape(g.text)}</span>`,
+      code: item.code, answer: g.answer, accepts: g.accepts, why
+    };
   }
-  return Object.assign({
+  if (!defOk) return null;
+  return {
     kind: 'type', label: 'Type the term',
-    prompt: `Which term matches this description?<span class="lq-quote">${roundEscape(maskTerm(item.definition, item.term))}</span>`
-  }, base);
+    prompt: `Which term matches this description?<span class="lq-quote">${roundEscape(def)}</span>`,
+    code: item.code, answer: item.term, accepts: acceptedAnswers(item), why
+  };
 }
 
 function flipQuestion(item) {
@@ -321,16 +690,22 @@ function flipQuestion(item) {
   };
 }
 
-/* "Router: <definition>": true, or the definition of a neighbouring term. */
+/* "Router: <definition>": true, or the definition of a neighbouring term that
+   is plainly not about this one (see tfClash). No safe partner, no question. */
 function tfQuestion(item, node) {
+  if (!item || !item.definition || isOverview(item)) return null;
+  const mine = maskTerm(item.definition, item);
+  if (!promptHasContent(mine)) return null;
   let partner = null;
   for (const list of nearbyItems(node)) {
-    const others = list.filter(it => it.code !== item.code && it.definition && it.definition !== item.definition);
-    if (others.length) { partner = others[Math.floor(Math.random() * others.length)]; break; }
+    const others = list.filter(it => it && it.code !== item.code && it.definition && it.definition !== item.definition
+      && normAnswer(it.term) !== normAnswer(item.term) && !tfClash(item, it)
+      && promptHasContent(maskTerm(it.definition, it)));
+    if (others.length) { partner = pickOne(others); break; }
   }
   if (!partner) return null;
   const truth = Math.random() < 0.5;
-  const def = truth ? maskTerm(item.definition, item.term) : maskTerm(maskTerm(partner.definition, partner.term), item.term);
+  const def = truth ? mine : maskTerm(maskTerm(partner.definition, partner), item);
   return {
     kind: 'tf', code: item.code, label: 'True or false',
     prompt: `Does this describe <strong>${roundEscape(item.term)}</strong>?<span class="lq-quote">${roundEscape(def)}</span>`,
@@ -339,22 +714,27 @@ function tfQuestion(item, node) {
   };
 }
 
-/* "Which of these are examples of X?" for terms with three or more examples.
-   Wrong picks are examples of neighbouring terms. */
+/* "Which of these are examples of X?" for terms with three or more examples
+   that do not name X. Wrong picks are examples of nearby terms (subtopic,
+   then topic) that do not overlap X (see relatedItems) and that X's own
+   notes do not mention. */
 function multiQuestion(item, node) {
-  const right = exampleParts(item);
+  if (!item || isOverview(item)) return null;
+  const right = exampleParts(item, { forPrompt: true });
   if (right.length < 3) return null;
   const answers = right.slice(0, 4);
-  const rightKeys = right.map(normAnswer).filter(Boolean);
+  const rightKeys = exampleParts(item).map(normAnswer).filter(Boolean);
   const taken = new Set(rightKeys);
   // "A school using Microsoft 365" is not a wrong pick when "Microsoft 365" is right.
   const overlaps = k => rightKeys.some(r => k.includes(r) || r.includes(k));
+  const mine = itemText(item);
   const wrong = [];
-  for (const list of nearbyItems(node)) {
-    shuffled(list.filter(it => it.code !== item.code)).forEach(it => {
+  for (const list of nearbyItems(node).slice(0, 2)) {
+    shuffled(list.filter(it => it && it.code !== item.code && !isOverview(it) && !relatedItems(item, it))).forEach(it => {
       exampleParts(it).forEach(p => {
         const k = normAnswer(p);
-        if (wrong.length < 3 && k && !taken.has(k) && !overlaps(k) && maskTerm(p, item.term) === p) { taken.add(k); wrong.push(p); }
+        if (wrong.length < 3 && k && !taken.has(k) && !overlaps(k) && maskTerm(p, item) === p
+          && !nameRegex(p, false, 'i').test(mine)) { taken.add(k); wrong.push(p); }
       });
     });
     if (wrong.length >= 3) break;
@@ -374,16 +754,20 @@ function questionFor(item, status, mode, settings, ctx) {
   const s = coerceRoundSettings(settings);
   const c = ctx || {};
   if (s.style === 'flash') return flipQuestion(item);
-  const typeable = isTypeable(item.term);
+  const typeable = isTypeable(item);
   const wantTyped = s.style !== 'mcq' && (mode === 'hard' || s.style === 'typing' || status === 'mastered');
-  if (wantTyped && typeable) return typedQuestion(item);
+  if (wantTyped && typeable) {
+    const t = typedQuestion(item);
+    if (t) return t;
+  }
   const q = mcqQuestion(item, c.node, c.bank, s);
   if (q) {
     if (mode === 'hard') q.noHint = true;
     return q;
   }
   // Too few neighbours for multiple choice.
-  return typeable && s.style !== 'mcq' ? typedQuestion(item) : flipQuestion(item);
+  const t = typeable && s.style !== 'mcq' ? typedQuestion(item) : null;
+  return t || flipQuestion(item);
 }
 
 /* ---------- building a round ---------- */
@@ -620,7 +1004,7 @@ function hintCard(r) {
   const q = card.q;
   if (q.kind === 'type' || q.kind === 'gap') {
     card.hinted = true;
-    return { hint: typeHint(q.answer) };
+    return { hint: typeHint(q.answer, q.accepts) };
   }
   if (q.kind !== 'mcq' && q.kind !== 'multi') return null;
   const isRight = o => (q.kind === 'multi' ? q.answers.includes(o) : o === q.answer);
@@ -736,6 +1120,7 @@ if (typeof module !== 'undefined' && module.exports) {
     TEACH_BATCH, TYPE_MAX_LEN, ROUND_MAX, ROUND_XP, MIN_ROUND, ROUND_SETTINGS_KEY,
     isLessonItem, termParts, acceptedAnswers, normAnswer, editDistance, checkTyped, isTypeable,
     maskTerm, typeHint, shuffled, distractorTerms, firstSentence, questionsForItem,
+    isRecapItem, isAbbrevOf, exampleParts, gapCandidates, typedQuestion, mcqQuestion, tfClash, relatedItems,
     defaultRoundSettings, coerceRoundSettings, loadRoundSettings, saveRoundSettings,
     questionFor, tfQuestion, multiQuestion, makeCard, makeRound, checkResponse,
     currentRoundCard, answerCard, canOverride, overrideRight, hintCard, revealCard, explainCard, nextCard, roundFinished,
