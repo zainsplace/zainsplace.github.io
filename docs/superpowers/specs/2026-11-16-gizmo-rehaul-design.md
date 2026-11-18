@@ -175,6 +175,11 @@ Typed answers are sometimes marked wrong when he was right (seen: "Passwords, Mu
 - After a typed or fill-the-gap answer is marked wrong, an **"I was right"** button appears beside the correct answer. Pressing it counts the card as right first time: the wrong result is undone in memory (strength and due date go back to what they were, then the right result is applied), the usual XP is banked, the Retry copy is removed, and the combo is not reset. It is offered once per card and not after Reveal, Explain or a hint.
 - Typed checking is made fairer: "and", "&", commas and slashes are ignored when comparing, and for a term like "X and Y (Z)" each of "X", "Y" and "Z" is accepted on its own as well as together.
 
+### Flashcards in the Study dialog, no Reasoning test (Zain, 18 November)
+
+- The Study dialog gets a **🃏 Flashcards** option next to Memorize. It starts a round on that step in "Flashcards only" style (flip, then mark yourself) without changing the saved round settings. Results feed memory, rings and XP like any round.
+- The Reasoning test is removed from the Exam section: its card on the Exam hub goes, `#aptitude` redirects to `#exam`, and its page and code are removed. Saved data is left in place.
+
 ### Round settings
 
 Question style (Mixed, Multiple choice only, Typing preferred, Flashcards only), Hide options initially, Spelling mistakes allowed. Saved per browser. "Flashcards only" shows the term's flashcard to flip and self-mark, which is what remains of the old Flashcards tab.
@@ -201,7 +206,7 @@ The weekly league and the battle rating, as today, plus the battle modes that us
 
 ### Exam
 
-One page linking to Questions, Past papers (PPP), Mocks, Extended, Exam kit and the Reasoning test. Each of those pages is unchanged.
+One page linking to Questions, Past papers (PPP), Mocks, Extended and Exam kit. (The Reasoning test was removed on 18 November.) Each of those pages is unchanged.
 
 ### Coins, pets and the shop (Zain, 18 November)
 
