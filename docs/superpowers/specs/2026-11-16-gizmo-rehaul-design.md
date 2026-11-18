@@ -53,7 +53,7 @@ The Sections tab got a first Gizmo-style path on 4 November. The rest of the sit
 ## Anti-goals
 
 - Any limit on how much he can study: lives, keys, daily caps, locked steps.
-- Any change to the wording of the notes in `data/<unit>/<letter>.json`.
+- Any change to the wording of the notes in `data/<unit>/<letter>.json`. *(Exception, Zain 18 November: after the spec audits in `.superpowers/sdd/2026-11-18-gizmo-rehaul/audit-unit1.md` and `audit-unit2.md`, he asked for every finding to be fixed: wrong facts, off-spec items, broken questions, awkward wording and coverage gaps. Notes are changed only where an audit finding says so, checked against the official spec.)*
 - Losing saved progress: ratings, finished lessons, flashcard history, XP, streaks, league standing, exam marks.
 - Copying Gizmo's name, logo, mascot, 3D artwork or its "Booster" font. We take the layout, the behaviour and the visual style, colours included (Zain asked on 18 November for the look to copy Gizmo too).
 - Questions that can be answered by spotting the wording (the rule from the 4 November design still holds).
