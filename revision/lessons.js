@@ -56,6 +56,13 @@ function pathNodes() {
   return nodes;
 }
 
+/* Every lesson term of the active unit with the path node it sits in. */
+function termItems() {
+  const out = [];
+  pathNodes().forEach(node => node.items.forEach(it => out.push(Object.assign({}, it, { nodeId: node.id }))));
+  return out;
+}
+
 function nodeDone(id) {
   const r = state.lessons && state.lessons[id];
   return !!(r && r.done);

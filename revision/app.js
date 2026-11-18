@@ -74,6 +74,8 @@ function defaultUnitState() {
     rag: {},           // code -> 'red'|'amber'|'green'
     reviewed: {},      // code -> true
     lessons: {},       // path node id -> {done, date, firstTry, total}
+    memory: {},        // term code -> {s, due, seen, lapses} (see memory.js)
+    memorySeeded: false,   // true once memory was built from older progress
     flashcards: {
       boxes: {},       // cardId -> 1..5
       nextDue: {},     // cardId -> ISO date string
@@ -186,6 +188,8 @@ function coerceUnit(raw) {
     if (!DATE_KEY.test(r.date)) r.date = '';
     unit.lessons[k] = r;
   });
+  unit.memory = MEMORY.coerce(isPlainObject(raw) ? raw.memory : null);
+  unit.memorySeeded = isPlainObject(raw) && raw.memorySeeded === true;
   keepMap(unit.flashcards.boxes, SAFE_KEY, v => Number.isInteger(v) && v >= 1 && v <= 5);
   keepMap(unit.flashcards.nextDue, SAFE_KEY, v => typeof v === 'string' && DATE_KEY.test(v));
   keepMap(unit.activity, DATE_KEY, count);
@@ -314,6 +318,70 @@ function loadStore() {
 }
 
 let store = loadStore();
+
+/* ---- Per-term memory ----
+   Terms come from the lesson path (same node ids as lessons.js pathNodes) so
+   older progress can be turned into memory before lessons.js has loaded. */
+function unitTermItems(unitId) {
+  const def = unitDef(unitId);
+  const data = (INLINE_UNITS[unitId] || INLINE_UNITS.u1).sections;
+  const items = [];
+  def.order.forEach(l => {
+    const sec = data[l];
+    if (!sec) return;
+    const letter = l.toUpperCase();
+    sec.topics.forEach((topic, ti) => {
+      (topic.subtopics || []).forEach((sub, si) => {
+        const nodeItems = (sub.items || []).filter(it => it && it.term && it.definition && !String(it.code).includes('-'));
+        if (!nodeItems.length) return;
+        const nodeId = sub.code || `${topic.code || letter + (ti + 1)}-${si + 1}`;
+        nodeItems.forEach(it => items.push({ code: it.code, nodeId }));
+      });
+    });
+  });
+  return items;
+}
+
+/* Build memory once for any unit saved before memory existed. Reads lessons,
+   ratings and flashcard boxes; never changes them. */
+function seedMemoryIfNeeded() {
+  let changed = false;
+  Object.keys(store.units).forEach(id => {
+    const u = store.units[id];
+    if (u.memorySeeded) return;
+    const cards = ((INLINE_UNITS[id] || {}).flashcards || {}).cards || [];
+    const flashBoxes = {};
+    cards.forEach(c => {
+      const box = u.flashcards.boxes[c.id];
+      if (c.code && box && !(flashBoxes[c.code] >= box)) flashBoxes[c.code] = box;
+    });
+    u.memory = MEMORY.seed({
+      items: unitTermItems(id),
+      lessonsDone: new Set(Object.keys(u.lessons).filter(k => u.lessons[k] && u.lessons[k].done)),
+      rag: u.rag,
+      flashBoxes,
+      todayStr: today()
+    });
+    u.memorySeeded = true;
+    changed = true;
+  });
+  if (changed) saveState();
+}
+seedMemoryIfNeeded();
+
+/* Record a quiz answer for a term (not recordResult: that one marks exam questions). Returns the days until it is asked again. */
+function recordTermResult(code, ok) {
+  const r = MEMORY.applyResult(state.memory[code], ok, today());
+  state.memory[code] = r.rec;
+  saveState();
+  return r.days;
+}
+
+/* A term shown with a hint: counts as seen, not as a right or wrong answer. */
+function recordHinted(code) {
+  state.memory[code] = MEMORY.touch(state.memory[code], today());
+  saveState();
+}
 
 /* A view onto store.units[activeUnit], with theme/profile passed through to the
    top level. Lets every existing state.* call site keep working after the split. */
