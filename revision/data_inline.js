@@ -6261,6 +6261,314 @@ const INLINE_UNITS = {
           "code": "A3.5",
           "front": "Give FOUR factors that affect the choice of user interface.",
           "back": "The users' skill and experience, the task, the device and its hardware (screen, RAM, input), and accessibility needs."
+        },
+        {
+          "id": "a48",
+          "section": "A",
+          "code": "A3.1.5",
+          "front": "What is a real-time operating system (RTOS)? Give an example.",
+          "back": "An OS that must respond within a guaranteed time, because a delay could be dangerous, e.g. car airbags or a pacemaker."
+        },
+        {
+          "id": "a49",
+          "section": "A",
+          "code": "A3.5.1",
+          "front": "Give ONE advantage and ONE disadvantage of a command line interface.",
+          "back": "Advantage: fast and scriptable for experts, using few resources. Disadvantage: commands must be learned and typed exactly."
+        },
+        {
+          "id": "a50",
+          "section": "A",
+          "code": "A4.1.7",
+          "front": "What is downtime, and how can it be kept low when a new system goes in?",
+          "back": "Time the system is unavailable. Switch over out of hours or in phases, keeping the old system as a fallback."
+        },
+        {
+          "id": "a51",
+          "section": "A",
+          "code": "A4.3.8",
+          "front": "Why do staff need both initial and ongoing training for a new IT system?",
+          "back": "Initial: so they can use it from day one. Ongoing: so they keep up with updates, new features and new risks."
+        },
+        {
+          "id": "a52",
+          "section": "A",
+          "code": "A3.2.1",
+          "front": "What is TCP/IP?",
+          "back": "The set of protocols that splits data into packets, addresses and routes them, and puts them back together at the other end."
+        },
+        {
+          "id": "b26",
+          "section": "B",
+          "code": "B3.3",
+          "front": "Why can a fast broadband connection still lag in an online game?",
+          "back": "Bandwidth is high but latency is high too, e.g. a far-away server, so each action takes longer to arrive."
+        },
+        {
+          "id": "b27",
+          "section": "B",
+          "code": "B3.2",
+          "front": "What is a man-in-the-middle attack, and what stops it?",
+          "back": "An attacker secretly relays traffic between two devices, reading or changing it. HTTPS and VPNs encrypt the data."
+        },
+        {
+          "id": "b28",
+          "section": "B",
+          "code": "B2.2.4",
+          "front": "Is a VPN a separate physical network?",
+          "back": "No. It is an encrypted tunnel that runs over an existing network, usually the internet."
+        },
+        {
+          "id": "c33",
+          "section": "C",
+          "code": "C1.1",
+          "front": "Who manages what in IaaS, PaaS and SaaS?",
+          "back": "IaaS: you manage the OS and apps. PaaS: you manage only your app and data. SaaS: the provider manages everything."
+        },
+        {
+          "id": "c34",
+          "section": "C",
+          "code": "C1.4.1",
+          "front": "Why does it matter where a cloud provider stores your data?",
+          "back": "Data held abroad may fall under other countries' laws, so the organisation must check it still meets UK GDPR."
+        },
+        {
+          "id": "c35",
+          "section": "C",
+          "code": "C1.4.2",
+          "front": "How does cloud computing change the way an organisation pays for IT?",
+          "back": "From large upfront hardware purchases to ongoing subscription or pay-as-you-go fees."
+        },
+        {
+          "id": "d17",
+          "section": "D",
+          "code": "D1.1.1",
+          "front": "What is ransomware? Give a real example.",
+          "back": "Malware that encrypts files and demands payment to unlock them, e.g. WannaCry hit NHS computers in 2017."
+        },
+        {
+          "id": "d18",
+          "section": "D",
+          "code": "D1.1.1",
+          "front": "What is the difference between a virus and a worm?",
+          "back": "A virus attaches to a file and spreads when someone runs it. A worm spreads across networks by itself."
+        },
+        {
+          "id": "d19",
+          "section": "D",
+          "code": "D1.1.1",
+          "front": "What is spyware?",
+          "back": "Malware that secretly records activity, such as keystrokes and logins, and sends it to an attacker."
+        },
+        {
+          "id": "d20",
+          "section": "D",
+          "code": "D1.1.4",
+          "front": "What is pretexting?",
+          "back": "Inventing a believable story to get information, e.g. posing as IT support to ask for a password."
+        },
+        {
+          "id": "d21",
+          "section": "D",
+          "code": "D1.1.4",
+          "front": "What is tailgating?",
+          "back": "Following an authorised person through a secure door without using your own pass."
+        },
+        {
+          "id": "d22",
+          "section": "D",
+          "code": "D1.2.4",
+          "front": "Why are portable devices such as USB sticks an internal threat?",
+          "back": "They can be lost, used to copy data out, or bring malware in when plugged into a work PC."
+        },
+        {
+          "id": "d23",
+          "section": "D",
+          "code": "D2.1.2",
+          "front": "What is the principle of least privilege?",
+          "back": "Users get only the access their job needs, so a hacked or misused account can do less damage."
+        },
+        {
+          "id": "d24",
+          "section": "D",
+          "code": "D2.4.3",
+          "front": "How does HTTPS protect users of a secure website?",
+          "back": "TLS encrypts data between browser and server, and the certificate proves the site is genuine (the padlock)."
+        },
+        {
+          "id": "d25",
+          "section": "D",
+          "code": "D1.3.2",
+          "front": "What is the maximum UK GDPR fine for a serious breach?",
+          "back": "£17.5 million or 4% of global annual turnover, whichever is higher."
+        },
+        {
+          "id": "d26",
+          "section": "D",
+          "code": "D1.2.2",
+          "front": "Give an example of accidental disclosure and ONE way to prevent it.",
+          "back": "Emailing customer data to the wrong person. Prevent with training, delayed sending or tools that flag sensitive data."
+        },
+        {
+          "id": "d27",
+          "section": "D",
+          "code": "D2.1.3",
+          "front": "Full, incremental and differential backups: what does each copy?",
+          "back": "Full: everything. Incremental: changes since the last backup. Differential: changes since the last full backup."
+        },
+        {
+          "id": "d28",
+          "section": "D",
+          "code": "D2.4.2",
+          "front": "What is the difference between symmetric and asymmetric encryption?",
+          "back": "Symmetric: one shared key encrypts and decrypts. Asymmetric: a public key encrypts and only the private key decrypts."
+        },
+        {
+          "id": "d29",
+          "section": "D",
+          "code": "D2.2",
+          "front": "How can antivirus catch new malware that has no signature yet?",
+          "back": "Heuristic analysis: it spots suspicious behaviour, not just matches with known malware."
+        },
+        {
+          "id": "d30",
+          "section": "D",
+          "code": "D2.3",
+          "front": "Give TWO threats a firewall cannot stop.",
+          "back": "Phishing and insider threats, because neither breaks the firewall's traffic rules."
+        },
+        {
+          "id": "e18",
+          "section": "E",
+          "code": "E2.6.3",
+          "front": "Give TWO interface features that reduce data entry errors.",
+          "back": "Drop-down menus limit choices; input masks force a format such as DD/MM/YYYY."
+        },
+        {
+          "id": "e19",
+          "section": "E",
+          "code": "E2.6.2",
+          "front": "Give THREE accessibility features of a data collection form.",
+          "back": "Screen-reader support, strong colour contrast with resizable text, and keyboard-only navigation."
+        },
+        {
+          "id": "e20",
+          "section": "E",
+          "code": "E1.2.1",
+          "front": "What data does a loyalty card scheme give a retailer?",
+          "back": "What each named customer buys, when and how often, used to tailor offers and manage stock."
+        },
+        {
+          "id": "e21",
+          "section": "E",
+          "code": "E2.3.1",
+          "front": "What is the difference between open and closed survey questions?",
+          "back": "Closed: fixed answers, easy to count and graph. Open: free text, richer detail but harder to analyse."
+        },
+        {
+          "id": "e22",
+          "section": "E",
+          "code": "E2.5.2",
+          "front": "What is the difference between a format check and a lookup check?",
+          "back": "Format: data matches a pattern, e.g. a postcode. Lookup: the value must be in a list, e.g. a country from a drop-down."
+        },
+        {
+          "id": "e23",
+          "section": "E",
+          "code": "E2.5.2",
+          "front": "Why can data pass validation and still be wrong?",
+          "back": "Validation only checks data is sensible, e.g. a real postcode, not that it is the right one."
+        },
+        {
+          "id": "f11",
+          "section": "F",
+          "code": "F2.1.1",
+          "front": "Give an example offence under Section 1 and Section 3 of the Computer Misuse Act.",
+          "back": "S1: logging into someone else's email without permission. S3: planting ransomware or deleting files without permission."
+        },
+        {
+          "id": "f12",
+          "section": "F",
+          "code": "F2.1.1",
+          "front": "What are the maximum sentences under sections 1, 2 and 3 of the Computer Misuse Act?",
+          "back": "S1: 2 years. S2: 5 years. S3: 10 years."
+        },
+        {
+          "id": "f13",
+          "section": "F",
+          "code": "F2.1.5",
+          "front": "What are the six lawful bases for processing personal data under UK GDPR?",
+          "back": "Consent, contract, legal obligation, vital interests, public task, legitimate interests."
+        },
+        {
+          "id": "f14",
+          "section": "F",
+          "code": "F2.1.5",
+          "front": "What is the right to erasure?",
+          "back": "The \"right to be forgotten\": people can ask for their data to be deleted, e.g. when it is no longer needed."
+        },
+        {
+          "id": "f15",
+          "section": "F",
+          "code": "F2.1.5",
+          "front": "What is the ICO and what does it do?",
+          "back": "The UK data protection regulator: it enforces the DPA 2018 and UK GDPR, investigates breaches and issues fines."
+        },
+        {
+          "id": "f16",
+          "section": "F",
+          "code": "F2.1.5",
+          "front": "What must an organisation do after a serious personal data breach?",
+          "back": "Tell the ICO within 72 hours, and tell the people affected without undue delay if the risk to them is high."
+        },
+        {
+          "id": "f17",
+          "section": "F",
+          "code": "F2.1.5",
+          "front": "What is a subject access request?",
+          "back": "A request for a copy of the personal data an organisation holds about you, normally answered free within one month."
+        },
+        {
+          "id": "f18",
+          "section": "F",
+          "code": "F2.1.3",
+          "front": "What did the Copyright (Computer Programs) Regulations 1992 add?",
+          "back": "A lawful user may make a back-up copy, and may decompile a program only to make it work with other software."
+        },
+        {
+          "id": "f19",
+          "section": "F",
+          "code": "F2.1.4",
+          "front": "Give TWO health risks from long periods of screen use.",
+          "back": "RSI in the hands and wrists, eye strain and headaches, and back pain from poor posture."
+        },
+        {
+          "id": "f20",
+          "section": "F",
+          "code": "F2.1.2",
+          "front": "What is the difference between a single-user licence and a site licence?",
+          "back": "Single-user: one person or device. Site licence: install on every machine at a site for one fee."
+        },
+        {
+          "id": "f21",
+          "section": "F",
+          "code": "F1.1.1",
+          "front": "What ethical issues come from monitoring staff's IT use?",
+          "back": "It intrudes on privacy and can damage trust, so it should be proportionate, disclosed (e.g. in the AUP) and lawful."
+        },
+        {
+          "id": "f22",
+          "section": "F",
+          "code": "F1.1.2",
+          "front": "Why is e-waste an ethical issue?",
+          "back": "Devices contain toxic materials such as lead and mercury, and much is sent to poorer countries where unsafe recycling harms people."
+        },
+        {
+          "id": "f23",
+          "section": "F",
+          "code": "F1.1.6",
+          "front": "What does an acceptable use policy usually cover?",
+          "back": "Permitted use and websites, installing software, passwords, social media, handling data, and what happens if rules are broken."
         }
       ]
     },
