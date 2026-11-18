@@ -202,6 +202,20 @@ test('right first time records the result and awards 5 x combo XP', () => {
   assert.equal(R.answerCard(r5, 'Server', fakeCtx()).xp, 10);
 });
 
+test('XP is banked through ctx.gainXP as each card is answered', () => {
+  const banked = [];
+  const ctx = Object.assign(fakeCtx(), { gainXP: n => banked.push(n) });
+  const r = roundOf('A1.1.1');
+  R.answerCard(r, 'Server', ctx);
+  const r3 = roundOf('A1.1.1'); r3.run = 3;
+  R.answerCard(r3, 'Server', ctx);
+  assert.deepEqual(banked, [5, 8]);
+  // wrong, hinted and retry answers bank nothing
+  const w = roundOf('A1.1.1'); R.answerCard(w, 'Router', ctx); R.answerCard(w, 'Server', ctx);
+  const h = roundOf('A1.1.1'); R.hintCard(h); R.answerCard(h, 'Server', ctx);
+  assert.deepEqual(banked, [5, 8]);
+});
+
 test('a wrong answer resets the run and re-queues the card as Retry at the end', () => {
   const ctx = fakeCtx();
   const r = roundOf('A1.1.1');

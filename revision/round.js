@@ -484,7 +484,9 @@ function makeRound(opts) {
 
 /* ---------- answering ----------
    Each function mutates `round` and returns what happened, so the screen
-   only has to draw it. ctx: { recordTermResult, recordHinted, settings }.  */
+   only has to draw it. ctx: { recordTermResult, recordHinted, gainXP, settings }.
+   gainXP(n) banks each card's XP as it is earned; round.xp is the running
+   total for display only.  */
 
 function currentRoundCard(r) { return r ? r.cards[r.pos] || null : null; }
 
@@ -545,6 +547,8 @@ function answerCard(r, response, ctx) {
       if (c.recordTermResult) ev.days = c.recordTermResult(card.code, true);
       ev.xp = Math.round(ROUND_XP * RMEM.combo(r.run));
       r.xp += ev.xp;
+      // Banked now, so closing the round halfway keeps it.
+      if (c.gainXP && ev.xp) c.gainXP(ev.xp);
       r.run++;
     }
   } else {
@@ -621,7 +625,11 @@ function roundFinished(r) { return !!r && r.pos >= r.cards.length; }
 let round = null;
 
 function roundContext() {
-  return { recordTermResult, recordHinted, settings: round ? round.settings : loadRoundSettings() };
+  return {
+    recordTermResult, recordHinted,
+    gainXP: n => awardXP(n, true),   // league XP, activity and save; no toast per card
+    settings: round ? round.settings : loadRoundSettings()
+  };
 }
 
 function startRound(nodeId, mode) {
