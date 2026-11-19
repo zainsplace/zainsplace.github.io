@@ -24,7 +24,12 @@ for anyone in the years below who wants it.
 
 - Switch units from the sidebar; the whole site reframes to that unit
 - Three main pages, as in Gizmo: Home, Learn (path, materials, leaderboard) and Exam (a hub
-  linking to Questions, Past papers, Mocks, Extended, Exam kit and the Reasoning test)
+  linking to Questions, Past papers, Mocks, Extended and Exam kit)
+- A Learn path per unit, one step per spec subtopic, with rounds of about 11 cards. Each term
+  has its own memory (New, Learning, Forgotten, Mastered) and comes back when it is due; Home
+  shows what to jump back into and how many terms are due again
+- Coins from rounds, battles, leagues and exam practice, spent in a shop on pets and outfits
+  for your pet and your avatar
 - Exam-style questions for both units, set out like the real AAQ paper: numbered scenarios,
   part-by-part context and the same command words and mark tariffs. Students mark themselves
   against a structured mark scheme (tick points, identify + expand chains, reason → justify →
@@ -39,10 +44,6 @@ for anyone in the years below who wants it.
 - Battles against the league rivals (Duel, Race to 10, Elimination, Blitz 60) in Learn → Leaderboard
 - Extended-writing practice with timers and model answers
 - Leaderboard with daily-progressing rivals
-- A reasoning test shared by both units: number and letter series, verbal analogies, syllogisms,
-  spatial and quantitative problems, with an optional timer and a per-category breakdown. Questions
-  can be skipped and returned to; the score counts only the questions answered, so finishing early
-  does not count unreached questions as wrong. It is an informal practice quiz, not an IQ test
 - Progress, XP and streaks tracked **separately per unit**
 
 ## Works offline
@@ -102,12 +103,12 @@ will fail if:
 The Learn page (`learn.js`) has three tabs: Path, Materials and Leaderboard. The path
 has one node per spec subtopic; each shows a mastery ring (the average memory strength
 of its terms) and a red badge counting Forgotten terms. Clicking a node opens the study
-dialog (Memorize, Battle, Hard round, Speed-run, Practice test). Rounds are built by
-`round.js` and drawn by `round-view.js`.
-Two questions per term are built automatically from the section JSON. The
-`definition` one is a typed answer, which forgives small spelling mistakes and
-accepts any name for the term, e.g. "IaaS". It falls back to multiple choice for
-terms too long to type. The other comes from the `examples` when there are any.
+dialog (Memorize, Flashcards, Battle, Hard round, Speed-run, Practice test). Rounds are
+built by `round.js` and drawn by `round-view.js`.
+Most questions are built automatically from the section JSON: multiple choice from the
+definition or an example, typed answers and fill-the-gap from the key facts (which forgive
+small spelling mistakes and accept any name for the term, e.g. "IaaS"), true/false and
+select-all. Which one a term gets depends on its memory status and the round settings.
 The scenario questions are written by hand in
 `data/<unit>/lessons/<letter>.json`, keyed by item code:
 
@@ -120,9 +121,11 @@ The scenario questions are written by hand in
 fewer than 3 or more than 4 options, or if `answer` doesn't point at one of them.
 The Materials tab shows each section's full notes.
 
-### Reasoning test questions
+### Reasoning questions
 
-The reasoning test reads `data/aptitude.json`, which belongs to neither unit. Each question needs an
+The reasoning test is no longer on the site (old `#aptitude` links go to the Exam hub), but its
+questions are kept in `data/aptitude.json`, which belongs to neither unit, and are still validated.
+Each question needs an
 `id`, `category` (one of the ids in `categories`), `difficulty` (`easy`, `medium` or `hard`),
 `question`, `options` (3 to 5), `answer` (copied exactly from one option) and a short
 `explanation`. An optional `figure` is a list of equal-length rows drawn as a grid: `.` is a blank
