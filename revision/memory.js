@@ -18,7 +18,9 @@
 const MEMORY = (() => {
   const LADDER = [1, 3, 7, 16, 35, 90];
   const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
-  const CODE_RE = /^[A-Z][0-9]+(\.[0-9]+)+$/;
+  // A spec code such as 'B1.1.1', plus Unit 2's lettered ('A1.2.1a') and
+  // merged ('B3.1.2-3') term codes. Anything else (e.g. '__proto__') is dropped.
+  const CODE_RE = /^[A-Z][0-9]+(\.[0-9]+)+[a-z]?(-[0-9]+)?$/;
 
   function addDays(str, n) {
     const [y, m, d] = str.split('-').map(Number);

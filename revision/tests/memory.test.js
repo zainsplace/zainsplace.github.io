@@ -138,3 +138,51 @@ test('coerce', () => {
   });
   assert.deepEqual(MEMORY.coerce(null), {});
 });
+
+// Every path term code in both units must survive coerce, or its memory is
+// dropped on every load. Codes come from the unit JSON, terms picked with
+// app.js isPathTerm (the same filter the Learn path uses).
+test('coerce keeps every path term code from both units', () => {
+  const fs = require('fs');
+  const path = require('path');
+  const root = path.join(__dirname, '..');
+  const appSrc = fs.readFileSync(path.join(root, 'app.js'), 'utf8');
+  const m = appSrc.match(/function isPathTerm\(it\) \{[\s\S]*?\r?\n\}/);
+  assert.ok(m, 'isPathTerm found in app.js');
+  const isPathTerm = new Function(`${m[0]}; return isPathTerm;`)();
+  const perUnit = {};
+  for (const unit of ['unit1', 'unit2']) {
+    const dir = path.join(root, 'data', unit);
+    const codes = new Set();
+    for (const f of fs.readdirSync(dir).filter(n => /^[a-z]\.json$/.test(n))) {
+      const data = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
+      (data.topics || []).forEach(t => (t.subtopics || []).forEach(s =>
+        (s.items || []).filter(isPathTerm).forEach(it => codes.add(it.code))));
+    }
+    perUnit[unit] = [...codes];
+  }
+  assert.ok(perUnit.unit1.length > 100 && perUnit.unit2.length > 50, 'found the terms');
+  assert.ok(perUnit.unit2.includes('A1.2.1a') && perUnit.unit2.includes('B3.1.2-3'), 'lettered and merged codes are path terms');
+  for (const unit of Object.keys(perUnit)) {
+    const raw = {};
+    perUnit[unit].forEach(c => { raw[c] = { s: 3, due: '2026-11-20', seen: '2026-11-17', lapses: 1 }; });
+    const out = MEMORY.coerce(raw);
+    const lost = perUnit[unit].filter(c => !out[c]);
+    assert.deepEqual(lost, [], unit + ' codes dropped by coerce');
+    assert.deepEqual(out[perUnit[unit][0]], { s: 3, due: '2026-11-20', seen: '2026-11-17', lapses: 1 });
+  }
+});
+
+test('coerce keeps lettered and merged codes, drops junk keys', () => {
+  const rec = { s: 3, due: '2026-11-20', seen: '', lapses: 0 };
+  const raw = JSON.parse('{"__proto__":{"s":5}}');
+  Object.assign(raw, {
+    'A1.2.1a': rec, 'C1.1.1d': rec, 'B3.1.2-3': rec, 'D2.1.4-5': rec, 'A4.1.8-9': rec,
+    constructor: rec, prototype: rec, '': rec, 'b1.1.1': rec, B1: rec, 'B1.1.1A': rec,
+    'B1.1.1ab': rec, 'C1.1.1-C1.1.3': rec, 'B3.1.2-': rec, 'B1.1.1 ': rec, '<img>': rec
+  });
+  const out = MEMORY.coerce(raw);
+  assert.deepEqual(Object.keys(out).sort(), ['A1.2.1a', 'A4.1.8-9', 'B3.1.2-3', 'C1.1.1d', 'D2.1.4-5']);
+  assert.equal(Object.getPrototypeOf(out), Object.prototype);
+  assert.equal(({}).s, undefined);
+});

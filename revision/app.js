@@ -75,6 +75,7 @@ function defaultUnitState() {
     lessons: {},       // path node id -> {done, date, firstTry, total}
     memory: {},        // term code -> {s, due, seen, lapses} (see memory.js)
     memorySeeded: false,   // true once memory was built from older progress
+    memorySeedV: 0,        // seeding version done (see MEMORY_SEED_V)
     flashcards: {
       boxes: {},       // cardId -> 1..5
       nextDue: {},     // cardId -> ISO date string
@@ -192,6 +193,7 @@ function coerceUnit(raw) {
   });
   unit.memory = MEMORY.coerce(isPlainObject(raw) ? raw.memory : null);
   unit.memorySeeded = isPlainObject(raw) && raw.memorySeeded === true;
+  unit.memorySeedV = isPlainObject(raw) && Number.isInteger(raw.memorySeedV) && raw.memorySeedV > 0 ? Math.min(raw.memorySeedV, 99) : 0;
   keepMap(unit.flashcards.boxes, SAFE_KEY, v => Number.isInteger(v) && v >= 1 && v <= 5);
   keepMap(unit.flashcards.nextDue, SAFE_KEY, v => typeof v === 'string' && DATE_KEY.test(v));
   keepMap(unit.activity, DATE_KEY, count);
@@ -373,10 +375,14 @@ function unitTermItems(unitId) {
 
 /* Build memory for a unit saved before memory existed. Reads lessons, ratings
    and flashcard boxes, never changes them, and only fills codes that have no
-   record yet so anything already recorded is kept. Does not save. */
+   record yet so anything already recorded is kept. Does not save.
+   MEMORY_SEED_V 2: memory.js once dropped Unit 2's lettered and merged codes
+   (A1.2.1a, B3.1.2-3) on load, losing their seeded records. A save marked
+   below 2 is seeded once more to fill those gaps; existing records are kept. */
+const MEMORY_SEED_V = 2;
 function seedUnitMemory(id) {
   const u = store.units[id];
-  if (!u || u.memorySeeded) return false;
+  if (!u || (u.memorySeeded && u.memorySeedV >= MEMORY_SEED_V)) return false;
   const cards = ((INLINE_UNITS[id] || {}).flashcards || {}).cards || [];
   const flashBoxes = {};
   cards.forEach(c => {
@@ -392,6 +398,7 @@ function seedUnitMemory(id) {
   });
   Object.keys(seeded).forEach(code => { if (!u.memory[code]) u.memory[code] = seeded[code]; });
   u.memorySeeded = true;
+  u.memorySeedV = MEMORY_SEED_V;
   return true;
 }
 
@@ -842,14 +849,6 @@ function syncThemeButtons() {
   });
 }
 
-function ragClass(code) {
-  const r = state.rag[code];
-  if (r === 'green') return 'active-green';
-  if (r === 'amber') return 'active-amber';
-  if (r === 'red') return 'active-red';
-  return '';
-}
-
 function sectionMeta(letter) {
   return unitDef().sections[String(letter).toLowerCase()] || null;
 }
@@ -885,11 +884,6 @@ function sectionColour(letter) {
 
 /* Sections in the unit's own display order, upper-case. Unit 1's order is
    C,D,B,E,A,F — not derivable from tier or the alphabet. */
-function tier1Letters() {
-  const t1 = unitLettersUpper().filter(L => sectionTier(L) === 1);
-  return t1.length ? t1 : unitLettersUpper();
-}
-
 function sectionList() {
   return unitLettersUpper().map(L => ({
     letter: L,
@@ -3623,7 +3617,6 @@ function awardXP(n, quiet) {
 }
 
 function xpLevel() { return Math.floor((state.xp || 0) / XP_PER_LEVEL) + 1; }
-function xpIntoLevel() { return (state.xp || 0) % XP_PER_LEVEL; }
 
 /* -- LEADERBOARD: weekly leagues and the battle rating --
    The rules live in league.js. The rivals are simulated; LB_BOTS is their
@@ -3716,10 +3709,6 @@ function leagueRows(t = Date.now(), myXP) {
     myXP: myXP === undefined ? LEAGUE.weekXP(state.xpByDay, lg.week) : myXP,
     me: { tag: `Level ${xpLevel()}`, col: pCol() }
   });
-}
-
-function myStanding() {
-  return leagueRows().find(r => r.me);
 }
 
 /* Places climbed since this time yesterday: positive = up. Nothing until
@@ -4026,9 +4015,6 @@ function closeModal() {
   if (back && document.contains(back)) back.focus();
 }
 
-// Kept for any older call site.
-function closePlayerCard() { closeModal(); }
-
 document.addEventListener('keydown', e => {
   if (e.key !== 'Tab') return;
   const overlay = el('player-modal-overlay');
@@ -4286,13 +4272,13 @@ function renderBattleUI(container) {
       </div>
       <div class="battle-strip" id="battle-strip">${battleStripHTML()}</div>
       <div class="card">
-        <span class="badge" style="margin-bottom:10px;display:inline-block">${q.code}</span>
-        <p class="quiz-q" style="font-size:15px">${q.prompt}</p>
+        <span class="badge" style="margin-bottom:10px;display:inline-block">${escapeHTML(q.code)}</span>
+        <p class="quiz-q" style="font-size:15px">${escapeHTML(q.prompt)}</p>
         <div class="mcq-opts">
           ${q.opts.map((o, i) => {
             const shown = battle.answered && battle.resultHTML;
             const cls = !shown ? '' : o === q.answer ? ' right' : i === battle.pick ? ' wrong' : '';
-            return `<button class="mcq-opt${cls}" id="bopt-${i}" onclick="answerBattle(${i})"${shown ? ' disabled' : ''}>${o}</button>`;
+            return `<button class="mcq-opt${cls}" id="bopt-${i}" onclick="answerBattle(${i})"${shown ? ' disabled' : ''}>${escapeHTML(o)}</button>`;
           }).join('')}
         </div>
         <div id="battle-result">${battle.answered && battle.resultHTML ? battle.resultHTML : ''}</div>
@@ -4454,6 +4440,14 @@ function finishBattle() {
     headline = won ? `You won the ${BATTLE_MODES[battle.mode].name}!` : `You placed #${place} of ${battle.players.length} — ${standings[0].name} took it.`;
   }
   battle.standings = standings;
+  if (!battle.started) {
+    // Left alone (a Blitz timing out before any answer): no coins, no rating, not counted.
+    battle.xpEarned = 0;
+    battle.headline = "Time's up: no answers, so this battle doesn't count.";
+    battle.rating = null;
+    battle.coins = 0;
+    return;
+  }
   battle.xpEarned = xp;
   battle.headline = headline;
   // Each rival is a win or a loss by finishing order (Elo, see league.js).
