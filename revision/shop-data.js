@@ -741,9 +741,9 @@ const SHOP = (() => {
     itemById[it.id] = { item: it, variant: null, col: it.col };
     (it.variants || []).forEach(vr => { itemById[vr.id] = { item: it, variant: vr, col: vr.col }; });
   });
-  const pet = id => petById[id] || null;
+  const pet = id => (Object.prototype.hasOwnProperty.call(petById, id) ? petById[id] : null);
   /* item(id) resolves an item or a colour variant id to { item, variant, col }. */
-  const item = id => itemById[id] || null;
+  const item = id => (Object.prototype.hasOwnProperty.call(itemById, id) ? itemById[id] : null);
 
   /* ---------- composing ---------- */
   const num = n => +(+n).toFixed(3);
@@ -848,9 +848,112 @@ const SHOP = (() => {
     return coins >= price ? { ok: true, reason: 'ok', price } : { ok: false, reason: 'short', price };
   }
 
+  /* ---------- saved state (Task 13) ----------
+     The store's pets and wardrobe come from localStorage or a shared backup,
+     so every id is checked against the lists above and anything else dropped. */
+  const isObj = v => !!v && typeof v === 'object' && !Array.isArray(v);
+  const own = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
+  const NAME_MAX = 20;
+
+  /* A pet's name: trimmed, at most 20 characters, else the fallback. Kept as
+     text; every place that shows it escapes it. */
+  function cleanName(name, fallback) {
+    const s = typeof name === 'string' ? Array.from(name.trim()).slice(0, NAME_MAX).join('').trim() : '';
+    return s || fallback;
+  }
+
+  /* { owned: { petId: { name } }, active: petId | null }. An active pet that
+     isn't owned becomes the first owned pet. */
+  function coercePets(raw) {
+    const out = { owned: {}, active: null };
+    if (!isObj(raw) || !isObj(raw.owned)) return out;
+    Object.keys(raw.owned).forEach(id => {
+      const p = own(petById, id) ? petById[id] : null;
+      if (!p) return;
+      const rec = raw.owned[id];
+      out.owned[id] = { name: cleanName(isObj(rec) ? rec.name : '', p.name) };
+    });
+    const ids = Object.keys(out.owned);
+    out.active = typeof raw.active === 'string' && own(out.owned, raw.active) ? raw.active : (ids[0] || null);
+    return out;
+  }
+
+  /* One wearer's outfit: { slot: id }, only owned items in their own slot. */
+  function coerceOutfit(raw, owned, allowAvatarOnly) {
+    const out = {};
+    if (!isObj(raw)) return out;
+    SLOTS.forEach(slot => {
+      const id = raw[slot];
+      if (typeof id !== 'string' || !own(owned, id) || !own(itemById, id)) return;
+      const r = itemById[id];
+      if (r.item.slot !== slot) return;
+      if (!allowAvatarOnly && AVATAR_ONLY.includes(slot)) return;
+      out[slot] = id;
+    });
+    return out;
+  }
+
+  /* { owned: { itemId: true }, avatar: { slot: id }, pet: { petId: { slot: id } } }.
+     pets is the coerced pets record: outfits of pets not owned are dropped. */
+  function coerceWardrobe(raw, pets) {
+    const out = { owned: {}, avatar: {}, pet: {} };
+    if (!isObj(raw)) return out;
+    if (isObj(raw.owned)) {
+      Object.keys(raw.owned).forEach(id => { if (raw.owned[id] === true && own(itemById, id)) out.owned[id] = true; });
+    }
+    out.avatar = coerceOutfit(raw.avatar, out.owned, true);
+    const petsOwned = pets && isObj(pets.owned) ? pets.owned : {};
+    if (isObj(raw.pet)) {
+      Object.keys(raw.pet).forEach(id => {
+        if (!own(petById, id) || !own(petsOwned, id)) return;
+        const fit = coerceOutfit(raw.pet[id], out.owned, false);
+        if (Object.keys(fit).length) out.pet[id] = fit;
+      });
+    }
+    return out;
+  }
+
+  /* The longest run of consecutive calendar days among 'YYYY-MM-DD' keys. */
+  function longestRun(days) {
+    const DAY = 86400000;
+    const t = [...new Set((days || []).filter(d => /^\d{4}-\d{2}-\d{2}$/.test(d)))]
+      .map(d => Date.UTC(+d.slice(0, 4), +d.slice(5, 7) - 1, +d.slice(8, 10)))
+      .filter(Number.isFinite)
+      .sort((a, b) => a - b);
+    let best = 0, run = 0;
+    t.forEach((v, i) => {
+      run = i && v - t[i - 1] === DAY ? run + 1 : 1;
+      if (run > best) best = run;
+    });
+    return best;
+  }
+
+  /* The progress the unlocks read, from the store's units: the best league
+     tier reached in either unit, the best streak (saved count or a run in the
+     activity history) and the units whose every path step is mastered
+     (isMastered(unitId) is supplied by the app, which knows the path). */
+  function buildProgress(units, isMastered) {
+    const out = { leagueTier: 0, bestStreak: 0, masteredUnits: [] };
+    if (!isObj(units)) return out;
+    const n = v => (typeof v === 'number' && isFinite(v) ? v : 0);
+    Object.keys(units).forEach(id => {
+      const u = units[id];
+      if (!isObj(u)) return;
+      const lg = isObj(u.league) ? u.league : {};
+      out.leagueTier = Math.max(out.leagueTier, n(lg.tier), n(lg.best));
+      const act = isObj(u.activity) ? u.activity : {};
+      const days = Object.keys(act).filter(d => n(act[d]) > 0);
+      out.bestStreak = Math.max(out.bestStreak, n(isObj(u.streak) ? u.streak.count : 0), longestRun(days));
+      if (typeof isMastered === 'function' && isMastered(id)) out.masteredUnits.push(id);
+    });
+    out.leagueTier = Math.min(out.leagueTier, TIER_NAMES.length - 1);
+    return out;
+  }
+
   const api = {
-    PETS, ITEMS, MOODS, SLOTS, AVATAR_ONLY, SLOT_ANCHOR, AVATAR_ANCHORS, TIER_NAMES, STARTER_PRICE,
-    pet, item, tone, compose, petSvg, avatarBase, avatarSvg, isUnlocked, unlockText, priceOf, canBuy
+    PETS, ITEMS, MOODS, SLOTS, AVATAR_ONLY, SLOT_ANCHOR, AVATAR_ANCHORS, TIER_NAMES, STARTER_PRICE, NAME_MAX,
+    pet, item, tone, compose, petSvg, avatarBase, avatarSvg, isUnlocked, unlockText, priceOf, canBuy,
+    cleanName, coercePets, coerceWardrobe, longestRun, buildProgress
   };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   return api;

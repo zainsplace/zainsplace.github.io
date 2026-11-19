@@ -80,10 +80,11 @@ const COINS = (() => {
      button yet: the shop it will open arrives with Task 13. */
   function railHTML(wallet) {
     const n = coerceWallet(wallet).coins;
-    return `<div class="stats-tile stats-tile--coins">
+    // Opens the shop (app.js navigate).
+    return `<button type="button" class="stats-tile stats-tile--coins" onclick="navigate('shop')" title="Open the shop" aria-label="${n.toLocaleString('en-GB')} ${n === 1 ? 'coin' : 'coins'}: open the shop">
           <span class="stats-emoji" aria-hidden="true">🪙</span>
-          <span class="stats-text"><b>${n.toLocaleString('en-GB')}</b><small>${n === 1 ? 'coin' : 'coins'}</small></span>
-        </div>`;
+          <span class="stats-text"><b>${n.toLocaleString('en-GB')}</b><small>${n === 1 ? 'coin' : 'coins'}</small></span><span class="stats-go" aria-hidden="true">›</span>
+        </button>`;
   }
 
   const api = { RULES, forRound, forBattle, forLeague, seedFromXP, defaultWallet, coerceWallet, earn, spend, railHTML };

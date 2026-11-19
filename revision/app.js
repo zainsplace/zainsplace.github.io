@@ -293,14 +293,9 @@ function coerceStore(raw) {
   if (typeof raw.theme === 'string') out.theme = raw.theme;
   if (isPlainObject(raw.profile)) out.profile = coerceLike(base.profile, raw.profile);
   out.wallet = COINS.coerceWallet(raw.wallet);
-  // Plain objects only for now; the shop (Task 13) checks the ids inside.
-  if (isPlainObject(raw.pets)) {
-    out.pets.owned = isPlainObject(raw.pets.owned) ? raw.pets.owned : {};
-    out.pets.active = typeof raw.pets.active === 'string' ? raw.pets.active : null;
-  }
-  if (isPlainObject(raw.wardrobe)) {
-    ['owned', 'avatar', 'pet'].forEach(k => { if (isPlainObject(raw.wardrobe[k])) out.wardrobe[k] = raw.wardrobe[k]; });
-  }
+  // Every pet and item id is checked against the shop's lists; unknown ids are dropped.
+  out.pets = SHOP.coercePets(raw.pets);
+  out.wardrobe = SHOP.coerceWardrobe(raw.wardrobe, out.pets);
   if (isPlainObject(raw.units)) {
     Object.keys(out.units).forEach(id => {
       if (isPlainObject(raw.units[id])) {
@@ -628,7 +623,7 @@ function applyUnitChrome() {
 }
 
 /* ---- NAVIGATION ---- */
-const PAGES = ['home', 'learn', 'exam', 'questions', 'extended', 'examkit', 'search', 'profile'];
+const PAGES = ['home', 'learn', 'exam', 'questions', 'extended', 'examkit', 'search', 'profile', 'shop'];
 // The Exam hub and the pages it links to: the Exam nav item stays lit on all of them.
 const EXAM_PAGES = ['exam', 'questions', 'extended', 'examkit'];
 const LEARN_TABS = ['path', 'materials', 'leaderboard'];
@@ -639,7 +634,7 @@ let learnTab = 'path';      // 'path' | 'materials' | 'leaderboard'
 const PAGE_TITLES = {
   home: 'Home', learn: 'Learn', exam: 'Exam', questions: 'Questions',
   extended: 'Extended Writing', examkit: 'Exam Kit', search: 'Search',
-  profile: 'Profile'
+  profile: 'Profile', shop: 'Shop'
 };
 
 function navigate(page, opts = {}) {
@@ -652,7 +647,8 @@ function navigate(page, opts = {}) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const pageEl = document.getElementById('page-' + page);
   if (pageEl) pageEl.classList.add('active');
-  const navPage = EXAM_PAGES.includes(page) ? 'exam' : page;
+  // The shop sits under Profile, so Profile stays lit there.
+  const navPage = EXAM_PAGES.includes(page) ? 'exam' : page === 'shop' ? 'profile' : page;
   document.querySelectorAll('.sidebar-btn, .tabbar-btn').forEach(b => {
     const on = b.dataset.page === navPage;
     b.classList.toggle('active', on);
@@ -751,6 +747,7 @@ function renderPage(page, opts) {
     case 'examkit': renderExamKit(); break;
     case 'search': renderSearch(); break;
     case 'profile': renderProfile(); break;
+    case 'shop': renderShop(); break;
   }
 }
 
@@ -991,16 +988,20 @@ function pImg() {
     ? src : null;
 }
 
-/* inner content for any "me" avatar: photo if set, else emoji */
-function meAvInner() {
+/* Inner content for any "me" avatar: photo if set, else emoji. Once the
+   avatar wears anything from the shop, the dressed SVG (shop.js avatarHTML)
+   instead; size is the circle's size in px (small ones show fewer items). */
+function meAvInner(size) {
+  const worn = store.wardrobe && Object.keys(store.wardrobe.avatar).length > 0;
+  if (worn && typeof avatarHTML === 'function') return avatarHTML(size || 36);
   return pImg() ? `<img src="${pImg()}" class="av-img" alt="">` : pAv();
 }
 
 function updateNavAvatar() {
   const topAv = el('nav-avatar');
-  if (topAv) { topAv.innerHTML = meAvInner(); topAv.style.background = pCol(); }
+  if (topAv) { topAv.innerHTML = meAvInner(32); topAv.style.background = pCol(); }
   const sidebarAvCircle = el('sidebar-av-circle');
-  if (sidebarAvCircle) { sidebarAvCircle.innerHTML = meAvInner(); sidebarAvCircle.style.background = pCol(); }
+  if (sidebarAvCircle) { sidebarAvCircle.innerHTML = meAvInner(30); sidebarAvCircle.style.background = pCol(); }
 }
 
 function uploadAvatar() {
@@ -1193,6 +1194,8 @@ function renderHome() {
     </header>
 
     <div class="home-stats">${statsCardHTML()}</div>
+
+    ${typeof homePetHTML === 'function' ? homePetHTML() : ''}
 
     ${examResumeHTML()}
 
@@ -4240,7 +4243,7 @@ function startBattleQuestion() {
 function battleStripHTML() {
   return battle.players.map(p => `
     <span class="battle-chip${p.alive ? '' : ' dead'}${p.me ? ' me' : ''}">
-      <span class="lb-av" style="background:${p.col};width:24px;height:24px;font-size:11px">${p.me ? meAvInner() : p.name.charAt(0)}</span>
+      <span class="lb-av" style="background:${p.col};width:24px;height:24px;font-size:11px">${p.me ? meAvInner(24) : p.name.charAt(0)}</span>
       ${p.me ? 'You' : p.name}${battle.mode === 'elim' ? (p.alive ? '' : ' 💀') : ` · ${p.score}`}
     </span>`).join('');
 }
@@ -4507,6 +4510,21 @@ function buildSparklineSVG(data, width = 200, height = 40) {
   </svg>`;
 }
 
+/* Profile's way into the shop: the active pet, the coin balance and a button. */
+function profileShopHTML() {
+  const pid = typeof activePet === 'function' ? activePet() : null;
+  const coins = store.wallet.coins;
+  return `
+    <section class="g-card profile-shop" aria-labelledby="profile-shop-title">
+      <span class="profile-shop-art" aria-hidden="true">${pid ? petHTML(null, { title: '' }) : '🛍️'}</span>
+      <div class="profile-shop-text">
+        <h3 id="profile-shop-title">Shop</h3>
+        <p>${pid ? `${escapeHTML(petName(pid))} and you can wear anything you buy.` : 'Pick a free pet, then buy outfits for it and your avatar.'} <span class="g-chip g-chip--coin"><span aria-hidden="true">🪙</span> ${coins.toLocaleString('en-GB')}</span></p>
+      </div>
+      <button class="g-btn" onclick="navigate('shop')">Open the shop</button>
+    </section>`;
+}
+
 function renderProfile() {
   loadData(unitLetters());
   const xp = state.xp || 0;
@@ -4542,7 +4560,7 @@ function renderProfile() {
 
   el('profile-content').innerHTML = `
     <div class="card profile-head">
-      <button class="lb-av profile-av" style="background:${pCol()}" onclick="toggleAvatarPicker()" title="Customise your avatar">${meAvInner()}</button>
+      <button class="lb-av profile-av" style="background:${pCol()}" onclick="toggleAvatarPicker()" title="Customise your avatar">${meAvInner(64)}</button>
       <div style="flex:1">
         <h2 style="margin-bottom:2px">You</h2>
         <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
@@ -4558,6 +4576,8 @@ function renderProfile() {
         <div style="font-size:12px;color:var(--text2);font-weight:700">TOTAL XP</div>
       </div>
     </div>
+
+    ${profileShopHTML()}
 
     <div class="card${avatarPickerOpen ? '' : ' hidden'}" id="avatar-picker">
       <h3 style="margin-bottom:10px">Customise your avatar</h3>

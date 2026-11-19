@@ -286,6 +286,12 @@ function rvOvertakenHTML(e) {
     <div class="g-card re-lb">${row(me, true)}${row(rival, false)}</div>`;
 }
 
+/* The active pet on Round Complete, with a cheer. Empty with no pet. */
+function rvPetCheerHTML() {
+  if (typeof petHTML !== 'function' || typeof activePet !== 'function' || !activePet()) return '';
+  return `<div class="re-pet"><span class="re-pet-art">${petHTML(104, { mood: 'happy', title: '' })}</span><span class="re-pet-say">${escapeHTML(petName(activePet()))}: “Great round!”</span></div>`;
+}
+
 function rvCompleteHTML(e) {
   const unit = typeof unitDef === 'function' ? unitDef().label : '';
   const coins = typeof COINS !== 'undefined' && e.coins > 0
@@ -329,6 +335,7 @@ function rvCompleteHTML(e) {
   return `
     ${confetti}
     <h1 class="g-display g-wavy re-title" aria-label="Round Complete">${rvWavy('Round Complete')}</h1>
+    ${rvPetCheerHTML()}
     <div class="re-chips"><span class="g-chip g-chip--xp">+${e.xp} XP</span>${coins}</div>
     <section class="g-card re-step" aria-label="${escapeHTML(e.title)}">
       <div class="re-step-text">
@@ -534,7 +541,9 @@ function rvFlashHTML(f, q) {
   if (f.xp) bits.push(`<span class="g-chip g-chip--xp">+${f.xp} XP</span>`);
   if (!bits.length) bits.push('<span class="rv-flash-days">✓ Correct</span>');
   const spell = f.close ? `<span class="rv-flash-spell">Watch the spelling: <strong>${escapeHTML(q.answer)}</strong></span>` : '';
-  return `<div class="rv-flash" aria-hidden="true">${bits.join('')}${spell}</div>`;
+  // The active pet cheers (shop.js); it bounces unless motion is reduced.
+  const pet = typeof petHTML === 'function' ? petHTML(64, { mood: 'happy', title: '' }) : '';
+  return `<div class="rv-flash${pet ? ' has-pet' : ''}" aria-hidden="true">${pet ? `<span class="rv-flash-pet">${pet}</span>` : ''}${bits.join('')}${spell}</div>`;
 }
 
 /* The answer controls for each question kind. */
