@@ -76,5 +76,8 @@ test('railHTML shows the coin count', () => {
   assert.match(html, /1,234|1234/);
   assert.match(html, /coins/);
   assert.match(COINS.railHTML({ coins: 1 }), /coin</);
-  assert.match(COINS.railHTML(null), />0</);
+  // No coins yet: the tile is the way into the shop, not "0 coins".
+  assert.match(COINS.railHTML(null), />Shop</);
+  assert.match(COINS.railHTML({ coins: 0 }), /earn coins in rounds/);
+  assert.doesNotMatch(COINS.railHTML({ coins: 0 }), />0</);
 });

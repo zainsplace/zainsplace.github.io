@@ -24,6 +24,7 @@ let shopPickId = null;       // a card clicked: previewed until another is picke
 let shopSwatch = {};         // item id -> the colour variant chosen on its card
 let shopRenaming = null;     // pet id whose name is being edited
 let shopBusy = false;        // a purchase in progress: further clicks do nothing
+let shopBoughtId = null;     // the thing on the "is yours!" sheet, for focus after it closes
 
 /* ---------- state helpers ---------- */
 function activePet() {
@@ -60,15 +61,6 @@ function shopThing(id) {
   const r = SHOP.item(id);
   if (!r) return null;
   return { kind: 'item', thing: r.variant || r.item, item: r.item, name: (r.variant || r.item).name, slot: r.item.slot };
-}
-
-function unlockLabel(it) {
-  const u = it && it.unlock;
-  if (!u) return '';
-  if (u.type === 'league') return `Reach ${SHOP.TIER_NAMES[u.value] || 'the top'} league`;
-  if (u.type === 'streak') return `${u.value}-day streak`;
-  if (u.type === 'mastery') return `Master all of Unit ${String(u.value).replace(/\D/g, '')}`;
-  return '';
 }
 
 /* ---------- pictures ---------- */
@@ -220,10 +212,12 @@ function shopPickSwatch(itemId, vid) {
   const b = document.querySelector(`.shop-swatch[onclick*="'${vid}'"]`);
   if (b) b.focus();
 }
-/* A redraw replaces the grid; put focus back on the card that was used. */
+/* A redraw replaces the grid; put focus back on the card that was used. A pet
+   you own moves to "Your pets", where its Rename button stands in for it;
+   failing both, the open tab. */
 function shopRefocus(id) {
   const r = SHOP.item(id);
-  const b = el('shop-art-' + (r ? r.item.id : id));
+  const b = el('shop-art-' + (r ? r.item.id : id)) || el('shop-own-' + id) || el('shop-tab-' + shopTab);
   if (b) b.focus({ preventScroll: true });
 }
 
@@ -322,7 +316,7 @@ function shopPetsHTML() {
           <div class="shop-card-kind">${escapeHTML(SHOP.pet(id).name)}</div>
           <div class="shop-card-row">
             ${id === pid ? '<span class="g-chip g-chip--xp">Active</span>' : `<button class="g-btn shop-buy" onclick="setActivePet('${id}')" aria-label="Make ${escapeHTML(name)} your active pet">Make active</button>`}
-            <button class="g-pill shop-buy" onclick="shopRenaming='${id}';renderShop();setTimeout(()=>{const i=el('shop-rename-input');if(i){i.focus();i.select();}})" aria-label="Rename ${escapeHTML(name)}">Rename</button>
+            <button class="g-pill shop-buy" id="shop-own-${id}" onclick="shopRenaming='${id}';renderShop();setTimeout(()=>{const i=el('shop-rename-input');if(i){i.focus();i.select();}})" aria-label="Rename ${escapeHTML(name)}">Rename</button>
           </div>`}
       </div>`;
   }).join('');
@@ -366,7 +360,7 @@ function shopItemCardHTML(it, target, prog) {
       ? `<span class="g-chip g-chip--xp">Wearing</span><button class="g-pill shop-buy" onclick="wear('${target}','${it.slot}',null)" aria-label="Take ${escapeHTML(thing.name)} off ${target === 'avatar' ? 'your avatar' : escapeHTML(who)}">Take off</button>`
       : `<span class="g-chip">Owned</span><button class="g-btn shop-buy" onclick="wear('${target}','${it.slot}','${id}')">Wear on ${escapeHTML(who)}</button>`;
   } else if (chk.reason === 'locked') {
-    row = `<span class="shop-lock"><span aria-hidden="true">🔒</span> ${escapeHTML(unlockLabel(it))}</span>`;
+    row = `<span class="shop-lock"><span aria-hidden="true">🔒</span> ${escapeHTML(SHOP.unlockText(it))}</span>`;
   } else {
     row = (chk.reason === 'unlocked' ? '<span class="g-chip g-chip--xp">Unlocked</span>' : shopPriceChip(chk.price)) + shopBuyHTML(id, chk, thing.name);
   }
@@ -504,6 +498,7 @@ function shopConfirmBuy(id) {
 }
 
 function shopShowBought(id) {
+  shopBoughtId = id;
   const t = shopThing(id);
   const name = escapeHTML(t.name);
   const box = el('player-modal');
@@ -531,10 +526,14 @@ function shopShowBought(id) {
   if (first) first.focus();
 }
 
+/* The sheet's buttons. The grid was redrawn by the purchase, so the Buy button
+   focus would go back to is gone: focus the card that was bought instead. */
 function shopAfter(fn) {
   if (shopBusy) return;
   closeModal();
   if (fn) fn();
+  if (currentPage === 'shop' && shopBoughtId) shopRefocus(shopBoughtId);
+  shopBoughtId = null;
 }
 
 /* ---------- Home ---------- */

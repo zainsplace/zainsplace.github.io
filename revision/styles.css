@@ -54,7 +54,8 @@
   /* Supporting shades the old rules need (no Gizmo equivalent). */
   --fill:          #F1F5F9;   /* subtle panel fill, replaces the old --bg3 */
   --line-strong:   #CBD5E1;
-  --text3:         #6B7A90;   /* small meta text: 4.4:1 on white */
+  --text3:         #5E6D84;   /* small meta text: 5.3:1 on white, 4.8:1 on --fill */
+  --on-fill:       #FFFFFF;   /* text on the saturated fills (--right-fill, --wrong-fill) */
   --nav-active:    #E2E8F0;
   --right-text:    #166534;   /* green as small text on mint */
   --right-fill:    #15803D;   /* white text on it: 5.0:1 */
@@ -266,7 +267,7 @@
 .g-tab:hover { color: var(--text); }
 .g-tab.active, .g-tab[aria-selected="true"] { color: var(--text); border-bottom-color: var(--text); }
 
-/* Full-width bar fixed to the bottom of the screen ("Continue", "Next round"). */
+/* Full-width bar that sticks to the bottom of its scroll area ("Continue", "Next round"). */
 .g-sticky-bar {
   position: sticky;
   bottom: 0;
@@ -597,7 +598,6 @@ main {
   .tabbar-btn.active { color: var(--text); font-weight: 700; }
   .tabbar-btn.active .sb-emoji { background: var(--nav-active); }
   main { padding-bottom: 32px; }
-  .to-top { bottom: calc(76px + env(safe-area-inset-bottom, 0px)) !important; }
 }
 
 @media (min-width: 768px) {
@@ -694,8 +694,7 @@ main {
 
 /* ─── GRID ─── */
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-@media (max-width: 600px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .grid2 { grid-template-columns: 1fr; } }
 
 /* ─── SECTION TILES ─── */
 
@@ -735,8 +734,6 @@ button:active, .clickable:active {
 .tile-progress-bar { height: 100%; border-radius: var(--radius-pill); transition: width 0.4s ease-out; }
 
 /* ─── PROGRESS BAR ─── */
-.progress-bar-wrap { background: var(--bg3); border-radius: var(--radius-pill); height: 10px; overflow: hidden; }
-.progress-bar { height: 100%; background: var(--sky); border-radius: var(--radius-pill); transition: width 0.6s ease-out; }
 
 
 /* ─── BUTTONS ─── */
@@ -1072,7 +1069,6 @@ textarea.response-area:focus { border-color: var(--accent); box-shadow: 0 0 0 4p
 .word-count { font-size: 12px; color: var(--text2); text-align: right; margin-top: 4px; }
 
 /* ─── DIVIDER ─── */
-.divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
 
 /* ─── SECTION PAGE HEADER ─── */
 .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
@@ -1136,7 +1132,6 @@ textarea.response-area:focus { border-color: var(--accent); box-shadow: 0 0 0 4p
 .tab-btn.active { background: var(--bg2); color: var(--accent2); box-shadow: var(--shadow-sm); }
 
 /* ─── SCROLL LIST ─── */
-.scroll-list { max-height: 400px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
 
 /* ─── EMPTY STATE ─── */
 .empty-state { text-align: center; padding: 44px 20px; color: var(--text2); }
@@ -1296,7 +1291,6 @@ textarea.response-area:focus { border-color: var(--accent); box-shadow: 0 0 0 4p
 .av-opt.swatch.picked { border-color: var(--text); }
 
 /* ─── HEATMAP ─── */
-.heatmap-wrap { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
 .hm-days { display: grid; grid-template-rows: repeat(7, 13px); gap: 3px; font-size: 11px; line-height: 13px; color: var(--text2); font-weight: 700; flex-shrink: 0; }
 .hm-days span:nth-child(1) { grid-row: 1; }
 .hm-days span:nth-child(2) { grid-row: 3; }
@@ -1467,7 +1461,6 @@ h3[style*="text-transform:uppercase"], p[style*="text-transform:uppercase"] {
 
 /* U1: simulated-rivals disclosure. */
 .sim-note { font-size: 12.5px; color: var(--text2); background: var(--bg3); border-radius: var(--radius-sm); padding: 8px 12px; margin-bottom: 14px; }
-.sim-inline { color: var(--text2); font-size: 12px; }
 
 /* ─── PAGE WIDTH ─── */
 /* Design 3: every page shares one centred reading width. Questions used to be
@@ -1527,6 +1520,7 @@ main:focus { outline: none; }
 .to-top.show { opacity: 1; visibility: visible; transform: none; }
 .to-top:hover { background: var(--accent-light); }
 .to-top .ico { width: 20px; height: 20px; }
+@media (max-width: 767px) { .to-top { bottom: calc(76px + env(safe-area-inset-bottom, 0px)); } }
 
 /* Section notes: jump, filter, expand. */
 .notes-tools { display: flex; flex-direction: column; gap: 10px; margin: -6px 0 8px; }
@@ -1665,6 +1659,10 @@ main:focus { outline: none; }
   box-shadow: var(--shadow-lg);
 }
 .lp-jump[hidden] { display: none; }
+/* Centred on the content column, not the window: the sidebar (240px) is on the
+   left from 768px, and the stats rail on the right from 1100px. */
+@media (min-width: 768px) { .lp-jump { left: calc(120px + 50vw); } }
+@media (min-width: 1100px) { .lp-jump { left: calc(120px + 50vw - clamp(360px, 22vw, 440px) / 2); } }
 
 /* -- study dialog -- */
 .study-overlay {
@@ -1781,6 +1779,10 @@ body.round-open main { overflow: hidden; }
 
 .rv-scroll { flex: 1; overflow-y: auto; overscroll-behavior: contain; display: flex; flex-direction: column; }
 .rv-col { width: 100%; max-width: 652px; margin: 0 auto; padding: 12px 16px 24px; display: flex; flex-direction: column; gap: 14px; }
+/* Each new card slides in from the right (round-view.js adds .rv-enter only on a new card). */
+.rv-col.rv-enter { animation: rv-slide-in .22s ease-out; }
+@keyframes rv-slide-in { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .rv-col.rv-enter { animation: none; } }
 
 /* The card */
 .rv-card {
@@ -1973,7 +1975,7 @@ body.round-open main { overflow: hidden; }
 .re-day { display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .re-dot {
   width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
-  border: 2px solid var(--line); background: var(--surface); color: #fff; font-weight: 800; font-size: 18px;
+  border: 2px solid var(--line); background: var(--surface); color: var(--on-primary); font-weight: 800; font-size: 18px;
 }
 .re-day.done .re-dot { background: var(--forgot); border-color: var(--forgot); color: var(--on-primary); }
 .re-day.today .re-dot { box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--forgot); }
@@ -2003,7 +2005,7 @@ body.round-open main { overflow: hidden; }
 .re-gain {
   position: absolute; left: calc(100% - 14px); top: -8px; white-space: nowrap;
   padding: 4px 10px; border-radius: var(--r-pill);
-  background: var(--right-fill); color: #fff; font-weight: 800; font-size: 14px;
+  background: var(--right-fill); color: var(--on-fill); font-weight: 800; font-size: 14px;
   animation: re-bounce .45s cubic-bezier(.34, 1.56, .64, 1) 1.3s;
 }
 .re-modes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; }
@@ -2235,8 +2237,8 @@ button.stats-tile--coins:hover:not(:disabled) { background: var(--forgot-bg); fi
 /* SHOP.compose draws with overflow visible: hats and wings may poke past the
    circle, so a host holding the dressed SVG must not clip it. */
 .pet-svg, .av-svg, .shop-thumb { display: block; overflow: visible; }
-:is(.lb-av, .top-bar-avatar, .sidebar-av-circle, .profile-av):has(> .av-svg) { overflow: visible; background: transparent !important; }
-:is(.lb-av, .top-bar-avatar, .sidebar-av-circle, .profile-av) > .av-svg { width: 100%; height: 100%; }
+:is(.lb-av, .re-lb-av, .top-bar-avatar, .sidebar-av-circle, .profile-av):has(> .av-svg) { overflow: visible; background: transparent !important; }
+:is(.lb-av, .re-lb-av, .top-bar-avatar, .sidebar-av-circle, .profile-av) > .av-svg { width: 100%; height: 100%; }
 
 #page-shop { max-width: 980px; }
 .shop-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }

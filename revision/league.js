@@ -32,9 +32,10 @@ const LEAGUE = (() => {
   const DAY = 86400000;
 
   /* A typical week's XP for the middle of each league. Each step is ~1.45x.
-     Flashcards pay 5 XP and quick-fire MCQs 10, so an hour of steady revision is
-     roughly 1,000-1,500 XP: about 40 minutes clears Bronze's promotion line, and
-     Master's takes ~5 hours a week. */
+     They were set when an hour of steady revision earned roughly 1,000-1,500 XP
+     (about 40 minutes cleared Bronze's promotion line, Master's took ~5 hours a
+     week). Rounds now pay 5 XP a right answer (up to 10 with a combo), plus
+     battles and exam practice. */
   const MEDIAN = [600, 870, 1260, 1830, 2650, 3850, 5600];
   // Week totals for the 20 rivals as multiples of the median, best first.
   const SPREAD = [3.0, 2.4, 2.0, 1.75, 1.55, 1.4, 1.27, 1.15, 1.05, 0.96,

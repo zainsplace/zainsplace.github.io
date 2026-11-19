@@ -76,14 +76,17 @@ const COINS = (() => {
     return w;
   }
 
-  /* The coin tile for the stats card (right rail and the top of Home). Not a
-     button yet: the shop it will open arrives with Task 13. */
+  /* The coin tile for the stats card (right rail and the top of Home). It opens
+     the shop (app.js navigate). With no coins yet it says how to earn some,
+     rather than a bare "0 coins". */
   function railHTML(wallet) {
     const n = coerceWallet(wallet).coins;
-    // Opens the shop (app.js navigate).
-    return `<button type="button" class="stats-tile stats-tile--coins" onclick="navigate('shop')" title="Open the shop" aria-label="${n.toLocaleString('en-GB')} ${n === 1 ? 'coin' : 'coins'}: open the shop">
+    const big = n ? n.toLocaleString('en-GB') : 'Shop';
+    const small = n ? (n === 1 ? 'coin' : 'coins') : 'earn coins in rounds';
+    const label = n ? `${big} ${small}: open the shop` : 'Shop: earn coins in rounds';
+    return `<button type="button" class="stats-tile stats-tile--coins" onclick="navigate('shop')" title="Open the shop" aria-label="${label}">
           <span class="stats-emoji" aria-hidden="true">🪙</span>
-          <span class="stats-text"><b>${n.toLocaleString('en-GB')}</b><small>${n === 1 ? 'coin' : 'coins'}</small></span><span class="stats-go" aria-hidden="true">›</span>
+          <span class="stats-text"><b>${big}</b><small>${small}</small></span><span class="stats-go" aria-hidden="true">›</span>
         </button>`;
   }
 

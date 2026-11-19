@@ -127,3 +127,13 @@ test('canBuy refuses when short, owned or locked', () => {
   const dragon = SHOP.pet('dragon');
   assert.equal(SHOP.canBuy(dragon, { coins: dragon.price - 1 }, {}, {}).reason, 'short');
 });
+
+test('unlockText: the short lock label the shop cards show', () => {
+  const crown = SHOP.ITEMS.find(i => i.unlock && i.unlock.type === 'league' && i.unlock.value === 2);
+  assert.equal(SHOP.unlockText(crown), 'Reach Gold league');
+  const s30 = SHOP.ITEMS.find(i => i.unlock && i.unlock.type === 'streak' && i.unlock.value === 30);
+  assert.equal(SHOP.unlockText(s30), '30-day streak');
+  const u2 = SHOP.ITEMS.find(i => i.unlock && i.unlock.value === 'u2');
+  assert.equal(SHOP.unlockText(u2), 'Master all of Unit 2');
+  assert.equal(SHOP.unlockText(SHOP.ITEMS.find(i => !i.unlock)), '');
+});

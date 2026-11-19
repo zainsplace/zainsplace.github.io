@@ -8,7 +8,6 @@ const UNITS = {
   u1: {
     id: 'u1', label: 'Unit 1', short: 'U1',
     name: 'Information Technology Systems',
-    headerSub: 'BTEC National · Information Technology Systems',
     order: ['c', 'd', 'b', 'e', 'a', 'f'],
     sections: {
       a: { colour: '#3182ce', shortName: 'IT Systems & Devices', blurb: 'Devices, OS, Software, Interfaces' },
@@ -22,7 +21,6 @@ const UNITS = {
   u2: {
     id: 'u2', label: 'Unit 2', short: 'U2',
     name: 'Cyber Security & Incident Management',
-    headerSub: 'BTEC National · Cyber Security & Incident Management',
     order: ['a', 'b', 'd', 'c'],
     keywordBanks: [
       { title: 'Section D — Forensics (fast marks)', col: '#6D5BD6', words: ['Faraday bag', 'Write-blocker', 'Forensic image (bit-for-bit copy)', 'Hash value (MD5/SHA) before & after', 'Chain of custody', 'Contemporaneous notes', 'Evidence bag + tamper-proof seal', 'Photograph the scene first'] },
@@ -333,14 +331,11 @@ let store = loadStore();
    the memory seeding below both read it. It lives here, not in learn.js,
    because memory is seeded while app.js loads, before the later scripts.
    The term filter repeats round.js isLessonItem() (loaded later): a recap
-   such as "C1.1.1-C1.1.3 ... Compared" (a range code that compares, by its
-   name or a comparison table) is notes, not a term. A merged item such as
-   "B3.1.2-3 Ports & Packets" is a term. */
+   such as "C1.1.1-C1.1.3 ... Compared" (a full range code, with a letter after
+   the hyphen) is notes, not a term. A merged item such as "B3.1.2-3 Ports &
+   Packets" is a term. tests/round.test.js checks the two copies agree. */
 function isPathTerm(it) {
-  if (!it || !it.term || !it.definition) return false;
-  const recap = String(it.code).includes('-')
-    && (/\b(compared|comparison|recap|summary)\b/i.test(`${it.term} ${it.title || ''}`) || !!it.comparisonTable);
-  return !recap;
+  return !!(it && it.term && it.definition && !/-[A-Z]/.test(String(it.code)));
 }
 function unitPathNodes(unitId) {
   const key = isUnitId(unitId) ? unitId : 'u1';
@@ -400,21 +395,22 @@ function seedUnitMemory(id) {
   return true;
 }
 
-function seedMemoryIfNeeded() {
+/* save false: the caller saves (the full-backup import saves once at the end). */
+function seedMemoryIfNeeded(save = true) {
   let changed = false;
   Object.keys(store.units).forEach(id => { if (seedUnitMemory(id)) changed = true; });
-  if (changed) saveState();
+  if (changed && save) saveState();
 }
 seedMemoryIfNeeded();
 
 /* Past work counts: the first load with coins (or an imported backup without
    a wallet) starts the wallet at 1 coin per 10 XP across both units. Once. */
-function seedWalletIfNeeded() {
+function seedWalletIfNeeded(save = true) {
   if (store.wallet.seeded) return false;
   const xp = (store.units.u1.xp || 0) + (store.units.u2.xp || 0);
   store.wallet = COINS.earn(store.wallet, COINS.seedFromXP(xp));
   store.wallet.seeded = true;
-  saveState();
+  if (save) saveState();
   return true;
 }
 seedWalletIfNeeded();
@@ -526,12 +522,6 @@ function escapeRe(str) {
   return String(str).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-/* Old game high scores (Match, True/False), per unit. The games are gone but
-   the Profile still shows a saved best, so state.bests stays readable. */
-function getBest(k) {
-  return (state.bests && state.bests[k]) || 0;
-}
-
 /* ---- UNIT SWITCHING ----
    DATA, the search index and any in-flight battle hold content keyed by bare
    section letter. None of it is unit-aware, so all of it must be discarded or
@@ -589,7 +579,9 @@ function stopAllTimers() {
 
 function switchUnit(id) {
   if (!isUnitId(id) || id === store.activeUnit) return;
-  forfeitBattle();   // the rating belongs to the unit being left
+  // The rating belongs to the unit being left: a live battle ends (a loss once
+  // started) and a finished one not yet banked is banked, before the switch.
+  if (typeof leaveBattle === 'function') leaveBattle();
   store.activeUnit = id;
   saveState();
   resetTransientState();
@@ -608,7 +600,7 @@ function applyUnitChrome() {
   set('brand-mark', u.short);
   set('brand-text', u.label + ' ' + u.name.split(' ')[0]);
   const desc = document.querySelector('meta[name="description"]');
-  if (desc) desc.setAttribute('content', u.label + ': ' + u.name + ' — revision hub with a learn path, exam questions, past papers, battles and progress tracking.');
+  if (desc) desc.setAttribute('content', u.label + ': ' + u.name + '. Learn paths, rounds, exam practice, pets and a shop for BTEC National IT.');
   document.querySelectorAll('.unit-switch-btn').forEach(b => {
     b.classList.toggle('active', b.dataset.unit === u.id);
     b.setAttribute('aria-pressed', String(b.dataset.unit === u.id));
@@ -617,7 +609,7 @@ function applyUnitChrome() {
   const secs = el('sidebar-sections');
   if (secs) {
     secs.innerHTML = '<p class="sidebar-group" aria-hidden="true">Sections</p>' + sectionList().map(s =>
-      `<button class="sidebar-btn sidebar-sec" style="--sec:${s.col}" onclick="navigate('learn', {section:'${s.letter}'}); if (window.innerWidth < SIDEBAR_BREAKPOINT) closeSidebar()" title="Section ${s.letter}: ${s.name}"><span class="sec-sq" aria-hidden="true"></span><span>${s.name}</span></button>`
+      `<button class="sidebar-btn sidebar-sec" style="--sec:${s.col}" onclick="navigate('learn', {section:'${s.letter}'}); if (window.innerWidth < SIDEBAR_BREAKPOINT) closeSidebar()" title="Section ${s.letter}: ${escapeHTML(s.name)}"><span class="sec-sq" aria-hidden="true"></span><span>${escapeHTML(s.name)}</span></button>`
     ).join('');
   }
 }
@@ -643,6 +635,8 @@ function navigate(page, opts = {}) {
   // banks a score minutes later.
   const toBattles = page === 'learn' && !opts.section && (opts.tab || learnTab) === 'leaderboard';
   if (!toBattles && typeof leaveBattle === 'function') leaveBattle();
+  // A page change (Back included) closes the study dialog; focus goes to the new page.
+  if (typeof study !== 'undefined' && study && typeof closeStudyDialog === 'function') closeStudyDialog(false);
   currentPage = page;
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const pageEl = document.getElementById('page-' + page);
@@ -726,6 +720,9 @@ function navigateToRoute(r, opts) {
 }
 
 window.addEventListener('popstate', () => {
+  // Back with the round open closes it (answers so far are already saved)
+  // rather than changing the page underneath it.
+  if (typeof rv !== 'undefined' && rv && typeof closeRound === 'function') closeRound();
   navigateToRoute(parseRoute(), { fromHistory: true });
 });
 
@@ -1061,9 +1058,7 @@ function bumpActivity(n = 1) {
 /* Every term of the active unit that is due again (MEMORY status forgotten).
    A review round asks these (round.js roundCodes, mode 'review'). */
 function forgottenToday() {
-  const t = today();
-  return pathNodes().reduce((n, node) =>
-    n + node.items.filter(it => MEMORY.status(state.memory[it.code], t) === 'forgotten').length, 0);
+  return pathNodes().reduce((n, node) => n + nodeForgotten(node), 0);
 }
 
 /* When a node was last studied: the latest `seen` among its terms, else the
@@ -1103,7 +1098,7 @@ function jumpCardHTML(n, curId) {
   const isCur = n.id === curId;
   const label = `${n.title}, section ${n.letter}, ${cards} card${cards === 1 ? '' : 's'}, ${pct}% learned${isCur ? ', next step' : ''}`;
   return `
-    <button class="g-card home-jump-card${isCur ? ' current' : ''}" id="${homeDomId(n.id)}" style="--sec:${sectionColour(n.letter)}" onclick="openStudyDialog('${escapeHTML(n.id)}')" aria-label="${escapeHTML(label)}">
+    <button class="g-card home-jump-card${isCur ? ' current' : ''}" id="${homeDomId(n.id)}" style="--sec:${sectionColour(n.letter)}" data-node="${escapeHTML(n.id)}" onclick="openStudyDialog(this.dataset.node)" aria-label="${escapeHTML(label)}">
       <span class="home-jump-top">
         <span class="g-ring home-jump-ring" style="--pct:${pct}"><span>${pct}%</span></span>
         ${isCur ? '<span class="g-chip g-chip--xp">Next step</span>' : ''}
@@ -1114,7 +1109,7 @@ function jumpCardHTML(n, curId) {
 }
 
 /* The stats card: streak, XP, league tier and place, Forgotten count, and the
-   coin balance once coins exist. Used by the right rail and the top of Home. */
+   coin tile (the way into the shop). Used by the right rail and the top of Home. */
 function statsCardHTML() {
   const streak = currentStreak();
   const rows = leagueRows();
@@ -1148,15 +1143,42 @@ function statsCardHTML() {
 
 /* Fill the right rail (shown from 1100px). Called after every page change,
    after a round and when XP changes; coalesced to one draw per frame. */
-let railQueued = false;
+let railQueued = null;
+function drawRightRail() {
+  const rail = el('right-rail');
+  if (rail) rail.innerHTML = statsCardHTML();
+}
 function renderRightRail() {
   if (railQueued) return;
-  railQueued = true;
-  requestAnimationFrame(() => {
-    railQueued = false;
-    const rail = el('right-rail');
-    if (rail) rail.innerHTML = statsCardHTML();
-  });
+  railQueued = requestAnimationFrame(() => { railQueued = null; drawRightRail(); });
+}
+/* Draw a queued rail now (so focus can go to a control in it). */
+function flushRightRail() {
+  if (!railQueued) return;
+  cancelAnimationFrame(railQueued);
+  railQueued = null;
+  drawRightRail();
+}
+
+/* Focus after a redraw. A round or dialog opened from a control that a redraw
+   then replaces (a path node, a Home card, a stats tile) gives focus back to
+   its replacement: focusKey() is taken when it opens, focusRedrawn() finds
+   the same control again (same id, else the same onclick in the same region)
+   or falls back to the page. */
+function focusKey(node) {
+  if (!node || !node.getAttribute || node === document.body) return null;
+  if (node.id) return '#' + CSS.escape(node.id);
+  const host = node.parentElement && node.parentElement.closest('[id]');
+  const oc = node.getAttribute('onclick');
+  return host && oc ? `#${CSS.escape(host.id)} [onclick=${JSON.stringify(oc)}]` : null;
+}
+function focusRedrawn(key) {
+  let n = null;
+  try { n = key ? document.querySelector(key) : null; } catch (e) { n = null; }
+  if (n && !n.disabled && n.offsetParent !== null) { n.focus({ preventScroll: true }); return true; }
+  const main = el('main-content');
+  if (main) main.focus({ preventScroll: true });
+  return false;
 }
 
 function homeLeagueHTML() {
@@ -1667,7 +1689,6 @@ function markReviewed(code, letter) {
   }
 }
 
-/* ---- FLASHCARDS ---- */
 /* ---- QUESTIONS ----
    Practice shows one question on screen, Previous / Next (or
    ← / →) to move, filtered by section and by what you still need to do. Quiz
@@ -2750,7 +2771,7 @@ function showMockResults() {
                                                   selfScore: Math.round(mock.scores[q.id] / q.marks * 100) }));
   gainXP(score * 2);
   // Paid only when something was marked: "see results" on a blank paper earns nothing.
-  if (unmarked < qs.length) earnCoins(COINS.RULES.examPart, 'mock finished');
+  mock.coins = unmarked < qs.length ? earnCoins(COINS.RULES.examPart, 'mock finished') : 0;
   bumpActivity();
   saveState();
   mock.phase = 'done';
@@ -2778,7 +2799,7 @@ function renderMockResults(container, p) {
     <div class="card mock-result">
       <div class="mock-paper-meta">${p.title} · ${mock.minutesUsed} of ${paperMinutes(p)} minutes used</div>
       <div class="mock-score">${score}<span>/${max}</span></div>
-      <div class="mock-paper-meta">${pct([score, max])}% · +${score * 2} XP</div>
+      <div class="mock-paper-meta">${pct([score, max])}% · +${score * 2} XP${mock.coins ? ` · +${mock.coins} 🪙` : ''}</div>
     </div>
     <h3 style="margin:18px 0 8px">By question</h3>
     ${p.scenarios.map((sid, i) => row(`Q${i + 1} ${qData.scenarios.find(s => s.id === sid).title}`, sum(qs.filter(q => q.scenario === sid)))).join('')}
@@ -3420,7 +3441,7 @@ function renderPPPDone(container) {
     <div class="card mock-result">
       <div class="mock-paper-meta">${escapeHTML(pppActiveName(ppp))} · ${r.minutesUsed} minutes answering</div>
       <div class="mock-score">${r.score}<span>/${r.max}</span></div>
-      <div class="mock-paper-meta">${pct}% · +${r.xp} XP</div>
+      <div class="mock-paper-meta">${pct}% · +${r.xp} XP${r.coins ? ` · +${r.coins} 🪙` : ''}</div>
     </div>
     <h3 style="margin:18px 0 8px">${paper ? 'By question' : 'By part'}</h3>
     ${rows}
@@ -3615,7 +3636,7 @@ const LB_BOTS = [
   { name: 'TTV_R3eceplays',     tag: 'Flashcard grinder (live)', base: 60, rate: 26, col: '#3D7A4E' },
   { name: 'xX_Sn1per_Lukas_Xx', tag: 'Revises at 11pm the night before', base: 10, rate: 9, col: '#BE7A1C' },
   { name: 'notlivvy',           tag: '9-mark specialist', base: 80,  rate: 22, col: '#4A5E8C' },
-  { name: 'ZayanFN_09',         tag: 'Match game demon',  base: 40,  rate: 17, col: '#B5443A' },
+  { name: 'ZayanFN_09',         tag: 'Speed-run demon',   base: 40,  rate: 17, col: '#B5443A' },
   { name: 'sleepyell1e',        tag: 'Quietly cooking',   base: 30,  rate: 13, col: '#0E7490' },
   /* — Silver/Gold — */
   { name: 'big_curtis_W',       tag: 'Streak protector',  base: 320, rate: 12, col: '#64748B' },
@@ -3628,7 +3649,7 @@ const LB_BOTS = [
   { name: 'freyah2009',         tag: 'Colour-coded notes', base: 540, rate: 13, col: '#4A5E8C' },
   { name: 'OllieW_main',        tag: '"It\'s my second account"', base: 610, rate: 12, col: '#0E7490' },
   { name: 'ria.revises',        tag: 'Username says it all', base: 1050, rate: 14, col: '#A85A3C' },
-  { name: 'capybara_ben',       tag: 'Here for the games', base: 1150, rate: 10, col: '#BE7A1C' },
+  { name: 'capybara_ben',       tag: 'Here for the battles', base: 1150, rate: 10, col: '#BE7A1C' },
   { name: 'WhoIsTyler_',        tag: 'Mysterious grinder', base: 1300, rate: 13, col: '#44403C' },
   /* — Platinum — */
   { name: 'DefNotArchie',       tag: 'Plat and proud',    base: 1550, rate: 13, col: '#0E7490' },
@@ -3781,7 +3802,7 @@ function leagueStatus(rows) {
     return `You're <strong>#${me.place}</strong> in the top league.${warn || ` Stay out of the bottom ${down} to keep your place.`}`;
   }
   const gap = rows[up - 1].xp - me.xp + 1;
-  return `You're <strong>#${me.place}</strong>. ${gap.toLocaleString()} XP to reach the promotion zone: about ${plural(Math.ceil(gap / 10), 'correct MCQ')} or ${plural(Math.ceil(gap / 5), 'flashcard')}.${warn}`;
+  return `You're <strong>#${me.place}</strong>. ${gap.toLocaleString()} XP to reach the promotion zone: about ${plural(Math.ceil(gap / ROUND_XP), 'right answer')} in rounds.${warn}`;
 }
 
 // Shown once after a week is settled.
@@ -4179,9 +4200,9 @@ function battlePickerHTML() {
           <h3 id="battle-picker-title">Battle</h3>
           <p>Race league rivals on this unit's terms. Battle rating ${b.rating} · ${b.won} won of ${b.played}.</p>
         </div>
-        <button class="g-btn battle-start" onclick="startBattle('duel')" aria-describedby="battle-picker-title">Start</button>
+        <button class="g-btn battle-start" onclick="startBattle('duel')" aria-describedby="battle-start-note">Start</button>
       </div>
-      <p class="battle-picker-or">Start is a Duel against the rival rated just above you. Or pick a mode:</p>
+      <p class="battle-picker-or"><span id="battle-start-note">Start is a Duel against the rival rated just above you.</span> Or pick a mode:</p>
       <div class="battle-modes" role="group" aria-labelledby="battle-picker-title">
         ${Object.entries(BATTLE_MODES).map(([key, m]) => `
           <button class="battle-mode" onclick="startBattle('${key}')">
@@ -4414,17 +4435,19 @@ function finishBattle() {
   if (!battle || battle.standings || battle.forfeited) return;   // already banked: never rate a battle twice
   battle.over = true;
   const me = battle.players[0];
-  let standings, xp, headline;
+  let standings, xp, headline, won;
 
   if (battle.mode === 'elim') {
     standings = [...battle.players].sort((a, b) => (b.alive - a.alive) || (b.out - a.out));
     const place = standings.indexOf(me) + 1;
-    xp = (me.alive && standings[0] === me ? 40 : 0) + me.score * 4;
-    headline = me.alive && standings[0] === me ? '👑 VICTORY ROYALE — last one standing!' : `💀 Eliminated — you placed #${place} of ${battle.players.length}`;
+    // A win is being the last one standing: XP, the headline, stats and coins all agree.
+    won = me.alive && standings[0] === me;
+    xp = (won ? 40 : 0) + me.score * 4;
+    headline = won ? '👑 VICTORY ROYALE — last one standing!' : `💀 Eliminated — you placed #${place} of ${battle.players.length}`;
   } else {
     standings = [...battle.players].sort((a, b) => (b.score - a.score) || (a.totalTime - b.totalTime));
     const place = standings.indexOf(me) + 1;
-    const won = place === 1;
+    won = place === 1;
     if (battle.mode === 'race') xp = me.score * 2 + (won ? 30 : 0);
     else if (battle.mode === 'duel') xp = me.score * 5 + (won ? 35 : 0);
     else xp = me.score * 3 + (won ? 25 : 0);
@@ -4439,10 +4462,10 @@ function finishBattle() {
   const bm = state.battles.modes[battle.mode] || (state.battles.modes[battle.mode] = { played: 0, won: 0, best: 0 });
   state.battles.played++;
   bm.played++;
-  if (standings[0] === me) { state.battles.won++; bm.won++; }
+  if (won) { state.battles.won++; bm.won++; }
   if (battle.mode === 'blitz') bm.best = Math.max(bm.best || 0, me.score);
-  // A win is finishing first; a forfeit never reaches here, so it pays nothing.
-  battle.coins = earnCoins(COINS.forBattle(standings[0] === me), standings[0] === me ? 'battle won' : 'battle played');
+  // A forfeit never reaches here, so it pays nothing.
+  battle.coins = earnCoins(COINS.forBattle(won), won ? 'battle won' : 'battle played');
   if (xp > 0) awardXP(xp, true);
   else saveState();
 }
@@ -4473,22 +4496,28 @@ function renderBattleEnd(container) {
 
 /* ---- PROFILE ---- */
 
+/* Terms of the active unit whose memory is Mastered (the Learn path's rings). */
+function masteredTermCount() {
+  const t = today();
+  return termItems().filter(it => MEMORY.status(state.memory[it.code], t) === 'mastered').length;
+}
+
 function getAchievements() {
   const act = state.activity || {};
   const totalActs = Object.values(act).reduce((a, b) => a + (Number(b) || 0), 0);
   const rc = ragCounts();
-  const mastered = Object.values(state.flashcards.boxes || {}).filter(b => b === 5).length;
-  const best = getBest('match');
+  const mastered = masteredTermCount();
   const battles = state.battles || { played: 0, won: 0 };
+  const pets = store.pets && store.pets.owned ? Object.keys(store.pets.owned).length : 0;
 
   return [
     { icon: '👣', name: 'First Steps',     desc: 'Do 10 revision actions',        done: totalActs >= 10 },
     { icon: '🔥', name: 'On Fire',         desc: 'Hit a 7-day streak',            done: state.streak.count >= 7 },
     { icon: '🟢', name: 'Greenkeeper',     desc: 'Rate 25 topics Confident',      done: rc.green >= 25 },
-    { icon: '🧠', name: 'Memory Master',   desc: 'Get 10 flashcards to Box 5',    done: mastered >= 10 },
+    { icon: '🧠', name: 'Memory Master',   desc: 'Master 25 terms',               done: mastered >= 25 },
     { icon: '⚔️', name: 'First Blood',     desc: 'Win any battle',                done: battles.won >= 1 },
     { icon: '🏹', name: 'Warlord',         desc: 'Win 10 battles',                done: battles.won >= 10 },
-    { icon: '⏱️', name: 'Speed Demon',     desc: 'Clear Match in under 30s',      done: best > 0 && best < 30 },
+    { icon: '🐾', name: 'Pet Pal',         desc: 'Adopt a pet in the shop',       done: pets >= 1 },
     { icon: '🥈', name: 'Silver Surfer',   desc: 'Reach the Silver League',       done: state.league.best >= 1 },
     { icon: '💎', name: 'Shine Bright',    desc: 'Reach the Diamond League',      done: state.league.best >= 4 },
     { icon: '✍️', name: 'Examiner\'s Pet', desc: 'Self-mark 20 questions',        done: state.questions.history.length >= 20 }
@@ -4549,8 +4578,7 @@ function renderProfile() {
   const qHist = state.questions.history;
   const recent = qHist.slice(-10);
   const avgScore = recent.length ? Math.round(recent.reduce((a, h) => a + h.selfScore, 0) / recent.length) : null;
-  const mastered = Object.values(state.flashcards.boxes || {}).filter(b => b === 5).length;
-  const best = getBest('match') || null;
+  const mastered = masteredTermCount();
   const battles = state.battles || { played: 0, won: 0 };
   const ach = getAchievements();
   const unlocked = ach.filter(a => a.done).length;
@@ -4609,11 +4637,11 @@ function renderProfile() {
 
     <div class="stats-row">
       <div class="stat-box"><div class="num" style="color:var(--green-text)">${rc.green}</div><div class="lbl">Confident topics</div></div>
-      <div class="stat-box"><div class="num" style="color:var(--accent2)">${mastered}</div><div class="lbl">Cards mastered</div></div>
+      <div class="stat-box"><div class="num" style="color:var(--accent2)">${mastered}</div><div class="lbl">Terms mastered</div></div>
       <div class="stat-box"><div class="num" style="color:var(--pink)">${qHist.length}</div><div class="lbl">Qs self-marked</div></div>
       <div class="stat-box"><div class="num" style="color:var(--reward-text)">${avgScore !== null ? avgScore + '%' : '—'}</div><div class="lbl">Avg score (last 10)</div></div>
       <div class="stat-box"><div class="num" style="color:var(--accent)">${battles.won}/${battles.played}</div><div class="lbl">Battles won</div></div>
-      <div class="stat-box"><div class="num" style="color:var(--text)">${best ? best + 's' : '—'}</div><div class="lbl">Best match time</div></div>
+      <div class="stat-box"><div class="num" style="color:var(--reward-text)">${store.wallet.coins.toLocaleString('en-GB')}</div><div class="lbl">Coins</div></div>
     </div>
 
     <div class="card">
@@ -4667,11 +4695,17 @@ function setProfileAv(emoji, col) {
 
 /* ---- EXAM HUB ----
    One page linking to the six exam pages: Questions, Past papers (PPP) and
-   Mocks (all three are modes of the Questions page), Extended, Exam kit and
-   the Reasoning test. Each of those pages is unchanged. A paper or sitting in
-   progress is offered at the top. */
+   Mocks (all three are modes of the Questions page), Extended and Exam kit.
+   Each of those pages is unchanged. A paper or sitting in progress is offered
+   at the top. */
 function examGo(where) {
-  if (where === 'questions') { qMode = 'practice'; navigate('questions'); }
+  if (where === 'questions') {
+    // A mock being sat stays on screen, as in the exam hall: practice waits.
+    const live = mock && mock.phase === 'sit';
+    qMode = live ? 'mock' : 'practice';
+    if (live) toast('Your mock paper is still running. Finish or leave it first.');
+    navigate('questions');
+  }
   else if (where === 'ppp') openPPP();
   else if (where === 'mock') { qMode = 'mock'; navigate('questions'); }   // a live paper carries on; otherwise the menu
   else navigate(where);
@@ -4686,7 +4720,7 @@ function examResumeHTML() {
     html += `
     <div class="card mock-resume" role="status">
       <div><strong>${p ? p.title : 'Your mock paper'} is in progress</strong>
-        <div class="mock-paper-meta">${mock.phase === 'mark' ? 'Marking in progress.' : `${fmtClock(mock.endAt - Date.now())} left on the clock.`}</div></div>
+        <div class="mock-paper-meta">${mock.phase === 'mark' ? 'Marking in progress.' : mock.endAt > Date.now() ? `${fmtClock(mock.endAt - Date.now())} left on the clock.` : 'Time is up. Continue to mark what you wrote.'}</div></div>
       <div class="q-head-btns"><button class="btn btn-primary btn-sm" onclick="examGo('mock')">Continue</button></div>
     </div>`;
   } else {
@@ -4959,13 +4993,14 @@ function importData() {
         if (isPlainObject(imported) && isPlainObject(imported.units)) {
           // A backup from this version: full store, both units. It replaces
           // everything, so the wrong file would wipe all progress without this.
-          if (!confirm('Replace all your progress in this browser with this backup?\n\nBoth units, your theme and your profile will be overwritten. Export your current progress first if you might want it back.')) {
+          if (!confirm('Replace all your progress in this browser with this backup?\n\nBoth units, your coins, pets and outfits, your theme and your profile will be overwritten. Export your current progress first if you might want it back.')) {
             toast('Import cancelled.');
             return;
           }
           store = coerceStore(imported);
-          seedMemoryIfNeeded();
-          seedWalletIfNeeded();
+          // Saved once, below.
+          seedMemoryIfNeeded(false);
+          seedWalletIfNeeded(false);
           message = 'Progress imported.';
         } else if (looksLikeLegacyBackup(imported)) {
           // A pre-merge backup: progress at the top level, no `units` key, and
@@ -5084,6 +5119,8 @@ function refreshStaleView() {
   if (['home', 'exam'].includes(currentPage)) renderPage(currentPage, {});
   // Learn's path and league only show progress; its notes, and a live battle, are left alone.
   else if (currentPage === 'learn' && !currentSection && learnTab !== 'materials' && !battle && typeof learnRefresh === 'function') learnRefresh();
+  // The shop shows coins and what is owned; a name being typed is left alone.
+  else if (currentPage === 'shop' && typeof renderShop === 'function' && !(typeof shopRenaming !== 'undefined' && shopRenaming)) renderShop();
 }
 
 window.addEventListener('storage', e => {
@@ -5129,8 +5166,8 @@ function showShortcuts() {
     <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
     <h2 id="modal-title">Keyboard shortcuts</h2>
     ${group('Anywhere', [row(['/'], 'Search'), row(['?'], 'This list'), row(['Esc'], 'Close a dialog or the menu')])}
-    ${group('Questions', [row(['←', '→'], 'Previous / next question')])}
-    ${group('Reasoning test', [row(['1–5'], 'Pick an option'), row(['←', '→'], 'Previous / next question')])}`);
+    ${group('Rounds', [row(['1–9'], 'Pick an option'), row(['Enter'], 'Show options, check or continue'), row(['←', '→'], 'Look back over this round’s cards'), row(['Esc'], 'Close the round (answers so far are saved)')])}
+    ${group('Questions', [row(['←', '→'], 'Previous / next question')])}`);
 }
 
 /* Long pages (a section's notes run to 100 cards) get a way back to the top. */

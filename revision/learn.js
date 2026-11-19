@@ -16,7 +16,7 @@
    round-view.js (openRound); after one closes, learnAfterRound() redraws the
    path so the rings move.
 
-   Exported (browser globals): pathNodes, termItems, lessonBank, nodeRing,
+   Exported (browser globals): pathNodes, termItems (Profile's mastered count), lessonBank, nodeRing,
    nodeForgotten, currentNodeId, renderLearn, renderPath, learnHeaderHTML,
    learnRefresh, learnAfterRound, openStudyDialog, closeStudyDialog,
    studyGo, studyNow, PATH_WAVE. isLessonItem lives in round.js and node ids
@@ -88,7 +88,7 @@ function learnHeaderHTML(active) {
     </div>
     <div class="learn-stick-sentinel" aria-hidden="true"></div>
     <div class="g-tabs learn-tabs" role="tablist" aria-label="Learn">
-      ${LEARN_TABS.map(t => `<button class="g-tab${t === active ? ' active' : ''}" role="tab" id="learn-tab-${t}" aria-selected="${t === active}" tabindex="${t === active ? 0 : -1}" onclick="navigate('learn',{tab:'${t}'})">${LEARN_TAB_LABELS[t]}</button>`).join('')}
+      ${LEARN_TABS.map(t => `<button class="g-tab${t === active ? ' active' : ''}" role="tab" id="learn-tab-${t}" aria-selected="${t === active}" aria-controls="learn-panel" tabindex="${t === active ? 0 : -1}" onclick="navigate('learn',{tab:'${t}'})">${LEARN_TAB_LABELS[t]}</button>`).join('')}
     </div>`;
 }
 
@@ -115,7 +115,22 @@ function renderLearn(letter, tab) {
     else if (learnTab === 'leaderboard') renderLearnLeaderboard(container);
     else renderPath(container);
   }
+  learnTabPanel(container);
   learnWatchSticky(container);
+}
+
+/* Everything under the tabs is the selected tab's panel (ARIA tabs pattern).
+   Each tab draws its whole page as one string, so the panel is wrapped after. */
+function learnTabPanel(container) {
+  const tabs = container && container.querySelector('.learn-tabs');
+  if (!tabs || el('learn-panel')) return;
+  const panel = document.createElement('div');
+  panel.id = 'learn-panel';
+  panel.setAttribute('role', 'tabpanel');
+  const sel = tabs.querySelector('[aria-selected="true"]');
+  if (sel) panel.setAttribute('aria-labelledby', sel.id);
+  while (tabs.nextSibling) panel.appendChild(tabs.nextSibling);
+  tabs.after(panel);
 }
 
 /* Redraw what is showing without moving the scroll (after a round, or when
@@ -123,7 +138,7 @@ function renderLearn(letter, tab) {
 function learnRefresh() {
   const main = el('main-content');
   const y = main ? main.scrollTop : 0;
-  if (learnTab === 'path') { renderPath(el('learn-content'), true); learnWatchSticky(el('learn-content')); }
+  if (learnTab === 'path') { renderPath(el('learn-content'), true); learnTabPanel(el('learn-content')); learnWatchSticky(el('learn-content')); }
   else renderLearn(null, learnTab);
   if (main) main.scrollTop = y;
 }
@@ -149,7 +164,8 @@ document.addEventListener('keydown', e => {
   const i = LEARN_TABS.indexOf(learnTab);
   const n = LEARN_TABS.length;
   const next = e.key === 'Home' ? 0 : e.key === 'End' ? n - 1 : (i + (e.key === 'ArrowRight' ? 1 : -1) + n) % n;
-  navigate('learn', { tab: LEARN_TABS[next] });
+  // Arrowing along the tabs replaces the history entry: Back leaves Learn, not each tab.
+  navigate('learn', { tab: LEARN_TABS[next], replaceRoute: true });
   const b = el('learn-tab-' + LEARN_TABS[next]);
   if (b) b.focus();
 });
@@ -203,7 +219,7 @@ function renderPath(container, keepScroll) {
     const label = `${n.title}, ${cards} card${cards === 1 ? '' : 's'}, ${pct}% learned${forgot ? `, ${forgot} forgotten` : ''}${isCurrent ? ', current step' : ''}`;
     html += `
       <li class="lp-row" style="--x:${PATH_WAVE[i % PATH_WAVE.length]}">
-        <button class="lp-node ${cls}" id="${nodeDomId(n.id)}" onclick="openStudyDialog('${escapeHTML(n.id)}')" aria-label="${escapeHTML(label)}">
+        <button class="lp-node ${cls}" id="${nodeDomId(n.id)}" data-node="${escapeHTML(n.id)}" onclick="openStudyDialog(this.dataset.node)" aria-label="${escapeHTML(label)}">
           <span class="g-ring lp-ring" style="--pct:${pct}">
             <span class="lp-badge">${pct > 0 ? `<span class="lp-pct">${pct}%</span>` : ICON_SPROUT}</span>
           </span>
@@ -323,6 +339,9 @@ function studyChoose(id) {
 function studyToggleMore() {
   if (!study) return;
   study.more = !study.more;
+  // Collapsing hides the extra ways: a hidden pick would still run on "Let's go"
+  // and leave no radio to Tab to, so the choice goes back to Memorize.
+  if (!study.more && STUDY_OPTIONS.some(o => o.more && o.id === study.choice)) study.choice = 'memorize';
   renderStudyDialog();
   const b = document.querySelector('#study-dialog .study-more');
   if (b) b.focus();

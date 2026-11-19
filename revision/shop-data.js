@@ -817,12 +817,13 @@ const SHOP = (() => {
     if (u.type === 'mastery') return Array.isArray(p.masteredUnits) && p.masteredUnits.includes(u.value);
     return false;
   }
+  /* The short lock label on a shop card ("Reach Gold league"). */
   function unlockText(it) {
     if (!it || !it.unlock) return '';
     const u = it.unlock;
-    if (u.type === 'league') return `Reach the ${TIER_NAMES[u.value] || 'top'} League`;
-    if (u.type === 'streak') return `Reach a ${u.value}-day streak`;
-    if (u.type === 'mastery') return `Master every step in Unit ${String(u.value).replace(/\D/g, '')}`;
+    if (u.type === 'league') return `Reach ${TIER_NAMES[u.value] || 'the top'} league`;
+    if (u.type === 'streak') return `${u.value}-day streak`;
+    if (u.type === 'mastery') return `Master all of Unit ${String(u.value).replace(/\D/g, '')}`;
     return '';
   }
   /* What a pet, item or variant costs now. The first starter is free; once you
