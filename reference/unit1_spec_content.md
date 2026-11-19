@@ -411,7 +411,7 @@
 **🔥 Tier 1 — VERY LIKELY:**
 - C1 — Cloud computing (a 9-mark cloud suitability question is almost certain)
 - D1/D2 — Cyber security threats and protection, with a 6-mark "explain impacts" question
-- B1–B3 — Data transmission, possibly involving drawing a system diagram
+- B1–B3 — Data transmission, possibly involving drawing a network diagram
 - E1 — Online services and impact
 
 **⚡ Tier 2 — LIKELY:**
