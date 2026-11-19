@@ -5288,7 +5288,7 @@
         "points": [
           [
             "AI can plan delivery routes from traffic and order data",
-            "so routes are calculated faster and vans spend less time on the road"
+            "so route plans that took a planner hours are produced in seconds and updated live as traffic changes"
           ],
           [
             "5G gives high speed and very low latency",
@@ -5312,7 +5312,7 @@
           "Job losses or other implications not about system performance"
         ]
       },
-      "modelAnswer": "1. 5G has very low latency, so a parcel's status reaches the tracking servers as soon as it is scanned.\n2. AI can work out the best routes from live traffic data, so routes are planned faster and drivers spend less time on the road."
+      "modelAnswer": "1. 5G has very low latency, so a parcel's status reaches the tracking servers as soon as it is scanned.\n2. AI can work out routes from live traffic data, so plans that took a planner hours are produced in seconds and updated as traffic changes."
     },
     {
       "id": "b-extra-2",
@@ -5888,6 +5888,59 @@
         "reject": []
       },
       "modelAnswer": "Primary data is collected for this exact purpose, so the gym can ask its own members which classes and times they want."
+    },
+    {
+      "id": "d-extra-2",
+      "part": "",
+      "section": "D",
+      "code": "D1.1",
+      "marks": 4,
+      "commandWord": "Explain",
+      "slots": 2,
+      "context": "A small accountancy firm keeps its client records on a server in the basement of its office, which is next to a river. Staff receive many emails from clients each day.",
+      "question": "Explain **two** external threats to the data on the firm's server.",
+      "traps": [
+        "External threats only: staff stealing or leaking data are internal threats (D1.2) and are not credited.",
+        "Name the threat AND what it would do to the firm's client data."
+      ],
+      "markScheme": {
+        "type": "chain",
+        "steps": [
+          "Identify",
+          "Expand"
+        ],
+        "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+        "points": [
+          [
+            "A natural disaster such as a flood from the river",
+            "could destroy the basement server, so client records are lost unless there is an off-site backup"
+          ],
+          [
+            "Malware, e.g. ransomware arriving in an email attachment",
+            "could encrypt the client files, so the firm cannot work until they are restored"
+          ],
+          [
+            "Hackers gaining unauthorised access, e.g. through a weak password or unpatched server",
+            "could steal clients' financial details, leading to fines and lost trust"
+          ],
+          [
+            "Social engineering, e.g. a phishing email pretending to be a client",
+            "could trick staff into giving away their login, letting an attacker into the server"
+          ],
+          [
+            "Accidental damage, e.g. a power surge or a spilled drink",
+            "could damage the server's hardware, so data is lost or unavailable"
+          ]
+        ],
+        "accept": [
+          "Any other external threat from D1.1 applied to the firm"
+        ],
+        "reject": [
+          "Internal threats such as staff leaking data or using USB sticks",
+          "\"Viruses\" with no effect on the data explained"
+        ]
+      },
+      "modelAnswer": "1. The office is next to a river, so a flood could destroy the basement server and the client records would be lost unless they are backed up off-site.\n2. Ransomware in an email attachment could encrypt the client files, so the firm could not work until they were restored."
     }
   ]
 }

@@ -4971,13 +4971,13 @@ const INLINE_UNITS = {
                     [
                       "Copyright (Computer Programs) Regulations",
                       "1992",
-                      "Specific IP protection for software and programs",
-                      "Copying, reverse engineering, or distributing software illegally",
+                      "Updated copyright for software: back-up copies, decompiling and design material",
+                      "Lawful user may make a back-up copy; decompiling allowed only for interoperability; copying or selling code is still infringement",
                       "Same as CDPA 1988"
                     ],
                     [
                       "Health & Safety / DSE Regulations",
-                      "1992/1999",
+                      "1992 (amended 2002)",
                       "Workplace safety for IT/screen users",
                       "Employers must provide DSE assessments, breaks, training, proper equipment",
                       "Civil claims / HSE enforcement"
@@ -11862,7 +11862,7 @@ const INLINE_UNITS = {
             "points": [
               [
                 "AI can plan delivery routes from traffic and order data",
-                "so routes are calculated faster and vans spend less time on the road"
+                "so route plans that took a planner hours are produced in seconds and updated live as traffic changes"
               ],
               [
                 "5G gives high speed and very low latency",
@@ -11886,7 +11886,7 @@ const INLINE_UNITS = {
               "Job losses or other implications not about system performance"
             ]
           },
-          "modelAnswer": "1. 5G has very low latency, so a parcel's status reaches the tracking servers as soon as it is scanned.\n2. AI can work out the best routes from live traffic data, so routes are planned faster and drivers spend less time on the road."
+          "modelAnswer": "1. 5G has very low latency, so a parcel's status reaches the tracking servers as soon as it is scanned.\n2. AI can work out routes from live traffic data, so plans that took a planner hours are produced in seconds and updated as traffic changes."
         },
         {
           "id": "b-extra-2",
@@ -12462,6 +12462,59 @@ const INLINE_UNITS = {
             "reject": []
           },
           "modelAnswer": "Primary data is collected for this exact purpose, so the gym can ask its own members which classes and times they want."
+        },
+        {
+          "id": "d-extra-2",
+          "part": "",
+          "section": "D",
+          "code": "D1.1",
+          "marks": 4,
+          "commandWord": "Explain",
+          "slots": 2,
+          "context": "A small accountancy firm keeps its client records on a server in the basement of its office, which is next to a river. Staff receive many emails from clients each day.",
+          "question": "Explain **two** external threats to the data on the firm's server.",
+          "traps": [
+            "External threats only: staff stealing or leaking data are internal threats (D1.2) and are not credited.",
+            "Name the threat AND what it would do to the firm's client data."
+          ],
+          "markScheme": {
+            "type": "chain",
+            "steps": [
+              "Identify",
+              "Expand"
+            ],
+            "rule": "One mark for the identification and one for an appropriate expansion, up to 4 marks.",
+            "points": [
+              [
+                "A natural disaster such as a flood from the river",
+                "could destroy the basement server, so client records are lost unless there is an off-site backup"
+              ],
+              [
+                "Malware, e.g. ransomware arriving in an email attachment",
+                "could encrypt the client files, so the firm cannot work until they are restored"
+              ],
+              [
+                "Hackers gaining unauthorised access, e.g. through a weak password or unpatched server",
+                "could steal clients' financial details, leading to fines and lost trust"
+              ],
+              [
+                "Social engineering, e.g. a phishing email pretending to be a client",
+                "could trick staff into giving away their login, letting an attacker into the server"
+              ],
+              [
+                "Accidental damage, e.g. a power surge or a spilled drink",
+                "could damage the server's hardware, so data is lost or unavailable"
+              ]
+            ],
+            "accept": [
+              "Any other external threat from D1.1 applied to the firm"
+            ],
+            "reject": [
+              "Internal threats such as staff leaking data or using USB sticks",
+              "\"Viruses\" with no effect on the data explained"
+            ]
+          },
+          "modelAnswer": "1. The office is next to a river, so a flood could destroy the basement server and the client records would be lost unless they are backed up off-site.\n2. Ransomware in an email attachment could encrypt the client files, so the firm could not work until they were restored."
         }
       ]
     },
@@ -12643,10 +12696,10 @@ const INLINE_UNITS = {
         {
           "q": "A graphic designer needs a powerful general-purpose computer at a desk for editing large images. Which device fits best?",
           "options": [
-            "Personal computer (desktop)",
-            "Embedded system",
-            "Server",
-            "Navigation system"
+            "Desktop personal computer",
+            "Embedded control system",
+            "Network file server",
+            "Satellite navigation system"
           ],
           "answer": 0,
           "why": "PCs are general-purpose computers for one person. A desktop gives the most power for the price."
@@ -12746,9 +12799,9 @@ const INLINE_UNITS = {
           "q": "A home needs a device that connects all its gadgets to each other and to the internet. Which category does a router belong to?",
           "options": [
             "Communication devices and systems",
-            "Storage devices",
-            "Entertainment systems",
-            "Input devices"
+            "Storage and backup devices",
+            "Entertainment systems and consoles",
+            "Input and output peripherals"
           ],
           "answer": 0,
           "why": "Communication devices send and receive information, e.g. phones, routers and modems."
@@ -12785,9 +12838,9 @@ const INLINE_UNITS = {
           "q": "A teacher sets quizzes on tablets and students submit homework through Google Classroom. Which context of use is this?",
           "options": [
             "Education and training",
-            "Retail",
-            "Social",
-            "Creative"
+            "Retail and sales",
+            "Social and leisure",
+            "Creative tasks"
           ],
           "answer": 0,
           "why": "Education use supports teaching, learning and assessment."
@@ -12824,9 +12877,9 @@ const INLINE_UNITS = {
           "q": "A car factory uses robot arms and sensors to weld car bodies with almost no human input. Which context of use is this?",
           "options": [
             "Manufacturing",
-            "Retail",
-            "Social",
-            "Personal"
+            "Retail and sales",
+            "Social use",
+            "Personal use"
           ],
           "answer": 0,
           "why": "Manufacturing uses computer-controlled machines, robots and sensors to automate production."
@@ -13038,9 +13091,9 @@ const INLINE_UNITS = {
           "q": "A user with very limited movement controls a computer by pressing one large button with their cheek. What is this?",
           "options": [
             "Single switch entry device",
-            "Adaptive keyboard",
-            "Screen reader",
-            "Braille display"
+            "Adaptive large-key keyboard",
+            "Screen reader software",
+            "Refreshable braille display"
           ],
           "answer": 0,
           "why": "A single switch lets users with very limited movement control a computer."
@@ -13142,9 +13195,9 @@ const INLINE_UNITS = {
           "q": "A new external drive uses only USB-C, but the office PCs have only USB-A ports. Which characteristic is the problem?",
           "options": [
             "Compatibility",
-            "Capacity",
-            "Speed",
-            "Cost"
+            "Storage capacity",
+            "Read/write speed",
+            "Cost per gigabyte"
           ],
           "answer": 0,
           "why": "Compatibility is whether storage works with the device's connections, OS and hardware."
@@ -13310,10 +13363,10 @@ const INLINE_UNITS = {
         {
           "q": "RAM is full, so the OS moves some data to the hard drive to keep programs running, though everything slows down. Which OS role is this?",
           "options": [
-            "Memory management (virtual memory)",
-            "Device drivers",
+            "Memory management",
+            "Device driver management",
             "Networking",
-            "User accounts"
+            "User account management"
           ],
           "answer": 0,
           "why": "The OS allocates RAM, keeps programs apart, and uses virtual memory when RAM runs out."
@@ -13447,10 +13500,10 @@ const INLINE_UNITS = {
         {
           "q": "An architect's firm can't move to macOS because its CAD software runs only on Windows. Which factor is this?",
           "options": [
-            "Hardware and software compatibility",
-            "Cost",
-            "Performance",
-            "User needs"
+            "Software compatibility",
+            "Licence cost",
+            "System performance",
+            "Security updates"
           ],
           "answer": 0,
           "why": "Compatibility is whether software works with the hardware and other software already in use."
@@ -13474,9 +13527,9 @@ const INLINE_UNITS = {
           "q": "A care home picks very simple rota software because its staff have low IT skills. Which factor is this?",
           "options": [
             "Business and user needs",
-            "Performance",
-            "Security",
-            "Cost"
+            "System performance",
+            "Security features",
+            "Licence cost"
           ],
           "answer": 0,
           "why": "Software must fit the organisation's tasks and its users' skills."
@@ -13499,10 +13552,10 @@ const INLINE_UNITS = {
         {
           "q": "A network admin types commands such as 'ipconfig' to configure servers quickly, using little memory. Which interface is this?",
           "options": [
-            "Command line interface (CLI)",
-            "GUI",
-            "Menu-driven",
-            "Touchscreen GUI"
+            "Command line interface",
+            "Graphical user interface",
+            "Menu-driven interface",
+            "Touchscreen interface"
           ],
           "answer": 0,
           "why": "A CLI is a text interface where the user types commands. It is powerful but needs commands to be learned."
@@ -13536,10 +13589,10 @@ const INLINE_UNITS = {
         {
           "q": "An office worker uses windows, icons, menus and a mouse pointer to manage files. Which interface is this?",
           "options": [
-            "Graphical user interface (GUI)",
-            "CLI",
-            "Menu-driven",
-            "Batch"
+            "Graphical user interface",
+            "Command line interface",
+            "Menu-driven interface",
+            "Batch operating system"
           ],
           "answer": 0,
           "why": "A GUI is a visual WIMP interface: windows, icons, menus and a pointer."
@@ -13702,10 +13755,10 @@ const INLINE_UNITS = {
         {
           "q": "A firm adds up purchase price, installation, licences, support and eventual replacement before choosing a system. Which factor is this?",
           "options": [
-            "Cost (total cost of ownership)",
-            "Efficiency",
-            "Specifications",
-            "Security"
+            "Cost over the system's life",
+            "Efficiency of the system",
+            "Technical specifications",
+            "Security features"
           ],
           "answer": 0,
           "why": "Cost is the total cost of buying, setting up, running and replacing the system."
@@ -13909,9 +13962,9 @@ const INLINE_UNITS = {
           "q": "A new till system is fast for staff, but customers can no longer pay by cash, which many prefer. Which impact is this?",
           "options": [
             "Employee and customer needs",
-            "Implementation",
-            "Security",
-            "Training needs"
+            "Implementation and downtime",
+            "Security of the system",
+            "Staff training needs"
           ],
           "answer": 0,
           "why": "A system must meet the needs of both staff and customers."
@@ -13934,7 +13987,7 @@ const INLINE_UNITS = {
         {
           "q": "Moving patient records to a new system takes a week longer than planned, and the clinic must close for a day. Which impact is this?",
           "options": [
-            "Implementation (migration and downtime)",
+            "Implementation",
             "Security",
             "User support",
             "Working practices"
@@ -13947,10 +14000,10 @@ const INLINE_UNITS = {
         {
           "q": "A school keeps its old timetable system running alongside the new learning platform and links the two. Which impact is this?",
           "options": [
-            "Replacement or integration with current systems",
-            "User support",
-            "Security",
-            "Cost"
+            "Integration with current systems",
+            "User support from the vendor",
+            "Security of the new platform",
+            "Cost of the new platform"
           ],
           "answer": 0,
           "why": "An organisation decides whether a new system replaces the old one or works alongside it."
@@ -13986,7 +14039,7 @@ const INLINE_UNITS = {
         {
           "q": "Staff get a course when a new system launches and refresher sessions whenever it is updated. Which impact is this?",
           "options": [
-            "Staff training needs (initial and ongoing)",
+            "Staff training needs",
             "User support",
             "Productivity",
             "Implementation"
@@ -14038,10 +14091,10 @@ const INLINE_UNITS = {
         {
           "q": "A fake video of a celebrity, made with AI, spreads on social media. Which implication of AI for personal use does this show?",
           "options": [
-            "Deepfakes make it harder to trust what you see",
-            "Faster broadband",
-            "Better battery life",
-            "Cheaper hardware"
+            "People find it harder to trust what they see online",
+            "Phones need faster broadband to play videos",
+            "Voice assistants drain phone batteries faster",
+            "AI makes personal devices cheaper to buy"
           ],
           "answer": 0,
           "why": "AI changes personal use, including risks such as deepfakes and misinformation."
@@ -14051,10 +14104,10 @@ const INLINE_UNITS = {
         {
           "q": "A bank uses AI to flag unusual card payments, and fewer staff are needed to review transactions. Which implication does this show for organisations?",
           "options": [
-            "AI changes how they operate and how many people they employ",
-            "AI removes all security risk",
-            "AI stops organisations needing data",
-            "AI only affects personal users"
+            "AI changes how work is done and cuts staff numbers",
+            "AI removes every security risk the bank faces",
+            "AI means the bank no longer needs customer data",
+            "AI only affects people's personal devices"
           ],
           "answer": 0,
           "why": "AI changes how organisations work, e.g. fraud detection and automated screening, and affects jobs."
@@ -14108,9 +14161,9 @@ const INLINE_UNITS = {
           "why": "USB is a wired standard that carries both data and power."
         },
         {
-          "q": "A school stops staff plugging memory sticks into its PCs. Which connection type is being restricted, and why?",
+          "q": "A school stops staff plugging removable storage into its PCs. Which connection type is being restricted, and why?",
           "options": [
-            "USB, because infected sticks can bring in malware",
+            "USB, because infected drives can bring in malware",
             "Bluetooth, because of bluejacking",
             "Wi-Fi, because signals leave the building",
             "Ethernet, because cables can be tapped"
@@ -14218,9 +14271,9 @@ const INLINE_UNITS = {
           "q": "A school removes all network cables and goes Wi-Fi only to save money. What is a likely implication?",
           "options": [
             "More security risk and possible slowdowns at busy times",
-            "No devices can move between rooms",
-            "It must buy more switches",
-            "Bluetooth will stop working"
+            "No devices can move between rooms any more",
+            "It must buy more switches and network cables",
+            "Bluetooth devices in the school stop working"
           ],
           "answer": 0,
           "why": "Choosing a connection affects security, cost and performance, not just convenience."
@@ -14241,10 +14294,10 @@ const INLINE_UNITS = {
         {
           "q": "Staff on Wi-Fi say their VoIP calls keep breaking up, while staff on Ethernet have clear calls. What is the most likely reason?",
           "options": [
-            "Wi-Fi suffers interference and jitter, so voice packets arrive unevenly",
-            "Ethernet uses lossy compression for voice",
-            "Wi-Fi always has more bandwidth than Ethernet",
-            "VoIP only works properly over Bluetooth"
+            "Wi-Fi interference and jitter make voice packets arrive unevenly",
+            "Ethernet compresses voice with a lossy codec, which sounds clearer",
+            "Wi-Fi always has more bandwidth than Ethernet, which overloads calls",
+            "VoIP only works properly over Bluetooth connections"
           ],
           "answer": 0,
           "why": "Wired links have no radio interference and steadier latency. Uneven delay (jitter) on Wi-Fi makes voices break up."
@@ -14467,7 +14520,7 @@ const INLINE_UNITS = {
         {
           "q": "A school installs its new network over the summer holiday, testing it before staff return, so lessons aren't disrupted. Which factor is this?",
           "options": [
-            "Implementation (timescales, testing, downtime)",
+            "Implementation",
             "Efficiency",
             "Cost",
             "Security"
@@ -14576,10 +14629,10 @@ const INLINE_UNITS = {
         {
           "q": "A company with offices in five countries wants to cut its international phone bill. Which technology should it adopt?",
           "options": [
-            "Voice calls over the internet (VoIP)",
-            "IMAP",
-            "HTTP",
-            "Tokenisation"
+            "VoIP calls over the internet",
+            "IMAP email retrieval",
+            "HTTPS web pages",
+            "Tokenised card payments"
           ],
           "answer": 0,
           "why": "VoIP sends calls as ordinary internet data, so international calls cost far less."
@@ -14601,33 +14654,33 @@ const INLINE_UNITS = {
           "q": "A browser shows 'Not Secure' next to a shop's login page. What does this tell the user?",
           "options": [
             "The page uses HTTP, so details typed in are sent unencrypted",
-            "The page is using IMAP",
-            "The page is making a VoIP call",
-            "Payments on the page are tokenised"
+            "The page is using IMAP, so emails are not synced",
+            "The page is making a VoIP call, so audio may lag",
+            "Payments on the page are tokenised, so cards are hidden"
           ],
           "answer": 0,
           "why": "Browsers mark HTTP pages 'Not Secure' because logins sent over HTTP can be read if intercepted."
         },
         {
-          "q": "A firewall blocks port 80 but allows port 443. Which web traffic still gets through?",
+          "q": "A shop switches its login page from HTTP to HTTPS. What does this add?",
           "options": [
-            "HTTPS",
-            "HTTP",
-            "Both HTTP and HTTPS",
-            "Neither"
+            "Encryption of login details and proof the site is genuine",
+            "Faster loading of the page's images",
+            "Automatic backups of every customer account",
+            "Protection against customers choosing weak passwords"
           ],
           "answer": 0,
-          "why": "HTTP uses port 80 and HTTPS uses port 443."
+          "why": "HTTPS adds TLS encryption and a certificate that proves the server's identity. It does not speed pages up, back data up or make weak passwords safe."
         }
       ],
       "B3.1.4": [
         {
           "q": "When you pay with Apple Pay, the shop receives a one-off token instead of your real card number. What is this an example of?",
           "options": [
-            "A secure payment system (tokenisation)",
-            "Lossy compression",
-            "A VPN",
-            "IMAP"
+            "Tokenisation of card details",
+            "Lossy compression of data",
+            "A VPN tunnel to the bank",
+            "IMAP email retrieval"
           ],
           "answer": 0,
           "why": "Secure payment systems protect card data using encryption and tokenisation."
@@ -14635,9 +14688,9 @@ const INLINE_UNITS = {
         {
           "q": "At an online checkout, a customer must enter a code sent by their bank before the card payment goes through. What is this?",
           "options": [
-            "3D Secure, an extra authentication check",
-            "IMAP",
-            "HTTP",
+            "3D Secure authentication",
+            "IMAP email retrieval",
+            "Plain HTTP",
             "Lossy compression"
           ],
           "answer": 0,
@@ -14647,9 +14700,9 @@ const INLINE_UNITS = {
           "q": "A small online shop starts taking card payments. Which set of rules must it follow when handling card data?",
           "options": [
             "PCI DSS",
-            "SMTP",
-            "QoS",
-            "WEP"
+            "The SMTP standard",
+            "QoS settings",
+            "WEP encryption"
           ],
           "answer": 0,
           "why": "PCI DSS sets the rules every business that takes card payments must follow."
@@ -14660,9 +14713,9 @@ const INLINE_UNITS = {
           "q": "Someone on an open café Wi-Fi network captures another customer's unencrypted login details. Which security issue is this?",
           "options": [
             "Interception of data in transit",
-            "Accidental damage",
-            "Natural disaster",
-            "Data loss at rest"
+            "Accidental damage to hardware",
+            "A natural disaster",
+            "Loss of data stored at rest"
           ],
           "answer": 0,
           "why": "Unencrypted data in transit can be intercepted, altered or blocked."
@@ -14692,15 +14745,15 @@ const INLINE_UNITS = {
           "why": "Bandwidth is how much data per second; latency is the delay. High latency causes lag even on fast connections."
         },
         {
-          "q": "A school's Wi-Fi gets slow at lunchtime when 600 students go online at once. What is the main cause?",
+          "q": "A photographer's broadband has low latency, but uploading a 4 GB folder of photos to the cloud takes hours. What limits the upload?",
           "options": [
-            "The bandwidth is shared between many more users",
-            "Latency falls when more people connect",
-            "Files are sent with lossless compression",
-            "A codec is missing"
+            "Low upload bandwidth",
+            "High latency",
+            "Jitter on the line",
+            "A missing codec"
           ],
           "answer": 0,
-          "why": "Bandwidth is shared, so each person gets less of it as more people use the network at the same time."
+          "why": "Bandwidth is how much data can be sent per second, so a large upload over a low-bandwidth link takes a long time. Latency is delay, which matters most for calls and games."
         }
       ],
       "B3.4.1": [
@@ -14774,8 +14827,8 @@ const INLINE_UNITS = {
           "options": [
             "Lossless",
             "Lossy",
-            "MP3",
-            "JPEG"
+            "MP3 audio",
+            "JPEG images"
           ],
           "answer": 0,
           "why": "Lossless compression restores the original exactly, which is essential for documents and data."
@@ -14853,9 +14906,9 @@ const INLINE_UNITS = {
           "q": "A school stores its files on cloud servers shared by thousands of other organisations. What is a risk of this model?",
           "options": [
             "Less control over where its data is physically stored",
-            "Very high up-front hardware costs",
-            "Staff must maintain the servers",
-            "It can only be used on-site"
+            "Very high up-front costs for hardware it must buy",
+            "Its own staff must maintain all of the servers",
+            "It can only be reached from inside the school"
           ],
           "answer": 0,
           "why": "In a public cloud the provider controls the hardware and data location, so the school has less control."
@@ -14896,9 +14949,9 @@ const INLINE_UNITS = {
         {
           "q": "Which is a DRAWBACK of a hybrid cloud?",
           "options": [
-            "It is more complex to manage, because data and systems are split across two environments",
+            "It is more complex to manage two environments",
             "All of the data is held by a third party",
-            "It cannot cope with busy periods",
+            "It cannot cope with busy periods at all",
             "No sensitive data can be kept in-house"
           ],
           "answer": 0,
@@ -14931,7 +14984,7 @@ const INLINE_UNITS = {
           "options": [
             "The customer",
             "The cloud provider",
-            "No one: IaaS servers have no operating system"
+            "The software vendor"
           ],
           "answer": 0,
           "why": "In IaaS the provider runs the hardware, but the customer installs and maintains the OS."
@@ -14994,9 +15047,9 @@ const INLINE_UNITS = {
         {
           "q": "Which is a DRAWBACK of PaaS for developers?",
           "options": [
-            "They must work within the provider's tools and settings, so it is less flexible",
-            "They must buy and maintain physical servers",
-            "End users must install it on each PC",
+            "They must work within the provider's tools and settings",
+            "They must buy and maintain their own physical servers",
+            "End users must install it on each PC themselves",
             "They must patch the operating system themselves"
           ],
           "answer": 0,
@@ -15007,10 +15060,10 @@ const INLINE_UNITS = {
         {
           "q": "A business replaces its own server room with cloud services. Which is a likely impact?",
           "options": [
-            "IT costs move from large up-front purchases to ongoing subscriptions",
-            "Staff can no longer work from home",
-            "It no longer needs an internet connection",
-            "Its data can never be lost"
+            "IT costs move from up-front purchases to subscriptions",
+            "Staff can no longer work from home or on the move",
+            "It no longer needs an internet connection to work",
+            "Its data can never be lost or deleted again"
           ],
           "answer": 0,
           "why": "Cloud turns capital spending on hardware into a regular running cost, and depends on internet access."
@@ -15042,10 +15095,10 @@ const INLINE_UNITS = {
         {
           "q": "A sales rep often works on hotel Wi-Fi. Why should she connect to the office through a VPN?",
           "options": [
-            "It encrypts her traffic, so others on the hotel network can't read it",
-            "It makes the hotel Wi-Fi faster",
-            "It removes every virus from her laptop",
-            "It lets the company see her location"
+            "It encrypts her traffic so others on the network can't read it",
+            "It makes the hotel Wi-Fi faster for all her work apps",
+            "It removes every virus that is already on her laptop",
+            "It lets the company track exactly where she is working"
           ],
           "answer": 0,
           "why": "A VPN encrypts everything between her device and the office network, so snooping on public Wi-Fi only sees scrambled data."
@@ -15079,10 +15132,10 @@ const INLINE_UNITS = {
         {
           "q": "A UK company finds its cloud provider stores customer data in a country with weaker privacy laws. Which selection factor is most at risk?",
           "options": [
-            "Security (including legal compliance)",
-            "Ease of use",
-            "Scalability",
-            "Features"
+            "Security and legal compliance",
+            "Ease of use for staff",
+            "Scalability of storage",
+            "Features on offer"
           ],
           "answer": 0,
           "why": "The company is still responsible under UK GDPR, so where and how the provider keeps data is a security and compliance concern."
@@ -15104,9 +15157,9 @@ const INLINE_UNITS = {
           "q": "A firm expects steady demand and plans to keep the same servers for ten years. Why might buying its own servers cost less overall than cloud?",
           "options": [
             "High upfront cost but low running costs, while cloud fees never stop",
-            "Its own servers need no maintenance at all",
-            "Cloud services have no ongoing fees",
-            "Its own servers can scale up instantly"
+            "Its own servers need no maintenance or repairs at all",
+            "Cloud services have no ongoing fees once set up",
+            "Its own servers can scale up instantly when needed"
           ],
           "answer": 0,
           "why": "On-premise costs a lot at the start but less each year; cloud is cheap to start but its subscription keeps going."
@@ -15169,9 +15222,9 @@ const INLINE_UNITS = {
           "q": "A clothing brand wants to share photos and short videos of new products and let customers like, comment and share them. Which online community should it use?",
           "options": [
             "Social media",
-            "Wiki",
-            "Forum",
-            "Podcast"
+            "A wiki",
+            "An online forum",
+            "A podcast"
           ],
           "answer": 0,
           "why": "Social media platforms let users create, share and interact with content."
@@ -15232,9 +15285,9 @@ const INLINE_UNITS = {
           "q": "A manager wants to send quick real-time text messages to one colleague or a small project team during the day. Which tool fits best?",
           "options": [
             "Instant messaging",
-            "Forum",
-            "Wiki",
-            "Podcast"
+            "An online forum",
+            "A shared wiki",
+            "A podcast series"
           ],
           "answer": 0,
           "why": "Instant messaging is real-time text chat between individuals or small groups, e.g. WhatsApp or Teams."
@@ -15363,8 +15416,8 @@ const INLINE_UNITS = {
           "options": [
             "Integration with current systems",
             "Meeting user needs",
-            "Downtime",
-            "Privacy"
+            "Downtime and availability",
+            "Privacy of user data"
           ],
           "answer": 0,
           "why": "Integration is how easily the platform connects to systems the organisation already uses."
@@ -15447,9 +15500,9 @@ const INLINE_UNITS = {
           "q": "Someone outside a company guesses an administrator's weak password and logs in to change prices on the website. Which threat is this?",
           "options": [
             "Unauthorised access (hacking)",
-            "Accidental damage",
-            "Natural disaster",
-            "Malware"
+            "Accidental damage by staff",
+            "A natural disaster",
+            "Malware such as a virus"
           ],
           "answer": 0,
           "why": "Getting into a system without permission, e.g. by guessing a password, is unauthorised access."
@@ -15516,8 +15569,8 @@ const INLINE_UNITS = {
         {
           "q": "Someone phones reception pretending to be from the IT supplier and asks for the admin password 'to fix a fault'. What is this?",
           "options": [
-            "Social engineering (vishing / pretexting)",
-            "Malware",
+            "Social engineering",
+            "Malware such as a trojan",
             "Accidental damage",
             "A natural disaster"
           ],
@@ -15527,10 +15580,10 @@ const INLINE_UNITS = {
         {
           "q": "Why are social engineering attacks hard to stop with firewalls and antivirus alone?",
           "options": [
-            "They trick people rather than technology, so staff training is needed",
-            "They only happen during floods",
-            "They always arrive on USB sticks",
-            "They only damage hardware"
+            "They trick people rather than technology",
+            "They only happen during floods and fires",
+            "They always arrive on infected USB sticks",
+            "They only damage hardware, not data"
           ],
           "answer": 0,
           "why": "Social engineering attacks the human, so training (plus filtering and MFA) is the main defence."
@@ -15655,9 +15708,9 @@ const INLINE_UNITS = {
         {
           "q": "Everyone in a company can open the payroll spreadsheet, but only HR should be able to edit it. What should be set on the file?",
           "options": [
-            "File permissions (read-only for everyone except HR)",
+            "File permissions",
             "A digital certificate",
-            "Biometrics",
+            "Biometric login",
             "A firewall rule"
           ],
           "answer": 0,
@@ -15712,9 +15765,9 @@ const INLINE_UNITS = {
           "q": "Why should IT staff use a standard account for everyday work and an admin account only when needed?",
           "options": [
             "If the everyday account is hacked, the attacker gets less access",
-            "Standard accounts make backups run faster",
-            "Admin accounts cannot open email",
-            "It removes the need for passwords"
+            "Standard accounts make the nightly backups run faster",
+            "Admin accounts are not allowed to open any email",
+            "Using two accounts removes the need for passwords"
           ],
           "answer": 0,
           "why": "Least privilege limits the damage if an account is compromised."
@@ -15725,9 +15778,9 @@ const INLINE_UNITS = {
           "q": "A school copies its data every night to a separate location so it can restore files after a disaster. Which protection is this?",
           "options": [
             "Backup and recovery procedures",
-            "File permissions",
-            "Antivirus software",
-            "MFA"
+            "File permissions on folders",
+            "Antivirus software scans",
+            "Multi-factor authentication"
           ],
           "answer": 0,
           "why": "Backups are copies kept elsewhere that can be restored after data loss."
@@ -15746,10 +15799,10 @@ const INLINE_UNITS = {
         {
           "q": "A company has backed up every night for a year, but nobody has ever tried restoring from a backup. What is the risk?",
           "options": [
-            "The backups may turn out to be corrupt or incomplete when they are needed",
-            "Backups slow down the antivirus",
-            "File permissions will be lost",
-            "Biometric data will be exposed"
+            "The backups may be corrupt or incomplete when needed",
+            "The backups will slow down the antivirus software",
+            "All file permissions will be lost from the backups",
+            "Staff biometric data will be exposed by the backups"
           ],
           "answer": 0,
           "why": "A backup that has never been tested may not restore, so backups should be tested regularly."
@@ -15770,10 +15823,10 @@ const INLINE_UNITS = {
         {
           "q": "A website asks for a password and then a code from the user's phone. Why is this more secure than a password alone?",
           "options": [
-            "It uses two different factors, so a stolen password is not enough",
-            "Codes can be reused on any site",
-            "It means the password can be short",
-            "It removes the need for encryption"
+            "It needs two different factors, so a stolen password is not enough",
+            "The phone codes can be reused on any other website",
+            "It means the password itself can be short and simple",
+            "It removes the need for the site to use encryption"
           ],
           "answer": 0,
           "why": "MFA needs something you know plus something you have, so an attacker needs both."
@@ -15781,10 +15834,10 @@ const INLINE_UNITS = {
         {
           "q": "How does a password manager improve security?",
           "options": [
-            "Each account can have a different strong password, so one leak does not unlock the others",
+            "Every account gets a different strong password",
             "It removes the need for multi-factor authentication",
             "It stores passwords in plain text for easy access",
-            "It makes every password the same"
+            "It makes every password the same and easy to recall"
           ],
           "answer": 0,
           "why": "Password managers stop password reuse, so one leaked password only affects one account."
@@ -15806,9 +15859,9 @@ const INLINE_UNITS = {
           "q": "Which is a DRAWBACK of biometrics compared with passwords?",
           "options": [
             "A stolen fingerprint template can't be changed like a password",
-            "They are easy to share with colleagues",
-            "They are slow to type",
-            "They are easy to forget"
+            "They are easy to share with colleagues who need access",
+            "They are slower to use than typing a long password",
+            "They are easy to forget, like a complex password"
           ],
           "answer": 0,
           "why": "You can't change your fingerprint, so stolen biometric data can't be reset."
@@ -15852,9 +15905,9 @@ const INLINE_UNITS = {
           "q": "How does a swipe-card door system help after a theft from the server room?",
           "options": [
             "It logs who entered and when, giving a record to investigate",
-            "It encrypts the data on the server",
-            "It scans the server for malware",
-            "It blocks phishing emails"
+            "It encrypts the data stored on the server automatically",
+            "It scans the server for malware after each entry",
+            "It blocks phishing emails sent to server room staff"
           ],
           "answer": 0,
           "why": "Swipe cards both restrict entry and record every entry, so there is evidence if something goes wrong."
@@ -15875,10 +15928,10 @@ const INLINE_UNITS = {
         {
           "q": "A browser warns that a site's digital certificate has expired. What should the user conclude?",
           "options": [
-            "The site's identity can't be confirmed, so they should not enter personal details",
+            "The site can't be confirmed as genuine, so avoid entering details",
             "The site has definitely been infected by a virus",
-            "Their own password has been stolen",
-            "The site is using biometrics"
+            "Their own password has been stolen by the site",
+            "The site is now checking them with biometrics"
           ],
           "answer": 0,
           "why": "Certificates prove a site is genuine; an expired one means the browser cannot confirm that."
@@ -15995,10 +16048,10 @@ const INLINE_UNITS = {
         {
           "q": "A shopper sees a padlock and https:// in the address bar. What does this confirm?",
           "options": [
-            "The connection is encrypted and the site has a valid certificate for that address",
+            "The connection is encrypted and the certificate is valid",
             "The shop is honest and will deliver the goods",
-            "The site contains no malware",
-            "Payments will be refunded if fraud happens"
+            "The site has been scanned and contains no malware",
+            "Payments will be refunded if any fraud happens"
           ],
           "answer": 0,
           "why": "HTTPS proves the connection is encrypted and the certificate matches the site. It says nothing about whether the business is trustworthy."
@@ -16020,9 +16073,9 @@ const INLINE_UNITS = {
           "q": "Which is a DISADVANTAGE of online retail for customers?",
           "options": [
             "They can't see or try products before buying",
-            "They must travel to a shop",
-            "Shops are only open 9 to 5",
-            "They can't compare prices"
+            "They must travel to a shop to collect every order",
+            "Shops are only open from 9 to 5 on weekdays",
+            "They can't compare prices between different sellers"
           ],
           "answer": 0,
           "why": "Online shopping is convenient, but you can't handle goods and returns take effort."
@@ -16031,9 +16084,9 @@ const INLINE_UNITS = {
           "q": "Which is an impact of online retail on society?",
           "options": [
             "High-street shops close, but warehouse and delivery jobs grow",
-            "Customers can no longer compare prices",
-            "Retailers' costs always rise",
-            "Shopping is limited to opening hours"
+            "Customers can no longer compare prices between shops",
+            "Retailers' running costs always rise sharply",
+            "Shopping is limited to normal shop opening hours"
           ],
           "answer": 0,
           "why": "Online retail moves jobs from shops to warehouses and delivery, and has contributed to high-street closures."
@@ -16066,9 +16119,9 @@ const INLINE_UNITS = {
           "q": "A bank closes many branches as customers move to its app. Who is most disadvantaged?",
           "options": [
             "Older people and those without internet access or skills",
-            "Customers who already use smartphones",
-            "Staff who build the app",
-            "Online retailers"
+            "Customers who already bank on their smartphones",
+            "The staff who design and build the banking app",
+            "Online retailers who take card payments"
           ],
           "answer": 0,
           "why": "Customers who are less digital can be excluded as branches close."
@@ -16101,9 +16154,9 @@ const INLINE_UNITS = {
           "q": "A pupil without broadband at home keeps falling behind with online homework. Which issue of online education does this show?",
           "options": [
             "Unequal access (the digital divide)",
-            "Targeted marketing",
-            "Double booking",
-            "Piracy"
+            "Targeted marketing to pupils",
+            "Double booking of lessons",
+            "Piracy of course videos"
           ],
           "answer": 0,
           "why": "Learners without devices or internet are disadvantaged, which widens the digital divide."
@@ -16125,9 +16178,9 @@ const INLINE_UNITS = {
           "q": "A news app shows each reader stories like the ones they clicked on before. What is a possible implication?",
           "options": [
             "Readers may only see one side of an issue (a filter bubble)",
-            "News takes longer to be published",
-            "Readers must pay for each article",
-            "Stories can no longer include video"
+            "News takes longer to be published than in print",
+            "Readers must pay separately for every article",
+            "Stories can no longer include video or photos"
           ],
           "answer": 0,
           "why": "Algorithms recommend what users already like, so they can end up in a filter bubble."
@@ -16165,15 +16218,15 @@ const INLINE_UNITS = {
             "They downloaded the film before the flight"
           ],
           "answer": 0,
-          "why": "4K streaming needs about 25 Mbps, so slower broadband gets lower quality."
+          "why": "4K streaming needs about 15–25 Mbps, so slower broadband gets lower quality."
         },
         {
           "q": "Which is a DRAWBACK of subscription streaming compared with buying films?",
           "options": [
             "Users don't own the content, so it can be removed from the library",
-            "Users must store every film themselves",
-            "Films can only be watched on a TV",
-            "It needs a separate payment for every film"
+            "Users must store every film on their own devices",
+            "Films can only be watched on a television set",
+            "It needs a separate payment for every single film"
           ],
           "answer": 0,
           "why": "Subscriptions give a large library for a monthly fee, but users own nothing."
@@ -16194,10 +16247,10 @@ const INLINE_UNITS = {
         {
           "q": "Two customers try to book the last seat at a concert at the same moment, but only one succeeds. Which feature of the online booking system makes sure of this?",
           "options": [
-            "Live availability that updates in real time",
-            "Targeted adverts",
-            "Lossy compression",
-            "Offline downloads"
+            "Live availability updated in real time",
+            "Targeted adverts for concerts",
+            "Lossy compression of the page",
+            "Offline downloads of tickets"
           ],
           "answer": 0,
           "why": "Booking systems show live availability and confirm instantly, which prevents double booking."
@@ -16205,10 +16258,10 @@ const INLINE_UNITS = {
         {
           "q": "Which is a RISK of an online booking system for a small cinema?",
           "options": [
-            "If it is not synced with the box office, the same seat can be sold twice",
-            "Customers can book outside opening hours",
-            "Queues at the box office get shorter",
-            "Customers get instant confirmation"
+            "If not synced with the box office, a seat can be sold twice",
+            "Customers can book tickets outside opening hours",
+            "Queues at the box office get shorter on busy nights",
+            "Customers get instant confirmation of their seats"
           ],
           "answer": 0,
           "why": "The system must stay in sync with internal systems, or it will double-book; the others are benefits."
@@ -16432,9 +16485,9 @@ const INLINE_UNITS = {
           "q": "An online form refuses to accept an age of 200 and says 'Please enter an age between 16 and 100'. Which accuracy method is this?",
           "options": [
             "Validation (range check)",
-            "Verification",
-            "Proofreading",
-            "Double entry"
+            "Verification by proofreading",
+            "Double-entry verification",
+            "Encryption of the field"
           ],
           "answer": 0,
           "why": "Validation automatically checks data is sensible and follows rules before accepting it."
@@ -16442,10 +16495,10 @@ const INLINE_UNITS = {
         {
           "q": "A form passes validation but the customer has typed their house number as 12 instead of 21. Why wasn't this caught?",
           "options": [
-            "Validation only checks data is sensible, not that it is correct",
-            "Validation was turned off",
-            "Verification always fails",
-            "The data was encrypted"
+            "Validation checks data is sensible, not that it is correct",
+            "Validation had been switched off on the form",
+            "Verification always fails on house numbers",
+            "The data was encrypted before it was checked"
           ],
           "answer": 0,
           "why": "12 is a sensible value, so validation accepts it. Only verification can catch a correct-looking mistake."
@@ -16581,8 +16634,8 @@ const INLINE_UNITS = {
         {
           "q": "A council moves all parking permit applications online only. Elderly residents without internet or IT skills can no longer apply. Which issue is this?",
           "options": [
-            "Unequal access to IT (digital divide)",
-            "Privacy",
+            "Unequal access to IT",
+            "Privacy of residents' data",
             "Environmental impact",
             "Online behaviour"
           ],
@@ -16608,9 +16661,9 @@ const INLINE_UNITS = {
           "q": "A group of students repeatedly posts insulting comments about a classmate on social media. Which issue is this?",
           "options": [
             "Online behaviour and netiquette",
-            "Privacy",
-            "Unequal access",
-            "Copyright"
+            "Privacy of personal data",
+            "Unequal access to IT",
+            "Copyright infringement"
           ],
           "answer": 0,
           "why": "Cyberbullying and trolling break the standards of respectful online behaviour."
@@ -16693,7 +16746,7 @@ const INLINE_UNITS = {
             "Copyright, Designs and Patents Act 1988",
             "Computer Misuse Act 1990",
             "Data Protection Act 2018",
-            "DSE Regulations"
+            "Health and Safety (DSE) Regulations 1992"
           ],
           "answer": 0,
           "why": "The CDPA protects creators' work from being copied or shared without permission."
@@ -16704,7 +16757,7 @@ const INLINE_UNITS = {
             "Copyright, Designs and Patents Act 1988",
             "Computer Misuse Act 1990",
             "Data Protection Act 2018",
-            "DSE Regulations"
+            "Health and Safety (DSE) Regulations 1992"
           ],
           "answer": 0,
           "why": "Installing software beyond what the licence allows is copying it without permission, which breaks copyright law."
@@ -16717,7 +16770,7 @@ const INLINE_UNITS = {
             "Copyright Regulations (Computer Programs) 1992",
             "Computer Misuse Act 1990",
             "Data Protection Act 2018",
-            "DSE Regulations"
+            "Health and Safety (DSE) Regulations 1992"
           ],
           "answer": 0,
           "why": "The 1992 Regulations let a lawful user make a back-up copy and allow decompiling only for interoperability."
@@ -16736,7 +16789,7 @@ const INLINE_UNITS = {
           "why": "The DSE Regulations require employers to protect staff who use screens regularly."
         },
         {
-          "q": "A firm must check each new employee's desk, chair, screen position and lighting. Which law requires this?",
+          "q": "A firm must assess each new employee's desk, chair, monitor and lighting. Which law requires this?",
           "options": [
             "Health and Safety (Display Screen Equipment) Regulations",
             "Data Protection Act 2018",

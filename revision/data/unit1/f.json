@@ -123,8 +123,8 @@
             "rows": [
               ["Computer Misuse Act", "1990 (amended)", "Unauthorised access to computer systems and data", "S1: Unauthorised access; S2: Unauthorised access with intent; S3: Unauthorised modification", "S1: 2 yrs; S2: 5 yrs; S3: 10 yrs imprisonment"],
               ["Copyright, Designs and Patents Act", "1988", "Intellectual property rights for creative works and software", "Reproducing/distributing copyrighted work without permission", "Civil damages + up to 10 years imprisonment for criminal infringement"],
-              ["Copyright (Computer Programs) Regulations", "1992", "Specific IP protection for software and programs", "Copying, reverse engineering, or distributing software illegally", "Same as CDPA 1988"],
-              ["Health & Safety / DSE Regulations", "1992/1999", "Workplace safety for IT/screen users", "Employers must provide DSE assessments, breaks, training, proper equipment", "Civil claims / HSE enforcement"],
+              ["Copyright (Computer Programs) Regulations", "1992", "Updated copyright for software: back-up copies, decompiling and design material", "Lawful user may make a back-up copy; decompiling allowed only for interoperability; copying or selling code is still infringement", "Same as CDPA 1988"],
+              ["Health & Safety / DSE Regulations", "1992 (amended 2002)", "Workplace safety for IT/screen users", "Employers must provide DSE assessments, breaks, training, proper equipment", "Civil claims / HSE enforcement"],
               ["Data Protection Act / UK GDPR", "2018/2018", "Protection of personal data; rights of data subjects", "Unlawful processing, failure to report breaches, inadequate security", "ICO fines up to £17.5m or 4% global turnover"]
             ]
           },
