@@ -87,7 +87,7 @@ function rvSnapshot() {
   try {
     const rows = leagueRows();
     snap.week = state.league.week;
-    snap.rows = rows.map(r => ({ name: r.name, place: r.place, me: r.me }));
+    snap.rows = rows.map(r => ({ name: r.name, place: r.place, me: r.me, xp: r.xp }));
   } catch (e) { /* no league yet: no "overtaken" screen */ }
   return snap;
 }
@@ -108,7 +108,8 @@ function openRound(nodeId, mode, opts) {
     node: pathNodes().find(n => n.id === nodeId) || null,
     styleOverride: (opts && opts.styleOverride) || null,
     view: null, settingsOpen: false, cs: new WeakMap(), timer: null, speedTick: null,
-    returnFocus: document.activeElement, before, end: null
+    returnFocus: document.activeElement, returnKey: typeof focusKey === 'function' ? focusKey(document.activeElement) : null,
+    before, end: null
   };
   box.innerHTML = '<div class="rv-stage" id="rv-stage"></div><div class="sr-only" id="rv-live" aria-live="polite"></div>';
   box.hidden = false;
@@ -125,6 +126,7 @@ function closeRound() {
   rvClearTimer();
   rvStopSpeed();
   const back = rv.returnFocus;
+  const backKey = rv.returnKey;
   rv = null;
   round = null;
   const box = el('round-view');
@@ -132,14 +134,18 @@ function closeRound() {
   document.body.classList.remove('round-open');
   document.querySelectorAll('.app-shell, #sidebar, #right-rail, #sidebar-backdrop').forEach(n => { n.inert = false; });
   // The path's rings and counts read memory, which the round has just changed.
-  // Redrawing replaces the node that opened the round, so find it again by id.
-  const backId = back && back.id;
+  // Redrawing replaces the control that opened the round, so it is found
+  // again by the key taken when the round opened (app.js focusKey).
   if (typeof learnAfterRound === 'function') learnAfterRound();
   // Home's rings and Forgotten count, and the stats rail, read memory too.
   if (typeof currentPage !== 'undefined' && currentPage === 'home') renderHome();
-  if (typeof renderRightRail === 'function') renderRightRail();
-  const target = back && document.contains(back) ? back : (backId ? el(backId) : null);
-  if (target && typeof target.focus === 'function') target.focus({ preventScroll: true });
+  if (typeof renderRightRail === 'function') {
+    renderRightRail();
+    // The rail draws on the next frame: a control in it is found after that.
+    if (typeof flushRightRail === 'function') flushRightRail();
+  }
+  if (back && document.contains(back) && !back.disabled && typeof back.focus === 'function') back.focus({ preventScroll: true });
+  else if (typeof focusRedrawn === 'function') focusRedrawn(backKey);
 }
 
 /* ---------- end of round ----------
@@ -159,7 +165,7 @@ function finishRound() {
     title: node ? node.title : 'Review',
     startRing: r.startRing,
     ring: node ? MEMORY.ringPercent(node.items.map(it => it.code), state.memory) : null,
-    cards: rvAnsweredCards(r.cards),
+    cards: answeredRows(r.cards),
     phases: [], idx: 0, ringShown: false, rival: null
   };
   const b = rv.before || {};
@@ -206,23 +212,6 @@ function rvPayCoins(r, end) {
   return paid;
 }
 
-/* One row per term, in the order met. Retry copies fold into their card:
-   right first time, right on a retry, or missed. */
-function rvAnsweredCards(cards) {
-  const out = [];
-  const seen = new Map();
-  cards.forEach(c => {
-    if (!c.retry && !seen.has(c.code)) {
-      const row = { card: c, result: c.outcome === 'right' ? 'right' : 'missed' };
-      seen.set(c.code, row);
-      out.push(row);
-    } else if (c.retry && c.outcome === 'retry' && seen.has(c.code) && seen.get(c.code).result === 'missed') {
-      seen.get(c.code).result = 'retry';
-    }
-  });
-  return out;
-}
-
 function rvRenderEnd() {
   const stage = el('rv-stage');
   if (!stage || !rv || !rv.end) return;
@@ -237,7 +226,7 @@ function rvRenderEnd() {
     </header>
     <div class="rv-scroll" id="rv-scroll">
       <div class="rv-col re-col re-col--${phase}">${body}</div>
-      <div class="g-sticky-bar rv-sticky"><button class="g-btn g-btn-block" id="rv-continue" onclick="${fn}">${label}</button></div>
+      <div class="g-sticky-bar rv-sticky"><button class="g-btn g-btn-block" id="rv-continue" onclick="if(event.detail>1)return;${fn}">${label}</button></div>
     </div>`;
   const go = el('rv-continue');
   if (go) go.focus({ preventScroll: true });
@@ -297,7 +286,8 @@ function rvCompleteHTML(e) {
   const coins = typeof COINS !== 'undefined' && e.coins > 0
     ? `<span class="g-chip g-chip--coin"><span aria-hidden="true">🪙</span> +${e.coins}</span>` : '';
   const gain = e.ring != null ? e.ring - e.startRing : 0;
-  const confetti = e.ring === 100 && e.startRing < 100 ? rvConfettiHTML() : '';
+  // Confetti plays once, on the first drawing of Round Complete.
+  const confetti = e.ring === 100 && e.startRing < 100 && !e.ringShown ? rvConfettiHTML() : '';
   const ring = e.ring == null ? '' : `
       <div class="re-ring-wrap">
         <div class="g-ring re-ring" id="re-ring" style="--pct:${e.startRing}" role="img" aria-label="Step ${e.ring}% learnt${gain > 0 ? `, up ${gain}%` : ''}">
@@ -429,8 +419,12 @@ function renderRound() {
   const teaching = !past && card.teach && !s.taught;
 
   const body = teaching ? rvTeachHTML(card, s) : rvQuestionHTML(card, s, past);
+  // A new card (or the questions after its teach notes) slides in; a redraw of the same one doesn't.
+  const key = idx + (teaching ? ':t' + s.teachIdx : ':q');
+  const enter = rv.shownKey !== key && !rvReduced();
+  rv.shownKey = key;
   stage.innerHTML = rvTopHTML(idx, past)
-    + `<div class="rv-scroll" id="rv-scroll"><div class="rv-col">${body}</div>${rvStickyHTML(card, s, past, teaching)}</div>`
+    + `<div class="rv-scroll" id="rv-scroll"><div class="rv-col${enter ? ' rv-enter' : ''}">${body}</div>${rvStickyHTML(card, s, past, teaching)}</div>`
     + (rv.settingsOpen ? rvSettingsHTML() : '');
 
   rvFocus(card, s, past, teaching);
@@ -440,7 +434,9 @@ function renderRound() {
 function rvTopHTML(idx, past) {
   const unit = typeof unitDef === 'function' ? unitDef().label : '';
   const title = rv.node ? rv.node.title : round.mode === 'review' ? 'Review forgotten terms' : 'Round';
-  const pct = round.cards.length ? Math.round(100 * round.pos / round.cards.length) : 0;
+  // A Retry copy adds a card, which would pull the bar back: it never goes backwards.
+  const raw = round.cards.length ? Math.round(100 * round.pos / round.cards.length) : 0;
+  const pct = rv.maxPct = Math.max(rv.maxPct || 0, raw);
   const combo = MEMORY.combo(round.run);
   const mode = round.mode === 'hard' ? '<span class="rv-mode">😈 Hard</span>' : round.mode === 'speed' ? '<span class="rv-mode">⚡ Speed-run</span>' : '';
   return `
@@ -531,7 +527,7 @@ function rvTypedMissHTML(card) {
   return `
     <div class="rv-why bad rv-miss" role="status">
       <div class="rv-miss-row"><strong>Marked wrong. Answer: ${escapeHTML(card.q.answer)}</strong>${pill}</div>
-      <span>Type it to carry on. This card comes back at the end as ↻ Retry.</span>
+      <span>Type the answer to carry on. This card comes back at the end as ↻ Retry.</span>
     </div>`;
 }
 
@@ -566,7 +562,7 @@ function rvAnswerArea(card, s, past) {
       let c = '';
       const picked = q.kind === 'multi' && s.multi.includes(o);
       if (done && isRight(o)) c = 'right';
-      else if (s.shaking === o) c = 'wrong shake';
+      else if (rvIsShaking(s, o)) c = 'wrong shake';
       else if (card.tried.includes(o)) c = 'tried';
       else if (card.greyed.includes(o)) c = 'greyed';
       else if (picked) c = 'selected';
@@ -584,7 +580,7 @@ function rvAnswerArea(card, s, past) {
     const btn = (val, i, label) => {
       let c = '';
       if (done && q.answer === val) c = 'right';
-      else if (s.tfPick === val) c = 'wrong';
+      else if (s.tfPick === val) c = rvIsShaking(s, val) ? 'wrong shake' : 'wrong';
       return `<button class="rv-opt ${c}" ${locked ? 'disabled' : ''} onclick="roundPick(${i})"><span class="rv-key" aria-hidden="true">${i + 1}</span>${label}</button>`;
     };
     return `<div class="rv-opts rv-opts--two">${btn(true, 0, '✅ True')}${btn(false, 1, '❌ False')}</div>`;
@@ -679,9 +675,12 @@ function rvSimplerHTML(item) {
 /* The definition, with the term in bold where it appears (else in front). */
 function rvDefinitionHTML(item) {
   const def = escapeHTML(item.definition);
-  const parts = termParts(item.term).map(p => escapeHTML(p)).sort((a, b) => b.length - a.length);
-  for (const p of parts) {
-    const re = new RegExp(`\\b(${p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})\\b`, 'i');
+  const parts = termParts(item.term).sort((a, b) => b.length - a.length);
+  for (const raw of parts) {
+    const p = escapeHTML(raw);
+    // An acronym matches only in capitals: "IT" is not the word "it".
+    const flags = isAcronymToken(raw) ? '' : 'i';
+    const re = new RegExp(`\\b(${p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})\\b`, flags);
     if (re.test(def)) return def.replace(re, '<strong>$1</strong>');
   }
   return `<strong>${escapeHTML(item.term)}</strong>: ${def}`;
@@ -753,7 +752,9 @@ function rvStickyHTML(card, s, past, teaching) {
     label = 'Continue';
   }
   if (!label) return '';
-  return `<div class="g-sticky-bar rv-sticky"><button class="g-btn g-btn-block" id="rv-continue" onclick="${fn}">${label}</button></div>`;
+  // The second click of a double click lands on the next card's button (often
+  // another Continue): event.detail > 1 ignores it. Keyboard clicks are 0.
+  return `<div class="g-sticky-bar rv-sticky"><button class="g-btn g-btn-block" id="rv-continue" onclick="if(event.detail>1)return;${fn}">${label}</button></div>`;
 }
 
 function rvSettingsHTML() {
@@ -926,14 +927,7 @@ function roundPick(i) {
     const ev = answerCard(round, o, rvCtx());
     if (ev && !ev.right) {
       rvApply(ev, card, s);
-      if (rvReduced()) { renderRound(); return; }
-      s.shaking = o;
-      renderRound();
-      setTimeout(() => {
-        if (!rv || s.shaking !== o) return;
-        s.shaking = null;
-        renderRound();
-      }, RV_SHAKE_MS);
+      rvShake(card, s, [o]);
       return;
     }
     rvApply(ev, card, s);
@@ -945,7 +939,9 @@ function roundPick(i) {
   } else if (q.kind === 'tf') {
     if (i > 1) return;
     s.tfPick = i === 0;
-    rvApply(answerCard(round, s.tfPick, rvCtx()), card, s);
+    const ev = answerCard(round, s.tfPick, rvCtx());
+    rvApply(ev, card, s);
+    if (ev && !ev.right) rvShake(card, s, [s.tfPick]);
   } else if (q.kind === 'flip') {
     if (!s.flipped || i > 1) return;
     s.flipPick = i === 0;
@@ -953,17 +949,35 @@ function roundPick(i) {
   }
 }
 
+/* A wrong pick shakes red for RV_SHAKE_MS (not under reduced motion), then
+   settles to its greyed or wrong look. The redraw after the shake only
+   happens if that card is still the one on screen. */
+function rvShake(card, s, keys) {
+  if (rvReduced() || !keys.length) { renderRound(); return; }
+  const token = {};
+  s.shaking = keys;
+  s.shakeToken = token;
+  renderRound();
+  setTimeout(() => {
+    if (!rv || s.shakeToken !== token) return;
+    s.shaking = null;
+    s.shakeToken = null;
+    if (round && rvShown() === card) renderRound();
+  }, RV_SHAKE_MS);
+}
+function rvIsShaking(s, key) { return Array.isArray(s.shaking) && s.shaking.includes(key); }
+
 function roundCheckMulti() {
   const a = rvAnswerable();
   if (!a || a.card.q.kind !== 'multi' || !a.s.multi.length) return;
   const { card, s } = a;
-  const ev = answerCard(round, s.multi.slice(), rvCtx());
+  const picks = s.multi.slice();
+  const ev = answerCard(round, picks, rvCtx());
   if (ev && !ev.right) {
-    // Grey out the wrong picks; keep the right ones selected.
-    s.multi.filter(o => !card.q.answers.includes(o)).forEach(o => { if (!card.tried.includes(o)) card.tried.push(o); });
+    // The engine greys out the wrong picks; the right ones stay selected.
     s.multi = s.multi.filter(o => card.q.answers.includes(o));
     rvApply(ev, card, s);
-    renderRound();
+    rvShake(card, s, picks.filter(o => !card.q.answers.includes(o)));
     return;
   }
   rvApply(ev, card, s);
@@ -1065,7 +1079,7 @@ function roundSimpler() {
   const card = rvShown();
   if (!card) return;
   const s = rvCard(card);
-  if (rv.view == null && !card.done && !card.attempted && !s.flash) card.hinted = true;
+  if (rv.view == null && !s.flash) simplerCard(round);
   s.simpler = true;
   renderRound();
 }
@@ -1102,10 +1116,7 @@ function roundSetSetting(key, value) {
   const next = Object.assign(loadRoundSettings(), { [key]: value });
   if (key === 'style') rv.styleOverride = null;   // his pick replaces the override, and is saved
   const clean = saveRoundSettings(next);
-  round.settings = rv.styleOverride ? Object.assign({}, clean, { style: rv.styleOverride }) : clean;   // spelling counts from the next answer
-  if (key === 'hideOptions') {
-    round.cards.slice(round.pos).forEach(c => { if (c.q && c.q.kind === 'mcq' && !c.attempted) c.q.hidden = clean.hideOptions; });
-  }
+  setRoundSettings(round, rv.styleOverride ? Object.assign({}, clean, { style: rv.styleOverride }) : clean);
   renderRound();
 }
 
@@ -1125,10 +1136,14 @@ function rvKey(e) {
     // End screens: no card keys. Enter or Space with no button focused is Continue / Next round.
     if (e.key === 'Tab') { rvTrapTab(e, el('round-view')); return; }
     const onBtn = e.target && (e.target.tagName === 'BUTTON' || e.target.tagName === 'A');
-    if ((e.key === 'Enter' || e.key === ' ') && !onBtn && !e.repeat) {
-      e.preventDefault();
-      const go = el('rv-continue');
-      if (go) go.click();
+    if (e.key === 'Enter' || e.key === ' ') {
+      // A held key repeats: never let a repeat click the focused button again.
+      if (e.repeat) { e.preventDefault(); return; }
+      if (!onBtn) {
+        e.preventDefault();
+        const go = el('rv-continue');
+        if (go) go.click();
+      }
     }
     return;
   }
@@ -1139,10 +1154,12 @@ function rvKey(e) {
   if (e.key === 'Tab') { rvTrapTab(e, el('round-view')); return; }
   const t = e.target;
   if (typingIn(t)) {
-    if (e.key === 'Enter') { e.preventDefault(); roundType(); }
+    if (e.key === 'Enter') { e.preventDefault(); if (!e.repeat) roundType(); }
     return;
   }
-  if (e.repeat) return;
+  // A held Enter or Space would otherwise click the focused button (Continue)
+  // once per repeat and skip cards.
+  if (e.repeat) { if (e.key === 'Enter' || e.key === ' ') e.preventDefault(); return; }
   if (e.key === 'ArrowLeft') { e.preventDefault(); roundPrev(); return; }
   if (e.key === 'ArrowRight') { e.preventDefault(); roundNext(); return; }
   const onButton = t && (t.tagName === 'BUTTON' || t.tagName === 'A');

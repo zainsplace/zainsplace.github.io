@@ -39,12 +39,13 @@ function roundEscape(v) {
 
 /* Recap entries such as "C1.1.1-C1.1.3 Cloud Deployment Models Compared" sum
    up a range of terms. They belong in the notes, not in a quiz as a "term".
-   A merged item such as "B3.1.2-3 Ports & Packets" is a real term, so a recap
-   is a range code AND a comparison: its name says so, or it has a table.
-   app.js unitPathNodes() repeats this rule (it runs before this file loads). */
+   The rule is structural: a recap's code is a full range, with a letter after
+   the hyphen ("C1.1.1-C1.1.3"). A merged item such as "B3.1.2-3 Ports &
+   Packets" has a digit there and is a real term.
+   app.js isPathTerm() repeats this rule (it runs before this file loads);
+   tests/round.test.js checks the two agree on every item of both units. */
 function isRecapItem(it) {
-  return !!it && String(it.code).includes('-')
-    && (/\b(compared|comparison|recap|summary)\b/i.test(`${it.term} ${it.title || ''}`) || !!it.comparisonTable);
+  return !!it && /-[A-Z]/.test(String(it.code));
 }
 function isLessonItem(it) { return !!(it && it.term && it.definition && !isRecapItem(it)); }
 
@@ -229,15 +230,25 @@ function editDistance(a, b) {
   return d[a.length][b.length];
 }
 
+/* normAnswer drops a final "s", which leaves "Viruses" ("viruse") apart from
+   "Virus" ("viru"). Words ending s, x, z, ch or sh take "-es" plurals, so the
+   form without that "es" is a second key: "viruses" -> "virus" -> "viru". */
+function answerKeys(s) {
+  const keys = new Set([normAnswer(s), normAnswer(String(s).replace(/(s|x|z|ch|sh)es\b/gi, '$1'))]);
+  keys.delete('');
+  return keys;
+}
+
 /* 'exact' | 'close' (right, but misspelt) | false */
 function checkTyped(typed, accepts) {
   const t = normAnswer(typed);
   if (!t) return false;
+  const tKeys = answerKeys(typed);
   let best = false;
   accepts.forEach(a => {
     const n = normAnswer(a);
     if (!n) return;
-    if (n === t) { best = 'exact'; return; }
+    if ([...answerKeys(a)].some(k => tKeys.has(k))) { best = 'exact'; return; }
     const tol = n.length <= 4 ? 0 : n.length <= 9 ? 1 : 2;
     if (!best && editDistance(t, n) <= tol) best = 'close';
   });
@@ -281,10 +292,17 @@ function wordStems(phrase, skip) {
   return out;
 }
 
+/* Compound words a stem must also catch when they are written another way:
+   "Mail" in "email" or "e-mail", "Backup" as "backed up" or "back-up". */
+const STEM_FORMS = {
+  mail: '(?:e-?)?mail', email: '(?:e-?)?mail',
+  backup: 'back(?:ed|ing|s)?[\\s-]?up', login: 'log(?:ged|ging|s)?[\\s-]?in', setup: 'set(?:ting|s)?[\\s-]?up'
+};
+
 function stemRegex(st, flags = 'i') {
-  return st.acr
-    ? new RegExp(`(?<![A-Za-z0-9])${reEsc(st.w)}s?(?![A-Za-z0-9])`, flags)
-    : new RegExp(`(?<![A-Za-z0-9])${reEsc(st.w)}[A-Za-z0-9]*`, flags);
+  if (st.acr) return new RegExp(`(?<![A-Za-z0-9])${reEsc(st.w)}s?(?![A-Za-z0-9])`, flags);
+  const form = STEM_FORMS[st.w.toLowerCase()] || reEsc(st.w);
+  return new RegExp(`(?<![A-Za-z0-9])${form}[A-Za-z0-9]*`, flags);
 }
 
 function wordSpans(text) {
@@ -634,6 +652,15 @@ function gapAnswer(item, hit) {
    answer away: another name or a plural of it ("the interviewer", "costs"),
    the acronym spelt out ("NCSC = National Cyber Security Centre"), or a
    second blank. */
+/* Exam advice says how to answer, not what the term is: "Link ___ to GDPR",
+   "Use the term "___"", "___ is a key cloud benefit in any suitability
+   question". Its blank could be almost any term, so it is never a gap. */
+const ADVICE_START = /^(?:always\s+)?(?:link|match|use the term|describe|mention|remember|explain|state|say)\b/i;
+const ADVICE_WORDS = /\b(?:exam|examiner|question|questions|marks?)\b/i;
+function isLowInfoGap(text) {
+  return ADVICE_START.test(text.trim()) || /["“‘']___["”’']/.test(text) || ADVICE_WORDS.test(text);
+}
+
 function gapCandidates(item) {
   const pool = [...(item.keyFacts || []), item.examTip].filter(Boolean).map(String).filter(s => s.length <= 240);
   const names = acceptedAnswers(item).sort((a, b) => b.length - a.length);
@@ -652,7 +679,7 @@ function gapCandidates(item) {
     // The answer's own word elsewhere, even inside another word ("antivirus").
     if (wordStems(hits[0], GENERIC_WORDS).some(st => stemRegex(st).test(rest)
       || (st.w.length >= 4 && rest.toLowerCase().includes(st.w.toLowerCase())))) return;
-    if (!promptHasContent(text)) return;
+    if (!promptHasContent(text) || isLowInfoGap(text)) return;
     out.push({ text, answer, accepts });
   });
   return out;
@@ -823,7 +850,10 @@ function orderCards(cards) {
     let qs = shuffled(batch);
     const lastTaught = items[items.length - 1].code;
     if (qs.length > 1 && qs[0].code === lastTaught) qs.push(qs.shift());
+    // The spacer comes from after the new terms, else (a lone new term with
+    // nothing after it) from the known cards before them.
     if (bi === 0 && after.length) qs.unshift(after.shift());
+    else if (bi === 0 && qs.length === 1 && out.length) qs.unshift(out.pop());
     qs[0].teach = items;
     out.push(...qs);
   });
@@ -840,7 +870,9 @@ function mixInFormats(cards, mode, settings) {
     const q = tfQuestion(c.item, c.node);
     if (q) { c.q = q; tfCard = c; break; }
   }
-  for (const c of pool) {
+  // Known terms first for both, so a just-taught term is not the one asked
+  // as true/false or select-all when another card can take it.
+  for (const c of [...known, ...pool]) {
     if (c === tfCard || exampleParts(c.item).length < 3) continue;
     const q = multiQuestion(c.item, c.node);
     if (q) { c.q = q; break; }
@@ -905,22 +937,44 @@ function checkResponse(q, response, settings) {
   }
 }
 
+/* The question a Retry copy asks. Options come in a new order, so the place of
+   the right one can't be remembered. A true/false was answered (and its answer
+   shown) on the first copy, so the Retry asks it as multiple choice where the
+   node has enough neighbours. */
+function retryQuestion(card, settings) {
+  const q = card.q;
+  if (!q) return q;
+  if (q.kind === 'tf') {
+    const s = Object.assign(coerceRoundSettings(settings), { hideOptions: false });
+    return (card.node && card.item && mcqQuestion(card.item, card.node, {}, s)) || q;
+  }
+  if (Array.isArray(q.options)) return Object.assign({}, q, { options: shuffled(q.options) });
+  return q;
+}
+
 /* Wrong (or revealed): record it once, reset the run, send a Retry copy to the end.
    The memory record and run from before are kept (prevMem, prevRun) so
    "I was right" can undo it. */
 function markWrong(r, card, ctx, ev) {
+  const typed = card.q && (card.q.kind === 'type' || card.q.kind === 'gap');
   card.outcome = 'wrong';
-  card.prevRun = r.run;
+  if (typed) card.prevRun = r.run;
   r.run = 0;
   if (!card.retry && ctx && ctx.recordTermResult) {
-    const rec = ctx.getMemory ? ctx.getMemory(card.code) : null;
-    card.prevMem = rec ? JSON.parse(JSON.stringify(rec)) : null;
+    // Kept only when it can be read back: without getMemory, "I was right"
+    // would restore "no record" over the real one, so it is not offered.
+    if (typed && ctx.getMemory) {
+      const rec = ctx.getMemory(card.code);
+      card.prevMem = rec ? JSON.parse(JSON.stringify(rec)) : null;
+    }
     ev.days = ctx.recordTermResult(card.code, false);
   }
   const copy = Object.assign({}, card, {
-    retry: true, outcome: null, hinted: false, attempted: false, done: false,
+    q: retryQuestion(card, r.settings), retry: true, outcome: null, hinted: false, attempted: false, done: false,
     tried: [], greyed: [], teach: null, retryCopy: null
   });
+  delete copy.prevMem;
+  delete copy.prevRun;
   card.retryCopy = copy;
   r.cards.push(copy);
   ev.requeued = true;
@@ -954,6 +1008,10 @@ function answerCard(r, response, ctx) {
     }
   } else {
     if (response != null && !Array.isArray(response) && card.q.options) card.tried.push(response);
+    // Select-all: the wrong picks grey out; the right ones stay picked.
+    if (Array.isArray(response) && card.q.kind === 'multi') {
+      response.filter(o => !card.q.answers.includes(o) && !card.tried.includes(o)).forEach(o => card.tried.push(o));
+    }
     if (first) markWrong(r, card, c, ev);
     // Two-way questions can't be tried again on the same card.
     if (card.q.kind === 'tf' || card.q.kind === 'flip') card.done = true;
@@ -1043,6 +1101,23 @@ function explainCard(r, ctx) {
   return ev;
 }
 
+/* Simpler (the short flashcard wording) asked for before answering counts as
+   a hint: a right answer then earns no XP. */
+function simplerCard(r) {
+  const card = currentRoundCard(r);
+  if (!card || card.done || card.attempted) return false;
+  card.hinted = true;
+  return true;
+}
+
+/* New settings mid-round: spelling counts from the next answer, and "hide
+   options" applies to multiple-choice cards not yet tried. */
+function setRoundSettings(r, settings) {
+  if (!r) return;
+  r.settings = coerceRoundSettings(settings);
+  r.cards.slice(r.pos).forEach(c => { if (c.q && c.q.kind === 'mcq' && !c.attempted) c.q.hidden = r.settings.hideOptions; });
+}
+
 /* Move on; returns the next card, or null at the end of the round. */
 function nextCard(r) {
   if (!r) return null;
@@ -1074,14 +1149,42 @@ function streakWeek(todayStr, activity) {
   });
 }
 
+/* Round Complete's list: one row per term, in the order met. Retry copies
+   fold into their card: 'right' first time, 'retry' (right on a retry) or
+   'missed'. */
+function answeredRows(cards) {
+  const out = [];
+  const seen = new Map();
+  (cards || []).forEach(c => {
+    if (!c.retry && !seen.has(c.code)) {
+      const row = { card: c, result: c.outcome === 'right' ? 'right' : 'missed' };
+      seen.set(c.code, row);
+      out.push(row);
+    } else if (c.retry && c.outcome === 'retry' && seen.has(c.code) && seen.get(c.code).result === 'missed') {
+      seen.get(c.code).result = 'retry';
+    }
+  });
+  return out;
+}
+
 /* The rival passed this round: placed above you in the league table when the
    round started and below you now. With several, the one highest on the table
-   now. Rows are LEAGUE.standings rows ({ name, place, me }). */
+   now. Rows are LEAGUE.standings rows ({ name, place, me, xp }). With XP in
+   the rows, the XP you gained must cover the rival's lead from the start, so
+   the table moving on its own (rivals earn XP through the day) never counts
+   as you overtaking anyone. */
 function overtakenRival(beforeRows, afterRows) {
   if (!beforeRows || !afterRows) return null;
   const meB = beforeRows.find(r => r.me), meA = afterRows.find(r => r.me);
   if (!meB || !meA || meA.place >= meB.place) return null;
-  const above = new Set(beforeRows.filter(r => !r.me && r.place < meB.place).map(r => r.name));
+  const hasXP = [meB, meA].every(r => typeof r.xp === 'number');
+  const gain = hasXP ? meA.xp - meB.xp : 0;
+  if (hasXP && gain <= 0) return null;
+  const lead = name => {
+    const b = beforeRows.find(r => r.name === name);
+    return b && typeof b.xp === 'number' ? b.xp - meB.xp : 0;
+  };
+  const above = new Set(beforeRows.filter(r => !r.me && r.place < meB.place && (!hasXP || lead(r.name) < gain)).map(r => r.name));
   const passed = afterRows.filter(r => !r.me && r.place > meA.place && above.has(r.name))
     .sort((a, b) => a.place - b.place);
   return passed[0] || null;
@@ -1133,6 +1236,6 @@ if (typeof module !== 'undefined' && module.exports) {
     defaultRoundSettings, coerceRoundSettings, loadRoundSettings, saveRoundSettings, roundSettingsFor,
     questionFor, tfQuestion, multiQuestion, makeCard, makeRound, checkResponse,
     currentRoundCard, answerCard, canOverride, overrideRight, hintCard, revealCard, explainCard, nextCard, roundFinished,
-    streakMoved, streakWeek, overtakenRival
+    simplerCard, setRoundSettings, retryQuestion, answeredRows, streakMoved, streakWeek, overtakenRival
   };
 }

@@ -153,7 +153,11 @@ test('a 1-term node is topped up from earlier nodes', () => {
   };
   const r = R.makeRound({ node: byId('A1.2'), nodes, memory, todayStr: TODAY, settings: SET });
   const codes = r.cards.map(c => c.code);
-  assert.equal(codes[0] === 'A1.2.1' || codes.includes('A1.2.1'), true);
+  assert.ok(codes.includes('A1.2.1'));
+  // The new term is taught on the first card, and a known card sits between
+  // the notes and its question.
+  assert.deepEqual(r.cards[0].teach.map(i => i.code), ['A1.2.1']);
+  assert.notEqual(codes[0], 'A1.2.1');
   assert.ok(codes.includes('A1.1.1') && codes.includes('A1.1.2'));
   assert.ok(codes.length >= 3);
 });
@@ -623,6 +627,13 @@ test('gap: only whole words are blanked (never inside "Wikipedia", "interviewer"
     const iv = R.typedQuestion(intv, true);
     assert.ok(!/___er/.test(iv.prompt), iv.prompt);
   });
+  // Checked on the candidates directly, so the test can't pass just because no
+  // gap was made: "costs" and "interviewer" sentences are out, a clean one is in.
+  assert.deepEqual(R.gapCandidates(cost), []);
+  assert.deepEqual(R.gapCandidates(intv), []);
+  const intv2 = Object.assign({}, intv, { keyFacts: [...intv.keyFacts, 'An Interview suits a small group of users with detailed needs.'] });
+  assert.deepEqual(R.gapCandidates(intv2).map(g => g.text), ['An ___ suits a small group of users with detailed needs.']);
+  assert.deepEqual(R.gapCandidates(wiki).map(g => g.text), ['A ___ lets a team share notes.']);
 });
 
 test('gap: a blank that stands for part of a compound term accepts that part only', () => {
@@ -744,6 +755,9 @@ test('MCQ distractors: never confusable, another group, or an item whose own tex
   runs(30, () => {
     const d = R.distractorTerms(pub, n, 3);
     assert.ok(!d.some(t => /Service/.test(t)), d.join(' | '));
+    // ...and the safe ones are still offered, so the check is not passing on an empty list.
+    // (Hybrid Cloud is held back too: its definition names public cloud.)
+    assert.deepEqual(d, ['Private Cloud']);
   });
   const hack = item('A1.2.2', 'Hacking', 'Getting into a system without permission.', { examples: 'A DDoS taking a website offline' });
   const bots = item('A1.2.1e', 'Bots', 'Infected machines controlled together, often used for a DDoS.', { examples: 'a botnet' });
@@ -755,4 +769,170 @@ test('MCQ distractors: never confusable, another group, or an item whose own tex
     const e = R.questionsForItem(hack, n2, {}).find(q => q.kind === 'Example');
     assert.ok(e && !e.options.includes('Bots'), e && e.options.join(' | '));
   });
+});
+
+/* ---------- clean-up (Task 14) ---------- */
+
+// The recap rule lives twice: round.js isRecapItem / isLessonItem and app.js
+// isPathTerm (app.js builds the path before round.js loads). Both must agree
+// on every item of both units.
+test('recap rule: app.js isPathTerm and round.js isLessonItem agree on every item', () => {
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const appSrc = fs.readFileSync(path.join(__dirname, '..', 'app.js'), 'utf8');
+  const m = appSrc.match(/function isPathTerm\(it\) \{[\s\S]*?\r?\n\}/);
+  assert.ok(m, 'isPathTerm found in app.js');
+  const isPathTerm = new Function(`${m[0]}; return isPathTerm;`)();
+  const dataSrc = fs.readFileSync(path.join(__dirname, '..', 'data_inline.js'), 'utf8');
+  const units = new Function(`${dataSrc}; return INLINE_UNITS;`)();
+  let n = 0;
+  Object.values(units).forEach(u => Object.values(u.sections).forEach(sec => sec.topics.forEach(t =>
+    (t.subtopics || []).forEach(s => (s.items || []).forEach(it => {
+      n++;
+      assert.equal(isPathTerm(it), R.isLessonItem(it), `${it.code} ${it.term}`);
+    })))));
+  assert.ok(n > 300, `checked ${n} items`);
+  // The rule itself: a full range ("-C1.1.3") is a recap, a short one ("-3") is a term.
+  ['C1.1.1-C1.1.3', 'A1.1-A1.4'].forEach(code => assert.equal(R.isRecapItem({ code }), true, code));
+  ['B3.1.2-3', 'A4.1.8-9', 'A1.1.1'].forEach(code => assert.equal(R.isRecapItem({ code }), false, code));
+});
+
+test('typed: an "-es" plural matches its singular ("Viruses" = "Virus")', () => {
+  assert.equal(R.checkTyped('Viruses', ['Virus']), 'exact');
+  assert.equal(R.checkTyped('Virus', ['Viruses']), 'exact');
+  assert.equal(R.checkTyped('Processes', ['Process']), 'exact');
+  assert.equal(R.checkTyped('Databases', ['Database']), 'exact', 'the old "-s" rule still holds');
+  assert.equal(R.checkTyped('Vires', ['Virus']), false);
+  // The real gap: "___: attaches to files ..." blanks "Virus".
+  const mal = item('D1.1.1', 'Viruses and Other Malware', 'Harmful software.', {
+    accepts: ['Virus', 'Malware'],
+    keyFacts: ['Virus: attaches to files and spreads when they are run, so sharing one infected file can infect many PCs']
+  });
+  const g = R.gapCandidates(mal);
+  assert.equal(g.length, 1);
+  assert.equal(R.checkTyped('Viruses', g[0].accepts), 'exact');
+});
+
+test('gap: exam advice is never a gap ("Link ___ to GDPR", quoted blanks, "any question")', () => {
+  const sec = item('C1.4.1', 'Security', 'How well data is kept safe.', { keyFacts: [
+    'Always link Security to how sensitive the data is and to GDPR.',
+    'Use the term "Security", not safety.',
+    'Security is a key cloud benefit in any suitability question.',
+    'Regular updates from the vendor, so new Security flaws are patched'
+  ] });
+  assert.deepEqual(R.gapCandidates(sec).map(g => g.text), ['Regular updates from the vendor, so new ___ flaws are patched']);
+});
+
+test('mask: compound words written another way are hidden ("email" for Mail, "backed up" for Backup)', () => {
+  assert.equal(R.maskTerm('A policy stating what is backed up, and how often.', 'Backup Policy'), 'A ___ stating what is ___, and how often.');
+  assert.ok(!/email/i.test(R.maskTerm('Web, email and real-time communication services.', 'Web, Mail & Communication Services')));
+  assert.ok(!/e-mail/i.test(R.maskTerm('Rules for e-mail at work.', 'Email Policy')));
+  // Still whole-word at the start: "Mail" inside "gmail" is left alone.
+  assert.ok(/gmail/.test(R.maskTerm('A gmail account.', 'Mail Server')));
+});
+
+test('a round mixes in at most one true/false and one select-all, on known terms first', () => {
+  const ex = i => ({ examples: `Thing ${i}a; Thing ${i}b; Thing ${i}c` });
+  const its = Array.from({ length: 8 }, (_, i) => item(`M1.1.${i + 1}`, `Gadget${i + 1}`, `Device number ${i + 1} that does job ${i + 1} on its own.`, ex(i + 1)));
+  const sub = { code: 'M1.1', items: its };
+  const t = { subtopics: [sub] };
+  const n = { id: 'M1.1', items: its, topic: t, section: { topics: [t] }, sub };
+  const memory = {};
+  its.slice(0, 4).forEach(it => { memory[it.code] = { s: 2, due: '2026-11-25', seen: '2026-11-10', lapses: 0 }; });
+  runs(40, () => {
+    const r = R.makeRound({ node: n, nodes: [n], memory, todayStr: TODAY, settings: SET });
+    const kinds = r.cards.map(c => c.q.kind);
+    assert.ok(kinds.filter(k => k === 'tf').length <= 1, kinds.join());
+    assert.ok(kinds.filter(k => k === 'multi').length <= 1, kinds.join());
+    r.cards.filter(c => c.q.kind === 'tf' || c.q.kind === 'multi').forEach(c => assert.notEqual(c.status, 'new', `${c.q.kind} on a new term`));
+  });
+});
+
+test('select-all needs three examples: two examples never make one', () => {
+  const two = item('M2.1.1', 'Tablet', 'A flat touch-screen computer.', { examples: 'iPad; Galaxy Tab' });
+  const others = [item('M2.1.2', 'Printer', 'Puts documents on paper.', { examples: 'laser printer; inkjet; 3D printer' }),
+    item('M2.1.3', 'Scanner', 'Copies paper into a file.', { examples: 'flatbed scanner; barcode reader; document camera' })];
+  assert.equal(R.multiQuestion(two, nodeOf([two, ...others])), null);
+});
+
+test('Retry copies: options in a new order, a true/false comes back as multiple choice', () => {
+  const opts = new Set();
+  runs(30, () => {
+    const r = roundOf('A1.1.2');
+    const before = r.cards[0].q.options.join('|');
+    R.answerCard(r, r.cards[0].q.options.find(o => o !== 'Router'), fakeCtx());
+    const retry = r.cards[1];
+    assert.deepEqual(retry.q.options.slice().sort(), r.cards[0].q.options.slice().sort());
+    assert.equal(retry.q.answer, 'Router');
+    opts.add(before === retry.q.options.join('|') ? 'same' : 'moved');
+  });
+  assert.ok(opts.has('moved'), 'options are reshuffled for the Retry');
+  const it = findItem('A1.1.2');
+  const node = byId('A1.1');
+  const card = R.makeCard(it, 'learning', 'memorize', SET, { node });
+  card.node = node;
+  card.q = R.tfQuestion(it, node);
+  assert.equal(card.q.kind, 'tf');
+  const r = R.makeRound({ node, nodes, memory: {}, todayStr: TODAY, settings: SET, cards: [card] });
+  R.answerCard(r, !card.q.answer, fakeCtx());
+  assert.equal(r.cards[1].q.kind, 'mcq');
+  assert.equal(r.cards[1].q.answer, 'Router');
+  assert.equal(r.cards[1].q.hidden, false, 'shown straight away');
+});
+
+test('"I was right" is not offered when the old memory record cannot be read back', () => {
+  const r = typedRound({});
+  const ctx = fakeCtx();   // no getMemory
+  R.answerCard(r, 'Routing box', ctx);
+  assert.equal('prevMem' in r.cards[0], false);
+  assert.equal(R.canOverride(r.cards[0]), false);
+  // Non-typed cards keep no undo state either.
+  const m = roundOf('A1.1.2');
+  R.answerCard(m, m.cards[0].q.options.find(o => o !== 'Router'), overrideCtx({}));
+  assert.equal('prevMem' in m.cards[0], false);
+  assert.equal('prevRun' in m.cards[0], false);
+});
+
+test('engine owns round state: select-all wrong picks, Simpler as a hint, mid-round settings', () => {
+  const r = R.makeRound({ node: byId('A1.1'), nodes, memory: {}, todayStr: TODAY, settings: SET, cards: [
+    R.makeCard(findItem('A1.1.1'), 'learning', 'memorize', SET, { node: byId('A1.1') })
+  ] });
+  const multi = R.multiQuestion(findItem('A1.1.1'), byId('A1.1'));
+  r.cards[0].q = multi;
+  const wrong = multi.options.find(o => !multi.answers.includes(o));
+  const ev = R.answerCard(r, [multi.answers[0], wrong], fakeCtx());
+  assert.equal(ev.right, false);
+  assert.deepEqual(r.cards[0].tried, [wrong], 'only the wrong pick greys out');
+
+  const s = roundOf('A1.1.2');
+  assert.equal(R.simplerCard(s), true);
+  assert.equal(s.cards[0].hinted, true);
+  const s2 = roundOf('A1.1.2');
+  R.answerCard(s2, 'Router', fakeCtx());
+  assert.equal(R.simplerCard(s2), false, 'after answering it is free');
+
+  const h = roundOf('A1.1.2');
+  assert.equal(h.cards[0].q.hidden, true);
+  R.setRoundSettings(h, { ...SET, hideOptions: false, spelling: false });
+  assert.equal(h.cards[0].q.hidden, false);
+  assert.equal(h.settings.spelling, false);
+});
+
+test('Round Complete rows: one per term, a Retry folds into its card', () => {
+  const c = (code, outcome, retry = false) => ({ code, outcome, retry });
+  const rows = R.answeredRows([c('A', 'right'), c('B', 'wrong'), c('C', 'wrong'), c('B', 'retry', true), c('C', null, true)]);
+  assert.deepEqual(rows.map(x => [x.card.code, x.result]), [['A', 'right'], ['B', 'retry'], ['C', 'missed']]);
+  assert.deepEqual(R.answeredRows([]), []);
+});
+
+test('overtaken: the table moving on its own (a rival losing ground to the clock) does not count', () => {
+  const row = (name, place, xp, me = false) => ({ name, place, xp, me });
+  const before = [row('Ava', 1, 500), row('Cal', 2, 300, false), row('You', 3, 290, true)];
+  // You gained 20 XP and passed Cal, who was 10 ahead: that is yours.
+  const after = [row('Ava', 1, 520), row('You', 2, 310, true), row('Cal', 3, 305)];
+  assert.equal(R.overtakenRival(before, after).name, 'Cal');
+  // No XP gained: a reordering is not an overtake.
+  assert.equal(R.overtakenRival(before, [row('Ava', 1, 520), row('You', 2, 290, true), row('Cal', 3, 280)]), null);
+  // 5 XP gained cannot have passed a rival 10 ahead.
+  assert.equal(R.overtakenRival(before, [row('Ava', 1, 520), row('You', 2, 295, true), row('Cal', 3, 280)]), null);
 });
