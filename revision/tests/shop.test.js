@@ -7,10 +7,10 @@ test('coercePets keeps known pets, cleans names and fixes the active pet', () =>
     owned: { cat: { name: '  Whiskers  ' }, unicornish: { name: 'x' }, dog: 'bad', robot: { name: '' }, __proto__: { name: 'p' } },
     active: 'unicornish'
   });
-  assert.deepEqual(Object.keys(p.owned).sort(), ['cat', 'dog', 'robot']);
+  assert.deepEqual(Object.keys(p.owned).sort(), ['cat', 'dog', 'rabbit']);
   assert.equal(p.owned.cat.name, 'Whiskers');
   assert.equal(p.owned.dog.name, 'Dog', 'a broken record falls back to the pet name');
-  assert.equal(p.owned.robot.name, 'Robot', 'an empty name falls back to the pet name');
+  assert.equal(p.owned.rabbit.name, 'Rabbit', 'an empty name on a migrated robot falls back to the new pet name');
   assert.ok(p.active && p.owned[p.active], 'an unknown active pet becomes an owned one');
   assert.equal(SHOP.coercePets({ owned: { cat: {} }, active: 'cat' }).active, 'cat');
 });

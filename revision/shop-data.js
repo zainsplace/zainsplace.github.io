@@ -1,20 +1,15 @@
 /* ===== SHOP DATA =====
-   The shop's pets and accessories: original flat "sticker" art drawn in code
-   (shapes only, no images or fonts), prices, unlocks and the anchor system that
-   lets one accessory fit every pet and the avatar. No DOM and no app globals,
-   so tests/shop-data.test.js can load it in Node. The shop page (Task 13)
-   draws from here.
+   Pets, eggs, mascot lines and the avatar's accessories. Pets are images
+   (img/pets/<id>.png) hatched from eggs; accessories are flat "sticker" art
+   drawn in code and worn by the avatar only. No DOM and no app globals, so the
+   tests can load it in Node. shop.js draws from here.
 
-   Art rules: every pet is drawn in a 200x200 box; every accessory once on a
-   100x100 grid with its anchor at (50,50). Fills come from one colour `col`
-   (fill, a lighter tone and a darker 3px outline), so passing another colour
-   makes a colour variant. compose() places each worn item on the matching
-   anchor { x, y, s, r } of the pet or avatar:
-     hat -> head (top of the head, where a brim sits)
-     face -> eyes (midway between the eyes; glasses lenses are 34 apart)
-     neck -> neck, back -> back (upper back; drawn behind the body)
-     held -> hand (the grip point)
-     bg / frame / effect -> the whole 200x200 box. */
+   Accessory art: drawn once on a 100x100 grid with its anchor at (50,50).
+   Fills come from one colour `col` (fill, a lighter tone and a darker 3px
+   outline), so passing another colour makes a colour variant. compose()
+   places each worn item on the matching avatar anchor { x, y, s, r }:
+     hat -> head, face -> eyes, neck -> neck, back -> back (behind),
+     held -> hand, bg / frame / effect -> the whole 200x200 box. */
 const SHOP = (() => {
   /* ---------- colour ---------- */
   const HEX = /^#[0-9a-f]{6}$/i;
@@ -33,428 +28,130 @@ const SHOP = (() => {
     return { fill: c, light: lighter(c), mid: darker(c, 0.18), line: darker(c) };
   }
 
-  const INK = '#1E293B';
   const WHITE = '#FFFFFF';
-  const PINK = '#FB7185';
   const GOLD = '#FACC15', GOLD_LINE = '#A16207';
 
-  /* ---------- drawing helpers (pet coordinates, stroke-width 3) ---------- */
-  // A thick stroked path with an outline: tails, tentacles, arms.
-  const tube = (d, w, fill, line) =>
-    `<path d="${d}" fill="none" stroke="${line}" stroke-width="${w + 6}"/><path d="${d}" fill="none" stroke="${fill}" stroke-width="${w}"/>`;
-
-  /* Eyes: happy = open round eyes with a shine, sleepy = closed lines.
-     opts.ink colours the eye (screens use a glow colour), opts.sclera puts a
-     white ring round it (for eyes on a dark patch). */
-  function eyes(x1, x2, y, r, mood, opts) {
-    const o = opts || {};
-    const ink = o.ink || INK;
-    return [x1, x2].map(x => {
-      if (mood === 'sleepy') {
-        const c = o.sclera ? WHITE : ink;
-        return `<path d="M${x - r} ${y} Q${x} ${y + r * 0.9} ${x + r} ${y}" fill="none" stroke="${c}" stroke-width="${o.sclera ? 3 : 3.5}"/>`;
-      }
-      let s = '';
-      if (o.sclera) s += `<circle cx="${x}" cy="${y}" r="${r + 2.5}" fill="${WHITE}" stroke="none"/>`;
-      s += `<circle cx="${x}" cy="${y}" r="${r}" fill="${ink}" stroke="none"/>`;
-      if (!o.noShine) s += `<circle cx="${x + r * 0.35}" cy="${y - r * 0.4}" r="${r * 0.38}" fill="${WHITE}" stroke="none"/>`;
-      return s;
-    }).join('');
-  }
-  const blush = (x1, x2, y, rx) =>
-    [x1, x2].map(x => `<ellipse cx="${x}" cy="${y}" rx="${rx || 7}" ry="${(rx || 7) * 0.58}" fill="${PINK}" opacity=".45" stroke="none"/>`).join('');
-  const smile = (x, y, w, c) => `<path d="M${x - w} ${y} Q${x} ${y + w * 0.9} ${x + w} ${y}" fill="none" stroke="${c || INK}" stroke-width="3"/>`;
-  const catMouth = (x, y) => `<path d="M${x - 8} ${y} q4 5 8 0 q4 5 8 0" fill="none" stroke="${INK}" stroke-width="2.5"/>`;
-  const zz = (x, y, c) => `<path d="M${x} ${y} h8 l-8 9 h8 M${x + 12} ${y - 12} h6 l-6 7 h6" fill="none" stroke="${c || '#94A3B8'}" stroke-width="2.5" opacity=".85"/>`;
-  const wrap = body => `<g stroke-width="3" stroke-linejoin="round" stroke-linecap="round">${body}</g>`;
   const A = (x, y, s, r) => ({ x, y, s, r: r || 0 });
 
-  /* A shaggy outline round an ellipse, for the yeti. */
-  function shag(cx, cy, rx, ry, n, amp) {
-    let d = '';
-    for (let i = 0; i <= n; i++) {
-      const a = (i / n) * Math.PI * 2 - Math.PI / 2;
-      const x = cx + Math.cos(a) * rx, y = cy + Math.sin(a) * ry;
-      if (i === 0) { d += `M${x.toFixed(1)} ${y.toFixed(1)}`; continue; }
-      const m = a - Math.PI / n;
-      const qx = cx + Math.cos(m) * (rx + amp), qy = cy + Math.sin(m) * (ry + amp);
-      d += ` Q${qx.toFixed(1)} ${qy.toFixed(1)} ${x.toFixed(1)} ${y.toFixed(1)}`;
+  /* ---------- pets (images) ----------
+     Each pet is a 256px transparent PNG at img/pets/<id>.png, picked by id, so
+     new art drops in with no code change. Pets are only got
+     from eggs. */
+  const RARITIES = [
+    { id: 'common', name: 'Common', col: '#94A3B8' },
+    { id: 'rare', name: 'Rare', col: '#3B82F6' },
+    { id: 'epic', name: 'Epic', col: '#8B5CF6' },
+    { id: 'legendary', name: 'Legendary', col: '#D4A017' },
+    { id: 'mythic', name: 'Mythic', col: '#E11D48' }
+  ];
+  const PET_LIST = [
+    ['cat', 'Cat', 'common'], ['dog', 'Dog', 'common'], ['rabbit', 'Rabbit', 'common'],
+    ['hamster', 'Hamster', 'common'], ['frog', 'Frog', 'common'],
+    ['fox', 'Fox', 'rare'], ['owl', 'Owl', 'rare'], ['penguin', 'Penguin', 'rare'], ['panda', 'Panda', 'rare'],
+    ['wolf', 'Wolf', 'epic'], ['tiger', 'Tiger', 'epic'], ['bear', 'Bear', 'epic'], ['eagle', 'Eagle', 'epic'],
+    ['lion', 'Lion', 'legendary'], ['griffin', 'Griffin', 'legendary'], ['unicorn', 'Unicorn', 'legendary'], ['dragon', 'Dragon', 'legendary'],
+    ['phoenix', 'Phoenix', 'mythic'], ['kraken', 'Kraken', 'mythic'], ['hydra', 'Hydra', 'mythic']
+  ];
+  const PETS = PET_LIST.map(([id, name, rarity]) => ({ id, name, rarity, img: `img/pets/${id}.png` }));
+
+  /* Old code-drawn pets with no animal in the new set, mapped to a new pet
+     (cheap starters -> common, tech -> rare, yeti/slime -> epic). Every other
+     old id (cat, dog, fox, rabbit, owl, penguin, frog, panda, hamster, dragon,
+     unicorn, phoenix, griffin, kraken) is in the new set and is kept. */
+  const MIGRATE = { robot: 'rabbit', computer: 'hamster', drone: 'penguin', floppy: 'owl', yeti: 'bear', slime: 'wolf' };
+  const OLD_NAMES = { robot: 'Robot', computer: 'Little computer', drone: 'Drone', floppy: 'Floppy-disk buddy', yeti: 'Yeti', slime: 'Slime' };
+
+  /* ---------- eggs ---------- */
+  const EGGS = [
+    { id: 'common', name: 'Common egg', price: 100, odds: [['common', 0.85], ['rare', 0.15]] },
+    { id: 'rare', name: 'Rare egg', price: 250, odds: [['rare', 0.85], ['epic', 0.15]] },
+    { id: 'epic', name: 'Epic egg', price: 500, odds: [['epic', 0.88], ['legendary', 0.12]] },
+    { id: 'legendary', name: 'Legendary egg', price: 1000, odds: [['legendary', 0.92], ['mythic', 0.08]] }
+  ];
+  const REFUND = 0.4;
+  const egg = id => EGGS.find(e => e.id === id) || null;
+  const rarity = id => RARITIES.find(r => r.id === id) || null;
+  // A random number in [0, 1): anything else is clamped.
+  const unit01 = r => (typeof r === 'number' && r >= 0 ? Math.min(r, 1 - 1e-9) : 0);
+
+  function rollRarity(e, rand) {
+    const r = unit01(rand());
+    let acc = 0;
+    for (const [id, p] of e.odds) {
+      acc += p;
+      if (r < acc) return id;
     }
-    return d + ' Z';
+    return e.odds[e.odds.length - 1][0];
+  }
+  const refundFor = e => Math.round(e.price * REFUND);
+
+  /* hatch(eggId, owned, rand) -> { egg, pet, rarity, duplicate, refund }.
+     rand() is called twice: the rarity, then the pet within it (uniform). */
+  function hatch(eggId, owned, rand) {
+    const e = egg(eggId);
+    if (!e) return null;
+    const rar = rollRarity(e, rand);
+    const pool = PETS.filter(p => p.rarity === rar);
+    const p = pool[Math.floor(unit01(rand()) * pool.length)];
+    const dup = !!(owned && Object.prototype.hasOwnProperty.call(owned, p.id));
+    return { egg: e.id, pet: p.id, rarity: rar, duplicate: dup, refund: dup ? refundFor(e) : 0 };
   }
 
-  /* ---------- pets ---------- */
-  const PET_ART = {
-    cat(t, mood) {
-      const { fill: f, light: l, line: o } = t;
-      return wrap(
-        tube('M128 172 C160 176 174 150 162 118', 12, f, o) +
-        `<ellipse cx="100" cy="160" rx="40" ry="30" fill="${f}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="166" rx="22" ry="17" fill="${l}" stroke="none"/>` +
-        `<ellipse cx="82" cy="187" rx="12" ry="7" fill="${l}" stroke="${o}"/><ellipse cx="118" cy="187" rx="12" ry="7" fill="${l}" stroke="${o}"/>` +
-        `<path d="M56 86 L60 44 L92 64 Z" fill="${f}" stroke="${o}"/><path d="M144 86 L140 44 L108 64 Z" fill="${f}" stroke="${o}"/>` +
-        `<path d="M65 76 L66 56 L82 66 Z" fill="#FDA4AF" stroke="none"/><path d="M135 76 L134 56 L118 66 Z" fill="#FDA4AF" stroke="none"/>` +
-        `<ellipse cx="100" cy="98" rx="50" ry="42" fill="${f}" stroke="${o}"/>` +
-        `<path d="M100 59 v11 M89 61 l3 9 M111 61 l-3 9" fill="none" stroke="${o}" stroke-width="3.5"/>` +
-        `<ellipse cx="100" cy="115" rx="20" ry="13" fill="${l}" stroke="none"/>` +
-        eyes(80, 120, 98, 8, mood) + blush(68, 132, 112) +
-        `<path d="M95 107 h10 l-5 6 z" fill="${PINK}" stroke="${o}" stroke-width="2"/>` + catMouth(100, 116) +
-        `<path d="M58 106 h16 M58 116 l16 -4 M142 106 h-16 M142 116 l-16 -4" fill="none" stroke="${o}" stroke-width="2"/>` +
-        `<ellipse cx="137" cy="163" rx="10" ry="9" fill="${f}" stroke="${o}"/>`);
-    },
-    dog(t, mood) {
-      const { fill: f, light: l, mid: m, line: o } = t;
-      return wrap(
-        tube('M134 162 Q162 154 160 128', 10, f, o) +
-        `<ellipse cx="100" cy="160" rx="40" ry="30" fill="${f}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="166" rx="22" ry="17" fill="${l}" stroke="none"/>` +
-        `<ellipse cx="82" cy="187" rx="12" ry="7" fill="${l}" stroke="${o}"/><ellipse cx="118" cy="187" rx="12" ry="7" fill="${l}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="100" rx="48" ry="42" fill="${f}" stroke="${o}"/>` +
-        `<ellipse cx="119" cy="94" rx="14" ry="13" fill="${m}" stroke="none"/>` +
-        `<path d="M60 72 Q38 78 42 118 Q48 134 62 120 Q66 98 72 80 Z" fill="${m}" stroke="${o}"/>` +
-        `<path d="M140 72 Q162 78 158 118 Q152 134 138 120 Q134 98 128 80 Z" fill="${m}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="119" rx="22" ry="15" fill="${l}" stroke="none"/>` +
-        eyes(81, 119, 96, 8, mood) + blush(70, 130, 114) +
-        `<ellipse cx="100" cy="110" rx="8" ry="6" fill="${INK}" stroke="none"/>` +
-        `<path d="M96 122 q4 13 8 0 z" fill="${PINK}" stroke="${o}" stroke-width="2"/>` +
-        `<path d="M91 120 q9 6 18 0" fill="none" stroke="${INK}" stroke-width="2.5"/>` +
-        `<ellipse cx="137" cy="163" rx="10" ry="9" fill="${f}" stroke="${o}"/>`);
-    },
-    fox(t, mood) {
-      const { fill: f, mid: m, line: o } = t;
-      const w = '#FFF7ED';
-      return wrap(
-        `<ellipse cx="156" cy="140" rx="19" ry="40" transform="rotate(32 156 140)" fill="${f}" stroke="${o}"/>` +
-        `<ellipse cx="171" cy="113" rx="11" ry="13" transform="rotate(32 171 113)" fill="${w}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="162" rx="36" ry="28" fill="${f}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="164" rx="18" ry="18" fill="${w}" stroke="none"/>` +
-        `<ellipse cx="84" cy="187" rx="11" ry="7" fill="${darker(f, 0.5)}" stroke="${o}"/><ellipse cx="116" cy="187" rx="11" ry="7" fill="${darker(f, 0.5)}" stroke="${o}"/>` +
-        `<path d="M52 90 L56 32 L94 64 Z" fill="${f}" stroke="${o}"/><path d="M148 90 L144 32 L106 64 Z" fill="${f}" stroke="${o}"/>` +
-        `<path d="M62 76 L62 48 L82 64 Z" fill="${w}" stroke="none"/><path d="M138 76 L138 48 L118 64 Z" fill="${w}" stroke="none"/>` +
-        `<path d="M56 33 L57 47 L66 41 Z M144 33 L143 47 L134 41 Z" fill="${darker(f, 0.5)}" stroke="${o}" stroke-width="2"/>` +
-        `<path d="M50 92 Q52 60 100 58 Q148 60 150 92 Q150 118 124 132 Q100 142 76 132 Q50 118 50 92 Z" fill="${f}" stroke="${o}"/>` +
-        `<path d="M53 102 Q72 104 84 118 Q92 132 100 132 Q108 132 116 118 Q128 104 147 102 Q144 120 124 131 Q100 141 76 131 Q56 120 53 102 Z" fill="${w}" stroke="none"/>` +
-        eyes(79, 121, 96, 7.5, mood) + blush(66, 134, 112, 6) +
-        `<ellipse cx="100" cy="121" rx="6.5" ry="5" fill="${INK}" stroke="none"/>` + smile(100, 127, 6) +
-        `<ellipse cx="135" cy="164" rx="9" ry="9" fill="${f}" stroke="${o}"/>`);
-    },
-    rabbit(t, mood) {
-      const { fill: f, light: l, line: o } = t;
-      return wrap(
-        `<circle cx="138" cy="174" r="12" fill="${l}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="160" rx="38" ry="30" fill="${f}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="166" rx="20" ry="17" fill="${l}" stroke="none"/>` +
-        `<ellipse cx="83" cy="187" rx="13" ry="7" fill="${l}" stroke="${o}"/><ellipse cx="117" cy="187" rx="13" ry="7" fill="${l}" stroke="${o}"/>` +
-        `<ellipse cx="80" cy="48" rx="13" ry="34" transform="rotate(-10 80 48)" fill="${f}" stroke="${o}"/>` +
-        `<ellipse cx="120" cy="48" rx="13" ry="34" transform="rotate(10 120 48)" fill="${f}" stroke="${o}"/>` +
-        `<ellipse cx="80" cy="50" rx="6" ry="24" transform="rotate(-10 80 50)" fill="#FDA4AF" stroke="none"/>` +
-        `<ellipse cx="120" cy="50" rx="6" ry="24" transform="rotate(10 120 50)" fill="#FDA4AF" stroke="none"/>` +
-        `<ellipse cx="100" cy="102" rx="46" ry="40" fill="${f}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="118" rx="18" ry="12" fill="${l}" stroke="none"/>` +
-        eyes(81, 119, 100, 8, mood) + blush(70, 130, 114) +
-        `<path d="M96 110 h8 l-4 5 z" fill="${PINK}" stroke="${o}" stroke-width="2"/>` +
-        `<path d="M92 118 q4 4 8 0 q4 4 8 0" fill="none" stroke="${INK}" stroke-width="2.5"/>` +
-        `<rect x="96" y="120" width="8" height="7" rx="1.5" fill="${WHITE}" stroke="${o}" stroke-width="1.5"/>` +
-        `<ellipse cx="136" cy="163" rx="9" ry="9" fill="${f}" stroke="${o}"/>`);
-    },
-    owl(t, mood) {
-      const { fill: f, light: l, mid: m, line: o } = t;
-      return wrap(
-        `<path d="M58 76 L50 38 L82 60 Z" fill="${m}" stroke="${o}"/><path d="M142 76 L150 38 L118 60 Z" fill="${m}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="120" rx="56" ry="64" fill="${f}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="150" rx="34" ry="32" fill="${l}" stroke="none"/>` +
-        `<path d="M86 142 l6 5 l6 -5 M102 142 l6 5 l6 -5 M94 156 l6 5 l6 -5 M80 156 l4 4 M120 156 l-4 4" fill="none" stroke="${m}" stroke-width="2.5"/>` +
-        `<path d="M46 112 Q32 142 56 170 Q64 140 58 114 Z" fill="${m}" stroke="${o}"/>` +
-        `<path d="M154 112 Q168 142 144 170 Q136 140 142 114 Z" fill="${m}" stroke="${o}"/>` +
-        `<circle cx="78" cy="94" r="20" fill="${lighter(f, 0.75)}" stroke="${o}"/><circle cx="122" cy="94" r="20" fill="${lighter(f, 0.75)}" stroke="${o}"/>` +
-        eyes(78, 122, 94, 9, mood) +
-        `<path d="M93 108 L107 108 L100 121 Z" fill="#F59E0B" stroke="#B45309"/>` +
-        `<ellipse cx="86" cy="185" rx="9" ry="5" fill="#F59E0B" stroke="#B45309"/><ellipse cx="114" cy="185" rx="9" ry="5" fill="#F59E0B" stroke="#B45309"/>`);
-    },
-    penguin(t, mood) {
-      const { fill: f, line: o } = t;
-      const w = '#F8FAFC';
-      return wrap(
-        `<path d="M54 110 Q30 136 40 162 Q54 146 60 122 Z" fill="${f}" stroke="${o}"/>` +
-        `<path d="M146 110 Q170 136 160 162 Q146 146 140 122 Z" fill="${f}" stroke="${o}"/>` +
-        `<ellipse cx="84" cy="186" rx="12" ry="6" fill="#F59E0B" stroke="#B45309"/><ellipse cx="116" cy="186" rx="12" ry="6" fill="#F59E0B" stroke="#B45309"/>` +
-        `<ellipse cx="100" cy="118" rx="50" ry="66" fill="${f}" stroke="${o}"/>` +
-        `<path d="M100 80 C88 64 62 72 64 100 C66 118 76 126 72 150 C76 178 124 178 128 150 C124 126 134 118 136 100 C138 72 112 64 100 80 Z" fill="${w}" stroke="none"/>` +
-        eyes(84, 116, 98, 7.5, mood) + blush(76, 124, 112, 6) +
-        `<path d="M92 107 L108 107 L100 118 Z" fill="#F59E0B" stroke="#B45309"/>`);
-    },
-    frog(t, mood) {
-      const { fill: f, light: l, line: o } = t;
-      const eye = x => mood === 'sleepy'
-        ? `<path d="M${x - 10} 80 Q${x} 89 ${x + 10} 80" fill="none" stroke="${INK}" stroke-width="3.5"/>`
-        : `<circle cx="${x}" cy="80" r="11" fill="${WHITE}" stroke="${o}" stroke-width="2"/><circle cx="${x}" cy="81" r="6.5" fill="${INK}" stroke="none"/><circle cx="${x + 2.5}" cy="78" r="2.4" fill="${WHITE}" stroke="none"/>`;
-      return wrap(
-        `<ellipse cx="56" cy="178" rx="24" ry="12" fill="${f}" stroke="${o}"/><ellipse cx="144" cy="178" rx="24" ry="12" fill="${f}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="158" rx="42" ry="30" fill="${f}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="166" rx="28" ry="18" fill="${l}" stroke="none"/>` +
-        `<circle cx="72" cy="82" r="19" fill="${f}" stroke="${o}"/><circle cx="128" cy="82" r="19" fill="${f}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="110" rx="60" ry="36" fill="${f}" stroke="${o}"/>` +
-        `<circle cx="72" cy="82" r="17.4" fill="${f}" stroke="none"/><circle cx="128" cy="82" r="17.4" fill="${f}" stroke="none"/>` +
-        eye(72) + eye(128) + blush(62, 138, 116, 8) +
-        `<path d="M70 116 Q100 138 130 116" fill="none" stroke="${INK}" stroke-width="3"/>` +
-        `<circle cx="94" cy="104" r="1.8" fill="${INK}" stroke="none"/><circle cx="106" cy="104" r="1.8" fill="${INK}" stroke="none"/>` +
-        `<ellipse cx="82" cy="186" rx="11" ry="6" fill="${f}" stroke="${o}"/><ellipse cx="118" cy="186" rx="11" ry="6" fill="${f}" stroke="${o}"/>` +
-        `<ellipse cx="138" cy="160" rx="9" ry="8" fill="${f}" stroke="${o}"/>`);
-    },
-    panda(t, mood) {
-      const { fill: c, line: o } = t;
-      const w = '#F8FAFC';
-      return wrap(
-        `<ellipse cx="100" cy="160" rx="42" ry="30" fill="${w}" stroke="${o}"/>` +
-        `<ellipse cx="80" cy="185" rx="15" ry="9" fill="${c}" stroke="${o}"/><ellipse cx="120" cy="185" rx="15" ry="9" fill="${c}" stroke="${o}"/>` +
-        `<ellipse cx="64" cy="158" rx="11" ry="16" fill="${c}" stroke="${o}"/>` +
-        `<circle cx="60" cy="64" r="15" fill="${c}" stroke="${o}"/><circle cx="140" cy="64" r="15" fill="${c}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="100" rx="52" ry="44" fill="${w}" stroke="${o}"/>` +
-        `<ellipse cx="80" cy="98" rx="13" ry="16" transform="rotate(30 80 98)" fill="${c}" stroke="none"/>` +
-        `<ellipse cx="120" cy="98" rx="13" ry="16" transform="rotate(-30 120 98)" fill="${c}" stroke="none"/>` +
-        eyes(81, 119, 97, 5, mood, { sclera: true }) + blush(66, 134, 116) +
-        `<ellipse cx="100" cy="114" rx="7" ry="5" fill="${INK}" stroke="none"/>` + catMouth(100, 120) +
-        `<ellipse cx="137" cy="160" rx="11" ry="12" fill="${c}" stroke="${o}"/>`);
-    },
-    hamster(t, mood) {
-      const { fill: f, light: l, line: o } = t;
-      return wrap(
-        `<circle cx="70" cy="106" r="11" fill="${f}" stroke="${o}"/><circle cx="130" cy="106" r="11" fill="${f}" stroke="${o}"/>` +
-        `<circle cx="70" cy="107" r="5" fill="#FDA4AF" stroke="none"/><circle cx="130" cy="107" r="5" fill="#FDA4AF" stroke="none"/>` +
-        `<ellipse cx="100" cy="142" rx="48" ry="40" fill="${f}" stroke="${o}"/>` +
-        `<path d="M62 150 Q64 124 100 124 Q136 124 138 150 Q136 178 100 180 Q64 178 62 150 Z" fill="${l}" stroke="none"/>` +
-        eyes(86, 114, 130, 6, mood) + blush(72, 128, 142, 9) +
-        `<ellipse cx="100" cy="139" rx="4" ry="3" fill="${PINK}" stroke="none"/>` + catMouth(100, 143) +
-        `<ellipse cx="90" cy="163" rx="7" ry="5" fill="${f}" stroke="${o}" stroke-width="2.5"/><ellipse cx="110" cy="163" rx="7" ry="5" fill="${f}" stroke="${o}" stroke-width="2.5"/>` +
-        `<ellipse cx="82" cy="182" rx="9" ry="5" fill="${l}" stroke="${o}" stroke-width="2.5"/><ellipse cx="118" cy="182" rx="9" ry="5" fill="${l}" stroke="${o}" stroke-width="2.5"/>`);
-    },
-    robot(t, mood) {
-      const { fill: f, light: l, mid: m, line: o } = t;
-      const glow = '#67E8F9';
-      return wrap(
-        `<path d="M100 54 V34" stroke="${o}" stroke-width="4" fill="none"/><circle cx="100" cy="30" r="7" fill="#F43F5E" stroke="#9F1239"/>` +
-        `<rect x="72" y="178" width="18" height="12" rx="3" fill="${m}" stroke="${o}"/><rect x="110" y="178" width="18" height="12" rx="3" fill="${m}" stroke="${o}"/>` +
-        `<rect x="44" y="140" width="16" height="32" rx="8" fill="${m}" stroke="${o}"/><rect x="140" y="138" width="16" height="28" rx="8" fill="${m}" stroke="${o}"/>` +
-        `<rect x="62" y="134" width="76" height="48" rx="10" fill="${f}" stroke="${o}"/>` +
-        `<rect x="82" y="146" width="36" height="22" rx="4" fill="${l}" stroke="${o}" stroke-width="2"/>` +
-        `<circle cx="92" cy="157" r="4" fill="#4ADE80" stroke="none"/><circle cx="108" cy="157" r="4" fill="#FBBF24" stroke="none"/>` +
-        `<rect x="90" y="126" width="20" height="10" fill="${m}" stroke="${o}"/>` +
-        `<rect x="43" y="80" width="12" height="24" rx="4" fill="${m}" stroke="${o}"/><rect x="145" y="80" width="12" height="24" rx="4" fill="${m}" stroke="${o}"/>` +
-        `<rect x="52" y="54" width="96" height="76" rx="18" fill="${f}" stroke="${o}"/>` +
-        `<rect x="64" y="67" width="72" height="50" rx="12" fill="${INK}" stroke="${o}" stroke-width="2"/>` +
-        eyes(84, 116, 89, 8, mood, { ink: glow, noShine: true }) +
-        `<path d="M90 104 Q100 111 110 104" fill="none" stroke="${glow}" stroke-width="3"/>` +
-        `<circle cx="148" cy="164" r="9" fill="${m}" stroke="${o}"/>`);
-    },
-    computer(t, mood) {
-      const { fill: f, light: l, mid: m, line: o } = t;
-      const glow = '#4ADE80';
-      return wrap(
-        `<rect x="54" y="166" width="92" height="20" rx="6" fill="${l}" stroke="${o}"/>` +
-        `<path d="M64 173 h8 M78 173 h8 M92 173 h8 M106 173 h8 M120 173 h14 M70 180 h60" stroke="${o}" stroke-width="2.5" fill="none"/>` +
-        `<rect x="84" y="138" width="32" height="20" fill="${m}" stroke="${o}"/>` +
-        tube('M150 112 Q168 124 160 142', 7, f, o) + `<circle cx="160" cy="145" r="8" fill="${f}" stroke="${o}"/>` +
-        tube('M50 112 Q34 124 40 142', 7, f, o) + `<circle cx="40" cy="145" r="8" fill="${f}" stroke="${o}"/>` +
-        `<rect x="46" y="48" width="108" height="94" rx="16" fill="${f}" stroke="${o}"/>` +
-        `<rect x="60" y="60" width="80" height="62" rx="10" fill="#0F172A" stroke="${o}" stroke-width="2"/>` +
-        eyes(84, 116, 86, 7, mood, { ink: glow, noShine: true }) +
-        `<path d="M90 101 Q100 109 110 101" fill="none" stroke="${glow}" stroke-width="3"/>` +
-        `<path d="M68 70 l8 -4" stroke="${WHITE}" stroke-width="2.5" opacity=".5" fill="none"/>` +
-        `<circle cx="140" cy="132" r="3.5" fill="#4ADE80" stroke="none"/><path d="M60 132 h22" stroke="${o}" stroke-width="2.5" fill="none"/>`);
-    },
-    drone(t, mood) {
-      const { fill: f, light: l, mid: m, line: o } = t;
-      const glow = '#67E8F9';
-      const rotor = x => `<ellipse cx="${x}" cy="62" rx="27" ry="5" fill="${lighter(f, 0.75)}" stroke="${o}" stroke-width="2" opacity=".9"/><rect x="${x - 4}" y="60" width="8" height="12" rx="2" fill="${m}" stroke="${o}" stroke-width="2"/>`;
-      return wrap(
-        `<path d="M70 146 L60 170 M130 146 L140 170 M44 171 H78 M122 171 H156" fill="none" stroke="${o}" stroke-width="5"/>` +
-        tube('M62 100 L38 74', 6, m, o) + tube('M138 100 L162 74', 6, m, o) +
-        rotor(36) + rotor(164) +
-        tube('M126 138 Q136 146 136 156', 4, m, o) + `<circle cx="136" cy="158" r="6" fill="${m}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="112" rx="52" ry="38" fill="${f}" stroke="${o}"/>` +
-        `<path d="M54 122 Q100 152 146 122 Q140 146 100 150 Q60 146 54 122 Z" fill="${m}" stroke="none"/>` +
-        `<ellipse cx="100" cy="106" rx="34" ry="22" fill="${INK}" stroke="${o}" stroke-width="2"/>` +
-        eyes(88, 112, 104, 6, mood, { ink: glow, noShine: true }) +
-        `<path d="M94 115 Q100 119 106 115" fill="none" stroke="${glow}" stroke-width="2.5"/>` +
-        `<circle cx="100" cy="148" r="4" fill="#F43F5E" stroke="none"/><path d="M82 82 l10 -3" stroke="${l}" stroke-width="3" fill="none"/>`);
-    },
-    floppy(t, mood) {
-      const { fill: f, mid: m, line: o } = t;
-      return wrap(
-        `<path d="M84 176 v10 M116 176 v10" stroke="${o}" stroke-width="4" fill="none"/>` +
-        `<ellipse cx="80" cy="188" rx="9" ry="5" fill="${m}" stroke="${o}"/><ellipse cx="120" cy="188" rx="9" ry="5" fill="${m}" stroke="${o}"/>` +
-        tube('M52 122 Q36 130 38 148', 6, f, o) + `<circle cx="38" cy="150" r="7" fill="${f}" stroke="${o}"/>` +
-        tube('M148 122 Q164 130 162 148', 6, f, o) + `<circle cx="162" cy="150" r="7" fill="${f}" stroke="${o}"/>` +
-        `<path d="M50 54 Q50 50 54 50 H138 L150 62 V172 Q150 176 146 176 H54 Q50 176 50 172 Z" fill="${f}" stroke="${o}"/>` +
-        `<rect x="74" y="50" width="52" height="34" rx="3" fill="#CBD5E1" stroke="#475569"/>` +
-        `<rect x="104" y="56" width="11" height="22" rx="2" fill="#475569" stroke="none"/>` +
-        `<rect x="62" y="98" width="76" height="68" rx="6" fill="#F8FAFC" stroke="${o}"/>` +
-        `<path d="M70 108 h60" stroke="${lighter(f, 0.4)}" stroke-width="2.5" fill="none"/>` +
-        eyes(86, 114, 128, 7, mood) + blush(76, 124, 140, 6) + smile(100, 142, 7) +
-        `<rect x="56" y="160" width="6" height="8" fill="${m}" stroke="none"/>`);
-    },
-    dragon(t, mood) {
-      const { fill: f, light: l, mid: m, line: o } = t;
-      const horn = '#FDE68A', hornLine = '#B45309';
-      return wrap(
-        `<path d="M78 128 L26 66 Q42 70 48 84 Q52 64 64 70 Q64 88 86 106 Z" fill="${m}" stroke="${o}"/>` +
-        `<path d="M122 128 L174 66 Q158 70 152 84 Q148 64 136 70 Q136 88 114 106 Z" fill="${m}" stroke="${o}"/>` +
-        tube('M128 176 Q168 184 176 148', 13, f, o) +
-        `<path d="M168 150 L182 128 L190 154 Z" fill="${m}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="160" rx="40" ry="30" fill="${f}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="166" rx="22" ry="19" fill="${l}" stroke="none"/>` +
-        `<path d="M84 160 h32 M82 170 h36 M86 180 h28" stroke="${lighter(f, 0.25)}" stroke-width="2.5" fill="none"/>` +
-        `<ellipse cx="82" cy="187" rx="12" ry="7" fill="${m}" stroke="${o}"/><ellipse cx="118" cy="187" rx="12" ry="7" fill="${m}" stroke="${o}"/>` +
-        `<path d="M70 70 L60 38 L86 60 Z" fill="${horn}" stroke="${hornLine}"/><path d="M130 70 L140 38 L114 60 Z" fill="${horn}" stroke="${hornLine}"/>` +
-        `<ellipse cx="100" cy="98" rx="48" ry="40" fill="${f}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="119" rx="27" ry="16" fill="${l}" stroke="none"/>` +
-        `<circle cx="93" cy="113" r="2.2" fill="${o}" stroke="none"/><circle cx="107" cy="113" r="2.2" fill="${o}" stroke="none"/>` +
-        eyes(80, 120, 94, 8, mood) + blush(68, 132, 108) +
-        `<path d="M86 123 Q100 133 114 123" fill="none" stroke="${INK}" stroke-width="3"/>` +
-        `<path d="M92 126 l3 5 l3 -4 Z" fill="${WHITE}" stroke="${INK}" stroke-width="1.5"/>` +
-        `<ellipse cx="137" cy="163" rx="10" ry="9" fill="${f}" stroke="${o}"/>`);
-    },
-    unicorn(t, mood) {
-      const { fill: c, line: o } = t;
-      const body = lighter(c, 0.85), snout = lighter(c, 0.65), lineB = darker(c, 0.3);
-      return wrap(
-        `<path d="M134 158 Q170 150 168 178 Q160 190 150 182 Q160 172 140 170 Z" fill="${c}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="160" rx="40" ry="28" fill="${body}" stroke="${lineB}"/>` +
-        `<rect x="76" y="168" width="14" height="20" rx="5" fill="${body}" stroke="${lineB}"/><rect x="110" y="168" width="14" height="20" rx="5" fill="${body}" stroke="${lineB}"/>` +
-        `<path d="M76 184 h14 v4 q0 3 -3 3 h-8 q-3 0 -3 -3 Z M110 184 h14 v4 q0 3 -3 3 h-8 q-3 0 -3 -3 Z" fill="${c}" stroke="${o}" stroke-width="2"/>` +
-        `<path d="M64 80 L62 52 L84 66 Z" fill="${body}" stroke="${lineB}"/><path d="M136 80 L138 52 L116 66 Z" fill="${body}" stroke="${lineB}"/>` +
-        `<ellipse cx="100" cy="100" rx="46" ry="40" fill="${body}" stroke="${lineB}"/>` +
-        `<path d="M92 64 L100 20 L108 64 Z" fill="${GOLD}" stroke="${GOLD_LINE}"/>` +
-        `<path d="M95 52 l10 -3 M96 42 l8 -3 M98 32 l5 -2" stroke="${GOLD_LINE}" stroke-width="2" fill="none"/>` +
-        `<path d="M58 104 Q46 70 72 60 Q90 54 110 62 Q94 66 88 78 Q80 72 74 84 Q66 92 70 112 Z" fill="${c}" stroke="${o}"/>` +
-        `<ellipse cx="102" cy="120" rx="22" ry="14" fill="${snout}" stroke="none"/>` +
-        `<circle cx="95" cy="119" r="2" fill="${lineB}" stroke="none"/><circle cx="109" cy="119" r="2" fill="${lineB}" stroke="none"/>` +
-        eyes(84, 120, 98, 7.5, mood) +
-        (mood === 'sleepy' ? '' : `<path d="M76 91 l-4 -4 M128 91 l4 -4" stroke="${INK}" stroke-width="2.5" fill="none"/>`) +
-        blush(74, 130, 110) + smile(102, 126, 6) +
-        `<ellipse cx="137" cy="160" rx="9" ry="9" fill="${body}" stroke="${lineB}"/>`);
-    },
-    phoenix(t, mood) {
-      const { fill: f, line: o } = t;
-      const flame = mix(f, '#FDE047', 0.6), deep = darker(f, 0.2);
-      return wrap(
-        `<path d="M118 160 Q166 162 184 194 Q160 182 140 184 Q148 192 146 198 Q126 186 114 176 Z" fill="${deep}" stroke="${o}"/>` +
-        `<path d="M122 164 Q156 170 168 188 Q150 180 132 178 Z" fill="${flame}" stroke="none"/>` +
-        `<path d="M66 126 Q22 110 20 70 Q34 88 44 86 Q36 70 44 52 Q58 80 70 96 Q66 76 74 64 Q80 92 82 112 Z" fill="${deep}" stroke="${o}"/>` +
-        `<path d="M134 126 Q178 110 180 70 Q166 88 156 86 Q164 70 156 52 Q142 80 130 96 Q134 76 126 64 Q120 92 118 112 Z" fill="${deep}" stroke="${o}"/>` +
-        `<path d="M70 118 Q44 104 40 84 Q56 98 72 104 Z M130 118 Q156 104 160 84 Q144 98 128 104 Z" fill="${flame}" stroke="none"/>` +
-        `<ellipse cx="100" cy="152" rx="38" ry="34" fill="${f}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="160" rx="22" ry="22" fill="${flame}" stroke="none"/>` +
-        `<path d="M84 72 Q76 46 92 28 Q92 46 100 48 Q102 30 118 20 Q112 44 116 70 Z" fill="${flame}" stroke="${o}"/>` +
-        `<circle cx="100" cy="100" r="38" fill="${f}" stroke="${o}"/>` +
-        eyes(86, 114, 96, 7.5, mood) + blush(76, 124, 110, 6) +
-        `<path d="M93 106 L107 106 L100 118 Z" fill="${GOLD}" stroke="${GOLD_LINE}"/>` +
-        `<path d="M88 184 v6 M112 184 v6" stroke="${GOLD_LINE}" stroke-width="4" fill="none"/>` +
-        `<ellipse cx="134" cy="152" rx="9" ry="10" fill="${deep}" stroke="${o}"/>`);
-    },
-    griffin(t, mood) {
-      const { fill: f, mid: m, line: o } = t;
-      const head = '#F8FAFC', wing = lighter(f, 0.45);
-      return wrap(
-        tube('M132 172 Q170 174 166 140', 7, f, o) + `<ellipse cx="166" cy="136" rx="8" ry="10" fill="${m}" stroke="${o}"/>` +
-        `<path d="M76 130 Q34 122 28 84 Q42 94 50 90 Q40 80 42 66 Q56 84 64 82 Q60 96 84 114 Z" fill="${wing}" stroke="${o}"/>` +
-        `<path d="M124 130 Q166 122 172 84 Q158 94 150 90 Q160 80 158 66 Q144 84 136 82 Q140 96 116 114 Z" fill="${wing}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="162" rx="40" ry="28" fill="${f}" stroke="${o}"/>` +
-        `<ellipse cx="82" cy="187" rx="12" ry="7" fill="${m}" stroke="${o}"/><ellipse cx="118" cy="187" rx="12" ry="7" fill="${m}" stroke="${o}"/>` +
-        `<path d="M58 108 L44 102 L58 96 Z M142 108 L156 102 L142 96 Z" fill="${head}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="98" rx="44" ry="40" fill="${head}" stroke="${o}"/>` +
-        `<path d="M86 60 L92 50 L100 58 L108 50 L114 60" fill="${head}" stroke="${o}"/>` +
-        eyes(82, 118, 94, 7.5, mood) +
-        `<path d="M72 82 l12 4 M128 82 l-12 4" stroke="${o}" stroke-width="3" fill="none"/>` +
-        `<path d="M88 106 Q100 100 112 106 Q114 122 101 130 Q103 119 94 114 Q88 112 88 106 Z" fill="#F59E0B" stroke="#B45309"/>` +
-        blush(70, 130, 110) +
-        `<ellipse cx="137" cy="163" rx="10" ry="9" fill="${f}" stroke="${o}"/>`);
-    },
-    kraken(t, mood) {
-      const { fill: f, light: l, line: o } = t;
-      const arms = [
-        'M66 128 Q30 122 16 140 Q8 152 20 156',
-        'M134 128 Q170 122 180 136 Q186 146 176 150',
-        'M72 140 Q42 152 34 176 Q30 190 44 186',
-        'M128 140 Q158 152 166 176 Q170 190 156 186',
-        'M86 150 Q72 174 64 192',
-        'M114 150 Q128 174 136 192',
-        'M100 152 Q100 174 98 192'
-      ];
-      const suckers = [[24, 146], [40, 182], [68, 182], [132, 182], [160, 182], [99, 182], [174, 140]]
-        .map(([x, y]) => `<circle cx="${x}" cy="${y}" r="3" fill="${l}" stroke="none"/>`).join('');
-      return wrap(
-        arms.map(d => tube(d, 13, f, o)).join('') + suckers +
-        `<ellipse cx="100" cy="104" rx="64" ry="52" fill="${f}" stroke="${o}"/>` +
-        `<circle cx="72" cy="70" r="7" fill="${l}" stroke="none"/><circle cx="130" cy="66" r="5" fill="${l}" stroke="none"/><circle cx="146" cy="88" r="4" fill="${l}" stroke="none"/>` +
-        eyes(78, 122, 106, 10, mood) + blush(62, 138, 122, 8) +
-        `<path d="M88 126 Q100 136 112 126" fill="none" stroke="${INK}" stroke-width="3"/>`);
-    },
-    yeti(t, mood) {
-      const { fill: f, line: o } = t;
-      const face = mix(f, '#334155', 0.28);
-      return wrap(
-        `<path d="${shag(46, 138, 15, 30, 10, 5)}" fill="${f}" stroke="${o}"/>` +
-        `<path d="${shag(154, 134, 15, 28, 10, 5)}" fill="${f}" stroke="${o}"/>` +
-        `<path d="M64 68 Q48 54 54 34 Q62 52 76 58 Z M136 68 Q152 54 146 34 Q138 52 124 58 Z" fill="#E7E5E4" stroke="#78716C"/>` +
-        `<path d="${shag(100, 120, 56, 64, 22, 6)}" fill="${f}" stroke="${o}"/>` +
-        `<ellipse cx="80" cy="186" rx="18" ry="8" fill="${face}" stroke="${o}"/><ellipse cx="120" cy="186" rx="18" ry="8" fill="${face}" stroke="${o}"/>` +
-        `<ellipse cx="100" cy="102" rx="36" ry="30" fill="${face}" stroke="${o}"/>` +
-        eyes(86, 114, 96, 7, mood) + blush(76, 124, 110, 6) +
-        `<path d="M88 114 Q100 124 112 114" fill="none" stroke="${INK}" stroke-width="3"/>` +
-        `<path d="M93 117 l2 5 l3 -3 Z M107 117 l-2 5 l-3 -3 Z" fill="${WHITE}" stroke="${INK}" stroke-width="1.2"/>`);
-    },
-    slime(t, mood) {
-      const { fill: f, light: l, line: o } = t;
-      return wrap(
-        `<ellipse cx="100" cy="184" rx="66" ry="7" fill="${darker(f, 0.12)}" stroke="${o}" opacity=".6"/>` +
-        `<path d="M42 178 Q30 176 34 160 Q36 120 60 94 Q80 72 100 72 Q120 72 140 94 Q164 120 166 160 Q170 176 158 178 Q150 188 138 180 Q124 186 112 180 Q100 190 88 180 Q76 186 64 180 Q54 186 42 178 Z" fill="${f}" stroke="${o}"/>` +
-        `<path d="M56 160 Q58 118 84 96 Q100 86 116 96 Q90 104 78 130 Q70 150 74 170 Z" fill="${l}" opacity=".55" stroke="none"/>` +
-        `<ellipse cx="72" cy="108" rx="7" ry="13" transform="rotate(32 72 108)" fill="${WHITE}" opacity=".8" stroke="none"/>` +
-        eyes(84, 116, 128, 9, mood) + blush(72, 128, 142, 7) + smile(100, 142, 9) +
-        `<circle cx="142" cy="106" r="3" fill="${WHITE}" opacity=".7" stroke="none"/>`);
-    }
+  /* The first egg (no pets yet) is a free common egg. */
+  function eggPrice(e, owned) {
+    if (!e) return 0;
+    return e.id === 'common' && !Object.keys(owned || {}).length ? 0 : e.price;
+  }
+  function canBuyEgg(e, wallet, owned) {
+    if (!e || !egg(e.id)) return { ok: false, reason: 'unknown', price: 0 };
+    const price = eggPrice(e, owned);
+    const coins = wallet && typeof wallet.coins === 'number' ? wallet.coins : 0;
+    return coins >= price ? { ok: true, reason: 'ok', price } : { ok: false, reason: 'short', price };
+  }
+
+  /* Egg art: img/eggs/egg-<id>.png. */
+  function eggHTML(id, opts) {
+    const o = opts || {};
+    const e = egg(id) || EGGS[0];
+    const wh = o.size ? ` width="${o.size}" height="${o.size}"` : '';
+    return `<img src="img/eggs/egg-${e.id}.png"${wh} class="egg-img${o.cls ? ' ' + esc(o.cls) : ''}" alt="" aria-hidden="true" draggable="false" decoding="async">`;
+  }
+
+  /* ---------- mascot lines ----------
+     Short, kind, offline. {due}, {unit}, {streak} are filled from real state. */
+  const LINES = {
+    due: ['{due} {terms} to review today', '{due} {terms} ready for a quick review', 'Got a minute? {due} {terms} to review'],
+    ready: ['Ready for {unit}?', 'Fancy a round of {unit}?', "Let's learn something new!"],
+    streak: ['{streak}-day streak, keep it going!', '{streak} days in a row. Nice!', 'Streak at {streak}. One more round?'],
+    idle: ['Hi! Fancy a round?', "Let's learn something new!", 'Good to see you!'],
+    sleepy: ['Zzz…', 'Zzz… a round wakes me up', 'Zzz… zzz…'],
+    right: ['Nice!', 'Got it!', 'Spot on!', 'Yes!', 'Brilliant!'],
+    wrong: ['Nearly! Try again', "You've got this", 'Close one, keep going', 'Mistakes help you learn'],
+    hint: ['Here is a clue', 'Let me help', 'Take a look at this', 'One step at a time'],
+    complete: ['Great round!', 'You did it!', 'Round done, well played!', 'That was brilliant!'],
+    streakUp: ['Streak up! Keep it going!', 'Another day, another win!', 'Your streak grew!'],
+    empty: ['All caught up!', 'Nothing to review. Nice!', 'All done here for now']
   };
-
-  const STARTER_PRICE = 150;   // a second starter is bought like an everyday pet
-
-  /* id, name, kind, price, starter, default colour, anchors. Anchors are tuned
-     on the contact sheet: head = where a hat brim's centre sits, s = hat
-     scale (1 = a 56-wide brim); eyes = between the eyes, s = eye gap / 34;
-     neck, back and hand likewise in pet coordinates. */
-  const PET_LIST = [
-    ['cat', 'Cat', 'everyday', 0, true, '#F59E0B', { head: A(100, 60, 1.04), eyes: A(100, 98, 1.18), neck: A(100, 140, 0.8), back: A(100, 132, 1.2), hand: A(140, 160, 0.7, 10) }],
-    ['dog', 'Dog', 'everyday', 0, true, '#B07A4F', { head: A(100, 62, 1.04), eyes: A(100, 96, 1.12), neck: A(100, 142, 0.8), back: A(100, 132, 1.2), hand: A(140, 160, 0.7, 10) }],
-    ['fox', 'Fox', 'everyday', 200, false, '#F97316', { head: A(100, 62, 0.99), eyes: A(100, 96, 1.24), neck: A(100, 138, 0.75), back: A(100, 134, 1.14), hand: A(138, 161, 0.7, 10) }],
-    ['rabbit', 'Rabbit', 'everyday', 150, false, '#C8B6A6', { head: A(100, 66, 0.99), eyes: A(100, 100, 1.12), neck: A(100, 142, 0.75), back: A(100, 134, 1.14), hand: A(139, 160, 0.7, 10) }],
-    ['owl', 'Owl', 'everyday', 250, false, '#8B5E3C', { head: A(100, 58, 1.04), eyes: A(100, 94, 1.3), neck: A(100, 126, 0.8), back: A(100, 116, 1.26), hand: A(150, 156, 0.7, 10) }],
-    ['penguin', 'Penguin', 'everyday', 200, false, '#334155', { head: A(100, 56, 0.99), eyes: A(100, 98, 0.94), neck: A(100, 124, 0.8), back: A(100, 116, 1.26), hand: A(156, 152, 0.7, 14) }],
-    ['frog', 'Frog', 'everyday', 150, false, '#22C55E', { head: A(100, 76, 0.94), eyes: A(100, 80, 1.65), neck: A(100, 140, 0.85), back: A(100, 134, 1.2), hand: A(140, 157, 0.7, 10) }],
-    ['panda', 'Panda', 'everyday', 300, false, '#374151', { head: A(100, 60, 1.1), eyes: A(100, 97, 1.12), neck: A(100, 141, 0.85), back: A(100, 132, 1.26), hand: A(139, 156, 0.7, 10) }],
-    ['hamster', 'Hamster', 'everyday', 150, false, '#F4B183', { head: A(100, 104, 0.68), eyes: A(100, 130, 0.82), neck: A(100, 154, 0.62), back: A(100, 136, 0.9), hand: A(122, 160, 0.5, 10) }],
-    ['robot', 'Robot', 'tech', 0, true, '#60A5FA', { head: A(100, 56, 1.16), eyes: A(100, 89, 0.94), neck: A(100, 134, 0.8), back: A(100, 136, 1.2), hand: A(150, 160, 0.7, 10) }],
-    ['computer', 'Little computer', 'tech', 0, true, '#CBD5E1', { head: A(100, 50, 1.21), eyes: A(100, 86, 0.94), neck: A(100, 146, 0.75), back: A(100, 112, 1.38), hand: A(162, 142, 0.7, 10) }],
-    ['drone', 'Drone', 'tech', 400, false, '#F43F5E', { head: A(100, 76, 0.94), eyes: A(100, 104, 0.72), neck: A(100, 140, 0.8), back: A(100, 110, 1.32), hand: A(138, 156, 0.6, 10) }],
-    ['floppy', 'Floppy-disk buddy', 'tech', 350, false, '#3B82F6', { head: A(100, 52, 1.16), eyes: A(100, 128, 0.84), neck: A(100, 170, 0.8), back: A(100, 112, 1.38), hand: A(163, 148, 0.65, 10) }],
-    ['dragon', 'Dragon', 'mythical', 1500, false, '#10B981', { head: A(100, 62, 1.04), eyes: A(100, 94, 1.18), neck: A(100, 138, 0.8), back: A(100, 130, 1.2), hand: A(140, 160, 0.7, 10) }],
-    ['unicorn', 'Unicorn', 'mythical', 1200, false, '#F0ABFC', { head: A(118, 68, 0.88, 18), eyes: A(102, 98, 1.06), neck: A(100, 140, 0.8), back: A(100, 132, 1.2), hand: A(139, 158, 0.7, 10) }],
-    ['phoenix', 'Phoenix', 'mythical', 1300, false, '#F97316', { head: A(100, 66, 0.94), eyes: A(100, 96, 0.84), neck: A(100, 136, 0.75), back: A(100, 128, 1.14), hand: A(137, 150, 0.65, 10) }],
-    ['griffin', 'Griffin', 'mythical', 1100, false, '#D97706', { head: A(100, 60, 1.04), eyes: A(100, 94, 1.06), neck: A(100, 140, 0.8), back: A(100, 132, 1.2), hand: A(140, 160, 0.7, 10) }],
-    ['kraken', 'Kraken', 'mythical', 1000, false, '#A855F7', { head: A(100, 56, 1.32), eyes: A(100, 106, 1.3), neck: A(100, 150, 1.05), back: A(100, 112, 1.56), hand: A(178, 146, 0.7, 24) }],
-    ['yeti', 'Yeti', 'mythical', 800, false, '#E0F2FE', { head: A(100, 58, 1.16), eyes: A(100, 96, 0.84), neck: A(100, 134, 0.95), back: A(100, 124, 1.38), hand: A(156, 158, 0.75, 10) }],
-    ['slime', 'Slime', 'mythical', 600, false, '#84CC16', { head: A(100, 76, 0.99), eyes: A(100, 128, 0.94), neck: A(100, 158, 0.9), back: A(100, 128, 1.1), hand: A(162, 150, 0.7, 14) }]
-  ];
-
-  const MOODS = ['happy', 'sleepy'];
-  const PETS = PET_LIST.map(([id, name, kind, price, starter, col, anchors]) => ({
-    id, name, kind, price, starter, col, anchors,
-    svg(c, mood) {
-      const m = MOODS.includes(mood) ? mood : 'happy';
-      const art = PET_ART[id](tone(c, col), m);
-      // Sleepy pets get a little "z z" beside the head.
-      return m === 'sleepy' ? art.slice(0, -4) + zz(Math.min(anchors.head.x + 44, 176), anchors.head.y + 6) + '</g>' : art;
-    }
-  }));
+  function mascotLine(kind, ctx, rand) {
+    const list = LINES[kind];
+    if (!list) return '';
+    const c = ctx || {};
+    const n = v => (typeof v === 'number' && isFinite(v) ? Math.max(0, Math.round(v)) : 0);
+    const line = list[Math.floor(unit01((rand || Math.random)()) * list.length)];
+    return line
+      .replace('{due}', n(c.due)).replace('{terms}', n(c.due) === 1 ? 'term' : 'terms')
+      .replace('{streak}', n(c.streak))
+      .replace('{unit}', typeof c.unit === 'string' && c.unit ? c.unit : 'a round');
+  }
+  /* Which Home greeting: sleepy if not studied today, else due reviews, then
+     a streak of 2+, else "ready". */
+  function homeLineKind(s) {
+    const st = s || {};
+    if (!st.studied) return 'sleepy';
+    if (st.due > 0) return 'due';
+    if (st.streak >= 2) return 'streak';
+    return 'ready';
+  }
 
   /* The avatar: emoji or photo filling the middle ~120px of a 200px circle. */
   const AVATAR_ANCHORS = {
@@ -774,16 +471,6 @@ const SHOP = (() => {
       layer(BEHIND) + (baseSvg || '') + layer(FRONT) + '</svg>';
   }
 
-  /* A pet with its outfit. opts: { col, mood, size, title, cls }. */
-  function petSvg(id, outfit, opts) {
-    const p = pet(id);
-    if (!p) return '';
-    const o = opts || {};
-    const fit = {};
-    Object.keys(outfit || {}).forEach(k => { if (!AVATAR_ONLY.includes(k)) fit[k] = outfit[k]; });
-    return compose(p.svg(o.col || p.col, o.mood), p.anchors, fit, o);
-  }
-
   let clipN = 0;
   /* The avatar's own drawing: a colour circle (left out when a bg is worn)
      holding the emoji, or the photo clipped to the circle. */
@@ -826,17 +513,12 @@ const SHOP = (() => {
     if (u.type === 'mastery') return `Master all of Unit ${String(u.value).replace(/\D/g, '')}`;
     return '';
   }
-  /* What a pet, item or variant costs now. The first starter is free; once you
-     own a starter, the others cost STARTER_PRICE. */
-  function priceOf(it, owned) {
+  /* What an item or variant costs. */
+  function priceOf(it) {
     if (!it || it.unlock) return 0;
-    if (it.starter) {
-      const own = owned || {};
-      return PETS.some(p => p.starter && own[p.id]) ? STARTER_PRICE : 0;
-    }
     return typeof it.price === 'number' ? it.price : 0;
   }
-  /* canBuy(petOrItemOrVariant, wallet, owned, progress) -> { ok, reason, price }
+  /* canBuy(itemOrVariant, wallet, owned, progress) -> { ok, reason, price }
      reason: 'ok' | 'unlocked' (a milestone item, free to claim) | 'owned' |
      'short' (not enough coins) | 'locked' (milestone not reached) | 'unknown'. */
   function canBuy(it, wallet, owned, progress) {
@@ -844,7 +526,7 @@ const SHOP = (() => {
     const own = owned || {};
     if (own[it.id]) return { ok: false, reason: 'owned', price: 0 };
     if (it.unlock) return isUnlocked(it, progress) ? { ok: true, reason: 'unlocked', price: 0 } : { ok: false, reason: 'locked', price: 0 };
-    const price = priceOf(it, own);
+    const price = priceOf(it);
     const coins = wallet && typeof wallet.coins === 'number' ? wallet.coins : 0;
     return coins >= price ? { ok: true, reason: 'ok', price } : { ok: false, reason: 'short', price };
   }
@@ -864,18 +546,34 @@ const SHOP = (() => {
   }
 
   /* { owned: { petId: { name } }, active: petId | null }. An active pet that
-     isn't owned becomes the first owned pet. */
+     isn't owned becomes the first owned pet. Old code-drawn pets migrate
+     (MIGRATE): a renamed pet keeps its name, a default name becomes the new
+     pet's; if the new id is already owned it takes the next unowned pet of
+     the same rarity, so no pet is lost while any is left. */
   function coercePets(raw) {
     const out = { owned: {}, active: null };
     if (!isObj(raw) || !isObj(raw.owned)) return out;
-    Object.keys(raw.owned).forEach(id => {
-      const p = own(petById, id) ? petById[id] : null;
-      if (!p) return;
+    const keys = Object.keys(raw.owned);
+    let active = typeof raw.active === 'string' ? raw.active : null;
+    // Current ids first, so a migrated pet never takes a slot that is really owned.
+    keys.filter(id => own(petById, id)).forEach(id => {
       const rec = raw.owned[id];
-      out.owned[id] = { name: cleanName(isObj(rec) ? rec.name : '', p.name) };
+      out.owned[id] = { name: cleanName(isObj(rec) ? rec.name : '', petById[id].name) };
+    });
+    keys.filter(id => own(MIGRATE, id)).forEach(id => {
+      let to = MIGRATE[id];
+      if (own(out.owned, to)) {
+        const alt = PETS.find(p => p.rarity === petById[to].rarity && !own(out.owned, p.id));
+        if (!alt) return;
+        to = alt.id;
+      }
+      const rec = raw.owned[id];
+      const nm = isObj(rec) ? cleanName(rec.name, '') : '';
+      out.owned[to] = { name: nm && nm !== OLD_NAMES[id] ? nm : petById[to].name };
+      if (active === id) active = to;
     });
     const ids = Object.keys(out.owned);
-    out.active = typeof raw.active === 'string' && own(out.owned, raw.active) ? raw.active : (ids[0] || null);
+    out.active = active && own(out.owned, active) ? active : (ids[0] || null);
     return out;
   }
 
@@ -952,8 +650,9 @@ const SHOP = (() => {
   }
 
   const api = {
-    PETS, ITEMS, MOODS, SLOTS, AVATAR_ONLY, SLOT_ANCHOR, AVATAR_ANCHORS, TIER_NAMES, STARTER_PRICE, NAME_MAX,
-    pet, item, tone, compose, petSvg, avatarBase, avatarSvg, isUnlocked, unlockText, priceOf, canBuy,
+    PETS, RARITIES, EGGS, MIGRATE, ITEMS, SLOTS, AVATAR_ONLY, SLOT_ANCHOR, AVATAR_ANCHORS, TIER_NAMES, NAME_MAX,
+    pet, rarity, egg, rollRarity, hatch, refundFor, eggPrice, canBuyEgg, eggHTML, mascotLine, homeLineKind,
+    item, tone, compose, avatarBase, avatarSvg, isUnlocked, unlockText, priceOf, canBuy,
     cleanName, coercePets, coerceWardrobe, longestRun, buildProgress
   };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;

@@ -2236,7 +2236,20 @@ button.stats-tile--coins:hover:not(:disabled) { background: var(--forgot-bg); fi
 
 /* SHOP.compose draws with overflow visible: hats and wings may poke past the
    circle, so a host holding the dressed SVG must not clip it. */
-.pet-svg, .av-svg, .shop-thumb { display: block; overflow: visible; }
+.av-svg, .shop-thumb { display: block; overflow: visible; }
+/* Pets are 256px PNGs; sleepy ones are dimmed, unhatched ones a silhouette. */
+.pet-img { display: block; height: auto; max-width: 100%; object-fit: contain; user-select: none; }
+.pet-img:not([width]) { width: 100%; }
+.pet-img--sleepy { filter: saturate(.55) brightness(.85); opacity: .8; }
+.pet-img--unknown { filter: brightness(0); opacity: .14; }
+:root[data-theme="dark"] .pet-img--unknown { filter: brightness(0) invert(1); opacity: .12; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .pet-img--unknown { filter: brightness(0) invert(1); opacity: .12; } }
+.rarity-chip { color: #fff; font-size: 12px; padding: 2px 9px; vertical-align: middle; }
+.rarity-chip--common { background: #64748B; }
+.rarity-chip--rare { background: #2563EB; }
+.rarity-chip--epic { background: #7C3AED; }
+.rarity-chip--legendary { background: #A16207; }
+.rarity-chip--mythic { background: #E11D48; }
 :is(.lb-av, .re-lb-av, .top-bar-avatar, .sidebar-av-circle, .profile-av):has(> .av-svg) { overflow: visible; background: transparent !important; }
 :is(.lb-av, .re-lb-av, .top-bar-avatar, .sidebar-av-circle, .profile-av) > .av-svg { width: 100%; height: 100%; }
 
@@ -2262,11 +2275,8 @@ button.stats-tile--coins:hover:not(:disabled) { background: var(--forgot-bg); fi
 .shop-caption { text-align: center; color: var(--text2); font-size: 14px; font-weight: 600; min-height: 1.5em; margin-top: 6px; }
 
 .shop-tabs { margin-top: 14px; }
-.shop-targets { display: flex; gap: 8px; flex-wrap: wrap; margin: 4px 0 4px; }
-.shop-target { padding: 6px 16px 6px 8px; min-height: 44px; }
-.shop-target.on { border-color: var(--text); background: var(--fill); }
-.shop-target-art { width: 30px; height: 30px; display: grid; place-items: center; }
-.shop-target-art svg { width: 28px; height: 28px; }
+.shop-fig-art--pet img { width: clamp(96px, 26vw, 150px); height: auto; }
+.shop-count { font: 600 14px var(--font-ui); color: var(--text2); margin-left: 6px; }
 
 /* Cards */
 .shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
@@ -2277,6 +2287,30 @@ button.stats-tile--coins:hover:not(:disabled) { background: var(--forgot-bg); fi
 .shop-card-art { width: 100%; aspect-ratio: 1; max-width: 120px; padding: 14px; display: grid; place-items: center; border: none; background: var(--fill); border-radius: var(--r-sm); cursor: pointer; color: inherit; }
 div.shop-card-art { cursor: default; }
 .shop-card-art svg { width: 100%; height: 100%; }
+.shop-card-art img { width: 100%; height: 100%; }
+.shop-card.is-unknown .shop-card-name { color: var(--text2); }
+
+/* Eggs */
+.egg-art img { width: 100%; height: 100%; object-fit: contain; min-height: 0; }
+.egg-odds { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 700; color: var(--text2); }
+.egg-odds li { display: flex; align-items: center; justify-content: center; gap: 6px; }
+
+/* Hatching (inside the shared modal) */
+.hatch-stage { position: relative; width: 170px; height: 170px; display: grid; place-items: center; }
+.hatch-egg img, .hatch-shell img { width: 132px; height: 132px; display: block; }
+.hatch-egg { animation: egg-wobble .5s ease-in-out 3, egg-crack .2s ease-in 1.5s forwards; transform-origin: 50% 90%; }
+.hatch-shell { position: absolute; left: 50%; top: 50%; margin: -66px 0 0 -66px; }
+.hatch-shell--l { clip-path: polygon(0 0, 50% 0, 42% 30%, 56% 45%, 44% 60%, 50% 100%, 0 100%); animation: shell-l .6s ease-out forwards; }
+.hatch-shell--r { clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%, 44% 60%, 56% 45%, 42% 30%); animation: shell-r .6s ease-out forwards; }
+.hatch-pet { position: relative; width: 150px; animation: pet-bounce .7s cubic-bezier(.34, 1.56, .64, 1) .15s both; }
+@keyframes egg-wobble { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-9deg); } 75% { transform: rotate(9deg); } }
+@keyframes egg-crack { to { transform: scale(1.08); filter: brightness(1.1); } }
+@keyframes shell-l { to { transform: translate(-60px, 30px) rotate(-30deg); opacity: 0; } }
+@keyframes shell-r { to { transform: translate(60px, 30px) rotate(30deg); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .hatch-egg, .hatch-pet { animation: none; }
+  .hatch-shell { display: none; }
+}
 .shop-card-name { font-weight: 800; font-size: 14.5px; line-height: 1.25; overflow-wrap: anywhere; }
 .shop-card-kind { font-size: 12.5px; color: var(--text2); margin-top: -6px; }
 .shop-card-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px; margin-top: auto; }
@@ -2297,50 +2331,65 @@ div.shop-card-art { cursor: default; }
 .shop-sheet-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 6px; width: 100%; }
 .shop-sheet-actions > * { flex: 1 1 140px; }
 
-/* Home: the active pet with its mood */
+/* Home: the mascot with a greeting, or the free egg */
 .home-pet { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
-.home-pet-figs { display: flex; align-items: flex-end; flex: none; padding: 14px 4px 0 8px; }
-.home-pet-av svg { width: 48px; height: 48px; }
-.home-pet-art { display: block; margin-left: -6px; }
-.home-pet-art svg { width: 92px; height: 92px; }
-.home-pet-art--egg { font-size: 40px; line-height: 1; margin: 0; }
-.home-pet-art--happy svg { animation: pet-bob 2.4s ease-in-out infinite; transform-origin: 50% 100%; }
+.home-pet-art--egg { width: 64px; flex: none; }
+.home-pet-art--egg img { width: 64px; height: 64px; display: block; }
 .home-pet-text { flex: 1; min-width: 0; }
+.home-mascot .home-pet-text { flex: 0; }
 .home-pet h3 { font-size: 17px; margin-bottom: 2px; overflow-wrap: anywhere; }
 .home-pet p { font-size: 14px; color: var(--text2); line-height: 1.45; overflow-wrap: anywhere; }
 .home-pet .g-pill { flex: none; }
-@keyframes pet-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+.home-forgot-pet { width: 48px; }
 @media (max-width: 600px) {
   .home-pet { flex-wrap: wrap; }
   .home-pet .g-pill { width: 100%; }
 }
 @media (min-width: 1100px) {
   .home-pet { padding: clamp(18px, 1.6vw, 28px) clamp(20px, 2vw, 32px); gap: clamp(16px, 1.6vw, 26px); }
-  .home-pet-av svg { width: clamp(48px, 3.6vw, 64px); height: clamp(48px, 3.6vw, 64px); }
-  .home-pet-art svg { width: clamp(92px, 7vw, 128px); height: clamp(92px, 7vw, 128px); }
   .home-pet h3 { font-size: clamp(17px, 1.5vw, 24px); }
   .home-pet p { font-size: clamp(14px, 1.1vw, 17px); }
   .home-pet .g-pill { font-size: clamp(14px, 1.1vw, 17px); padding-block: clamp(10px, .9vw, 14px); padding-inline: clamp(24px, 2vw, 34px); }
 }
 
+/* The mascot: the pet with a speech bubble beside it */
+.mascot { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.mascot-art { flex: none; display: block; }
+.mascot-bubble { position: relative; background: var(--fill); border: 2px solid var(--line); border-radius: 16px; padding: 8px 14px; font-weight: 700; font-size: 14px; line-height: 1.35; color: var(--text); overflow-wrap: anywhere; min-width: 0; }
+.mascot-bubble::before { content: ""; position: absolute; left: -9px; top: 50%; width: 14px; height: 14px; margin-top: -7px; background: var(--fill); border-left: 2px solid var(--line); border-bottom: 2px solid var(--line); transform: rotate(45deg); }
+.mascot--home { flex: 1; }
+.mascot--home .mascot-art img { width: clamp(88px, 8vw, 128px); height: auto; }
+.mascot--home .mascot-bubble { font-size: clamp(15px, 1.2vw, 19px); padding: 12px 18px; }
+.mascot--home:not(.is-sleepy) .mascot-art { animation: pet-bob 2.4s ease-in-out infinite; transform-origin: 50% 100%; }
+.mascot.is-sleepy .mascot-bubble { color: var(--text2); font-style: italic; }
+@keyframes pet-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+/* In a round: small, beside the panel */
+.mascot--side { margin: 10px 0 4px; }
+.mascot--side .mascot-art { animation: pet-pop .35s cubic-bezier(.34, 1.56, .64, 1); }
+.mascot--side .mascot-bubble { font-size: 13.5px; padding: 6px 12px; }
+.mascot--explain { margin: 0 0 10px; }
+.mascot--flash { flex-direction: column; gap: 4px; margin-top: -30px; }
+.mascot--flash .mascot-art { animation: pet-hop .6s cubic-bezier(.34, 1.56, .64, 1); }
+.mascot--flash .mascot-bubble { font-size: 13px; padding: 4px 10px; }
+.mascot--flash .mascot-bubble::before { left: 50%; top: -8px; margin: 0 0 0 -7px; transform: rotate(135deg); }
+@keyframes pet-pop { 0% { transform: scale(.6); opacity: 0; } 100% { transform: none; opacity: 1; } }
+@keyframes pet-hop { 0% { transform: translateY(10px) scale(.7); } 45% { transform: translateY(-14px) scale(1.05); } 70% { transform: translateY(0); } 85% { transform: translateY(-4px); } 100% { transform: none; } }
+
 /* Profile's shop card */
 .profile-shop { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; flex-wrap: wrap; }
 .profile-shop-art { width: 64px; height: 64px; flex: none; display: grid; place-items: center; font-size: 34px; padding-top: 6px; }
-.profile-shop-art svg { width: 60px; height: 60px; }
+.profile-shop-art img { width: 60px; height: 60px; }
 .profile-shop-text { flex: 1; min-width: 180px; }
 .profile-shop h3 { font-size: 17px; margin-bottom: 2px; }
 .profile-shop p { font-size: 14px; color: var(--text2); overflow-wrap: anywhere; }
 
-/* Rounds: the pet on the right-answer flash and on Round Complete */
-.rv-flash-pet { display: block; margin-top: -40px; animation: pet-bounce .6s cubic-bezier(.34, 1.56, .64, 1); }
-.rv-flash-pet svg { width: 64px; height: 64px; }
+/* Rounds: the mascot on the right-answer flash, Round Complete and the streak screen */
 .rv-flash.has-pet { padding-top: 10px; }
 @keyframes pet-bounce { 0% { transform: translateY(10px) scale(.7); } 55% { transform: translateY(-8px) scale(1.05); } 100% { transform: none; } }
-.re-pet { display: flex; flex-direction: column; align-items: center; gap: 4px; margin: 6px 0 2px; }
-.re-pet-art { padding-top: 14px; }
-.re-pet-art svg { width: 104px; height: 104px; animation: pet-bounce .7s cubic-bezier(.34, 1.56, .64, 1) .2s both; }
-.re-pet-say { font-weight: 700; font-size: 14px; color: var(--text2); overflow-wrap: anywhere; text-align: center; }
+.re-pet { flex-direction: column; gap: 6px; margin: 10px 0 2px; justify-content: center; }
+.re-pet .mascot-art { animation: pet-bounce .7s cubic-bezier(.34, 1.56, .64, 1) .2s both; }
+.re-pet .mascot-bubble::before { left: 50%; top: -8px; margin: 0 0 0 -7px; transform: rotate(135deg); }
 
 @media (prefers-reduced-motion: reduce) {
-  .rv-flash-pet, .re-pet-art svg, .home-pet-art--happy svg { animation: none; }
+  .mascot-art, .mascot--home:not(.is-sleepy) .mascot-art, .re-pet .mascot-art, .mascot--flash .mascot-art, .mascot--side .mascot-art { animation: none; }
 }

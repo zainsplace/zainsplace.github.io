@@ -1223,12 +1223,12 @@ function renderHome() {
     </section>
 
     <section class="g-card home-forgot" aria-labelledby="home-forgot-title">
-      <span class="home-forgot-emoji" aria-hidden="true">⏰</span>
+      ${!forgot && typeof activePet === 'function' && activePet() ? `<span class="home-forgot-emoji home-forgot-pet" aria-hidden="true">${petHTML(48, { mood: 'happy', title: '' })}</span>` : '<span class="home-forgot-emoji" aria-hidden="true">⏰</span>'}
       <div class="home-forgot-text">
         <h3 id="home-forgot-title">Forgotten today</h3>
         <p>${forgot
           ? `<b id="home-forgot-count">${forgot}</b> term${forgot === 1 ? ' is' : 's are'} due again${forgot > ROUND_MAX ? `. A review round asks ${ROUND_MAX} at a time` : ''}.`
-          : '<b id="home-forgot-count">0</b> terms due. Nothing to review right now.'}</p>
+          : `<b id="home-forgot-count">0</b> terms due. ${typeof activePet === 'function' && activePet() ? escapeHTML(SHOP.mascotLine('empty', {}, () => 0)) : 'Nothing to review right now.'}`}</p>
       </div>
       <button class="g-btn" id="home-review" onclick="openRound(null,'review')" ${forgot ? '' : 'disabled'}>Review</button>
     </section>
@@ -4533,7 +4533,7 @@ function buildSparklineSVG(data, width = 200, height = 40) {
   </svg>`;
 }
 
-/* Profile's way into the shop: the active pet, the coin balance and a button. */
+/* Profile's way into the shop: the mascot, the coin balance and a button. */
 function profileShopHTML() {
   const pid = typeof activePet === 'function' ? activePet() : null;
   const coins = store.wallet.coins;
@@ -4542,7 +4542,7 @@ function profileShopHTML() {
       <span class="profile-shop-art" aria-hidden="true">${pid ? petHTML(null, { title: '' }) : '🛍️'}</span>
       <div class="profile-shop-text">
         <h3 id="profile-shop-title">Shop</h3>
-        <p>${pid ? `${escapeHTML(petName(pid))} and you can wear anything you buy.` : 'Pick a free pet, then buy outfits for it and your avatar.'} <span class="g-chip g-chip--coin"><span aria-hidden="true">🪙</span> ${coins.toLocaleString('en-GB')}</span></p>
+        <p>${pid ? `${escapeHTML(petName(pid))} is your mascot. Hatch eggs for more pets and dress your avatar.` : 'Your first egg is free. Hatch a pet, then dress your avatar.'} <span class="g-chip g-chip--coin"><span aria-hidden="true">🪙</span> ${coins.toLocaleString('en-GB')}</span></p>
       </div>
       <button class="g-btn" onclick="navigate('shop')">Open the shop</button>
     </section>`;

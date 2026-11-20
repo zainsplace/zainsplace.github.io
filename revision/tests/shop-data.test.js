@@ -6,17 +6,8 @@ const SLOTS = ['hat', 'face', 'neck', 'back', 'held', 'bg', 'frame', 'effect'];
 const ANCHORS = ['head', 'eyes', 'neck', 'back', 'hand'];
 const count = (s, sub) => s.split(sub).length - 1;
 
-test('every pet has all five anchors with finite numbers', () => {
-  assert.ok(SHOP.PETS.length >= 18 && SHOP.PETS.length <= 22, 'about 20 pets');
-  for (const p of SHOP.PETS) {
-    for (const a of ANCHORS) {
-      const v = p.anchors[a];
-      assert.ok(v, `${p.id} lacks ${a}`);
-      for (const k of ['x', 'y', 's', 'r']) assert.ok(Number.isFinite(v[k]), `${p.id}.${a}.${k}`);
-      assert.ok(v.s > 0, `${p.id}.${a}.s > 0`);
-    }
-  }
-  for (const a of ANCHORS) assert.ok(Number.isFinite(SHOP.AVATAR_ANCHORS[a].s), `avatar ${a}`);
+test('avatar anchors are finite', () => {
+  for (const a of ANCHORS) for (const k of ['x', 'y', 's', 'r']) assert.ok(Number.isFinite(SHOP.AVATAR_ANCHORS[a][k]), `avatar ${a}.${k}`);
 });
 
 test('ids are unique across pets, items and variants', () => {
@@ -33,17 +24,6 @@ test('no axolotl', () => {
   for (const p of SHOP.PETS) {
     assert.doesNotMatch(p.id, /axolotl/i);
     assert.doesNotMatch(p.name, /axolotl/i);
-  }
-});
-
-test('exactly four starters, all free; prices by kind', () => {
-  const starters = SHOP.PETS.filter(p => p.starter);
-  assert.deepEqual(starters.map(p => p.id).sort(), ['cat', 'computer', 'dog', 'robot']);
-  for (const p of starters) assert.equal(p.price, 0);
-  const range = { everyday: [150, 300], tech: [300, 500], mythical: [600, 1500] };
-  for (const p of SHOP.PETS.filter(q => !q.starter)) {
-    const [lo, hi] = range[p.kind];
-    assert.ok(p.price >= lo && p.price <= hi, `${p.id} ${p.price}`);
   }
 });
 
@@ -67,18 +47,6 @@ test('unlocks: one per league tier, streak 7/30/100, one per unit', () => {
   assert.deepEqual(un.filter(u => u.type === 'league').map(u => u.value).sort(), [0, 1, 2, 3, 4, 5, 6]);
   assert.deepEqual(un.filter(u => u.type === 'streak').map(u => u.value).sort((a, b) => a - b), [7, 30, 100]);
   assert.deepEqual(un.filter(u => u.type === 'mastery').map(u => u.value).sort(), ['u1', 'u2']);
-});
-
-test('pet art: a <g> string per mood, recolours', () => {
-  assert.deepEqual(SHOP.MOODS, ['happy', 'sleepy']);
-  for (const p of SHOP.PETS) {
-    const a = p.svg(p.col, 'happy'), b = p.svg(p.col, 'sleepy'), c = p.svg('#123456', 'happy');
-    assert.match(a, /^<g[\s>]/);
-    assert.match(a, /<\/g>$/);
-    assert.notEqual(a, b, `${p.id} moods differ`);
-    assert.notEqual(a, c, `${p.id} recolours`);
-    assert.doesNotMatch(a, /<text|<image|href=/, `${p.id} shapes only`);
-  }
 });
 
 test('compose: one <svg>, one <g> per worn item, layers in order', () => {
@@ -118,14 +86,6 @@ test('canBuy refuses when short, owned or locked', () => {
   assert.equal(SHOP.canBuy(u2, { coins: 0 }, {}, { masteredUnits: ['u1'] }).ok, false);
   assert.equal(SHOP.canBuy(u2, { coins: 0 }, {}, { masteredUnits: ['u2'] }).ok, true);
   assert.equal(SHOP.canBuy(u2, { coins: 0 }, {}, undefined).reason, 'locked');
-
-  // starters: the first is free, later ones cost STARTER_PRICE
-  const cat = SHOP.pet('cat'), dog = SHOP.pet('dog');
-  assert.deepEqual(SHOP.canBuy(cat, { coins: 0 }, {}, {}), { ok: true, reason: 'ok', price: 0 });
-  assert.equal(SHOP.canBuy(dog, { coins: 0 }, { cat: true }, {}).reason, 'short');
-  assert.equal(SHOP.canBuy(dog, { coins: SHOP.STARTER_PRICE }, { cat: true }, {}).price, SHOP.STARTER_PRICE);
-  const dragon = SHOP.pet('dragon');
-  assert.equal(SHOP.canBuy(dragon, { coins: dragon.price - 1 }, {}, {}).reason, 'short');
 });
 
 test('unlockText: the short lock label the shop cards show', () => {

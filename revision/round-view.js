@@ -256,7 +256,8 @@ function rvStreakHTML() {
     <div class="re-hero" aria-hidden="true">🔥</div>
     <h1 class="g-display g-wavy re-big" aria-label="${escapeHTML(title)}">${rvWavy(title)}</h1>
     <p class="re-sub">${n === 1 ? 'Day one. Study again tomorrow to build it up.' : 'You kept it going. See you tomorrow.'}</p>
-    <ol class="re-week" aria-label="This week">${days}</ol>`;
+    <ol class="re-week" aria-label="This week">${days}</ol>
+    ${rvMascot('streakUp', 'streak' + n, 're-pet', 96)}`;
 }
 
 function rvOvertakenHTML(e) {
@@ -275,10 +276,15 @@ function rvOvertakenHTML(e) {
     <div class="g-card re-lb">${row(me, true)}${row(rival, false)}</div>`;
 }
 
-/* The active pet on Round Complete, with a cheer. Empty with no pet. */
-function rvPetCheerHTML() {
-  if (typeof petHTML !== 'function' || typeof activePet !== 'function' || !activePet()) return '';
-  return `<div class="re-pet"><span class="re-pet-art">${petHTML(104, { mood: 'happy', title: '' })}</span><span class="re-pet-say">${escapeHTML(petName(activePet()))}: “Great round!”</span></div>`;
+/* The mascot (shop.js) saying a line, or '' with no mascot. seed keeps the
+   line the same when the screen redraws. */
+function rvMascot(kind, seed, cls, size) {
+  return typeof mascotSayHTML === 'function' ? mascotSayHTML(kind, {}, { seed, cls, size }) : '';
+}
+
+/* The mascot on Round Complete, with a cheer. Empty with no pet. */
+function rvPetCheerHTML(e) {
+  return rvMascot('complete', 'complete' + (e ? [e.nodeId, e.coins, e.ring].join('|') : ''), 're-pet', 104);
 }
 
 function rvCompleteHTML(e) {
@@ -325,7 +331,7 @@ function rvCompleteHTML(e) {
   return `
     ${confetti}
     <h1 class="g-display g-wavy re-title" aria-label="Round Complete">${rvWavy('Round Complete')}</h1>
-    ${rvPetCheerHTML()}
+    ${rvPetCheerHTML(e)}
     <div class="re-chips"><span class="g-chip g-chip--xp">+${e.xp} XP</span>${coins}</div>
     <section class="g-card re-step" aria-label="${escapeHTML(e.title)}">
       <div class="re-step-text">
@@ -504,6 +510,9 @@ function rvQuestionHTML(card, s, past) {
     html += (q.kind === 'type' || q.kind === 'gap')
       ? rvTypedMissHTML(card)
       : '<p class="rv-note rv-note--bad" role="status">Not quite. Try again. This card comes back at the end as ↻ Retry.</p>';
+    html += rvMascot('wrong', 'wrong' + q.prompt + card.tried.length, 'mascot--side', 48);
+  } else if ((s.hint || card.greyed.length) && !card.done && !past && !s.explain) {
+    html += rvMascot('hint', 'hint' + q.prompt, 'mascot--side', 48);
   }
   if (s.explainNote && !card.done && !past) {
     html += '<p class="rv-note">Opening the notes first counts as a miss, so this card comes back as ↻ Retry. You can still answer it now.</p>';
@@ -537,9 +546,9 @@ function rvFlashHTML(f, q) {
   if (f.xp) bits.push(`<span class="g-chip g-chip--xp">+${f.xp} XP</span>`);
   if (!bits.length) bits.push('<span class="rv-flash-days">✓ Correct</span>');
   const spell = f.close ? `<span class="rv-flash-spell">Watch the spelling: <strong>${escapeHTML(q.answer)}</strong></span>` : '';
-  // The active pet cheers (shop.js); it bounces unless motion is reduced.
-  const pet = typeof petHTML === 'function' ? petHTML(64, { mood: 'happy', title: '' }) : '';
-  return `<div class="rv-flash${pet ? ' has-pet' : ''}" aria-hidden="true">${pet ? `<span class="rv-flash-pet">${pet}</span>` : ''}${bits.join('')}${spell}</div>`;
+  // The mascot hops with a short line (shop.js); no hop if motion is reduced.
+  const pet = rvMascot('right', 'right' + q.prompt, 'mascot--flash', 56);
+  return `<div class="rv-flash${pet ? ' has-pet' : ''}" aria-hidden="true">${pet}${bits.join('')}${spell}</div>`;
 }
 
 /* The answer controls for each question kind. */
@@ -632,7 +641,7 @@ function rvWhyHTML(card, s, past) {
     <div class="rv-why ${right ? 'ok' : 'bad'}">
       <strong>${escapeHTML(head)} Answer: ${escapeHTML(rvAnswerText(q))}</strong>
       <span>${escapeHTML(q.why || '')}</span>
-    </div>`;
+    </div>${!past && !right ? rvMascot('wrong', 'miss' + q.prompt, 'mascot--side', 48) : ''}`;
 }
 
 function rvToolsHTML(card, s, past) {
@@ -728,6 +737,7 @@ function rvExplainHTML(card, s) {
   const it = card.item;
   return `
     <section class="rv-explain" id="rv-explain" aria-label="Notes for ${escapeHTML(it.term)}">
+      ${rvMascot('hint', 'explain' + it.term, 'mascot--side mascot--explain', 48)}
       ${rvExplainBodyHTML(card)}
       ${s.simpler ? rvSimplerHTML(it) : ''}
       <div class="rv-ex-chips">
