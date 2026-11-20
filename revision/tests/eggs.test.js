@@ -13,7 +13,7 @@ test('pets: 20 image pets in five rarities, each drawn from img/pets/<id>.png', 
   assert.deepEqual(by('epic'), ['wolf', 'tiger', 'bear', 'eagle']);
   assert.deepEqual(by('legendary'), ['lion', 'griffin', 'unicorn', 'dragon']);
   assert.deepEqual(by('mythic'), ['phoenix', 'kraken', 'hydra']);
-  for (const p of SHOP.PETS) assert.equal(p.img, `img/pets/${p.id}.png`);
+  for (const p of SHOP.PETS) assert.equal(p.img, `img/pets/${p.id}.png?v=2`);
   for (const e of SHOP.EGGS) assert.match(SHOP.eggHTML(e.id), new RegExp(`img/eggs/egg-${e.id}\.png`));
 });
 

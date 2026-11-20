@@ -52,7 +52,7 @@ const SHOP = (() => {
     ['lion', 'Lion', 'legendary'], ['griffin', 'Griffin', 'legendary'], ['unicorn', 'Unicorn', 'legendary'], ['dragon', 'Dragon', 'legendary'],
     ['phoenix', 'Phoenix', 'mythic'], ['kraken', 'Kraken', 'mythic'], ['hydra', 'Hydra', 'mythic']
   ];
-  const PETS = PET_LIST.map(([id, name, rarity]) => ({ id, name, rarity, img: `img/pets/${id}.png` }));
+  const PETS = PET_LIST.map(([id, name, rarity]) => ({ id, name, rarity, img: `img/pets/${id}.png?v=2` }));
 
   /* Old code-drawn pets with no animal in the new set, mapped to a new pet
      (cheap starters -> common, tech -> rare, yeti/slime -> epic). Every other
@@ -114,7 +114,7 @@ const SHOP = (() => {
     const o = opts || {};
     const e = egg(id) || EGGS[0];
     const wh = o.size ? ` width="${o.size}" height="${o.size}"` : '';
-    return `<img src="img/eggs/egg-${e.id}.png"${wh} class="egg-img${o.cls ? ' ' + esc(o.cls) : ''}" alt="" aria-hidden="true" draggable="false" decoding="async">`;
+    return `<img src="img/eggs/egg-${e.id}.png?v=2"${wh} class="egg-img${o.cls ? ' ' + esc(o.cls) : ''}" alt="" aria-hidden="true" draggable="false" decoding="async">`;
   }
 
   /* ---------- mascot lines ----------
